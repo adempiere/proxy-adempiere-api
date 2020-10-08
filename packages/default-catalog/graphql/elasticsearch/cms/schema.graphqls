@@ -1,0 +1,174 @@
+extend type Query {
+    
+    # The CMS page query returns information about a CMS pages
+    cmsPages (
+
+        # An array of options for search criteria
+        filter: CmsInput 
+
+    ): CmsPages 
+    
+    # The CMS block query returns information about CMS blocks
+    cmsBlocks (
+
+        # An array of options for search criteria
+        filter: CmsInput 
+
+    ): CmsBlocks 
+    
+    # The CMS block query returns information about CMS blocks
+    cmsHierarchies (
+
+        # An array of options for search criteria
+        filter: CmsInput 
+
+    ): CmsHierarchies 
+}
+
+# CmsInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.
+input CmsInput {
+
+    # Id of the CMS entity
+    id: FilterTypeInput 
+
+    # Identifiers of the CMS entity
+    identifier: FilterTypeInput 
+
+    # Store Id of the CMS entity
+    store_id: FilterTypeInput 
+
+    # The url path assigned to the cms_page
+    url_path: FilterTypeInput 
+}
+
+# CMS pages information
+type CmsPages implements ESResponseInterface  {
+    
+    # An array of CMS pages
+    items: [CmsPage] 
+
+    # Document returned by this search query hits 
+    hits: JSON 
+
+    # Search suggest feature
+    suggest: JSON 
+
+    # Aggregations returned when filter have been applied
+    aggregations: JSON 
+}
+
+# CMS page defines all CMS page information
+type CmsPage  {
+
+    # Id of CMS page
+    page_id: ID
+
+    # CMS page title
+    title: String 
+
+    # URL key of CMS page
+    identifier: String 
+
+    # CMS page content
+    content: String 
+
+    # CMS page content heading
+    content_heading: String 
+
+    # CMS page meta description
+    meta_description: String 
+
+    # CMS page meta keywords
+    meta_keywords: String
+
+    # Store Id of CMS page
+    store_id: Int 
+    
+    # CMS page meta keywords
+    url_path: String 
+}
+
+# CMS blocks information
+type CmsBlocks implements ESResponseInterface  {
+    
+    # An array of CMS blocks
+    items: [CmsBlock] 
+    
+    # Document returned by this search query hits 
+    hits: JSON 
+
+    # Search suggest feature
+    suggest: JSON 
+
+    # Aggregations returned when filter have been applied
+    aggregations: JSON 
+}
+
+# CMS block defines all CMS block information
+type CmsBlock  {
+    
+    # CMS block identifier
+    identifier: String 
+
+    # CMS block identifier
+    id: ID 
+
+    # CMS block title
+    title: String 
+
+    # CMS block content
+    content: String 
+
+    # Timestamp indicating when the CMS block was created
+    creation_time: String 
+
+    # Store Id of CMS block
+    store_id: Int 
+}
+
+# CMS hierarchies information
+type CmsHierarchies implements ESResponseInterface  {
+
+    # An array of CMS hierarchies
+    items: [CmsHierarchy]
+
+    # Document returned by this search query hits 
+    hits: JSON 
+
+    # Search suggest feature
+    suggest: JSON 
+
+    # Aggregations returned when filter have been applied
+    aggregations: JSON  
+}
+
+# The relation between CmsPages is set by CmsHierarchies
+type CmsHierarchy {
+
+    # Node Id of the CMS hierarchy
+    node_id: Int 
+
+    # Parent node Id of the CMS hierarchy node
+    parent_node_id: Int 
+
+    # Id of the CMS page
+    page_id: Int 
+
+    # Identifier of the CMS hierarchy node
+    identifier: String 
+
+    # Label of CMS hierarchy node
+    label: String 
+
+    # Level of CMS hierarchy node
+    level: Int 
+
+    # Request URL of CMS hierarchy node
+    request_url: String 
+
+    # XPATH of CMS hierarchy node
+    xpath: String 
+    
+    # Store Id of CMS hierarchy node
+    store_id: Int 
+}
