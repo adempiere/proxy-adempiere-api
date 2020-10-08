@@ -67,6 +67,39 @@ export default ({ config, db, service }) => {
     }
   });
 
+  /**
+   * POST change role
+   *
+   * req.body.token - user token obtained from the `/api/user/login`
+   * req.body.role - user token obtained from the `/api/user/session`
+   * req.body.organization - user token obtained from the `/api/user/session`
+   * req.body.warehouse - user token obtained from the `/api/user/session`
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserme
+   */
+  userApi.post('/change-role', (req, res) => {
+    if (req.body) {
+      service.changeRole({
+        token: req.body.token,
+        role: req.body.role,
+        organization: req.body.organization,
+        warehouse: req.body.warehouse
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getSession(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
   //  recursive function for get menu
   function getMenu (menu) {
     return {
@@ -113,6 +146,29 @@ export default ({ config, db, service }) => {
       is_can_export: role.getIsCanExport(),
       is_personal_lock: role.getIsPersonalLock(),
       is_personal_access: role.getIsPersonalAccess()
+    }
+  }
+
+  //  Convert session
+  function getSession (session) {
+    return {
+      id: session.getId(),
+      uuid: session.getUuid(),
+      name: session.getName(),
+      user_info: getUserInfo(session.getUserInfo()),
+      role: getRole(session.getRole()),
+      processed: session.getProcessed(),
+      language: session.getLanguage(),
+      country_id: session.getCountryId(),
+      country_code: session.getCountryCode(),
+      country_name: session.getCountryName(),
+      display_sequence: session.getDisplaySequence(),
+      currency_iso_code: session.getCurrencyIsoCode(),
+      currency_name: session.getCurrencyName(),
+      currency_symbol: session.getCurrencySymbol(),
+      standard_precision: session.getStandardPrecision(),
+      costing_precision: session.getCostingPrecision(),
+      default_context: getContext(session.getDefaultContextMap(), service)
     }
   }
 
@@ -170,24 +226,7 @@ export default ({ config, db, service }) => {
         if (response) {
           res.json({
             code: 200,
-            result: {
-              id: response.getId(),
-              uuid: response.getUuid(),
-              name: response.getName(),
-              user_info: getUserInfo(response.getUserInfo()),
-              role: getRole(response.getRole()),
-              processed: response.getProcessed(),
-              language: response.getLanguage(),
-              country_code: response.getCountryCode(),
-              country_name: response.getCountryName(),
-              display_sequence: response.getDisplaySequence(),
-              currency_iso_code: response.getCurrencyIsoCode(),
-              currency_name: response.getCurrencyName(),
-              currency_symbol: response.getCurrencySymbol(),
-              standard_precision: response.getStandardPrecision(),
-              costing_precision: response.getCostingPrecision(),
-              default_context: getContext(response.getDefaultContextMap(), service)
-            }
+            result: getSession(response)
           })
         } else if (err) {
           res.json({
