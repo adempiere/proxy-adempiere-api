@@ -4,9 +4,11 @@ export default ({ config, db, service }) => {
   let userApi = Router();
 
   /**
-   * GET  an user menu
+   * GET window definition
    *
    * req.query.token - user token
+   * req.query.id - id of window
+   * req.query.uuid - uuid of window
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -32,6 +34,254 @@ export default ({ config, db, service }) => {
       })
     }
   });
+
+  /**
+   * GET process definition
+   *
+   * req.query.token - user token
+   * req.query.id - id of process
+   * req.query.uuid - uuid of process
+   *
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/process', (req, res) => {
+    if (req.query) {
+      service.getProcess({
+        token: req.query.token,
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertProcess(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET browser definition
+   *
+   * req.query.token - user token
+   * req.query.id - id of browser
+   * req.query.uuid - uuid of browser
+   *
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/browser', (req, res) => {
+    if (req.query) {
+      service.getBrowser({
+        token: req.query.token,
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertBrowser(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Form definition
+   *
+   * req.query.token - user token
+   * req.query.id - id of form
+   * req.query.uuid - uuid of form
+   *
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/form', (req, res) => {
+    if (req.query) {
+      service.getForm({
+        token: req.query.token,
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertForm(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Field
+   *
+   * req.query.token - user token
+   * req.query.uuid - uuid of field
+   * req.query.column_uuid - column uuid of field
+   * req.query.element_uuid - element uuid of field
+   * req.query.table_name - table name of field
+   * req.query.column_name - column name of field
+   * req.query.element_column_name - element column name of field
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/field', (req, res) => {
+    if (req.query) {
+      service.getField({
+        token: req.query.token,
+        uuid: req.query.uuid,
+        columnUuid: req.query.column_uuid,
+        elementUuid: req.query.element_uuid,
+        tableName: req.query.table_name,
+        columnName: req.query.column_name,
+        elementNolumnName: req.query.element_column_name
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertField(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Reference
+   *
+   * req.query.token - user token
+   * req.query.uuid - uuid of reference
+   * req.query.column_name - column name of reference as table dir
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/reference', (req, res) => {
+    if (req.query) {
+      service.getReference({
+        token: req.query.token,
+        uuid: req.query.uuid,
+        columnName: req.query.column_name
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertReference(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Validation Rule definition
+   *
+   * req.query.token - user token
+   * req.query.id - id of validation
+   * req.query.uuid - uuid of validation
+   *
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userApi.get('/validation', (req, res) => {
+    if (req.query) {
+      service.getValidationRule({
+        token: req.query.token,
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, function (err, response) {
+        if (response) {
+          console.log(response)
+          res.json({
+            code: 200,
+            result: convertValidationRule(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  //  Convert form
+  function convertForm (form) {
+    if (!form) {
+      return undefined
+    }
+    return {
+      id: form.getId(),
+      uuid: form.getUuid(),
+      name: form.getName(),
+      description: form.getDescription(),
+      help: form.getHelp(),
+      access_level: form.getAccessLevel(),
+      file_name: form.getFileName(),
+      is_active: form.getIsActive()
+    }
+  }
+
+  //  Convert browser
+  function convertBrowser (browser) {
+    if (!browser) {
+      return undefined
+    }
+    return {
+      id: browser.getId(),
+      uuid: browser.getUuid(),
+      value: browser.getValue(),
+      name: browser.getName(),
+      description: browser.getDescription(),
+      help: browser.getHelp(),
+      access_level: browser.getAccessLevel(),
+      query: browser.getQuery(),
+      where_clause: browser.getWhereClause(),
+      order_by_clause: browser.getOrderByClause(),
+      is_updateable: browser.getIsUpdateable(),
+      is_deleteable: browser.getIsDeleteable(),
+      is_selected_by_default: browser.getIsSelectedByDefault(),
+      is_collapsible_by_default: browser.getIsCollapsibleByDefault(),
+      is_executed_query_by_default: browser.getIsExecutedQueryByDefault(),
+      is_show_total: browser.getIsShowTotal(),
+      view_uuid: browser.getViewUuid(),
+      window: convertWindow(browser.getWindow()),
+      process: convertProcess(browser.getProcess()),
+      is_active: browser.getIsActive(),
+      fields: browser.getFieldsList().map(field => {
+        return convertField(field)
+      })
+    }
+  }
 
   //  convert window from gRPC
   function convertWindow (window) {
@@ -184,7 +434,7 @@ export default ({ config, db, service }) => {
       format_pattern: field.getFormatPattern(),
       context_info: convertContextInfo(field.getContextInfo()),
       field_group: convertFieldGroup(field.getFieldGroup()),
-      // field_definition: convertFieldGroup(field.getFieldGroup()),
+      field_definition: convertFieldDefinition(field.getFieldDefinition()),
       reference: convertReference(field.getReference()),
       process: convertProcess(field.getProcess()),
       is_query_criteria: field.getIsQueryCriteria(),
@@ -195,6 +445,38 @@ export default ({ config, db, service }) => {
       is_active: field.getIsActive(),
       default_value_to: field.getDefaultValueTo(),
       field_length: field.getFieldLength()
+    }
+  }
+
+  //  Convert Field Definition
+  function convertFieldDefinition (fieldDefinition) {
+    if (!fieldDefinition) {
+      return undefined
+    }
+    return {
+      id: fieldDefinition.getId(),
+      uuid: fieldDefinition.getUuid(),
+      value: fieldDefinition.getValue(),
+      name: fieldDefinition.getName(),
+      field_group_type: fieldDefinition.getFieldGroupType(),
+      is_active: fieldDefinition.getIsActive(),
+      conditions: fieldDefinition.getConditionsList().map(condition => {
+        return convertFieldCondition(condition)
+      })
+    }
+  }
+
+  //  Convert Field Condition
+  function convertFieldCondition (fieldCondition) {
+    if (!fieldCondition) {
+      return undefined
+    }
+    return {
+      id: fieldCondition.getId(),
+      uuid: fieldCondition.getUuid(),
+      condition: fieldCondition.getCondition(),
+      stylesheet: fieldCondition.getStylesheet(),
+      is_active: fieldCondition.getIsActive()
     }
   }
 
@@ -228,6 +510,21 @@ export default ({ config, db, service }) => {
       description: zoomWindow.getDescription(),
       is_sales_transaction: zoomWindow.getIsSalesTransaction(),
       is_active: zoomWindow.getIsActive()
+    }
+  }
+
+  //  Convert Validation Rule
+  function convertValidationRule (validationRule) {
+    if (!validationRule) {
+      return undefined
+    }
+    return {
+      id: validationRule.getId(),
+      uuid: validationRule.getUuid(),
+      name: validationRule.getName(),
+      description: validationRule.getDescription(),
+      validation_code: validationRule.getValidationCode(),
+      type: validationRule.getType()
     }
   }
 
