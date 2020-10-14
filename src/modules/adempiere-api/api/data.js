@@ -336,7 +336,7 @@ export default ({ config, db, service }) => {
     context.forEach((value, key) => {
       values.push({
         key: key,
-        value: service.convertValueFromGRPC(value)
+        value: convertValueFromGRPC(value)
       })
     })
     return values
