@@ -4,6 +4,7 @@ import { Router } from 'express';
 import user from './api/user';
 import img from './api/img'
 import dictionary from './api/dictionary'
+import data from './api/data'
 import { version } from '../../../package.json';
 import path from 'path'
 
@@ -24,6 +25,8 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     });
     //  Dictionary
     api.use('/dictionary', dictionary({ config, db, service }));
+    //  Business Data
+    api.use('/data', data({ config, db, service }));
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
       res.json({ version });

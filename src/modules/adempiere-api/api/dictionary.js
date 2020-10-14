@@ -9,6 +9,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.id - id of window
    * req.query.uuid - uuid of window
+   * req.query.language - login language
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -17,6 +18,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getWindow({
         token: req.query.token,
+        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, function (err, response) {
@@ -41,6 +43,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.id - id of process
    * req.query.uuid - uuid of process
+   * req.query.language - login language
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -49,6 +52,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getProcess({
         token: req.query.token,
+        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, function (err, response) {
@@ -73,6 +77,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.id - id of browser
    * req.query.uuid - uuid of browser
+   * req.query.language - login language
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -81,6 +86,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getBrowser({
         token: req.query.token,
+        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, function (err, response) {
@@ -105,6 +111,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.id - id of form
    * req.query.uuid - uuid of form
+   * req.query.language - login language
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -113,6 +120,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getForm({
         token: req.query.token,
+        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, function (err, response) {
@@ -138,9 +146,11 @@ export default ({ config, db, service }) => {
    * req.query.uuid - uuid of field
    * req.query.column_uuid - column uuid of field
    * req.query.element_uuid - element uuid of field
+   * req.query.field_uuid - field uuid of field
    * req.query.table_name - table name of field
    * req.query.column_name - column name of field
    * req.query.element_column_name - element column name of field
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -148,9 +158,11 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getField({
         token: req.query.token,
+        language: req.query.language,
         uuid: req.query.uuid,
         columnUuid: req.query.column_uuid,
         elementUuid: req.query.element_uuid,
+        fieldUuid: req.query.field_uuid,
         tableName: req.query.table_name,
         columnName: req.query.column_name,
         elementNolumnName: req.query.element_column_name
@@ -176,6 +188,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.uuid - uuid of reference
    * req.query.column_name - column name of reference as table dir
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -183,6 +196,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getReference({
         token: req.query.token,
+        language: req.query.language,
         uuid: req.query.uuid,
         columnName: req.query.column_name
       }, function (err, response) {
@@ -207,6 +221,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.id - id of validation
    * req.query.uuid - uuid of validation
+   * req.query.language - login language
    *
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -215,6 +230,7 @@ export default ({ config, db, service }) => {
     if (req.query) {
       service.getValidationRule({
         token: req.query.token,
+        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, function (err, response) {

@@ -5,6 +5,7 @@ export default ({ config, db, service }) => {
 
   /**
    * POST login an user
+   * req.query.language - login language
    *
    * Request body:
    *
@@ -23,7 +24,8 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.login({
         user: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        language: req.query.language
       }, function (err, response) {
         if (response) {
           res.json({
@@ -44,6 +46,7 @@ export default ({ config, db, service }) => {
    * POST logout session
    *
    * req.body.token - user token obtained from the `/api/user/login`
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserme
    */
@@ -74,13 +77,15 @@ export default ({ config, db, service }) => {
    * req.body.role - user token obtained from the `/api/user/session`
    * req.body.organization - user token obtained from the `/api/user/session`
    * req.body.warehouse - user token obtained from the `/api/user/session`
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserme
    */
   userApi.post('/change-role', (req, res) => {
     if (req.body) {
       service.changeRole({
-        token: req.body.token,
+        token: req.query.token,
+        language: req.query.language,
         role: req.body.role,
         organization: req.body.organization,
         warehouse: req.body.warehouse
@@ -178,7 +183,7 @@ export default ({ config, db, service }) => {
     context.forEach((value, key) => {
       values.push({
         key: key,
-        value: service.convertValueFromGRPC(value)
+        value: service.convertAccessValuesFromGRPC(value)
       })
     })
     return values
@@ -188,13 +193,15 @@ export default ({ config, db, service }) => {
    * GET  an user menu
    *
    * req.query.token - user token
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   userApi.get('/menu', (req, res) => {
     if (req.query) {
       service.getMenu({
-        token: req.query.token
+        token: req.query.token,
+        language: req.query.language
       }, function (err, response) {
         if (response) {
           res.json({
@@ -215,13 +222,15 @@ export default ({ config, db, service }) => {
    * GET  an user menu
    *
    * req.query.token - user token
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   userApi.get('/session', (req, res) => {
     if (req.query) {
       service.getSessionInfo({
-        token: req.query.token
+        token: req.query.token,
+        language: req.query.language
       }, function (err, response) {
         if (response) {
           res.json({
@@ -242,13 +251,15 @@ export default ({ config, db, service }) => {
    * GET  an user menu
    *
    * req.query.token - user token
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   userApi.get('/info', (req, res) => {
     if (req.query) {
       service.getUserInfo({
-        token: req.query.token
+        token: req.query.token,
+        language: req.query.language
       }, function (err, response) {
         if (response) {
           res.json({
@@ -269,13 +280,15 @@ export default ({ config, db, service }) => {
    * GET  an user menu
    *
    * req.query.token - user token
+   * req.query.language - login language
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   userApi.get('/roles', (req, res) => {
     if (req.query) {
       service.getUserRoles({
-        token: req.query.token
+        token: req.query.token,
+        language: req.query.language
       }, function (err, response) {
         if (response) {
           res.json({

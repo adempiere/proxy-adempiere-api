@@ -22,6 +22,6 @@ RUN apk add --no-cache \
     && yarn install --no-cache \
     && apk del .build-deps
 
-COPY docker/storefront-api/storefront-api.sh /usr/local/bin/
+COPY docker/proxy-api/proxy-api.sh /usr/local/bin/
 
-CMD ["storefront-api.sh"]
+CMD ["proxy-api.sh"]
