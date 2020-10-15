@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { convertValueFromGRPC, convertProcessLogFromGRPC } from '@adempiere/grpc-api/src/convertBaseDataType';
+import { convertValueFromGRPC, convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 export default ({ config, db, service }) => {
   let dataApi = Router();
 
   /**
-   * POST Entity data
+   * GET Entity data
    *
    * req.query.token - user token
    * req.body.id - id of entity

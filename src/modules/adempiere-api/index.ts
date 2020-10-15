@@ -3,7 +3,9 @@ import { StorefrontApiContext } from '@storefront-api/lib/module/types'
 import { Router } from 'express';
 import user from './api/user';
 import img from './api/img'
+import resource from './api/resource'
 import dictionary from './api/dictionary'
+import userInterface from './api/userInterface'
 import data from './api/data'
 import { version } from '../../../package.json';
 import path from 'path'
@@ -23,10 +25,14 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     api.use('/img/:width/:height/:action/:image', (req, res, next) => {
       console.log(req.params)
     });
+    //  Resource
+    api.use('/resource', resource({ config, db, service }));
     //  Dictionary
     api.use('/dictionary', dictionary({ config, db, service }));
     //  Business Data
     api.use('/data', data({ config, db, service }));
+    //  User Interface
+    api.use('/ui', userInterface({ config, db, service }));
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
       res.json({ version });
