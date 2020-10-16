@@ -3,7 +3,8 @@ import {
   convertAttachmentFromGRPC,
   convertResourceReferenceFromGRPC,
   convertReportOutputFromGRPC,
-  convertDrillTableFromGRPC
+  convertDrillTableFromGRPC,
+  convertPrintFromatFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import { convertChatEntryFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
 export default ({ config, db, service }) => {
@@ -231,6 +232,8 @@ export default ({ config, db, service }) => {
         token: req.query.token,
         language: req.query.language,
         tableName: req.body.table_name,
+        reportViewUuid: req.body.report_view_uuid,
+        processUuid: req.body.process_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, function (err, response) {
@@ -240,8 +243,8 @@ export default ({ config, db, service }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getDrillTablesList().map(drillTable => {
-                return convertDrillTableFromGRPC(drillTable)
+              records: response.getPrintFormatsList().map(drillTable => {
+                return convertPrintFromatFromGRPC(drillTable)
               })
             }
           })
