@@ -1,5 +1,8 @@
 import { Router } from 'express';
-import { convertValueFromGRPC, convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
+import {
+  convertProcessLogFromGRPC,
+  convertEntityFromGRPC
+} from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 export default ({ config, db, service }) => {
   let dataApi = Router();
@@ -27,7 +30,7 @@ export default ({ config, db, service }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertEntity(response)
+            result: convertEntityFromGRPC(response)
           })
         } else if (err) {
           res.json({
@@ -108,7 +111,7 @@ export default ({ config, db, service }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertEntity(response)
+            result: convertEntityFromGRPC(response)
           })
         } else if (err) {
           res.json({
@@ -212,7 +215,7 @@ export default ({ config, db, service }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertEntity(response)
+            result: convertEntityFromGRPC(response)
           })
         } else if (err) {
           res.json({
@@ -267,7 +270,7 @@ export default ({ config, db, service }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(entity => {
-                return convertEntity(entity)
+                return convertEntityFromGRPC(entity)
               })
             }
           })
@@ -316,31 +319,6 @@ export default ({ config, db, service }) => {
       })
     }
   });
-
-  //  Convert Entity
-  function convertEntity (entity) {
-    if (!entity) {
-      return undefined
-    }
-    return {
-      id: entity.getId(),
-      uuid: entity.getUuid(),
-      table_name: entity.getTableName(),
-      attributes: convertAttributes(entity.getValuesMap())
-    }
-  }
-
-  //  get Context
-  function convertAttributes (context) {
-    let values = []
-    context.forEach((value, key) => {
-      values.push({
-        key: key,
-        value: convertValueFromGRPC(value)
-      })
-    })
-    return values
-  }
 
   return dataApi;
 };
