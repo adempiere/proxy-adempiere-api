@@ -7,11 +7,15 @@ import {
   convertPrintFromatFromGRPC,
   convertReportViewFromGRPC,
   convertRecordReferenceInfoFromGRPC,
-  convertEntityFromGRPC
+  convertEntityFromGRPC,
+  convertTranslationFromGRPC,
+  convertValueFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
   convertChatEntryFromGRPC,
-  convertPrivateAccessFromGRPC
+  convertPrivateAccessFromGRPC,
+  convertLookupFromGRPC,
+  convertCalloutFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
 export default ({ config, db, service }) => {
   let userInterfaceApi = Router();
@@ -502,7 +506,10 @@ export default ({ config, db, service }) => {
    *
    * req.query.token - user token
    * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
    * Body:
+   * req.body.uuid - browser uuid
    * req.body.parameters - parameters of browser
    * req.body.filters - query filters
    * req.body.columns - query columns
@@ -545,6 +552,307 @@ export default ({ config, db, service }) => {
                 return convertEntityFromGRPC(entity)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST List Lookup Items
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.filters - query filters
+   * req.body.columns - query columns
+   * req.body.table_name - table name (Mandatory if is not a query)
+   * req.body.query - custom query instead a table name based on SQL
+   * req.body.where_clause - where clause of search based on SQL
+   * req.body.order_by_clause - order by clause based on SQL
+   * req.body.limit - records limit
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/list-lookup-items', (req, res) => {
+    if (req.body) {
+      service.listLookupItems({
+        token: req.query.token,
+        language: req.query.language,
+        //  Running parameters
+        tableName: req.body.table_name,
+        //  DSL Query
+        filters: req.body.filters,
+        columns: req.body.columns,
+        //  Custom Query
+        query: req.body.query,
+        whereClause: req.body.where_clause,
+        orderByClause: req.body.order_by_clause,
+        limit: req.body.limit,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(lookupItem => {
+                return convertLookupFromGRPC(lookupItem)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Get Lookup Item
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * Body:
+   * req.body.id - id of record
+   * req.body.uuid - uuid of record
+   * req.body.filters - query filters
+   * req.body.columns - query columns
+   * req.body.table_name - table name (Mandatory if is not a query)
+   * req.body.query - custom query instead a table name based on SQL
+   * req.body.where_clause - where clause of search based on SQL
+   * req.body.order_by_clause - order by clause based on SQL
+   * req.body.limit - records limit
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/get-lookup-item', (req, res) => {
+    if (req.body) {
+      service.getLookupItem({
+        token: req.query.token,
+        language: req.query.language,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        //  Running parameters
+        tableName: req.body.table_name,
+        //  DSL Query
+        filters: req.body.filters,
+        columns: req.body.columns,
+        //  Custom Query
+        query: req.body.query,
+        whereClause: req.body.where_clause,
+        orderByClause: req.body.order_by_clause,
+        limit: req.body.limit
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertLookupFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST List Translations
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.table_name - table name (Mandatory for get translation)
+   * req.body.uuid - custom query instead a table name based on SQL
+   * req.body.id - id reference
+   * req.body.uuid - uuid reference
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/list-translations', (req, res) => {
+    if (req.body) {
+      service.listTranslations({
+        token: req.query.token,
+        language: req.query.language,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        //  Running parameters
+        tableName: req.body.table_name,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getTranslationsList().map(translation => {
+                return convertTranslationFromGRPC(translation)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Get Default Value
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * Body:
+   * req.body.query - default valuen query
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/get-default-value', (req, res) => {
+    if (req.body) {
+      service.getDefaultValue({
+        token: req.query.token,
+        language: req.query.language,
+        //  Default Value Query
+        query: req.body.query
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertValueFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Run Callout
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * Body:
+   * req.body.table_name - Table name of calling
+   * req.body.window_uuid - uuid of window from call
+   * req.body.tab_uuid - uuid of tab from call
+   * req.body.callout - callout to call
+   * req.body.column_name - column name of call
+   * req.body.old_value - old value for column
+   * req.body.value - new value of column
+   * req.body.window_no - window number
+   * req.body.attributes - attributes of entity
+   "attributes": [
+      {
+        "key": "AD_Client_ID",
+        "value": 1000000
+      },
+      {
+        "key": "AD_Org_ID",
+        "value": 1000000
+      },
+      {
+        "key": "Created",
+        "value": "2020-10-13T16:14:23.000Z"
+      },
+      {
+        "key": "CreatedBy",
+        "value": 1000017
+      },
+      {
+        "key": "IsActive",
+        "value": true
+      },
+      {
+        "key": "Value",
+        "value": "Solo Pruebas"
+      }
+    ]
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/run-callout', (req, res) => {
+    if (req.body) {
+      service.runCallout({
+        token: req.query.token,
+        language: req.query.language,
+        tableName: req.body.table_name,
+        windowUuid: req.body.window_uuid,
+        tabUuid: req.body.tab_uuid,
+        callout: req.body.callout,
+        columnName: req.body.column_name,
+        oldValue: req.body.old_value,
+        value: req.body.value,
+        windowNo: req.body.window_no,
+        attributes: req.body.attributes
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCalloutFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Get Context Information
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_name - TableName
+   * req.body.id - id of record
+   * req.body.uuid - uuid of record
+   * req.body.log_id - id o log
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  userInterfaceApi.post('/rollback-entity', (req, res) => {
+    if (req.body) {
+      service.rollbackEntity({
+        token: req.query.token,
+        language: req.query.language,
+        tableName: req.body.table_name,
+        uuid: req.body.uuid,
+        id: req.body.id,
+        logId: req.body.log_id
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntityFromGRPC(response)
           })
         } else if (err) {
           res.json({
