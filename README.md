@@ -1,4 +1,4 @@
-proxy-adempiere-apiproxy-adempiere-apiStorefront API
+Proxy-ADempiere-API Storefront API based
 ==============
 
 <div align="center"><img src="https://divante.com/github/storefront-api/sfa-logo.png" style="text-align:center;" width="400" /></div>
@@ -7,17 +7,20 @@ proxy-adempiere-apiproxy-adempiere-apiStorefront API
 ![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
 <a href="http://slack.vuestorefront.io">![Join Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
-### 🔨 Current status: Release Candidate 2 (rc2)
+### 🔨 Current status: Fisrt Release to be defined
 
-Most of the work has been done already. However, we are still developing and enhancing it. Storefront API 1.0rc2 is compatible with Vue Storefront 1.11+. The stable release (1.0) is planned for **2020Q4**. Only then, it will replace the `vue-storefront-api` middleware for Vue Storefront (release 1.13). Till then it's not recommended for production applications.
+This project is the first ADempiere proxy integration based on stronger StoreFront-API and use as backend gRPC server https://github.com/adempiere/adempiere-gRPC-Server for connect to ADempiere.
 
-Storefront GraphQL API. Easy to use. Extendable. Blazingly fast. ElasticSearch included. [BFF (Backend for frontend)](https://samnewman.io/patterns/architectural/bff/) driven.
-Works great with: Magento1, Magento2, Spree, OpenCart, and Pimcore - out of the box. [Easy to integrate with custom backends](https://docs.storefrontapi.com/guide/integration/integration.html#two-steps-for-the-integration).
+This project allows connect gRPC backend of ADempiere for Standard functionality with API RESTfull and ADempiere UI based on Vue https://github.com/adempiere/adempiere-vue
+
+Note that this project use default template of StoreFront API and have all instruction from [Easy to integrate with custom backends](https://docs.storefrontapi.com/guide/integration/integration.html#two-steps-for-the-integration)
+
+For Web Store allows integrate VueStoreFront with ADempiere using adempiere-store service and server model using ElasticSearch.
 
 You can use the **Storefront GraphQL API** to integrate **all your backend systems** with your eCommerce frontend under a single GraphQL/REST API.
 By default, all catalog information is stored in ElasticSearch, and all the write operations are forwarded to the **platform driver** (Magento1, Magento2, Spree, and others available).
 
-## How to get started?
+## How to get started? ¡¡Only for ADempiere Web Store integration!!
 
 Storefront API comes with a default product schema - compatible with the [Vue Storefront](https://github.com/DivanteLtd/vue-storefront) project - and can be a drop-in replacement for `vue-storefront-api`. You can  start a dev instance, including a demo data set integrated with a [Magento 2.3 demo instance](http://demo-magento2.vuestorefront.io).
 
