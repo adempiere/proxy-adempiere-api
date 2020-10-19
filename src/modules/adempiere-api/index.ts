@@ -6,6 +6,7 @@ import img from './api/img'
 import resource from './api/resource'
 import dictionary from './api/dictionary'
 import userInterface from './api/userInterface'
+import userLogs from './api/userLogs'
 import data from './api/data'
 import { version } from '../../../package.json';
 import path from 'path'
@@ -33,6 +34,8 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     api.use('/data', data({ config, db, service }));
     //  User Interface
     api.use('/ui', userInterface({ config, db, service }));
+    //  User Logs
+    api.use('/logs', userLogs({ config, db, service }));
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
       res.json({ version });
