@@ -58,8 +58,8 @@
       "category.name": {
         "boost": 1
       }
-    }    
-  },  
+    }
+  },
   "products": {
     "fieldsToCompress": ["max_regular_price", "max_price", "max_regular_price", "minimal_regular_price", "final_price", "price", "special_price", "original_final_price", "original_price", "original_special_price", "final_price_incl_tax", "price_incl_tax", "special_price_incl_tax", "final_price_tax", "price_tax", "special_price_tax", "image", "small_image", "thumbnail"],
     "fieldsToCompact": {
@@ -72,21 +72,21 @@
       "tax_class_id": "tci",
       "description": "desc",
       "minimal_regular_price": "mrp",
-      "final_price": "fp", 
-      "price": "p", 
+      "final_price": "fp",
+      "price": "p",
       "special_price": "sp",
       "original_final_price": "ofp",
       "original_price": "op",
       "original_special_price": "osp",
-      "final_price_incl_tax": "fpit", 
+      "final_price_incl_tax": "fpit",
       "original_price_incl_tax": "opit",
       "price_incl_tax": "pit",
-      "special_price_incl_tax": "spit", 
+      "special_price_incl_tax": "spit",
       "final_price_tax": "fpt",
       "price_tax": "pt",
       "special_price_tax": "spt",
       "original_price_tax": "opt",
-      "image": "i", 
+      "image": "i",
       "small_image": "si",
       "thumbnail": "t"
     },
@@ -97,7 +97,7 @@
       "default": 10,
       "size": 10,
       "color": 10
-    },    
+    },
     "priceFilterKey": "final_price",
     "priceFilters": {
       "ranges": [
@@ -106,7 +106,7 @@
         { "from": 100, "to": 150 },
         { "from": 150 }
       ]
-    }    
+    }
   },
   "urlModule": {
     "map": {
@@ -114,7 +114,7 @@
       "searchedFields": ["url_path", "identifier"],
       "searchedEntities": ["product", "category", "cms_page"]
     }
-  },    
+  },
   "redis": {
     "host": "localhost",
     "port": 6379,
@@ -303,6 +303,27 @@
     },
     "example-custom-filter": {
       "catalogFilter": [ "SampleFilter" ]
+    }
+  },
+  "adempiereApi": {
+    "api": {
+      "user": "store",
+      "password": "store",
+      "accessHost": "localhost:50059",
+      "businessHost": "localhost:50059",
+      "dictionaryHost": "localhost:50059",
+      "language": "en_US",
+      "version": "Vue-Store-Front"
+    }
+  },
+  "adempiereStore": {
+    "api": {
+      "user": "store",
+      "password": "store",
+      "accessHost": "localhost:50059",
+      "storeHost": "localhost:50059",
+      "language": "en_US",
+      "version": "Vue-Store-Front"
     }
   },
   "magento2": {

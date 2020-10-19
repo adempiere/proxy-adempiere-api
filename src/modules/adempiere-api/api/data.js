@@ -235,6 +235,31 @@ export default ({ config, db, service }) => {
    * req.query.page_token - specific page token
    * Body:
    * req.body.filters - query filters
+   [
+     {
+       column_name: 'DocStatus',
+       operator: 'EQUAL',
+       value: 'CO'
+     },
+     {
+       column_name: 'DateInvoiced',
+       operator: 'BETWEEN',
+       value: '2020-01-01'
+       value_to: '2020-09-01'
+     },
+     {
+       column_name: 'C_DocType_ID',
+       operator: 'IN',
+       values: [
+         1000000,
+         1000562
+       ]
+     }
+   ],
+   value: condition.value,
+   valueTo: condition.value_to,
+   values: condition.values,
+   operator: condition.operator
    * req.body.columns - query columns
    * req.body.table_name - table name (Mandatory if is not a query)
    * req.body.query - custom query instead a table name based on SQL

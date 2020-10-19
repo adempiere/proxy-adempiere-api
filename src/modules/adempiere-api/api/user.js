@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { convertContextValue } from '@adempiere/grpc-api/lib/convertValues';
 
 export default ({ config, db, service }) => {
   let userApi = Router();
@@ -173,17 +174,17 @@ export default ({ config, db, service }) => {
       currency_symbol: session.getCurrencySymbol(),
       standard_precision: session.getStandardPrecision(),
       costing_precision: session.getCostingPrecision(),
-      default_context: getContext(session.getDefaultContextMap(), service)
+      default_context: getContext(session.getDefaultContextMap())
     }
   }
 
   //  get Context
-  function getContext (context, service) {
+  function getContext (context) {
     let values = []
     context.forEach((value, key) => {
       values.push({
         key: key,
-        value: service.convertAccessValuesFromGRPC(value)
+        value: convertContextValue(value)
       })
     })
     return values
