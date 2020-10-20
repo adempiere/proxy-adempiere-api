@@ -8,9 +8,9 @@ Proxy ADempiere-API
 <a href="http://slack.vuestorefront.io">![Join Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
 ### What is?
-A simple proxy for synchronize ADempiere Backend based on gRPC with any frontend using api REST ans GraphQL. 
+A simple proxy for synchronize ADempiere Backend based on gRPC with any frontend using api REST ans GraphQL.
 
-### 🔨 Current status: Fisrt Release to be defined
+### Current status: Fisrt Release to be defined
 
 This project is the first ADempiere proxy integration based on stronger StoreFront-API and use as backend gRPC server https://github.com/adempiere/adempiere-gRPC-Server for connect to ADempiere.
 
@@ -23,11 +23,11 @@ For Web Store allows integrate VueStoreFront with ADempiere using adempiere-stor
 You can use the **Storefront GraphQL API** to integrate **all your backend systems** with your eCommerce frontend under a single GraphQL/REST API.
 By default, all catalog information is stored in ElasticSearch, and all the write operations are forwarded to the **platform driver** (Magento1, Magento2, Spree, and others available).
 
-## How to get started? ¡¡Only for ADempiere Web Store integration!!
+### How to get started? ¡¡Only for ADempiere Web Store integration!!
 
 Storefront API comes with a default product schema - compatible with the [Vue Storefront](https://github.com/DivanteLtd/vue-storefront) project - and can be a drop-in replacement for `vue-storefront-api`. You can  start a dev instance, including a demo data set integrated with a [Magento 2.3 demo instance](http://demo-magento2.vuestorefront.io).
 
-To run `storefront-api` in `development` mode, please run:
+To run `proxy-api` in `development` mode, please run:
 
 `docker-compose up`
 
@@ -43,18 +43,21 @@ Details:
 - [REST API](https://docs.storefrontapi.com/guide/default-modules/api.html)
 - [Configuration file explained](https://docs.storefrontapi.com/guide/general/config.html)
 
+### Using Docker hub images
+You can use images from Docker hub:
+- ADempiere Base Server: https://hub.docker.com/r/erpya/adempiere-base
+- Backend gRPC Server: https://hub.docker.com/r/erpya/adempiere-grpc-all-in-one
+- Proxy ADempiere API: https://hub.docker.com/r/erpya/proxy-adempiere-api
+
 ## Core Team
 
-In case of any questions please contact our core team ([we are on Slack](https://slack.vuestorefront.io))
+In case of any questions please contact our core team [![we are on Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/adempiere/adempiere-vue?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-- `@resubaka` - Jens Sadowski
-- `@pkarw` - Piotr Karwatka
-- `@pandrzejewsky` - Patryk Andrzejewski
-
+- `@YamelSenih` - Yamel Senih
 
 ## Demo
 
-You can play with the GraphQL endpoint over https://demo.storefrontapi.com/graphql/
+You can play with the GraphQL endpoint over https://demo.erpya.com/graphql/
 
 Example query you can enter:
 
@@ -75,9 +78,9 @@ Example query you can enter:
 
 ## Key features
 
- - Fully functional and extendable eCommerce API Gateway,
- - Modular architecture with easy customizable default e-Commerce module,
- - Read/Write integrations with [Magento1](https://github.com/DivanteLtd/magento1-vsbridge-indexer), [EpiServer](https://github.com/makingwaves/epi-commerce-to-vue-storefront), [Magento2](https://github.com/DivanteLtd/magento2-vsbridge-indexer), [OpenCart](https://github.com/butopea/vue-storefront-opencart-vsbridge), [SpreeCommerce](https://github.com/spark-solutions/spree2vuestorefront),
+ - Fully functional and extendable eCommerce and ADempiere API Gateway,
+ - Modular architecture with easy customizable default e-Commerce+ ADempiere vue based module,
+ - Read/Write integrations (Only e-Commerce) with [Magento1](https://github.com/DivanteLtd/magento1-vsbridge-indexer), [EpiServer](https://github.com/makingwaves/epi-commerce-to-vue-storefront), [Magento2](https://github.com/DivanteLtd/magento2-vsbridge-indexer), [OpenCart](https://github.com/butopea/vue-storefront-opencart-vsbridge), [SpreeCommerce](https://github.com/spark-solutions/spree2vuestorefront),
  - Additional integrations including [Prismic](https://forum.vuestorefront.io/t/prismic-connector/160) with GraphQL support,
  - [Vue Storefront](https://vuestorefront.io) PWA frontend support,
  - Blazingly fast - based on ElasticSearch with avg. response times < 100ms,

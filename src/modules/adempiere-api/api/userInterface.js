@@ -572,7 +572,6 @@ export default ({ config, db, service }) => {
    * req.query.page_token - token of page (optional for get a specific page)
    * Body:
    * req.body.filters - query filters
-   * req.body.columns - query columns
    * req.body.table_name - table name (Mandatory if is not a query)
    * req.body.query - custom query instead a table name based on SQL
    * req.body.where_clause - where clause of search based on SQL
@@ -590,7 +589,6 @@ export default ({ config, db, service }) => {
         tableName: req.body.table_name,
         //  DSL Query
         filters: req.body.filters,
-        columns: req.body.columns,
         //  Custom Query
         query: req.body.query,
         whereClause: req.body.where_clause,
@@ -627,10 +625,7 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.language - login language
    * Body:
-   * req.body.id - id of record
-   * req.body.uuid - uuid of record
    * req.body.filters - query filters
-   * req.body.columns - query columns
    * req.body.table_name - table name (Mandatory if is not a query)
    * req.body.query - custom query instead a table name based on SQL
    * req.body.where_clause - where clause of search based on SQL
@@ -644,13 +639,10 @@ export default ({ config, db, service }) => {
       service.getLookupItem({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
         //  Running parameters
         tableName: req.body.table_name,
         //  DSL Query
         filters: req.body.filters,
-        columns: req.body.columns,
         //  Custom Query
         query: req.body.query,
         whereClause: req.body.where_clause,
