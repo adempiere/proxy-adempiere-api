@@ -7,6 +7,7 @@ const SUPPORTED_MIMETYPES = [
   'image/gif',
   'image/png',
   'image/jpeg',
+  'image/jpg',
   'image/webp',
   'image/svg+xml'
 ];
