@@ -67,9 +67,79 @@ export default ({ config, db, service }) =>
      *  }
      */
     create (req, res) {
-      res.json({
-        code: 200,
-        result: 'OK'
-      });
+      if (req.body) {
+        let shippingAddress = {}
+        let billingAddress = {}
+        let carrierCode = {}
+        let methodCode = {}
+        let paymentMethodCode = {}
+        if (req.body.addressInformation) {
+          carrierCode = req.body.addressInformation.shipping_carrier_code
+          methodCode = req.body.addressInformation.shipping_method_code
+          paymentMethodCode = req.body.addressInformation.payment_method_code
+          if (req.body.addressInformation.shippingAddress) {
+            let street = []
+            if (req.body.addressInformation.shippingAddress.street) {
+              street = req.body.addressInformation.shippingAddress.street
+            }
+            shippingAddress = {
+              firstname: req.body.addressInformation.shippingAddress.firstname,
+              lastname: req.body.addressInformation.shippingAddress.lastname,
+              countryCode: req.body.addressInformation.shippingAddress.countryId,
+              cityName: req.body.addressInformation.shippingAddress.city,
+              postalCode: req.body.addressInformation.shippingAddress.postcode,
+              address1: street[0],
+              address2: street[1],
+              address3: street[2],
+              address4: street[3]
+            }
+          }
+          if (req.body.addressInformation.billingAddress) {
+            let street = []
+            if (req.body.addressInformation.billingAddress.street) {
+              street = req.body.addressInformation.billingAddress.street
+            }
+            billingAddress = {
+              firstname: req.body.addressInformation.billingAddress.firstname,
+              lastname: req.body.addressInformation.billingAddress.lastname,
+              countryCode: req.body.addressInformation.billingAddress.countryId,
+              cityName: req.body.addressInformation.billingAddress.city,
+              postalCode: req.body.addressInformation.billingAddress.postcode,
+              address1: street[0],
+              address2: street[1],
+              address3: street[2],
+              address4: street[3]
+            }
+          }
+        }
+        service.createOrder({
+          token: req.query.token,
+          cartId: req.body.cart_id,
+          userId: req.body.user_id,
+          shippingAddress,
+          billingAddress,
+          carrierCode,
+          methodCode,
+          paymentMethodCode,
+          products: req.body.products.map(product => {
+            return {
+              id: product.id,
+              quantity: product.qty
+            }
+          })
+        }, function (err, response) {
+          if (response) {
+            res.json({
+              code: 200,
+              result: 'OK'
+            })
+          } else if (err) {
+            res.json({
+              code: 500,
+              result: err.details
+            })
+          }
+        })
+      }
     }
   });

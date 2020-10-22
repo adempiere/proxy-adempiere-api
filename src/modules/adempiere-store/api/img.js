@@ -116,6 +116,7 @@ export default ({ config, db, service }) =>
     try {
       buffer = Buffer.from(await getResource(service, resourceName));
     } catch (err) {
+      console.log(err)
       return res.status(400).send({
         code: 400,
         result: `Unable to download the requested image ${imgUrl}`
