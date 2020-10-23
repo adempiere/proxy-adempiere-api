@@ -117,7 +117,8 @@ Storefront API originated from the [`vue-storefront-api`](https://github.com/Div
 
 ## Documentation
 
-Please check our [**Official documentation**](https://docs.storefrontapi.com/). You will find there some integration and customization tutorials, and the API specification.
+- Vue Storefront API: Please check our [**Official documentation for Vue Storefront**](https://docs.storefrontapi.com/). You will find there some integration and customization tutorials, and the API specification.
+- ADempiere Proxy API: [**Initial Documentation for Proxy**](https://docs.erpya.com/)
 
 ## Example use cases
 
@@ -130,7 +131,7 @@ Please check our [**Official documentation**](https://docs.storefrontapi.com/). 
 
 - Docker and Docker Compose
 
-The following are already included in the `storefront-api` Docker image, but required if you do not use containerization:
+The following are already included in the `proxy-adempiere-api` Docker image, but required if you do not use containerization:
 - Node.js 10.x or higher
 - Yarn
 
@@ -162,17 +163,15 @@ You can easily set up the application to trust them by putting them in the confi
 
 ## Contributing
 
-If you like the idea behind Vue Storefront and want to become a contributor, do not hesitate and check our [list of the issues](https://github.com/DivanteLtd/proxy-adempiere-api/issues) or contact us directly via contributors@vuestorefront.io.
+If you like the idea behind ADempiere Proxy API and want to become a contributor, do not hesitate and check our [list of the issues](https://github.com/adempiere/proxy-adempiere-api/issues) or contact us directly via into@erpya.com.
 
 If you have discovered a bug, or have a feature suggestion, feel free to create an issue on Github.
 
 ## The Story
 
-Storefront API is brought to you by the [**Vue Storefront Team**](https://www.vuestorefront.io/) and is based on [Vue Storefront API](https://github.com/adempiere/vue-storefront-api). The intention is to replace vue-storefront-api with a more general-purpose API Gateway which you may use with any web or mobile frontend, including Vue, React, Angular and native apps. Its a drop-in replacement for `vue-storefront-api` if you happened to use it before. It works great with [Vue Storefront](https://github.com/DivanteLtd/vue-storefront).
+Storefront API is brought to you by the [**Vue Storefront Team**](https://www.vuestorefront.io/) and is based on [Vue Storefront API](https://github.com/DivanteLtd/vue-storefront-api). The intention is to replace vue-storefront-api with a more general-purpose API Gateway which you may use with any web or mobile frontend, including Vue, React, Angular and native apps. Its a drop-in replacement for `vue-storefront-api` if you happened to use it before. It works great with [Vue Storefront](https://github.com/DivanteLtd/vue-storefront).
 
-<img src="https://divante.com/github/proxy-adempiere-api/graphql-playground.png" alt="GraphQL Playground is included"/>
-<em style="text-align:center;">This is a screenshot showing the GraphQL Playground on the proxy-adempiere-api schema. <a href="https://divanteltd.github.io/storefront-graphql-api-schema/">Check the schema docs</a>. It can be 100% customized.</em>
-
+The parent project was forked by [Yamel Senih](https://github.com/YamelSenih) and now is used as proxy of ADempiere backend for new interface [ADempiere Proxy API](https://github.com/adempiere/proxy-adempiere-api)
 
 ## Sponsors
 
@@ -182,7 +181,7 @@ Become a sponsor and get your logo on our README on GitHub with a link to your s
 
 Partners are encouraged to support the project in various ways - mostly by contributing to the source code, performing marketing activities, evangelizing and, of course, implementing production projects. We support our partners via dedicated contact channels, workshops, and by sharing leads from merchants interested in implementations.
 
-If you would like to become our Partner, just let us know via info@erpya.com.
+If you would like to become our Partner, just let us know via [info@erpya.com](info@erpya.com).
 
 ## License
 
