@@ -1,0 +1,187 @@
+import { Router } from 'express';
+export default ({ config, db, service }) => {
+  let enrollmentApi = Router();
+
+  /**
+   * POST enroll an user
+   * Request body:
+   *
+   * {
+   * "user_name":"HolaHola",
+   * "name":"Hola Hola",
+   * "email":"pkarwatka102@divante.pl",
+   * "client_version":"Version Epale",
+   * "application_type":"Epale",
+   * "password":"TopSecretPassword"
+   * }
+   *
+   * ```bash
+   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * ```
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   */
+  enrollmentApi.post('/enroll', (req, res) => {
+    if (req.body) {
+      service.enrollUser({
+        userName: req.body.user_name,
+        name: req.body.name,
+        email: req.body.email,
+        clientVersion: req.body.client_version,
+        applicationType: req.body.application_type,
+        password: req.body.password
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              user_name: response.getUserName(),
+              name: response.getName(),
+              email: response.getEmail()
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Request a reset password
+   * Request body:
+   *
+   * {
+   * "user_name":"HolaHola",
+   * "email":"pkarwatka102@divante.pl",
+   * "client_version":"Version Epale",
+   * }
+   *
+   * ```bash
+   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * ```
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   */
+  enrollmentApi.post('/reset-password', (req, res) => {
+    if (req.body) {
+      service.resetPassword({
+        userName: req.body.user_name,
+        email: req.body.email,
+        clientVersion: req.body.client_version
+      }, function (err, response) {
+        if (response) {
+          if (response.getResponseType() !== 0) {
+            res.json({
+              code: 200,
+              result: 'Ok'
+            })
+          } else {
+            res.json({
+              code: 500,
+              result: 'Error'
+            })
+          }
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Change Password from Token
+   * Request body:
+   *
+   * {
+   * "token":"akhjgdsfsdq476328463249234032anbfkd",
+   * "client_version":"Version Epale",
+   * "password":"TopSecretPassword"
+   * }
+   *
+   * ```bash
+   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * ```
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   */
+  enrollmentApi.post('/change-password', (req, res) => {
+    if (req.body) {
+      service.resetPasswordFromToken({
+        token: req.body.token,
+        password: req.body.password,
+        clientVersion: req.body.client_version
+      }, function (err, response) {
+        if (response) {
+          if (response.getResponseType() !== 0) {
+            res.json({
+              code: 200,
+              result: 'Ok'
+            })
+          } else {
+            res.json({
+              code: 500,
+              result: 'Error'
+            })
+          }
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Activate User
+   * Request body:
+   *
+   * {
+   * "token":"akhjgdsfsdq476328463249234032anbfkd",
+   * "client_version":"Version Epale",
+   * }
+   *
+   * ```bash
+   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * ```
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   */
+  enrollmentApi.post('/activate-user', (req, res) => {
+    if (req.body) {
+      service.activateUser({
+        token: req.body.token,
+        clientVersion: req.body.client_version
+      }, function (err, response) {
+        if (response) {
+          if (response.getResponseType() !== 0) {
+            res.json({
+              code: 200,
+              result: 'Ok'
+            })
+          } else {
+            res.json({
+              code: 500,
+              result: 'Error'
+            })
+          }
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  return enrollmentApi;
+};

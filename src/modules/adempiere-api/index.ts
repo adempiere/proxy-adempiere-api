@@ -2,6 +2,7 @@ import { StorefrontApiModule, registerExtensions } from '@storefront-api/lib/mod
 import { StorefrontApiContext } from '@storefront-api/lib/module/types'
 import { Router } from 'express';
 import user from './api/user';
+import enrollment from './api/enrollment';
 import img from './api/img'
 import resource from './api/resource'
 import dictionary from './api/dictionary'
@@ -25,7 +26,8 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     service.initService()
     // mount the user resource
     api.use('/user', user({ config, db, service }));
-
+    //  Enrollment service
+    api.use('/enrollment', enrollment({ config, db, service }));
     api.use('/img', img({ config, db, service }));
     api.use('/img/:width/:height/:action/:image', (req, res, next) => {
       console.log(req.params)
