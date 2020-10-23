@@ -8,13 +8,13 @@ Proxy ADempiere-API
 <a href="http://slack.vuestorefront.io">![Join Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
 
 ### What is?
-A simple proxy for synchronize ADempiere Backend based on gRPC with any frontend using api REST ans GraphQL.
+A simple proxy for synchronize ADempiere Backend based on [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server) with any frontend using api REST ans GraphQL.
 
 ### Current status: Fisrt Release to be defined
 
-This project is the first ADempiere proxy integration based on stronger StoreFront-API and use as backend gRPC server https://github.com/adempiere/adempiere-gRPC-Server for connect to ADempiere.
+This project is the first ADempiere proxy integration based on stronger StoreFront-API and use as backend gRPC server [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server) for connect to ADempiere.
 
-This project allows connect gRPC backend of ADempiere for Standard functionality with API RESTfull and ADempiere UI based on Vue https://github.com/adempiere/adempiere-vue
+This project allows connect gRPC backend of ADempiere for Standard functionality with API RESTfull and ADempiere UI based on Vue [ADempiere Vue](https://github.com/adempiere/adempiere-vue)
 
 Note that this project use default template of StoreFront API and have all instruction from [Easy to integrate with custom backends](https://docs.storefrontapi.com/guide/integration/integration.html#two-steps-for-the-integration)
 
@@ -30,6 +30,10 @@ Storefront API comes with a default product schema - compatible with the [Vue St
 To run `proxy-api` in `development` mode, please run:
 
 `docker-compose up`
+
+Bu default are running the follows modules:
+- adempiere-api
+- adempiere-store
 
 Restore the demo data set:
 `docker exec -it sfa_app_1 yarn restore7`
@@ -53,7 +57,7 @@ You can use images from Docker hub:
 
 In case of any questions please contact our core team [![we are on Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/adempiere/adempiere-vue?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-- `@YamelSenih` - Yamel Senih
+- [@YamelSenih](https://github.com/YamelSenih)
 
 ## Demo
 
