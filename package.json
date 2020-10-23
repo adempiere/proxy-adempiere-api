@@ -1,8 +1,8 @@
 {
-  "name": "storefront-api",
+  "name": "proxy-adempiere-api",
   "version": "1.0.0-rc.3",
   "private": true,
-  "description": "Storefront GraphQL API",
+  "description": "SA ADempiere Proxy backed using API REST and connecting with gRPC service",
   "main": "dist",
   "engineStrict": true,
   "engines": {
@@ -54,7 +54,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DivanteLtd/storefront-api.git"
+    "url": "git+https://github.com/adempiere/proxy-adempiere-api.git"
   },
   "author": "Piotr Karwatka <pkarwatka@divante.pl>",
   "license": "MIT",
@@ -147,14 +147,16 @@
     "tslib": "^1.9.3"
   },
   "bugs": {
-    "url": "https://github.com/DivanteLtd/storefront-api/issues"
+    "url": "https://github.com/adempiere/proxy-adempiere-api/issues"
   },
-  "homepage": "https://github.com/DivanteLtd/storefront-api/",
+  "homepage": "https://github.com/adempiere/proxy-adempiere-api/",
   "keywords": [
     "storefront",
     "rest",
     "api",
-    "nodejs"
+    "nodejs",
+    "adempiere",
+    "webstore"
   ],
   "workspaces": [
     "src/api/extensions/*",
