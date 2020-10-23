@@ -10,6 +10,7 @@ import userLogs from './api/userLogs'
 import workflow from './api/workflow'
 import dashboard from './api/dashboard'
 import data from './api/data'
+import pos from './api/pos'
 import core from './api/core'
 import { version } from '../../../package.json';
 import path from 'path'
@@ -45,6 +46,8 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     api.use('/dashboard', dashboard({ config, db, service }));
     //  Core
     api.use('/core', core({ config, db, service }));
+    //  POS
+    api.use('/pos', pos({ config, db, service }));
     // perhaps expose some API metadata at the root
     api.get('/', (req, res) => {
       res.json({ version });

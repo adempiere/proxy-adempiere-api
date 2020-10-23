@@ -43,7 +43,7 @@ export const ADempiereStore: StorefrontApiModule = new StorefrontApiModule({
       res.json({ version });
     });
 
-    registerExtensions({ app, config, db, registeredExtensions: config.get('modules.adempiereApi.registeredExtensions'), rootPath: path.join(__dirname, 'api', 'extensions') })
+    registerExtensions({ app, config, db, registeredExtensions: config.get('modules.adempiereStore.registeredExtensions'), rootPath: path.join(__dirname, 'api', 'extensions') })
 
     // api router
     app.use('/adempiere-store', api);

@@ -266,6 +266,20 @@
         "mail-service"
       ]
     },
+    "adempiereApi": {
+      "registeredExtensions": [
+      ],
+      "images": {
+        "baseUrl": "http://localhost"
+      }
+    },
+    "adempiereStore": {
+      "registeredExtensions": [
+      ],
+      "images": {
+        "baseUrl": "http://localhost"
+      }
+    },
     "sampleApi": {
       "registeredExtensions": [
       ],
