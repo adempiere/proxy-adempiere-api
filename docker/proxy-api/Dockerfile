@@ -6,8 +6,8 @@ WORKDIR /var/www
 
 RUN apk add --no-cache curl git python make g++
 
-COPY ../../package.json ./
-COPY ../../yarn.lock ./
+COPY package.json ./
+COPY yarn.lock ./
 
 RUN apk --no-cache --update upgrade musl
 RUN apk add --no-cache \
@@ -22,6 +22,6 @@ RUN apk add --no-cache \
     && yarn install --no-cache \
     && apk del .build-deps
 
-COPY proxy-api.sh /usr/local/bin/
+COPY docker/proxy-adempiere-api/proxy-api.sh /usr/local/bin/
 
 CMD ["proxy-api.sh"]
