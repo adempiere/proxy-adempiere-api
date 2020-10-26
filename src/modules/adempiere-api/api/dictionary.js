@@ -235,7 +235,6 @@ export default ({ config, db, service }) => {
         uuid: req.query.uuid
       }, function (err, response) {
         if (response) {
-          console.log(response)
           res.json({
             code: 200,
             result: convertValidationRule(response)

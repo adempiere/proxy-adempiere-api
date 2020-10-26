@@ -85,9 +85,10 @@ export default ({ config, db, service }) =>
             shippingAddress = {
               firstname: req.body.addressInformation.shippingAddress.firstname,
               lastname: req.body.addressInformation.shippingAddress.lastname,
-              countryCode: req.body.addressInformation.shippingAddress.countryId,
+              countryCode: req.body.addressInformation.shippingAddress.country_id,
               cityName: req.body.addressInformation.shippingAddress.city,
               postalCode: req.body.addressInformation.shippingAddress.postcode,
+              regionId: req.body.addressInformation.shippingAddress.region_id,
               address1: street[0],
               address2: street[1],
               address3: street[2],
@@ -102,9 +103,10 @@ export default ({ config, db, service }) =>
             billingAddress = {
               firstname: req.body.addressInformation.billingAddress.firstname,
               lastname: req.body.addressInformation.billingAddress.lastname,
-              countryCode: req.body.addressInformation.billingAddress.countryId,
+              countryCode: req.body.addressInformation.billingAddress.country_id,
               cityName: req.body.addressInformation.billingAddress.city,
               postalCode: req.body.addressInformation.billingAddress.postcode,
+              regionId: req.body.addressInformation.billingAddress.region_id,
               address1: street[0],
               address2: street[1],
               address3: street[2],
@@ -129,9 +131,89 @@ export default ({ config, db, service }) =>
           })
         }, function (err, response) {
           if (response) {
+            let shippingAddress = {}
+            let billingAddress = {}
+            let shipping = response.getShippingAddress()
+            let billing = response.getBillingAddress()
+            //  Shipping
+            if (shipping) {
+              shippingAddress.id = shipping.getId()
+              shippingAddress.country_id = shipping.getCountryCode()
+              if (shipping.getRegion()) {
+                shippingAddress.region = {
+                  region: shipping.getRegion().getName(),
+                  region_id: shipping.getRegion().getId()
+                }
+                shippingAddress.region_id = shipping.getRegion().getId()
+              }
+              shippingAddress.country_id = shipping.getCountryCode()
+              shippingAddress.street = [
+                shipping.getAddress1(),
+                shipping.getAddress2(),
+                shipping.getAddress3(),
+                shipping.getAddress4()
+              ]
+              if (shipping.getCity()) {
+                shippingAddress.city = shipping.getCity().getName()
+              }
+              shippingAddress.telephone = shipping.getPhone()
+              shippingAddress.postcode = shipping.getPostalCode()
+              shippingAddress.firstname = shipping.getFirstName()
+              shippingAddress.lastname = shipping.getLastName()
+              shippingAddress.default_shipping = shipping.getIsDefaultShipping()
+            }
+            //  Billing
+            if (billing) {
+              billingAddress.id = billing.getId()
+              billingAddress.country_id = billing.getCountryCode()
+              if (billing.getRegion()) {
+                billingAddress.region = {
+                  region: billing.getRegion().getName(),
+                  region_id: billing.getRegion().getId()
+                }
+                billingAddress.region_id = billing.getRegion().getId()
+              }
+              billingAddress.country_id = billing.getCountryCode()
+              billingAddress.street = [
+                billing.getAddress1(),
+                billing.getAddress2(),
+                billing.getAddress3(),
+                billing.getAddress4()
+              ]
+              if (shipping.getCity()) {
+                billingAddress.city = billing.getCity().getName()
+              }
+              billingAddress.telephone = billing.getPhone()
+              billingAddress.postcode = billing.getPostalCode()
+              billingAddress.firstname = billing.getFirstName()
+              billingAddress.lastname = billing.getLastName()
+              billingAddress.default_shipping = billing.getIsDefaultShipping()
+            }
             res.json({
               code: 200,
-              result: 'OK'
+              result: {
+                id: response.getId(),
+                group_id: 1,
+                created_at: response.getCreated(),
+                updated_at: response.getUpdated(),
+                transmited_at: response.getTransmited(),
+                method_code: response.getMethodCode(),
+                carrier_code: response.getCarrierCode(),
+                payment_method_code: response.getPaymentMethodCode(),
+                addressInformation: {
+                  shippingAddress: shippingAddress,
+                  billingAddress: billingAddress
+                },
+                products: response.getOrderLinesList().map(orderLine => {
+                  return {
+                    sku: orderLine.getSku(),
+                    name: orderLine.getName(),
+                    quantity: orderLine.getQuantity(),
+                    price: orderLine.getPrice()
+                  }
+                }),
+                disable_auto_group_change: 0
+              }
             })
           } else if (err) {
             res.json({
