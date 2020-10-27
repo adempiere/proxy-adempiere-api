@@ -375,6 +375,8 @@ export default ({ config, db, service }) => {
         countryCode: req.body.address.country_id,
         regionId: req.body.address.region_id,
         regionName: req.body.address.region_code,
+        firstName: req.body.address.firstname,
+        lastName: req.body.address.lastname,
         cityName: req.body.address.city,
         postalCode: req.body.address.postcode,
         address1: req.body.address.street[0],
@@ -478,8 +480,8 @@ export default ({ config, db, service }) => {
             street = req.body.addressInformation.shippingAddress.street
           }
           shippingAddress = {
-            firstname: req.body.addressInformation.shippingAddress.firstname,
-            lastname: req.body.addressInformation.shippingAddress.lastname,
+            firstName: req.body.addressInformation.shippingAddress.firstname,
+            lastName: req.body.addressInformation.shippingAddress.lastname,
             countryCode: req.body.addressInformation.shippingAddress.countryId,
             cityName: req.body.addressInformation.shippingAddress.city,
             postalCode: req.body.addressInformation.shippingAddress.postcode,
@@ -495,8 +497,8 @@ export default ({ config, db, service }) => {
             street = req.body.addressInformation.billingAddress.street
           }
           billingAddress = {
-            firstname: req.body.addressInformation.billingAddress.firstname,
-            lastname: req.body.addressInformation.billingAddress.lastname,
+            firstName: req.body.addressInformation.billingAddress.firstname,
+            lastName: req.body.addressInformation.billingAddress.lastname,
             countryCode: req.body.addressInformation.billingAddress.countryId,
             cityName: req.body.addressInformation.billingAddress.city,
             postalCode: req.body.addressInformation.billingAddress.postcode,

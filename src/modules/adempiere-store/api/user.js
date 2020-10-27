@@ -122,7 +122,7 @@ export default ({ config, db, service }) => {
    *
    * Request body:
    * {
-   * "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEzOSJ9.a4HQc2HODmOj5SRMiv-EzWuMZbyIz0CLuVRhPw_MrOM"
+   * "refreshToken"getRegion: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEzOSJ9.a4HQc2HODmOj5SRMiv-EzWuMZbyIz0CLuVRhPw_MrOM"
    * }
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserrefresh
@@ -190,14 +190,23 @@ export default ({ config, db, service }) => {
               store_id: 1,
               website_id: 1,
               addresses: response.getAddressesList().map(address => {
+                let region = {}
+                let city = {}
+                if (address.getRegion()) {
+                  region.region_id = address.getRegion().getId()
+                  region.name = address.getRegion().getName()
+                }
+                if (address.getCity()) {
+                  city.name = address.getCity().getName()
+                }
                 return {
                   id: address.getId(),
                   customer_id: response.getId(),
                   region: {
-                    region: address.getRegion().getName(),
-                    region_id: address.getRegion().getId()
+                    region: region.name,
+                    region_id: region.region_id
                   },
-                  region_id: address.getRegion().getId(),
+                  region_id: region.region_id,
                   country_id: address.getCountryCode(),
                   street: [
                     address.getAddress1(),
@@ -207,7 +216,7 @@ export default ({ config, db, service }) => {
                   ],
                   telephone: address.getPhone(),
                   postcode: address.getPostalCode(),
-                  city: address.getCity().getName(),
+                  city: city.name,
                   firstname: address.getFirstName(),
                   lastname: address.getLastName(),
                   default_shipping: address.getIsDefaultShipping()
@@ -544,8 +553,8 @@ export default ({ config, db, service }) => {
           return {
             id: address.id,
             phone: address.telephone,
-            firstname: address.firstname,
-            lastname: address.lastname,
+            firstName: address.firstname,
+            lastName: address.lastname,
             countryCode: address.country_id,
             cityName: address.city,
             postalCode: address.postcode,

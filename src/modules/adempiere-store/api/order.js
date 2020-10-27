@@ -83,8 +83,8 @@ export default ({ config, db, service }) =>
               street = req.body.addressInformation.shippingAddress.street
             }
             shippingAddress = {
-              firstname: req.body.addressInformation.shippingAddress.firstname,
-              lastname: req.body.addressInformation.shippingAddress.lastname,
+              firstName: req.body.addressInformation.shippingAddress.firstname,
+              lastName: req.body.addressInformation.shippingAddress.lastname,
               countryCode: req.body.addressInformation.shippingAddress.country_id,
               cityName: req.body.addressInformation.shippingAddress.city,
               postalCode: req.body.addressInformation.shippingAddress.postcode,
@@ -101,8 +101,8 @@ export default ({ config, db, service }) =>
               street = req.body.addressInformation.billingAddress.street
             }
             billingAddress = {
-              firstname: req.body.addressInformation.billingAddress.firstname,
-              lastname: req.body.addressInformation.billingAddress.lastname,
+              firstName: req.body.addressInformation.billingAddress.firstname,
+              lastName: req.body.addressInformation.billingAddress.lastname,
               countryCode: req.body.addressInformation.billingAddress.country_id,
               cityName: req.body.addressInformation.billingAddress.city,
               postalCode: req.body.addressInformation.billingAddress.postcode,
