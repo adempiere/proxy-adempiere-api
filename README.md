@@ -30,6 +30,8 @@ Storefront API comes with a default product schema - compatible with the [Vue St
 To run `proxy-api` in `development` mode, please run:
 
 `docker-compose up`
+Or
+`docker-compose -f docker-compose.yml up`
 
 Bu default are running the follows modules:
 - adempiere-api
