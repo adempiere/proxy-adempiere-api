@@ -275,6 +275,7 @@
     },
     "adempiereStore": {
       "registeredExtensions": [
+        "web-store-payment"
       ],
       "images": {
         "baseUrl": "http://localhost"
