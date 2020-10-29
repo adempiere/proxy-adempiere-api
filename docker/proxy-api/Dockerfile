@@ -6,8 +6,7 @@ WORKDIR /var/www
 
 RUN apk add --no-cache curl git python make g++
 
-COPY package.json ./
-COPY yarn.lock ./
+COPY package.json yarn.lock ./
 
 RUN apk --no-cache --update upgrade musl \
 	&& apk add --no-cache \
