@@ -45,7 +45,26 @@ module.exports = {
             'default-modules/platforms',
             'default-modules/extensions'
           ],
-        },            
+        },
+        {
+          title: 'ADempiere API RESTful',
+          collapsable: true,
+          children: [
+            'default-modules/adempiere-api/api',
+            'default-modules/adempiere-api/core',
+            'default-modules/adempiere-api/img',
+            'default-modules/adempiere-api/user',
+            'default-modules/adempiere-api/enrollment',
+            'default-modules/adempiere-api/data',
+            'default-modules/adempiere-api/dictionary',
+            'default-modules/adempiere-api/resource',
+            'default-modules/adempiere-api/user-interface',
+            'default-modules/adempiere-api/user-log',
+            'default-modules/adempiere-api/dashboard',
+            'default-modules/adempiere-api/workflow',
+            'default-modules/adempiere-api/pos'
+          ]
+        },
         {
           title: 'Modules',
           collapsable: false,
@@ -53,7 +72,7 @@ module.exports = {
             'modules/introduction',
             'modules/tutorial'
           ],
-        },        
+        },
         {
           title: 'Integrations',
           collapsable: false,
