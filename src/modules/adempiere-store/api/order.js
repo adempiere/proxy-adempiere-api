@@ -73,6 +73,7 @@ export default ({ config, db, service }) =>
         let carrierCode = {}
         let methodCode = {}
         let paymentMethodCode = {}
+        let paymentAdditionalMethod = {}
         if (req.body.addressInformation) {
           carrierCode = req.body.addressInformation.shipping_carrier_code
           methodCode = req.body.addressInformation.shipping_method_code
@@ -113,6 +114,10 @@ export default ({ config, db, service }) =>
               address4: street[3]
             }
           }
+          //  Additional Payment Methods
+          if (req.body.addressInformation.payment_method_additional) {
+            paymentAdditionalMethod = req.body.addressInformation.payment_method_additional
+          }
         }
         service.createOrder({
           token: req.query.token,
@@ -123,6 +128,7 @@ export default ({ config, db, service }) =>
           carrierCode,
           methodCode,
           paymentMethodCode,
+          paymentAdditionalMethod,
           products: req.body.products.map(product => {
             return {
               id: product.id,
