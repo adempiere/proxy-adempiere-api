@@ -1,17 +1,15 @@
-## Dashboarding Service
+## Módulo del panel de control
 
 ### POST /adempiere-api/dashboard/list-dashboards
 
-Get a complete list of allowed dashboards for current role or user.
+Obtiene la lista de tableros o paneles de control los que el usuario tiene acceso según su rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -20,7 +18,7 @@ Get a complete list of allowed dashboards for current role or user.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -30,7 +28,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&to
     --data-binary '{"role_id":1000000,"role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -70,24 +68,22 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&to
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` respose ok
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 ### POST /adempiere-api/dashboard/list-recent-items
 
-Get a list of recent items for current user.
+Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -97,7 +93,7 @@ Get a list of recent items for current user.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -107,7 +103,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&
     --data-binary '{"user_uuid":"901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19","current_session":true}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -151,24 +147,22 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` respose ok
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 ### POST /adempiere-api/dashboard/list-pending-documents
 
-Get a list of pending documents for user or role.
+Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -177,7 +171,7 @@ Get a list of pending documents for user or role.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-documents&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -187,7 +181,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-docum
     --data-binary '{"user_uuid":"901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -239,7 +233,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-docum
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` respose ok
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error

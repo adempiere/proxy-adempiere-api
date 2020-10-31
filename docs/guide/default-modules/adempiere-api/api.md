@@ -1,10 +1,10 @@
-# REST Interfaces from ADempiere
+# REST Interface from ADempiere
 
-This product manages to be platform-agnostic thanks to dedicated API connectors for eCommerce backend platforms. The data format in the `default-catalog` and `default-vsf` modules is always the same for any platform, which means no matter what eCommerce backend you use, your frontend remains the same without any change.
+This product manages to be platform-agnostic thanks to dedicated API connectors for [gRPC ADempiere Server](https://github.com/adempiere/adempiere-gRPC-Server) backend platform.
 
-The Storefront API Default catalog offers two basic ways of querying the data:
+The Proxy ADempiere API offers two basic ways of querying the data:
 - GraphQL for read access
-- REST for read and write access
+- REST for read and write access: Supported by default
 
 
 **Note:** This API specification is related to the `packages/default-vsf` module. You can create your own custom module with totally different APIs! Read more on [modules](../modules/introduction.md)
@@ -14,7 +14,9 @@ The Storefront API Default catalog offers two basic ways of querying the data:
 All methods accept and respond with the `application/json` content type.
 
 
-## CÓDIGOS DE RESPUESTA:
+## Default Response codes:
 
-- `200` cuando es exitoso
-- `500` en caso de error
+- `200` Response is Ok
+- `500` A error is throw
+
+A complete list can be readed here: [HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)

@@ -1,23 +1,23 @@
-## Core Service Provider
+## Módulo núcleo
 
 ### GET /adempiere-api/core/country
 
-Get Country information.
+Obtiene los datos del país.
 
-#### Parameters GET:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `id` - country identifier.
-- `uuid` - UUID of country.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`id` - identificador del país.
+`uuid` - identificador único universal del país.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### A Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
@@ -26,7 +26,7 @@ curl 'https://your-domain.example.com/adempiere-api/core/country&token=xu3h02nd6
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -69,16 +69,16 @@ curl 'https://your-domain.example.com/adempiere-api/core/country&token=xu3h02nd6
 
 ### POST /adempiere-api/core/list-organizations
 
-Get a list of organizations of user role allowed.
+Obtiene la lista de organizaciones a las que el usuario tiene acceso según su rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`page_size` - tamaño de las listas de la paginación.
+`page_token` - token el numero de la página.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -87,7 +87,7 @@ Get a list of organizations of user role allowed.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
@@ -97,7 +97,7 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-organizations&toke
     --data-binary '{"role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -138,16 +138,16 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-organizations&toke
 
 ### POST /adempiere-api/core/list-warehouses
 
-Get a list of warehouses from current organization.
+Obtiene la lista de organizaciones a las que el usuario tiene acceso según su rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`page_size` - tamaño de las listas de la paginación.
+`page_token` - token el numero de la página.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -156,7 +156,7 @@ Get a list of warehouses from current organization.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
@@ -166,7 +166,7 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-warehouses&token=x
     --data-binary '{"organization_uuid":"a3e5c878-fb40-11e8-a479-7a0060f0aa01"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -189,22 +189,22 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-warehouses&token=x
 
 ### POST /adempiere-api/core/list-languages
 
-Get a list of available languages.
+Obtiene la lista de idiomas disponibles.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `page_size` - default page size.
-- `page_token` - page token for specific page.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`page_size` - tamaño de las listas de la paginación.
+`page_token` - token el numero de la página.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
@@ -213,7 +213,7 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-languages&token=xu
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -252,61 +252,19 @@ curl 'https://your-domain.example.com/adempiere-api/core/list-languages&token=xu
 
 ### POST /adempiere-api/core/get-business-partner
 
-Get a specific business partner based on a query criteria or values.
+Obtiene los datos del país.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
-- `searchValue`- find by Value, TaxID or Name
-- `value` - find by value of BP
-- `name` - find by Name
-- `contact_name` - find by contact name
-- `email` - find by email
-- `postal_code` - find by postal code of address
-- `phone` - find by phone
-- `table_name` - Used for custom query
-- `filters` - a array with the follow structure:
-```json
-filters:
-[
-  {
-    column_name: 'DocStatus',
-    operator: 'EQUAL',
-    value: 'CO'
-  },
-  {
-    column_name: 'DateInvoiced',
-    operator: 'BETWEEN',
-    value: '2020-01-01'
-    value_to: '2020-09-01'
-  },
-  {
-    column_name: 'C_DocType_ID',
-    operator: 'IN',
-    values: [
-      1000000,
-      1000562
-    ]
-  }
-]
-```
-- `column_name` - name of column for criteria
-- `value` - value of filter
-- `value_to` - value to (used when a operator is BETWEEN)
-- `values` - array with values (used for a operator like IN)
-- `operator` - operator
-- `query` - a custom query for get result
-- `where_clause` - where clause for specific filter
-- `order_by_clause` - order by clause
-- `limit` - limit of search
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
 	"role_id": 321,
-  "role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19",
+    "role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19",
 	"searchValue": "",
 	"value": "",
 	"name": "",
@@ -337,7 +295,7 @@ filters:
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \

@@ -1,16 +1,16 @@
-## User service
+## Módulo usuario
 
 ### POST /adempiere-api/user/login
 
-Call a login from ADempiere using default security of ADempiere server based on role allocated to user.
+Autoriza al usuario. Se llama así después de que el usuario envía "Login" desde la aplicación de la tienda. Devuelve al usuario un token que debe ser utilizado para todas las llamadas subsiguientes a la API que requieran autorización.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
 ```
 null
 ```
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -19,7 +19,7 @@ null
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/login' \
@@ -29,7 +29,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/login' \
     --data-binary '{"username":"info@erpya.com","password":"TopSecretPassword"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -38,30 +38,29 @@ curl 'https://your-domain.example.com/adempiere-api/user/login' \
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 
 ### GET /adempiere-api/user/info
 
-Get default role for user. Is called after login `POST /adempiere-api/user/login`.
+Obtiene el perfil de usuario para el usuario actualmente autorizado. Se llama después de una llamada exitosa de `POST /adempiere-api/user/login`.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
@@ -70,7 +69,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -87,29 +86,29 @@ curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 ### GET /adempiere-api/user/session
 
-Get information about current session. Is called after login `POST /adempiere-api/user/login`.
+Obtiene la información de la sesión actual. Se llama después de una llamada exitosa de `POST /adempiere-api/user/login`.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -118,7 +117,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -176,30 +175,30 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 
 
 ### GET /adempiere-api/user/roles
 
-Get a complete list of roles allocated for current user.
+Obtiene la lista de roles a las que el usuario tiene acceso.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -208,7 +207,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67y
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -230,30 +229,30 @@ curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67y
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 
 
 ### GET /adempiere-api/user/menu
 
-Get Default tree for current session.
+Obtiene el arbol de rutas para el menu segun el acceso del rol.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```
 null
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -262,7 +261,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -332,22 +331,29 @@ curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
+
+
+
+
+
+
+
 
 ### POST /adempiere-api/user/change-role
 
-Make a change of role and current session is expired automatically.
+Cambia el rol actual y devuelve la información de la nueva sesión.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
-- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
-- `language` - language from client.
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
 
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -356,7 +362,7 @@ Make a change of role and current session is expired automatically.
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -366,7 +372,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
     --data-binary '{"role":"a48d2596-fb40-11e8-a479-7a0060f0aa01","organization":"a3e5c878-fb40-11e8-a479-7a0060f0aa01"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -424,23 +430,23 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
 
 
 ### POST /adempiere-api/user/logout
 
-Logout from current session, after it is need make login for get any request.
+Cierra la sesión y revoca el acceso al token.
 
-#### Parameters:
+#### PARÁMENTROS GET:
 
 ```
 null
 ```
 
-#### Request Body:
+#### CUERPO DE LA PETICIÓN:
 
 ```json
 {
@@ -448,7 +454,7 @@ null
 }
 ```
 
-#### Call example:
+#### EJEMPLO DE LLAMADA:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/logout' \
@@ -458,7 +464,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/logout' \
     --data-binary '{"token":"98146957-a41a-4ef7-bcf5-b368310ef08c"}'
 ```
 
-#### Response Body:
+#### CUERPO DE RESPUESTA:
 
 ```json
 {
@@ -467,7 +473,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/logout' \
 }
 ```
 
-#### Response codes:
+#### CÓDIGOS DE RESPUESTA:
 
-- `200` ok response
-- `500` a error is throw
+- `200` cuando es exitoso
+- `500` en caso de error
