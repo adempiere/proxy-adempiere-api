@@ -1,23 +1,23 @@
-## Módulo diccionario
+## Dictionary Service
 
 ### GET /adempiere-api/dictionary/window
 
-Obtiene los metadatos de la ventana, las metadatos de las pestañas que esta contiene y los metadatos de la lista de campos.
+Get all meta-data of window, tab and fields.
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador de la ventana.
-`uuid` - identificador único universal de la ventana.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/window?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01' \
@@ -26,7 +26,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/window?token=81ae
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -150,30 +150,25 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/window?token=81ae
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
 
 ### GET /adempiere-api/dictionary/browser
 
-Obtiene los metadatos de la consulta inteligente y las metadatos de la lista de parámetros/criterio de busqueda (campos) que esta contiene, además de los metadatos de los procesos asociados sin su lista de parámetros (campos).
+Get meta-data from browser. Include fields, where clause, sorting and complete query.
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador de la consulta inteligente.
-`uuid` - identificador único universal de la consulta inteligente.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/browser?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01' \
@@ -182,7 +177,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/browser?token=81a
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -329,30 +324,24 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/browser?token=81a
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
-
 ### GET /adempiere-api/dictionary/process
 
-Obtiene los metadatos del proceso/reporte, y los metadatos de la lista de parámetros (campos).
+Get meta-data from process, process definition and parameters.
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador del proceso/reporte.
-`uuid` - identificador único universal del proceso/reporte.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/process?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=8aaefbc2-fb40-11e8-a479-7a0060f0aa01' \
@@ -361,7 +350,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/process?token=81a
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -459,29 +448,24 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/process?token=81a
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
 ### GET /adempiere-api/dictionary/form
 
-Obtiene los metadatos del formulario.
+Get meta-data of form based on dictionary.
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador del formulario.
-`uuid` - identificador único universal del formulario.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/form?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=8e427700-fb40-11e8-a479-7a0060f0aa01' \
@@ -490,7 +474,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/form?token=81aedc
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -508,35 +492,28 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/form?token=81aedc
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
-
-
 ### GET /adempiere-api/dictionary/field
 
-Obtiene los metadatos del formulario.
+Get field meta-data (Very useful for get info based on custom form).
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador del campo.
-`uuid` - identificador único universal del campo.
-`element_uuid` - identificador único universal del elemento.
-`table_name` - tabla donde se encuentra referenciado el campo.
-`column_name` - nombre de la columna del campo en la tabla.
-`element_column_name` - nombre de la columna del elemento en la tabla.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
+- `element_uuid` - element UUID.
+- `table_name` - table name defined.
+- `column_name` - column name.
+- `element_column_name` - element column name.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/field?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=81aedcd5-61f4-424c-8fec-5fb07d29a8eb' \
@@ -545,7 +522,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/field?token=81aed
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -602,30 +579,24 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/field?token=81aed
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
-
 ### GET /adempiere-api/dictionary/validation
 
-Obtiene los metadatos de la regla de validación.
+Get validation rule from ID or UUID
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador de la regla de validación.
-`uuid` - identificador único universal de la regla de validación.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/validation?token=3c8f6231-bc02-4163-bc99-b19150d2d617&language=es&uuid=a4cac0ae-fb40-11e8-a479-7a0060f0aa01' \
@@ -634,7 +605,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/validation?token=
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -650,31 +621,24 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/validation?token=
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error
-
-
-
 ### GET /adempiere-api/dictionary/reference
 
-Obtiene los metadatos de la referencia.
+Get reference orlookup based on uuid or id
 
-#### PARÁMENTROS GET:
+#### Parameters:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma para las traducciones de la respuesta.
-`id` - identificador de la referencia.
-`uuid` - identificador único universal de la referencia.
+- `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
+- `language` - language from client.
+- `id` - country identifier.
+- `uuid` - UUID of country.
 
-#### CUERPO DE LA PETICIÓN:
+#### Request Body:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Call example:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dictionary/reference?token=3c8f6231-bc02-4163-bc99-b19150d2d617&language=es&uuid=a47df90e-fb40-11e8-a479-7a0060f0aa01'' \
@@ -683,7 +647,7 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/reference?token=3
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Response Body:
 
 ```json
 {
@@ -708,8 +672,3 @@ curl 'https://your-domain.example.com/adempiere-api/dictionary/reference?token=3
     }
 }
 ```
-
-#### CÓDIGOS DE RESPUESTA:
-
-- `200` cuando es exitoso
-- `500` en caso de error

@@ -4,7 +4,7 @@
 
 Get Country information.
 
-#### Parameters GET:
+#### Parameters:
 
 - `token` - user token getted from `POST /adempiere-api/user/login` (Mandatory).
 - `language` - language from client.
