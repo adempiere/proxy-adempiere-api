@@ -539,7 +539,6 @@ export default ({ config, db, service }) => {
    */
   userApi.post('/me', (req, res) => {
     if (req.body) {
-      console.log('req.body: ', req.body)
       service.updateCustomer({
         customerId: req.body.customer.id,
         email: req.body.customer.email,
