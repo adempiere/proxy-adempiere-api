@@ -26,6 +26,10 @@ export default ({ config, db, service }) => {
       service.login({
         user: req.body.username,
         password: req.body.password,
+        token: req.body.token,
+        roleUuid: req.body.role_uuid,
+        organizationUuid: req.body.organization_uuid,
+        warehouseUuid: req.body.warehouse_uuid,
         language: req.query.language
       }, function (err, response) {
         if (response) {

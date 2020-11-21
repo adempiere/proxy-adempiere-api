@@ -322,8 +322,7 @@
   },
   "adempiereApi": {
     "api": {
-      "user": "store",
-      "password": "store",
+      "token": "adempiere_token",
       "accessHost": "localhost:50059",
       "businessHost": "localhost:50059",
       "dictionaryHost": "localhost:50059",
@@ -333,8 +332,7 @@
   },
   "adempiereStore": {
     "api": {
-      "user": "store",
-      "password": "store",
+      "token": "adempiere_store_token",
       "accessHost": "localhost:50059",
       "storeHost": "localhost:50059",
       "language": "en_US",
