@@ -155,7 +155,22 @@ export default ({ config, db, service }) => {
       is_can_report: role.getIsCanReport(),
       is_can_export: role.getIsCanExport(),
       is_personal_lock: role.getIsPersonalLock(),
-      is_personal_access: role.getIsPersonalAccess()
+      is_personal_access: role.getIsPersonalAccess(),
+      is_allow_info_account: role.getIsAllowInfoAccount(),
+      is_allow_info_business_partner: role.getIsAllowInfoBusinessPartner(),
+      is_allow_info_in_out: role.getIsAllowInfoInOut(),
+      is_allow_info_order: role.getIsAllowInfoOrder(),
+      is_allow_info_product: role.getIsAllowInfoProduct(),
+      is_allow_info_schedule: role.getIsAllowInfoSchedule(),
+      is_allow_info_mrp: role.getIsAllowInfoMrp(),
+      is_allow_html_view: role.getIsAllowHtmlView(),
+      is_allow_info_asset: role.getIsAllowInfoAsset(),
+      is_allow_info_cash_journal: role.getIsAllowInfoCashJournal(),
+      is_allow_info_invoice: role.getIsAllowInfoInvoice(),
+      is_allow_info_payment: role.getIsAllowInfoPayment(),
+      is_allow_info_resource: role.getIsAllowInfoResource(),
+      is_allow_info_crp: role.getIsAllowInfoCrp(),
+      is_allow_xls_view: role.getIsAllowXlsView()
     }
   }
 
@@ -299,18 +314,7 @@ export default ({ config, db, service }) => {
           res.json({
             code: 200,
             result: response.getRolesList().map(role => {
-              return {
-                id: role.getId(),
-                uuid: role.getUuid(),
-                name: role.getName(),
-                description: role.getDescription(),
-                client_id: role.getClientId(),
-                client_name: role.getClientName(),
-                is_can_report: role.getIsCanReport(),
-                is_can_export: role.getIsCanExport(),
-                is_personal_lock: role.getIsPersonalLock(),
-                is_personal_access: role.getIsPersonalAccess()
-              }
+              return getRole(role)
             })
           })
         } else if (err) {
