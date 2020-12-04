@@ -1,4 +1,4 @@
-import { fit, identify, resize } from '@storefront-api/lib/image';
+import { downloadImage, fit, identify, resize } from '@storefront-api/lib/image';
 import mime from 'mime-types';
 import URL from 'url';
 
@@ -113,16 +113,26 @@ export default ({ config, db, service }) =>
     );
 
     let buffer;
-    try {
-      buffer = Buffer.from(await getResource(service, resourceName));
-    } catch (err) {
-      console.log(err)
-      return res.status(400).send({
-        code: 400,
-        result: `Unable to download the requested image ${imgUrl}`
-      });
+    if (config.modules.adempiereApi.images.httpBased) {
+      try {
+        buffer = await downloadImage(imgUrl);
+      } catch (err) {
+        return res.status(400).send({
+          code: 400,
+          result: `Unable to download the requested image ${imgUrl}`
+        });
+      }
+    } else {
+      try {
+        buffer = Buffer.from(await getResource(service, resourceName));
+      } catch (err) {
+        return res.status(400).send({
+          code: 400,
+          result: `Unable to download the requested image ${imgUrl}`
+        });
+      }
     }
-
+    //  Process image
     switch (action) {
       case 'resize':
         return res
