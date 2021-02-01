@@ -3,7 +3,8 @@ import {
   convertPointOfSalesFromGRPC,
   convertOrderFromGRPC,
   convertOrderLineFromGRPC,
-  convertKeyLayoutFromGRPC
+  convertKeyLayoutFromGRPC,
+  convertPaymentFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -252,6 +253,172 @@ export default ({ config, db, service }) => {
           res.json({
             code: 200,
             result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * Create Payment
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.order_uuid - Order UUID reference
+   * req.body.invoice_uuid - Invoice UUID reference
+   * req.body.bank_uuid - Bank UUID reference
+   * req.body.reference_no - Reference no
+   * req.body.description - Description for Payment
+   * req.body.amount - Payment Amount
+   * req.body.tender_type_code - Tender Type
+   * req.body.currency_uuid - Currency UUID reference
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  posService.post('/create-payment', (req, res) => {
+    if (req.body) {
+      service.createPayment({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        invoiceUuid: req.body.invoice_uuid,
+        bankUuid: req.body.bank_uuid,
+        referenceNo: req.body.reference_no,
+        description: req.body.description,
+        amount: req.body.amount,
+        tenderTypeCode: req.body.tender_type_code,
+        paymentDate: req.body.payment_date,
+        currencyUuid: req.body.currency_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertPaymentFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * Delete Payment
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.payment_uuid - Payment UUID reference
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  posService.post('/delete-payment', (req, res) => {
+    if (req.body) {
+      service.deletePayment({
+        token: req.query.token,
+        language: req.query.language,
+        paymentUuid: req.body.payment_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * Update Sales Order
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.payment_uuid - Payment UUID reference
+   * req.body.bank_uuid - Bank UUID reference
+   * req.body.reference_no - Reference No
+   * req.body.description - Document Description
+   * req.body.amount - Amount of Document
+   * req.body.payment_date - Payment Date
+   * req.body.tender_type_code - tender Type
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  posService.post('/update-payment', (req, res) => {
+    if (req.body) {
+      service.updatePayment({
+        token: req.query.token,
+        language: req.query.language,
+        paymentUuid: req.body.payment_uuid,
+        bankUuid: req.body.bank_uuid,
+        referenceNo: req.body.reference_no,
+        description: req.body.description,
+        amount: req.body.amount,
+        paymentDate: req.body.payment_date,
+        tenderTypeCode: req.body.tender_type_code
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertPaymentFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST List Payments
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * Body:
+   * req.body.order_uuid - Order UUID reference
+   * req.body.pos_uuid - POS UUID reference
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  posService.post('/list-payments', (req, res) => {
+    if (req.body) {
+      service.listPayments({
+        token: req.query.token,
+        language: req.query.language,
+        orderUuid: req.body.order_uuid,
+        posUuid: req.body.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getPaymentsList().map(payment => {
+                return convertPaymentFromGRPC(payment)
+              })
+            }
           })
         } else if (err) {
           res.json({
