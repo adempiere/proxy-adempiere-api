@@ -405,6 +405,15 @@ export default ({ config, db, service }) => {
         language: req.query.language,
         orderUuid: req.body.order_uuid,
         posUuid: req.body.pos_uuid,
+        tableName: req.body.table_name,
+        //  DSL Query
+        filters: req.body.filters,
+        columns: req.body.columns,
+        //  Custom Query
+        query: req.body.query,
+        whereClause: req.body.where_clause,
+        orderByClause: req.body.order_by_clause,
+        limit: req.body.limit,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
