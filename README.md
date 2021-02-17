@@ -10,6 +10,9 @@ Proxy ADempiere-API (A ADempiere Backend using Rest API)
 ### What is?
 A simple proxy for synchronize ADempiere Backend based on [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server) with any frontend using api REST ans GraphQL.
 
+### Where is the documentation about it?
+Just see it: https://adempiere.github.io/proxy-adempiere-api/
+
 ### Current status: Fisrt Release to be defined
 
 This project is the first ADempiere proxy integration based on stronger StoreFront-API and use as backend gRPC server [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server) for connect to ADempiere.
