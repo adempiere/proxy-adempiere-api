@@ -3,11 +3,11 @@
 ### POST /adempiere-api/pos/list-point-of-sales
 
 Lista todos los puntos de venta asociados al usuario actual
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `user_uuid` - uuid del usuario
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición::
 
 ```json
 {
@@ -16,7 +16,7 @@ Lista todos los puntos de venta asociados al usuario actual
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-point-of-sales?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
@@ -26,7 +26,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-point-of-sales?toke
     --data-binary '{"user_uuid":"43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -124,7 +124,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-point-of-sales?toke
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -132,7 +132,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-point-of-sales?toke
 ### POST /adempiere-api/pos/get-product-price
 
 Obtener el precio del producto
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `search_value` - Valor de búsqueda del producto.
 `upc` - UPC del producto.
@@ -143,7 +143,7 @@ Obtener el precio del producto
 `warehouse_uuid` - Referencia al UUID del almacén.
 `valid_from` - Lista de precios válida desde.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición::
 
 ```json
 {
@@ -152,7 +152,7 @@ Obtener el precio del producto
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-product-price?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
@@ -162,7 +162,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-product-price?token=
     --data-binary '{"search_value":"3933-018MC","price_list_uuid":"54745978-ce79-11e9-aa53-0242ac110002"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -239,7 +239,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-product-price?token=
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -247,7 +247,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-product-price?token=
 ### POST /adempiere-api/pos/list-product-prices
 
 Precio de lista del producto
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `search_value` - Valor de búsqueda del producto.
 `upc` - UPC del producto.
@@ -266,7 +266,7 @@ Precio de lista del producto
 `limit` - Limite de registro.
 `pageSize` - Tamaño de página personalizado para el lote.
 `pageToken` - Token de página específico.
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -275,7 +275,7 @@ Precio de lista del producto
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-product-prices?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
@@ -285,7 +285,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-product-prices?toke
     --data-binary '{"price_list_uuid":"54745978-ce79-11e9-aa53-0242ac110002","business_partner_uuid":"9f6cf428-9209-11e9-8046-0242ac140002","warehouse_uuid":"0b1fe9d4-9bdd-4e69-8573-9a3b50d8251e"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -883,7 +883,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-product-prices?toke
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -894,13 +894,13 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-product-prices?toke
 
 Crear un orden desde el punto de venta
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `pos_uuid` - Uuid del punto de venta.
 `customer_uuid` - Uuid del representante de ventas`.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -909,7 +909,7 @@ Crear un orden desde el punto de venta
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -919,7 +919,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order?token=46464
     --data-binary '{"pos_uuid":"421173e1-c58d-4474-89e5-9872f07baf47","customer_uuid":"9f6cf428-9209-11e9-8046-0242ac140002","sales_representative_uuid":"43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -964,7 +964,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order?token=46464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -973,7 +973,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order?token=46464
 
 Crear pago
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `pos_uuid` - Uuid del punto de venta.
 `order_uuid`- Referencia del UUID del pedido
@@ -987,7 +987,7 @@ Crear pago
 `currencyUuid` - Uuid de la moneda
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -996,7 +996,7 @@ Crear pago
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1006,7 +1006,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-payment?token=464
     --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289","tender_type_code": "K","currency_uuid": "a5671df0-fb40-11e8-a479-7a0060f0aa01","amount": "16345.65"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1043,7 +1043,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-payment?token=464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1052,12 +1052,12 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-payment?token=464
 
 Eliminar pago
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `payment_uuid` - Referencia del UUID de pago.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1066,7 +1066,7 @@ Eliminar pago
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1076,7 +1076,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-payment?token=464
     --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927", amount": "100.00"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1085,7 +1085,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-payment?token=464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1094,7 +1094,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-payment?token=464
 
 Actualizar pago
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `payment_uuid` - Referencia del UUID de pago.
 `bank_uuid` - Referencia UUID del banco.
@@ -1106,7 +1106,7 @@ Actualizar pago
 `currencyUuid` - Uuid de la moneda
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1115,7 +1115,7 @@ Actualizar pago
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1125,7 +1125,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-payment?token=464
     --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1162,7 +1162,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-payment?token=464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1173,12 +1173,12 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-payment?token=464
 
 Lista de pagos
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `order_uuid`- Referencia del UUID del pedido
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1187,7 +1187,7 @@ Lista de pagos
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-payments?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1197,7 +1197,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-payments?token=4646
     --data-binary '{"order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1559,7 +1559,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-payments?token=4646
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1568,12 +1568,12 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-payments?token=4646
 
 Borrar pedido de venta
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `order_uuid`- Referencia del UUID del pedido
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1582,7 +1582,7 @@ Borrar pedido de venta
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1592,7 +1592,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order?token=46464
     --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1601,7 +1601,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order?token=46464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1610,7 +1610,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order?token=46464
 
 Crear línea de pedido de cliente
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `order_uuid`- Referencia del UUID del pedido.
 `product_uuid` - Referencia al UUID del producto.
@@ -1622,7 +1622,7 @@ Crear línea de pedido de cliente
 `warehouse_uuid` - Referencia UUID del almacén.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1631,7 +1631,7 @@ Crear línea de pedido de cliente
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1641,7 +1641,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order-line?token=
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2","product_uuid":"6e081721-4710-40d6-85bd-ba0bc9bfd6db"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1711,7 +1711,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order-line?token=
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1720,12 +1720,12 @@ curl 'https://your-domain.example.com/adempiere-api/pos/create-order-line?token=
 
 Delete Sales Order Line
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `order_line_uuid` - Referencia de UUID de línea de pedido de ventas.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1734,7 +1734,7 @@ Delete Sales Order Line
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1744,7 +1744,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order-line?token=
     --data-binary '{"order_line_uuid": "0ab0e045-1371-404b-b665-72ae64c59f81"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1753,7 +1753,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order-line?token=
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1762,7 +1762,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/delete-order-line?token=
 
 Actualizar la orden de venta.
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `pos_uuid` - Uuid del punto de venta.
 `order_uuid` - Uuid de la orden a actualizar.
@@ -1771,7 +1771,7 @@ Actualizar la orden de venta.
 `description` - Descripción del la orden`.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1780,7 +1780,7 @@ Actualizar la orden de venta.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1790,7 +1790,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=46464
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4","customer_uuid": "9f6cf428-9209-11e9-8046-0242ac140002","document-type-uuid": "45494bd2-12d8-41c4-b7e2-a1968b18e86c","description": "test update order"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1835,7 +1835,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=46464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1844,7 +1844,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=46464
 
 Actualizar la línea de pedido de ventas
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `order_line_uuid` - Referencia del UUID del pedido.
 `description` - Descripción.
@@ -1854,7 +1854,7 @@ Actualizar la línea de pedido de ventas
 `is_add_quantity` - Sólo añadir cantidad.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1863,7 +1863,7 @@ Actualizar la línea de pedido de ventas
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1873,7 +1873,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=
     --data-binary '{"order_line_uuid":"0ab0e045-1371-404b-b665-72ae64c59f81","quantity":2,"discount_rate":0}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -1943,7 +1943,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -1952,7 +1952,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=
 
 Obtener un pedido de venta
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `order_uuid` - Referencia al UUID del pedido.
 `pos_uuid` - Referencia al UUID del punto de venta.
@@ -1960,7 +1960,7 @@ Obtener un pedido de venta
 `document_type_uuid` - Referencia al UUID del tipo de documento.
 `sales_representative_uuid` - Referencia de UUID de representante de ventas.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -1969,7 +1969,7 @@ Obtener un pedido de venta
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1979,7 +1979,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -2024,7 +2024,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -2033,7 +2033,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c
 
 Lista de pedidos de venta
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `pos_uuid` - referencia de UUID de POS.
 `document_no` - Documento No.
@@ -2050,7 +2050,7 @@ Lista de pedidos de venta
 `page_size` - tamaño de página personalizado para lotes.
 `page_token` - token de página específico.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -2059,7 +2059,7 @@ Lista de pedidos de venta
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2069,7 +2069,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=464649
     --data-binary '{"pos_uuid":"561359fb-e20a-4337-85d2-ff18538a94c5","is_paid":false,"is_processed":false,"is_aisle_seller":false,"is_invoiced":false}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -2675,7 +2675,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=464649
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -2685,11 +2685,11 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=464649
 
 Lista de Líneas de Pedidos de Ventas
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `order_uuid` - Referencia al UUID del pedido.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -2698,7 +2698,7 @@ Lista de Líneas de Pedidos de Ventas
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2708,7 +2708,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -2784,7 +2784,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -2793,11 +2793,11 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4
 
 Obtenga el diseño de la llave
 
-#### PARÁMENTROS POST:
+#### Parámetros POST:
 
 `key_layout_uuid` - Referencia al UUID del diseño de la llave.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -2806,7 +2806,7 @@ Obtenga el diseño de la llave
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-key-layout?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2816,7 +2816,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-key-layout?token=464
     --data-binary '{"key_layout_uuid": "0c65bace-ec5f-4e90-822c-ee9b7bd0c539"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -3116,7 +3116,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-key-layout?token=464
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
