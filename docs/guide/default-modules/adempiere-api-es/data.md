@@ -3,12 +3,12 @@
 ### POST /adempiere-api/user/data/create
 
 Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelve los datos del registro creado
-#### PARÁMENTROS POST:
+#### Parámentros POST:
 
 `tableName` - Nombre de la tabla de la entidad a crear.
 `attributesList` - Lista de atributos con los que se creara la entidad.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -17,7 +17,7 @@ Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelv
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-448c-49f9-b809-5431d0ebbc27&language=es' \
@@ -27,7 +27,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-4
     --data-binary '{"table_name":"AD_RelationType","attributes":[{"key":"AD_RelationType_ID","value":0},{"key":"AD_Client_ID","value":1000000},{"key":"AD_Org_ID","value":1000000},{"key":"Name","value":"e"},{"key":"IsActive","value":true},{"key":"IsDirected","value":false},{"key":"Type","value":"I"}]}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -101,14 +101,14 @@ curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-4
 
 Se utiliza para actualizar la entidad
 
-#### PARÁMENTROS POST:
+#### Parámentros POST:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a actualizar`
 `attributesList` - Lista de atributos de los campos actualizado de la entidad.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -117,7 +117,7 @@ Se utiliza para actualizar la entidad
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
@@ -127,7 +127,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-2
     --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce","attributes":[{"key":"Name","value":"Service-Update"}]}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -200,13 +200,13 @@ curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-2
 
 Elimina Entidad
 
-#### PARÁMENTROS GET:
+#### Parámentros GET:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a eliminar
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -215,7 +215,7 @@ Elimina Entidad
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
@@ -225,7 +225,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-2
     --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -246,13 +246,13 @@ curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-2
 
 Entidad de retroceso (crear, actualizar, eliminar)
 
-#### PARÁMENTROS GET:
+#### Parámentros GET:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a eliminar.
 `eventType` - tipo de evento 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -261,7 +261,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
@@ -270,7 +270,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=9
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -293,12 +293,12 @@ curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=9
 
 Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 
-#### PARÁMENTROS GET:
+#### Parámentros GET:
 
 ```
     null
 ```
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -310,7 +310,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
@@ -319,7 +319,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-d
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -405,7 +405,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-d
 
 Listar las Entidades.
 
-#### PARÁMENTROS GET:
+#### Parámentros GET:
 
 `tableName` - nombre de la tabla.
 `filters` - filtro de la lista.
@@ -416,7 +416,7 @@ Listar las Entidades.
 `limit` - límite de registros.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Peticion
 
 ```json
 {
@@ -425,7 +425,7 @@ Listar las Entidades.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/data/list?token=5339c283-dc77-4001-8315-22905596d6c0&language=es' \
@@ -435,7 +435,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/list?token=5339c283-dc7
     --data-binary '{"table_name":"AD_RelationType","filters":[{"column_name":"UUID","value":"a4853f84-fb40-11e8-a479-7a0060f0aa01"}],"columns":[],"query":"SELECT AD_RelationType.*, (SELECT NVL(AD_Client.Name,'') FROM AD_Client WHERE AD_RelationType.AD_Client_ID=AD_Client.AD_Client_ID) AS \"DisplayColumn_AD_Client_ID\", (SELECT NVL(AD_Org.Name,'') FROM AD_Org WHERE AD_RelationType.AD_Org_ID=AD_Org.AD_Org_ID) AS \"DisplayColumn_AD_Org_ID\", Type_AD_Ref_List_Trl.Name AS \"DisplayColumn_Type\", AD_Reference_Source_ID_AD_Reference_Trl.Name AS \"DisplayColumn_AD_Reference_Source_ID\", Role_Source_AD_Ref_List_Trl.Name AS \"DisplayColumn_Role_Source\", AD_Reference_Target_ID_AD_Reference_Trl.Name AS \"DisplayColumn_AD_Reference_Target_ID\", Role_Target_AD_Ref_List_Trl.Name AS \"DisplayColumn_Role_Target\" FROM AD_RelationType AS AD_RelationType LEFT JOIN AD_Ref_List AS Type_AD_Ref_List ON(Type_AD_Ref_List.Value = AD_RelationType.Type AND Type_AD_Ref_List.AD_Reference_ID = 53332) LEFT JOIN AD_Ref_List_Trl AS Type_AD_Ref_List_Trl ON(Type_AD_Ref_List_Trl.AD_Ref_List_ID = Type_AD_Ref_List.AD_Ref_List_ID AND Type_AD_Ref_List_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Reference AS AD_Reference_Source_ID_AD_Reference ON(AD_Reference_Source_ID_AD_Reference.AD_Reference_ID = AD_RelationType.AD_Reference_Source_ID) LEFT JOIN AD_Reference_Trl AS AD_Reference_Source_ID_AD_Reference_Trl ON(AD_Reference_Source_ID_AD_Reference_Trl.AD_Reference_ID = AD_Reference_Source_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Source_ID_AD_Reference_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS Role_Source_AD_Ref_List ON(Role_Source_AD_Ref_List.Value = AD_RelationType.Role_Source AND Role_Source_AD_Ref_List.AD_Reference_ID = 53331) LEFT JOIN AD_Ref_List_Trl AS Role_Source_AD_Ref_List_Trl ON(Role_Source_AD_Ref_List_Trl.AD_Ref_List_ID = Role_Source_AD_Ref_List.AD_Ref_List_ID AND Role_Source_AD_Ref_List_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Reference AS AD_Reference_Target_ID_AD_Reference ON(AD_Reference_Target_ID_AD_Reference.AD_Reference_ID = AD_RelationType.AD_Reference_Target_ID) LEFT JOIN AD_Reference_Trl AS AD_Reference_Target_ID_AD_Reference_Trl ON(AD_Reference_Target_ID_AD_Reference_Trl.AD_Reference_ID = AD_Reference_Target_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Target_ID_AD_Reference_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS Role_Target_AD_Ref_List ON(Role_Target_AD_Ref_List.Value = AD_RelationType.Role_Target AND Role_Target_AD_Ref_List.AD_Reference_ID = 53331) LEFT JOIN AD_Ref_List_Trl AS Role_Target_AD_Ref_List_Trl ON(Role_Target_AD_Ref_List_Trl.AD_Ref_List_ID = Role_Target_AD_Ref_List.AD_Ref_List_ID AND Role_Target_AD_Ref_List_Trl.AD_Language = 'es_VE')","where_clause":"","order_by_clause":""}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
