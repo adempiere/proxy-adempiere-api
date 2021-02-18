@@ -3,7 +3,7 @@
 ### POST /adempiere-api/user/data/create
 
 Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelve los datos del registro creado
-#### Parámentros POST:
+#### Parámetros POST:
 
 `tableName` - Nombre de la tabla de la entidad a crear.
 `attributesList` - Lista de atributos con los que se creara la entidad.
@@ -90,7 +90,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-4
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -101,7 +101,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-4
 
 Se utiliza para actualizar la entidad
 
-#### Parámentros POST:
+#### Parámetros POST:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a actualizar`
@@ -190,7 +190,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-2
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -200,7 +200,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-2
 
 Elimina Entidad
 
-#### Parámentros GET:
+#### Parámetros GET:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a eliminar
@@ -234,7 +234,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-2
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -246,7 +246,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-2
 
 Entidad de retroceso (crear, actualizar, eliminar)
 
-#### Parámentros GET:
+#### Parámetros GET:
 
 `tableName` - Nombre de la tabla de la entidad.
 `uuid` - uuid de la entidad a eliminar.
@@ -281,7 +281,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=9
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -293,7 +293,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=9
 
 Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 
-#### Parámentros GET:
+#### Parámetros GET:
 
 ```
     null
@@ -389,7 +389,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-d
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -405,7 +405,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-d
 
 Listar las Entidades.
 
-#### Parámentros GET:
+#### Parámetros GET:
 
 `tableName` - nombre de la tabla.
 `filters` - filtro de la lista.
@@ -541,7 +541,7 @@ curl 'https://your-domain.example.com/adempiere-api/data/list?token=5339c283-dc7
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuestas:
 
 - `200` cuando es exitoso
 - `500` en caso de error
