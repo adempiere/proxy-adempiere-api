@@ -1840,8 +1840,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=46464
 - `200` cuando es exitoso
 - `500` en caso de error
 
----
-## POST /adempiere-api/pos/update-order-line
+### POST /adempiere-api/pos/update-order-line
 
 Actualizar la línea de pedido de ventas
 
@@ -1949,8 +1948,6 @@ curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=
 - `200` cuando es exitoso
 - `500` en caso de error
 
-----
-
 ## GET /adempiere-api/pos/get-order
 
 Obtener un pedido de venta
@@ -2032,9 +2029,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c
 - `200` cuando es exitoso
 - `500` en caso de error
 
------
-
-## POST /adempiere-api/pos/list-orders
+### POST /adempiere-api/pos/list-orders
 
 Lista de pedidos de venta
 
@@ -2686,7 +2681,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=464649
 - `500` en caso de error
 
 
-## POST /adempiere-api/pos/list-order-lines
+### POST /adempiere-api/pos/list-order-lines
 
 Lista de Líneas de Pedidos de Ventas
 
@@ -2794,9 +2789,7 @@ curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4
 - `200` cuando es exitoso
 - `500` en caso de error
 
------
-
-## POST /adempiere-api/pos/get-key-layout
+### POST /adempiere-api/pos/get-key-layout
 
 Obtenga el diseño de la llave
 
