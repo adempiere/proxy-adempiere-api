@@ -11,7 +11,7 @@ Crear una entrada de chat
 `table_name` - nombre de la tabla (obligatorio para obtener la traducción).
 `comment` - comentario
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -78,7 +78,7 @@ Obtener la salida del informe
 `order_by_clause` - cláusula order by basada en SQL.
 `limit` - límite de registros.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -115,7 +115,7 @@ Obtener tablas para el taladro
 
 `table_name` - nombre de la tabla (obligatorio si no es una consulta).
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -161,7 +161,7 @@ Obtener tablas para la grilla
 `table_name` - nombre de la tabla (obligatorio si no es una consulta).
 `processUuid` - uuid del proceso
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -215,7 +215,7 @@ Obtener formatos de impresión
 `processUuid` - uuid del proceso.
 `reportViewUuid` - uuid de la vista del informe.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -271,7 +271,7 @@ Desbloquear un acceso privado
 `id` - id del registro.
 `uuid` - uuid del registro.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -317,7 +317,7 @@ Bloquear un acceso privado
 `id` - id del registro.
 `uuid` - uuid del registro.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -363,7 +363,7 @@ Obtener acceso privado de la tabla y el registro
 `id` - id del registro.
 `uuid` - uuid del registro.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -409,7 +409,7 @@ Obtener información de contexto
 `id` - id del registro.
 `uuid` - uuid del registro.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -454,7 +454,7 @@ Lista de referencias
 `id` - id del registro.
 `uuid` - uuid del registro.
 `windowUuid` - uuid de la ventana
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -514,7 +514,7 @@ Lista de elementos del navegador
 `where_clause` - cláusula where de la búsqueda basada en SQL.
 `order_by_clause` - cláusula order by basada en SQL.
 `limit` - límite de registros.
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -17320,7 +17320,7 @@ Lista de elementos de búsqueda
 `where_clause` - cláusula where de la búsqueda basada en SQL.
 `order_by_clause` - cláusula order by basada en SQL.
 `limit` - límite de registros.
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -17488,7 +17488,7 @@ Obtener elemento de búsqueda
 `where_clause` - cláusula where de la búsqueda basada en SQL.
 `order_by_clause` - cláusula order by basada en SQL.
 `limit` - límite de registros.
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -17538,7 +17538,7 @@ Lista de traducciones
 `table_name` - nombre de la tabla (obligatorio si no es una consulta).
 `id` - id de referencia.
 `uuid` - uuid de referencia.
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -17592,7 +17592,7 @@ Obtener valor por defecto
 `table_name` - nombre de la tabla (obligatorio si no es una consulta).
 `id` - id de referencia.
 `uuid` - uuid de referencia.
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -17622,3 +17622,41 @@ curl 'https://your-domain.example.com/adempiere-api/ui/get-default-value?token=9
 - `200` cuando es exitoso
 - `500` en caso de error
 
+### POST /adempiere-api/ui/rollback-entity
+
+Obtener información de contexto
+
+#### Paràmetros POST:
+
+`table_name` - nombre de la tabla (obligatorio si no es una consulta).
+`id` - id de referencia.
+`uuid` - uuid de referencia.
+#### Cuerpo de la petición:
+
+```json
+{
+	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+    "language": "es"
+}
+```
+
+#### Ejemplo de llamada:
+
+```bash
+curl 'https://your-domain.example.com/adempiere-api/ui/rollback-entity?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+    -X POST \
+    -H 'content-type: application/json' \
+    -H 'accept: */*;charset=UTF-8'
+    --data-binary '{"table_name": "AD_View","id": "50000","uuid": "a4cb498e-fb40-11e8-a479-7a0060f0aa01"}'
+    
+```
+#### Cuerpo de respuesta:
+
+```json
+  }
+}
+```
+#### Código de respuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
