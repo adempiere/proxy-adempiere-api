@@ -11,7 +11,7 @@ Lista de Flujo de Trabajo
 `page_token` - token de la página (opcional para obtener una página específica).
 `table_name` - nombre de la tabla (obligatorio para obtener la traducción).
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -196,7 +196,7 @@ Lista de acciones del documento
 `document_status` - Estado actual.
 `document_action` - Acción opcional.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -269,7 +269,7 @@ Lista de estados del documento
 `id` - referencia del id.
 `document_status` - Estado actual.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
