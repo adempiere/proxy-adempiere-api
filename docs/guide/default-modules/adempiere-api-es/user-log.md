@@ -11,7 +11,7 @@ Lista de Registros de Procesos
 `user_uuid` - referencia al uuid del usuario.
 `instance_uuid` - referencia al uuid de la instancia del proceso.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -21,7 +21,7 @@ Lista de Registros de Procesos
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/logs/list-process-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
@@ -30,7 +30,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-process-logs?token
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"user_uuid": "43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -164,7 +164,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-process-logs?token
     }
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -179,7 +179,7 @@ Lista de registros de entidades
 `uuid` - referencia de uuid.
 `id` - referencia de id.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -189,7 +189,7 @@ Lista de registros de entidades
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
@@ -198,7 +198,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-logs?token=
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"user_uuid": "43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -278,7 +278,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-logs?token=
 }
 ```
 
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -293,7 +293,7 @@ Lista de chats de entidades
 `uuid` - referencia de uuid.
 `id` - referencia de id.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -302,7 +302,7 @@ Lista de chats de entidades
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-chats?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
@@ -311,7 +311,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-chats?token
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"id": 1073741,"uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66","table_name": "C_Order"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -338,7 +338,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-chats?token
 }
 ```
 
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -353,7 +353,7 @@ Lista de entradas del chat
 `uuid` - referencia de uuid.
 `id` - referencia del id.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -363,7 +363,7 @@ Lista de entradas del chat
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/logs/list-chat-entries?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
@@ -373,7 +373,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-chat-entries?token
     --data-binary '{"uuid": "e22d49ba-39c3-4edb-bd84-4bb7066429b8","table_name": "C_Order"}'
 ```
 
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -419,7 +419,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-chat-entries?token
 }
 ```
 
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -435,7 +435,7 @@ Lista de registros del flujo de trabajo
 `uuid` - referencia de uuid.
 `id` - referencia del id.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -445,7 +445,7 @@ Lista de registros del flujo de trabajo
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/logs/list-workflow-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
@@ -455,7 +455,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-workflow-logs?toke
     --data-binary '{"uuid": "e22d49ba-39c3-4edb-bd84-4bb7066429b8","table_name": "C_Order"}'
 ```
 
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -532,7 +532,7 @@ curl 'https://your-domain.example.com/adempiere-api/logs/list-workflow-logs?toke
 }
 ```
 
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error

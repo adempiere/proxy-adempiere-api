@@ -4,12 +4,12 @@
 
 Obtiene la lista de tableros o paneles de control los que el usuario tiene acceso según su rol.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -18,7 +18,7 @@ Obtiene la lista de tableros o paneles de control los que el usuario tiene acces
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -28,7 +28,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&to
     --data-binary '{"role_id":1000000,"role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -68,7 +68,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&to
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -78,12 +78,12 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&to
 
 Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -93,7 +93,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -103,7 +103,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&
     --data-binary '{"user_uuid":"901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19","current_session":true}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -147,7 +147,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -157,12 +157,12 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&
 
 Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -171,7 +171,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-documents&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -181,7 +181,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-docum
     --data-binary '{"user_uuid":"901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -233,7 +233,7 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-docum
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error

@@ -4,13 +4,13 @@
 
 Autoriza al usuario. Se llama así después de que el usuario envía "Login" desde la aplicación de la tienda. Devuelve al usuario un token que debe ser utilizado para todas las llamadas subsiguientes a la API que requieran autorización.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 ```
 null
 ```
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -19,7 +19,7 @@ null
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/login' \
@@ -29,7 +29,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/login' \
     --data-binary '{"username":"info@erpya.com","password":"TopSecretPassword"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -38,7 +38,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/login' \
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -49,18 +49,18 @@ curl 'https://your-domain.example.com/adempiere-api/user/login' \
 
 Obtiene el perfil de usuario para el usuario actualmente autorizado. Se llama después de una llamada exitosa de `POST /adempiere-api/user/login`.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
@@ -69,7 +69,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -86,7 +86,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -96,19 +96,19 @@ curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq
 
 Obtiene la información de la sesión actual. Se llama después de una llamada exitosa de `POST /adempiere-api/user/login`.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -117,7 +117,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -175,7 +175,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -187,18 +187,18 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 
 Obtiene la lista de roles a las que el usuario tiene acceso.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -207,7 +207,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67y
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -229,7 +229,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67y
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -241,18 +241,18 @@ curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67y
 
 Obtiene el arbol de rutas para el menu segun el acceso del rol.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```
 null
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -261,7 +261,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq
     -H 'accept: */*;charset=UTF-8'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -331,7 +331,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -347,13 +347,13 @@ curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq
 
 Cambia el rol actual y devuelve la información de la nueva sesión.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -362,7 +362,7 @@ Cambia el rol actual y devuelve la información de la nueva sesión.
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
@@ -372,7 +372,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
     --data-binary '{"role":"a48d2596-fb40-11e8-a479-7a0060f0aa01","organization":"a3e5c878-fb40-11e8-a479-7a0060f0aa01"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -430,7 +430,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -440,13 +440,13 @@ curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd6
 
 Cierra la sesión y revoca el acceso al token.
 
-#### PARÁMENTROS GET:
+#### Parámetros GET:
 
 ```
 null
 ```
 
-#### CUERPO DE LA PETICIÓN:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -454,7 +454,7 @@ null
 }
 ```
 
-#### EJEMPLO DE LLAMADA:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/user/logout' \
@@ -464,7 +464,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/logout' \
     --data-binary '{"token":"98146957-a41a-4ef7-bcf5-b368310ef08c"}'
 ```
 
-#### CUERPO DE RESPUESTA:
+#### Cuerpo de Repuesta:
 
 ```json
 {
@@ -473,7 +473,7 @@ curl 'https://your-domain.example.com/adempiere-api/user/logout' \
 }
 ```
 
-#### CÓDIGOS DE RESPUESTA:
+#### Códigos de Repuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error

@@ -11,7 +11,7 @@ Lista de Flujo de Trabajo
 `page_token` - token de la página (opcional para obtener una página específica).
 `table_name` - nombre de la tabla (obligatorio para obtener la traducción).
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -20,7 +20,7 @@ Lista de Flujo de Trabajo
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/workflow/list-workflow?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
@@ -29,7 +29,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-workflow?token
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"table_name": "C_Order"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -179,7 +179,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-workflow?token
     }
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -196,7 +196,7 @@ Lista de acciones del documento
 `document_status` - Estado actual.
 `document_action` - Acción opcional.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -205,7 +205,7 @@ Lista de acciones del documento
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-actions?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
@@ -215,7 +215,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-actio
     --data-binary '{"table_name": "C_Order","id": "1073741"}'
     
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -254,7 +254,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-actio
 }
 
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -269,7 +269,7 @@ Lista de estados del documento
 `id` - referencia del id.
 `document_status` - Estado actual.
 
-#### Cuerpo de la petición:
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -278,7 +278,7 @@ Lista de estados del documento
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-statuses?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
@@ -288,7 +288,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-statu
     --data-binary '{"table_name": "C_Order","id": "1073741"}'
     
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -327,7 +327,7 @@ curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-statu
 }
 
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
