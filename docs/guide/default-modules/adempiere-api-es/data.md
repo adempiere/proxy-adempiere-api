@@ -8,7 +8,7 @@ Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelv
 `tableName` - Nombre de la tabla de la entidad a crear.
 `attributesList` - Lista de atributos con los que se creara la entidad.
 
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
@@ -108,7 +108,7 @@ Se utiliza para actualizar la entidad
 `attributesList` - Lista de atributos de los campos actualizado de la entidad.
 
 
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
@@ -206,7 +206,7 @@ Elimina Entidad
 `uuid` - uuid de la entidad a eliminar
 
 
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
@@ -252,7 +252,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 `uuid` - uuid de la entidad a eliminar.
 `eventType` - tipo de evento 
 
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
@@ -298,7 +298,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 ```
     null
 ```
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
@@ -416,7 +416,7 @@ Listar las Entidades.
 `limit` - límite de registros.
 
 
-#### Cuerpo de la Peticion
+#### Cuerpo de la Petición
 
 ```json
 {
