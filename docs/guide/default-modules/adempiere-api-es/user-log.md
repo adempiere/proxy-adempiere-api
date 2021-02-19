@@ -11,7 +11,7 @@ Lista de Registros de Procesos
 `user_uuid` - referencia al uuid del usuario.
 `instance_uuid` - referencia al uuid de la instancia del proceso.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -179,7 +179,7 @@ Lista de registros de entidades
 `uuid` - referencia de uuid.
 `id` - referencia de id.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -293,7 +293,7 @@ Lista de chats de entidades
 `uuid` - referencia de uuid.
 `id` - referencia de id.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -353,7 +353,7 @@ Lista de entradas del chat
 `uuid` - referencia de uuid.
 `id` - referencia del id.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
@@ -435,7 +435,7 @@ Lista de registros del flujo de trabajo
 `uuid` - referencia de uuid.
 `id` - referencia del id.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la petición:
 
 ```json
 {
