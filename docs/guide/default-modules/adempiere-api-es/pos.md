@@ -7,7 +7,7 @@ Lista todos los puntos de venta asociados al usuario actual
 
 `user_uuid` - uuid del usuario
 
-#### Cuerpo de la Petición::
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -16,7 +16,7 @@ Lista todos los puntos de venta asociados al usuario actual
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-point-of-sales?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
@@ -143,7 +143,7 @@ Obtener el precio del producto
 `warehouse_uuid` - Referencia al UUID del almacén.
 `valid_from` - Lista de precios válida desde.
 
-#### Cuerpo de la Petición::
+#### Cuerpo de la Petición:
 
 ```json
 {
@@ -152,7 +152,7 @@ Obtener el precio del producto
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-product-price?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
@@ -275,7 +275,7 @@ Precio de lista del producto
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-product-prices?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
@@ -909,7 +909,7 @@ Crear un orden desde el punto de venta
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -996,7 +996,7 @@ Crear pago
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1066,7 +1066,7 @@ Eliminar pago
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1115,7 +1115,7 @@ Actualizar pago
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1187,7 +1187,7 @@ Lista de pagos
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-payments?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1582,7 +1582,7 @@ Borrar pedido de venta
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1631,7 +1631,7 @@ Crear línea de pedido de cliente
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/create-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1734,7 +1734,7 @@ Delete Sales Order Line
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/delete-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1780,7 +1780,7 @@ Actualizar la orden de venta.
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1863,7 +1863,7 @@ Actualizar la línea de pedido de ventas
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/update-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -1969,7 +1969,7 @@ Obtener un pedido de venta
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2059,7 +2059,7 @@ Lista de pedidos de venta
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-orders?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2698,7 +2698,7 @@ Lista de Líneas de Pedidos de Ventas
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/list-order-lines?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
@@ -2806,7 +2806,7 @@ Obtenga el diseño de la llave
 }
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/pos/get-key-layout?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \

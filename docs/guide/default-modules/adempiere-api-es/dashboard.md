@@ -237,3 +237,88 @@ curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-docum
 
 - `200` cuando es exitoso
 - `500` en caso de error
+
+### POST /adempiere-api/dashboard/list-favorites
+
+Lista de favoritos
+
+#### Paràmetros POST:
+
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`page_size` - tamaño de las listas de la paginación.
+`page_token` - token el numero de la página.
+`user_uuid` - uuid del usuario.
+`role_uuid` - uuid del rol
+
+#### Cuerpo de la Petición:
+
+```json
+{
+	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"language": "es",
+    "user_uuid": "901d9a74-6334-4309-aa8a-6d5b39d8ceb1",
+    "role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19"
+}
+```
+
+#### Ejemplo de Llamada:
+
+```bash
+curl 'https://your-domain.example.com/adempiere-api/dashboard/list-favorites?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+    -X POST \
+    -H 'content-type: application/json' \
+    -H 'accept: */*;charset=UTF-8'
+    --data-binary '{"user_uuid": "901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19"}'
+    
+```
+#### Cuerpo de Respuesta:
+
+```json
+{
+	"code": 200,
+	"result": {
+		"record_count": 0,
+		"next_page_token": "",
+		"records": [
+			{
+				"menu_uuid": "8e50f4ec-fb40-11e8-a479-7a0060f0aa01",
+				"menu_name": "Session Audit",
+				"menu_description": "Audit of User Sessions",
+				"window_uuid": "a521a9e6-fb40-11e8-a479-7a0060f0aa01",
+				"tab_uuid": "",
+				"table_id": 0,
+				"table_name": "",
+				"id": 0,
+				"uuid": "",
+				"display_name": "Session Audit",
+				"updated": "2020-10-07T16:14:03.959Z",
+				"reference_uuid": "a521a9e6-fb40-11e8-a479-7a0060f0aa01",
+				"action": "W"
+			},
+			{
+				"menu_uuid": "8e513a92-fb40-11e8-a479-7a0060f0aa01",
+				"menu_name": "User",
+				"menu_description": "Maintain Users of the system",
+				"window_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+				"tab_uuid": "a4a05e7c-fb40-11e8-a479-7a0060f0aa01",
+				"table_id": 114,
+				"table_name": "AD_User",
+				"id": 1000407,
+				"uuid": "901d9a74-6334-4309-aa8a-6d5b39d8ceb1",
+				"display_name": "User: _Store Administrator",
+				"updated": "2020-10-06T20:52:57.529Z",
+				"reference_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+				"action": "W"
+			}
+		]
+	}
+}
+```
+
+#### Código de Respuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
+
+
