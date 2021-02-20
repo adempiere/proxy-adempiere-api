@@ -1,20 +1,20 @@
-# REST Interfaces from ADempiere
+# Interfaces REST de ADempiere
 
-This product manages to be platform-agnostic thanks to dedicated API connectors for eCommerce backend platforms. The data format in the `default-catalog` and `default-vsf` modules is always the same for any platform, which means no matter what eCommerce backend you use, your frontend remains the same without any change.
+Este producto logra ser independiente de la plataforma gracias a los conectores API dedicados para plataformas de backend de comercio electrónico. El formato de datos en los módulos `default-catalog` y` default-vsf` es siempre el mismo para cualquier plataforma, lo que significa que no importa qué backend de comercio electrónico utilice, su frontend permanece igual sin ningún cambio.
 
-The Storefront API Default catalog offers two basic ways of querying the data:
-- GraphQL for read access
-- REST for read and write access
-
-
-**Note:** This API specification is related to the `packages/default-vsf` module. You can create your own custom module with totally different APIs! Read more on [modules](../modules/introduction.md)
-
-## REST API specification
-
-All methods accept and respond with the `application/json` content type.
+El catálogo predeterminado de la API de Storefront ofrece dos formas básicas de consultar los datos:
+- GraphQL para acceso de lectura
+- REST para acceso de lectura y escritura
 
 
-## CÓDIGOS DE RESPUESTA:
+** Nota: ** Esta especificación de API está relacionada con el módulo `packages / default-vsf`. ¡Puede crear su propio módulo personalizado con API totalmente diferentes! Leer más sobre [módulos] (../ modules / introduction.md)
+
+## Especificación de la API REST
+
+Todos los métodos aceptan y responden con el tipo de contenido `application / json`.
+
+
+## Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error

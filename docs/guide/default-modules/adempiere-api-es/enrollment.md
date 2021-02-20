@@ -12,13 +12,13 @@ Inscribir un usuario
 `application_type` - tipo de aplicacion.
 `password` - contraseña del usuario.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la Peticiòn:
 
 ```
 null
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/enrollment/enroll' \
@@ -27,7 +27,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/enroll' \
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"user_name": "Prueba1","name": "Prueba","email": "prueba@test.com"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -39,7 +39,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/enroll' \
     }
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -52,13 +52,13 @@ Solicitar el restablecimiento de la contraseña
 `email` - correo del usuario.
 `client_version` - version de aplicaciòn del cliente.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la Peticiòn:
 
 ```
 null
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/enrollment/reset-password' \
@@ -67,7 +67,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/reset-password' \
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"user_name": "Prueba1","email": "prueba@test.com"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -75,7 +75,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/reset-password' \
     "result": "OK"
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -89,13 +89,13 @@ Cambiar la contraseña del token
 `token` - token del usuario.
 `client_version` - version de aplicaciòn del cliente.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la Peticiòn:
 
 ```
 null
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/enrollment/change-password' \
@@ -104,7 +104,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/change-password' 
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"token":"akhjgdsfsdq476328463249234032anbfkd", "password":"TopSecretPassword"}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -112,7 +112,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/change-password' 
     "result": "OK"
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
@@ -125,13 +125,13 @@ Activar usuario
 `token` - token del usuario.
 `client_version` - version de aplicaciòn del cliente.
 
-#### Cuerpo de la peticion:
+#### Cuerpo de la Peticiòn:
 
 ```
 null
 ```
 
-#### Ejemplo de llamada:
+#### Ejemplo de Llamada:
 
 ```bash
 curl 'https://your-domain.example.com/adempiere-api/enrollment/activate-user' \
@@ -140,7 +140,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/activate-user' \
     -H 'accept: */*;charset=UTF-8'
     --data-binary '{"token":"akhjgdsfsdq476328463249234032anbfkd""}'
 ```
-#### Cuerpo de respuesta:
+#### Cuerpo de Respuesta:
 
 ```json
 {
@@ -148,7 +148,7 @@ curl 'https://your-domain.example.com/adempiere-api/enrollment/activate-user' \
     "result": "OK"
 }
 ```
-#### Código de respuesta:
+#### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
