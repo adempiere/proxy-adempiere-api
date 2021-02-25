@@ -66,22 +66,22 @@ In case of any questions please contact our core team [![we are on Gitter](https
 
 ## Demo
 
-You can play with the GraphQL endpoint over https://demo.erpya.com/graphql/
+You can play with the Rest API endpoint over https://api.erpya.com
 
 Example query you can enter:
 
-```graphql
+```bash
+curl 'https://api.erpya.com/adempiere-api/user/login' \
+    -X POST \
+    -H 'content-type: application/json' \
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"username":"SuperUser","password":"System"}'
+```
+
+```bash
 {
-  products (filter:{
-      type_id:{eq:"configurable"}
-  }) {
-    items {
-      name
-      price
-      description
-      configurable_children { name, price }
-    }
-  }
+  "code":200,
+  "result":"dc31ea82-0497-40ac-b1fe-5945c6bed860"
 }
 ```
 
