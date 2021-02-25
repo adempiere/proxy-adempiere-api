@@ -14,8 +14,8 @@ null
 
 ```json
 {
-    "username": "info@erpya.com",
-    "password": "TopSecretPassword"
+    "username": "GardenAdmin",
+    "password": "GardenAdmin"
 }
 ```
 
@@ -26,7 +26,7 @@ curl 'https://api.erpya.com/adempiere-api/user/login' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"username":"info@erpya.com","password":"TopSecretPassword"}'
+    --data-binary '{"username":"GardenAdmin","password":"GardenAdmin"}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -63,7 +63,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
+curl 'https://api.erpya.com/adempiere-api/user/info?token=210ed0bc-85a5-4654-aac6-577793f53037' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -111,7 +111,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/session/?token=210ed0bc-85a5-4654-aac6-577793f53037' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -201,10 +201,11 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
-    -X GET \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/user/roles?token=210ed0bc-85a5-4654-aac6-577793f53037&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "token": "210ed0bc-85a5-4654-aac6-577793f53037"
+}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -255,7 +256,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/menu?token=210ed0bc-85a5-4654-aac6-577793f53037&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -365,11 +366,11 @@ Cambia el rol actual y devuelve la información de la nueva sesión.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/change-role&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"role":"a48d2596-fb40-11e8-a479-7a0060f0aa01","organization":"a3e5c878-fb40-11e8-a479-7a0060f0aa01"}'
+    --data-binary '"role":"f855ca25-07b2-4760-aec6-676db1a5cb19","organization":"a3e5c878-fb40-11e8-a479-7a0060f0aa01"}'
 ```
 
 #### Cuerpo de Repuesta:
