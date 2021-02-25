@@ -8,7 +8,7 @@ export default ({ config, db, service }) => {
    *
    * req.params.sku - sku of the prodduct to check separed by comma
    *
-   * Details: curl https://your-domain.example.com/api/product/list?skus=WP07
+   * Details: curl https://api.erpya.com/api/product/list?skus=WP07
    *
    */
   api.get('/list', (req, res) => {
@@ -59,7 +59,7 @@ export default ({ config, db, service }) => {
    *
    * req.params.sku - sku of the prodduct to check separed by comma
    *
-   * Details: curl https://your-domain.example.com/api/product/render-list?skus=WP07
+   * Details: curl https://api.erpya.com/api/product/render-list?skus=WP07
    *
    */
   api.get('/render-list', (req, res) => {

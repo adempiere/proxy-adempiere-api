@@ -29,13 +29,13 @@ This method is called whenever a new Storefront shopping cart is created: upon f
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/create' -X POST
+curl 'https://api.erpya.com/api/cart/create' -X POST
 ```
 
 For an authorized user:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/create?token=xu8h02nd66yq0gaayj4x3kpqwity02or' -X POST
+curl 'https://api.erpya.com/api/cart/create?token=xu8h02nd66yq0gaayj4x3kpqwity02or' -X POST
 ```
 
 
@@ -184,7 +184,7 @@ This method is called just after `api/cart/pull` as a consequence of the synchro
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/update?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
+curl 'https://api.erpya.com/api/cart/update?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
 ```
 
 #### RESPONSE BODY:
@@ -220,7 +220,7 @@ This method is called just after `api/cart/pull` as a consequence of the synchro
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/delete?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
+curl 'https://api.erpya.com/api/cart/delete?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
 ```
 
 #### REQUEST BODY:
@@ -252,7 +252,7 @@ This method is used to apply a discount code to the current server side quote.
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/apply-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc&coupon=ARMANI' -X POST -H 'content-type: application/json' -H 'accept: */*'
+curl 'https://api.erpya.com/api/cart/apply-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc&coupon=ARMANI' -X POST -H 'content-type: application/json' -H 'accept: */*'
 ```
 
 #### RESPONSE BODY:
@@ -272,7 +272,7 @@ This method is used to delete discount codes to the current server side quote.
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json' -H 'accept: */*'
+curl 'https://api.erpya.com/api/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json' -H 'accept: */*'
 ```
 
 #### RESPONSE BODY:
@@ -291,7 +291,7 @@ This method is used to get the currently applied coupon code.
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -H 'content-type: application/json' -H 'accept: */*'
+curl 'https://api.erpya.com/api/cart/coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -H 'content-type: application/json' -H 'accept: */*'
 ```
 
 #### RESPONSE BODY:
@@ -310,7 +310,7 @@ The method called just after any shopping cart modification when `config.synchro
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/totals?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*'
+curl 'https://api.erpya.com/api/cart/totals?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*'
 ```
 
 #### GET PARAMS:
@@ -407,7 +407,7 @@ This method is used as a step in the cart synchronization process to get all the
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*'
+curl 'https://api.erpya.com/api/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*'
 ```
 
 #### GET PARAMS:
@@ -446,7 +446,7 @@ This method is used as a step in the cart synchronization process to get all the
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"address":{"country_id":"PL"}}'
+curl 'https://api.erpya.com/api/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"address":{"country_id":"PL"}}'
 ```
 
 #### GET PARAMS:
@@ -498,7 +498,7 @@ This method sets the shipping information on a specified quote, which is a requi
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/cart/shipping-information?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"addressInformation":{"shipping_address":{"country_id":"PL"},"shipping_method_code":"flatrate","shipping_carrier_code":"flatrate"}}'
+curl 'https://api.erpya.com/api/cart/shipping-information?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"addressInformation":{"shipping_address":{"country_id":"PL"},"shipping_method_code":"flatrate","shipping_carrier_code":"flatrate"}}'
 ```
 
 #### GET PARAMS:
@@ -632,7 +632,7 @@ Registers a new user to the eCommerce backend user database.
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/user/create' -H 'content-type: application/json' -H 'accept: application/json, text/plain, */*'--data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
+curl 'https://api.erpya.com/api/user/create' -H 'content-type: application/json' -H 'accept: application/json, text/plain, */*'--data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
 ```
 
 #### REQUEST BODY:
@@ -702,7 +702,7 @@ null
 
 #### RESPONSE BODY:
 
-`curl 'https://your-domain.example.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'`
+`curl 'https://api.erpya.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'`
 
 ```json
 {
@@ -749,7 +749,7 @@ null
 
 #### RESPONSE BODY:
 
-`curl 'https://your-domain.example.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"refreshToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEzOSJ9.a4HQc2HODmOj5SRMiv-EzWuMZbyIz0CLuVRhPw_MrOM"}'`
+`curl 'https://api.erpya.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"refreshToken":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjEzOSJ9.a4HQc2HODmOj5SRMiv-EzWuMZbyIz0CLuVRhPw_MrOM"}'`
 
 ```json
 {
@@ -781,7 +781,7 @@ Sends the password reset link for the specified user.
 #### EXAMPLE CALL:
 
 ```bash
-curl 'https://your-domain.example.com/api/user/reset-password' -H 'content-type: application/json' -H 'accept: application/json, text/plain, */*' --data-binary '{"email":"pkarwatka992@divante.pl"}'
+curl 'https://api.erpya.com/api/user/reset-password' -H 'content-type: application/json' -H 'accept: application/json, text/plain, */*' --data-binary '{"email":"pkarwatka992@divante.pl"}'
 ```
 
 #### REQUEST BODY:
@@ -1446,7 +1446,7 @@ Catalog endpoints are a proxy to Elastic Search 5.x and can be used to search th
 #### EXAMPLE CALL
 
 ```bash
-curl 'https://your-domain.example.com/api/catalog/vue_storefront_catalog/attribute/_search?size=50&from=0&sort=' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"query":{"bool":{"filter":{"bool":{"should":[{"term":{"attribute_code":"color"}},{"term":{"attribute_code":"size"}},{"term":{"attribute_code":"price"}}]}}}}}'
+curl 'https://api.erpya.com/api/catalog/vue_storefront_catalog/attribute/_search?size=50&from=0&sort=' -H 'content-type: application/json' -H 'accept: */*' --data-binary '{"query":{"bool":{"filter":{"bool":{"should":[{"term":{"attribute_code":"color"}},{"term":{"attribute_code":"size"}},{"term":{"attribute_code":"price"}}]}}}}}'
 ```
 
 #### REQUEST BODY
@@ -1854,8 +1854,8 @@ These methods are mostly used for data synchronization with Magento2, and for so
 #### EXAMPLE CALL:
 
 ```bash
-curl https://your-domain.example.com/api/product/list?skus=WP07
-curl https://your-domain.example.com/api/product/render-list?skus=WP07
+curl https://api.erpya.com/api/product/list?skus=WP07
+curl https://api.erpya.com/api/product/render-list?skus=WP07
 ```
 
 #### RESPONSE BODY:
@@ -2036,7 +2036,7 @@ or
 
 for example:
 
-`https://your-domain.example.com/img/310/300/resize/w/p/wp07-black_main.jpg`
+`https://api.erpya.com/img/310/300/resize/w/p/wp07-black_main.jpg`
 
 `width` - a numeric value of the picure width - to be "resized", "cropped" ... regarding the `operation` parameter.
 
@@ -2048,5 +2048,5 @@ for example:
 
 Other examples:
 
-- https://your-domain.example.com/img/310/300/identify/w/p/wp07-black_main.jpg - to get the JSON encoded EXIF information.
-- https://your-domain.example.com/img/310/300/crop/w/p/wp07-black_main.jpg?crop=500x500%2B200%2B400 - to crop image (the crop parameter format = '{width}x{height}+{left}+{top}').
+- https://api.erpya.com/img/310/300/identify/w/p/wp07-black_main.jpg - to get the JSON encoded EXIF information.
+- https://api.erpya.com/img/310/300/crop/w/p/wp07-black_main.jpg?crop=500x500%2B200%2B400 - to crop image (the crop parameter format = '{width}x{height}+{left}+{top}').

@@ -19,8 +19,8 @@ class AbstractProductProxy {
     skus - comma separated list of skus to get
 
     #EXAMPLE CALL:
-    curl https://your-domain.example.com/api/product/list?skus=WP07
-    curl https://your-domain.example.com/api/product/render-list?skus=WP07
+    curl https://api.erpya.com/api/product/list?skus=WP07
+    curl https://api.erpya.com/api/product/render-list?skus=WP07
     #RESPONSE BODY:
     For list:
 

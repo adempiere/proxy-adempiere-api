@@ -34,7 +34,7 @@ function getResource (service, resourceName) {
  * Image resizer
  *
  * ```bash
- *  curl https://your-domain.example.com/img/310/300/resize/w/p/wp07-black_main.jpg
+ *  curl https://api.erpya.com/img/310/300/resize/w/p/wp07-black_main.jpg
  * ```
  *
  * or

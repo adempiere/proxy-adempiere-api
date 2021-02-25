@@ -22,7 +22,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/login' \
+curl 'https://api.erpya.com/adempiere-api/user/login' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -63,7 +63,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
+curl 'https://api.erpya.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -111,7 +111,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -201,7 +201,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -255,7 +255,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -365,7 +365,7 @@ Cambia el rol actual y devuelve la información de la nueva sesión.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -457,7 +457,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/user/logout' \
+curl 'https://api.erpya.com/adempiere-api/user/logout' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \

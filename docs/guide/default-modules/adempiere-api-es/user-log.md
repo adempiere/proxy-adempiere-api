@@ -24,7 +24,7 @@ Lista de Registros de Procesos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/logs/list-process-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-process-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -192,7 +192,7 @@ Lista de registros de entidades
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-entity-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -305,7 +305,7 @@ Lista de chats de entidades
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/logs/list-entity-chats?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-entity-chats?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -366,7 +366,7 @@ Lista de entradas del chat
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/logs/list-chat-entries?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
+curl 'https://api.erpya.com/adempiere-api/logs/list-chat-entries?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -448,7 +448,7 @@ Lista de registros del flujo de trabajo
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/logs/list-workflow-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
+curl 'https://api.erpya.com/adempiere-api/logs/list-workflow-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

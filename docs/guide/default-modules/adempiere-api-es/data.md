@@ -20,7 +20,7 @@ Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelv
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/create?token=336d6453-448c-49f9-b809-5431d0ebbc27&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/create?token=336d6453-448c-49f9-b809-5431d0ebbc27&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -120,7 +120,7 @@ Se utiliza para actualizar la entidad
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X POS \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -218,7 +218,7 @@ Elimina Entidad
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -264,7 +264,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -313,7 +313,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
+curl 'https://api.erpya.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -428,7 +428,7 @@ Listar las Entidades.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/data/list?token=5339c283-dc77-4001-8315-22905596d6c0&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/list?token=5339c283-dc77-4001-8315-22905596d6c0&language=es' \
     -X POS \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \

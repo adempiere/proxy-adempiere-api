@@ -23,7 +23,7 @@ Lista de Flujo de Trabajo
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/workflow/list-workflow?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -208,7 +208,7 @@ Lista de acciones del documento
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-actions?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -281,7 +281,7 @@ Lista de estados del documento
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/workflow/list-document-statuses?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

@@ -21,10 +21,10 @@ abstract class AbstractCartProxy {
     token - null OR user token obtained from /api/user/login
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/create' -X POST
+    curl 'https://api.erpya.com/api/cart/create' -X POST
     For authorized user:
 
-    curl 'https://your-domain.example.com/api/cart/create?token=xu8h02nd66yq0gaayj4x3kpqwity02or' -X POST
+    curl 'https://api.erpya.com/api/cart/create?token=xu8h02nd66yq0gaayj4x3kpqwity02or' -X POST
     #RESPONSE BODY:
     For guest user
 
@@ -88,7 +88,7 @@ abstract class AbstractCartProxy {
       }
     }
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/update?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
+    curl 'https://api.erpya.com/api/cart/update?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
     #RESPONSE BODY:
     {
         "code":200,
@@ -112,7 +112,7 @@ abstract class AbstractCartProxy {
     https://sfa-docs.now.sh/guide/default-modules/api.html#post-api-cart-apply-coupon
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/apply-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc&coupon=ARMANI' -X POST -H 'content-type: application/json'
+    curl 'https://api.erpya.com/api/cart/apply-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc&coupon=ARMANI' -X POST -H 'content-type: application/json'
     #RESPONSE BODY:
     {
         "code":200,
@@ -126,7 +126,7 @@ abstract class AbstractCartProxy {
     This method is used to delete the discount code to the current server side quote.
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json'
+    curl 'https://api.erpya.com/api/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json'
     #RESPONSE BODY:
     {
         "code":200,
@@ -140,7 +140,7 @@ abstract class AbstractCartProxy {
     This method is used to get the currently applied coupon code
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -H 'content-type: application/json'
+    curl 'https://api.erpya.com/api/cart/coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -H 'content-type: application/json'
     #RESPONSE BODY:
     {
         "code":200,
@@ -161,7 +161,7 @@ abstract class AbstractCartProxy {
     token - null OR user token obtained from /api/user/login cartId - numeric (integer) value for authorized user cart id or GUID (mixed string) for guest cart ID obtained from api/cart/create
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/delete?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
+    curl 'https://api.erpya.com/api/cart/delete?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"cartItem":{"sku":"MS10-XS-Black","item_id":5853,"quoteId":"81668"}}' --compressed
     #REQUEST BODY:
     {
         "cartItem":
@@ -250,7 +250,7 @@ abstract class AbstractCartProxy {
     Method called when the config.synchronize_totals=true just after any shopping cart modification. It's used to synchronize the Magento / other CMS totals after all promotion rules processed with current Storefront state.
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/totals?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
+    curl 'https://api.erpya.com/api/cart/totals?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
     #GET PARAMS:
     token - null OR user token obtained from /api/user/login cartId - numeric (integer) value for authorized user cart id or GUID (mixed string) for guest cart ID obtained from api/cart/create
 
@@ -340,7 +340,7 @@ abstract class AbstractCartProxy {
     This method is used as a step in the cart synchronization process to get all the shipping methods with actual costs as available inside the backend CMS
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"address":{"country_id":"PL"}}'
+    curl 'https://api.erpya.com/api/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"address":{"country_id":"PL"}}'
     #GET PARAMS:
     token - null OR user token obtained from /api/user/login cartId - numeric (integer) value for authorized user cart id or GUID (mixed string) for guest cart ID obtained from api/cart/create
 
@@ -380,7 +380,7 @@ abstract class AbstractCartProxy {
     This method is used as a step in the cart synchronization process to get all the payment methods with actual costs as available inside the backend CMS
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
+    curl 'https://api.erpya.com/api/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
     #GET PARAMS:
     token - null OR user token obtained from /api/user/login cartId - numeric (integer) value for authorized user cart id or GUID (mixed string) for guest cart ID obtained from api/cart/create
 
@@ -412,7 +412,7 @@ abstract class AbstractCartProxy {
     https://sfa-docs.now.sh/guide/default-modules/api.html#post-api-cart-shipping-information
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/cart/shipping-information?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"addressInformation":{"shipping_address":{"country_id":"PL"},"shipping_method_code":"flatrate","shipping_carrier_code":"flatrate"}}'
+    curl 'https://api.erpya.com/api/cart/shipping-information?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"addressInformation":{"shipping_address":{"country_id":"PL"},"shipping_method_code":"flatrate","shipping_carrier_code":"flatrate"}}'
     #GET PARAMS:
     token - null OR user token obtained from /api/user/login cartId - numeric (integer) value for authorized user cart id or GUID (mixed string) for guest cart ID obtained from api/cart/create
 

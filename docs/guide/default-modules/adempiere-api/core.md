@@ -20,7 +20,7 @@ null
 #### A Call example:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -90,7 +90,7 @@ Get a list of organizations of user role allowed.
 #### Call example:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -159,7 +159,7 @@ Get a list of warehouses from current organization.
 #### Call example:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -207,7 +207,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
+curl 'https://api.erpya.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -340,7 +340,7 @@ filters:
 #### Call example:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
