@@ -34,7 +34,7 @@ export default ({config, db}) => {
    * POST create an user
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/create' -H 'content-type: application/json' -H 'accept: application/json, text/plain'--data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
+   * curl 'https://api.erpya.com/vsbridge/user/create' -H 'content-type: application/json' -H 'accept: application/json, text/plain'--data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
    * ```
    * Request body:
    *
@@ -111,14 +111,14 @@ export default ({config, db}) => {
    * }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
    */
   /*
     #RESPONSE BODY:
-    curl 'https://your-domain.example.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+    curl 'https://api.erpya.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
 
     {
         "code":200,
@@ -162,7 +162,7 @@ export default ({config, db}) => {
    */
   /*
     #RESPONSE BODY:
-    curl 'https://your-domain.example.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+    curl 'https://api.erpya.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
 
     {
         "code":200,
@@ -208,7 +208,7 @@ export default ({config, db}) => {
    * POST reset-password
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/resetPassword' -H 'content-type: application/json' -H 'accept: application/json, text/plain' --data-binary '{"email":"pkarwatka992@divante.pl"}'
+   * curl 'https://api.erpya.com/vsbridge/user/resetPassword' -H 'content-type: application/json' -H 'accept: application/json, text/plain' --data-binary '{"email":"pkarwatka992@divante.pl"}'
    * ```
    *
    * Request body:

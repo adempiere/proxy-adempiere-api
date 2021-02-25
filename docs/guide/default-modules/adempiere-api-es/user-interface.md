@@ -21,7 +21,7 @@ Obtener Adjunto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/attachment?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/attachment?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -70,7 +70,7 @@ Información de referencia de recursos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/resource-reference?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/resource-reference?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -120,7 +120,7 @@ Crear una entrada de chat
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/create-chat-entry?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/create-chat-entry?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -187,7 +187,7 @@ Obtener la salida del informe
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/get-report-output?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-report-output?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -246,7 +246,7 @@ Obtener tablas para el taladro
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-drill-tables?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-drill-tables?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -300,7 +300,7 @@ Obtener tablas para la grilla
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-report-views?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-report-views?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -354,7 +354,7 @@ Obtener formatos de impresión
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-print-formatss?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-print-formatss?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -409,7 +409,7 @@ Desbloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/unlock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/unlock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -455,7 +455,7 @@ Bloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/lock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/lock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -501,7 +501,7 @@ Obtener acceso privado de la tabla y el registro
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -547,7 +547,7 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -592,7 +592,7 @@ Lista de referencias
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-references?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-references?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -652,7 +652,7 @@ Lista de elementos del navegador
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-browser-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-browser-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17458,7 +17458,7 @@ Lista de elementos de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-lookup-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17626,7 +17626,7 @@ Obtener elemento de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/get-lookup-item?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17676,7 +17676,7 @@ Lista de traducciones
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/list-translations?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-translations?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17729,7 +17729,7 @@ Obtener valor por defecto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/get-default-value?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-default-value?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17774,7 +17774,7 @@ Ejecutar llamada
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/run-callout?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/run-callout?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -17825,7 +17825,7 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/ui/rollback-entity?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

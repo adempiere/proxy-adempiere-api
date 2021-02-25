@@ -135,7 +135,7 @@ export default ({ config, db, service }) => {
    *   req.query.cartId - cart Ids
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json'
+   * curl 'https://api.erpya.com/vsbridge/cart/delete-coupon?token=2q1w9oixh3bukxyj947tiordnehai4td&cartId=5effb906a97ebecd6ae96e3958d04edc' -X POST -H 'content-type: application/json'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgecartdelete-coupon
@@ -364,7 +364,7 @@ export default ({ config, db, service }) => {
    *    }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"address":{"country_id":"PL"}}'
+   * curl 'https://api.erpya.com/vsbridge/cart/shipping-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json' --data-binary '{"address":{"country_id":"PL"}}'
    *
    */
   cartApi.post('/shipping-methods', (req, res) => {
@@ -417,7 +417,7 @@ export default ({ config, db, service }) => {
    *   req.query.cartId - cart ID if user is logged in, cart token if not
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
+   * curl 'https://api.erpya.com/vsbridge/cart/payment-methods?token=xu8h02nd66yq0gaayj4x3kpqwity02or&cartId=81668' -H 'content-type: application/json'
    *
    */
   cartApi.get('/payment-methods', (req, res) => {

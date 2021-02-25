@@ -20,7 +20,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -94,7 +94,7 @@ Obtiene la lista de organizaciones a las que el usuario tiene acceso según su r
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -167,7 +167,7 @@ Obtiene la lista de organizaciones a las que el usuario tiene acceso según su r
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -219,7 +219,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
+curl 'https://api.erpya.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -315,7 +315,7 @@ Obtiene los datos del país.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -370,7 +370,7 @@ Crear Socio de Negocios
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/create-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/create-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -436,7 +436,7 @@ Lista de socios comerciales
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/list-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/list-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -498,7 +498,7 @@ Obtener Tasa de Conversión
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/core/get-conversion-rate?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/get-conversion-rate?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

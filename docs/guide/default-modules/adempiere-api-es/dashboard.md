@@ -21,7 +21,7 @@ Obtiene la lista de tableros o paneles de control los que el usuario tiene acces
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/dashboard/list-dashboards&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-dashboards&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -96,7 +96,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/dashboard/list-recent-items&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-recent-items&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -174,7 +174,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/dashboard/list-pending-documents&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-pending-documents&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -265,7 +265,7 @@ Lista de favoritos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://your-domain.example.com/adempiere-api/dashboard/list-favorites?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-favorites?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

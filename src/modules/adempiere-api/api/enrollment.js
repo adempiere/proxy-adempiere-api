@@ -16,7 +16,7 @@ export default ({ config, db, service }) => {
    * }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
@@ -61,7 +61,7 @@ export default ({ config, db, service }) => {
    * }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
@@ -106,7 +106,7 @@ export default ({ config, db, service }) => {
    * }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
@@ -150,7 +150,7 @@ export default ({ config, db, service }) => {
    * }
    *
    * ```bash
-   * curl 'https://your-domain.example.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
    * ```
    *
    * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin

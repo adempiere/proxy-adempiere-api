@@ -17,7 +17,7 @@ class AbstractUserProxy {
     https://sfa-docs.now.sh/guide/default-modules/api.html#post-api-user-create
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/user/create' -H 'content-type: application/json' --data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
+    curl 'https://api.erpya.com/api/user/create' -H 'content-type: application/json' --data-binary '{"customer":{"email":"pkarwatka9998@divante.pl","firstname":"Joe","lastname":"Black"},"password":"SecretPassword!@#123"}'
     #REQUEST BODY:
     {
       "customer": {
@@ -70,7 +70,7 @@ class AbstractUserProxy {
         "username":"pkarwatka102@divante.pl",
         "password":"TopSecretPassword"}
     #RESPONSE BODY:
-    curl 'https://your-domain.example.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
+    curl 'https://api.erpya.com/api/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
 
     {
         "code":200,
@@ -416,7 +416,7 @@ class AbstractUserProxy {
     Sends the password reset link for the specified user.
 
     #EXAMPLE CALL:
-    curl 'https://your-domain.example.com/api/user/reset-password' -H 'content-type: application/json' -H 'accept: application/json, text/plain' --data-binary '{"email":"pkarwatka992@divante.pl"}'
+    curl 'https://api.erpya.com/api/user/reset-password' -H 'content-type: application/json' -H 'accept: application/json, text/plain' --data-binary '{"email":"pkarwatka992@divante.pl"}'
     #REQUEST BODY:
     {
       "email": "pkarwatka992@divante.pl"
