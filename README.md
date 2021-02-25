@@ -66,7 +66,7 @@ In case of any questions please contact our core team [![we are on Gitter](https
 
 ## Demo
 
-You can play with the Rest API endpoint over https://api.erpya.com
+You can play with the Rest API endpoint over [Demo](https://api.erpya.com)
 
 Example query you can enter:
 
