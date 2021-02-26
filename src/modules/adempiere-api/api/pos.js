@@ -664,6 +664,69 @@ export default ({ config, db, service }) => {
   });
 
   /**
+   * Process Order
+   * This request allows process a draft order with payments
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.order_uuid - Order UUID reference
+   * req.body.create_payments - Optional create payments (if is true then hope payments array)
+   * req.body.payments
+   * [
+   * invoice_uuid - Invoice UUID reference
+   * bank_uuid - Bank UUID reference
+   * reference_no - Reference no
+   * description - Description for Payment
+   * amount - Payment Amount
+   * tender_type_code - Tender Type
+   * payment_date - Payment Date (default now)
+   * currency_uuid - Currency UUID reference
+   * ]
+   *
+   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  posService.post('/process-order', (req, res) => {
+    if (req.body) {
+      let payments = []
+      if (req.body.payments) {
+        payments = req.body.payments
+      }
+      service.processOrder({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        createPayments: req.body.create_payments,
+        payments: payments.map(payment => {
+          return {
+            invoiceUuid: payment.invoice_uuid,
+            bankUuid: payment.bank_uuid,
+            referenceNo: payment.reference_no,
+            description: payment.description,
+            amount: payment.amount,
+            tenderTypeCode: payment.tender_type_code,
+            paymentDate: payment.payment_date,
+            currencyUuid: payment.currency_uuid
+          }
+        })
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST List Sales Orders
    *
    * req.query.token - user token
