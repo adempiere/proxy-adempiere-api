@@ -230,9 +230,8 @@ export default ({ config, db, service }) => {
       //  Validate record access
       let recordAccesses = []
       if (req.body.record_accesses) {
-        let record = {}
         req.body.record_accesses.map(accessToSet => {
-          record = {
+          recordAccesses.push({
             roleId: accessToSet.role_id,
             roleUuid: accessToSet.role_uuid,
             roleName: accessToSet.role_name,
@@ -240,9 +239,8 @@ export default ({ config, db, service }) => {
             isExclude: accessToSet.is_exclude,
             isReadOnly: accessToSet.is_read_only,
             isDependentEntities: accessToSet.is_dependent_entities
-          }
+          })
         })
-        recordAccesses.push(record)
       }
       service.setRecordAccess({
         token: req.query.token,
