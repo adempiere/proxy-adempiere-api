@@ -62,7 +62,7 @@ jobs:
       - run: |
             cd docs
             git clone https://github.com/adempiere/proxy-adempiere-api.git --branch gh-pages --single-branch gh-pages
-            cp -r .vuepress/dist/* gh-pages/docs/
+            cp -r .vuepress/dist/* gh-pages/
             cd gh-pages/docs
             touch .nojekyll 
             git init 
