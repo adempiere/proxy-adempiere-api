@@ -5,7 +5,7 @@ var utils = require('./utils.js')
 var { genNav, getComponentSidebar, deepClone } = utils
 
 module.exports = {
-  base: '/',
+  base: '/proxy-adempiere-api/',
   markdown: {
     toc: {
       includeLevel: [2]
@@ -14,6 +14,7 @@ module.exports = {
   head: [['link', { rel: 'icon', href: '/favicon.png' }]],
   themeConfig: {
     repo: 'adempiere/proxy-adempiere-api',
+    docsRepo: 'adempiere/proxy-adempiere-api',
     editLinks: true,
     sidebarDepth: 3,
     locales: {
