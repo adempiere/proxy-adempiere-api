@@ -1,3 +1,8 @@
+var nav = require('./nav.js')
+var { EcosystemNav, ComponentNav, BackendNav } = nav
+
+var utils = require('./utils.js')
+var { genNav, getComponentSidebar, deepClone } = utils
 
 module.exports = {
   base: '/',
@@ -8,8 +13,7 @@ module.exports = {
   },
   head: [['link', { rel: 'icon', href: '/favicon.png' }]],
   themeConfig: {
-    repo: 'adempiere/proxt-adempiere-api',
-    docsDir: '/',
+    repo: 'adempiere/proxy-adempiere-api',
     editLinks: true,
     sidebarDepth: 3,
     locales: {
