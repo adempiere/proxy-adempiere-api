@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Módulo Interfaz de Usuario | ADempiere Proxy API</title>
+    <meta name="description" content="Una documentación para el proxy de ADempiere">
+    <link rel="icon" href="/favicon.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.51d07f76.css" as="style"><link rel="preload" href="/assets/js/app.8ea8c90b.js" as="script"><link rel="preload" href="/assets/js/35.f041dd76.js" as="script"><link rel="prefetch" href="/assets/js/10.dd4e227e.js"><link rel="prefetch" href="/assets/js/11.8866546b.js"><link rel="prefetch" href="/assets/js/12.74c8361f.js"><link rel="prefetch" href="/assets/js/13.ff7578ff.js"><link rel="prefetch" href="/assets/js/14.26d3404d.js"><link rel="prefetch" href="/assets/js/15.6d2a2dc6.js"><link rel="prefetch" href="/assets/js/16.4eee27b0.js"><link rel="prefetch" href="/assets/js/17.8c8f3573.js"><link rel="prefetch" href="/assets/js/18.43d2a7bb.js"><link rel="prefetch" href="/assets/js/19.7b822774.js"><link rel="prefetch" href="/assets/js/2.d9684650.js"><link rel="prefetch" href="/assets/js/20.2a52d33f.js"><link rel="prefetch" href="/assets/js/21.938231ff.js"><link rel="prefetch" href="/assets/js/22.27773c3a.js"><link rel="prefetch" href="/assets/js/23.a05ce2ce.js"><link rel="prefetch" href="/assets/js/24.659fa1df.js"><link rel="prefetch" href="/assets/js/25.e73aad67.js"><link rel="prefetch" href="/assets/js/26.825d2bb1.js"><link rel="prefetch" href="/assets/js/27.01da01ba.js"><link rel="prefetch" href="/assets/js/28.a40e4132.js"><link rel="prefetch" href="/assets/js/29.7fdbdc6f.js"><link rel="prefetch" href="/assets/js/3.23e60732.js"><link rel="prefetch" href="/assets/js/30.69207e6f.js"><link rel="prefetch" href="/assets/js/31.9f2b07db.js"><link rel="prefetch" href="/assets/js/32.c3d2d79c.js"><link rel="prefetch" href="/assets/js/33.6cb32e1a.js"><link rel="prefetch" href="/assets/js/34.2a6830c5.js"><link rel="prefetch" href="/assets/js/36.3e8ac58c.js"><link rel="prefetch" href="/assets/js/37.6fe88dee.js"><link rel="prefetch" href="/assets/js/38.e9236319.js"><link rel="prefetch" href="/assets/js/39.649e37fd.js"><link rel="prefetch" href="/assets/js/4.fd1e4c77.js"><link rel="prefetch" href="/assets/js/40.d2310324.js"><link rel="prefetch" href="/assets/js/41.698630ba.js"><link rel="prefetch" href="/assets/js/42.29b611a2.js"><link rel="prefetch" href="/assets/js/43.8deb8d1a.js"><link rel="prefetch" href="/assets/js/44.a5537bca.js"><link rel="prefetch" href="/assets/js/45.d78266db.js"><link rel="prefetch" href="/assets/js/46.990e72cf.js"><link rel="prefetch" href="/assets/js/47.6318b0a9.js"><link rel="prefetch" href="/assets/js/48.4d6f6208.js"><link rel="prefetch" href="/assets/js/49.c360fcf9.js"><link rel="prefetch" href="/assets/js/5.c539a829.js"><link rel="prefetch" href="/assets/js/50.ceade63d.js"><link rel="prefetch" href="/assets/js/51.b45e6f5a.js"><link rel="prefetch" href="/assets/js/52.2d07128e.js"><link rel="prefetch" href="/assets/js/53.039ff532.js"><link rel="prefetch" href="/assets/js/54.59c79952.js"><link rel="prefetch" href="/assets/js/55.26c2a9fe.js"><link rel="prefetch" href="/assets/js/56.ffb19758.js"><link rel="prefetch" href="/assets/js/57.e9baad67.js"><link rel="prefetch" href="/assets/js/58.ad5d366b.js"><link rel="prefetch" href="/assets/js/59.893ae0d4.js"><link rel="prefetch" href="/assets/js/6.1e6086df.js"><link rel="prefetch" href="/assets/js/60.8a4c6f7f.js"><link rel="prefetch" href="/assets/js/61.ba200ba8.js"><link rel="prefetch" href="/assets/js/62.1bcdc910.js"><link rel="prefetch" href="/assets/js/63.0c2427f5.js"><link rel="prefetch" href="/assets/js/64.10f4c914.js"><link rel="prefetch" href="/assets/js/7.473a5cfb.js"><link rel="prefetch" href="/assets/js/8.34a04342.js"><link rel="prefetch" href="/assets/js/9.e0d8d156.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.51d07f76.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/guide/es/" class="home-link router-link-active"><!----> <span class="site-name">ADempiere Proxy API</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/default-modules/adempiere-api/user-interface.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/default-modules/adempiere-api/user-interface.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading open"><span>General Information</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/es/general/installation.html" class="sidebar-link">Installation</a></li><li><a href="/guide/es/general/config.html" class="sidebar-link">Configuration</a></li><li><a href="/guide/es/general/extensions.html" class="sidebar-link">Extensions</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>ADempiere</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Default gateway</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Modules</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Integrations</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="modulo-interfaz-de-usuario"><a href="#modulo-interfaz-de-usuario" class="header-anchor">#</a> Módulo Interfaz de Usuario</h2> <h3 id="post-adempiere-api-ui-attachment"><a href="#post-adempiere-api-ui-attachment" class="header-anchor">#</a> POST /adempiere-api/ui/attachment</h3> <p>Obtener Adjunto</p> <h4 id="parametros-post"><a href="#parametros-post" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id de referencia.
+<code>uuid</code> - uuid de referencia.</p> <h4 id="cuerpo-de-la-peticion"><a href="#cuerpo-de-la-peticion" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada"><a href="#ejemplo-de-llamada" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/attachment?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;AD_Test&quot;,&quot;id&quot;: &quot;50000&quot;,&quot;uuid&quot;: &quot;a4cb498e-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta"><a href="#cuerpo-de-respuesta" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;attachmentUuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;title&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Attachment Title&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;textMsg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;resourceReferencesList&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;tableName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Test&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;resourceUuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta"><a href="#codigo-de-respuesta" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-resource-reference"><a href="#post-adempiere-api-ui-resource-reference" class="header-anchor">#</a> POST /adempiere-api/ui/resource-reference</h3> <p>Información de referencia de recursos</p> <h4 id="parametros-post-2"><a href="#parametros-post-2" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>image_id</code> - id de la imagen</p> <h4 id="cuerpo-de-la-peticion-2"><a href="#cuerpo-de-la-peticion-2" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-2"><a href="#ejemplo-de-llamada-2" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/resource-reference?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;imageId&quot;: 5475}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-2"><a href="#cuerpo-de-respuesta-2" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;resourceUuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;fileName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;test.jpeg&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;fileSize&quot;</span><span class="token operator">:</span> <span class="token number">1.3</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;any imgage test&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;textMsg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;contentType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;image/jpeg&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-2"><a href="#codigo-de-respuesta-2" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-create-chat-entry"><a href="#post-adempiere-api-ui-create-chat-entry" class="header-anchor">#</a> POST /adempiere-api/ui/create-chat-entry</h3> <p>Crear una entrada de chat</p> <h4 id="parametros-post-3"><a href="#parametros-post-3" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>uuid</code> - uuid del registro.
+<code>id</code> - id del registro.
+<code>table_name</code> - nombre de la tabla (obligatorio para obtener la traducción).
+<code>comment</code> - comentario</p> <h4 id="cuerpo-de-la-peticion-3"><a href="#cuerpo-de-la-peticion-3" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-3"><a href="#ejemplo-de-llamada-3" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/create-chat-entry?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;C_Order&quot;,&quot;id&quot;: &quot;1073741&quot;, &quot;uuid&quot;: &quot;6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66&quot;, &quot;comment&quot;: &quot;add comment&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-3"><a href="#cuerpo-de-respuesta-3" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;chat_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;e22d49ba-39c3-4edb-bd84-4bb7066429b8&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2ac7eee1-dbe8-4834-beee-663dde88cd60&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1000005</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;subject&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;character_data&quot;</span><span class="token operator">:</span> <span class="token string">&quot;add comment&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;user_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;user_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;chat_entry_type&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;chat_entry_type_name&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;confidential_type&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;confidential_type_name&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;moderator_status&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;moderator_status_bname&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;log_date&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-02-18T20:21:05.000Z&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-3"><a href="#codigo-de-respuesta-3" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-get-report-output"><a href="#post-adempiere-api-ui-get-report-output" class="header-anchor">#</a> POST /adempiere-api/ui/get-report-output</h3> <p>Obtener la salida del informe</p> <h4 id="parametros-post-4"><a href="#parametros-post-4" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>printFormatUuid</code> - referencia de formato de impresión.
+<code>reportViewUuid</code> - referencia de la vista del informe.
+<code>isSummary</code> - resumen.
+<code>reportName</code> - nombre del informe.
+<code>reportType</code> - tipo de informe.
+<code>columns</code> - columnas de la consulta.
+<code>filters</code> - filtros de la consulta.
+<code>tableName</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>whereClause</code> - cláusula where de la búsqueda basada en SQL.
+<code>orderByClause</code> - cláusula order by basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-4"><a href="#cuerpo-de-la-peticion-4" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-4"><a href="#ejemplo-de-llamada-4" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/get-report-output?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;printFormatUuid&quot;: &quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;,&quot;reportViewUuid&quot;: &quot;831d2187-1233-430a-acfc-aee208f64a0zv&quot;,&quot;isSummary&quot;: false,&quot;reportName&quot;: &quot;Report Name Test&quot;,&quot;reportType&quot;: &quot;pdf&quot;,&quot;tableName&quot;: &quot;AD_TEST&quot;,&quot;parametersList&quot;: []}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-4"><a href="#cuerpo-de-respuesta-4" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Report Test&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;fileName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;output&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;mimeType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pdf&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;dataCols&quot;</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;dataRows&quot;</span><span class="token operator">:</span> <span class="token number">8</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;headerName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;footerName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;printFormatUuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;sd1d2199-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;reportViewUuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;831d2187-1233-430a-acfc-aee208f64a0zv&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;tableName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;outputStream&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;reportType&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pdf&quot;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-4"><a href="#codigo-de-respuesta-4" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-drill-tables"><a href="#post-adempiere-api-ui-list-drill-tables" class="header-anchor">#</a> POST /adempiere-api/ui/list-drill-tables</h3> <p>Obtener tablas para el taladro</p> <h4 id="parametros-post-5"><a href="#parametros-post-5" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).</p> <h4 id="cuerpo-de-la-peticion-5"><a href="#cuerpo-de-la-peticion-5" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;pageSize&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-5"><a href="#ejemplo-de-llamada-5" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-drill-tables?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;tableName&quot;: &quot;AD_TEST&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-5"><a href="#cuerpo-de-respuesta-5" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    <span class="token property">&quot;recordCount&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;drillTablesList&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+        <span class="token property">&quot;tableName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_TEST&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;printName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Name&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">&quot;tableName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_TEST&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;printName&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Name 2&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;nextPageToken&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c-1&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-5"><a href="#codigo-de-respuesta-5" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-report-views"><a href="#post-adempiere-api-ui-list-report-views" class="header-anchor">#</a> POST /adempiere-api/ui/list-report-views</h3> <p>Obtener tablas para la grilla</p> <h4 id="parametros-post-6"><a href="#parametros-post-6" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>processUuid</code> - uuid del proceso</p> <h4 id="cuerpo-de-la-peticion-6"><a href="#cuerpo-de-la-peticion-6" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;pageSize&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-6"><a href="#ejemplo-de-llamada-6" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-report-views?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;RV_PrintFormatDetail&quot;,&quot;process_uuid&quot;:&quot;a42a74fa-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-6"><a href="#cuerpo-de-respuesta-6" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;report_view_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a4883f9a-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PrintFormat Detail&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PrintFormat Detail&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RV_PrintFormatDetail&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-6"><a href="#codigo-de-respuesta-6" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-print-formatss"><a href="#post-adempiere-api-ui-list-print-formatss" class="header-anchor">#</a> POST /adempiere-api/ui/list-print-formatss</h3> <p>Obtener formatos de impresión</p> <h4 id="parametros-post-7"><a href="#parametros-post-7" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>processUuid</code> - uuid del proceso.
+<code>reportViewUuid</code> - uuid de la vista del informe.</p> <h4 id="cuerpo-de-la-peticion-7"><a href="#cuerpo-de-la-peticion-7" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;pageSize&quot;</span><span class="token operator">:</span> <span class="token number">50</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-7"><a href="#ejemplo-de-llamada-7" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-print-formatss?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{process_uuid: &quot;a42a74fa-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-7"><a href="#cuerpo-de-respuesta-7" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;print_format_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c35aefe8-1eec-46f9-b59c-d072f800e183&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MIGO -&gt; Imprimir Detalle de Formato&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RV_PrintFormatDetail&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;is_default&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;report_view_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a4883f9a-fb40-11e8-a479-7a0060f0aa01&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-7"><a href="#codigo-de-respuesta-7" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-unlock-private-access"><a href="#post-adempiere-api-ui-unlock-private-access" class="header-anchor">#</a> POST /adempiere-api/ui/unlock-private-access</h3> <p>Desbloquear un acceso privado</p> <h4 id="parametros-post-8"><a href="#parametros-post-8" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id del registro.
+<code>uuid</code> - uuid del registro.</p> <h4 id="cuerpo-de-la-peticion-8"><a href="#cuerpo-de-la-peticion-8" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-8"><a href="#ejemplo-de-llamada-8" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/unlock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;C_Order&quot;,&quot;id&quot;: &quot;1073741&quot;,&quot;uuid&quot;: &quot;6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-8"><a href="#cuerpo-de-respuesta-8" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;C_Order&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1073741</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;43adbe9d-04a7-4cf6-9582-895c1e40da0b&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-8"><a href="#codigo-de-respuesta-8" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-lock-private-access"><a href="#post-adempiere-api-ui-lock-private-access" class="header-anchor">#</a> POST /adempiere-api/ui/lock-private-access</h3> <p>Bloquear un acceso privado</p> <h4 id="parametros-post-9"><a href="#parametros-post-9" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id del registro.
+<code>uuid</code> - uuid del registro.</p> <h4 id="cuerpo-de-la-peticion-9"><a href="#cuerpo-de-la-peticion-9" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-9"><a href="#ejemplo-de-llamada-9" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/lock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;C_Order&quot;,&quot;id&quot;: &quot;1073741&quot;,&quot;uuid&quot;: &quot;6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-9"><a href="#cuerpo-de-respuesta-9" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;C_Order&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1073741</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;43adbe9d-04a7-4cf6-9582-895c1e40da0b&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-9"><a href="#codigo-de-respuesta-9" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-get-private-access"><a href="#post-adempiere-api-ui-get-private-access" class="header-anchor">#</a> POST /adempiere-api/ui/get-private-access</h3> <p>Obtener acceso privado de la tabla y el registro</p> <h4 id="parametros-post-10"><a href="#parametros-post-10" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id del registro.
+<code>uuid</code> - uuid del registro.</p> <h4 id="cuerpo-de-la-peticion-10"><a href="#cuerpo-de-la-peticion-10" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-10"><a href="#ejemplo-de-llamada-10" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;C_Order&quot;,&quot;id&quot;: &quot;1073741&quot;,&quot;uuid&quot;: &quot;6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-10"><a href="#cuerpo-de-respuesta-10" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;C_Order&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1073741</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;43adbe9d-04a7-4cf6-9582-895c1e40da0b&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-10"><a href="#codigo-de-respuesta-10" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-get-context-info-value"><a href="#post-adempiere-api-ui-get-context-info-value" class="header-anchor">#</a> POST /adempiere-api/ui/get-context-info-value</h3> <p>Obtener información de contexto</p> <h4 id="parametros-post-11"><a href="#parametros-post-11" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>uuid</code> - uuid del registro.
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL..</p> <h4 id="cuerpo-de-la-peticion-11"><a href="#cuerpo-de-la-peticion-11" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-11"><a href="#ejemplo-de-llamada-11" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;query&quot;: &quot;SELECT * FROM AD_Test&quot;,&quot;uuid&quot;: &quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-11"><a href="#cuerpo-de-respuesta-11" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;message_text&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;message_tip&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-11"><a href="#codigo-de-respuesta-11" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-references"><a href="#post-adempiere-api-ui-list-references" class="header-anchor">#</a> POST /adempiere-api/ui/list-references</h3> <p>Lista de referencias</p> <h4 id="parametros-post-12"><a href="#parametros-post-12" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id del registro.
+<code>uuid</code> - uuid del registro.
+<code>windowUuid</code> - uuid de la ventana</p> <h4 id="cuerpo-de-la-peticion-12"><a href="#cuerpo-de-la-peticion-12" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-12"><a href="#ejemplo-de-llamada-12" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-references?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;C_Order&quot;,&quot;id&quot;: &quot;1073741&quot;,&quot;uuid&quot;: &quot;6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66&quot;, &quot;window_uuid&quot;: &quot;a52192bc-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-12"><a href="#cuerpo-de-respuesta-12" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;42c7a1af-c473-4bf5-83c6-00293b516b98&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;window_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a5219852-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;display_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ver Registros MRP (#1)&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RV_PP_MRP&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;where_clause&quot;</span><span class="token operator">:</span> <span class="token string">&quot;(RV_PP_MRP.C_Order_ID=1073741)&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">1</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-12"><a href="#codigo-de-respuesta-12" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-browser-items"><a href="#post-adempiere-api-ui-list-browser-items" class="header-anchor">#</a> POST /adempiere-api/ui/list-browser-items</h3> <p>Lista de elementos del navegador</p> <h4 id="parametros-post-13"><a href="#parametros-post-13" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>uuid</code> - uuid del buscador.
+<code>parameters</code> - parametros del buscador
+<code>columns</code> - columnas de la consulta.
+<code>filters</code> - filtros de la consulta.
+<code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>where_clause</code> - cláusula where de la búsqueda basada en SQL.
+<code>order_by_clause</code> - cláusula order by basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-13"><a href="#cuerpo-de-la-peticion-13" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-13"><a href="#ejemplo-de-llamada-13" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-browser-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;uuid&quot;:&quot;8aaefbc2-fb40-11e8-a479-7a0060f0aa01&quot;,&quot;filters&quot;:[{&quot;key&quot;:&quot;O_IsSOTrx&quot;,&quot;value&quot;:true,&quot;values&quot;:[]},{&quot;key&quot;:&quot;O_DocStatus&quot;,&quot;value&quot;:&quot;DR&quot;,&quot;values&quot;:[]}],&quot;query&quot;:&quot;SELECT o.Processing AS <span class="token entity" title="\"">\&quot;</span>O_Processing<span class="token entity" title="\"">\&quot;</span>,o.C_Opportunity_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Opportunity_ID<span class="token entity" title="\"">\&quot;</span>,o.DocStatus AS <span class="token entity" title="\"">\&quot;</span>O_DocStatus<span class="token entity" title="\"">\&quot;</span>,o.DropShip_BPartner_ID AS <span class="token entity" title="\"">\&quot;</span>O_DropShip_BPartner_ID<span class="token entity" title="\"">\&quot;</span>,o.DropShip_Location_ID AS <span class="token entity" title="\"">\&quot;</span>O_DropShip_Location_ID<span class="token entity" title="\"">\&quot;</span>,o.DropShip_User_ID AS <span class="token entity" title="\"">\&quot;</span>O_DropShip_User_ID<span class="token entity" title="\"">\&quot;</span>,o.FreightAmt AS <span class="token entity" title="\"">\&quot;</span>O_FreightAmt<span class="token entity" title="\"">\&quot;</span>,o.IsSelected AS <span class="token entity" title="\"">\&quot;</span>O_IsSelected<span class="token entity" title="\"">\&quot;</span>,o.CopyFrom AS <span class="token entity" title="\"">\&quot;</span>O_CopyFrom<span class="token entity" title="\"">\&quot;</span>,o.IsDelivered AS <span class="token entity" title="\"">\&quot;</span>O_IsDelivered<span class="token entity" title="\"">\&quot;</span>,o.Bill_Location_ID AS <span class="token entity" title="\"">\&quot;</span>O_Bill_Location_ID<span class="token entity" title="\"">\&quot;</span>,o.Pay_BPartner_ID AS <span class="token entity" title="\"">\&quot;</span>O_Pay_BPartner_ID<span class="token entity" title="\"">\&quot;</span>,o.AmountRefunded AS <span class="token entity" title="\"">\&quot;</span>O_AmountRefunded<span class="token entity" title="\"">\&quot;</span>,o.Bill_User_ID AS <span class="token entity" title="\"">\&quot;</span>O_Bill_User_ID<span class="token entity" title="\"">\&quot;</span>,o.Pay_Location_ID AS <span class="token entity" title="\"">\&quot;</span>O_Pay_Location_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Activity_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Activity_ID<span class="token entity" title="\"">\&quot;</span>,o.C_BPartner_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_BPartner_ID<span class="token entity" title="\"">\&quot;</span>,o.PaymentRule AS <span class="token entity" title="\"">\&quot;</span>O_PaymentRule<span class="token entity" title="\"">\&quot;</span>,o.Posted AS <span class="token entity" title="\"">\&quot;</span>O_Posted<span class="token entity" title="\"">\&quot;</span>,o.DocumentNo AS <span class="token entity" title="\"">\&quot;</span>O_DocumentNo<span class="token entity" title="\"">\&quot;</span>,o.DateOrdered AS <span class="token entity" title="\"">\&quot;</span>O_DateOrdered<span class="token entity" title="\"">\&quot;</span>,o.M_Shipper_ID AS <span class="token entity" title="\"">\&quot;</span>O_M_Shipper_ID<span class="token entity" title="\"">\&quot;</span>,o.M_Warehouse_ID AS <span class="token entity" title="\"">\&quot;</span>O_M_Warehouse_ID<span class="token entity" title="\"">\&quot;</span>,o.OrderType AS <span class="token entity" title="\"">\&quot;</span>O_OrderType<span class="token entity" title="\"">\&quot;</span>,o.AD_Client_ID AS <span class="token entity" title="\"">\&quot;</span>O_AD_Client_ID<span class="token entity" title="\"">\&quot;</span>,o.AD_Org_ID AS <span class="token entity" title="\"">\&quot;</span>O_AD_Org_ID<span class="token entity" title="\"">\&quot;</span>,o.AD_OrgTrx_ID AS <span class="token entity" title="\"">\&quot;</span>O_AD_OrgTrx_ID<span class="token entity" title="\"">\&quot;</span>,o.AD_User_ID AS <span class="token entity" title="\"">\&quot;</span>O_AD_User_ID<span class="token entity" title="\"">\&quot;</span>,o.AmountTendered AS <span class="token entity" title="\"">\&quot;</span>O_AmountTendered<span class="token entity" title="\"">\&quot;</span>,o.Bill_BPartner_ID AS <span class="token entity" title="\"">\&quot;</span>O_Bill_BPartner_ID<span class="token entity" title="\"">\&quot;</span>,o.Weight AS <span class="token entity" title="\"">\&quot;</span>O_Weight<span class="token entity" title="\"">\&quot;</span>,o.C_BPartner_Location_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_BPartner_Location_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Campaign_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Campaign_ID<span class="token entity" title="\"">\&quot;</span>,o.C_CashLine_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_CashLine_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Charge_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Charge_ID<span class="token entity" title="\"">\&quot;</span>,o.C_ConversionType_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_ConversionType_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Currency_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Currency_ID<span class="token entity" title="\"">\&quot;</span>,o.C_DocType_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_DocType_ID<span class="token entity" title="\"">\&quot;</span>,o.C_DocTypeTarget_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_DocTypeTarget_ID<span class="token entity" title="\"">\&quot;</span>,o.ChargeAmt AS <span class="token entity" title="\"">\&quot;</span>O_ChargeAmt<span class="token entity" title="\"">\&quot;</span>,o.C_Order_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Order_ID<span class="token entity" title="\"">\&quot;</span>,o.C_OrderSource_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_OrderSource_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Payment_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Payment_ID<span class="token entity" title="\"">\&quot;</span>,o.C_PaymentTerm_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_PaymentTerm_ID<span class="token entity" title="\"">\&quot;</span>,o.C_POS_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_POS_ID<span class="token entity" title="\"">\&quot;</span>,o.C_Project_ID AS <span class="token entity" title="\"">\&quot;</span>O_C_Project_ID<span class="token entity" title="\"">\&quot;</span>,o.Created AS <span class="token entity" title="\"">\&quot;</span>O_Created<span class="token entity" title="\"">\&quot;</span>,o.CreatedBy AS <span class="token entity" title="\"">\&quot;</span>O_CreatedBy<span class="token entity" title="\"">\&quot;</span>,o.DateAcct AS <span class="token entity" title="\"">\&quot;</span>O_DateAcct<span class="token entity" title="\"">\&quot;</span>,o.DatePrinted AS <span class="token entity" title="\"">\&quot;</span>O_DatePrinted<span class="token entity" title="\"">\&quot;</span>,o.DatePromised AS <span class="token entity" title="\"">\&quot;</span>O_DatePromised<span class="token entity" title="\"">\&quot;</span>,o.DeliveryRule AS <span class="token entity" title="\"">\&quot;</span>O_DeliveryRule<span class="token entity" title="\"">\&quot;</span>,o.DeliveryViaRule AS <span class="token entity" title="\"">\&quot;</span>O_DeliveryViaRule<span class="token entity" title="\"">\&quot;</span>,o.Description AS <span class="token entity" title="\"">\&quot;</span>O_Description<span class="token entity" title="\"">\&quot;</span>,o.DocAction AS <span class="token entity" title="\"">\&quot;</span>O_DocAction<span class="token entity" title="\"">\&quot;</span>,o.FreightCostRule AS <span class="token entity" title="\"">\&quot;</span>O_FreightCostRule<span class="token entity" title="\"">\&quot;</span>,o.GrandTotal AS <span class="token entity" title="\"">\&quot;</span>O_GrandTotal<span class="token entity" title="\"">\&quot;</span>,o.InvoiceRule AS <span class="token entity" title="\"">\&quot;</span>O_InvoiceRule<span class="token entity" title="\"">\&quot;</span>,o.UpdatedBy AS <span class="token entity" title="\"">\&quot;</span>O_UpdatedBy<span class="token entity" title="\"">\&quot;</span>,o.IsActive AS <span class="token entity" title="\"">\&quot;</span>O_IsActive<span class="token entity" title="\"">\&quot;</span>,o.IsApproved AS <span class="token entity" title="\"">\&quot;</span>O_IsApproved<span class="token entity" title="\"">\&quot;</span>,o.IsCreditApproved AS <span class="token entity" title="\"">\&quot;</span>O_IsCreditApproved<span class="token entity" title="\"">\&quot;</span>,o.IsDiscountPrinted AS <span class="token entity" title="\"">\&quot;</span>O_IsDiscountPrinted<span class="token entity" title="\"">\&quot;</span>,o.IsDropShip AS <span class="token entity" title="\"">\&quot;</span>O_IsDropShip<span class="token entity" title="\"">\&quot;</span>,o.IsInvoiced AS <span class="token entity" title="\"">\&quot;</span>O_IsInvoiced<span class="token entity" title="\"">\&quot;</span>,o.IsPrinted AS <span class="token entity" title="\"">\&quot;</span>O_IsPrinted<span class="token entity" title="\"">\&quot;</span>,o.IsSelfService AS <span class="token entity" title="\"">\&quot;</span>O_IsSelfService<span class="token entity" title="\"">\&quot;</span>,o.IsSOTrx AS <span class="token entity" title="\"">\&quot;</span>O_IsSOTrx<span class="token entity" title="\"">\&quot;</span>,o.IsTaxIncluded AS <span class="token entity" title="\"">\&quot;</span>O_IsTaxIncluded<span class="token entity" title="\"">\&quot;</span>,o.IsTransferred AS <span class="token entity" title="\"">\&quot;</span>O_IsTransferred<span class="token entity" title="\"">\&quot;</span>,o.Link_Order_ID AS <span class="token entity" title="\"">\&quot;</span>O_Link_Order_ID<span class="token entity" title="\"">\&quot;</span>,o.M_FreightCategory_ID AS <span class="token entity" title="\"">\&quot;</span>O_M_FreightCategory_ID<span class="token entity" title="\"">\&quot;</span>,o.M_PriceList_ID AS <span class="token entity" title="\"">\&quot;</span>O_M_PriceList_ID<span class="token entity" title="\"">\&quot;</span>,o.POReference AS <span class="token entity" title="\"">\&quot;</span>O_POReference<span class="token entity" title="\"">\&quot;</span>,o.PriorityRule AS <span class="token entity" title="\"">\&quot;</span>O_PriorityRule<span class="token entity" title="\"">\&quot;</span>,o.Processed AS <span class="token entity" title="\"">\&quot;</span>O_Processed<span class="token entity" title="\"">\&quot;</span>,o.ProcessedOn AS <span class="token entity" title="\"">\&quot;</span>O_ProcessedOn<span class="token entity" title="\"">\&quot;</span>,o.PromotionCode AS <span class="token entity" title="\"">\&quot;</span>O_PromotionCode<span class="token entity" title="\"">\&quot;</span>,o.Ref_Order_ID AS <span class="token entity" title="\"">\&quot;</span>O_Ref_Order_ID<span class="token entity" title="\"">\&quot;</span>,o.SalesRep_ID AS <span class="token entity" title="\"">\&quot;</span>O_SalesRep_ID<span class="token entity" title="\"">\&quot;</span>,o.SendEMail AS <span class="token entity" title="\"">\&quot;</span>O_SendEMail<span class="token entity" title="\"">\&quot;</span>,o.TotalLines AS <span class="token entity" title="\"">\&quot;</span>O_TotalLines<span class="token entity" title="\"">\&quot;</span>,o.Updated AS <span class="token entity" title="\"">\&quot;</span>O_Updated<span class="token entity" title="\"">\&quot;</span>,o.User1_ID AS <span class="token entity" title="\"">\&quot;</span>O_User1_ID<span class="token entity" title="\"">\&quot;</span>,o.User2_ID AS <span class="token entity" title="\"">\&quot;</span>O_User2_ID<span class="token entity" title="\"">\&quot;</span>,o.Volume AS <span class="token entity" title="\"">\&quot;</span>O_Volume<span class="token entity" title="\"">\&quot;</span>, (SELECT NVL(C_BPartner.Name,'</span>'<span class="token punctuation">)</span> FROM C_BPartner WHERE o.C_BPartner_ID<span class="token operator">=</span>C_BPartner.C_BPartner_ID<span class="token punctuation">)</span> AS <span class="token punctuation">\</span>&quot;DisplayColumn_O_C_BPartner_ID<span class="token punctuation">\</span>&quot;, C_DocTypeTarget_ID_C_DocType_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_O_C_DocTypeTarget_ID<span class="token punctuation">\</span>&quot;, DeliveryRule_AD_Ref_List_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_O_DeliveryRule<span class="token punctuation">\</span>&quot;, DocStatus_AD_Ref_List_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_O_DocStatus<span class="token punctuation">\</span>&quot; FROM C_Order o LEFT JOIN C_DocType AS C_DocTypeTarget_ID_C_DocType ON<span class="token punctuation">(</span>C_DocTypeTarget_ID_C_DocType.C_DocType_ID <span class="token operator">=</span> o.C_DocTypeTarget_ID<span class="token punctuation">)</span> LEFT JOIN C_DocType_Trl AS C_DocTypeTarget_ID_C_DocType_Trl ON<span class="token punctuation">(</span>C_DocTypeTarget_ID_C_DocType_Trl.C_DocType_ID <span class="token operator">=</span> C_DocTypeTarget_ID_C_DocType.C_DocType_ID AND C_DocTypeTarget_ID_C_DocType_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List AS DeliveryRule_AD_Ref_List ON<span class="token punctuation">(</span>DeliveryRule_AD_Ref_List.Value <span class="token operator">=</span> o.DeliveryRule AND DeliveryRule_AD_Ref_List.AD_Reference_ID <span class="token operator">=</span> <span class="token number">151</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List_Trl AS DeliveryRule_AD_Ref_List_Trl ON<span class="token punctuation">(</span>DeliveryRule_AD_Ref_List_Trl.AD_Ref_List_ID <span class="token operator">=</span> DeliveryRule_AD_Ref_List.AD_Ref_List_ID AND DeliveryRule_AD_Ref_List_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List AS DocStatus_AD_Ref_List ON<span class="token punctuation">(</span>DocStatus_AD_Ref_List.Value <span class="token operator">=</span> o.DocStatus AND DocStatus_AD_Ref_List.AD_Reference_ID <span class="token operator">=</span> <span class="token number">131</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List_Trl AS DocStatus_AD_Ref_List_Trl ON<span class="token punctuation">(</span>DocStatus_AD_Ref_List_Trl.AD_Ref_List_ID <span class="token operator">=</span> DocStatus_AD_Ref_List.AD_Ref_List_ID AND DocStatus_AD_Ref_List_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span><span class="token string">&quot;,&quot;</span>where_clause<span class="token string">&quot;:&quot;</span>o.DocStatus NOT IN<span class="token punctuation">(</span><span class="token string">'VO'</span><span class="token punctuation">)</span><span class="token string">&quot;,&quot;</span>order_by_clause<span class="token string">&quot;:&quot;</span>&quot;<span class="token punctuation">}</span>'
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-13"><a href="#cuerpo-de-respuesta-13" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;d3bb9377-b46e-4ec2-96b2-93dd60c71ead-1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;attributes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_O_C_BPartner_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;INVERSIONES DPJ, C.A&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_O_C_DocTypeTarget_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Orden de Compra Nacional&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_O_DeliveryRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Disponibilidad&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_O_DocStatus&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Completo&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AD_OrgTrx_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AD_User_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000437</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AmountRefunded&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_AmountTendered&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Bill_BPartner_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000488</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Bill_Location_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1004666</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Bill_User_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000437</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Activity_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_BPartner_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000488</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_BPartner_Location_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1004666</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Campaign_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_CashLine_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Charge_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_ConversionType_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000001</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Currency_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">50001</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_DocTypeTarget_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000119</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_DocType_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000119</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Opportunity_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_OrderSource_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Order_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1056843</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_POS_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_PaymentTerm_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Payment_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_C_Project_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_ChargeAmt&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_CopyFrom&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Created&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-11-17T16:45:44.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_CreatedBy&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000387</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DateAcct&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-03-01T04:00:00.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DateOrdered&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-03-01T04:00:00.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DatePrinted&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DatePromised&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-11-17T04:00:00.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DeliveryRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;A&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DeliveryViaRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;P&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Description&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MIGRACION CONSIGNACION&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DocAction&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DocStatus&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CO&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DocumentNo&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;OCN-1163&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DropShip_BPartner_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DropShip_Location_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_DropShip_User_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_FreightAmt&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_FreightCostRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;I&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_GrandTotal&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">136276800</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_InvoiceRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;D&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsActive&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsApproved&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsCreditApproved&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsDelivered&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Y&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsDiscountPrinted&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsDropShip&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsInvoiced&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;N&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsPrinted&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsSOTrx&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsSelected&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsSelfService&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;N&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsTaxIncluded&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_IsTransferred&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Link_Order_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_M_FreightCategory_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_M_PriceList_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000003</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_M_Shipper_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_M_Warehouse_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000002</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_OrderType&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_POReference&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Pay_BPartner_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Pay_Location_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_PaymentRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;P&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Posted&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_PriorityRule&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Processed&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_ProcessedOn&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1605631694351.3513</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Processing&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_PromotionCode&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Ref_Order_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_SalesRep_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000387</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_SendEMail&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_TotalLines&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">117480000</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Updated&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-11-17T17:29:42.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_UpdatedBy&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000402</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_User1_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_User2_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Volume&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;O_Weight&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-13"><a href="#codigo-de-respuesta-13" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-lookup-items"><a href="#post-adempiere-api-ui-list-lookup-items" class="header-anchor">#</a> POST /adempiere-api/ui/list-lookup-items</h3> <p>Lista de elementos de búsqueda</p> <h4 id="parametros-post-14"><a href="#parametros-post-14" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>filters</code> - filtros de la consulta.
+<code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>where_clause</code> - cláusula where de la búsqueda basada en SQL.
+<code>order_by_clause</code> - cláusula order by basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-14"><a href="#cuerpo-de-la-peticion-14" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-14"><a href="#ejemplo-de-llamada-14" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_Ref_List&quot;,&quot;query&quot;:&quot;SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='</span>es_VE<span class="token string">') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3&quot;,&quot;filters&quot;:[]}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-14"><a href="#cuerpo-de-respuesta-14" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">12</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455ffe4-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Anulado&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VO&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VO&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455fdb4-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Aprobado&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AP&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AP&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a459d506-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Borrador&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DR&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DR&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455fe36-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Cerrado&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CL&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CL&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455fea4-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Completo&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CO&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CO&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a4560692-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Desconocido&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;??&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;??&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a456aec6-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;En Proceso&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IP&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IP&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a46776f2-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Esperando Confirmación&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;WC&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;WC&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a459d308-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Esperando Pago&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;WP&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;WP&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a459d290-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;No Aprobado&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NA&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;NA&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455ff08-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;No-Válido&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IN&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IN&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455ff76-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Reversado&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RE&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RE&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-14"><a href="#codigo-de-respuesta-14" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-get-lookup-item"><a href="#post-adempiere-api-ui-get-lookup-item" class="header-anchor">#</a> POST /adempiere-api/ui/get-lookup-item</h3> <p>Obtener elemento de búsqueda</p> <h4 id="parametros-post-15"><a href="#parametros-post-15" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>filters</code> - filtros de la consulta.
+<code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>where_clause</code> - cláusula where de la búsqueda basada en SQL.
+<code>order_by_clause</code> - cláusula order by basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-15"><a href="#cuerpo-de-la-peticion-15" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-15"><a href="#ejemplo-de-llamada-15" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_Ref_List&quot;,&quot;query&quot;:&quot;SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='</span>es_VE<span class="token string">') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3&quot;,&quot;filters&quot;:[]}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-15"><a href="#cuerpo-de-respuesta-15" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a455ffe4-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;DisplayColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Anulado&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;KeyColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VO&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;ValueColumn&quot;</span><span class="token operator">:</span> <span class="token string">&quot;VO&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-15"><a href="#codigo-de-respuesta-15" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-list-translations"><a href="#post-adempiere-api-ui-list-translations" class="header-anchor">#</a> POST /adempiere-api/ui/list-translations</h3> <p>Lista de traducciones</p> <h4 id="parametros-post-16"><a href="#parametros-post-16" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id de referencia.
+<code>uuid</code> - uuid de referencia.</p> <h4 id="cuerpo-de-la-peticion-16"><a href="#cuerpo-de-la-peticion-16" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-16"><a href="#ejemplo-de-llamada-16" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/list-translations?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;: &quot;AD_View&quot;,&quot;id&quot;: &quot;50000&quot;,&quot;uuid&quot;: &quot;a4cb498e-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-16"><a href="#cuerpo-de-respuesta-16" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es_VE&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">&quot;Description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Allow select the Sales Order lines to create a Outbound Order&quot;</span><span class="token punctuation">,</span>
+                    <span class="token property">&quot;Name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Sales Order to Picking&quot;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-16"><a href="#codigo-de-respuesta-16" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-get-default-value"><a href="#post-adempiere-api-ui-get-default-value" class="header-anchor">#</a> POST /adempiere-api/ui/get-default-value</h3> <p>Obtener valor por defecto</p> <h4 id="parametros-post-17"><a href="#parametros-post-17" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.</p> <h4 id="cuerpo-de-la-peticion-17"><a href="#cuerpo-de-la-peticion-17" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-17"><a href="#ejemplo-de-llamada-17" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/get-default-value?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;query&quot;: &quot;SELECT Name from AD_TEST WHERE IsActive = '</span>Y<span class="token string">' AND (SELECT MAX(AD_TEST_ID) FROM AD_TEST)&quot;}'</span>
+</code></pre></div><h4 id="cuerpo-de-respuesta-17"><a href="#cuerpo-de-respuesta-17" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-17"><a href="#codigo-de-respuesta-17" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-run-callout"><a href="#post-adempiere-api-ui-run-callout" class="header-anchor">#</a> POST /adempiere-api/ui/run-callout</h3> <p>Ejecutar llamada</p> <h4 id="parametros-post-18"><a href="#parametros-post-18" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>tab_uuid</code> - uuid de la pestaña.
+<code>windowUuid</code> - uuid de la ventana.
+<code>callout</code> - llamada.
+<code>columnName</code> - nombre de la columna de la llamada.
+<code>old_value</code> - valor antiguo para la columna.
+<code>value</code> - nuevo valor de  la columna.
+<code>window_no</code> - número de ventana.
+<code>attributes</code> - atributos de la entidad.</p> <h4 id="cuerpo-de-la-peticion-18"><a href="#cuerpo-de-la-peticion-18" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-18"><a href="#ejemplo-de-llamada-18" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/run-callout?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;tableName&quot;: &quot;AD_TEST&quot;,&quot;windowUuid&quot;: &quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;,&quot;callout&quot;: &quot;INSERT&quot;,&quot;columnName&quot;: &quot;IsActive&quot;,&quot;oldValue&quot;: false,&quot;value&quot;: true,&quot;tabUuid&quot;: &quot;987d2187-6103-430a-acfc-aee208f22a0c&quot;,&quot;windowNo&quot;: 2,&quot;attributesList&quot;: []}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-18"><a href="#cuerpo-de-respuesta-18" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;created&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-09-18T17:22:59-04:30&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Name&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Description&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;help&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Help&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;IsProcessed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;isActive&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-18"><a href="#codigo-de-respuesta-18" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-ui-rollback-entity"><a href="#post-adempiere-api-ui-rollback-entity" class="header-anchor">#</a> POST /adempiere-api/ui/rollback-entity</h3> <p>Obtener información de contexto</p> <h4 id="parametros-post-19"><a href="#parametros-post-19" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>table_name</code> - nombre de la tabla (obligatorio si no es una consulta).
+<code>id</code> - id de referencia.
+<code>uuid</code> - uuid de referencia.</p> <h4 id="cuerpo-de-la-peticion-19"><a href="#cuerpo-de-la-peticion-19" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-19"><a href="#ejemplo-de-llamada-19" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;tableName&quot;: &quot;AD_TEST&quot;,&quot;id&quot;: 15,&quot;uuid&quot;: &quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-19"><a href="#cuerpo-de-respuesta-19" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;created&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2020-09-18T17:22:59-04:30&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;771d2187-6103-430a-acfc-aee208f22a0c&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Name&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Description&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;help&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test Help&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;IsProcessed&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;isActive&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-19"><a href="#codigo-de-respuesta-19" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/adempiere/proxt-adempiere-api/edit/master//guide/es/default-modules/adempiere-api/user-interface.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/app.8ea8c90b.js" defer></script><script src="/assets/js/35.f041dd76.js" defer></script>
+  </body>
+</html>

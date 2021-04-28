@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Módulo Data | ADempiere Proxy API</title>
+    <meta name="description" content="A documentation for Proxy of ADempiere Frontend">
+    <link rel="icon" href="/favicon.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.51d07f76.css" as="style"><link rel="preload" href="/assets/js/app.8ea8c90b.js" as="script"><link rel="preload" href="/assets/js/10.dd4e227e.js" as="script"><link rel="prefetch" href="/assets/js/11.8866546b.js"><link rel="prefetch" href="/assets/js/12.74c8361f.js"><link rel="prefetch" href="/assets/js/13.ff7578ff.js"><link rel="prefetch" href="/assets/js/14.26d3404d.js"><link rel="prefetch" href="/assets/js/15.6d2a2dc6.js"><link rel="prefetch" href="/assets/js/16.4eee27b0.js"><link rel="prefetch" href="/assets/js/17.8c8f3573.js"><link rel="prefetch" href="/assets/js/18.43d2a7bb.js"><link rel="prefetch" href="/assets/js/19.7b822774.js"><link rel="prefetch" href="/assets/js/2.d9684650.js"><link rel="prefetch" href="/assets/js/20.2a52d33f.js"><link rel="prefetch" href="/assets/js/21.938231ff.js"><link rel="prefetch" href="/assets/js/22.27773c3a.js"><link rel="prefetch" href="/assets/js/23.a05ce2ce.js"><link rel="prefetch" href="/assets/js/24.659fa1df.js"><link rel="prefetch" href="/assets/js/25.e73aad67.js"><link rel="prefetch" href="/assets/js/26.825d2bb1.js"><link rel="prefetch" href="/assets/js/27.01da01ba.js"><link rel="prefetch" href="/assets/js/28.a40e4132.js"><link rel="prefetch" href="/assets/js/29.7fdbdc6f.js"><link rel="prefetch" href="/assets/js/3.23e60732.js"><link rel="prefetch" href="/assets/js/30.69207e6f.js"><link rel="prefetch" href="/assets/js/31.9f2b07db.js"><link rel="prefetch" href="/assets/js/32.c3d2d79c.js"><link rel="prefetch" href="/assets/js/33.6cb32e1a.js"><link rel="prefetch" href="/assets/js/34.2a6830c5.js"><link rel="prefetch" href="/assets/js/35.f041dd76.js"><link rel="prefetch" href="/assets/js/36.3e8ac58c.js"><link rel="prefetch" href="/assets/js/37.6fe88dee.js"><link rel="prefetch" href="/assets/js/38.e9236319.js"><link rel="prefetch" href="/assets/js/39.649e37fd.js"><link rel="prefetch" href="/assets/js/4.fd1e4c77.js"><link rel="prefetch" href="/assets/js/40.d2310324.js"><link rel="prefetch" href="/assets/js/41.698630ba.js"><link rel="prefetch" href="/assets/js/42.29b611a2.js"><link rel="prefetch" href="/assets/js/43.8deb8d1a.js"><link rel="prefetch" href="/assets/js/44.a5537bca.js"><link rel="prefetch" href="/assets/js/45.d78266db.js"><link rel="prefetch" href="/assets/js/46.990e72cf.js"><link rel="prefetch" href="/assets/js/47.6318b0a9.js"><link rel="prefetch" href="/assets/js/48.4d6f6208.js"><link rel="prefetch" href="/assets/js/49.c360fcf9.js"><link rel="prefetch" href="/assets/js/5.c539a829.js"><link rel="prefetch" href="/assets/js/50.ceade63d.js"><link rel="prefetch" href="/assets/js/51.b45e6f5a.js"><link rel="prefetch" href="/assets/js/52.2d07128e.js"><link rel="prefetch" href="/assets/js/53.039ff532.js"><link rel="prefetch" href="/assets/js/54.59c79952.js"><link rel="prefetch" href="/assets/js/55.26c2a9fe.js"><link rel="prefetch" href="/assets/js/56.ffb19758.js"><link rel="prefetch" href="/assets/js/57.e9baad67.js"><link rel="prefetch" href="/assets/js/58.ad5d366b.js"><link rel="prefetch" href="/assets/js/59.893ae0d4.js"><link rel="prefetch" href="/assets/js/6.1e6086df.js"><link rel="prefetch" href="/assets/js/60.8a4c6f7f.js"><link rel="prefetch" href="/assets/js/61.ba200ba8.js"><link rel="prefetch" href="/assets/js/62.1bcdc910.js"><link rel="prefetch" href="/assets/js/63.0c2427f5.js"><link rel="prefetch" href="/assets/js/64.10f4c914.js"><link rel="prefetch" href="/assets/js/7.473a5cfb.js"><link rel="prefetch" href="/assets/js/8.34a04342.js"><link rel="prefetch" href="/assets/js/9.e0d8d156.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.51d07f76.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">ADempiere Proxy API</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">ADempiere API</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/default-modules/adempiere-api/data.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/" class="nav-link">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">ADempiere API</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/default-modules/adempiere-api/data.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/" class="nav-link">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>General Information</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/general/installation.html" class="sidebar-link">Installation</a></li><li><a href="/guide/general/config.html" class="sidebar-link">Configuration</a></li><li><a href="/guide/general/extensions.html" class="sidebar-link">Extensions</a></li></ul></div></li><li><div class="sidebar-group"><p class="sidebar-heading open"><span>ADempiere</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/default-modules/adempiere-api/api.html" class="sidebar-link">REST Interface from ADempiere</a></li><li><a href="/guide/default-modules/adempiere-api/core.html" class="sidebar-link">Core Service Provider</a></li><li><a href="/guide/default-modules/adempiere-api/img.html" class="sidebar-link">Image Service</a></li><li><a href="/guide/default-modules/adempiere-api/user.html" class="sidebar-link">User service</a></li><li><a href="/guide/default-modules/adempiere-api/enrollment.html" class="sidebar-link">Módulo Inscripción</a></li><li><a href="/guide/default-modules/adempiere-api/data.html" aria-current="page" class="active sidebar-link">Módulo Data</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#modulo-data" class="sidebar-link">Módulo Data</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#post-adempiere-api-user-data-create" class="sidebar-link">POST /adempiere-api/user/data/create</a></li><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#post-adempiere-api-data-update" class="sidebar-link">POST /adempiere-api/data/update</a></li><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#get-adempiere-api-user-session" class="sidebar-link">GET /adempiere-api/user/session</a></li><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#get-adempiere-api-data-rollback-entity" class="sidebar-link">GET /adempiere-api/data/rollback-entity</a></li><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#get-adempiere-api-data-entity" class="sidebar-link">GET /adempiere-api/data/entity</a></li><li class="sidebar-sub-header"><a href="/guide/default-modules/adempiere-api/data.html#post-adempiere-api-data-list" class="sidebar-link">POST /adempiere-api/data/list</a></li></ul></li></ul></li><li><a href="/guide/default-modules/adempiere-api/dictionary.html" class="sidebar-link">Dictionary Service</a></li><li><a href="/guide/default-modules/adempiere-api/resource.html" class="sidebar-link">/guide/default-modules/adempiere-api/resource.html</a></li><li><a href="/guide/default-modules/adempiere-api/user-log.html" class="sidebar-link">Módulo Registros de Usuario</a></li><li><a href="/guide/default-modules/adempiere-api/dashboard.html" class="sidebar-link">Dashboarding Service</a></li><li><a href="/guide/default-modules/adempiere-api/workflow.html" class="sidebar-link">Módulo Flujo de Trabajo</a></li><li><a href="/guide/default-modules/adempiere-api/pos.html" class="sidebar-link">Módulo Pos</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Default gateway</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Modules</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Integrations</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="modulo-data"><a href="#modulo-data" class="header-anchor">#</a> Módulo Data</h2> <h3 id="post-adempiere-api-user-data-create"><a href="#post-adempiere-api-user-data-create" class="header-anchor">#</a> POST /adempiere-api/user/data/create</h3> <p>Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelve los datos del registro creado</p> <h4 id="parametros-post"><a href="#parametros-post" class="header-anchor">#</a> Parámetros POST:</h4> <p><code>tableName</code> - Nombre de la tabla de la entidad a crear.
+<code>attributesList</code> - Lista de atributos con los que se creara la entidad.</p> <h4 id="cuerpo-de-la-peticion"><a href="#cuerpo-de-la-peticion" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada"><a href="#ejemplo-de-llamada" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/create?token=336d6453-448c-49f9-b809-5431d0ebbc27&amp;language=es'</span> <span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span> <span class="token punctuation">\</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_RelationType&quot;,&quot;attributes&quot;:[{&quot;key&quot;:&quot;AD_RelationType_ID&quot;,&quot;value&quot;:0},{&quot;key&quot;:&quot;AD_Client_ID&quot;,&quot;value&quot;:1000000},{&quot;key&quot;:&quot;AD_Org_ID&quot;,&quot;value&quot;:1000000},{&quot;key&quot;:&quot;Name&quot;,&quot;value&quot;:&quot;e&quot;},{&quot;key&quot;:&quot;IsActive&quot;,&quot;value&quot;:true},{&quot;key&quot;:&quot;IsDirected&quot;,&quot;value&quot;:false},{&quot;key&quot;:&quot;Type&quot;,&quot;value&quot;:&quot;I&quot;}]}'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta"><a href="#cuerpo-de-repuesta" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c6d3de0c-ce12-4e40-938d-d2e34aa839ce&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_RelationType&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;attributes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_RelationType_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000001</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Created&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-02-17T14:47:14.000Z&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CreatedBy&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000022</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsActive&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsDirected&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Name&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Service&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Type&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;I&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UUID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3cc54474-18ce-4533-9b79-b12da86e4b6b&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Updated&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-02-17T14:47:14.000Z&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UpdatedBy&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000022</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas"><a href="#codigo-de-respuestas" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-data-update"><a href="#post-adempiere-api-data-update" class="header-anchor">#</a> POST /adempiere-api/data/update</h3> <p>Se utiliza para actualizar la entidad</p> <h4 id="parametros-post-2"><a href="#parametros-post-2" class="header-anchor">#</a> Parámetros POST:</h4> <p><code>tableName</code> - Nombre de la tabla de la entidad.
+<code>uuid</code> - uuid de la entidad a actualizar<code></code>attributesList` - Lista de atributos de los campos actualizado de la entidad.</p> <h4 id="cuerpo-de-la-peticion-2"><a href="#cuerpo-de-la-peticion-2" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-2"><a href="#ejemplo-de-llamada-2" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&amp;language=es'</span> <span class="token punctuation">\</span>
+    -X POS <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_RelationType&quot;,&quot;uuid&quot;: &quot;c6d3de0c-ce12-4e40-938d-d2e34aa839ce&quot;,&quot;attributes&quot;:[{&quot;key&quot;:&quot;Name&quot;,&quot;value&quot;:&quot;Service-Update&quot;}]}'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-2"><a href="#cuerpo-de-repuesta-2" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c6d3de0c-ce12-4e40-938d-d2e34aa839ce&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_RelationType&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;attributes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_RelationType_ID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Created&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-02-17T14:46:23.000Z&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CreatedBy&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000022</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsActive&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsDirected&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Name&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Service-Update&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Type&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;I&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UUID&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;c6d3de0c-ce12-4e40-938d-d2e34aa839ce&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Updated&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2021-02-17T15:47:57.082Z&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UpdatedBy&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">1000022</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas-2"><a href="#codigo-de-respuestas-2" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="get-adempiere-api-user-session"><a href="#get-adempiere-api-user-session" class="header-anchor">#</a> GET /adempiere-api/user/session</h3> <p>Elimina Entidad</p> <h4 id="parametros-get"><a href="#parametros-get" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>tableName</code> - Nombre de la tabla de la entidad.
+<code>uuid</code> - uuid de la entidad a eliminar</p> <h4 id="cuerpo-de-la-peticion-3"><a href="#cuerpo-de-la-peticion-3" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-3"><a href="#ejemplo-de-llamada-3" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&amp;language=es'</span> <span class="token punctuation">\</span>
+    -X GET <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_RelationType&quot;,&quot;uuid&quot;: &quot;c6d3de0c-ce12-4e40-938d-d2e34aa839ce&quot;}'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-3"><a href="#cuerpo-de-repuesta-3" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Ok&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas-3"><a href="#codigo-de-respuestas-3" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="get-adempiere-api-data-rollback-entity"><a href="#get-adempiere-api-data-rollback-entity" class="header-anchor">#</a> GET /adempiere-api/data/rollback-entity</h3> <p>Entidad de retroceso (crear, actualizar, eliminar)</p> <h4 id="parametros-get-2"><a href="#parametros-get-2" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>tableName</code> - Nombre de la tabla de la entidad.
+<code>uuid</code> - uuid de la entidad a eliminar.
+<code>eventType</code> - tipo de evento</p> <h4 id="cuerpo-de-la-peticion-4"><a href="#cuerpo-de-la-peticion-4" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-4"><a href="#ejemplo-de-llamada-4" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&amp;language=es'</span> <span class="token punctuation">\</span>
+    -X GET <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-4"><a href="#cuerpo-de-repuesta-4" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas-4"><a href="#codigo-de-respuestas-4" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="get-adempiere-api-data-entity"><a href="#get-adempiere-api-data-entity" class="header-anchor">#</a> GET /adempiere-api/data/entity</h3> <p>Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.</p> <h4 id="parametros-get-3"><a href="#parametros-get-3" class="header-anchor">#</a> Parámetros GET:</h4> <div class="language- extra-class"><pre class="language-text"><code>    null
+</code></pre></div><h4 id="cuerpo-de-la-peticion-5"><a href="#cuerpo-de-la-peticion-5" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Client&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1000000&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;894a23a8-24e7-4ae1-a2e5-eda113607852&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-5"><a href="#ejemplo-de-llamada-5" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&amp;language=es&amp;table_name=AD_Client&amp;id=1000000&amp;uuid=894a23a8-24e7-4ae1-a2e5-eda113607852'</span> <span class="token punctuation">\</span>
+    -X GET <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-5"><a href="#cuerpo-de-repuesta-5" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;parent_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&amp;Menu&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;is_summary&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;is_sales_transaction&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;reference_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;childs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">54624</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;af6907d3-d6f9-4108-ac3a-36ba80704051&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;parent_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Exchange Operations&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Exhange Operation Process&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_summary&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_sales_transaction&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;reference_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;childs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+					<span class="token punctuation">{</span>
+						<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">54643</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5bac55c5-cb34-487f-b470-f8077db4bc7a&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;parent_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;af6907d3-d6f9-4108-ac3a-36ba80704051&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Get Currency Rates from Provider&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Get Currency Rates from a Provider selected&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_summary&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_sales_transaction&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;P&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;reference_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;3f8e7490-2922-4395-a587-a8dcca455fdf&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;childs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_active&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+					<span class="token punctuation">}</span><span class="token punctuation">,</span>
+					<span class="token punctuation">{</span>
+						<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">54628</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ab3abf2a-31f5-47f7-a03c-a4befc8cd286&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;parent_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;af6907d3-d6f9-4108-ac3a-36ba80704051&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Exchange Operation&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Exchange Operation&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_summary&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_sales_transaction&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;action&quot;</span><span class="token operator">:</span> <span class="token string">&quot;W&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;reference_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0dce5f0d-af50-4001-91bc-0950dc42b470&quot;</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;childs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+						<span class="token property">&quot;is_active&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">]</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_active&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;is_active&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas-5"><a href="#codigo-de-respuestas-5" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-data-list"><a href="#post-adempiere-api-data-list" class="header-anchor">#</a> POST /adempiere-api/data/list</h3> <p>Listar las Entidades.</p> <h4 id="parametros-get-4"><a href="#parametros-get-4" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>tableName</code> - nombre de la tabla.
+<code>filters</code> - filtro de la lista.
+<code>columns</code> - columnas de la consulta.
+<code>query</code> - consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>where_clause</code> - cláusula where de la búsqueda basada en SQL.
+<code>order_by_clause</code> - cláusula order by basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-6"><a href="#cuerpo-de-la-peticion-6" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-6"><a href="#ejemplo-de-llamada-6" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/data/list?token=5339c283-dc77-4001-8315-22905596d6c0&amp;language=es'</span> <span class="token punctuation">\</span>
+    -X POS <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span> <span class="token punctuation">\</span>
+    --data-binary <span class="token string">'{&quot;table_name&quot;:&quot;AD_RelationType&quot;,&quot;filters&quot;:[{&quot;column_name&quot;:&quot;UUID&quot;,&quot;value&quot;:&quot;a4853f84-fb40-11e8-a479-7a0060f0aa01&quot;}],&quot;columns&quot;:[],&quot;query&quot;:&quot;SELECT AD_RelationType.*, (SELECT NVL(AD_Client.Name,'</span>'<span class="token punctuation">)</span> FROM AD_Client WHERE AD_RelationType.AD_Client_ID<span class="token operator">=</span>AD_Client.AD_Client_ID<span class="token punctuation">)</span> AS <span class="token punctuation">\</span>&quot;DisplayColumn_AD_Client_ID<span class="token punctuation">\</span>&quot;, <span class="token punctuation">(</span>SELECT NVL<span class="token punctuation">(</span>AD_Org.Name,<span class="token string">''</span><span class="token punctuation">)</span> FROM AD_Org WHERE AD_RelationType.AD_Org_ID<span class="token operator">=</span>AD_Org.AD_Org_ID<span class="token punctuation">)</span> AS <span class="token punctuation">\</span>&quot;DisplayColumn_AD_Org_ID<span class="token punctuation">\</span>&quot;, Type_AD_Ref_List_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_Type<span class="token punctuation">\</span>&quot;, AD_Reference_Source_ID_AD_Reference_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_AD_Reference_Source_ID<span class="token punctuation">\</span>&quot;, Role_Source_AD_Ref_List_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_Role_Source<span class="token punctuation">\</span>&quot;, AD_Reference_Target_ID_AD_Reference_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_AD_Reference_Target_ID<span class="token punctuation">\</span>&quot;, Role_Target_AD_Ref_List_Trl.Name AS <span class="token punctuation">\</span>&quot;DisplayColumn_Role_Target<span class="token punctuation">\</span>&quot; FROM AD_RelationType AS AD_RelationType LEFT JOIN AD_Ref_List AS Type_AD_Ref_List ON<span class="token punctuation">(</span>Type_AD_Ref_List.Value <span class="token operator">=</span> AD_RelationType.Type AND Type_AD_Ref_List.AD_Reference_ID <span class="token operator">=</span> <span class="token number">53332</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List_Trl AS Type_AD_Ref_List_Trl ON<span class="token punctuation">(</span>Type_AD_Ref_List_Trl.AD_Ref_List_ID <span class="token operator">=</span> Type_AD_Ref_List.AD_Ref_List_ID AND Type_AD_Ref_List_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Reference AS AD_Reference_Source_ID_AD_Reference ON<span class="token punctuation">(</span>AD_Reference_Source_ID_AD_Reference.AD_Reference_ID <span class="token operator">=</span> AD_RelationType.AD_Reference_Source_ID<span class="token punctuation">)</span> LEFT JOIN AD_Reference_Trl AS AD_Reference_Source_ID_AD_Reference_Trl ON<span class="token punctuation">(</span>AD_Reference_Source_ID_AD_Reference_Trl.AD_Reference_ID <span class="token operator">=</span> AD_Reference_Source_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Source_ID_AD_Reference_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List AS Role_Source_AD_Ref_List ON<span class="token punctuation">(</span>Role_Source_AD_Ref_List.Value <span class="token operator">=</span> AD_RelationType.Role_Source AND Role_Source_AD_Ref_List.AD_Reference_ID <span class="token operator">=</span> <span class="token number">53331</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List_Trl AS Role_Source_AD_Ref_List_Trl ON<span class="token punctuation">(</span>Role_Source_AD_Ref_List_Trl.AD_Ref_List_ID <span class="token operator">=</span> Role_Source_AD_Ref_List.AD_Ref_List_ID AND Role_Source_AD_Ref_List_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Reference AS AD_Reference_Target_ID_AD_Reference ON<span class="token punctuation">(</span>AD_Reference_Target_ID_AD_Reference.AD_Reference_ID <span class="token operator">=</span> AD_RelationType.AD_Reference_Target_ID<span class="token punctuation">)</span> LEFT JOIN AD_Reference_Trl AS AD_Reference_Target_ID_AD_Reference_Trl ON<span class="token punctuation">(</span>AD_Reference_Target_ID_AD_Reference_Trl.AD_Reference_ID <span class="token operator">=</span> AD_Reference_Target_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Target_ID_AD_Reference_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List AS Role_Target_AD_Ref_List ON<span class="token punctuation">(</span>Role_Target_AD_Ref_List.Value <span class="token operator">=</span> AD_RelationType.Role_Target AND Role_Target_AD_Ref_List.AD_Reference_ID <span class="token operator">=</span> <span class="token number">53331</span><span class="token punctuation">)</span> LEFT JOIN AD_Ref_List_Trl AS Role_Target_AD_Ref_List_Trl ON<span class="token punctuation">(</span>Role_Target_AD_Ref_List_Trl.AD_Ref_List_ID <span class="token operator">=</span> Role_Target_AD_Ref_List.AD_Ref_List_ID AND Role_Target_AD_Ref_List_Trl.AD_Language <span class="token operator">=</span> <span class="token string">'es_VE'</span><span class="token punctuation">)</span><span class="token string">&quot;,&quot;</span>where_clause<span class="token string">&quot;:&quot;</span>&quot;,<span class="token string">&quot;order_by_clause&quot;</span><span class="token builtin class-name">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">}</span>'
+</code></pre></div><h4 id="cuerpo-de-repuesta-6"><a href="#cuerpo-de-repuesta-6" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;attributes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Reference_Source_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">53352</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Reference_Target_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">53354</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_RelationType_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">50004</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Created&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2010-03-22T12:00:22.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;CreatedBy&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">100</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Description&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;System&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;*&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_AD_Reference_Source_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RelType C_BPartner_ID-&gt;Customer_RMA&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_AD_Reference_Target_ID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;RelType Vendor_RMA &lt;= C_BPartner_ID&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;DisplayColumn_Type&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Implícito&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsActive&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;IsDirected&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Name&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;BPartner&lt;-&gt;VendorReturn&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Role_Source&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Role_Target&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Type&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;I&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UUID&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a4853f84-fb40-11e8-a479-7a0060f0aa01&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Updated&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;2010-03-22T17:36:03.000Z&quot;</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                        <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;UpdatedBy&quot;</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">100</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuestas-6"><a href="#codigo-de-respuestas-6" class="header-anchor">#</a> Código de Respuestas:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/adempiere/proxt-adempiere-api/edit/master//guide/default-modules/adempiere-api/data.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/guide/default-modules/adempiere-api/enrollment.html" class="prev">
+          Módulo Inscripción
+        </a></span> <span class="next"><a href="/guide/default-modules/adempiere-api/dictionary.html">
+          Dictionary Service
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.8ea8c90b.js" defer></script><script src="/assets/js/10.dd4e227e.js" defer></script>
+  </body>
+</html>

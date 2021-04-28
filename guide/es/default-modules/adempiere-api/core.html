@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Módulo núcleo | ADempiere Proxy API</title>
+    <meta name="description" content="Una documentación para el proxy de ADempiere">
+    <link rel="icon" href="/favicon.png">
+    
+    <link rel="preload" href="/assets/css/0.styles.51d07f76.css" as="style"><link rel="preload" href="/assets/js/app.8ea8c90b.js" as="script"><link rel="preload" href="/assets/js/27.01da01ba.js" as="script"><link rel="prefetch" href="/assets/js/10.dd4e227e.js"><link rel="prefetch" href="/assets/js/11.8866546b.js"><link rel="prefetch" href="/assets/js/12.74c8361f.js"><link rel="prefetch" href="/assets/js/13.ff7578ff.js"><link rel="prefetch" href="/assets/js/14.26d3404d.js"><link rel="prefetch" href="/assets/js/15.6d2a2dc6.js"><link rel="prefetch" href="/assets/js/16.4eee27b0.js"><link rel="prefetch" href="/assets/js/17.8c8f3573.js"><link rel="prefetch" href="/assets/js/18.43d2a7bb.js"><link rel="prefetch" href="/assets/js/19.7b822774.js"><link rel="prefetch" href="/assets/js/2.d9684650.js"><link rel="prefetch" href="/assets/js/20.2a52d33f.js"><link rel="prefetch" href="/assets/js/21.938231ff.js"><link rel="prefetch" href="/assets/js/22.27773c3a.js"><link rel="prefetch" href="/assets/js/23.a05ce2ce.js"><link rel="prefetch" href="/assets/js/24.659fa1df.js"><link rel="prefetch" href="/assets/js/25.e73aad67.js"><link rel="prefetch" href="/assets/js/26.825d2bb1.js"><link rel="prefetch" href="/assets/js/28.a40e4132.js"><link rel="prefetch" href="/assets/js/29.7fdbdc6f.js"><link rel="prefetch" href="/assets/js/3.23e60732.js"><link rel="prefetch" href="/assets/js/30.69207e6f.js"><link rel="prefetch" href="/assets/js/31.9f2b07db.js"><link rel="prefetch" href="/assets/js/32.c3d2d79c.js"><link rel="prefetch" href="/assets/js/33.6cb32e1a.js"><link rel="prefetch" href="/assets/js/34.2a6830c5.js"><link rel="prefetch" href="/assets/js/35.f041dd76.js"><link rel="prefetch" href="/assets/js/36.3e8ac58c.js"><link rel="prefetch" href="/assets/js/37.6fe88dee.js"><link rel="prefetch" href="/assets/js/38.e9236319.js"><link rel="prefetch" href="/assets/js/39.649e37fd.js"><link rel="prefetch" href="/assets/js/4.fd1e4c77.js"><link rel="prefetch" href="/assets/js/40.d2310324.js"><link rel="prefetch" href="/assets/js/41.698630ba.js"><link rel="prefetch" href="/assets/js/42.29b611a2.js"><link rel="prefetch" href="/assets/js/43.8deb8d1a.js"><link rel="prefetch" href="/assets/js/44.a5537bca.js"><link rel="prefetch" href="/assets/js/45.d78266db.js"><link rel="prefetch" href="/assets/js/46.990e72cf.js"><link rel="prefetch" href="/assets/js/47.6318b0a9.js"><link rel="prefetch" href="/assets/js/48.4d6f6208.js"><link rel="prefetch" href="/assets/js/49.c360fcf9.js"><link rel="prefetch" href="/assets/js/5.c539a829.js"><link rel="prefetch" href="/assets/js/50.ceade63d.js"><link rel="prefetch" href="/assets/js/51.b45e6f5a.js"><link rel="prefetch" href="/assets/js/52.2d07128e.js"><link rel="prefetch" href="/assets/js/53.039ff532.js"><link rel="prefetch" href="/assets/js/54.59c79952.js"><link rel="prefetch" href="/assets/js/55.26c2a9fe.js"><link rel="prefetch" href="/assets/js/56.ffb19758.js"><link rel="prefetch" href="/assets/js/57.e9baad67.js"><link rel="prefetch" href="/assets/js/58.ad5d366b.js"><link rel="prefetch" href="/assets/js/59.893ae0d4.js"><link rel="prefetch" href="/assets/js/6.1e6086df.js"><link rel="prefetch" href="/assets/js/60.8a4c6f7f.js"><link rel="prefetch" href="/assets/js/61.ba200ba8.js"><link rel="prefetch" href="/assets/js/62.1bcdc910.js"><link rel="prefetch" href="/assets/js/63.0c2427f5.js"><link rel="prefetch" href="/assets/js/64.10f4c914.js"><link rel="prefetch" href="/assets/js/7.473a5cfb.js"><link rel="prefetch" href="/assets/js/8.34a04342.js"><link rel="prefetch" href="/assets/js/9.e0d8d156.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.51d07f76.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/guide/es/" class="home-link router-link-active"><!----> <span class="site-name">ADempiere Proxy API</span></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/default-modules/adempiere-api/core.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/" class="nav-link">en-US</a></li><li class="dropdown-item"><!----> <a href="/guide/es/default-modules/adempiere-api/core.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">es-ES</a></li></ul></div></div> <a href="https://github.com/adempiere/proxt-adempiere-api" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><div class="sidebar-group first"><p class="sidebar-heading"><span>General Information</span> <!----></p> <ul class="sidebar-group-items"><li><a href="/guide/es/general/installation.html" class="sidebar-link">Installation</a></li><li><a href="/guide/es/general/config.html" class="sidebar-link">Configuration</a></li><li><a href="/guide/es/general/extensions.html" class="sidebar-link">Extensions</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading open"><span>ADempiere</span> <span class="arrow down"></span></p> <ul class="sidebar-group-items"><li><a href="/guide/es/default-modules/adempiere-api/api.html" class="sidebar-link">Interfaces REST de ADempiere</a></li><li><a href="/guide/es/default-modules/adempiere-api/core.html" aria-current="page" class="active sidebar-link">Módulo núcleo</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#modulo-nucleo" class="sidebar-link">Módulo núcleo</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#get-adempiere-api-core-country" class="sidebar-link">GET /adempiere-api/core/country</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#codigo-de-respuesta" class="sidebar-link">Código de Respuesta:</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-list-organizations" class="sidebar-link">POST /adempiere-api/core/list-organizations</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#codigo-de-respuesta-2" class="sidebar-link">Código de Respuesta:</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-list-warehouses" class="sidebar-link">POST /adempiere-api/core/list-warehouses</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#codigo-de-respuesta-3" class="sidebar-link">Código de Respuesta:</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-list-languages" class="sidebar-link">POST /adempiere-api/core/list-languages</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#codigo-de-respuesta-4" class="sidebar-link">Código de Respuesta:</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-get-business-partner" class="sidebar-link">POST /adempiere-api/core/get-business-partner</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#codigo-de-respuesta-5" class="sidebar-link">Código de Respuesta:</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-create-business-partner" class="sidebar-link">POST /adempiere-api/core/create-business-partner</a></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-list-business-partner" class="sidebar-link">POST /adempiere-api/core/list-business-partner</a></li><li class="sidebar-sub-header"><a href="/guide/es/default-modules/adempiere-api/core.html#post-adempiere-api-core-get-conversion-rate" class="sidebar-link">POST /adempiere-api/core//get-conversion-rate</a></li></ul></li></ul></li><li><a href="/guide/es/default-modules/adempiere-api/img.html" class="sidebar-link">Módulo Imagen</a></li><li><a href="/guide/es/default-modules/adempiere-api/user.html" class="sidebar-link">Módulo usuario</a></li><li><a href="/guide/es/default-modules/adempiere-api/enrollment.html" class="sidebar-link">Módulo Inscripción</a></li><li><a href="/guide/es/default-modules/adempiere-api/data.html" class="sidebar-link">Módulo Data</a></li><li><a href="/guide/es/default-modules/adempiere-api/dictionary.html" class="sidebar-link">Módulo diccionario</a></li><li><a href="/guide/es/default-modules/adempiere-api/resource.html" class="sidebar-link">/guide/es/default-modules/adempiere-api/resource.html</a></li><li><a href="/guide/es/default-modules/adempiere-api/user-log.html" class="sidebar-link">Módulo Registros de Usuario</a></li><li><a href="/guide/es/default-modules/adempiere-api/dashboard.html" class="sidebar-link">Módulo del panel de control</a></li><li><a href="/guide/es/default-modules/adempiere-api/workflow.html" class="sidebar-link">Módulo Flujo de Trabajo</a></li><li><a href="/guide/es/default-modules/adempiere-api/pos.html" class="sidebar-link">Módulo Pos</a></li></ul></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Default gateway</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Modules</span> <span class="arrow right"></span></p> <!----></div></li><li><div class="sidebar-group collapsable"><p class="sidebar-heading"><span>Integrations</span> <span class="arrow right"></span></p> <!----></div></li></ul> </div> <div class="page"> <div class="content"><h2 id="modulo-nucleo"><a href="#modulo-nucleo" class="header-anchor">#</a> Módulo núcleo</h2> <h3 id="get-adempiere-api-core-country"><a href="#get-adempiere-api-core-country" class="header-anchor">#</a> GET /adempiere-api/core/country</h3> <p>Obtiene los datos del país.</p> <h4 id="parametros-get"><a href="#parametros-get" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>id</code> - identificador del país.
+<code>uuid</code> - identificador único universal del país.</p> <h4 id="cuerpo-de-la-peticion"><a href="#cuerpo-de-la-peticion" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language- extra-class"><pre class="language-text"><code>null
+</code></pre></div><h4 id="ejemplo-de-llamada"><a href="#ejemplo-de-llamada" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/country&amp;token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&amp;language=es&amp;uuid=901bff3b-6f85-4bbf-b068-a5b273866885'</span> <span class="token punctuation">\</span>
+    -X GET <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta"><a href="#cuerpo-de-repuesta" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;901bff3b-6f85-4bbf-b068-a5b273866885&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;country_code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;US&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;United States&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;United States of America&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;has_region&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;region_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;State&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;display_sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@C@, @R@ @P@&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;is_address_lines_reverse&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;capture_sequence&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@A1@ @A2@ @A3@ @A4@ @C@, @R@ @P@ @CO@&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;display_sequence_local&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@C@, @R@ @P@&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;is_address_lines_local_reverse&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;expression_postal&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;has_postal_add&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;expression_phone&quot;</span><span class="token operator">:</span> <span class="token string">&quot;(000) 000-0000&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;media_size&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;expression_bank_routing_no&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;expression_bank_account_no&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;en_US&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;allow_cities_out_of_list&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;is_postcode_lookup&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;currency&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;b108a3c4-cb99-41ef-b5c3-06adbf649b3b&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;iso_code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;USD&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;currency_symbol&quot;</span><span class="token operator">:</span> <span class="token string">&quot;$&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;US Dollar&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;standard_precision&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;costing_precision&quot;</span><span class="token operator">:</span> <span class="token number">4</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="codigo-de-respuesta"><a href="#codigo-de-respuesta" class="header-anchor">#</a> Código de Respuesta:</h2> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-list-organizations"><a href="#post-adempiere-api-core-list-organizations" class="header-anchor">#</a> POST /adempiere-api/core/list-organizations</h3> <p>Obtiene la lista de organizaciones a las que el usuario tiene acceso según su rol.</p> <h4 id="parametros-get-2"><a href="#parametros-get-2" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>page_size</code> - tamaño de las listas de la paginación.
+<code>page_token</code> - token el numero de la página.</p> <h4 id="cuerpo-de-la-peticion-2"><a href="#cuerpo-de-la-peticion-2" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;role_id&quot;</span><span class="token operator">:</span> <span class="token number">321</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;role_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;f855ca25-07b2-4760-aec6-676db1a5cb19&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-2"><a href="#ejemplo-de-llamada-2" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/list-organizations&amp;token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&amp;language=es&amp;page_size=50&amp;page_token=47e1c737-418d-4340-b552-797860bd125f-3'</span> <span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span> <span class="token punctuation">\</span>
+    --data-binary <span class="token string">'{&quot;role_uuid&quot;:&quot;f855ca25-07b2-4760-aec6-676db1a5cb19&quot;}'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-2"><a href="#cuerpo-de-repuesta-2" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a3e5c878-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;*&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;All Organizations&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;duns&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0          &quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;tax_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;phone&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;phone2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;fax&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1000000</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;d97027fd-4cd5-445e-8fd8-ef5d3f7959b4&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Compañía Estándar&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_read_only&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;duns&quot;</span><span class="token operator">:</span> <span class="token string">&quot;?          &quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;tax_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;J075537106&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;phone&quot;</span><span class="token operator">:</span> <span class="token string">&quot;02443213777&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;phone2&quot;</span><span class="token operator">:</span> <span class="token string">&quot;04241006446&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;fax&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="codigo-de-respuesta-2"><a href="#codigo-de-respuesta-2" class="header-anchor">#</a> Código de Respuesta:</h2> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-list-warehouses"><a href="#post-adempiere-api-core-list-warehouses" class="header-anchor">#</a> POST /adempiere-api/core/list-warehouses</h3> <p>Obtiene la lista de organizaciones a las que el usuario tiene acceso según su rol.</p> <h4 id="parametros-get-3"><a href="#parametros-get-3" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>page_size</code> - tamaño de las listas de la paginación.
+<code>page_token</code> - token el numero de la página.</p> <h4 id="cuerpo-de-la-peticion-3"><a href="#cuerpo-de-la-peticion-3" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;organization_id&quot;</span><span class="token operator">:</span> <span class="token number">432</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;organization_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a3e5c878-fb40-11e8-a479-7a0060f0aa01&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-3"><a href="#ejemplo-de-llamada-3" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/list-warehouses&amp;token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&amp;language=es&amp;page_size=50&amp;page_token=47e1c737-418d-4340-b552-797860bd125f-3'</span> <span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span> <span class="token punctuation">\</span>
+    --data-binary <span class="token string">'{&quot;organization_uuid&quot;:&quot;a3e5c878-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-3"><a href="#cuerpo-de-repuesta-3" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;a5f64584-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;*&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ALL WAREHOUSE&quot;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="codigo-de-respuesta-3"><a href="#codigo-de-respuesta-3" class="header-anchor">#</a> Código de Respuesta:</h2> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-list-languages"><a href="#post-adempiere-api-core-list-languages" class="header-anchor">#</a> POST /adempiere-api/core/list-languages</h3> <p>Obtiene la lista de idiomas disponibles.</p> <h4 id="parametros-get-4"><a href="#parametros-get-4" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>page_size</code> - tamaño de las listas de la paginación.
+<code>page_token</code> - token el numero de la página.</p> <h4 id="cuerpo-de-la-peticion-4"><a href="#cuerpo-de-la-peticion-4" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language- extra-class"><pre class="language-text"><code>null
+</code></pre></div><h4 id="ejemplo-de-llamada-4"><a href="#ejemplo-de-llamada-4" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/list-languages&amp;token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&amp;language=es&amp;page_size=50&amp;page_token=47e1c737-418d-4340-b552-797860bd125f-1'</span> <span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+</code></pre></div><h4 id="cuerpo-de-repuesta-4"><a href="#cuerpo-de-repuesta-4" class="header-anchor">#</a> Cuerpo de Repuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;en_US&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;language_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;English (USA)&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;language_iso&quot;</span><span class="token operator">:</span> <span class="token string">&quot;en&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;country_code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;US&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_base_language&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_system_language&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_decimal_point&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;date_pattern&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MM/dd/yyyy&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;time_pattern&quot;</span><span class="token operator">:</span> <span class="token string">&quot;h:mm:ss a z&quot;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es_MX&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;language_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Spanish (Mexico)&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;language_iso&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;country_code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MX&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_base_language&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_system_language&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;is_decimal_point&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;date_pattern&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dd/MM/yyyy&quot;</span><span class="token punctuation">,</span>
+				<span class="token property">&quot;time_pattern&quot;</span><span class="token operator">:</span> <span class="token string">&quot;hh:mm:ss a z&quot;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="codigo-de-respuesta-4"><a href="#codigo-de-respuesta-4" class="header-anchor">#</a> Código de Respuesta:</h2> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-get-business-partner"><a href="#post-adempiere-api-core-get-business-partner" class="header-anchor">#</a> POST /adempiere-api/core/get-business-partner</h3> <p>Obtiene los datos del país.</p> <h4 id="parametros-get-5"><a href="#parametros-get-5" class="header-anchor">#</a> Parámetros GET:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.</p> <h4 id="cuerpo-de-la-peticion-5"><a href="#cuerpo-de-la-peticion-5" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;role_id&quot;</span><span class="token operator">:</span> <span class="token number">321</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;role_uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;f855ca25-07b2-4760-aec6-676db1a5cb19&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;searchValue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;contact_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;email&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;postal_code&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;phone&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;table_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">&quot;column_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Client_ID&quot;</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">&quot;column_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;AD_Org_ID&quot;</span><span class="token punctuation">,</span>
+			<span class="token property">&quot;values&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+				<span class="token number">0</span><span class="token punctuation">,</span>
+				<span class="token number">1234</span>
+			<span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;columns&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token comment">//  Custom Query</span>
+	<span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;where_clause&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;order_by_clause&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;limit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-5"><a href="#ejemplo-de-llamada-5" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/get-business-partner&amp;token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&amp;language=es&amp;uuid=901bff3b-6f85-4bbf-b068-a5b273866885'</span> <span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+</code></pre></div><h2 id="codigo-de-respuesta-5"><a href="#codigo-de-respuesta-5" class="header-anchor">#</a> Código de Respuesta:</h2> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-create-business-partner"><a href="#post-adempiere-api-core-create-business-partner" class="header-anchor">#</a> POST /adempiere-api/core/create-business-partner</h3> <p>Crear Socio de Negocios</p> <h4 id="parametros-post"><a href="#parametros-post" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>valor</code> - valor.
+<code>tax_id</code>: número de identificación fiscal.
+<code>duns</code> - DUNS.
+<code>naics</code> - NAICS.
+<code>name</code> - Nombre.
+<code>last_name</code> - Apellido.
+<code>description</code> - Descripción.
+<code>contact_name</code> - Nombre de contacto.
+<code>email</code>: correo electrónico.
+<code>phone</code>: teléfono.
+<code>business_partner_group_uuid</code> - Grupo de socios comerciales.
+<code>address1</code> - Dirección 1.
+<code>address2</code> - Dirección 2.
+<code>address3</code> - Dirección 3.
+<code>address4</code> - Dirección 4.
+<code>city_uuid</code>: UUID de la ciudad.
+<code>city_name</code>: nombre de la ciudad.
+<code>postal_code</code>: código postal.
+<code>region_uuid</code>: UUID de la región.
+<code>region_name</code> - Nombre de la región.
+<code>country_uuid</code>: UUID del país.
+<code>pos_uuid</code>: UUID de POS.
+<code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.</p> <h4 id="cuerpo-de-la-peticion-6"><a href="#cuerpo-de-la-peticion-6" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-6"><a href="#ejemplo-de-llamada-6" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/create-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;value&quot;:&quot;V123456789&quot;,&quot;name&quot;:&quot;Test&quot;,&quot;e_mail&quot;:&quot;test@gmail.com&quot;,&quot;phone&quot;:&quot;58+ 4145384801&quot;,&quot;address1&quot;:&quot;Paez&quot;,&quot;address2&quot;:&quot;Av Circuvalancio&quot;,&quot;address3&quot;:&quot;Urbanicacion Altos de Camorucos&quot;,&quot;address4&quot;:&quot;Lote 2 Garza Blanca&quot;,&quot;city_uuid&quot;:&quot;fbda5b92-820a-4d98-9917-d975e4b97baf&quot;,&quot;city_name&quot;:&quot;Acarigua&quot;,&quot;postal_code&quot;:&quot;3301&quot;,&quot;region_uuid&quot;:&quot;629317dd-88c2-419d-9c60-b116bd837a71&quot;,&quot;region_name&quot;:&quot;Portuguesa&quot;,&quot;pos_uuid&quot;:&quot;561359fb-e20a-4337-85d2-ff18538a94c5&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta"><a href="#cuerpo-de-respuesta" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;69a7914f-3db6-4cc5-b127-a6aecc50a504&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1011700</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;V123456789&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;tax_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;duns&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;naics&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;last_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-6"><a href="#codigo-de-respuesta-6" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-list-business-partner"><a href="#post-adempiere-api-core-list-business-partner" class="header-anchor">#</a> POST /adempiere-api/core/list-business-partner</h3> <p>Lista de socios comerciales</p> <h4 id="parametros-post-2"><a href="#parametros-post-2" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>page_size</code> - tamaño de las listas de la paginación.
+<code>page_token</code> - token el numero de la página.
+<code>search_value</code> - Valor de búsqueda.
+<code>value</code>: valor.
+<code>name</code> - Nombre.
+<code>contact_name</code> - Nombre de contacto.
+<code>email</code>: correo electrónico.
+<code>postal_code</code>: código postal.
+<code>phone</code>: teléfono.
+<code>table_name</code> - nombre de la tabla (Obligatorio si no es una consulta).
+<code>query</code>: consulta personalizada en lugar de un nombre de tabla basado en SQL.
+<code>where_clause</code> - cláusula where de búsqueda basada en SQL.
+<code>order_by_clause</code>: ordena por cláusula basada en SQL.
+<code>limit</code> - límite de registros.</p> <h4 id="cuerpo-de-la-peticion-7"><a href="#cuerpo-de-la-peticion-7" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;page_token=9b403b14-d063-4f65-9720-358a6de8c55e-1&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-7"><a href="#ejemplo-de-llamada-7" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/list-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;search_value&quot;: &quot;V1234567&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-2"><a href="#cuerpo-de-respuesta-2" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;code&quot;</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;result&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;record_count&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;next_page_token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;records&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                <span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span> <span class="token string">&quot;69a7914f-3db6-4cc5-b127-a6aecc50a504&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;id&quot;</span><span class="token operator">:</span> <span class="token number">1011700</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;V123456789&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;tax_id&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;duns&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;naics&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Test&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;last_name&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;description&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-7"><a href="#codigo-de-respuesta-7" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul> <h3 id="post-adempiere-api-core-get-conversion-rate"><a href="#post-adempiere-api-core-get-conversion-rate" class="header-anchor">#</a> POST /adempiere-api/core//get-conversion-rate</h3> <p>Obtener Tasa de Conversión</p> <h4 id="parametros-post-3"><a href="#parametros-post-3" class="header-anchor">#</a> Paràmetros POST:</h4> <p><code>token</code> - token de usuario devuelto de <code>POST /adempiere-api/user/login</code>.
+<code>language</code> - idioma para las traducciones de la respuesta.
+<code>page_size</code> - tamaño de las listas de la paginación.
+<code>page_token</code> - token el numero de la página.
+<code>conversion_type_uuid</code>: UUID de referencia del tipo de conversión.
+<code>currency_from_uuid</code> - Moneda del UUID de referencia.
+<code>currency_to_uuid</code> - Moneda Para hacer referencia al UUID.
+<code>conversion_date</code>: UUID de referencia de la fecha de conversión.</p> <h4 id="cuerpo-de-la-peticion-8"><a href="#cuerpo-de-la-peticion-8" class="header-anchor">#</a> Cuerpo de la Petición:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;token&quot;</span><span class="token operator">:</span> <span class="token string">&quot;5339c283-dc77-4001-8315-22905596d6c0&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="ejemplo-de-llamada-8"><a href="#ejemplo-de-llamada-8" class="header-anchor">#</a> Ejemplo de Llamada:</h4> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">curl</span> <span class="token string">'https://api.erpya.com/adempiere-api/core/get-conversion-rate?token=9938867d-b2c5-45bc-8650-c2b484b4887f&amp;language=es'</span><span class="token punctuation">\</span>
+    -X POST <span class="token punctuation">\</span>
+    -H <span class="token string">'content-type: application/json'</span> <span class="token punctuation">\</span>
+    -H <span class="token string">'accept: */*;charset=UTF-8'</span>
+    --data-binary <span class="token string">'{&quot;conversion_type_uuid&quot;:&quot;40767cd6-b6cf-4058-ae34-42ea1ea3ce71&quot;,&quot;currency_from_uuid&quot;:&quot;a567befe-fb40-11e8-a479-7a0060f0aa01&quot;,&quot;currency_to_uuid&quot;:&quot;a5671df0-fb40-11e8-a479-7a0060f0aa01&quot;}'</span>
+    
+</code></pre></div><h4 id="cuerpo-de-respuesta-3"><a href="#cuerpo-de-respuesta-3" class="header-anchor">#</a> Cuerpo de Respuesta:</h4> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;result&quot;</span><span class="token operator">:</span><span class="token punctuation">{</span>
+		<span class="token property">&quot;uuid&quot;</span><span class="token operator">:</span><span class="token string">&quot;a567befe-fb40-11e8-a479-7a0060f0aa01&quot;</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;id&quot;</span><span class="token operator">:</span><span class="token number">50001</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;conversion_type_uuid&quot;</span><span class="token operator">:</span><span class="token string">&quot;a5671df0-fb40-11e8-a479-7a0060f0aa01&quot;</span>
+		<span class="token punctuation">,</span><span class="token property">&quot;valid_from&quot;</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token property">&quot;valid_to&quot;</span><span class="token operator">:</span><span class="token number">0</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="codigo-de-respuesta-8"><a href="#codigo-de-respuesta-8" class="header-anchor">#</a> Código de Respuesta:</h4> <ul><li><code>200</code> cuando es exitoso</li> <li><code>500</code> en caso de error</li></ul></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/adempiere/proxt-adempiere-api/edit/master//guide/es/default-modules/adempiere-api/core.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/guide/es/default-modules/adempiere-api/api.html" class="prev">
+          Interfaces REST de ADempiere
+        </a></span> <span class="next"><a href="/guide/es/default-modules/adempiere-api/img.html">
+          Módulo Imagen
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/app.8ea8c90b.js" defer></script><script src="/assets/js/27.01da01ba.js" defer></script>
+  </body>
+</html>
