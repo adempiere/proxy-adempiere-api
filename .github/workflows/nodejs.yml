@@ -56,8 +56,8 @@ jobs:
              npm run build
       - run: |
             git clone https://github.com/adempiere/proxy-adempiere-api.git --branch gh-pages --single-branch gh-pages
-            cp -r docs/.vuepress/dist/* gh-pages/
-            cd gh-pages
+            cp -r docs/.vuepress/dist/* gh-pages/docs/
+            cd gh-pages/docs
             touch .nojekyll 
             git init 
             git config --local user.email "action@github.com"
