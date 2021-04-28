@@ -1,3 +1,7 @@
+---
+pageClass: getting-started
+---
+
 # Introduction
 
 Storefront API is a customizable, modular eCommerce API gateway. You can use this product to provide all your frontends - including mobile applications - with a single data source. **GraphQL support** lets you easily implement the BFF ([Backend for Frontend](https://samnewman.io/patterns/architectural/bff/)) pattern. It unifies the interfaces between all the systems backing your frontend, and lets you query multiple data sources with a single HTTP request.

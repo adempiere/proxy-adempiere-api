@@ -1,4 +1,4 @@
-# Interfaces REST de ADempiere
+## Interfaces REST de ADempiere
 
 Este producto logra ser independiente de la plataforma gracias a los conectores API dedicados para plataformas de backend de comercio electrónico. El formato de datos en los módulos `default-catalog` y` default-vsf` es siempre el mismo para cualquier plataforma, lo que significa que no importa qué backend de comercio electrónico utilice, su frontend permanece igual sin ningún cambio.
 

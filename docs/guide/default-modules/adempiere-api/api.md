@@ -1,4 +1,4 @@
-# REST Interface from ADempiere
+## REST Interface from ADempiere
 
 This product manages to be platform-agnostic thanks to dedicated API connectors for [gRPC ADempiere Server](https://github.com/adempiere/adempiere-gRPC-Server) backend platform.
 

@@ -49,3 +49,24 @@ jobs:
           yarn test:integration
         env:
           CI: true
+      - name: Publish Documentation
+      - run: set -e
+      - run: |
+             cd docs
+             npm i
+             npm run build
+      - run: |
+            git clone https://github.com/adempiere/proxy-adempiere-api.git --branch gh-pages --single-branch gh-pages
+            cp -r docs/.vuepress/dist/* gh-pages/
+            cd gh-pages
+            touch .nojekyll 
+            git init 
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add .
+            git commit -m "Update documentation" -a || true
+      - uses: ad-m/github-push-action@master
+        with:
+          branch: gh-pages
+          directory: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
