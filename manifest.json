@@ -1,6 +1,6 @@
 {
-  "name": "adempiere-vue-doc",
-  "short_name": "adempiere-vue-doc",
+  "name": "proxy-adempiere-api",
+  "short_name": "proxy-adempiere-api",
   "icons": [
     {
       "src": "/icons/192x192.png",
