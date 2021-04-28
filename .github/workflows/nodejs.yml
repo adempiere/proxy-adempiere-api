@@ -60,8 +60,9 @@ jobs:
              npm i
              npm run build
       - run: |
+            cd docs
             git clone https://github.com/adempiere/proxy-adempiere-api.git --branch gh-pages --single-branch gh-pages
-            cp -r docs/.vuepress/dist/* gh-pages/docs/
+            cp -r .vuepress/dist/* gh-pages/docs/
             cd gh-pages/docs
             touch .nojekyll 
             git init 
@@ -72,5 +73,5 @@ jobs:
       - uses: ad-m/github-push-action@master
         with:
           branch: gh-pages
-          directory: gh-pages/docs
+          directory: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
