@@ -35,7 +35,7 @@ module.exports = {
             },
             {
               title: 'ADempiere',
-              collapsable: true,
+              collapsable: false,
               children: [
                 'default-modules/adempiere-api/api',
                 'default-modules/adempiere-api/core',
