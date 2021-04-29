@@ -24,16 +24,14 @@ footer: GNU/GPL v3 Licensed | Copyright © 2019-present ADempiere
 
 ```bash
 # clone the project
-git clone https://github.com/adempiere/adempiere-vue.git
+git clone https://github.com/adempiere/proxy-adempiere-api.git
 
 # install dependency
-npm install
+yarn install
 
 # develop
-npm run dev
+yarn dev
 ```
-
-open http://localhost:8080/adempiere-vue-site/
 
 ## Demo
 
