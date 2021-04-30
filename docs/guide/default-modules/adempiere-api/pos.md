@@ -19,7 +19,7 @@ Lista todos los puntos de venta asociados al usuario actual
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/list-point-of-sales?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/list-point-of-sales?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -155,11 +155,11 @@ Obtener el precio del producto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/get-product-price?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/get-product-price?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"search_value":"3933-018MC","price_list_uuid":"54745978-ce79-11e9-aa53-0242ac110002"}'
+    --data-binary '{"search_value":"BTV-C2-SLIM","price_list_uuid":"54745978-ce79-11e9-aa53-0242ac110002"}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -278,7 +278,7 @@ Precio de lista del producto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/list-product-prices?token=5546436e-1146-47ae-a6b3-3895680ccade&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/list-product-prices?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -292,7 +292,7 @@ curl 'https://api.erpya.com/adempiere-api/pos/list-product-prices?token=5546436e
     "code": 200,
     "result": {
         "record_count": 11062,
-        "next_page_token": "5546436e-1146-47ae-a6b3-3895680ccade-1",
+        "next_page_token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2-1",
         "records": [
             {
                 "currency": {
@@ -898,6 +898,7 @@ Crear un orden desde el punto de venta
 
 `pos_uuid` - Uuid del punto de venta.
 `customer_uuid` - Uuid del representante de ventas`.
+`sales_representative_uuid` -
 
 
 #### Cuerpo de la Petición:
@@ -912,11 +913,11 @@ Crear un orden desde el punto de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/create-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/create-order?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"pos_uuid":"421173e1-c58d-4474-89e5-9872f07baf47","customer_uuid":"9f6cf428-9209-11e9-8046-0242ac140002","sales_representative_uuid":"43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"pos_uuid":"eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51","customer_uuid":"9f6cf428-9209-11e9-8046-0242ac140002","sales_representative_uuid":"9f6cf428-9209-11e9-8046-0242ac140002"}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -999,11 +1000,11 @@ Crear pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/create-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/create-payment?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289","tender_type_code": "K","currency_uuid": "a5671df0-fb40-11e8-a479-7a0060f0aa01","amount": "16345.65"}'
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"pos_uuid":"eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51","order_uuid":"b278755b-2a43-4691-80a5-e3b532670aac","amount":23,"tender_type_code":"X","currency_uuid":"a5671df0-fb40-11e8-a479-7a0060f0aa01"}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -1069,11 +1070,11 @@ Eliminar pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/delete-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/delete-payment?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927", amount": "100.00"}'
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"payment_uuid": "8c711a05-4c27-4e27-9e46-31b3d6242bdc", "amount": "40"}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -1118,10 +1119,10 @@ Actualizar pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/update-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/update-payment?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927"}'
 ```
 
@@ -1190,10 +1191,10 @@ Lista de pagos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/list-payments?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/list-payments?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4"}'
 ```
 
@@ -1585,10 +1586,10 @@ Borrar pedido de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/delete-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/delete-order?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289"}'
 ```
 
@@ -1634,10 +1635,10 @@ Crear línea de pedido de cliente
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/create-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/create-order-line?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2","product_uuid":"6e081721-4710-40d6-85bd-ba0bc9bfd6db"}'
 ```
 
@@ -1737,10 +1738,10 @@ Delete Sales Order Line
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/delete-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/delete-order-line?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_line_uuid": "0ab0e045-1371-404b-b665-72ae64c59f81"}'
 ```
 
@@ -1783,10 +1784,10 @@ Actualizar la orden de venta.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/update-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/update-order?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4","customer_uuid": "9f6cf428-9209-11e9-8046-0242ac140002","document-type-uuid": "45494bd2-12d8-41c4-b7e2-a1968b18e86c","description": "test update order"}'
 ```
 
@@ -1866,10 +1867,10 @@ Actualizar la línea de pedido de ventas
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/update-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/update-order-line?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_line_uuid":"0ab0e045-1371-404b-b665-72ae64c59f81","quantity":2,"discount_rate":0}'
 ```
 
@@ -1972,10 +1973,10 @@ Obtener un pedido de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/get-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/get-order?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
@@ -2062,10 +2063,10 @@ Lista de pedidos de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/list-orders?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/list-orders?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid":"561359fb-e20a-4337-85d2-ff18538a94c5","is_paid":false,"is_processed":false,"is_aisle_seller":false,"is_invoiced":false}'
 ```
 
@@ -2701,10 +2702,10 @@ Lista de Líneas de Pedidos de Ventas
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/list-order-lines?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/list-order-lines?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
@@ -2809,10 +2810,10 @@ Obtenga el diseño de la llave
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/pos/get-key-layout?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
+curl 'https://api.erpya.com/adempiere-api/pos/get-key-layout?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"key_layout_uuid": "0c65bace-ec5f-4e90-822c-ee9b7bd0c539"}'
 ```
 

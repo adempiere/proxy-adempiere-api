@@ -24,7 +24,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/img?action=fit&width=100&height=100&url=4c374d54-0e21-4a2f-9e18-9b03b22b5d6c-chavo_crop1595979643620.jpg_1902800913.jpg' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### CUERPO DE RESPUESTA:
