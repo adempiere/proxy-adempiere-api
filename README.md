@@ -75,7 +75,7 @@ curl 'https://api.erpya.com/adempiere-api/user/login' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"username":"SuperUser","password":"System"}'
+    --data-binary '{"username":"demo","password":"demo"}'
 ```
 
 ```bash
