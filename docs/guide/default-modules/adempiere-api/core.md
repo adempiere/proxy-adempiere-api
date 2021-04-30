@@ -20,10 +20,10 @@ null
 #### A Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/country?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' 
 ```
 
 #### Response Body:
@@ -90,7 +90,7 @@ Get a list of organizations of user role allowed.
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/list-organizations&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-organizations?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -159,7 +159,7 @@ Get a list of warehouses from current organization.
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/list-warehouses&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
+curl 'https://api.erpya.com/adempiere-api/core/list-warehouses?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-3' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -207,10 +207,12 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/core/country?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es?' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 1073741,
+    "uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66"
+}'
 ```
 
 #### Response Body:
@@ -271,20 +273,20 @@ Get a specific business partner based on a query criteria or values.
 filters:
 [
   {
-    column_name: 'DocStatus',
-    operator: 'EQUAL',
-    value: 'CO'
+    "column_name": "DocStatus",
+    "operator": "EQUAL",
+    "value": "CO"
   },
   {
-    column_name: 'DateInvoiced',
-    operator: 'BETWEEN',
-    value: '2020-01-01'
-    value_to: '2020-09-01'
+    "column_name": "DateInvoiced",
+    "operator": "BETWEEN",
+    "value": "2020-01-01",
+    "value_to": "2020-09-01"
   },
   {
-    column_name: 'C_DocType_ID',
-    operator: 'IN',
-    values: [
+   "column_name": "C_DocType_ID",
+    "operator": "IN",
+    "values": [
       1000000,
       1000562
     ]
@@ -340,8 +342,8 @@ filters:
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/get-business-partner?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' 
 ```

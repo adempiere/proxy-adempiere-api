@@ -23,7 +23,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/core/country&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
@@ -222,7 +222,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/core/list-languages&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&page_size=50&page_token=47e1c737-418d-4340-b552-797860bd125f-1' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
@@ -318,7 +318,7 @@ Obtiene los datos del país.
 curl 'https://api.erpya.com/adempiere-api/core/get-business-partner&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 ## Código de Respuesta:
@@ -370,10 +370,10 @@ Crear Socio de Negocios
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/create-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/create-business-partner?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"value":"V123456789","name":"Test","e_mail":"test@gmail.com","phone":"58+ 4145384801","address1":"Paez","address2":"Av Circuvalancio","address3":"Urbanicacion Altos de Camorucos","address4":"Lote 2 Garza Blanca","city_uuid":"fbda5b92-820a-4d98-9917-d975e4b97baf","city_name":"Acarigua","postal_code":"3301","region_uuid":"629317dd-88c2-419d-9c60-b116bd837a71","region_name":"Portuguesa","pos_uuid":"561359fb-e20a-4337-85d2-ff18538a94c5"}'
     
 ```
@@ -436,10 +436,10 @@ Lista de socios comerciales
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/list-business-partner?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/list-business-partner?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"search_value": "V1234567"}'
     
 ```
@@ -498,10 +498,10 @@ Obtener Tasa de Conversión
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/get-conversion-rate?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/core/get-conversion-rate?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"conversion_type_uuid":"40767cd6-b6cf-4058-ae34-42ea1ea3ce71","currency_from_uuid":"a567befe-fb40-11e8-a479-7a0060f0aa01","currency_to_uuid":"a5671df0-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```

@@ -915,7 +915,7 @@ Crear un orden desde el punto de venta
 curl 'https://api.erpya.com/adempiere-api/pos/create-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid":"421173e1-c58d-4474-89e5-9872f07baf47","customer_uuid":"9f6cf428-9209-11e9-8046-0242ac140002","sales_representative_uuid":"43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
 
@@ -1002,7 +1002,7 @@ Crear pago
 curl 'https://api.erpya.com/adempiere-api/pos/create-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289","tender_type_code": "K","currency_uuid": "a5671df0-fb40-11e8-a479-7a0060f0aa01","amount": "16345.65"}'
 ```
 
@@ -1072,7 +1072,7 @@ Eliminar pago
 curl 'https://api.erpya.com/adempiere-api/pos/delete-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927", amount": "100.00"}'
 ```
 
@@ -1121,7 +1121,7 @@ Actualizar pago
 curl 'https://api.erpya.com/adempiere-api/pos/update-payment?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"payment_uuid": "efe63e25-494e-435a-a75c-c4d055c21927"}'
 ```
 
@@ -1193,7 +1193,7 @@ Lista de pagos
 curl 'https://api.erpya.com/adempiere-api/pos/list-payments?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4"}'
 ```
 
@@ -1588,7 +1588,7 @@ Borrar pedido de venta
 curl 'https://api.erpya.com/adempiere-api/pos/delete-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid": "511605dc-e035-4b97-979d-6096f6ae7289"}'
 ```
 
@@ -1637,7 +1637,7 @@ Crear línea de pedido de cliente
 curl 'https://api.erpya.com/adempiere-api/pos/create-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2","product_uuid":"6e081721-4710-40d6-85bd-ba0bc9bfd6db"}'
 ```
 
@@ -1740,7 +1740,7 @@ Delete Sales Order Line
 curl 'https://api.erpya.com/adempiere-api/pos/delete-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_line_uuid": "0ab0e045-1371-404b-b665-72ae64c59f81"}'
 ```
 
@@ -1786,7 +1786,7 @@ Actualizar la orden de venta.
 curl 'https://api.erpya.com/adempiere-api/pos/update-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "5359ab0f-3c1c-4ca9-9306-fe38e09367c4","customer_uuid": "9f6cf428-9209-11e9-8046-0242ac140002","document-type-uuid": "45494bd2-12d8-41c4-b7e2-a1968b18e86c","description": "test update order"}'
 ```
 
@@ -1869,7 +1869,7 @@ Actualizar la línea de pedido de ventas
 curl 'https://api.erpya.com/adempiere-api/pos/update-order-line?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_line_uuid":"0ab0e045-1371-404b-b665-72ae64c59f81","quantity":2,"discount_rate":0}'
 ```
 
@@ -1975,7 +1975,7 @@ Obtener un pedido de venta
 curl 'https://api.erpya.com/adempiere-api/pos/get-order?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid": "421173e1-c58d-4474-89e5-9872f07baf47","order_uuid": "2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
@@ -2065,7 +2065,7 @@ Lista de pedidos de venta
 curl 'https://api.erpya.com/adempiere-api/pos/list-orders?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"pos_uuid":"561359fb-e20a-4337-85d2-ff18538a94c5","is_paid":false,"is_processed":false,"is_aisle_seller":false,"is_invoiced":false}'
 ```
 
@@ -2704,7 +2704,7 @@ Lista de Líneas de Pedidos de Ventas
 curl 'https://api.erpya.com/adempiere-api/pos/list-order-lines?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"order_uuid":"2b505b8f-92b6-4d29-8919-2e7a90747dc2"}'
 ```
 
@@ -2812,7 +2812,7 @@ Obtenga el diseño de la llave
 curl 'https://api.erpya.com/adempiere-api/pos/get-key-layout?token=4646490c-3eaa-4737-9ee9-0e618af0cbb8&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"key_layout_uuid": "0c65bace-ec5f-4e90-822c-ee9b7bd0c539"}'
 ```
 

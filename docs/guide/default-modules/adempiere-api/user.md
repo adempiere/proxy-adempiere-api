@@ -26,7 +26,7 @@ curl 'https://api.erpya.com/adempiere-api/user/login' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"username":"info@erpya.com","password":"TopSecretPassword"}'
+    --data-binary '{"username":"demo","password":"demo"}'
 ```
 
 #### Response Body:
@@ -34,7 +34,7 @@ curl 'https://api.erpya.com/adempiere-api/user/login' \
 ```json
 {
     "code": 200,
-    "result": "xu3h02nd67yq0gapyj8x3kpqwzcy02om"
+    "result": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2"
 }
 ```
 
@@ -64,7 +64,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/info&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om' \
+curl 'https://api.erpya.com/adempiere-api/user/info&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -112,7 +112,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/session&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -125,7 +125,7 @@ curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8
     "code": 200,
     "result": {
         "id": 1017271,
-        "uuid": "xu3h02nd67yq0gapyj8x3kpqwzcy02om",
+        "uuid": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
         "name": "Last Connection: Oct 26, 2020 11:38:53 AM AST",
         "user_info": {
             "id": 1000407,
@@ -202,7 +202,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/roles&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/roles&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -256,7 +256,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/menu&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/menu&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -359,7 +359,7 @@ Make a change of role and current session is expired automatically.
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/session&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/session&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \

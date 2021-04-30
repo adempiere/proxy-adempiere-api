@@ -23,10 +23,10 @@ Lista de Flujo de Trabajo
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order"}'
 ```
 #### Cuerpo de Respuesta:
@@ -208,11 +208,11 @@ Lista de acciones del documento
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"table_name": "C_Order","id": "1073741"}'
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -281,11 +281,11 @@ Lista de estados del documento
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es' \
+curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"table_name": "C_Order","id": "1073741"}'
+    -H 'accept: */*;charset=UTF-8' \
+    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
     
 ```
 #### Cuerpo de Respuesta:

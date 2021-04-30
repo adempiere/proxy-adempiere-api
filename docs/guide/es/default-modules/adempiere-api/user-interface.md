@@ -21,10 +21,10 @@ Obtener Adjunto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/attachment?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/attachment?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "AD_Test","id": "50000","uuid": "a4cb498e-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```
@@ -70,10 +70,10 @@ Información de referencia de recursos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/resource-reference?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/resource-reference?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"imageId": 5475}'
     
 ```
@@ -120,10 +120,10 @@ Crear una entrada de chat
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/create-chat-entry?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/create-chat-entry?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order","id": "1073741", "uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66", "comment": "add comment"}'
     
 ```
@@ -187,10 +187,10 @@ Obtener la salida del informe
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-report-output?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-report-output?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"printFormatUuid": "771d2187-6103-430a-acfc-aee208f22a0c","reportViewUuid": "831d2187-1233-430a-acfc-aee208f64a0zv","isSummary": false,"reportName": "Report Name Test","reportType": "pdf","tableName": "AD_TEST","parametersList": []}'
     
 ```
@@ -246,10 +246,10 @@ Obtener tablas para el taladro
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-drill-tables?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-drill-tables?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"tableName": "AD_TEST"}'
     
 ```
@@ -300,10 +300,10 @@ Obtener tablas para la grilla
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-report-views?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-report-views?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name":"RV_PrintFormatDetail","process_uuid":"a42a74fa-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```
@@ -354,10 +354,10 @@ Obtener formatos de impresión
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-print-formatss?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-print-formatss?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{process_uuid: "a42a74fa-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```
@@ -409,10 +409,10 @@ Desbloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/unlock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/unlock-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order","id": "1073741","uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66"}'
     
 ```
@@ -455,10 +455,10 @@ Bloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/lock-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/lock-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order","id": "1073741","uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66"}'
     
 ```
@@ -501,10 +501,10 @@ Obtener acceso privado de la tabla y el registro
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order","id": "1073741","uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66"}'
     
 ```
@@ -547,10 +547,10 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"query": "SELECT * FROM AD_Test","uuid": "771d2187-6103-430a-acfc-aee208f22a0c"}'
     
 ```
@@ -592,10 +592,10 @@ Lista de referencias
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-references?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-references?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "C_Order","id": "1073741","uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66", "window_uuid": "a52192bc-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```
@@ -652,10 +652,10 @@ Lista de elementos del navegador
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-browser-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-browser-items?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"uuid":"8aaefbc2-fb40-11e8-a479-7a0060f0aa01","filters":[{"key":"O_IsSOTrx","value":true,"values":[]},{"key":"O_DocStatus","value":"DR","values":[]}],"query":"SELECT o.Processing AS \"O_Processing\",o.C_Opportunity_ID AS \"O_C_Opportunity_ID\",o.DocStatus AS \"O_DocStatus\",o.DropShip_BPartner_ID AS \"O_DropShip_BPartner_ID\",o.DropShip_Location_ID AS \"O_DropShip_Location_ID\",o.DropShip_User_ID AS \"O_DropShip_User_ID\",o.FreightAmt AS \"O_FreightAmt\",o.IsSelected AS \"O_IsSelected\",o.CopyFrom AS \"O_CopyFrom\",o.IsDelivered AS \"O_IsDelivered\",o.Bill_Location_ID AS \"O_Bill_Location_ID\",o.Pay_BPartner_ID AS \"O_Pay_BPartner_ID\",o.AmountRefunded AS \"O_AmountRefunded\",o.Bill_User_ID AS \"O_Bill_User_ID\",o.Pay_Location_ID AS \"O_Pay_Location_ID\",o.C_Activity_ID AS \"O_C_Activity_ID\",o.C_BPartner_ID AS \"O_C_BPartner_ID\",o.PaymentRule AS \"O_PaymentRule\",o.Posted AS \"O_Posted\",o.DocumentNo AS \"O_DocumentNo\",o.DateOrdered AS \"O_DateOrdered\",o.M_Shipper_ID AS \"O_M_Shipper_ID\",o.M_Warehouse_ID AS \"O_M_Warehouse_ID\",o.OrderType AS \"O_OrderType\",o.AD_Client_ID AS \"O_AD_Client_ID\",o.AD_Org_ID AS \"O_AD_Org_ID\",o.AD_OrgTrx_ID AS \"O_AD_OrgTrx_ID\",o.AD_User_ID AS \"O_AD_User_ID\",o.AmountTendered AS \"O_AmountTendered\",o.Bill_BPartner_ID AS \"O_Bill_BPartner_ID\",o.Weight AS \"O_Weight\",o.C_BPartner_Location_ID AS \"O_C_BPartner_Location_ID\",o.C_Campaign_ID AS \"O_C_Campaign_ID\",o.C_CashLine_ID AS \"O_C_CashLine_ID\",o.C_Charge_ID AS \"O_C_Charge_ID\",o.C_ConversionType_ID AS \"O_C_ConversionType_ID\",o.C_Currency_ID AS \"O_C_Currency_ID\",o.C_DocType_ID AS \"O_C_DocType_ID\",o.C_DocTypeTarget_ID AS \"O_C_DocTypeTarget_ID\",o.ChargeAmt AS \"O_ChargeAmt\",o.C_Order_ID AS \"O_C_Order_ID\",o.C_OrderSource_ID AS \"O_C_OrderSource_ID\",o.C_Payment_ID AS \"O_C_Payment_ID\",o.C_PaymentTerm_ID AS \"O_C_PaymentTerm_ID\",o.C_POS_ID AS \"O_C_POS_ID\",o.C_Project_ID AS \"O_C_Project_ID\",o.Created AS \"O_Created\",o.CreatedBy AS \"O_CreatedBy\",o.DateAcct AS \"O_DateAcct\",o.DatePrinted AS \"O_DatePrinted\",o.DatePromised AS \"O_DatePromised\",o.DeliveryRule AS \"O_DeliveryRule\",o.DeliveryViaRule AS \"O_DeliveryViaRule\",o.Description AS \"O_Description\",o.DocAction AS \"O_DocAction\",o.FreightCostRule AS \"O_FreightCostRule\",o.GrandTotal AS \"O_GrandTotal\",o.InvoiceRule AS \"O_InvoiceRule\",o.UpdatedBy AS \"O_UpdatedBy\",o.IsActive AS \"O_IsActive\",o.IsApproved AS \"O_IsApproved\",o.IsCreditApproved AS \"O_IsCreditApproved\",o.IsDiscountPrinted AS \"O_IsDiscountPrinted\",o.IsDropShip AS \"O_IsDropShip\",o.IsInvoiced AS \"O_IsInvoiced\",o.IsPrinted AS \"O_IsPrinted\",o.IsSelfService AS \"O_IsSelfService\",o.IsSOTrx AS \"O_IsSOTrx\",o.IsTaxIncluded AS \"O_IsTaxIncluded\",o.IsTransferred AS \"O_IsTransferred\",o.Link_Order_ID AS \"O_Link_Order_ID\",o.M_FreightCategory_ID AS \"O_M_FreightCategory_ID\",o.M_PriceList_ID AS \"O_M_PriceList_ID\",o.POReference AS \"O_POReference\",o.PriorityRule AS \"O_PriorityRule\",o.Processed AS \"O_Processed\",o.ProcessedOn AS \"O_ProcessedOn\",o.PromotionCode AS \"O_PromotionCode\",o.Ref_Order_ID AS \"O_Ref_Order_ID\",o.SalesRep_ID AS \"O_SalesRep_ID\",o.SendEMail AS \"O_SendEMail\",o.TotalLines AS \"O_TotalLines\",o.Updated AS \"O_Updated\",o.User1_ID AS \"O_User1_ID\",o.User2_ID AS \"O_User2_ID\",o.Volume AS \"O_Volume\", (SELECT NVL(C_BPartner.Name,'') FROM C_BPartner WHERE o.C_BPartner_ID=C_BPartner.C_BPartner_ID) AS \"DisplayColumn_O_C_BPartner_ID\", C_DocTypeTarget_ID_C_DocType_Trl.Name AS \"DisplayColumn_O_C_DocTypeTarget_ID\", DeliveryRule_AD_Ref_List_Trl.Name AS \"DisplayColumn_O_DeliveryRule\", DocStatus_AD_Ref_List_Trl.Name AS \"DisplayColumn_O_DocStatus\" FROM C_Order o LEFT JOIN C_DocType AS C_DocTypeTarget_ID_C_DocType ON(C_DocTypeTarget_ID_C_DocType.C_DocType_ID = o.C_DocTypeTarget_ID) LEFT JOIN C_DocType_Trl AS C_DocTypeTarget_ID_C_DocType_Trl ON(C_DocTypeTarget_ID_C_DocType_Trl.C_DocType_ID = C_DocTypeTarget_ID_C_DocType.C_DocType_ID AND C_DocTypeTarget_ID_C_DocType_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS DeliveryRule_AD_Ref_List ON(DeliveryRule_AD_Ref_List.Value = o.DeliveryRule AND DeliveryRule_AD_Ref_List.AD_Reference_ID = 151) LEFT JOIN AD_Ref_List_Trl AS DeliveryRule_AD_Ref_List_Trl ON(DeliveryRule_AD_Ref_List_Trl.AD_Ref_List_ID = DeliveryRule_AD_Ref_List.AD_Ref_List_ID AND DeliveryRule_AD_Ref_List_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS DocStatus_AD_Ref_List ON(DocStatus_AD_Ref_List.Value = o.DocStatus AND DocStatus_AD_Ref_List.AD_Reference_ID = 131) LEFT JOIN AD_Ref_List_Trl AS DocStatus_AD_Ref_List_Trl ON(DocStatus_AD_Ref_List_Trl.AD_Ref_List_ID = DocStatus_AD_Ref_List.AD_Ref_List_ID AND DocStatus_AD_Ref_List_Trl.AD_Language = 'es_VE')","where_clause":"o.DocStatus NOT IN('VO')","order_by_clause":""}'
     
 ```
@@ -1039,10 +1039,10 @@ Lista de elementos de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name":"AD_Ref_List","query":"SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='es_VE') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3","filters":[]}'
     
 ```
@@ -1208,10 +1208,10 @@ Obtener elemento de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name":"AD_Ref_List","query":"SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='es_VE') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3","filters":[]}'
     
 ```
@@ -1258,10 +1258,10 @@ Lista de traducciones
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-translations?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-translations?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name": "AD_View","id": "50000","uuid": "a4cb498e-fb40-11e8-a479-7a0060f0aa01"}'
     
 ```
@@ -1311,10 +1311,10 @@ Obtener valor por defecto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-default-value?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/get-default-value?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"query": "SELECT Name from AD_TEST WHERE IsActive = 'Y' AND (SELECT MAX(AD_TEST_ID) FROM AD_TEST)"}'
 ```
 #### Cuerpo de Respuesta:
@@ -1356,10 +1356,10 @@ Ejecutar llamada
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/run-callout?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/run-callout?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"tableName": "AD_TEST","windowUuid": "771d2187-6103-430a-acfc-aee208f22a0c","callout": "INSERT","columnName": "IsActive","oldValue": false,"value": true,"tabUuid": "987d2187-6103-430a-acfc-aee208f22a0c","windowNo": 2,"attributesList": []}'
     
 ```
@@ -1407,10 +1407,10 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"tableName": "AD_TEST","id": 15,"uuid": "771d2187-6103-430a-acfc-aee208f22a0c"}'
     
 ```

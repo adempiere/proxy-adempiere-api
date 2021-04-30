@@ -123,7 +123,7 @@ Se utiliza para actualizar la entidad
 curl 'https://api.erpya.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X POS \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce","attributes":[{"key":"Name","value":"Service-Update"}]}'
 ```
 
@@ -221,7 +221,7 @@ Elimina Entidad
 curl 'https://api.erpya.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce"}'
 ```
 
@@ -267,7 +267,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 curl 'https://api.erpya.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
@@ -316,7 +316,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 curl 'https://api.erpya.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:

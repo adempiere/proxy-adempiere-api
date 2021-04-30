@@ -14,19 +14,22 @@ null
 
 ```json
 {
-    "username": "GardenAdmin",
-    "password": "GardenAdmin"
+    "username": "demo",
+    "password": "demo"
 }
 ```
 
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/login' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"username":"GardenAdmin","password":"GardenAdmin"}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/user/login?language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username": "demo",
+    "password": "demo",
+    "role_uuid": "",
+    "organization_uuid": ""
+}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -34,7 +37,7 @@ curl 'https://api.erpya.com/adempiere-api/user/login' \
 ```json
 {
     "code": 200,
-    "result": "xu3h02nd67yq0gapyj8x3kpqwzcy02om"
+    "result": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2"
 }
 ```
 
@@ -63,10 +66,10 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/info?token=210ed0bc-85a5-4654-aac6-577793f53037' \
+curl 'https://api.erpya.com/adempiere-api/user/info?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
@@ -111,10 +114,10 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/session/?token=210ed0bc-85a5-4654-aac6-577793f53037' \
+curl 'https://api.erpya.com/adempiere-api/user/session/?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
@@ -201,7 +204,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/user/roles?token=210ed0bc-85a5-4654-aac6-577793f53037&language=es' \
+curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/user/roles?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "token": "210ed0bc-85a5-4654-aac6-577793f53037"
@@ -256,10 +259,10 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/menu?token=210ed0bc-85a5-4654-aac6-577793f53037&language=es' \
+curl 'https://api.erpya.com/adempiere-api/user/menu?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
 ```
 
 #### Cuerpo de Repuesta:
