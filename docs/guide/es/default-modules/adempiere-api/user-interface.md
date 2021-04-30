@@ -25,7 +25,7 @@ curl 'https://api.erpya.com/adempiere-api/ui/attachment?token=b6d0c7c7-0785-4302
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name": "AD_Test","id": "50000","uuid": "a4cb498e-fb40-11e8-a479-7a0060f0aa01"}'
+    --data-binary '{"table_name": "Test","id": "103","uuid": "db4f0106-eace-44bd-b761-f03f6efd4852"}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -300,11 +300,11 @@ Obtener tablas para la grilla
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-report-views?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui/list-drill-tables?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"RV_PrintFormatDetail","process_uuid":"a42a74fa-fb40-11e8-a479-7a0060f0aa01"}'
+    --data-binary '{"table_name":"RV_OpenItem"}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -547,11 +547,11 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui//get-context-info-value?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"query": "SELECT * FROM AD_Test","uuid": "771d2187-6103-430a-acfc-aee208f22a0c"}'
+    --data-binary '{"query": "SELECT * FROM Test","uuid": "a61073be-fb40-11e8-a479-7a0060f0aa01", "table_name":"Test"}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -1039,11 +1039,9 @@ Lista de elementos de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"AD_Ref_List","query":"SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='es_VE') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3","filters":[]}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/list-lookup-items?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{"table_name":"AD_Org","query":"SELECT AD_Org.AD_Org_ID,NULL,NVL(AD_Org.Name,'\''-1'\''),AD_Org.IsActive, AD_Org.UUID FROM AD_Org ORDER BY 3","filters":[]}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -1208,11 +1206,9 @@ Obtener elemento de búsqueda
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"AD_Ref_List","query":"SELECT NULL, AD_Ref_List.Value,trl.Name, AD_Ref_List.IsActive, AD_Ref_List.UUID FROM AD_Ref_List INNER JOIN AD_Ref_List_Trl trl  ON (AD_Ref_List.AD_Ref_List_ID=trl.AD_Ref_List_ID AND trl.AD_Language='es_VE') WHERE AD_Ref_List.AD_Reference_ID=131 ORDER BY 3","filters":[]}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/get-lookup-item?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{"table_name":"AD_Org","query":"SELECT AD_Org.AD_Org_ID,NULL,NVL(AD_Org.Name,'\''-1'\''),AD_Org.IsActive, AD_Org.UUID FROM AD_Org ORDER BY 3","filters":[]}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -1360,8 +1356,7 @@ curl 'https://api.erpya.com/adempiere-api/ui/run-callout?token=b6d0c7c7-0785-430
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"tableName": "AD_TEST","windowUuid": "771d2187-6103-430a-acfc-aee208f22a0c","callout": "INSERT","columnName": "IsActive","oldValue": false,"value": true,"tabUuid": "987d2187-6103-430a-acfc-aee208f22a0c","windowNo": 2,"attributesList": []}'
-    
+    --data-binary '{"table_name":"C_Order","window_uuid":"a52203d2-fb40-11e8-a479-7a0060f0aa01","tab_uuid":"a49ff9be-fb40-11e8-a479-7a0060f0aa01","callout":"org.compiere.model.CalloutOrder.bPartner","column_name":"C_BPartner_ID","value":1000029,"window_no":5,"attributes":[{"columnName":"IsTransferred","value":false,"values":[]},{"columnName":"DateAcct","value":"2021-04-30T15:43:38.000Z","values":[]},{"columnName":"C_Order_ID","value":0,"values":[]},{"columnName":"SendEMail","value":false,"values":[]},{"columnName":"Processed","value":false,"values":[]},{"columnName":"IsSelected","value":false,"values":[]},{"columnName":"IsTaxIncluded","value":false,"values":[]},{"columnName":"IsSOTrx","value":true,"values":[]},{"columnName":"IsActive","value":true,"values":[]},{"columnName":"IsApproved","value":false,"values":[]},{"columnName":"IsCreditApproved","values":[]},{"columnName":"IsDelivered","value":false,"values":[]},{"columnName":"IsInvoiced","value":false,"values":[]},{"columnName":"IsPrinted","value":false,"values":[]},{"columnName":"AD_Client_ID","value":1000000,"values":[]},{"columnName":"AD_Org_ID","value":1000000,"values":[]},{"columnName":"DocumentNo","values":[]},{"columnName":"C_DocTypeTarget_ID","value":1000026,"values":[]},{"columnName":"IsSelfService","value":false,"values":[]},{"columnName":"DateOrdered","value":"2021-04-30T15:43:38.000Z","values":[]},{"columnName":"DatePromised","value":"2021-04-30T15:43:38.000Z","values":[]},{"columnName":"C_BPartner_ID","value":1000029,"values":[]},{"columnName":"C_BPartner_Location_ID","values":[]},{"columnName":"DeliveryRule","values":[]},{"columnName":"PriorityRule","values":[]},{"columnName":"M_Warehouse_ID","values":[]},{"columnName":"IsDropShip","values":[]},{"columnName":"DeliveryViaRule","values":[]},{"columnName":"FreightCostRule","values":[]},{"columnName":"FreightAmt","values":[]},{"columnName":"InvoiceRule","values":[]},{"columnName":"M_PriceList_ID","values":[]},{"columnName":"C_Currency_ID","value":50001,"values":[]},{"columnName":"IsGeneratedCurrencyType","value":false,"values":[]},{"columnName":"SalesRep_ID","values":[]},{"columnName":"IsDiscountPrinted","value":false,"values":[]},{"columnName":"PaymentRule","values":[]},{"columnName":"C_PaymentTerm_ID","values":[]},{"columnName":"IsFarmerAssistanceProgram","value":false,"values":[]},{"columnName":"TotalLines","value":0,"values":[]},{"columnName":"GrandTotal","value":0,"values":[]},{"columnName":"DocStatus","value":"DR","values":[]},{"columnName":"C_DocType_ID","value":0,"values":[]},{"columnName":"DocAction","value":"CO","values":[]},{"columnName":"Posted","values":[]}]}'
 ```
 #### Cuerpo de Respuesta:
 
@@ -1407,11 +1402,13 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"tableName": "AD_TEST","id": 15,"uuid": "771d2187-6103-430a-acfc-aee208f22a0c"}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/rollback-entity?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "id": 386,
+    "uuid": "a5209254-fb40-11e8-a479-7a0060f0aa01",
+    "table_name": "AD_Window"
+}'
     
 ```
 #### Cuerpo de Respuesta:

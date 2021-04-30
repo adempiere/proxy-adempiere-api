@@ -547,11 +547,11 @@ Obtener información de contexto
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/ui/get-private-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
+curl 'https://api.erpya.com/adempiere-api/ui//get-context-info-value?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"query": "SELECT * FROM Test","uuid": "771d2187-6103-430a-acfc-aee208f22a0c", "table_name":"Test"}'
+    --data-binary '{"query": "SELECT * FROM Test","uuid": "a61073be-fb40-11e8-a479-7a0060f0aa01", "table_name":"Test"}'
     
 ```
 #### Cuerpo de Respuesta:

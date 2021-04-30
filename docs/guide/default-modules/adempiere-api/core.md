@@ -20,7 +20,7 @@ null
 #### A Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/country?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/country?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=en&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' 
@@ -342,7 +342,7 @@ filters:
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/core/get-business-partner?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885' \
+curl 'https://api.erpya.com/adempiere-api/core/get-business-partner?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=9c5e65e6-8060-44bf-94ec-332578f7b5d7' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' 

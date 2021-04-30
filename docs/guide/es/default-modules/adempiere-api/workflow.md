@@ -212,7 +212,7 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name": "C_Order","id": "1073741"}'
+    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
     
 ```
 #### Cuerpo de Respuesta:
@@ -285,7 +285,7 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name": "C_Order","id": "1073741"}'
+    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
     
 ```
 #### Cuerpo de Respuesta:
