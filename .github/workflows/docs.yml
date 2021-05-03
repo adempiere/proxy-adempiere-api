@@ -5,7 +5,8 @@ name: ADempiere Proxy Publish
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches: [ master, develop ]
   release:
     types: 
       - published
