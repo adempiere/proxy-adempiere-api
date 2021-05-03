@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Build Documentation Adempiere ...
       - run: set -e
       - run: |
              cd docs
