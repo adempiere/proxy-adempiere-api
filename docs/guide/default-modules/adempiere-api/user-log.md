@@ -24,10 +24,10 @@ Lista de Registros de Procesos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/logs/list-process-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-process-logs?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"user_uuid": "43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
 #### Cuerpo de Respuesta:
@@ -192,10 +192,10 @@ Lista de registros de entidades
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/logs/list-entity-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-entity-logs?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"user_uuid": "43adbe9d-04a7-4cf6-9582-895c1e40da0b"}'
 ```
 #### Cuerpo de Respuesta:
@@ -305,10 +305,10 @@ Lista de chats de entidades
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/logs/list-entity-chats?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es&page_size=50' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-entity-chats?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&page_size=50' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"id": 1073741,"uuid": "6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66","table_name": "C_Order"}'
 ```
 #### Cuerpo de Respuesta:
@@ -366,10 +366,10 @@ Lista de entradas del chat
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/logs/list-chat-entries?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
+curl 'https://api.erpya.com/adempiere-api/logs/list-chat-entries?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"uuid": "e22d49ba-39c3-4edb-bd84-4bb7066429b8","table_name": "C_Order"}'
 ```
 
@@ -448,10 +448,10 @@ Lista de registros del flujo de trabajo
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/logs/list-workflow-logs?token=9938867d-b2c5-45bc-8650-c2b484b4887f'\
+curl 'https://api.erpya.com/adempiere-api/logs/list-workflow-logs?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"uuid": "e22d49ba-39c3-4edb-bd84-4bb7066429b8","table_name": "C_Order"}'
 ```
 

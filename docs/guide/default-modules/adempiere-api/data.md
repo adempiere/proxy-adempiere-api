@@ -12,7 +12,7 @@ Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelv
 
 ```json
 {
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es"
 }
 ```
@@ -20,7 +20,7 @@ Crear Entidad. Se llama al guardar un nuevo registro dede la aplicación.Devuelv
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/create?token=336d6453-448c-49f9-b809-5431d0ebbc27&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/create?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -112,7 +112,7 @@ Se utiliza para actualizar la entidad
 
 ```json
 {
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es"
 }
 ```
@@ -120,11 +120,18 @@ Se utiliza para actualizar la entidad
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/update?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
-    -X POS \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce","attributes":[{"key":"Name","value":"Service-Update"}]}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/data/update?language=en&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "table_name": "Test",
+    "uuid": "11466bf8-5524-4428-82d0-aa082611172c",
+    "attributes": [
+        {
+            "key": "Name",
+            "value": "test0"
+        }
+    ]
+}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -210,7 +217,7 @@ Elimina Entidad
 
 ```json
 {
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es"
 }
 ```
@@ -218,11 +225,13 @@ Elimina Entidad
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/delete?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
-    -X GET \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
-    --data-binary '{"table_name":"AD_RelationType","uuid": "c6d3de0c-ce12-4e40-938d-d2e34aa839ce"}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/data/delete?language=en&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "table_name": "Test",
+    "id": 1000003,
+    "uuid": "11466bf8-5524-4428-82d0-aa082611172c"
+}'
 ```
 
 #### Cuerpo de Repuesta:
@@ -256,7 +265,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 
 ```json
 {
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es"
 }
 ```
@@ -264,7 +273,7 @@ Entidad de retroceso (crear, actualizar, eliminar)
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/rollback-entity?token=98a713be-276c-4e45-8c5e-c364cc702153&language=es' \
+curl 'https://api.erpya.com/adempiere-api/data/rollback-entity?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -302,7 +311,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 
 ```json
 {
-    "token": "5339c283-dc77-4001-8315-22905596d6c0",
+    "token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es",
 	"table_name": "AD_Client",
     "id": "1000000",
@@ -313,7 +322,7 @@ Obtener la entidad a partir del nombre de la tabla y el id o uuid del registro.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/entity?token=5339c283-dc77-4001-8315-22905596d6c0&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
+curl 'https://api.erpya.com/adempiere-api/data/entity?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&table_name=AD_Client&id=1000000&uuid=894a23a8-24e7-4ae1-a2e5-eda113607852' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -420,7 +429,7 @@ Listar las Entidades.
 
 ```json
 {
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
+	"token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2",
 	"language": "es"
 }
 ```
@@ -428,11 +437,16 @@ Listar las Entidades.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/data/list?token=5339c283-dc77-4001-8315-22905596d6c0&language=es' \
-    -X POS \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"AD_RelationType","filters":[{"column_name":"UUID","value":"a4853f84-fb40-11e8-a479-7a0060f0aa01"}],"columns":[],"query":"SELECT AD_RelationType.*, (SELECT NVL(AD_Client.Name,'') FROM AD_Client WHERE AD_RelationType.AD_Client_ID=AD_Client.AD_Client_ID) AS \"DisplayColumn_AD_Client_ID\", (SELECT NVL(AD_Org.Name,'') FROM AD_Org WHERE AD_RelationType.AD_Org_ID=AD_Org.AD_Org_ID) AS \"DisplayColumn_AD_Org_ID\", Type_AD_Ref_List_Trl.Name AS \"DisplayColumn_Type\", AD_Reference_Source_ID_AD_Reference_Trl.Name AS \"DisplayColumn_AD_Reference_Source_ID\", Role_Source_AD_Ref_List_Trl.Name AS \"DisplayColumn_Role_Source\", AD_Reference_Target_ID_AD_Reference_Trl.Name AS \"DisplayColumn_AD_Reference_Target_ID\", Role_Target_AD_Ref_List_Trl.Name AS \"DisplayColumn_Role_Target\" FROM AD_RelationType AS AD_RelationType LEFT JOIN AD_Ref_List AS Type_AD_Ref_List ON(Type_AD_Ref_List.Value = AD_RelationType.Type AND Type_AD_Ref_List.AD_Reference_ID = 53332) LEFT JOIN AD_Ref_List_Trl AS Type_AD_Ref_List_Trl ON(Type_AD_Ref_List_Trl.AD_Ref_List_ID = Type_AD_Ref_List.AD_Ref_List_ID AND Type_AD_Ref_List_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Reference AS AD_Reference_Source_ID_AD_Reference ON(AD_Reference_Source_ID_AD_Reference.AD_Reference_ID = AD_RelationType.AD_Reference_Source_ID) LEFT JOIN AD_Reference_Trl AS AD_Reference_Source_ID_AD_Reference_Trl ON(AD_Reference_Source_ID_AD_Reference_Trl.AD_Reference_ID = AD_Reference_Source_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Source_ID_AD_Reference_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS Role_Source_AD_Ref_List ON(Role_Source_AD_Ref_List.Value = AD_RelationType.Role_Source AND Role_Source_AD_Ref_List.AD_Reference_ID = 53331) LEFT JOIN AD_Ref_List_Trl AS Role_Source_AD_Ref_List_Trl ON(Role_Source_AD_Ref_List_Trl.AD_Ref_List_ID = Role_Source_AD_Ref_List.AD_Ref_List_ID AND Role_Source_AD_Ref_List_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Reference AS AD_Reference_Target_ID_AD_Reference ON(AD_Reference_Target_ID_AD_Reference.AD_Reference_ID = AD_RelationType.AD_Reference_Target_ID) LEFT JOIN AD_Reference_Trl AS AD_Reference_Target_ID_AD_Reference_Trl ON(AD_Reference_Target_ID_AD_Reference_Trl.AD_Reference_ID = AD_Reference_Target_ID_AD_Reference.AD_Reference_ID AND AD_Reference_Target_ID_AD_Reference_Trl.AD_Language = 'es_VE') LEFT JOIN AD_Ref_List AS Role_Target_AD_Ref_List ON(Role_Target_AD_Ref_List.Value = AD_RelationType.Role_Target AND Role_Target_AD_Ref_List.AD_Reference_ID = 53331) LEFT JOIN AD_Ref_List_Trl AS Role_Target_AD_Ref_List_Trl ON(Role_Target_AD_Ref_List_Trl.AD_Ref_List_ID = Role_Target_AD_Ref_List.AD_Ref_List_ID AND Role_Target_AD_Ref_List_Trl.AD_Language = 'es_VE')","where_clause":"","order_by_clause":""}'
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/data/list?pageToken=5c9ab4f8-334a-4171-b324-4df37e23ebd2-1&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "table_name": "AD_Window",
+    "filters": [],
+    "columns": [],
+    "query": "SELECT AD_Window.*, (SELECT NVL(AD_Client.Name,'\'''\'') FROM AD_Client WHERE AD_Window.AD_Client_ID=AD_Client.AD_Client_ID) AS \"DisplayColumn_AD_Client_ID\", (SELECT NVL(AD_Org.Name,'\'''\'') FROM AD_Org WHERE AD_Window.AD_Org_ID=AD_Org.AD_Org_ID) AS \"DisplayColumn_AD_Org_ID\", WindowType_AD_Ref_List_Trl.Name AS \"DisplayColumn_WindowType\", (SELECT NVL(AD_Color.Name,'\'''\'') FROM AD_Color WHERE AD_Window.AD_Color_ID=AD_Color.AD_Color_ID) AS \"DisplayColumn_AD_Color_ID\", (SELECT NVL(AD_Image.Name,'\'''\'') FROM AD_Image WHERE AD_Window.AD_Image_ID=AD_Image.AD_Image_ID) AS \"DisplayColumn_AD_Image_ID\", EntityType_AD_EntityType.Name AS \"DisplayColumn_EntityType\", (SELECT NVL(AD_ContextInfo.Value,'\'''\'')||'\'' - '\''||NVL(AD_ContextInfo.Name,'\'''\'') FROM AD_ContextInfo WHERE AD_Window.AD_ContextInfo_ID=AD_ContextInfo.AD_ContextInfo_ID) AS \"DisplayColumn_AD_ContextInfo_ID\" FROM AD_Window AS AD_Window LEFT JOIN AD_Ref_List AS WindowType_AD_Ref_List ON(WindowType_AD_Ref_List.Value = AD_Window.WindowType AND WindowType_AD_Ref_List.AD_Reference_ID = 108) LEFT JOIN AD_Ref_List_Trl AS WindowType_AD_Ref_List_Trl ON(WindowType_AD_Ref_List_Trl.AD_Ref_List_ID = WindowType_AD_Ref_List.AD_Ref_List_ID AND WindowType_AD_Ref_List_Trl.AD_Language = '\''es_VE'\'') LEFT JOIN AD_EntityType AS EntityType_AD_EntityType ON(EntityType_AD_EntityType.EntityType = AD_Window.EntityType)",
+    "where_clause": "",
+    "order_by_clause": ""
+}'
 ```
 
 #### Cuerpo de Repuesta:

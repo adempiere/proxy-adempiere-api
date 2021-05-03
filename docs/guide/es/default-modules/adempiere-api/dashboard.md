@@ -21,7 +21,7 @@ Obtiene la lista de tableros o paneles de control los que el usuario tiene acces
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dashboard/list-dashboards&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-dashboards?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -96,11 +96,11 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dashboard/list-recent-items&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/logs/list-recent-items?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"user_uuid":"901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19","current_session":true}'
+    --data-binary '{"user_uuid":"5adc9357-9158-40fe-86f1-4ce383586f5b","role_uuid":"f855ca25-07b2-4760-aec6-676db1a5cb19","current_session":true}'
 ```
 
 #### Cuerpo de Respuesta:
@@ -174,7 +174,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dashboard/list-pending-documents&token=xu3h02nd67yq0gapyj8x3kpqwzcy02om&language=es' \
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-pending-documents?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -265,10 +265,10 @@ Lista de favoritos
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dashboard/list-favorites?token=9938867d-b2c5-45bc-8650-c2b484b4887f&language=es'\
+curl 'https://api.erpya.com/adempiere-api/dashboard/list-favorites?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'\
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"user_uuid": "901d9a74-6334-4309-aa8a-6d5b39d8ceb1","role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19"}'
     
 ```

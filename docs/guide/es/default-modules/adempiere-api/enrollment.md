@@ -24,7 +24,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/enrollment/enroll' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"user_name": "Prueba1","name": "Prueba","email": "prueba@test.com"}'
 ```
 #### Cuerpo de Respuesta:
@@ -64,7 +64,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/enrollment/reset-password' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"user_name": "Prueba1","email": "prueba@test.com"}'
 ```
 #### Cuerpo de Respuesta:
@@ -101,7 +101,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/enrollment/change-password' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"token":"akhjgdsfsdq476328463249234032anbfkd", "password":"TopSecretPassword"}'
 ```
 #### Cuerpo de Respuesta:
@@ -137,7 +137,7 @@ null
 curl 'https://api.erpya.com/adempiere-api/enrollment/activate-user' \
     -X POST \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' \
     --data-binary '{"token":"akhjgdsfsdq476328463249234032anbfkd""}'
 ```
 #### Cuerpo de Respuesta:

@@ -20,7 +20,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/window?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/window?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -171,10 +171,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/browser?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01' \
-    -X GET \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/dictionary/browser?uuid=91fa2410-12c9-11e9-865a-17caaf9b4956&token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'
 ```
 
 #### Response Body:
@@ -344,10 +341,10 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/process?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=8aaefbc2-fb40-11e8-a479-7a0060f0aa01' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/process?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=8aaefbc2-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' 
 ```
 
 #### Response Body:
@@ -468,10 +465,10 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/form?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=8e427700-fb40-11e8-a479-7a0060f0aa01' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/form?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=8e427700-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8'
+    -H 'accept: */*;charset=UTF-8' 
 ```
 
 #### Response Body:
@@ -516,7 +513,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/field?token=81aedcd5-61f4-424c-8fec-5fb07d29a8eb&language=es&uuid=81aedcd5-61f4-424c-8fec-5fb07d29a8eb' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/field?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=b6d0c7c7-0785-4302-bb20-94c1bd5488b2' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -599,7 +596,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/validation?token=3c8f6231-bc02-4163-bc99-b19150d2d617&language=es&uuid=a4cac0ae-fb40-11e8-a479-7a0060f0aa01' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/validation?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=a4cac0ae-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -641,7 +638,7 @@ null
 #### Call example:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/dictionary/reference?token=3c8f6231-bc02-4163-bc99-b19150d2d617&language=es&uuid=a47df90e-fb40-11e8-a479-7a0060f0aa01'' \
+curl 'https://api.erpya.com/adempiere-api/dictionary/reference?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&uuid=a47df90e-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
