@@ -1433,3 +1433,1465 @@ curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/
 
 - `200` cuando es exitoso
 - `500` en caso de error
+### GET adempiere-api/ui/record-access
+
+Optener Acceso al registro de entidades.
+
+#### Parámetros GET:
+
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`id` - id de la entidad.
+`uuid` - uuid de la entidad.
+`table_name` - nombre de la tabla de la entidad
+
+#### Cuerpo de la Petición:
+
+```json
+{
+	"table_name": "M_Product_Group",
+	"id": "1000002",
+	"uuid": "a46108d8-40ed-11e9-91a1-0242ac140002",
+	"language": "es",
+    "token": "b6d0c7c7-0785-4302-bb20-94c1bd5488b2"
+}
+```
+
+#### Ejemplo de Llamada:
+
+```bash
+curl --silent --location --request GET 'https://api.erpya.com/adempiere-api/ui/record-access?table_name=M_Product_Group&id=1000002&uuid=a46108d8-40ed-11e9-91a1-0242ac140002&		token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es'
+```
+
+#### Cuerpo de Repuesta:
+
+```json
+{
+    "code": 200,
+    "result": {
+        "table_name": "M_Product_Group",
+        "id": 1000002,
+        "uuid": "a46108d8-40ed-11e9-91a1-0242ac140002",
+        "available_roles": [
+            {
+                "role_id": 1000001,
+                "role_uuid": "6e45fd2b-0ec4-4086-8930-544961926673",
+                "role_name": "Compañía Estándar User",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000040,
+                "role_uuid": "a7d7a2ae-4045-11e9-b658-0242ac140002",
+                "role_name": "Jefe de Ventas",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000065,
+                "role_uuid": "b7d155ff-117d-48cf-b9e9-e488b4ea381f",
+                "role_name": "Proveedor (Agente Externo)",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000023,
+                "role_uuid": "49fe8e82-6dd5-11e9-bbd2-0242ac140002",
+                "role_name": "Analista de Almacén",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000048,
+                "role_uuid": "eb1d886f-e3de-42e8-9e21-44d83ca30595",
+                "role_name": "Analista de Pos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000038,
+                "role_uuid": "d803b88c-d8a2-11e9-ba4c-0242ac110002",
+                "role_name": "Gerencia",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000013,
+                "role_uuid": "e303fe6a-a975-11e9-accf-0242ac110004",
+                "role_name": "Jefe de Capacitación",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000027,
+                "role_uuid": "a7d79f66-4045-11e9-b658-0242ac140002",
+                "role_name": "Jefe de Compras",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000034,
+                "role_uuid": "2112777c-e396-11e9-aedf-0242ac110002",
+                "role_name": "Jefe de Control de Calidad",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000018,
+                "role_uuid": "ef4b931c-ad7c-11e9-b5a2-0242ac110003",
+                "role_name": "Jefe de Fábrica",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000014,
+                "role_uuid": "cfdefe3c-ac97-11e9-9461-0242ac110004",
+                "role_name": "Jefe de Logística y Eventos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000011,
+                "role_uuid": "42ec2960-a895-11e9-9182-0242ac110004",
+                "role_name": "Jefe de Nómina",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000047,
+                "role_uuid": "848c17eb-f31b-43ae-8a1e-cc9afcf4626a",
+                "role_name": "Jefe de Pos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000042,
+                "role_uuid": "99594706-c3ca-11e9-b272-0242ac110004",
+                "role_name": "Jefe de Producción",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000017,
+                "role_uuid": "1e5c00a4-a8ca-11e9-aab3-0242ac110004",
+                "role_name": "Jefe de Reclutamiento",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000010,
+                "role_uuid": "754ef5a0-a7e0-11e9-bafa-0242ac110004",
+                "role_name": "Jefe de Recursos Humanos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000032,
+                "role_uuid": "a0469494-cd87-11e9-ae5c-0242ac110002",
+                "role_name": "Jefe de Romana",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000052,
+                "role_uuid": "b5463eda-ea62-4d1a-aef4-efc71160f727",
+                "role_name": "Jefe de Sistema",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000004,
+                "role_uuid": "fef600fc-7039-11e9-934e-0242ac140002",
+                "role_name": "Jefe de Tesorería",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000050,
+                "role_uuid": "be8711de-6101-4bc7-aab5-202cd70ad8fc",
+                "role_name": "Jefe de Tributo",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000044,
+                "role_uuid": "5d5c8e9e-cf77-11e9-9d7c-0242ac110002",
+                "role_name": "Jefe de Almacén de Insumos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000007,
+                "role_uuid": "a7d7a114-4045-11e9-b658-0242ac140002",
+                "role_name": "Autogestión",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000062,
+                "role_uuid": "1882bf57-4c3c-4de1-a64b-74fc72214342",
+                "role_name": "Analista de Gestión Financiera",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000016,
+                "role_uuid": "cde16a52-ac8d-11e9-b881-0242ac110004",
+                "role_name": "Analista de Logística y Evento",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000031,
+                "role_uuid": "abb91888-c3c8-11e9-8786-0242ac110004",
+                "role_name": "Analista de Producción",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000012,
+                "role_uuid": "2fb20d1c-a8c5-11e9-8a75-0242ac110004",
+                "role_name": "Analista de Reclutamiento",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000066,
+                "role_uuid": "38f17d4f-cedc-49a9-84de-92e8b9f2cb31",
+                "role_name": "Jefe de CxC/Ventas/Almacén",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000009,
+                "role_uuid": "e98bbbb4-a8a9-11e9-8376-0242ac110004",
+                "role_name": "Analista de Recursos Humanos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000049,
+                "role_uuid": "65f8c7ae-a724-433b-86a7-074d90df3a3c",
+                "role_name": "Analista de Tributo",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000008,
+                "role_uuid": "a7d7a1dc-4045-11e9-b658-0242ac140002",
+                "role_name": "Analista de Ventas",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000064,
+                "role_uuid": "a4eb17c2-3f65-47b8-8df3-c439dc13aee7",
+                "role_name": "Información del Producto",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000026,
+                "role_uuid": "0666a2ce-3b83-11e9-a324-0242ac140002",
+                "role_name": "Jefe Autogestión",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000022,
+                "role_uuid": "749a4d28-6dd7-11e9-a766-0242ac140002",
+                "role_name": "Jefe de Almacén",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000024,
+                "role_uuid": "2ec12fa6-c2d2-11e9-82ae-0242ac110004",
+                "role_name": "Jefe de Cobranza",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000036,
+                "role_uuid": "a0faede6-ce8a-11e9-84c8-0242ac110002",
+                "role_name": "Jefe de Contabilidad",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000021,
+                "role_uuid": "7030bb48-7663-11e9-974a-0242ac140009",
+                "role_name": "Jefe de CxC",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000030,
+                "role_uuid": "915f4c36-6dcf-11e9-bddb-0242ac140002",
+                "role_name": "Jefe de CxP",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000053,
+                "role_uuid": "981f9e14-c020-46d3-af1c-11a7168e4fd8",
+                "role_name": "Mantenimiento de Solicitudes",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000006,
+                "role_uuid": "f200c234-a805-11e9-9aa6-0242ac110004",
+                "role_name": "Analista de Nómina",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000015,
+                "role_uuid": "936767b6-a97a-11e9-b561-0242ac110004",
+                "role_name": "Analista de Capacitación",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000025,
+                "role_uuid": "f2676262-c2bf-11e9-943c-0242ac110004",
+                "role_name": "Analista de Cobranza",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000028,
+                "role_uuid": "a7d7a042-4045-11e9-b658-0242ac140002",
+                "role_name": "Analista de Compras",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000037,
+                "role_uuid": "73fa4b64-cdd8-11e9-9c84-0242ac110002",
+                "role_name": "Analista de Contabilidad",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000035,
+                "role_uuid": "7561c1f8-e395-11e9-aedf-0242ac110002",
+                "role_name": "Analista de Control de Calidad",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000020,
+                "role_uuid": "877746a8-765b-11e9-8afc-0242ac140009",
+                "role_name": "Analista de CxC",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000029,
+                "role_uuid": "c3913ab0-6dc1-11e9-b6c2-0242ac140002",
+                "role_name": "Analista de CxP",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000019,
+                "role_uuid": "d5e8d640-acb0-11e9-9ad6-0242ac110004",
+                "role_name": "Analista de Fábrica",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000043,
+                "role_uuid": "841a1048-c445-11e9-b99e-0242ac110004",
+                "role_name": "Analista de Logística",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000033,
+                "role_uuid": "e984142e-cda0-11e9-91de-0242ac110002",
+                "role_name": "Analista de Romana",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000051,
+                "role_uuid": "52c4c5b5-8396-480a-b385-4741309b6b45",
+                "role_name": "Analista de Sistema",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000005,
+                "role_uuid": "4f044aa6-7038-11e9-9ccd-0242ac140002",
+                "role_name": "Analista de Tesorería",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000061,
+                "role_uuid": "05bd78fe-9922-4254-8dae-88c6eba0c31d",
+                "role_name": "Importación de Datos",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000063,
+                "role_uuid": "d112fab2-fe0a-4865-8bcd-9fb38e3b4ab5",
+                "role_name": "Jefe de Gestión Financiera",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000039,
+                "role_uuid": "b76e8eec-c445-11e9-8b08-0242ac110004",
+                "role_name": "Jefe de Logística",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000000,
+                "role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19",
+                "role_name": "Compañía Estándar Admin",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000080,
+                "role_uuid": "8f80b5f7-bbe2-4c99-a33c-8338a71a2402",
+                "role_name": "Jefe de Recursos Humanos/Nómina",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000081,
+                "role_uuid": "26d4bf39-53e5-42eb-b268-ba4569b72b35",
+                "role_name": "Jefe de CxP/Compras",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000082,
+                "role_uuid": "ed2128b8-bf40-486e-9450-499ede7610c0",
+                "role_name": "Jefe de Comisiones",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000077,
+                "role_uuid": "fdb386e9-413e-4617-9d86-1a82557e857f",
+                "role_name": "MiniERP: Administrativo",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000083,
+                "role_uuid": "a36ba44b-5e1f-4548-8599-df4ae08dc5c7",
+                "role_name": "Analista de Asistencia Técnica",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000084,
+                "role_uuid": "ccaba064-da21-495b-b612-8f61db11b9cb",
+                "role_name": "Asesor de POS",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000085,
+                "role_uuid": "cb22efd9-718b-4217-b572-80fdeb9f7c90",
+                "role_name": "Gestor de Sistema",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000092,
+                "role_uuid": "7aa4242a-93c0-42d8-92be-8250002d3e3c",
+                "role_name": "Demo",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000093,
+                "role_uuid": "29acffbc-73d1-4690-8409-6820a17d6130",
+                "role_name": "Test 1",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000070,
+                "role_uuid": "f651466d-1444-4563-a2cf-69dd5f1abf2c",
+                "role_name": "MiniERP: Compras",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000073,
+                "role_uuid": "54c2d33d-a0a0-43b6-8da6-0bc2857c7f6a",
+                "role_name": "MiniERP: Ventas",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000088,
+                "role_uuid": "9aad6573-61ff-46e9-b2d0-a5c25105a559",
+                "role_name": "MiniERP: POS",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000078,
+                "role_uuid": "4286a406-8d67-4e0d-a25c-85a65b6a9a45",
+                "role_name": "MiniERP: Ventas / Agencia de Viajes",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000091,
+                "role_uuid": "377190ef-752c-4a12-94b2-cfa48b92035e",
+                "role_name": "MiniERP: Administrativo / Tienda",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000079,
+                "role_uuid": "1acfb3f4-850d-4b32-ab57-7f29fe28cd75",
+                "role_name": "MiniERP: Administrativo / Agencia",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000094,
+                "role_uuid": "07db7fee-eb3c-4d8f-893c-a90f7ea911bd",
+                "role_name": "MiniERP: Administrativo / Servicio / Reparación",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000095,
+                "role_uuid": "90de9c18-34b8-40a5-9e81-57d9448735f4",
+                "role_name": "MiniERP: Ventas / Servicio / Reparación",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            }
+        ],
+        "current_roles": []
+    }
+}
+```
+
+#### Códigos de Repuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
+
+
+### POST adempiere-api/ui/set-record-access
+
+Establecer el acceso al registro.
+
+#### Parámetros GET:
+
+`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`language` - idioma para las traducciones de la respuesta.
+`id` - id de la entidad.
+`uuid` - uuid de la entidad.
+`table_name` - nombre de la tabla de la entidad
+`record_accesses` - lista de accesos por rol
+
+#### Cuerpo de la Petición:
+
+```json
+{
+    "table_name": "M_Product_Group",
+    "id": 1000002,
+    "uuid": "a46108d8-40ed-11e9-91a1-0242ac140002",
+    "record_accesses": [
+        {
+            "role_id": 1000001,
+            "role_uuid": "6e45fd2b-0ec4-4086-8930-544961926673",
+            "role_name": "Compañía Estándar User",
+            "is_active": false,
+            "is_exclude": false,
+            "is_read_only": false,
+            "is_dependent_entities": true
+        },
+        {
+            "role_id": 1000065,
+            "role_uuid": "b7d155ff-117d-48cf-b9e9-e488b4ea381f",
+            "role_name": "Proveedor (Agente Externo)",
+            "is_active": false,
+            "is_exclude": true,
+            "is_read_only": true,
+            "is_dependent_entities": false
+        }
+    ]
+}
+```
+
+#### Ejemplo de Llamada:
+
+```bash
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/set-record-access?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "table_name": "M_Product_Group",
+    "id": 1000002,
+    "uuid": "a46108d8-40ed-11e9-91a1-0242ac140002",
+    "record_accesses": [
+        {
+            "role_id": 1000001,
+            "role_uuid": "6e45fd2b-0ec4-4086-8930-544961926673",
+            "role_name": "Compañía Estándar User",
+            "is_active": false,
+            "is_exclude": false,
+            "is_read_only": false,
+            "is_dependent_entities": true
+        },
+        {
+            "role_id": 1000065,
+            "role_uuid": "b7d155ff-117d-48cf-b9e9-e488b4ea381f",
+            "role_name": "Proveedor (Agente Externo)",
+            "is_active": false,
+            "is_exclude": true,
+            "is_read_only": true,
+            "is_dependent_entities": false
+        }
+    ]
+}'
+```
+
+#### Cuerpo de Repuesta:
+
+```json
+{
+    "code": 200,
+    "result": {
+        "table_name": "M_Product_Group",
+        "id": 1000002,
+        "uuid": "a46108d8-40ed-11e9-91a1-0242ac140002",
+        "available_roles": [
+            {
+                "role_id": 1000001,
+                "role_uuid": "6e45fd2b-0ec4-4086-8930-544961926673",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000040,
+                "role_uuid": "a7d7a2ae-4045-11e9-b658-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000065,
+                "role_uuid": "b7d155ff-117d-48cf-b9e9-e488b4ea381f",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000023,
+                "role_uuid": "49fe8e82-6dd5-11e9-bbd2-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000048,
+                "role_uuid": "eb1d886f-e3de-42e8-9e21-44d83ca30595",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000038,
+                "role_uuid": "d803b88c-d8a2-11e9-ba4c-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000013,
+                "role_uuid": "e303fe6a-a975-11e9-accf-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000027,
+                "role_uuid": "a7d79f66-4045-11e9-b658-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000034,
+                "role_uuid": "2112777c-e396-11e9-aedf-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000018,
+                "role_uuid": "ef4b931c-ad7c-11e9-b5a2-0242ac110003",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000014,
+                "role_uuid": "cfdefe3c-ac97-11e9-9461-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000011,
+                "role_uuid": "42ec2960-a895-11e9-9182-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000047,
+                "role_uuid": "848c17eb-f31b-43ae-8a1e-cc9afcf4626a",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000042,
+                "role_uuid": "99594706-c3ca-11e9-b272-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000017,
+                "role_uuid": "1e5c00a4-a8ca-11e9-aab3-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000010,
+                "role_uuid": "754ef5a0-a7e0-11e9-bafa-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000032,
+                "role_uuid": "a0469494-cd87-11e9-ae5c-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000052,
+                "role_uuid": "b5463eda-ea62-4d1a-aef4-efc71160f727",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000004,
+                "role_uuid": "fef600fc-7039-11e9-934e-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000050,
+                "role_uuid": "be8711de-6101-4bc7-aab5-202cd70ad8fc",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000044,
+                "role_uuid": "5d5c8e9e-cf77-11e9-9d7c-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000007,
+                "role_uuid": "a7d7a114-4045-11e9-b658-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000062,
+                "role_uuid": "1882bf57-4c3c-4de1-a64b-74fc72214342",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000016,
+                "role_uuid": "cde16a52-ac8d-11e9-b881-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000031,
+                "role_uuid": "abb91888-c3c8-11e9-8786-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000012,
+                "role_uuid": "2fb20d1c-a8c5-11e9-8a75-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000066,
+                "role_uuid": "38f17d4f-cedc-49a9-84de-92e8b9f2cb31",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000009,
+                "role_uuid": "e98bbbb4-a8a9-11e9-8376-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000049,
+                "role_uuid": "65f8c7ae-a724-433b-86a7-074d90df3a3c",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000008,
+                "role_uuid": "a7d7a1dc-4045-11e9-b658-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000064,
+                "role_uuid": "a4eb17c2-3f65-47b8-8df3-c439dc13aee7",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000026,
+                "role_uuid": "0666a2ce-3b83-11e9-a324-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000022,
+                "role_uuid": "749a4d28-6dd7-11e9-a766-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000024,
+                "role_uuid": "2ec12fa6-c2d2-11e9-82ae-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000036,
+                "role_uuid": "a0faede6-ce8a-11e9-84c8-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000021,
+                "role_uuid": "7030bb48-7663-11e9-974a-0242ac140009",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000030,
+                "role_uuid": "915f4c36-6dcf-11e9-bddb-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000053,
+                "role_uuid": "981f9e14-c020-46d3-af1c-11a7168e4fd8",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000006,
+                "role_uuid": "f200c234-a805-11e9-9aa6-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000015,
+                "role_uuid": "936767b6-a97a-11e9-b561-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000025,
+                "role_uuid": "f2676262-c2bf-11e9-943c-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000028,
+                "role_uuid": "a7d7a042-4045-11e9-b658-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000037,
+                "role_uuid": "73fa4b64-cdd8-11e9-9c84-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000035,
+                "role_uuid": "7561c1f8-e395-11e9-aedf-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000020,
+                "role_uuid": "877746a8-765b-11e9-8afc-0242ac140009",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000029,
+                "role_uuid": "c3913ab0-6dc1-11e9-b6c2-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000019,
+                "role_uuid": "d5e8d640-acb0-11e9-9ad6-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000043,
+                "role_uuid": "841a1048-c445-11e9-b99e-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000033,
+                "role_uuid": "e984142e-cda0-11e9-91de-0242ac110002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000051,
+                "role_uuid": "52c4c5b5-8396-480a-b385-4741309b6b45",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000005,
+                "role_uuid": "4f044aa6-7038-11e9-9ccd-0242ac140002",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000061,
+                "role_uuid": "05bd78fe-9922-4254-8dae-88c6eba0c31d",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000063,
+                "role_uuid": "d112fab2-fe0a-4865-8bcd-9fb38e3b4ab5",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000039,
+                "role_uuid": "b76e8eec-c445-11e9-8b08-0242ac110004",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000000,
+                "role_uuid": "f855ca25-07b2-4760-aec6-676db1a5cb19",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000080,
+                "role_uuid": "8f80b5f7-bbe2-4c99-a33c-8338a71a2402",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000081,
+                "role_uuid": "26d4bf39-53e5-42eb-b268-ba4569b72b35",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000082,
+                "role_uuid": "ed2128b8-bf40-486e-9450-499ede7610c0",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000077,
+                "role_uuid": "fdb386e9-413e-4617-9d86-1a82557e857f",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000083,
+                "role_uuid": "a36ba44b-5e1f-4548-8599-df4ae08dc5c7",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000084,
+                "role_uuid": "ccaba064-da21-495b-b612-8f61db11b9cb",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000085,
+                "role_uuid": "cb22efd9-718b-4217-b572-80fdeb9f7c90",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000092,
+                "role_uuid": "7aa4242a-93c0-42d8-92be-8250002d3e3c",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000093,
+                "role_uuid": "29acffbc-73d1-4690-8409-6820a17d6130",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000070,
+                "role_uuid": "f651466d-1444-4563-a2cf-69dd5f1abf2c",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000073,
+                "role_uuid": "54c2d33d-a0a0-43b6-8da6-0bc2857c7f6a",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000088,
+                "role_uuid": "9aad6573-61ff-46e9-b2d0-a5c25105a559",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000078,
+                "role_uuid": "4286a406-8d67-4e0d-a25c-85a65b6a9a45",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000091,
+                "role_uuid": "377190ef-752c-4a12-94b2-cfa48b92035e",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000079,
+                "role_uuid": "1acfb3f4-850d-4b32-ab57-7f29fe28cd75",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000094,
+                "role_uuid": "07db7fee-eb3c-4d8f-893c-a90f7ea911bd",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            },
+            {
+                "role_id": 1000095,
+                "role_uuid": "90de9c18-34b8-40a5-9e81-57d9448735f4",
+                "role_name": "",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": false
+            }
+        ],
+        "current_roles": [
+            {
+                "role_id": 1000001,
+                "role_uuid": "6e45fd2b-0ec4-4086-8930-544961926673",
+                "role_name": "Compañía Estándar User",
+                "is_active": false,
+                "is_exclude": false,
+                "is_read_only": false,
+                "is_dependent_entities": true
+            },
+            {
+                "role_id": 1000065,
+                "role_uuid": "b7d155ff-117d-48cf-b9e9-e488b4ea381f",
+                "role_name": "Proveedor (Agente Externo)",
+                "is_active": false,
+                "is_exclude": true,
+                "is_read_only": true,
+                "is_dependent_entities": false
+            }
+        ]
+    }
+}
+```
+
+#### Códigos de Repuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
