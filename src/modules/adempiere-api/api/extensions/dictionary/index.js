@@ -1,7 +1,10 @@
 import { Router } from 'express';
 
-export default ({ config, db, service }) => {
-  let userApi = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
    * GET window definition
@@ -12,9 +15,9 @@ export default ({ config, db, service }) => {
    * req.query.language - login language
    *
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/window', (req, res) => {
+  api.get('/window', (req, res) => {
     if (req.query) {
       service.getWindow({
         token: req.query.token,
@@ -46,9 +49,9 @@ export default ({ config, db, service }) => {
    * req.query.language - login language
    *
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/process', (req, res) => {
+  api.get('/process', (req, res) => {
     if (req.query) {
       service.getProcess({
         token: req.query.token,
@@ -80,9 +83,9 @@ export default ({ config, db, service }) => {
    * req.query.language - login language
    *
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/browser', (req, res) => {
+  api.get('/browser', (req, res) => {
     if (req.query) {
       service.getBrowser({
         token: req.query.token,
@@ -114,9 +117,9 @@ export default ({ config, db, service }) => {
    * req.query.language - login language
    *
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/form', (req, res) => {
+  api.get('/form', (req, res) => {
     if (req.query) {
       service.getForm({
         token: req.query.token,
@@ -152,9 +155,9 @@ export default ({ config, db, service }) => {
    * req.query.element_column_name - element column name of field
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/field', (req, res) => {
+  api.get('/field', (req, res) => {
     if (req.query) {
       service.getField({
         token: req.query.token,
@@ -190,9 +193,9 @@ export default ({ config, db, service }) => {
    * req.query.column_name - column name of reference as table dir
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/reference', (req, res) => {
+  api.get('/reference', (req, res) => {
     if (req.query) {
       service.getReference({
         token: req.query.token,
@@ -224,9 +227,9 @@ export default ({ config, db, service }) => {
    * req.query.language - login language
    *
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/validation', (req, res) => {
+  api.get('/validation', (req, res) => {
     if (req.query) {
       service.getValidationRule({
         token: req.query.token,
@@ -589,5 +592,5 @@ export default ({ config, db, service }) => {
     }
   }
 
-  return userApi;
+  return api;
 };

@@ -10,26 +10,28 @@ import {
   convertProductPriceFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality'
 
-export default ({ config, db, service }) => {
-  let posService = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
-   * List Point of Sales
+   * GET Selling Points
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.user_uuid - User UUID reference
+   * req.query.user_uuid - User UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/list-point-of-sales', (req, res) => {
-    if (req.body) {
+  api.get('/selling-points', (req, res) => {
+    if (req.query) {
       service.listPointOfSales({
         token: req.query.token,
         language: req.query.language,
-        userUuid: req.body.user_uuid,
+        userUuid: req.query.user_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -56,22 +58,21 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * List Point of Sales
+   * GET Point of Sales
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.pos_uuid - POS UUID reference
+   * req.query.pos_uuid - POS UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/get-point-of-sales', (req, res) => {
-    if (req.body) {
+  api.get('/point-of-sales', (req, res) => {
+    if (req.query) {
       service.getPointOfSales({
         token: req.query.token,
         language: req.query.language,
-        posUuid: req.body.pos_uuid
+        posUuid: req.query.pos_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -89,34 +90,33 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST Get product price
+   * GET product price
    *
    * req.query.token - user token
-   * Body:
-   * req.body.search_value - product search value
-   * req.body.upc - product UPC
-   * req.body.value - product value
-   * req.body.name - product name
-   * req.body.price_list_uuid - price list UUID reference
-   * req.body.business_partner_uuid - Business partner UUID reference
-   * req.body.warehouse_uuid - Warehouse UUID reference
-   * req.body.valid_from - Prioce List Valid From
+   * req.query.search_value - product search value
+   * req.query.upc - product UPC
+   * req.query.value - product value
+   * req.query.name - product name
+   * req.query.price_list_uuid - price list UUID reference
+   * req.query.business_partner_uuid - Business partner UUID reference
+   * req.query.warehouse_uuid - Warehouse UUID reference
+   * req.query.valid_from - Prioce List Valid From
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/get-product-price', (req, res) => {
-    if (req.body) {
+  api.get('/product-price', (req, res) => {
+    if (req.query) {
       service.getProductPrice({
         token: req.query.token,
         language: req.query.language,
-        searchValue: req.body.search_value,
-        upc: req.body.upc,
-        value: req.body.value,
-        name: req.body.name,
-        priceListUuid: req.body.price_list_uuid,
-        businessPartnerUuid: req.body.business_partner_uuid,
-        warehouseUuid: req.body.warehouse_uuid,
-        validFrom: req.body.valid_from,
+        searchValue: req.query.search_value,
+        upc: req.query.upc,
+        value: req.query.value,
+        name: req.query.name,
+        priceListUuid: req.query.price_list_uuid,
+        businessPartnerUuid: req.query.business_partner_uuid,
+        warehouseUuid: req.query.warehouse_uuid,
+        validFrom: req.query.valid_from,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -137,7 +137,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List product price
+   * GET List product price
    *
    * req.query.token - user token
    * Body:
@@ -181,9 +181,9 @@ export default ({ config, db, service }) => {
    * req.body.where_clause - where clause of search based on SQL
    * req.body.order_by_clause - order by clause based on SQL
    * req.body.limit - records limit
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
-  posService.post('/list-product-prices', (req, res) => {
+  api.get('/product-prices', (req, res) => {
     if (req.body) {
       service.listProductPrice({
         token: req.query.token,
@@ -228,7 +228,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Create Sales Order
+   * POST Create Sales Order
    *
    * req.query.token - user token
    * Body:
@@ -237,9 +237,9 @@ export default ({ config, db, service }) => {
    * req.body.document_type_uuid - Document Type UUID reference
    * req.body.sales_representative_uuid - Sales Representative UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/create-order', (req, res) => {
+  api.post('/create-order', (req, res) => {
     if (req.body) {
       service.createOrder({
         token: req.query.token,
@@ -265,7 +265,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Create Payment
+   * POST Create Payment
    *
    * req.query.token - user token
    * Body:
@@ -279,9 +279,9 @@ export default ({ config, db, service }) => {
    * req.body.tender_type_code - Tender Type
    * req.body.currency_uuid - Currency UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/create-payment', (req, res) => {
+  api.post('/create-payment', (req, res) => {
     if (req.body) {
       service.createPayment({
         token: req.query.token,
@@ -313,16 +313,16 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Delete Payment
+   * POST Delete Payment
    *
    * req.query.token - user token
    * req.query.language - user language
    * Body:
    * req.body.payment_uuid - Payment UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/delete-payment', (req, res) => {
+  api.post('/delete-payment', (req, res) => {
     if (req.body) {
       service.deletePayment({
         token: req.query.token,
@@ -345,7 +345,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Update Sales Order
+   * POST Update Sales Order
    *
    * req.query.token - user token
    * Body:
@@ -357,9 +357,9 @@ export default ({ config, db, service }) => {
    * req.body.payment_date - Payment Date
    * req.body.tender_type_code - tender Type
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
-  posService.post('/update-payment', (req, res) => {
+  api.post('/update-payment', (req, res) => {
     if (req.body) {
       service.updatePayment({
         token: req.query.token,
@@ -388,32 +388,31 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Payments
+   * GET List Payments
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.order_uuid - Order UUID reference
-   * req.body.pos_uuid - POS UUID reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.order_uuid - Order UUID reference
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
    */
-  posService.post('/list-payments', (req, res) => {
-    if (req.body) {
+  api.get('/payments', (req, res) => {
+    if (req.query) {
       service.listPayments({
         token: req.query.token,
         language: req.query.language,
-        orderUuid: req.body.order_uuid,
-        posUuid: req.body.pos_uuid,
-        tableName: req.body.table_name,
+        orderUuid: req.query.order_uuid,
+        posUuid: req.query.pos_uuid,
+        tableName: req.query.table_name,
         //  DSL Query
-        filters: req.body.filters,
-        columns: req.body.columns,
+        filters: req.query.filters,
+        columns: req.query.columns,
         //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit,
+        query: req.query.query,
+        whereClause: req.query.where_clause,
+        orderByClause: req.query.order_by_clause,
+        limit: req.query.limit,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -440,16 +439,16 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Delete Sales Order
+   * POST Delete Sales Order
    *
    * req.query.token - user token
    * req.query.language - user language
    * Body:
    * req.body.order_uuid - Sales Order UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/delete-order', (req, res) => {
+  api.post('/delete-order', (req, res) => {
     if (req.body) {
       service.deleteOrder({
         token: req.query.token,
@@ -472,7 +471,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Create Sales Order Line
+   * POST Create Sales Order Line
    *
    * req.query.token - user token
    * Body:
@@ -485,9 +484,9 @@ export default ({ config, db, service }) => {
    * req.body.discount_rate - Discount UUID reference
    * req.body.warehouse_uuid - Warehouse UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/create-order-line', (req, res) => {
+  api.post('/create-order-line', (req, res) => {
     if (req.body) {
       service.createOrderLine({
         token: req.query.token,
@@ -517,16 +516,16 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Delete Sales Order Line
+   * POST Delete Sales Order Line
    *
    * req.query.token - user token
    * req.query.language - user language
    * Body:
    * req.body.order_line_uuid - Sales Order Line UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/delete-order-line', (req, res) => {
+  api.post('/delete-order-line', (req, res) => {
     if (req.body) {
       service.deleteOrderLine({
         token: req.query.token,
@@ -549,7 +548,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Update Sales Order
+   * POST Update Sales Order
    *
    * req.query.token - user token
    * Body:
@@ -559,9 +558,9 @@ export default ({ config, db, service }) => {
    * req.body.document_type_uuid - Document Type UUID reference
    * req.body.sales_representative_uuid - Sales Representative UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/update-order', (req, res) => {
+  api.post('/update-order', (req, res) => {
     if (req.body) {
       service.updateOrder({
         token: req.query.token,
@@ -588,7 +587,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Update Sales Order Line
+   * POST Update Sales Order Line
    *
    * req.query.token - user token
    * Body:
@@ -599,9 +598,9 @@ export default ({ config, db, service }) => {
    * req.body.discount_rate - Discount UUID reference
    * req.body.is_add_quantity - Only add quantity
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/update-order-line', (req, res) => {
+  api.post('/update-order-line', (req, res) => {
     if (req.body) {
       service.updateOrderLine({
         token: req.query.token,
@@ -629,24 +628,23 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Get Sales Order
+   * GET Sales Order
    *
    * req.query.token - user token
-   * Body:
-   * req.body.order_uuid - Order UUID reference
-   * req.body.pos_uuid - POS UUID reference
-   * req.body.customer_uuid - Customer UUID reference
-   * req.body.document_type_uuid - Document Type UUID reference
-   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * req.query.order_uuid - Order UUID reference
+   * req.query.pos_uuid - POS UUID reference
+   * req.query.customer_uuid - Customer UUID reference
+   * req.query.document_type_uuid - Document Type UUID reference
+   * req.query.sales_representative_uuid - Sales Representative UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/get-order', (req, res) => {
-    if (req.body) {
+  api.get('/order', (req, res) => {
+    if (req.query) {
       service.getOrder({
         token: req.query.token,
         language: req.query.language,
-        orderUuid: req.body.order_uuid
+        orderUuid: req.query.order_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -664,7 +662,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * Process Order
+   * POST Process Order
    * This request allows process a draft order with payments
    *
    * req.query.token - user token
@@ -684,9 +682,9 @@ export default ({ config, db, service }) => {
    * currency_uuid - Currency UUID reference
    * ]
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/process-order', (req, res) => {
+  api.post('/process-order', (req, res) => {
     if (req.body) {
       let payments = []
       if (req.body.payments) {
@@ -727,7 +725,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Sales Orders
+   * GET Sales Orders
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
@@ -780,9 +778,9 @@ export default ({ config, db, service }) => {
    * req.body.where_clause - where clause of search based on SQL
    * req.body.order_by_clause - order by clause based on SQL
    * req.body.limit - records limit
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/list-orders', (req, res) => {
+  api.get('/orders', (req, res) => {
     if (req.body) {
       service.listOrders({
         token: req.query.token,
@@ -839,16 +837,15 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.order_uuid - Order UUID reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.order_uuid - Order UUID reference
+   * Details:
    */
-  posService.post('/list-order-lines', (req, res) => {
-    if (req.body) {
+  api.post('/order-lines', (req, res) => {
+    if (req.query) {
       service.listOrderLines({
         token: req.query.token,
         language: req.query.language,
-        orderUuid: req.body.order_uuid,
+        orderUuid: req.query.order_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -878,17 +875,16 @@ export default ({ config, db, service }) => {
    * Get Key Layout
    *
    * req.query.token - user token
-   * Body:
-   * req.body.key_layout_uuid - Key Layout UUID reference
+   * req.query.key_layout_uuid - Key Layout UUID reference
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  posService.post('/get-key-layout', (req, res) => {
-    if (req.body) {
+  api.post('/get-key-layout', (req, res) => {
+    if (req.query) {
       service.getKeyLayout({
         token: req.query.token,
         language: req.query.language,
-        keyLayoutUuid: req.body.key_layout_uuid
+        keyLayoutUuid: req.query.key_layout_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -905,5 +901,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return posService;
+  return api;
 };

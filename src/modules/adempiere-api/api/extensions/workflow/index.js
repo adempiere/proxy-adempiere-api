@@ -1,33 +1,32 @@
 import { Router } from 'express';
 import {
-  convertDashboardFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
-import {
-  convertFavoriteFromGRPC,
-  convertPendingDocumentFromGRPC
+  convertWorkflowDefinitionFromGRPC,
+  convertDocumentAction,
+  convertDocumentStatus
 } from '@adempiere/grpc-api/lib/convertBusinessData';
-export default ({ config, db, service }) => {
-  let dashboardService = Router();
+
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
-   * POST List Dashboards
+   * GET Workflows
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.role_uuid - uuid of current role
-   * req.body.role_id - id of current role
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * Details:
    */
-  dashboardService.post('/list-dashboards', (req, res) => {
-    if (req.body) {
-      service.listDashboards({
+  api.get('/workflows', (req, res) => {
+    if (req.query) {
+      service.listWorkflows({
         token: req.query.token,
         language: req.query.language,
-        roleUuid: req.body.role_uuid,
-        roleId: req.body.role_id,
+        tableName: req.query.table_name,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -38,8 +37,8 @@ export default ({ config, db, service }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getDashboardsList().map(dadshboard => {
-                return convertDashboardFromGRPC(dadshboard)
+              records: response.getWorkflowsList().map(workflow => {
+                return convertWorkflowDefinitionFromGRPC(workflow)
               })
             }
           })
@@ -54,24 +53,29 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Favorites
+   * GET Document Actions
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.user_uuid - uuid of current user
-   * req.body.user_id - id of current user
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
+   * req.query.document_status - Current Status
+   * req.query.document_action - Optional Action
+   * Details:
    */
-  dashboardService.post('/list-favorites', (req, res) => {
-    if (req.body) {
-      service.listFavorites({
+  api.get('/document-actions', (req, res) => {
+    if (req.query) {
+      service.listDocumentActions({
         token: req.query.token,
         language: req.query.language,
-        userUuid: req.body.user_uuid,
-        userId: req.body.user_id,
+        tableName: req.query.table_name,
+        id: req.query.id,
+        uuid: req.query.uuid,
+        documentStatus: req.query.document_status,
+        documentAction: req.query.document_action,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -82,8 +86,9 @@ export default ({ config, db, service }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getFavoritesList().map(favorite => {
-                return convertFavoriteFromGRPC(favorite)
+              default_document_action: convertDocumentAction(response.getDefaultDocumentAction()),
+              records: response.getDocumentActionsList().map(documentAction => {
+                return convertDocumentAction(documentAction)
               })
             }
           })
@@ -98,28 +103,27 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Pending Documents
+   * GET Document Statuses
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.user_uuid - uuid of current user
-   * req.body.user_id - id of current user
-   * req.body.role_uuid - uuid of current role
-   * req.body.role_id - id of current role
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
+   * req.query.document_status - Current Status
+   * Details:
    */
-  dashboardService.post('/list-pending-documents', (req, res) => {
-    if (req.body) {
-      service.listPendingDocuments({
+  api.get('/document-statuses', (req, res) => {
+    if (req.query) {
+      service.listDocumentStatuses({
         token: req.query.token,
         language: req.query.language,
-        userUuid: req.body.user_uuid,
-        userId: req.body.user_id,
-        roleUuid: req.body.role_uuid,
-        roleId: req.body.role_id,
+        tableName: req.query.table_name,
+        id: req.query.id,
+        uuid: req.query.uuid,
+        documentStatus: req.query.document_status,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -130,8 +134,8 @@ export default ({ config, db, service }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getPendingDocumentsList().map(pendingDocument => {
-                return convertPendingDocumentFromGRPC(pendingDocument)
+              records: response.getDocumentStatusesList().map(documentStatus => {
+                return convertDocumentStatus(documentStatus)
               })
             }
           })
@@ -145,5 +149,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return dashboardService;
+  return api;
 };

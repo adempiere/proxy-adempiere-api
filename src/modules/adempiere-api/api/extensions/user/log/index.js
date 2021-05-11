@@ -9,36 +9,38 @@ import {
   convertWorkflowProcessFomGRPC,
   convertRecentItemFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
-export default ({ config, db, service }) => {
-  let userLogs = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
-   * POST List Process Logs
+   * GET List Process Logs
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.table_name - table name (Mandatory for get translation)
-   * req.body.uuid - custom query instead a table name based on SQL
-   * req.body.id - id reference
-   * req.body.uuid - uuid reference
-   * req.body.user_uuid - user uuid reference
-   * req.body.instance_uuid - process instance uuid reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.uuid - custom query instead a table name based on SQL
+   * req.query.id - id reference
+   * req.query.uuid - uuid reference
+   * req.query.user_uuid - user uuid reference
+   * req.query.instance_uuid - process instance uuid reference
+   * Details:
    */
-  userLogs.post('/list-process-logs', (req, res) => {
-    if (req.body) {
+  api.get('/process-logs', (req, res) => {
+    if (req.query) {
       service.listProcessLogs({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
+        id: req.query.id,
+        uuid: req.query.uuid,
         //  Running parameters
-        tableName: req.body.table_name,
-        userUuid: req.body.user_uuid,
-        instanceUuid: req.body.instance_uuid,
+        tableName: req.query.table_name,
+        userUuid: req.query.user_uuid,
+        instanceUuid: req.query.instance_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -65,28 +67,27 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Entity Logs
+   * GET Entity Logs
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.table_name - table name (Mandatory for get translation)
-   * req.body.uuid - custom query instead a table name based on SQL
-   * req.body.id - id reference
-   * req.body.uuid - uuid reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.uuid - custom query instead a table name based on SQL
+   * req.query.id - id reference
+   * req.query.uuid - uuid reference
+   * Details:
    */
-  userLogs.post('/list-entity-logs', (req, res) => {
-    if (req.body) {
+  api.get('/entity-logs', (req, res) => {
+    if (req.query) {
       service.listEntityLogs({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
+        id: req.query.id,
+        uuid: req.query.uuid,
         //  Running parameters
-        tableName: req.body.table_name,
+        tableName: req.query.table_name,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -113,28 +114,27 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Entity chats
+   * GET Entity chats
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.table_name - table name (Mandatory for get translation)
-   * req.body.uuid - custom query instead a table name based on SQL
-   * req.body.id - id reference
-   * req.body.uuid - uuid reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.uuid - custom query instead a table name based on SQL
+   * req.query.id - id reference
+   * req.query.uuid - uuid reference
+   * Details:
    */
-  userLogs.post('/list-entity-chats', (req, res) => {
-    if (req.body) {
+  api.get('/entity-chats', (req, res) => {
+    if (req.query) {
       service.listEntityChats({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
+        id: req.query.id,
+        uuid: req.query.uuid,
         //  Running parameters
-        tableName: req.body.table_name,
+        tableName: req.query.table_name,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -161,25 +161,24 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Entity chats
+   * GET Entity chats
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.uuid - uuid of chat
-   * req.body.id - id of chat
-   * req.body.uuid - uuid reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.uuid - uuid of chat
+   * req.query.id - id of chat
+   * req.query.uuid - uuid reference
+   * Details:
    */
-  userLogs.post('/list-chat-entries', (req, res) => {
-    if (req.body) {
+  api.get('/chat-entries', (req, res) => {
+    if (req.query) {
       service.listChatEntries({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
+        id: req.query.id,
+        uuid: req.query.uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -206,28 +205,27 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Workflow logs
+   * GET Workflow logs
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.table_name - table name (Mandatory for get translation)
-   * req.body.uuid - custom query instead a table name based on SQL
-   * req.body.id - id reference
-   * req.body.uuid - uuid reference
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.uuid - custom query instead a table name based on SQL
+   * req.query.id - id reference
+   * req.query.uuid - uuid reference
+   * Details:
    */
-  userLogs.post('/list-workflow-logs', (req, res) => {
-    if (req.body) {
+  api.get('/workflow-logs', (req, res) => {
+    if (req.query) {
       service.listWorkflowLogs({
         token: req.query.token,
         language: req.query.language,
-        id: req.body.id,
-        uuid: req.body.uuid,
+        id: req.query.id,
+        uuid: req.query.uuid,
         //  Running parameters
-        tableName: req.body.table_name,
+        tableName: req.query.table_name,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -253,52 +251,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  /**
-   * POST List Recent Items
-   *
-   * req.query.token - user token
-   * req.query.language - login language
-   * req.query.page_size - size of page (customized)
-   * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.user_uuid - user uuid
-   * req.body.role_uuid - role uuid
-   * req.body.current_session - is current session
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
-   */
-  userLogs.post('/list-recent-items', (req, res) => {
-    if (req.body) {
-      service.listRecentItems({
-        token: req.query.token,
-        language: req.query.language,
-        //  Running parameters
-        userUuid: req.body.user_uuid,
-        roleUuid: req.body.role_uuid,
-        currentSession: req.body.current_session,
-        //  Page Data
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getRecentItemsList().map(recentItem => {
-                return convertRecentItemFromGRPC(recentItem)
-              })
-            }
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
-  });
-
-  return userLogs;
+  return api;
 };
