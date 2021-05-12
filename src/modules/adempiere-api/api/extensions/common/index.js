@@ -7,20 +7,23 @@ import {
   convertBusinessPartnerFromGRPC,
   convertConversionRateFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality';
-export default ({ config, db, service }) => {
-  let coreService = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
    * GET Country
    *
    * req.query.token - user token
-   * req.body.id - id of country
-   * req.body.uuid - uuid of country
+   * req.query.id - id of country
+   * req.query.uuid - uuid of country
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  coreService.get('/country', (req, res) => {
+  api.get('/country', (req, res) => {
     if (req.query) {
       service.getCountry({
         token: req.query.token,
@@ -44,24 +47,23 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Organizations
+   * GET Organizations
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.role_uuid - uuid of current role
-   * req.body.role_id - id of current role
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.role_uuid - uuid of current role
+   * req.query.role_id - id of current role
+   * Details:
    */
-  coreService.post('/list-organizations', (req, res) => {
-    if (req.body) {
+  api.get('/organizations', (req, res) => {
+    if (req.query) {
       service.listOrganizations({
         token: req.query.token,
         language: req.query.language,
-        roleUuid: req.body.role_uuid,
-        roleId: req.body.role_id,
+        roleUuid: req.query.role_uuid,
+        roleId: req.query.role_id,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -88,24 +90,23 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Warehouses
+   * GET Warehouses
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.organization_uuid - uuid of current organization
-   * req.body.organization_id - id of current organization
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.organization_uuid - uuid of current organization
+   * req.query.organization_id - id of current organization
+   * Details:
    */
-  coreService.post('/list-warehouses', (req, res) => {
-    if (req.body) {
+  api.get('/warehouses', (req, res) => {
+    if (req.query) {
       service.listWarehouses({
         token: req.query.token,
         language: req.query.language,
-        organizationUuid: req.body.organization_uuid,
-        organizationId: req.body.organization_id,
+        organizationUuid: req.query.organization_uuid,
+        organizationId: req.query.organization_id,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -132,16 +133,16 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Languages
+   * GET Languages
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  coreService.post('/list-languages', (req, res) => {
-    if (req.body) {
+  api.get('/languages', (req, res) => {
+    if (req.query) {
       service.listLanguages({
         token: req.query.token,
         language: req.query.language,
@@ -171,47 +172,32 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST Get Business Partner
+   * GET Business Partner
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.search_value - Search Value
-   * req.body.value - Value
-   * req.body.name - Name
-   * req.body.contact_name - Contact Name
-   * req.body.email - EMail
-   * req.body.postal_code - Postal Code
-   * req.body.phone - Phone
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.query - custom query instead a table name based on SQL
-   * req.body.where_clause - where clause of search based on SQL
-   * req.body.order_by_clause - order by clause based on SQL
-   * req.body.limit - records limit
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.search_value - Search Value
+   * req.query.value - Value
+   * req.query.name - Name
+   * req.query.contact_name - Contact Name
+   * req.query.email - EMail
+   * req.query.postal_code - Postal Code
+   * req.query.phone - Phone
+   * req.query.table_name - table name (Mandatory if is not a query)
+   * req.query.query - custom query instead a table name based on SQL
+   * req.query.where_clause - where clause of search based on SQL
+   * req.query.order_by_clause - order by clause based on SQL
+   * req.query.limit - records limit
+   * Details:
    */
-  coreService.post('/get-business-partner', (req, res) => {
-    if (req.body) {
+  api.get('/business-partner', (req, res) => {
+    if (req.query) {
       service.getBusinessPartner({
         token: req.query.token,
         language: req.query.language,
-        searchValue: req.body.search_value,
-        value: req.body.value,
-        name: req.body.name,
-        contactName: req.body.contact_name,
-        email: req.body.email,
-        postalCode: req.body.postal_code,
-        phone: req.body.phone,
-        tableName: req.body.tableName,
-        filters: req.body.filters,
-        columns: req.body.columns,
-        //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit
+        searchValue: req.query.search_value
       }, function (err, response) {
         if (response) {
           res.json({
@@ -258,9 +244,9 @@ export default ({ config, db, service }) => {
    * req.body.region_name - Region Name
    * req.body.country_uuid - Country UUID
    * req.body.pos_uuid - POS UUID
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  coreService.post('/create-business-partner', (req, res) => {
+  api.post('/create-business-partner', (req, res) => {
     if (req.body) {
       service.createBusinessPartner({
         token: req.query.token,
@@ -304,49 +290,48 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST List Business Partner
+   * GET Business Partner
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.search_value - Search Value
-   * req.body.value - Value
-   * req.body.name - Name
-   * req.body.contact_name - Contact Name
-   * req.body.email - EMail
-   * req.body.postal_code - Postal Code
-   * req.body.phone - Phone
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.query - custom query instead a table name based on SQL
-   * req.body.where_clause - where clause of search based on SQL
-   * req.body.order_by_clause - order by clause based on SQL
-   * req.body.limit - records limit
+   * req.query.search_value - Search Value
+   * req.query.value - Value
+   * req.query.name - Name
+   * req.query.contact_name - Contact Name
+   * req.query.email - EMail
+   * req.query.postal_code - Postal Code
+   * req.query.phone - Phone
+   * req.query.table_name - table name (Mandatory if is not a query)
+   * req.query.query - custom query instead a table name based on SQL
+   * req.query.where_clause - where clause of search based on SQL
+   * req.query.order_by_clause - order by clause based on SQL
+   * req.query.limit - records limit
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  coreService.post('/list-business-partner', (req, res) => {
-    if (req.body) {
+  api.get('/business-partners', (req, res) => {
+    if (req.query) {
       service.listBusinessPartners({
         token: req.query.token,
         language: req.query.language,
-        searchValue: req.body.search_value,
-        value: req.body.value,
-        name: req.body.name,
-        contactName: req.body.contact_name,
-        email: req.body.email,
-        postalCode: req.body.postal_code,
-        phone: req.body.phone,
-        tableName: req.body.tableName,
-        filters: req.body.filters,
-        columns: req.body.columns,
+        searchValue: req.query.search_value,
+        value: req.query.value,
+        name: req.query.name,
+        contactName: req.query.contact_name,
+        email: req.query.email,
+        postalCode: req.query.postal_code,
+        phone: req.query.phone,
+        tableName: req.query.tableName,
+        filters: req.query.filters,
+        columns: req.query.columns,
         //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit,
+        query: req.query.query,
+        whereClause: req.query.where_clause,
+        orderByClause: req.query.order_by_clause,
+        limit: req.query.limit,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, function (err, response) {
@@ -372,28 +357,27 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST Get Conversion Rate
+   * GET Conversion Rate
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * Body:
-   * req.body.conversion_type_uuid - Conversion Type reference UUID
-   * req.body.currency_from_uuid - Currency From reference UUID
-   * req.body.currency_to_uuid - Currency To reference UUID
-   * req.body.conversion_date - Conversion Date reference UUID
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * req.query.conversion_type_uuid - Conversion Type reference UUID
+   * req.query.currency_from_uuid - Currency From reference UUID
+   * req.query.currency_to_uuid - Currency To reference UUID
+   * req.query.conversion_date - Conversion Date reference UUID
+   * Details:
    */
-  coreService.post('/get-conversion-rate', (req, res) => {
-    if (req.body) {
+  api.get('/conversion-rate', (req, res) => {
+    if (req.query) {
       service.getConversionRate({
         token: req.query.token,
         language: req.query.language,
-        conversionTypeUuid: req.body.conversion_type_uuid,
-        currencyFromUuid: req.body.currency_from_uuid,
-        currencyToUuid: req.body.currency_to_uuid,
-        conversionDate: req.body.conversion_date
+        conversionTypeUuid: req.query.conversion_type_uuid,
+        currencyFromUuid: req.query.currency_from_uuid,
+        currencyToUuid: req.query.currency_to_uuid,
+        conversionDate: req.query.conversion_date
       }, function (err, response) {
         if (response) {
           res.json({
@@ -410,5 +394,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return coreService;
+  return api;
 };

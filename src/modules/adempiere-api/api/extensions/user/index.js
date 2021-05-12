@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import { convertContextValue } from '@adempiere/grpc-api/lib/convertValues';
 
-export default ({ config, db, service }) => {
-  let userApi = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
    * POST login an user
@@ -15,13 +18,9 @@ export default ({ config, db, service }) => {
    * "password":"TopSecretPassword"
    * }
    *
-   * ```bash
-   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
-   * ```
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   * Details:
    */
-  userApi.post('/login', (req, res) => {
+  api.post('/login', (req, res) => {
     if (req.body) {
       service.login({
         user: req.body.username,
@@ -53,9 +52,9 @@ export default ({ config, db, service }) => {
    * req.body.token - user token obtained from the `/api/user/login`
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserme
+   * Details:
    */
-  userApi.post('/logout', (req, res) => {
+  api.post('/logout', (req, res) => {
     if (req.body) {
       service.logout({
         token: req.body.token
@@ -84,9 +83,9 @@ export default ({ config, db, service }) => {
    * req.body.warehouse - user token obtained from the `/api/user/session`
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserme
+   * Details:
    */
-  userApi.post('/change-role', (req, res) => {
+  api.post('/change-role', (req, res) => {
     if (req.body) {
       service.changeRole({
         token: req.query.token,
@@ -215,9 +214,9 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/menu', (req, res) => {
+  api.get('/menu', (req, res) => {
     if (req.query) {
       service.getMenu({
         token: req.query.token,
@@ -244,9 +243,9 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/session', (req, res) => {
+  api.get('/session', (req, res) => {
     if (req.query) {
       service.getSessionInfo({
         token: req.query.token,
@@ -273,9 +272,9 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/info', (req, res) => {
+  api.get('/info', (req, res) => {
     if (req.query) {
       service.getUserInfo({
         token: req.query.token,
@@ -302,9 +301,9 @@ export default ({ config, db, service }) => {
    * req.query.token - user token
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  userApi.get('/roles', (req, res) => {
+  api.get('/roles', (req, res) => {
     if (req.query) {
       service.getUserRoles({
         token: req.query.token,
@@ -327,5 +326,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return userApi;
+  return api;
 };

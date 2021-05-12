@@ -1,6 +1,9 @@
 import { Router } from 'express';
-export default ({ config, db, service }) => {
-  let enrollmentApi = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
    * POST enroll an user
@@ -15,13 +18,9 @@ export default ({ config, db, service }) => {
    * "password":"TopSecretPassword"
    * }
    *
-   * ```bash
-   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
-   * ```
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   * Details:
    */
-  enrollmentApi.post('/enroll', (req, res) => {
+  api.post('/enroll', (req, res) => {
     if (req.body) {
       service.enrollUser({
         userName: req.body.user_name,
@@ -60,13 +59,9 @@ export default ({ config, db, service }) => {
    * "client_version":"Version Epale",
    * }
    *
-   * ```bash
-   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
-   * ```
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   * Details:
    */
-  enrollmentApi.post('/reset-password', (req, res) => {
+  api.post('/reset-password', (req, res) => {
     if (req.body) {
       service.resetPassword({
         userName: req.body.user_name,
@@ -105,13 +100,9 @@ export default ({ config, db, service }) => {
    * "password":"TopSecretPassword"
    * }
    *
-   * ```bash
-   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
-   * ```
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   * Details:
    */
-  enrollmentApi.post('/change-password', (req, res) => {
+  api.post('/change-password', (req, res) => {
     if (req.body) {
       service.resetPasswordFromToken({
         token: req.body.token,
@@ -147,15 +138,11 @@ export default ({ config, db, service }) => {
    * {
    * "token":"akhjgdsfsdq476328463249234032anbfkd",
    * "client_version":"Version Epale",
-   * }
+   * } ```
    *
-   * ```bash
-   * curl 'https://api.erpya.com/vsbridge/user/login' -H 'content-type: application/json' -H 'accept: application/json' --data-binary '"username":"pkarwatka102@divante.pl","password":"TopSecretPassword}'
-   * ```
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#post-vsbridgeuserlogin
+   * Details:
    */
-  enrollmentApi.post('/activate-user', (req, res) => {
+  api.post('/activate-user', (req, res) => {
     if (req.body) {
       service.activateUser({
         token: req.body.token,
@@ -183,5 +170,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return enrollmentApi;
+  return api;
 };

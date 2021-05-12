@@ -4,21 +4,24 @@ import {
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
-export default ({ config, db, service }) => {
-  let dataApi = Router();
+module.exports = ({ config, db }) => {
+  let api = Router();
+  const ServiceApi = require('@adempiere/grpc-api')
+  let service = new ServiceApi(config)
+  service.initService()
 
   /**
    * GET Entity data
    *
    * req.query.token - user token
-   * req.body.id - id of entity
-   * req.body.uuid - uuid of entity
-   * req.body.table_name - table name of entity
+   * req.query.id - id of entity
+   * req.query.uuid - uuid of entity
+   * req.query.table_name - table name of entity
    * req.query.language - login language
    *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  dataApi.get('/entity', (req, res) => {
+  api.get('/entity', (req, res) => {
     if (req.query) {
       service.getEntity({
         token: req.query.token,
@@ -31,6 +34,87 @@ export default ({ config, db, service }) => {
           res.json({
             code: 200,
             result: convertEntityFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * List Entities
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.filters - query filters
+   [
+     {
+       column_name: 'DocStatus',
+       operator: 'EQUAL',
+       value: 'CO'
+     },
+     {
+       column_name: 'DateInvoiced',
+       operator: 'BETWEEN',
+       value: '2020-01-01'
+       value_to: '2020-09-01'
+     },
+     {
+       column_name: 'C_DocType_ID',
+       operator: 'IN',
+       values: [
+         1000000,
+         1000562
+       ]
+     }
+   ],
+   value: condition.value,
+   valueTo: condition.value_to,
+   values: condition.values,
+   operator: condition.operator
+   * req.query.columns - query columns
+   * req.query.table_name - table name (Mandatory if is not a query)
+   * req.query.query - custom query instead a table name based on SQL
+   * req.query.where_clause - where clause of search based on SQL
+   * req.query.order_by_clause - order by clause based on SQL
+   * req.query.limit - records limit
+   * req.query.language - login language
+   *
+   * Details:
+   */
+  api.get('/entites', (req, res) => {
+    if (req.query) {
+      service.listEntities({
+        token: req.query.token,
+        language: req.query.language,
+        tableName: req.query.table_name,
+        //  DSL Query
+        filters: req.query.filters,
+        columns: req.query.columns,
+        //  Custom Query
+        query: req.query.query,
+        whereClause: req.query.where_clause,
+        orderByClause: req.query.order_by_clause,
+        limit: req.query.limit,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(entity => {
+                return convertEntityFromGRPC(entity)
+              })
+            }
           })
         } else if (err) {
           res.json({
@@ -98,9 +182,9 @@ export default ({ config, db, service }) => {
         "value": "Solo Pruebas"
       }
     ]
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  dataApi.post('/create', (req, res) => {
+  api.post('/create', (req, res) => {
     if (req.body) {
       service.createEntity({
         token: req.query.token,
@@ -151,9 +235,9 @@ export default ({ config, db, service }) => {
         "value": 1000000
       }
     ]
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  dataApi.post('/process', (req, res) => {
+  api.post('/process', (req, res) => {
     if (req.body) {
       service.runProcess({
         token: req.query.token,
@@ -187,7 +271,7 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * POST Create Entity data
+   * POST Update Entity data
    *
    * req.query.token - user token
    * req.body.table_name - table name of entity
@@ -202,7 +286,7 @@ export default ({ config, db, service }) => {
       },
     ]
    */
-  dataApi.post('/update', (req, res) => {
+  api.post('/update', (req, res) => {
     if (req.body) {
       service.updateEntity({
         token: req.query.token,
@@ -228,88 +312,6 @@ export default ({ config, db, service }) => {
   });
 
   /**
-   * List Entities
-   *
-   * req.query.token - user token
-   * req.query.page_size - custom page size for batch
-   * req.query.page_token - specific page token
-   * Body:
-   * req.body.filters - query filters
-   [
-     {
-       column_name: 'DocStatus',
-       operator: 'EQUAL',
-       value: 'CO'
-     },
-     {
-       column_name: 'DateInvoiced',
-       operator: 'BETWEEN',
-       value: '2020-01-01'
-       value_to: '2020-09-01'
-     },
-     {
-       column_name: 'C_DocType_ID',
-       operator: 'IN',
-       values: [
-         1000000,
-         1000562
-       ]
-     }
-   ],
-   value: condition.value,
-   valueTo: condition.value_to,
-   values: condition.values,
-   operator: condition.operator
-   * req.body.columns - query columns
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.query - custom query instead a table name based on SQL
-   * req.body.where_clause - where clause of search based on SQL
-   * req.body.order_by_clause - order by clause based on SQL
-   * req.body.limit - records limit
-   * req.query.language - login language
-   *
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
-   */
-  dataApi.post('/list', (req, res) => {
-    if (req.body) {
-      service.listEntities({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.body.table_name,
-        //  DSL Query
-        filters: req.body.filters,
-        columns: req.body.columns,
-        //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit,
-        //  Page Data
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getRecordsList().map(entity => {
-                return convertEntityFromGRPC(entity)
-              })
-            }
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
-  });
-
-  /**
    * Delete Entity
    *
    * req.query.token - user token
@@ -319,9 +321,9 @@ export default ({ config, db, service }) => {
    * req.body.uuid - uuid of entity
    * req.body.table_name - table name of entity
    * req.query.language - login language
-   * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   * Details:
    */
-  dataApi.post('/delete', (req, res) => {
+  api.post('/delete', (req, res) => {
     if (req.body) {
       service.deleteEntity({
         token: req.query.token,
@@ -345,5 +347,5 @@ export default ({ config, db, service }) => {
     }
   });
 
-  return dataApi;
+  return api;
 };
