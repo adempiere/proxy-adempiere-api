@@ -2895,3 +2895,121 @@ curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/
 
 - `200` cuando es exitoso
 - `500` en caso de error
+### POST /adempiere-api/ui/set-preference
+
+Establecer las preferencias del usuario
+
+#### Paràmetros POST:
+
+`container_uuid` - UUID del contenedor, normalmente es una ventana
+`column_name` - nombre de atributo o columna
+`is_for_current_user` - se aplica al usuario actual (booleano)
+`is_for_current_client` - se aplica al cliente actual (booleano)
+`is_for_current_organization` - se aplica a la organización actual (booleano)
+`is_for_current_container` - se aplica al contenedor actual (booleano)
+`value` - valor para establecer en la preferencia
+
+#### Cuerpo de la Petición:
+
+```json
+{
+    "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+    "column_name": "Name",
+    "value": "System",
+    "is_for_current_user": true,
+    "is_for_current_client": true,
+    "is_for_current_organization": false,
+    "is_for_current_container": true
+}
+```
+
+#### Ejemplo de Llamada:
+
+```bash
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/set-preference?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+    "column_name": "Name",
+    "value": "System",
+    "is_for_current_user": true,
+    "is_for_current_client": true,
+    "is_for_current_organization": false,
+    "is_for_current_container": true
+}'
+    
+```
+#### Cuerpo de Respuesta:
+
+```json
+{
+    "code": 200,
+    "result": {
+        "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+        "column_name": "Name",
+        "user_uuid": "8a702ba2-8e7c-4fc5-ba39-a7fc3f959068",
+        "client_uuid": "894a23a8-24e7-4ae1-a2e5-eda113607852",
+        "organization_uuid": "",
+        "type": 0,
+        "value": "System"
+    }
+}
+```
+#### Código de Respuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
+### POST /adempiere-api/ui/delete-preference
+
+Elimina las preferencias del usuario
+
+#### Paràmetros POST:
+
+`container_uuid` - UUID del contenedor, normalmente es una ventana
+`column_name` - nombre de atributo o columna
+`is_for_current_user` - se aplica al usuario actual (booleano)
+`is_for_current_client` - se aplica al cliente actual (booleano)
+`is_for_current_organization` - se aplica a la organización actual (booleano)
+`is_for_current_container` - se aplica al contenedor actual (booleano)
+`value` - valor para establecer en la preferencia
+
+#### Cuerpo de la Petición:
+
+```json
+{
+    "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+    "column_name": "Name",
+    "is_for_current_user": true,
+    "is_for_current_client": true,
+    "is_for_current_organization": false,
+    "is_for_current_container": true
+}
+```
+
+#### Ejemplo de Llamada:
+
+```bash
+curl --silent --location --request POST 'https://api.erpya.com/adempiere-api/ui/delete-preference?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
+    "column_name": "Name",
+    "is_for_current_user": true,
+    "is_for_current_client": true,
+    "is_for_current_organization": false,
+    "is_for_current_container": true
+}'
+    
+```
+#### Cuerpo de Respuesta:
+
+```json
+{
+    "code":200,
+    "result":"Ok"
+}
+```
+#### Código de Respuesta:
+
+- `200` cuando es exitoso
+- `500` en caso de error
