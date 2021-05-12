@@ -89,7 +89,7 @@ module.exports = ({ config, db }) => {
    *
    * Details:
    */
-  api.get('/get-private-access', (req, res) => {
+  api.get('/private-access', (req, res) => {
     if (req.query) {
       service.getPrivateAccess({
         token: req.query.token,

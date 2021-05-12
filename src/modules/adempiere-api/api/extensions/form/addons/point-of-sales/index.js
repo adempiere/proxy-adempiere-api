@@ -184,24 +184,24 @@ module.exports = ({ config, db }) => {
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   api.get('/product-prices', (req, res) => {
-    if (req.body) {
+    if (req.query) {
       service.listProductPrice({
         token: req.query.token,
         language: req.query.language,
-        searchValue: req.body.search_value,
-        priceListUuid: req.body.price_list_uuid,
-        businessPartnerUuid: req.body.business_partner_uuid,
-        warehouseUuid: req.body.warehouse_uuid,
-        validFrom: req.body.valid_from,
-        tableName: req.body.table_name,
+        searchValue: req.query.search_value,
+        priceListUuid: req.query.price_list_uuid,
+        businessPartnerUuid: req.query.business_partner_uuid,
+        warehouseUuid: req.query.warehouse_uuid,
+        validFrom: req.query.valid_from,
+        tableName: req.query.table_name,
         //  DSL Query
-        filters: req.body.filters,
-        columns: req.body.columns,
+        filters: req.query.filters,
+        columns: req.query.columns,
         //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit,
+        query: req.query.query,
+        whereClause: req.query.where_clause,
+        orderByClause: req.query.order_by_clause,
+        limit: req.query.limit,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -781,31 +781,31 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.get('/orders', (req, res) => {
-    if (req.body) {
+    if (req.query) {
       service.listOrders({
         token: req.query.token,
         language: req.query.language,
-        posUuid: req.body.pos_uuid,
-        documentNo: req.body.document_no,
-        businessPartnerUuid: req.body.business_partner_uuid,
-        grandTotal: req.body.grand_total,
-        openAmount: req.body.open_amount,
-        isPaid: req.body.is_paid,
-        isProcessed: req.body.is_processed,
-        isAisleSeller: req.body.is_aisle_seller,
-        isInvoiced: req.body.is_invoiced,
-        dateOrderedFrom: req.body.date_ordered_from,
-        dateOrderedTo: req.body.date_ordered_to,
-        salesRepresentativeUuid: req.body.sales_representative_uuid,
-        tableName: req.body.table_name,
+        posUuid: req.query.pos_uuid,
+        documentNo: req.query.document_no,
+        businessPartnerUuid: req.query.business_partner_uuid,
+        grandTotal: req.query.grand_total,
+        openAmount: req.query.open_amount,
+        isPaid: req.query.is_paid,
+        isProcessed: req.query.is_processed,
+        isAisleSeller: req.query.is_aisle_seller,
+        isInvoiced: req.query.is_invoiced,
+        dateOrderedFrom: req.query.date_ordered_from,
+        dateOrderedTo: req.query.date_ordered_to,
+        salesRepresentativeUuid: req.query.sales_representative_uuid,
+        tableName: req.query.table_name,
         //  DSL Query
-        filters: req.body.filters,
-        columns: req.body.columns,
+        filters: req.query.filters,
+        columns: req.query.columns,
         //  Custom Query
-        query: req.body.query,
-        whereClause: req.body.where_clause,
-        orderByClause: req.body.order_by_clause,
-        limit: req.body.limit,
+        query: req.query.query,
+        whereClause: req.query.where_clause,
+        orderByClause: req.query.order_by_clause,
+        limit: req.query.limit,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -879,7 +879,7 @@ module.exports = ({ config, db }) => {
    *
    * Details:
    */
-  api.post('/get-key-layout', (req, res) => {
+  api.post('/key-layout', (req, res) => {
     if (req.query) {
       service.getKeyLayout({
         token: req.query.token,

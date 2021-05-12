@@ -197,21 +197,7 @@ module.exports = ({ config, db }) => {
       service.getBusinessPartner({
         token: req.query.token,
         language: req.query.language,
-        searchValue: req.query.search_value,
-        value: req.query.value,
-        name: req.query.name,
-        contactName: req.query.contact_name,
-        email: req.query.email,
-        postalCode: req.query.postal_code,
-        phone: req.query.phone,
-        tableName: req.query.tableName,
-        filters: req.query.filters,
-        columns: req.query.columns,
-        //  Custom Query
-        query: req.query.query,
-        whereClause: req.query.where_clause,
-        orderByClause: req.query.order_by_clause,
-        limit: req.query.limit
+        searchValue: req.query.search_value
       }, function (err, response) {
         if (response) {
           res.json({
