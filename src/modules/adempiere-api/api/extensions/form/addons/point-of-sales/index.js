@@ -832,7 +832,7 @@ module.exports = ({ config, db }) => {
   });
 
   /**
-   * POST List Sales Orders Lines
+   * GET List Sales Orders Lines
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
@@ -840,7 +840,7 @@ module.exports = ({ config, db }) => {
    * req.query.order_uuid - Order UUID reference
    * Details:
    */
-  api.post('/order-lines', (req, res) => {
+  api.get('/order-lines', (req, res) => {
     if (req.query) {
       service.listOrderLines({
         token: req.query.token,
@@ -879,7 +879,7 @@ module.exports = ({ config, db }) => {
    *
    * Details:
    */
-  api.post('/key-layout', (req, res) => {
+  api.get('/key-layout', (req, res) => {
     if (req.query) {
       service.getKeyLayout({
         token: req.query.token,
