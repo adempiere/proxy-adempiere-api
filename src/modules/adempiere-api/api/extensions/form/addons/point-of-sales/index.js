@@ -148,39 +148,6 @@ module.exports = ({ config, db }) => {
    * req.body.valid_from - Prioce List Valid From
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.filters - query filters
-   [
-     {
-       column_name: 'DocStatus',
-       operator: 'EQUAL',
-       value: 'CO'
-     },
-     {
-       column_name: 'DateInvoiced',
-       operator: 'BETWEEN',
-       value: '2020-01-01'
-       value_to: '2020-09-01'
-     },
-     {
-       column_name: 'C_DocType_ID',
-       operator: 'IN',
-       values: [
-         1000000,
-         1000562
-       ]
-     }
-   ],
-   value: condition.value,
-   valueTo: condition.value_to,
-   values: condition.values,
-   operator: condition.operator
-   * req.body.columns - query columns
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.query - custom query instead a table name based on SQL
-   * req.body.where_clause - where clause of search based on SQL
-   * req.body.order_by_clause - order by clause based on SQL
-   * req.body.limit - records limit
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   api.get('/product-prices', (req, res) => {
@@ -191,20 +158,7 @@ module.exports = ({ config, db }) => {
         searchValue: req.query.search_value,
         priceListUuid: req.query.price_list_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
-        warehouseUuid: req.query.warehouse_uuid,
-        validFrom: req.query.valid_from,
-        tableName: req.query.table_name,
-        //  DSL Query
-        filters: req.query.filters,
-        columns: req.query.columns,
-        //  Custom Query
-        query: req.query.query,
-        whereClause: req.query.where_clause,
-        orderByClause: req.query.order_by_clause,
-        limit: req.query.limit,
-        //  Page Data
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
+        warehouseUuid: req.query.warehouse_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -745,39 +699,6 @@ module.exports = ({ config, db }) => {
    * req.body.sales_representative_uuid - Sales Representative UUID reference
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
-   * Body:
-   * req.body.filters - query filters
-   [
-     {
-       column_name: 'DocStatus',
-       operator: 'EQUAL',
-       value: 'CO'
-     },
-     {
-       column_name: 'DateInvoiced',
-       operator: 'BETWEEN',
-       value: '2020-01-01'
-       value_to: '2020-09-01'
-     },
-     {
-       column_name: 'C_DocType_ID',
-       operator: 'IN',
-       values: [
-         1000000,
-         1000562
-       ]
-     }
-   ],
-   value: condition.value,
-   valueTo: condition.value_to,
-   values: condition.values,
-   operator: condition.operator
-   * req.body.columns - query columns
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.query - custom query instead a table name based on SQL
-   * req.body.where_clause - where clause of search based on SQL
-   * req.body.order_by_clause - order by clause based on SQL
-   * req.body.limit - records limit
    * Details:
    */
   api.get('/orders', (req, res) => {
@@ -796,19 +717,7 @@ module.exports = ({ config, db }) => {
         isInvoiced: req.query.is_invoiced,
         dateOrderedFrom: req.query.date_ordered_from,
         dateOrderedTo: req.query.date_ordered_to,
-        salesRepresentativeUuid: req.query.sales_representative_uuid,
-        tableName: req.query.table_name,
-        //  DSL Query
-        filters: req.query.filters,
-        columns: req.query.columns,
-        //  Custom Query
-        query: req.query.query,
-        whereClause: req.query.where_clause,
-        orderByClause: req.query.order_by_clause,
-        limit: req.query.limit,
-        //  Page Data
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
+        salesRepresentativeUuid: req.query.sales_representative_uuid
       }, function (err, response) {
         if (response) {
           res.json({
