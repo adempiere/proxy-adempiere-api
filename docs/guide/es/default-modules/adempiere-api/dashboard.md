@@ -1,4 +1,4 @@
-## Servicio del Panel de Control
+## Servicios del Panel de Control
 
 ### GET /api/dashboard/dashboards
 
@@ -72,7 +72,7 @@ curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/dash
 
 
 
-## Servicio del Panel de Control del Usuario
+## Servicios del Panel de Control del Usuario
 
 ### GET /api/dashboard/addons/user/favorites
 
@@ -463,7 +463,7 @@ curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/addo
 - `200` cuando es exitoso
 - `500` en caso de error
 
-## Servicio del Panel de Control de Tareas
+## Servicios del Panel de Control de Tareas
 ### GET /api/dashboard/addons/tasks/pending-documents
 
 Obtiene la lista de los documentos pendiente.

@@ -168,7 +168,7 @@ module.exports = ({ config, db }) => {
         fieldUuid: req.query.field_uuid,
         tableName: req.query.table_name,
         columnName: req.query.column_name,
-        elementNolumnName: req.query.element_column_name
+        elementColumnName: req.query.element_column_name
       }, function (err, response) {
         if (response) {
           res.json({
