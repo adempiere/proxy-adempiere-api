@@ -6,7 +6,7 @@ Gets the list of dashboards or control panels that the user has access to accord
 
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - page size (custom).
 - `page_token` - page token (optional to get a specific page).
@@ -79,7 +79,7 @@ Favorites list
 
 #### Parameters:
 
-`token` - user token returned from `POST /adempiere-api/user/login`.
+`token` - user token returned from `POST /api/user/login`.
 `language` - language for response translations.
 `page_size` - size of pagination lists.
 `page_token` - token the page number.
@@ -123,7 +123,7 @@ Gets the list of recent items accessed by the user and/or role.
 
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - page size (custom).
 - `page_token` - page token (optional to get a specific page).
@@ -469,7 +469,7 @@ Gets the list of pending documents.
 
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - size of page (customized)
 - `page_token` - token of page (optional for get a specific page)

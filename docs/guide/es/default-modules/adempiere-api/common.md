@@ -6,7 +6,7 @@ Obtiene los datos del país.
 
 #### Parámetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `id` - identificador del país.
 - `uuid` - identificador único universal del país.
@@ -77,7 +77,7 @@ Obtiene la lista de organizaciones a las que el usuario tiene acceso según su r
 
 #### Parámetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `role_id` - id del rol actual
 - `role_uuid` - uuid del rol actual
@@ -137,7 +137,7 @@ Obtiene la lista de almacenes
 
 #### Parámetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `organization_id` - id de la organización actual.
 - `organization_uuid` - uuid de la organización actual.
@@ -190,7 +190,7 @@ Obtiene la lista de idiomas disponibles.
 
 #### Parámetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de las listas de la paginación.
 - `page_token` - token el numero de la página.
@@ -258,7 +258,7 @@ obtener un socio comercial
 
 #### Parámetros
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma de inicio de sesión.
 - `page_size` - tamaño de la página (personalizado).
 - `page_token` - token de la página (opcional para obtener una página específica).
@@ -317,7 +317,7 @@ Crear Socio de Negocios
 
 #### Paràmetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 
 #### Cuerpo de la Petición:
@@ -404,7 +404,7 @@ Obtener socios comerciales
 
 #### Paràmetros
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de las listas de la paginación.
 - `page_token` - token el numero de la página.
@@ -526,7 +526,7 @@ curl 'https://api.erpya.com/api/common/business-partners?token=b6d0c7c7-0785-430
 Obtener Tasa de Conversión
 
 #### Paràmetros
-- token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de las listas de la paginación.
 - `page_token` - token el numero de la página.
@@ -740,20 +740,20 @@ Listar las Entidades.
 ```json
     filters: [
         {
-            "nombre_columna": "DocStatus",
-            "operador": "EQUAL",
-            "valor": "CO"
+            "column_name": "DocStatus",
+            "operator": "EQUAL",
+            "value": "CO"
         },
         {
-            "nombre_columna": "DateInvoiced",
-            "operador": "BETWEEN",
-            "valor": "2020-01-01",
-            "valor_hasta": "2020-09-01"
+            "column_name": "DateInvoiced",
+            "operator": "BETWEEN",
+            "value": "2020-01-01",
+            "value_to": "2020-09-01"
         },
         {
-            "nombre_columna": "C_DocType_ID",
-            "operador": "IN",
-            "valores": [
+            "column_name": "C_DocType_ID",
+            "operator": "IN",
+            "values": [
                 1000000,
                 1000562
             ]
@@ -764,9 +764,9 @@ Listar las Entidades.
 
 :::tip Nota
 - `value` - valor de la condición,
-- `valueTo`-  valor de la condición a,
-- `valores` - valores de la condición,
-- `operador` - condición operador
+- `value_to`-  valor de la condición a,
+- `values` - valores de la condición,
+- `operator` - condición operador
 :::
 
 #### Cuerpo de la Petición:

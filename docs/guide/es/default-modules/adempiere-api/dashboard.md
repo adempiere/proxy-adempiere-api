@@ -6,7 +6,7 @@ Obtiene la lista de tableros o paneles de control los que el usuario tiene acces
 
 #### Parámetros:
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de la página (personalizado)
 - `page_token` - token de la página (opcional para obtener una página específica)
@@ -80,7 +80,7 @@ Lista de favoritos
 
 #### Parámetros:
 
-`token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+`token` - token de usuario devuelto de `POST /api/user/login`.
 `language` - idioma para las traducciones de la respuesta.
 `page_size` - tamaño de las listas de la paginación.
 `page_token` - token el numero de la página.
@@ -124,7 +124,7 @@ Obtiene la lista de elementos recientes a los que accedio el usuario y/o rol.
 
 #### Parámetros:
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de la página (personalizado)
 - `page_token` - token de la página (opcional para obtener una página específica)
@@ -470,7 +470,7 @@ Obtiene la lista de los documentos pendiente.
 
 #### Parámetros:
 
-- `token` - token de usuario devuelto de `POST /adempiere-api/user/login`.
+- `token` - token de usuario devuelto de `POST /api/user/login`.
 - `language` - idioma para las traducciones de la respuesta.
 - `page_size` - tamaño de la página (personalizado)
 - `page_token` - token de la página (opcional para obtener una página específica)

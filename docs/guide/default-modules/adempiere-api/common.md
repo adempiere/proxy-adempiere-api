@@ -6,7 +6,7 @@ Obtains country data.
 
 #### Parameters
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `id` - country identifier.
 - `uuid` - universally unique country identifier.
@@ -77,7 +77,7 @@ Gets the list of organizations to which the user has access according to his rol
 
 #### Parameters
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `role_id` - id of current role.
 - `role_uuid` - uuid of the current role.
@@ -137,7 +137,7 @@ Gets the list of warehouses
 
 #### Parameters
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `organization_id` - id of current organization.
 - `organization_uuid` - uuid of the current organization.
@@ -190,7 +190,7 @@ Gets the list of available languages.
 
 #### Parameters
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - size of pagination lists.
 - `page_token` - token the page number.
@@ -258,7 +258,7 @@ Get a business partner
 
 #### Parameters
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - login language.
 - `page_size` - page size (custom).
 - `page_token` - page token (optional to get a specific page).
@@ -315,7 +315,7 @@ Create Business Partner
 
 #### Paràmetros
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 
 #### Body of the Petitión:
@@ -403,7 +403,7 @@ Get business partners
 
 #### Paràmetros
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - size of pagination lists.
 - `page_token` - token the page number.
@@ -526,7 +526,7 @@ Get Conversion Rate
 
 #### Paràmetros
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `page_size` - size of pagination lists.
 - `page_token` - token the page number.
@@ -578,7 +578,7 @@ Get the entity from the table name and the id or uuid of the record.
 
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 - `id` - id of entity
 - `uuid` - uuid of entity
@@ -722,7 +722,7 @@ List Entities.
 
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `page_size` - custom page size for the batch
 - `page_token` - specific page token
 - `language` - language for response translations.
@@ -1140,7 +1140,7 @@ curl --silent --location --request GET 'http://api.erpya.com/api/common/api/enti
 Create Entity. Called when saving a new record from the application, it returns the data of the created record.
 #### Parameters:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 
 #### Body of the Petitión:
@@ -1296,7 +1296,7 @@ It is used to update the entity
 
 #### Parameters POS:
 
-- `token` - user token returned from `POST /adempiere-api/user/login`.
+- `token` - user token returned from `POST /api/user/login`.
 - `language` - language for response translations.
 
 

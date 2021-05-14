@@ -149,7 +149,6 @@ module.exports = ({ config, db }) => {
    * req.query.uuid - uuid of field
    * req.query.column_uuid - column uuid of field
    * req.query.element_uuid - element uuid of field
-   * req.query.field_uuid - field uuid of field
    * req.query.table_name - table name of field
    * req.query.column_name - column name of field
    * req.query.element_column_name - element column name of field
@@ -165,7 +164,6 @@ module.exports = ({ config, db }) => {
         uuid: req.query.uuid,
         columnUuid: req.query.column_uuid,
         elementUuid: req.query.element_uuid,
-        fieldUuid: req.query.field_uuid,
         tableName: req.query.table_name,
         columnName: req.query.column_name,
         elementColumnName: req.query.element_column_name
