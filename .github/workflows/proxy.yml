@@ -50,8 +50,3 @@ jobs:
           yarn restore7
         env:
           CI: true
-      - name: yarn integration test
-        run: |
-          yarn test:integration
-        env:
-          CI: true
