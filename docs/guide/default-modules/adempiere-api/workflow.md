@@ -1,35 +1,28 @@
-## Módulo Flujo de Trabajo
+## workflows Service
 
-### POST /adempiere-api/workflow/list-workflow-logs
+### GET /api/workflow/workflows
 
-Lista de Flujo de Trabajo
-#### Paràmetros POST:
+GET Workflows
+#### Parameters:
 
-`token` - - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma de inicio de sesión.
-`page_size` - tamaño de la página (personalizado).
-`page_token` - token de la página (opcional para obtener una página específica).
-`table_name` - nombre de la tabla (obligatorio para obtener la traducción).
+- `token` - user token returned from `POST /api/user/login`.
+- `language` - language for response translations.
+- `page_size` - page size
+- `page_token` - token page
+- `table_name` - Table name (required if not a query)
 
-#### Cuerpo de la Petición:
+#### Body of the Petitión:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
 
-#### Ejemplo de Llamada:
+#### Example of a Call:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name": "C_Order"}'
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-actions?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
-#### Cuerpo de Respuesta:
+#### Response Body:
 
 ```json
 {
@@ -179,43 +172,37 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=b6d0c7c7-
     }
 }
 ```
-#### Código de Respuesta:
+#### Response Code:
 
-- `200` cuando es exitoso
-- `500` en caso de error
+- `200` when successful.
+- `500` in case of error
 
 
-### POST /adempiere-api/workflow/list-document-actions
+### GET /api/workflow/document-actions
 
-Lista de acciones del documento
-#### Paràmetros POST:
+GET Document Actions
+#### Parameters:
 
-`table_name` - nombre de la tabla (obligatorio para obtener la traducción).
-`uuid` - referencia de uuid.
-`id` - referencia del id.
-`document_status` - Estado actual.
-`document_action` - Acción opcional.
+- `token` - user token returned from `POST /api/user/login`.
+- `language` - language for response translations.
+- `table_name` - Table name (required if not a query)
+- `uuid` - uuid of record
+- `id` - id of record
+- `document_status` - Current Status
+- `document_action` - Optional Action
 
-#### Cuerpo de la Petición:
+#### Body of the Petitión:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
 
-#### Ejemplo de Llamada:
+#### Example of a Call:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
-    
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/list-document-actions?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82'
 ```
-#### Cuerpo de Respuesta:
+#### Response Body:
 
 ```json
 {
@@ -254,41 +241,37 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b
 }
 
 ```
-#### Código de Respuesta:
+#### Response Code:
 
-- `200` cuando es exitoso
-- `500` en caso de error
+- `200` when successful.
+- `500` in case of error
 
-### POST /adempiere-api/workflow/list-document-statuses
+### GET /api/workflow/document-statuses
 
-Lista de estados del documento
-#### Paràmetros POST:
+GET Document Statuses
+#### Parameters:
 
-`table_name` - nombre de la tabla (obligatorio para obtener la traducción).
-`uuid` - referencia de uuid.
-`id` - referencia del id.
-`document_status` - Estado actual.
+- `token` - user token returned from `POST /api/user/login`.
+- `language` - language for response translations.
+- `page_size` - size of page (customized)
+- `page_token` - token of page (optional for get a specific page)
+- `table_name` - table name
+- `id` - id of record
+- `uuid` - uuid of record
+- `document_status` - Current Status
 
-#### Cuerpo de la Petición:
+#### Body of the Petitión:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
 
-#### Ejemplo de Llamada:
+#### Example of a Call:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
-    
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-statuses?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
-#### Cuerpo de Respuesta:
+#### Response Body:
 
 ```json
 {
@@ -325,9 +308,8 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=
         ]
     }
 }
-
 ```
-#### Código de Respuesta:
+#### Response Code:
 
-- `200` cuando es exitoso
-- `500` en caso de error
+- `200` when successful.
+- `500` in case of error
