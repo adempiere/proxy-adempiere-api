@@ -1,33 +1,26 @@
-## Módulo Flujo de Trabajo
+## Servicios del Flujo de Trabajo
 
-### POST /adempiere-api/workflow/list-workflow-logs
+### GET /api/workflow/workflows
 
 Lista de Flujo de Trabajo
 #### Paràmetros POST:
 
-`token` - - token de usuario devuelto de `POST /adempiere-api/user/login`.
-`language` - idioma de inicio de sesión.
-`page_size` - tamaño de la página (personalizado).
-`page_token` - token de la página (opcional para obtener una página específica).
-`table_name` - nombre de la tabla (obligatorio para obtener la traducción).
+- `token` - - token de usuario devuelto de `POST /api/user/login`.
+- `language` - idioma de inicio de sesión.
+- `page_size` - tamaño de la página (personalizado).
+- `page_token` - token de la página (opcional para obtener una página específica).
+- `table_name` - nombre de la tabla
 
 #### Cuerpo de la Petición:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
 
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name": "C_Order"}'
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/workflows?language=es&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Cuerpo de Respuesta:
 
@@ -185,10 +178,10 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-workflow?token=b6d0c7c7-
 - `500` en caso de error
 
 
-### POST /adempiere-api/workflow/list-document-actions
+### GET /api/workflow/document-actions
 
-Lista de acciones del documento
-#### Paràmetros POST:
+Obtener lista de acciones del documento
+#### Paràmetros:
 
 `table_name` - nombre de la tabla (obligatorio para obtener la traducción).
 `uuid` - referencia de uuid.
@@ -199,21 +192,14 @@ Lista de acciones del documento
 #### Cuerpo de la Petición:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
 
 #### Ejemplo de Llamada:
 
+
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
-    
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-actions?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Cuerpo de Respuesta:
 
@@ -252,41 +238,30 @@ curl 'https://api.erpya.com/adempiere-api/workflow/list-document-actions?token=b
         ]
     }
 }
-
 ```
 #### Código de Respuesta:
 
 - `200` cuando es exitoso
 - `500` en caso de error
 
-### POST /adempiere-api/workflow/list-document-statuses
+### GET /api/workflow/document-statuses
 
-Lista de estados del documento
-#### Paràmetros POST:
+Obtener lista de estados del documento
+#### Paràmetros:
 
 `table_name` - nombre de la tabla (obligatorio para obtener la traducción).
 `uuid` - referencia de uuid.
 `id` - referencia del id.
 `document_status` - Estado actual.
-
 #### Cuerpo de la Petición:
 
 ```json
-{
-	"token": "5339c283-dc77-4001-8315-22905596d6c0",
-	"language": "es"
-}
+null
 ```
-
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/workflow/list-document-statuses?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es' \
-    -X POST \
-    -H 'content-type: application/json' \
-    -H 'accept: */*;charset=UTF-8' \
-    --data-binary '{"table_name":"C_Order","id":1000269,"uuid":"5bc4f838-ae40-4880-b608-c12fd0351c82"}'
-    
+curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-statuses?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Cuerpo de Respuesta:
 
