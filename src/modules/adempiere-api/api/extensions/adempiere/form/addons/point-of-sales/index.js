@@ -582,6 +582,39 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Validate User PIN
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.pin - User PIN
+   *
+   * Details:
+   */
+  api.post('/validate-pin', (req, res) => {
+    if (req.body) {
+      service.validatePIN({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        pin: req.body.pin
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * GET Sales Order
    *
    * req.query.token - user token
