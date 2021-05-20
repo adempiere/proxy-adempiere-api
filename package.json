@@ -1,6 +1,6 @@
 {
   "name": "proxy-adempiere-api",
-  "version": "1.0.0-rc.3",
+  "version": "rt-3.7",
   "private": true,
   "description": "SA ADempiere Proxy backed using API REST and connecting with gRPC service",
   "main": "dist",
