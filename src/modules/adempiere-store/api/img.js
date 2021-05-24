@@ -72,7 +72,7 @@ export default ({ config, db, service }) =>
       height = parseInt(urlParts[2]);
       action = urlParts[3];
       resourceName = urlParts[4];
-      imgUrl = `${config.modules.adempiereApi.images.baseUrl}/${urlParts
+      imgUrl = `${config.modules.adempiereStore.images.baseUrl}/${urlParts
         .slice(4)
         .join('/')}`; // full original image url
       if (urlParts.length < 4) {
@@ -113,7 +113,7 @@ export default ({ config, db, service }) =>
     );
 
     let buffer;
-    if (config.modules.adempiereApi.images.httpBased) {
+    if (config.modules.adempiereStore.images.httpBased) {
       try {
         buffer = await downloadImage(imgUrl);
       } catch (err) {
