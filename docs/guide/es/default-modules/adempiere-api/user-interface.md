@@ -31,7 +31,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/common/attachment?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=Test&id=103&uuid=db4f0106-eace-44bd-b761-f03f6efd4852'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/common/attachment?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=Test&id=103&uuid=db4f0106-eace-44bd-b761-f03f6efd4852'
     
 ```
 #### Cuerpo de Respuesta:
@@ -70,7 +70,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/common/resource-reference?token=%3Ctoken-generated-for-demo-api%3E&language=es&image_id=5472'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/common/resource-reference?token=%3Ctoken-generated-for-demo-api%3E&language=es&image_id=5472'
 
 ```
 #### Cuerpo de Respuesta:
@@ -119,7 +119,7 @@ obtener información de referencia de los recursos
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/common/rollback-entity?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/common/rollback-entity?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": 386,
@@ -267,7 +267,7 @@ Crear una entrada de chat
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/notes/create-chat-entry?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/notes/create-chat-entry?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "table_name": "Test",
@@ -336,7 +336,7 @@ Establecer las preferencias del usuario
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/preference/set-preference?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/preference/set-preference?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
@@ -399,7 +399,7 @@ Borrar las preferencias del usuario
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/preference/delete-preference?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/preference/delete-preference?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "container_uuid": "a5216710-fb40-11e8-a479-7a0060f0aa01",
@@ -449,7 +449,7 @@ Desbloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/private-access/unlock-private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/private-access/unlock-private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "table_name": "C_Order",
@@ -499,7 +499,7 @@ Bloquear un acceso privado
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/private-access/unlock-private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/private-access/unlock-private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "table_name": "C_Order",
@@ -543,7 +543,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/component/private-access/private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order,&id=1073741,&uuid=6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/component/private-access/private-access?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order,&id=1073741,&uuid=6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66'
 ```
 #### Cuerpo de Respuesta:
 
@@ -584,7 +584,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/component/record-access/record-access?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order&id=1073741&uuid=6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/component/record-access/record-access?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order&id=1073741&uuid=6ff7ed30-4bb1-4eeb-9e84-b6fa01978d66'
 ```
 #### Cuerpo de Respuesta:
 
@@ -760,7 +760,7 @@ Establecer el acceso al registro.
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/component/record-access/set-record-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/component/record-access/set-record-access?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "table_name": "M_Product_Group",
@@ -940,7 +940,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/component/translation/translations?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=AD_View&id=50000&uuid=a4cb498e-fb40-11e8-a479-7a0060f0aa01'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/component/translation/translations?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=AD_View&id=50000&uuid=a4cb498e-fb40-11e8-a479-7a0060f0aa01'
 ```
 #### Cuerpo de Respuesta:
 
@@ -1001,7 +1001,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/process/report-output?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&print_format_uuid=8eb10f96-bee8-11e9-a3f9-0242ac110003&report_view_uuid=a48826f4-fb40-11e8-a479-7a0060f0aa01&is_summary=false&report_name=Saldos+Abiertos&report_type=html&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/process/report-output?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&print_format_uuid=8eb10f96-bee8-11e9-a3f9-0242ac110003&report_view_uuid=a48826f4-fb40-11e8-a479-7a0060f0aa01&is_summary=false&report_name=Saldos+Abiertos&report_type=html&language=es'
     
 ```
 
@@ -1045,7 +1045,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/process/drill-tables?token=%3Ctoken-generated-for-demo-api%3E&table_name=C_BP_Group&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/process/drill-tables?token=%3Ctoken-generated-for-demo-api%3E&table_name=C_BP_Group&language=es'
 ```
 
 #### Cuerpo de Respuesta:
@@ -1141,7 +1141,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/process/report-views?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&process_uuid=a42b9c36-fb40-11e8-a479-7a0060f0aa01&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/process/report-views?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&process_uuid=a42b9c36-fb40-11e8-a479-7a0060f0aa01&language=es'
 ```
 
 #### Cuerpo de Respuesta:
@@ -1192,7 +1192,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/process/print-formats?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&process_uuid=a42b9c36-fb40-11e8-a479-7a0060f0aa01&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/process/print-formats?token=%3Ctoken-generated-for-demo-api%3E&table_name=RV_OpenItem&process_uuid=a42b9c36-fb40-11e8-a479-7a0060f0aa01&language=es'
 ```
 
 #### Cuerpo de Respuesta:
@@ -1297,7 +1297,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location -g --request GET 'https://api.erpya.com/api/user-interface/smart-browser/browser-items?uuid=8aaefbc2-fb40-11e8-a479-7a0060f0aa01&filters[]=%7B%22key%22:%22O_IsSOTrx%22,%22value%22:true,%22values%22:[]%7D&filters[]=%7B%22key%22:%22O_DocStatus%22,%22value%22:%22DR%22,%22values%22:[]%7D&query=SELECT+o.Processing+AS+%22O_Processing%22,o.C_Opportunity_ID+AS+%22O_C_Opportunity_ID%22,o.DocStatus+AS+%22O_DocStatus%22,o.DropShip_BPartner_ID+AS+%22O_DropShip_BPartner_ID%22,o.DropShip_Location_ID+AS+%22O_DropShip_Location_ID%22,o.DropShip_User_ID+AS+%22O_DropShip_User_ID%22,o.FreightAmt+AS+%22O_FreightAmt%22,o.IsSelected+AS+%22O_IsSelected%22,o.CopyFrom+AS+%22O_CopyFrom%22,o.IsDelivered+AS+%22O_IsDelivered%22,o.Bill_Location_ID+AS+%22O_Bill_Location_ID%22,o.Pay_BPartner_ID+AS+%22O_Pay_BPartner_ID%22,o.AmountRefunded+AS+%22O_AmountRefunded%22,o.Bill_User_ID+AS+%22O_Bill_User_ID%22,o.Pay_Location_ID+AS+%22O_Pay_Location_ID%22,o.C_Activity_ID+AS+%22O_C_Activity_ID%22,o.PaymentRule+AS+%22O_PaymentRule%22,o.Posted+AS+%22O_Posted%22,o.C_BPartner_ID+AS+%22O_C_BPartner_ID%22,o.DocumentNo+AS+%22O_DocumentNo%22,o.DateOrdered+AS+%22O_DateOrdered%22,o.M_Shipper_ID+AS+%22O_M_Shipper_ID%22,o.M_Warehouse_ID+AS+%22O_M_Warehouse_ID%22,o.OrderType+AS+%22O_OrderType%22,o.AD_Client_ID+AS+%22O_AD_Client_ID%22,o.AD_Org_ID+AS+%22O_AD_Org_ID%22,o.AD_OrgTrx_ID+AS+%22O_AD_OrgTrx_ID%22,o.AD_User_ID+AS+%22O_AD_User_ID%22,o.AmountTendered+AS+%22O_AmountTendered%22,o.Bill_BPartner_ID+AS+%22O_Bill_BPartner_ID%22,o.Weight+AS+%22O_Weight%22,o.C_BPartner_Location_ID+AS+%22O_C_BPartner_Location_ID%22,o.C_Campaign_ID+AS+%22O_C_Campaign_ID%22,o.C_CashLine_ID+AS+%22O_C_CashLine_ID%22,o.C_Charge_ID+AS+%22O_C_Charge_ID%22,o.C_ConversionType_ID+AS+%22O_C_ConversionType_ID%22,o.C_Currency_ID+AS+%22O_C_Currency_ID%22,o.C_DocType_ID+AS+%22O_C_DocType_ID%22,o.C_DocTypeTarget_ID+AS+%22O_C_DocTypeTarget_ID%22,o.ChargeAmt+AS+%22O_ChargeAmt%22,o.C_Order_ID+AS+%22O_C_Order_ID%22,o.C_OrderSource_ID+AS+%22O_C_OrderSource_ID%22,o.C_Payment_ID+AS+%22O_C_Payment_ID%22,o.C_PaymentTerm_ID+AS+%22O_C_PaymentTerm_ID%22,o.C_POS_ID+AS+%22O_C_POS_ID%22,o.C_Project_ID+AS+%22O_C_Project_ID%22,o.Created+AS+%22O_Created%22,o.CreatedBy+AS+%22O_CreatedBy%22,o.DateAcct+AS+%22O_DateAcct%22,o.DatePrinted+AS+%22O_DatePrinted%22,o.DatePromised+AS+%22O_DatePromised%22,o.DeliveryRule+AS+%22O_DeliveryRule%22,o.DeliveryViaRule+AS+%22O_DeliveryViaRule%22,o.Description+AS+%22O_Description%22,o.DocAction+AS+%22O_DocAction%22,o.FreightCostRule+AS+%22O_FreightCostRule%22,o.GrandTotal+AS+%22O_GrandTotal%22,o.InvoiceRule+AS+%22O_InvoiceRule%22,o.UpdatedBy+AS+%22O_UpdatedBy%22,o.IsActive+AS+%22O_IsActive%22,o.IsApproved+AS+%22O_IsApproved%22,o.IsCreditApproved+AS+%22O_IsCreditApproved%22,o.IsDiscountPrinted+AS+%22O_IsDiscountPrinted%22,o.IsDropShip+AS+%22O_IsDropShip%22,o.IsInvoiced+AS+%22O_IsInvoiced%22,o.IsPrinted+AS+%22O_IsPrinted%22,o.IsSelfService+AS+%22O_IsSelfService%22,o.IsSOTrx+AS+%22O_IsSOTrx%22,o.IsTaxIncluded+AS+%22O_IsTaxIncluded%22,o.IsTransferred+AS+%22O_IsTransferred%22,o.Link_Order_ID+AS+%22O_Link_Order_ID%22,o.M_FreightCategory_ID+AS+%22O_M_FreightCategory_ID%22,o.M_PriceList_ID+AS+%22O_M_PriceList_ID%22,o.POReference+AS+%22O_POReference%22,o.PriorityRule+AS+%22O_PriorityRule%22,o.Processed+AS+%22O_Processed%22,o.ProcessedOn+AS+%22O_ProcessedOn%22,o.PromotionCode+AS+%22O_PromotionCode%22,o.Ref_Order_ID+AS+%22O_Ref_Order_ID%22,o.SalesRep_ID+AS+%22O_SalesRep_ID%22,o.SendEMail+AS+%22O_SendEMail%22,o.TotalLines+AS+%22O_TotalLines%22,o.Updated+AS+%22O_Updated%22,o.User1_ID+AS+%22O_User1_ID%22,o.User2_ID+AS+%22O_User2_ID%22,o.Volume+AS+%22O_Volume%22,+(SELECT+NVL(C_BPartner.Name,%27%27)+FROM+C_BPartner+WHERE+o.C_BPartner_ID%3DC_BPartner.C_BPartner_ID)+AS+%22DisplayColumn_O_C_BPartner_ID%22,+C_DocTypeTarget_ID_C_DocType_Trl.Name+AS+%22DisplayColumn_O_C_DocTypeTarget_ID%22,+DeliveryRule_AD_Ref_List_Trl.Name+AS+%22DisplayColumn_O_DeliveryRule%22,+DocStatus_AD_Ref_List_Trl.Name+AS+%22DisplayColumn_O_DocStatus%22+FROM+C_Order+o+LEFT+JOIN+C_DocType+AS+C_DocTypeTarget_ID_C_DocType+ON(C_DocTypeTarget_ID_C_DocType.C_DocType_ID+%3D+o.C_DocTypeTarget_ID)+LEFT+JOIN+C_DocType_Trl+AS+C_DocTypeTarget_ID_C_DocType_Trl+ON(C_DocTypeTarget_ID_C_DocType_Trl.C_DocType_ID+%3D+C_DocTypeTarget_ID_C_DocType.C_DocType_ID+AND+C_DocTypeTarget_ID_C_DocType_Trl.AD_Language+%3D+%27es_VE%27)+LEFT+JOIN+AD_Ref_List+AS+DeliveryRule_AD_Ref_List+ON(DeliveryRule_AD_Ref_List.Value+%3D+o.DeliveryRule+AND+DeliveryRule_AD_Ref_List.AD_Reference_ID+%3D+151)+LEFT+JOIN+AD_Ref_List_Trl+AS+DeliveryRule_AD_Ref_List_Trl+ON(DeliveryRule_AD_Ref_List_Trl.AD_Ref_List_ID+%3D+DeliveryRule_AD_Ref_List.AD_Ref_List_ID+AND+DeliveryRule_AD_Ref_List_Trl.AD_Language+%3D+%27es_VE%27)+LEFT+JOIN+AD_Ref_List+AS+DocStatus_AD_Ref_List+ON(DocStatus_AD_Ref_List.Value+%3D+o.DocStatus+AND+DocStatus_AD_Ref_List.AD_Reference_ID+%3D+131)+LEFT+JOIN+AD_Ref_List_Trl+AS+DocStatus_AD_Ref_List_Trl+ON(DocStatus_AD_Ref_List_Trl.AD_Ref_List_ID+%3D+DocStatus_AD_Ref_List.AD_Ref_List_ID+AND+DocStatus_AD_Ref_List_Trl.AD_Language+%3D+%27es_VE%27)&where_clause=o.DocStatus+NOT+IN(%27VO%27)&order_by_clause=&token=%3Ctoken-generated-for-demo-api%3E&language=es'
+curl --silent --location -g --request GET 'https://api.erpya.com/api/adempiere/user-interface/smart-browser/browser-items?uuid=8aaefbc2-fb40-11e8-a479-7a0060f0aa01&filters[]=%7B%22key%22:%22O_IsSOTrx%22,%22value%22:true,%22values%22:[]%7D&filters[]=%7B%22key%22:%22O_DocStatus%22,%22value%22:%22DR%22,%22values%22:[]%7D&query=SELECT+o.Processing+AS+%22O_Processing%22,o.C_Opportunity_ID+AS+%22O_C_Opportunity_ID%22,o.DocStatus+AS+%22O_DocStatus%22,o.DropShip_BPartner_ID+AS+%22O_DropShip_BPartner_ID%22,o.DropShip_Location_ID+AS+%22O_DropShip_Location_ID%22,o.DropShip_User_ID+AS+%22O_DropShip_User_ID%22,o.FreightAmt+AS+%22O_FreightAmt%22,o.IsSelected+AS+%22O_IsSelected%22,o.CopyFrom+AS+%22O_CopyFrom%22,o.IsDelivered+AS+%22O_IsDelivered%22,o.Bill_Location_ID+AS+%22O_Bill_Location_ID%22,o.Pay_BPartner_ID+AS+%22O_Pay_BPartner_ID%22,o.AmountRefunded+AS+%22O_AmountRefunded%22,o.Bill_User_ID+AS+%22O_Bill_User_ID%22,o.Pay_Location_ID+AS+%22O_Pay_Location_ID%22,o.C_Activity_ID+AS+%22O_C_Activity_ID%22,o.PaymentRule+AS+%22O_PaymentRule%22,o.Posted+AS+%22O_Posted%22,o.C_BPartner_ID+AS+%22O_C_BPartner_ID%22,o.DocumentNo+AS+%22O_DocumentNo%22,o.DateOrdered+AS+%22O_DateOrdered%22,o.M_Shipper_ID+AS+%22O_M_Shipper_ID%22,o.M_Warehouse_ID+AS+%22O_M_Warehouse_ID%22,o.OrderType+AS+%22O_OrderType%22,o.AD_Client_ID+AS+%22O_AD_Client_ID%22,o.AD_Org_ID+AS+%22O_AD_Org_ID%22,o.AD_OrgTrx_ID+AS+%22O_AD_OrgTrx_ID%22,o.AD_User_ID+AS+%22O_AD_User_ID%22,o.AmountTendered+AS+%22O_AmountTendered%22,o.Bill_BPartner_ID+AS+%22O_Bill_BPartner_ID%22,o.Weight+AS+%22O_Weight%22,o.C_BPartner_Location_ID+AS+%22O_C_BPartner_Location_ID%22,o.C_Campaign_ID+AS+%22O_C_Campaign_ID%22,o.C_CashLine_ID+AS+%22O_C_CashLine_ID%22,o.C_Charge_ID+AS+%22O_C_Charge_ID%22,o.C_ConversionType_ID+AS+%22O_C_ConversionType_ID%22,o.C_Currency_ID+AS+%22O_C_Currency_ID%22,o.C_DocType_ID+AS+%22O_C_DocType_ID%22,o.C_DocTypeTarget_ID+AS+%22O_C_DocTypeTarget_ID%22,o.ChargeAmt+AS+%22O_ChargeAmt%22,o.C_Order_ID+AS+%22O_C_Order_ID%22,o.C_OrderSource_ID+AS+%22O_C_OrderSource_ID%22,o.C_Payment_ID+AS+%22O_C_Payment_ID%22,o.C_PaymentTerm_ID+AS+%22O_C_PaymentTerm_ID%22,o.C_POS_ID+AS+%22O_C_POS_ID%22,o.C_Project_ID+AS+%22O_C_Project_ID%22,o.Created+AS+%22O_Created%22,o.CreatedBy+AS+%22O_CreatedBy%22,o.DateAcct+AS+%22O_DateAcct%22,o.DatePrinted+AS+%22O_DatePrinted%22,o.DatePromised+AS+%22O_DatePromised%22,o.DeliveryRule+AS+%22O_DeliveryRule%22,o.DeliveryViaRule+AS+%22O_DeliveryViaRule%22,o.Description+AS+%22O_Description%22,o.DocAction+AS+%22O_DocAction%22,o.FreightCostRule+AS+%22O_FreightCostRule%22,o.GrandTotal+AS+%22O_GrandTotal%22,o.InvoiceRule+AS+%22O_InvoiceRule%22,o.UpdatedBy+AS+%22O_UpdatedBy%22,o.IsActive+AS+%22O_IsActive%22,o.IsApproved+AS+%22O_IsApproved%22,o.IsCreditApproved+AS+%22O_IsCreditApproved%22,o.IsDiscountPrinted+AS+%22O_IsDiscountPrinted%22,o.IsDropShip+AS+%22O_IsDropShip%22,o.IsInvoiced+AS+%22O_IsInvoiced%22,o.IsPrinted+AS+%22O_IsPrinted%22,o.IsSelfService+AS+%22O_IsSelfService%22,o.IsSOTrx+AS+%22O_IsSOTrx%22,o.IsTaxIncluded+AS+%22O_IsTaxIncluded%22,o.IsTransferred+AS+%22O_IsTransferred%22,o.Link_Order_ID+AS+%22O_Link_Order_ID%22,o.M_FreightCategory_ID+AS+%22O_M_FreightCategory_ID%22,o.M_PriceList_ID+AS+%22O_M_PriceList_ID%22,o.POReference+AS+%22O_POReference%22,o.PriorityRule+AS+%22O_PriorityRule%22,o.Processed+AS+%22O_Processed%22,o.ProcessedOn+AS+%22O_ProcessedOn%22,o.PromotionCode+AS+%22O_PromotionCode%22,o.Ref_Order_ID+AS+%22O_Ref_Order_ID%22,o.SalesRep_ID+AS+%22O_SalesRep_ID%22,o.SendEMail+AS+%22O_SendEMail%22,o.TotalLines+AS+%22O_TotalLines%22,o.Updated+AS+%22O_Updated%22,o.User1_ID+AS+%22O_User1_ID%22,o.User2_ID+AS+%22O_User2_ID%22,o.Volume+AS+%22O_Volume%22,+(SELECT+NVL(C_BPartner.Name,%27%27)+FROM+C_BPartner+WHERE+o.C_BPartner_ID%3DC_BPartner.C_BPartner_ID)+AS+%22DisplayColumn_O_C_BPartner_ID%22,+C_DocTypeTarget_ID_C_DocType_Trl.Name+AS+%22DisplayColumn_O_C_DocTypeTarget_ID%22,+DeliveryRule_AD_Ref_List_Trl.Name+AS+%22DisplayColumn_O_DeliveryRule%22,+DocStatus_AD_Ref_List_Trl.Name+AS+%22DisplayColumn_O_DocStatus%22+FROM+C_Order+o+LEFT+JOIN+C_DocType+AS+C_DocTypeTarget_ID_C_DocType+ON(C_DocTypeTarget_ID_C_DocType.C_DocType_ID+%3D+o.C_DocTypeTarget_ID)+LEFT+JOIN+C_DocType_Trl+AS+C_DocTypeTarget_ID_C_DocType_Trl+ON(C_DocTypeTarget_ID_C_DocType_Trl.C_DocType_ID+%3D+C_DocTypeTarget_ID_C_DocType.C_DocType_ID+AND+C_DocTypeTarget_ID_C_DocType_Trl.AD_Language+%3D+%27es_VE%27)+LEFT+JOIN+AD_Ref_List+AS+DeliveryRule_AD_Ref_List+ON(DeliveryRule_AD_Ref_List.Value+%3D+o.DeliveryRule+AND+DeliveryRule_AD_Ref_List.AD_Reference_ID+%3D+151)+LEFT+JOIN+AD_Ref_List_Trl+AS+DeliveryRule_AD_Ref_List_Trl+ON(DeliveryRule_AD_Ref_List_Trl.AD_Ref_List_ID+%3D+DeliveryRule_AD_Ref_List.AD_Ref_List_ID+AND+DeliveryRule_AD_Ref_List_Trl.AD_Language+%3D+%27es_VE%27)+LEFT+JOIN+AD_Ref_List+AS+DocStatus_AD_Ref_List+ON(DocStatus_AD_Ref_List.Value+%3D+o.DocStatus+AND+DocStatus_AD_Ref_List.AD_Reference_ID+%3D+131)+LEFT+JOIN+AD_Ref_List_Trl+AS+DocStatus_AD_Ref_List_Trl+ON(DocStatus_AD_Ref_List_Trl.AD_Ref_List_ID+%3D+DocStatus_AD_Ref_List.AD_Ref_List_ID+AND+DocStatus_AD_Ref_List_Trl.AD_Language+%3D+%27es_VE%27)&where_clause=o.DocStatus+NOT+IN(%27VO%27)&order_by_clause=&token=%3Ctoken-generated-for-demo-api%3E&language=es'
 ```
 
 #### Response Body:
@@ -1422,7 +1422,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/window/context-info-value?query=SELECT+bp.SO_CreditLimit,+bp.SO_CreditUsed,+bp.TotalOpenBalance,+bp.FirstSale%0AFROM+C_BPartner+bp%0AWHERE+bp.C_BPartner_ID+%3D+SELECT+C_BPartner_ID+AS+DefaultValue+FROM+C_Order+WHERE+C_Order_ID%3D0&uuid=8cb3c812-fb40-11e8-a479-7a0060f0aa01&id=50005&token=%3Ctoken-generated-for-demo-api%3E&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/window/context-info-value?query=SELECT+bp.SO_CreditLimit,+bp.SO_CreditUsed,+bp.TotalOpenBalance,+bp.FirstSale%0AFROM+C_BPartner+bp%0AWHERE+bp.C_BPartner_ID+%3D+SELECT+C_BPartner_ID+AS+DefaultValue+FROM+C_Order+WHERE+C_Order_ID%3D0&uuid=8cb3c812-fb40-11e8-a479-7a0060f0aa01&id=50005&token=%3Ctoken-generated-for-demo-api%3E&language=es'
     
 ```
 #### Cuerpo de Respuesta:
@@ -1463,7 +1463,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/window/references?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=d30bfb69-da77-40c9-9b63-da56c62a393a&window_uuid=a520de12-fb40-11e8-a479-7a0060f0aa01&table_name=C_BPartner'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/window/references?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=d30bfb69-da77-40c9-9b63-da56c62a393a&window_uuid=a520de12-fb40-11e8-a479-7a0060f0aa01&table_name=C_BPartner'
 ```
 #### Cuerpo de Respuesta:
 
@@ -1655,7 +1655,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/window/lookup-items?language=es&table_name=AD_Org&query=SELECT+AD_Org.AD_Org_ID,NULL,NVL(AD_Org.Name,%27-1%27),AD_Org.IsActive,+AD_Org.UUID+FROM+AD_Org+WHERE+(AD_Org.IsSummary%3D%27N%27+OR+AD_Org.AD_Org_ID%3D0)+ORDER+BY+3&token=%3Ctoken-generated-for-demo-api%3E'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/window/lookup-items?language=es&table_name=AD_Org&query=SELECT+AD_Org.AD_Org_ID,NULL,NVL(AD_Org.Name,%27-1%27),AD_Org.IsActive,+AD_Org.UUID+FROM+AD_Org+WHERE+(AD_Org.IsSummary%3D%27N%27+OR+AD_Org.AD_Org_ID%3D0)+ORDER+BY+3&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Cuerpo de Respuesta:
 
@@ -1751,7 +1751,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/window/lookup-item?table_name=R_MailText&query=SELECT%20R_MailText.R_MailText_ID,NULL,NVL(R_MailText_Trl.Name,%27-1%27),R_MailText.IsActive,%20R_MailText.UUID%20FROM%20R_MailText%20INNER%20JOIN%20R_MailText_TRL%20ON%20(R_MailText.R_MailText_ID=R_MailText_Trl.R_MailText_ID%20AND%20R_MailText_Trl.AD_Language=%27es_VE%27)%20ORDER%20BY%203&token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/window/lookup-item?table_name=R_MailText&query=SELECT%20R_MailText.R_MailText_ID,NULL,NVL(R_MailText_Trl.Name,%27-1%27),R_MailText.IsActive,%20R_MailText.UUID%20FROM%20R_MailText%20INNER%20JOIN%20R_MailText_TRL%20ON%20(R_MailText.R_MailText_ID=R_MailText_Trl.R_MailText_ID%20AND%20R_MailText_Trl.AD_Language=%27es_VE%27)%20ORDER%20BY%203&token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es'
 ```
 #### Cuerpo de Respuesta:
 
@@ -1793,7 +1793,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user-interface/window/default-value?table_name=R_MailText&query=SELECT%20Name%20from%20AD_TEST%20WHERE%20IsActive%20=%20%27Y%27%20AND%20(SELECT%20MAX(AD_TEST_ID)%20FROM%20AD_TEST)&token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user-interface/window/default-value?table_name=R_MailText&query=SELECT%20Name%20from%20AD_TEST%20WHERE%20IsActive%20=%20%27Y%27%20AND%20(SELECT%20MAX(AD_TEST_ID)%20FROM%20AD_TEST)&token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es'
 ```
 #### Cuerpo de Respuesta:
 
@@ -2087,7 +2087,7 @@ Ejecutar llamada
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user-interface/window/run-callout?token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user-interface/window/run-callout?token=63e90c4e-348c-4706-ac58-400e9de6cf5a&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "table_name": "C_Order",

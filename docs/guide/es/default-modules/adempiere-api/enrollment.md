@@ -21,7 +21,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/enrollment/enroll' \
+curl 'https://api.erpya.com/api/adempiere/enrollment/enroll' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -61,7 +61,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/enrollment/reset-password' \
+curl 'https://api.erpya.com/api/adempiere/enrollment/reset-password' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -98,7 +98,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/enrollment/change-password' \
+curl 'https://api.erpya.com/api/adempiere/enrollment/change-password' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -134,7 +134,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/enrollment/activate-user' \
+curl 'https://api.erpya.com/api/adempiere/enrollment/activate-user' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \

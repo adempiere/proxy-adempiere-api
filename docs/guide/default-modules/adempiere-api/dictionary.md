@@ -20,7 +20,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/window?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01&id=53102'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/window?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a52192bc-fb40-11e8-a479-7a0060f0aa01&id=53102'
 ```
 
 #### Response Body:
@@ -841,7 +841,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/process?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a42acf86-fb40-11e8-a479-7a0060f0aa01&id=205'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/process?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a42acf86-fb40-11e8-a479-7a0060f0aa01&id=205'
 ```
 
 #### Response Body:
@@ -889,7 +889,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/browser?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=91fa2410-12c9-11e9-865a-17caaf9b4956&id=54137'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/browser?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=91fa2410-12c9-11e9-865a-17caaf9b4956&id=54137'
 ```
 
 #### Response Body:
@@ -2617,7 +2617,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/form?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=8e427700-fb40-11e8-a479-7a0060f0aa01&id=113'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/form?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=8e427700-fb40-11e8-a479-7a0060f0aa01&id=113'
 ```
 
 #### Response Body:
@@ -2668,7 +2668,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/field?token=%3Ctoken-generated-for-demo-api%3E&language=es&element_column_name=ProductValue'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/field?token=%3Ctoken-generated-for-demo-api%3E&language=es&element_column_name=ProductValue'
 ```
 
 #### Response Body:
@@ -2752,7 +2752,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/reference?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a47df90e-fb40-11e8-a479-7a0060f0aa01'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/reference?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a47df90e-fb40-11e8-a479-7a0060f0aa01'
 ```
 
 #### Response Body:
@@ -2805,7 +2805,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dictionary/validation?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a4cac0ae-fb40-11e8-a479-7a0060f0aa01'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dictionary/validation?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=a4cac0ae-fb40-11e8-a479-7a0060f0aa01'
 ```
 
 #### Response Body:

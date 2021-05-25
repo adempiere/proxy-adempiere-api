@@ -20,7 +20,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-actions?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/workflow/document-actions?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Response Body:
 
@@ -200,7 +200,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/workflow/list-document-actions?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/workflow/list-document-actions?token=%3Ctoken-generated-for-demo-api%3E&language=es&table_name=C_Order&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82'
 ```
 #### Response Body:
 
@@ -269,7 +269,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/workflow/document-statuses?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/workflow/document-statuses?language=es&id=1000269&uuid=5bc4f838-ae40-4880-b608-c12fd0351c82&table_name=C_Order&token=%3Ctoken-generated-for-demo-api%3E'
 ```
 #### Response Body:
 

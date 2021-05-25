@@ -36,7 +36,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user/login?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user/login?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username": "demo",
@@ -83,7 +83,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/user/logout' \
+curl 'https://api.erpya.com/api/adempiere/user/logout' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -126,7 +126,7 @@ Cambia el rol actual y devuelve la información de la nueva sesión.
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/user/change-role?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl 'https://api.erpya.com/api/adempiere/user/change-role?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -214,7 +214,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/user/menu?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl 'https://api.erpya.com/api/adempiere/user/menu?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -402,7 +402,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/user/info?token=%3Ctoken-generated-for-demo-api%3E' \
+curl 'https://api.erpya.com/api/adempiere/user/info?token=%3Ctoken-generated-for-demo-api%3E' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -451,7 +451,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/user/roles?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl 'https://api.erpya.com/api/adempiere/user/roles?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -515,7 +515,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user/log/process-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=43adbe9d-04a7-4cf6-9582-895c1e40da0b'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user/log/process-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=43adbe9d-04a7-4cf6-9582-895c1e40da0b'
 ```
 
 #### Cuerpo de Repuesta:
@@ -630,7 +630,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user/log/entity-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=43adbe9d-04a7-4cf6-9582-895c1e40da0b'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user/log/entity-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=43adbe9d-04a7-4cf6-9582-895c1e40da0b'
 ```
 
 #### Cuerpo de Repuesta:
@@ -771,7 +771,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user/log/entity-chats?token=%3Ctoken-generated-for-demo-api%3E&language=es&id=103&uuid=db4f0106-eace-44bd-b761-f03f6efd4852&table_name=Test'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user/log/entity-chats?token=%3Ctoken-generated-for-demo-api%3E&language=es&id=103&uuid=db4f0106-eace-44bd-b761-f03f6efd4852&table_name=Test'
 ```
 
 #### Cuerpo de Repuesta:
@@ -841,7 +841,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user/log/chat-entries?token=%3Ctoken-generated-for-demo-api%3E&language=es&id=1000002&uuid=75d9fd54-9517-4224-accf-840e625e7ee1'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user/log/chat-entries?token=%3Ctoken-generated-for-demo-api%3E&language=es&id=1000002&uuid=75d9fd54-9517-4224-accf-840e625e7ee1'
 ```
 
 #### Cuerpo de Repuesta:
@@ -919,7 +919,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/user/log/workflow-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=e22d49ba-39c3-4edb-bd84-4bb7066429b8&table_name=C_Order'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/user/log/workflow-logs?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=e22d49ba-39c3-4edb-bd84-4bb7066429b8&table_name=C_Order'
 ```
 
 #### Cuerpo de Repuesta:
@@ -1223,7 +1223,7 @@ Inscribir un usuario
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user/enrollment/enroll?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user/enrollment/enroll?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "user_name": "Test1",
@@ -1274,7 +1274,7 @@ Solicitar el restablecimiento de la contraseña
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user/enrollment/reset-password?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user/enrollment/reset-password?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "user_name": "Test1",
@@ -1318,7 +1318,7 @@ Solicitar el restablecimiento de la contraseña
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/user/enrollment/change-password?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/user/enrollment/change-password?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 	"password":"TopSecretPassword"
