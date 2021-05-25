@@ -1,8 +1,8 @@
 import { StorefrontApiModule, registerExtensions } from '@storefront-api/lib/module';
 import { StorefrontApiContext } from '@storefront-api/lib/module/types';
 import { Router } from 'express';
-import img from './api/img';
-import resource from './api/resource';
+import img from './api/extensions/adempiere/img';
+import resource from './api/extensions/adempiere/resource';
 import { version } from '../../../package.json';
 import path from 'path';
 
