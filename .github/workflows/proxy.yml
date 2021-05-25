@@ -31,7 +31,6 @@ jobs:
           CI: true
       - name: yarn build
         run: |
-          yarn
           yarn build
           yarn prebuild:packages
         env:
