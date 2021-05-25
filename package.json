@@ -115,7 +115,7 @@
     "syswide-cas": "latest",
     "ts-node": "^8.1.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "3.7.*",
+    "typescript": "3.8.*",
     "vuepress": "^1.2.0",
     "winston": "^3.2.0"
   },
