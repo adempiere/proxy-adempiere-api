@@ -72,7 +72,9 @@ module.exports = ({ config, db }) => {
       service.getPointOfSales({
         token: req.query.token,
         language: req.query.language,
-        posUuid: req.query.pos_uuid
+        posUuid: req.query.pos_uuid,
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
       }, function (err, response) {
         if (response) {
           res.json({
@@ -158,7 +160,9 @@ module.exports = ({ config, db }) => {
         searchValue: req.query.search_value,
         priceListUuid: req.query.price_list_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
-        warehouseUuid: req.query.warehouse_uuid
+        warehouseUuid: req.query.warehouse_uuid,
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
       }, function (err, response) {
         if (response) {
           res.json({
@@ -750,7 +754,9 @@ module.exports = ({ config, db }) => {
         isInvoiced: req.query.is_invoiced,
         dateOrderedFrom: req.query.date_ordered_from,
         dateOrderedTo: req.query.date_ordered_to,
-        salesRepresentativeUuid: req.query.sales_representative_uuid
+        salesRepresentativeUuid: req.query.sales_representative_uuid,
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_toke
       }, function (err, response) {
         if (response) {
           res.json({
