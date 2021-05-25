@@ -20,7 +20,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/country?token=<token-generated-for-demo-api>&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885&id=1012546' \
+curl 'https://api.erpya.com/api/adempiere/common/country?token=<token-generated-for-demo-api>&language=es&uuid=901bff3b-6f85-4bbf-b068-a5b273866885&id=1012546' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' 
@@ -93,7 +93,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/organizations?token=<token-generated-for-demo-api>&language=es&role_id=321&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19' \
+curl 'https://api.erpya.com/api/adempiere/common/organizations?token=<token-generated-for-demo-api>&language=es&role_id=321&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' 
@@ -153,7 +153,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/warehouses?token=<token-generated-for-demo-api>&language=es&organization_id=0&organization_uuid=a3e5c878-fb40-11e8-a479-7a0060f0aa01' \
+curl 'https://api.erpya.com/api/adempiere/common/warehouses?token=<token-generated-for-demo-api>&language=es&organization_id=0&organization_uuid=a3e5c878-fb40-11e8-a479-7a0060f0aa01' \
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -204,7 +204,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/common/languages?token=<token-generated-for-demo-api>&language=es' \
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/common/languages?token=<token-generated-for-demo-api>&language=es' \
 -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -284,7 +284,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/common/business-partner?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=9c5e65e6-8060-44bf-94ec-332578f7b5d7'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/common/business-partner?token=%3Ctoken-generated-for-demo-api%3E&language=es&uuid=9c5e65e6-8060-44bf-94ec-332578f7b5d7'
 ```
 
 #### Cuerpo de Repuesta:
@@ -368,7 +368,7 @@ Crear Socio de Negocios
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/create-business-partner?token=<token-generated-for-demo-api>&language=es'\
+curl 'https://api.erpya.com/api/adempiere/common/create-business-partner?token=<token-generated-for-demo-api>&language=es'\
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
@@ -430,7 +430,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/business-partners?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&name=Test'\
+curl 'https://api.erpya.com/api/adempiere/common/business-partners?token=b6d0c7c7-0785-4302-bb20-94c1bd5488b2&language=es&name=Test'\
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'
@@ -543,7 +543,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl 'https://api.erpya.com/api/common/conversion-rate?token=<token-generated-for-demo-api>&language=es&conversion_type_uuid=40767cd6-b6cf-4058-ae34-42ea1ea3ce71&currency_from_uuid=a567befe-fb40-11e8-a479-7a0060f0aa01&currency_to_uuid=a5671df0-fb40-11e8-a479-7a0060f0aa01'\
+curl 'https://api.erpya.com/api/adempiere/common/conversion-rate?token=<token-generated-for-demo-api>&language=es&conversion_type_uuid=40767cd6-b6cf-4058-ae34-42ea1ea3ce71&currency_from_uuid=a567befe-fb40-11e8-a479-7a0060f0aa01&currency_to_uuid=a5671df0-fb40-11e8-a479-7a0060f0aa01'\
     -X GET \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8'

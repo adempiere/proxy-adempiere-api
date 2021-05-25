@@ -22,7 +22,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/dashboards?token=%3Ctoken-generated-for-demo-api%3E&language=es&role_id=1000000&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dashboard/dashboards?token=%3Ctoken-generated-for-demo-api%3E&language=es&role_id=1000000&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19'
 ```
 
 #### Response Body:
@@ -95,7 +95,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/addons/user/favorites?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=901d9a74-6334-4309-aa8a-6d5b39d8ceb1'}'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dashboard/addons/user/favorites?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=901d9a74-6334-4309-aa8a-6d5b39d8ceb1'}'
     
 ```
 #### Response Body:
@@ -140,7 +140,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/addons/user/recent-items?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19&current_session=true'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dashboard/addons/user/recent-items?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19&current_session=true'
 ```
 
 #### Response Body:
@@ -487,7 +487,7 @@ null
 #### Example of a Call:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/dashboard/addons/tasks/pending-documents?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19&current_session=true'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/dashboard/addons/tasks/pending-documents?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b&role_uuid=f855ca25-07b2-4760-aec6-676db1a5cb19&current_session=true'
 ```
 
 #### Response Body:

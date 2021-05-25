@@ -18,7 +18,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/selling-points?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/selling-points?token=%3Ctoken-generated-for-demo-api%3E&language=es&user_uuid=5adc9357-9158-40fe-86f1-4ce383586f5b'
 ```
 
 #### Cuerpo de Repuesta:
@@ -142,7 +142,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/point-of-sales?token=%3Ctoken-generated-for-demo-api%3E&language=es&pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/point-of-sales?token=%3Ctoken-generated-for-demo-api%3E&language=es&pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51'
 ```
 
 #### Cuerpo de Repuesta:
@@ -267,7 +267,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/product-price?token=%3Ctoken-generated-for-demo-api%3E&language=es&search_value=BTV-C2-SLIM&price_list_uuid=54745978-ce79-11e9-aa53-0242ac110002'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/product-price?token=%3Ctoken-generated-for-demo-api%3E&language=es&search_value=BTV-C2-SLIM&price_list_uuid=54745978-ce79-11e9-aa53-0242ac110002'
 ```
 
 #### Cuerpo de Repuesta:
@@ -384,7 +384,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/product-prices?token=%3Ctoken-generated-for-demo-api%3E&language=es&search_value=DELUXE&price_list_uuid=54745978-ce79-11e9-aa53-0242ac110002&warehouse_uuid=0b1fe9d4-9bdd-4e69-8573-9a3b50d8251e&business_partner_uuid=9f6cf428-9209-11e9-8046-0242ac140002&limit=50'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/product-prices?token=%3Ctoken-generated-for-demo-api%3E&language=es&search_value=DELUXE&price_list_uuid=54745978-ce79-11e9-aa53-0242ac110002&warehouse_uuid=0b1fe9d4-9bdd-4e69-8573-9a3b50d8251e&business_partner_uuid=9f6cf428-9209-11e9-8046-0242ac140002&limit=50'
 ```
 #### Cuerpo de Repuesta:
 
@@ -572,7 +572,7 @@ Crear un orden desde el punto de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/create-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/create-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "pos_uuid": "eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51",
@@ -665,7 +665,7 @@ Crear pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/create-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/create-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "pos_uuid": "eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51",
@@ -739,7 +739,7 @@ Eliminar pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/create-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/create-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "payment_uuid": "7d505871-d28d-4c0a-b8cb-88dfb820f4bb"
@@ -792,7 +792,7 @@ Actualizar pago
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/update-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/update-payment?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "payment_uuid": "7d505871-d28d-4c0a-b8cb-88dfb820f4bb",
@@ -864,7 +864,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/payments?token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=be142b43-0b6b-4378-8551-261756fad65e&pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51&limit=20'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/payments?token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=be142b43-0b6b-4378-8551-261756fad65e&pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51&limit=20'
 ```
 
 #### Cuerpo de Repuesta:
@@ -936,7 +936,7 @@ Borrar pedido de venta
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/delete-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/delete-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_uuid": "f131d035-22fc-4e87-b580-3563a978d163"
@@ -987,7 +987,7 @@ Crear línea de pedido de cliente
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/create-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/create-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_uuid": "be142b43-0b6b-4378-8551-261756fad65e",
@@ -1091,7 +1091,7 @@ Borrar línea de pedido de cliente
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/delete-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/delete-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_line_uuid": "425119ce-e323-444e-a867-0c5bf42dd3f0"
@@ -1139,7 +1139,7 @@ Actualizar la orden de venta.
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/update-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/update-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_uuid": "be142b43-0b6b-4378-8551-261756fad65e",
@@ -1227,7 +1227,7 @@ Actualizar la línea de pedido de ventas
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/update-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/update-order-line?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_line_uuid": "425119ce-e323-444e-a867-0c5bf42dd3f0",
@@ -1328,7 +1328,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/order?token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=be142b43-0b6b-4378-8551-261756fad65e'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/order?token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=be142b43-0b6b-4378-8551-261756fad65e'
 ```
 
 #### Cuerpo de Repuesta:
@@ -1419,7 +1419,7 @@ El pago debe ser una matriz de objectos con los sigientes atributos
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request POST 'https://api.erpya.com/api/form/addons/point-of-sales/process-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
+curl --silent --location --request POST 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/process-order?token=%3Ctoken-generated-for-demo-api%3E&language=es' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "order_uuid": "f182c2ea-7c3d-44f1-b5f3-dd50ad063076",
@@ -1511,7 +1511,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/orders?pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51&page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/orders?pos_uuid=eb1cc4da-1d2c-4b40-a44d-a8e55dbe1a51&page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es'
 ```
 
 #### Cuerpo de Repuesta:
@@ -2143,7 +2143,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/order-lines?page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=498e59b3-3c70-4446-a42a-284311ca6569'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/order-lines?page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es&order_uuid=498e59b3-3c70-4446-a42a-284311ca6569'
 ```
 
 #### Cuerpo de Repuesta:
@@ -2244,7 +2244,7 @@ null
 #### Ejemplo de Llamada:
 
 ```bash
-curl --silent --location --request GET 'https://api.erpya.com/api/form/addons/point-of-sales/key-layout?page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es&key_layout_uuid=0c65bace-ec5f-4e90-822c-ee9b7bd0c539'
+curl --silent --location --request GET 'https://api.erpya.com/api/adempiere/form/addons/point-of-sales/key-layout?page_token=16cc1c3e-f7c3-4543-9edd-da2b7817e327-2&token=%3Ctoken-generated-for-demo-api%3E&language=es&key_layout_uuid=0c65bace-ec5f-4e90-822c-ee9b7bd0c539'
 ```
 
 #### Cuerpo de Repuesta:
