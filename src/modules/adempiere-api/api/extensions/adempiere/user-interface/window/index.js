@@ -175,7 +175,6 @@ module.exports = ({ config, db }) => {
         tableName: req.query.table_name,
         //  DSL Query
         value: req.query.value,
-        valuesList: req.query.values_list,
         filters: req.query.filters,
         //  Custom Query
         query: req.query.query,
