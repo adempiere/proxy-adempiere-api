@@ -160,9 +160,6 @@ module.exports = ({ config, db }) => {
    * req.query.filters - query filters
    * req.query.table_name - table name (Mandatory if is not a query)
    * req.query.query - custom query instead a table name based on SQL
-   * req.query.where_clause - where clause of search based on SQL
-   * req.query.order_by_clause - order by clause based on SQL
-   * req.query.limit - records limit
    *
    * Details:
    */
@@ -176,10 +173,7 @@ module.exports = ({ config, db }) => {
         //  DSL Query
         filters: req.query.filters,
         //  Custom Query
-        query: req.query.query,
-        whereClause: req.query.where_clause,
-        orderByClause: req.query.order_by_clause,
-        limit: req.query.limit
+        query: req.query.query // or direct query
       }, function (err, response) {
         if (response) {
           res.json({
