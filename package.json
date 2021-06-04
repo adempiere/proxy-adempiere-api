@@ -71,7 +71,7 @@
     "@storefront-api/platform-abstract": "1.0.0-rc.3",
     "@storefront-api/platform-magento1": "1.0.0-rc.3",
     "@storefront-api/platform-magento2": "1.0.0-rc.3",
-    "@adempiere/grpc-api": "1.5.1",
+    "@adempiere/grpc-api": "1.5.3",
     "@adempiere/grpc-web-store-api": "1.4.1",
     "ajv": "^6.4.0",
     "ajv-keywords": "^3.4.0",
