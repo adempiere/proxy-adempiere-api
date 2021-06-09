@@ -9,6 +9,9 @@ import {
 import {
   convertProductPriceFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality'
+import {
+  convertListValue
+} from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config, db }) => {
   let api = Router();
@@ -838,6 +841,166 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertKeyLayoutFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Warehouses
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-warehouses', (req, res) => {
+    if (req.query) {
+      service.listAvailableWarehouses({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getWarehousesList().map(warehouse => {
+                return convertListValue(warehouse)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Tender Types
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-tender-types', (req, res) => {
+    if (req.query) {
+      service.listAvailableTenderTypes({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getTenderTypesList().map(warehouse => {
+                return convertListValue(warehouse)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Price List
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-price-list', (req, res) => {
+    if (req.query) {
+      service.listAvailablePriceList({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getPriceListList().map(warehouse => {
+                return convertListValue(warehouse)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Currencies
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-currencies', (req, res) => {
+    if (req.query) {
+      service.listAvailableCurrencies({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getCurrenciesList().map(warehouse => {
+                return convertListValue(warehouse)
+              })
+            }
           })
         } else if (err) {
           res.json({
