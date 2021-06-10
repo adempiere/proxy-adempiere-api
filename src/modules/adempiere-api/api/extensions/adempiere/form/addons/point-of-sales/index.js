@@ -106,6 +106,7 @@ module.exports = ({ config, db }) => {
    * req.query.business_partner_uuid - Business partner UUID reference
    * req.query.warehouse_uuid - Warehouse UUID reference
    * req.query.valid_from - Prioce List Valid From
+   * req.query.display_currency_uuid - Currency to show
    *
    * Details:
    */
@@ -119,6 +120,7 @@ module.exports = ({ config, db }) => {
         value: req.query.value,
         name: req.query.name,
         priceListUuid: req.query.price_list_uuid,
+        displayCurrencyUuid: req.query.display_currency_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
         warehouseUuid: req.query.warehouse_uuid,
         validFrom: req.query.valid_from,
@@ -145,12 +147,12 @@ module.exports = ({ config, db }) => {
    * GET List product price
    *
    * req.query.token - user token
-   * Body:
-   * req.body.search_value - product search value
-   * req.body.price_list_uuid - price list UUID reference
-   * req.body.business_partner_uuid - Business partner UUID reference
-   * req.body.warehouse_uuid - Warehouse UUID reference
-   * req.body.valid_from - Prioce List Valid From
+   * req.query.search_value - product search value
+   * req.query.price_list_uuid - price list UUID reference
+   * req.query.business_partner_uuid - Business partner UUID reference
+   * req.query.warehouse_uuid - Warehouse UUID reference
+   * req.query.valid_from - Prioce List Valid From
+   * req.query.display_currency_uuid - Currency to show
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -163,6 +165,7 @@ module.exports = ({ config, db }) => {
         searchValue: req.query.search_value,
         priceListUuid: req.query.price_list_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
+        displayCurrencyUuid: req.query.display_currency_uuid,
         warehouseUuid: req.query.warehouse_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -197,7 +200,8 @@ module.exports = ({ config, db }) => {
    * req.body.customer_uuid - Customer UUID reference
    * req.body.document_type_uuid - Document Type UUID reference
    * req.body.sales_representative_uuid - Sales Representative UUID reference
-   *
+   * req.body.warehouse_uuid - Warehouse (Oprional)
+   * req.body.price_list_uuid - Price List (Oprional)
    * Details:
    */
   api.post('/create-order', (req, res) => {
@@ -208,6 +212,8 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         customerUuid: req.body.customer_uuid,
         documentTypeUuid: req.body.document_type_uuid,
+        warehouseUuid: req.body.warehouse_uuid,
+        priceListUuid: req.body.price_list_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
       }, function (err, response) {
         if (response) {
@@ -306,7 +312,7 @@ module.exports = ({ config, db }) => {
   });
 
   /**
-   * POST Update Sales Order
+   * POST Update Payment
    *
    * req.query.token - user token
    * Body:
@@ -518,6 +524,8 @@ module.exports = ({ config, db }) => {
    * req.body.customer_uuid - Customer UUID reference
    * req.body.document_type_uuid - Document Type UUID reference
    * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * req.body.warehouse_uuid - Warehouse (Oprional)
+   * req.body.price_list_uuid - Price List (Oprional)
    *
    * Details:
    */
@@ -530,6 +538,8 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         customerUuid: req.body.customer_uuid,
         documentTypeUuid: req.body.document_type_uuid,
+        warehouseUuid: req.body.warehouse_uuid,
+        priceListUuid: req.body.price_list_uuid,
         description: req.body.description
       }, function (err, response) {
         if (response) {
@@ -558,6 +568,7 @@ module.exports = ({ config, db }) => {
    * req.body.price - Price UUID reference
    * req.body.discount_rate - Discount UUID reference
    * req.body.is_add_quantity - Only add quantity
+   * req.body.warehouse_uuid - Warehouse (Oprional)
    *
    * Details:
    */
@@ -568,6 +579,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         orderLineUuid: req.body.order_line_uuid,
         description: req.body.description,
+        warehouseUuid: req.body.warehouse_uuid,
         quantity: req.body.quantity,
         price: req.body.price,
         discountRate: req.body.discount_rate,
