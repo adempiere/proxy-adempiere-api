@@ -102,11 +102,9 @@ module.exports = ({ config, db }) => {
    * req.query.upc - product UPC
    * req.query.value - product value
    * req.query.name - product name
-   * req.query.price_list_uuid - price list UUID reference
+   * req.query.pos_uuid - POS UUID reference
    * req.query.business_partner_uuid - Business partner UUID reference
-   * req.query.warehouse_uuid - Warehouse UUID reference
    * req.query.valid_from - Prioce List Valid From
-   * req.query.display_currency_uuid - Currency to show
    *
    * Details:
    */
@@ -119,10 +117,8 @@ module.exports = ({ config, db }) => {
         upc: req.query.upc,
         value: req.query.value,
         name: req.query.name,
-        priceListUuid: req.query.price_list_uuid,
-        displayCurrencyUuid: req.query.display_currency_uuid,
+        posUuid: req.query.pos_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
-        warehouseUuid: req.query.warehouse_uuid,
         validFrom: req.query.valid_from,
         //  Page Data
         pageSize: req.query.page_size,
@@ -148,11 +144,9 @@ module.exports = ({ config, db }) => {
    *
    * req.query.token - user token
    * req.query.search_value - product search value
-   * req.query.price_list_uuid - price list UUID reference
+   * req.query.pos_uuid - POS UUID reference
    * req.query.business_partner_uuid - Business partner UUID reference
-   * req.query.warehouse_uuid - Warehouse UUID reference
    * req.query.valid_from - Prioce List Valid From
-   * req.query.display_currency_uuid - Currency to show
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
@@ -163,10 +157,8 @@ module.exports = ({ config, db }) => {
         token: req.query.token,
         language: req.query.language,
         searchValue: req.query.search_value,
-        priceListUuid: req.query.price_list_uuid,
+        posUuid: req.query.pos_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
-        displayCurrencyUuid: req.query.display_currency_uuid,
-        warehouseUuid: req.query.warehouse_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, function (err, response) {
