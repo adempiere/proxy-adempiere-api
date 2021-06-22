@@ -274,6 +274,7 @@
         "adempiere/dashboard",
         "adempiere/dashboard/addons/user",
         "adempiere/dashboard/addons/tasks",
+        "adempiere/dashboard/addons/charts",
         "adempiere/user",
         "adempiere/user/enrollment",
         "adempiere/user/log",
