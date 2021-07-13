@@ -897,6 +897,46 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * GET List Available Document Types
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-document-types', (req, res) => {
+    if (req.query) {
+      service.listAvailableDocumentTypes({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getDocumentTypesList().map(documentType => {
+                return convertListValue(documentType)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * GET List Available Tender Types
    *
    * req.query.token - user token
