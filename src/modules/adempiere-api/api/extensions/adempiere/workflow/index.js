@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import {
   convertWorkflowDefinitionFromGRPC,
+  convertWorkflowActivityFromGRPC,
   convertDocumentAction,
   convertDocumentStatus
 } from '@adempiere/grpc-api/lib/convertBusinessData';
 
-module.exports = ({ config, db }) => {
+module.exports = ({ config }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
@@ -39,6 +40,47 @@ module.exports = ({ config, db }) => {
               next_page_token: response.getNextPageToken(),
               records: response.getWorkflowsList().map(workflow => {
                 return convertWorkflowDefinitionFromGRPC(workflow)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Workflow Activities
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * req.query.user_uuid - User UUID (Mandatory for get activities)
+   * Details:
+   */
+  api.get('/workflow-activities', (req, res) => {
+    if (req.query) {
+      service.listWorkflowActivities({
+        token: req.query.token,
+        language: req.query.language,
+        userUuid: req.query.user_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getActivitiesList().map(workflowActivity => {
+                return convertWorkflowActivityFromGRPC(workflowActivity)
               })
             }
           })
