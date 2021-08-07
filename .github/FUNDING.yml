@@ -1,2 +1,8 @@
+
 # These are supported funding model platforms
-custom: ['https://erpya.com/']
+
+github: [YamelSenih]
+
+custom: 
+  - 'https://paypal.me/YamelSenih'
+  - 'https://adempiere.github.io/adempiere-vue-site/donate'
