@@ -20,6 +20,10 @@ features:
 footer: GNU/GPL v3 Licensed | Copyright © 2019-present ADempiere
 ---
 
+<p align="center">
+  <img width="320" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Adempiere-logo.png">
+</p>
+
 ## Getting Started
 
 ```bash
@@ -33,6 +37,8 @@ yarn install
 yarn dev
 ```
 
-## Demo
+## Live Preview
 
 [ADempiere UI Demo](https://demo-ui.erpya.com/)
+
+[ADempiere Proxy Documentation](https://adempiere.github.io/proxy-adempiere-api/)
