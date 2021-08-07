@@ -10,7 +10,6 @@ on:
       # Push events on master and develop branchs
       - master
       - develop
-      - feature/**
     # takes only the directory changes
     paths:
       - 'docs/**'
