@@ -19,7 +19,7 @@ RUN apk --no-cache --update upgrade musl \
 		make \
 		g++ \
 		ca-certificates \
-		wget && \
+		wget \
   && yarn install --no-cache \
   && apk del .build-deps
 
