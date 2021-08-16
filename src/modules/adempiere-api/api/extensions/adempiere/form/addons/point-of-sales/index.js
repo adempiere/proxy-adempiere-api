@@ -4,14 +4,16 @@ import {
   convertOrderFromGRPC,
   convertOrderLineFromGRPC,
   convertKeyLayoutFromGRPC,
-  convertPaymentFromGRPC
+  convertPaymentFromGRPC,
+  convertAvailableWarehouse,
+  convertAvailablePriceList,
+  convertAvailableDocumentType,
+  convertAvailableTenderType,
+  convertAvailableCurrency
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality'
-import {
-  convertListValue
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config, db }) => {
   let api = Router();
@@ -763,7 +765,7 @@ module.exports = ({ config, db }) => {
         dateOrderedTo: req.query.date_ordered_to,
         salesRepresentativeUuid: req.query.sales_representative_uuid,
         pageSize: req.query.page_size,
-        pageToken: req.query.page_toke
+        pageToken: req.query.page_token
       }, function (err, response) {
         if (response) {
           res.json({
@@ -882,7 +884,7 @@ module.exports = ({ config, db }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getWarehousesList().map(warehouse => {
-                return convertListValue(warehouse)
+                return convertAvailableWarehouse(warehouse)
               })
             }
           })
@@ -922,7 +924,7 @@ module.exports = ({ config, db }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getDocumentTypesList().map(documentType => {
-                return convertListValue(documentType)
+                return convertAvailableDocumentType(documentType)
               })
             }
           })
@@ -961,8 +963,8 @@ module.exports = ({ config, db }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getTenderTypesList().map(warehouse => {
-                return convertListValue(warehouse)
+              records: response.getTenderTypesList().map(tenderType => {
+                return convertAvailableTenderType(tenderType)
               })
             }
           })
@@ -1001,8 +1003,8 @@ module.exports = ({ config, db }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getPriceListList().map(warehouse => {
-                return convertListValue(warehouse)
+              records: response.getPriceListList().map(priceList => {
+                return convertAvailablePriceList(priceList)
               })
             }
           })
@@ -1041,8 +1043,8 @@ module.exports = ({ config, db }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getCurrenciesList().map(warehouse => {
-                return convertListValue(warehouse)
+              records: response.getCurrenciesList().map(currency => {
+                return convertAvailableCurrency(currency)
               })
             }
           })
