@@ -71,7 +71,7 @@ You can play with the Rest API endpoint over [Demo](https://api.erpya.com)
 Example query you can enter:
 
 ```bash
-curl 'https://api.erpya.com/adempiere-api/user/login' \
+curl 'https://api.erpya.com/api/adempiere/user/login' \
     -X POST \
     -H 'content-type: application/json' \
     -H 'accept: */*;charset=UTF-8' \
