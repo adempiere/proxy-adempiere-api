@@ -9,7 +9,8 @@ import {
   convertAvailablePriceList,
   convertAvailableDocumentType,
   convertAvailableTenderType,
-  convertAvailableCurrency
+  convertAvailableCurrency,
+  convertCustomerFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -1047,6 +1048,156 @@ module.exports = ({ config, db }) => {
                 return convertAvailableCurrency(currency)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Customer
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.value - value
+   * req.body.tax_id - Tax ID
+   * req.body.duns - DUNS
+   * req.body.naics - NAICS
+   * req.body.name - Name
+   * req.body.last_name - Last Name
+   * req.body.description - Description
+   * req.body.contact_name - Contact Name
+   * req.body.email - EMail
+   * req.body.phone - Phone
+   * req.body.business_partner_group_uuid - Business Partner Group
+   * req.body.address1 - Address 1
+   * req.body.address2 - Address 2
+   * req.body.address3 - Address 3
+   * req.body.address4 - Address 4
+   * req.body.city_uuid - City UUID
+   * req.body.city_name - City Name
+   * req.body.postal_code - Postal Code
+   * req.body.region_uuid - Region UUID
+   * req.body.region_name - Region Name
+   * req.body.country_uuid - Country UUID
+   * req.body.pos_uuid - POS UUID
+   * Details:
+   */
+  api.post('/create-customer', (req, res) => {
+    if (req.body) {
+      service.createCustomer({
+        token: req.query.token,
+        language: req.query.language,
+        value: req.body.value,
+        taxId: req.body.tax_id,
+        duns: req.body.duns,
+        naics: req.body.naics,
+        name: req.body.name,
+        lastName: req.body.last_name,
+        description: req.body.description,
+        contactName: req.body.contact_name,
+        email: req.body.email,
+        phone: req.body.phone,
+        businessPartnerGroupUuid: req.body.business_partner_group_uuid,
+        address1: req.body.address1,
+        address2: req.body.address2,
+        address3: req.body.address3,
+        address4: req.body.address4,
+        cityUuid: req.body.city_uuid,
+        cityName: req.body.city_name,
+        postalCode: req.body.postal_code,
+        regionUuid: req.body.region_uuid,
+        regionName: req.body.region_name,
+        countryUuid: req.body.country_uuid,
+        posUuid: req.body.pos_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Update Customer
+   *
+   * req.query.token - user token
+   * req.body.uuid - Business Partner UUID
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.value - value
+   * req.body.tax_id - Tax ID
+   * req.body.duns - DUNS
+   * req.body.naics - NAICS
+   * req.body.name - Name
+   * req.body.last_name - Last Name
+   * req.body.description - Description
+   * req.body.contact_name - Contact Name
+   * req.body.email - EMail
+   * req.body.phone - Phone
+   * req.body.address1 - Address 1
+   * req.body.address2 - Address 2
+   * req.body.address3 - Address 3
+   * req.body.address4 - Address 4
+   * req.body.city_uuid - City UUID
+   * req.body.city_name - City Name
+   * req.body.postal_code - Postal Code
+   * req.body.region_uuid - Region UUID
+   * req.body.region_name - Region Name
+   * req.body.country_uuid - Country UUID
+   * req.body.pos_uuid - POS UUID
+   * Details:
+   */
+  api.post('/update-customer', (req, res) => {
+    if (req.body) {
+      service.updateCustomer({
+        token: req.query.token,
+        uuid: req.body.uuid,
+        language: req.query.language,
+        value: req.body.value,
+        taxId: req.body.tax_id,
+        duns: req.body.duns,
+        naics: req.body.naics,
+        name: req.body.name,
+        lastName: req.body.last_name,
+        description: req.body.description,
+        contactName: req.body.contact_name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address1: req.body.address1,
+        address2: req.body.address2,
+        address3: req.body.address3,
+        address4: req.body.address4,
+        cityUuid: req.body.city_uuid,
+        cityName: req.body.city_name,
+        postalCode: req.body.postal_code,
+        regionUuid: req.body.region_uuid,
+        regionName: req.body.region_name,
+        countryUuid: req.body.country_uuid,
+        posUuid: req.body.pos_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerFromGRPC(response)
           })
         } else if (err) {
           res.json({
