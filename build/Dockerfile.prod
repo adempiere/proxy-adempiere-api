@@ -12,6 +12,7 @@ RUN rm -rf /var/cache/apk/* && \
 	apk add \
 		--virtual .build-deps \
 		python \
+		git \
 		make \
 		g++ \
 		ca-certificates \

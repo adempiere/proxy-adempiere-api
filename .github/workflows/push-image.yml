@@ -78,6 +78,8 @@ jobs:
         with:
           name: proxy-adempiere-api
 
+      - run: ls
+
       - name: Uncompress dist files
         run: unzip proxy-adempiere-api.zip -d dist-app
 
@@ -128,6 +130,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: proxy-adempiere-api
+
+      - run: ls
 
       - name: Uncompress dist files
         run: unzip proxy-adempiere-api.zip -d dist-app
