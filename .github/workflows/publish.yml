@@ -1,0 +1,246 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
+# This file was contributed by EdwinBetanc0urt@outlook.com from ERP Consultores y Asociados, C.A
+
+name: Publish Proxy ADempiere API
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+
+  # Build dist application ADempiere-Proxy-Api
+  build-app:
+    name: Build ADempiere-Proxy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Node configuration
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          # cache: 'yarn'
+
+      - run: cp -rf ./packages/default-vsf ./src/modules/
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run test
+        run: yarn lint
+
+      - name: Compile dist
+        run: |
+          yarn build
+          yarn prebuild:packages
+  
+      - name: Unit Test
+        run: yarn test:unit
+
+      - run: yarn install --no-cache
+
+      - name: Compress files for application dist
+        uses: TheDoctor0/zip-release@0.6.0
+        with:
+          type: 'zip'
+          filename: 'proxy-adempiere-api.zip'
+          path: './'
+          exclusions: './dist ./docker ./docs'
+
+      - name: Upload app as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: proxy-adempiere-api        
+          path: ./proxy-adempiere-api.zip
+
+
+  # Publish dist binaries to application
+  publish-app-dist:
+    name: Upload Binaries ADempiere-Proxy
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build dist app
+        uses: actions/download-artifact@v2
+        with:
+          name: proxy-adempiere-api
+
+      - name: Rename binary file
+        run: mv proxy-adempiere-api.zip Proxy-ADempiere-API.zip
+
+      - name: Publish application binary in repository
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'Proxy-ADempiere-API.zip'
+
+
+  # Publish docker image in Github Container Registry to application
+  push-imame-ghcr:
+    name: Push Docker image to GitHub Container
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Download build dist app
+        uses: actions/download-artifact@v2
+        with:
+          name: proxy-adempiere-api
+
+      - name: Uncompress dist files
+        run: unzip proxy-adempiere-api.zip -d dist-app
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Lower Case to owner and repository
+        run: |
+          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
+          echo "REPO_LC=${NAME,,}" >> ${GITHUB_ENV}
+        env:
+          OWNER: '${{ github.repository_owner }}'
+          NAME: '${{ github.event.repository.name }}'
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./build/Dockerfile.prod
+          push: true
+          # load: true
+          tags: |
+            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:latest
+            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:${{ github.sha }}
+            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:${{ github.event.release.tag_name }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+
+  # Publish docker image in Docker Hub registry to application
+  push-imame-dhr:
+    name: Push Docker image to Docker Hub
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Download build dist app
+        uses: actions/download-artifact@v2
+        with:
+          name: proxy-adempiere-api
+
+      - name: Uncompress dist files
+        run: unzip proxy-adempiere-api.zip -d dist-app
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          # CONFIGURE DOCKER SECRETS INTO REPOSITORY
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set Lower Case to owner and repository
+        run: |
+          ORG=$OWNER
+          if [ -n "${{ secrets.DOCKERHUB_ORG }}" ]; then
+            echo "Set secret DOCKERHUB_ORG as namespace"
+            ORG=${{ secrets.DOCKERHUB_ORG }}
+          else
+            echo "Set OWNER ($OWNER) as namespace "
+          fi
+          echo "ORG_LC=${ORG,,}" >> ${GITHUB_ENV}
+          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
+          echo "REPO_LC=${NAME,,}" >> ${GITHUB_ENV}
+        env:
+          # to docker image namespace
+          OWNER: '${{ github.repository_owner }}'
+          NAME: '${{ github.event.repository.name }}'
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./build/Dockerfile.prod
+          push: true
+          tags: |
+            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:latest
+            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:${{ github.sha }}
+            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:${{ github.event.release.tag_name }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+
+  # Build dist documentation ADempiere-Proxy
+  build-docs:
+    name: Build dist ADempiere Proxy docs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Node configuration
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Generate dist docs
+        run: |
+          cd docs
+          npm i
+          npm run build --if-present
+
+      - name: Upload dist docs
+        uses: actions/upload-artifact@v2
+        with:
+          name: adempiere-proxy-docs
+          path: docs/.vuepress/dist
+
+
+  # Publish dist binaries to documentation
+  publish-docs-dist:
+    name: Upload ADempiere Proxy docs binaries
+    needs:
+      - build-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build dist docs
+        uses: actions/download-artifact@v2
+        with:
+          name: adempiere-proxy-docs
+
+      - name: Compress files for documentation dist
+        uses: TheDoctor0/zip-release@0.6.0
+        with:
+          filename: 'Proxy-ADempiere-API-Documentation.zip'
+          path: './'
+
+      - name: Publish documentation binary in repository
+        uses: skx/github-action-publish-binaries@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: 'Proxy-ADempiere-API-Documentation.zip'
