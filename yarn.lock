@@ -24,13 +24,13 @@
     striptags "^3.0.1"
     word-wrap "^1.2.1"
 
-"@adempiere/grpc-api@1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-1.7.3.tgz#84ac47adb36ca4014097b801a22044195233b5d8"
-  integrity sha512-5sNT4syRnLDOeD2A3katWaJJSZehRkeHGkZRd8Do7oLg492JQS1aXYFegRsYUWgQ5FXlGeCYuQPeV7VgfbLYZA==
+"@adempiere/grpc-api@1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-1.7.5.tgz#bf2446797c0894da938f03e44d4842883f5f3fd9"
+  integrity sha512-VPEPUR6rLQWSRc4LOKDpnfqxhaXqstz6DqGldUJItcZAmztF6knLEOJIGayY/EXu748MNOaHirNUKsdh9rSG3w==
   dependencies:
-    "@grpc/grpc-js" "^1.2.12"
-    google-protobuf "^3.15.6"
+    "@grpc/grpc-js" "1.3.7"
+    google-protobuf "3.17.3"
 
 "@adempiere/grpc-web-store-api@1.4.1":
   version "1.4.1"
@@ -1200,7 +1200,7 @@
     graphql-tools "5.0.0"
     tslib "1.11.1"
 
-"@grpc/grpc-js@^1.2.12":
+"@grpc/grpc-js@1.3.7", "@grpc/grpc-js@^1.2.12":
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.3.7.tgz#58b687aff93b743aafde237fd2ee9a3259d7f2d8"
   integrity sha512-CKQVuwuSPh40tgOkR7c0ZisxYRiN05PcKPW72mQL5y++qd7CwBRoaJZvU5xfXnCJDFBmS3qZGQ71Frx6Ofo2XA==
@@ -8100,7 +8100,7 @@ google-p12-pem@^2.0.0:
   dependencies:
     node-forge "^0.10.0"
 
-google-protobuf@^3.15.6:
+google-protobuf@3.17.3, google-protobuf@^3.15.6:
   version "3.17.3"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.17.3.tgz#f87595073545a77946c8f0b67c302c5f7646d700"
   integrity sha512-OVPzcSWIAJ+d5yiHyeaLrdufQtrvaBrF4JQg+z8ynTkbO3uFcujqXszTumqg1cGsAsjkWnI+M5B1xZ19yR4Wyg==

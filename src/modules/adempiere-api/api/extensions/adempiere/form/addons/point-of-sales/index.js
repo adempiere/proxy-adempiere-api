@@ -10,7 +10,8 @@ import {
   convertAvailableDocumentType,
   convertAvailableTenderType,
   convertAvailableCurrency,
-  convertCustomerFromGRPC
+  convertCustomerFromGRPC,
+  convertAvailableRefundGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -1215,8 +1216,6 @@ module.exports = ({ config, db }) => {
    *
    * req.query.token - user token
    * req.query.language - login language
-   * req.query.page_size - size of page (customized)
-   * req.query.page_token - token of page (optional for get a specific page)
    * req.query.search_value - Search Value
    * req.query.value - Value
    * req.query.name - Name
@@ -1243,6 +1242,38 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertCustomerFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Available Refund
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.pos_uuid - POS UUID
+   * req.query.date - Date of Statement
+   * Details:
+   */
+  api.get('/available-refund', (req, res) => {
+    if (req.query) {
+      service.getAvailableRefund({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        date: req.query.date
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertAvailableRefundGRPC(response)
           })
         } else if (err) {
           res.json({
