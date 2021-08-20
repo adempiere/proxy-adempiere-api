@@ -10788,7 +10788,7 @@ macos-release@^2.2.0:
     jwt-simple "^0.5.1"
     kue "^0.11.5"
     lodash "^4.17.19"
-    magento2-rest-client "magento2-rest-client@git+https://github.com/vuestorefront/magento2-rest-client.git#master"
+    magento2-rest-client "https://github.com/DivanteLtd/magento2-rest-client"
     moment "^2.22.2"
     node-sync "^0.2.1"
     passport "^0.3.2"
@@ -10812,6 +10812,25 @@ macos-release@^2.2.0:
   version "0.0.14"
   uid "3ed81008e617abfed347ed42fb52ac9d72c8705b"
   resolved "git+https://github.com/vuestorefront/magento2-rest-client.git#3ed81008e617abfed347ed42fb52ac9d72c8705b"
+  dependencies:
+    humps "^1.1.0"
+    oauth-1.0a "^1.0.1"
+    request "^2.72.0"
+    winston "^2.2.0"
+
+"magento2-rest-client@github:DivanteLtd/magento2-rest-client":
+  version "0.0.14"
+  resolved "https://codeload.github.com/DivanteLtd/magento2-rest-client/tar.gz/3ed81008e617abfed347ed42fb52ac9d72c8705b"
+  dependencies:
+    humps "^1.1.0"
+    oauth-1.0a "^1.0.1"
+    request "^2.72.0"
+    winston "^2.2.0"
+
+"magento2-rest-client@magento2-rest-client@git+https://github.com/vuestorefront/magento2-rest-client.git#master":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/magento2-rest-client/-/magento2-rest-client-0.0.2.tgz#2a6ef230c88129a8680b63ead3793ea7e99bf6a4"
+  integrity sha1-Km7yMMiBKahoC2Pq03k+p+mb9qQ=
   dependencies:
     humps "^1.1.0"
     oauth-1.0a "^1.0.1"
