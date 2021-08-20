@@ -268,9 +268,31 @@
     },
     "adempiereApi": {
       "registeredExtensions": [
+        "adempiere/dictionary",
+        "adempiere/common",
+        "adempiere/common/api",
+        "adempiere/dashboard",
+        "adempiere/dashboard/addons/user",
+        "adempiere/dashboard/addons/tasks",
+        "adempiere/dashboard/addons/charts",
+        "adempiere/user",
+        "adempiere/user/enrollment",
+        "adempiere/user/log",
+        "adempiere/workflow",
+        "adempiere/user-interface/common",
+        "adempiere/user-interface/window",
+        "adempiere/user-interface/smart-browser",
+        "adempiere/user-interface/process",
+        "adempiere/user-interface/component/attachment",
+        "adempiere/user-interface/component/preference",
+        "adempiere/user-interface/component/private-access",
+        "adempiere/user-interface/component/record-access",
+        "adempiere/user-interface/component/notes",
+        "adempiere/user-interface/component/translation",
+        "adempiere/form/addons/point-of-sales"
       ],
       "images": {
-        "baseUrl": "http://API_URL_IMAGES",
+        "baseUrl": "API_URL_IMAGES",
         "httpBased": "API_HTTP_BASED"
       }
     },
@@ -279,7 +301,7 @@
         "web-store-payment"
       ],
       "images": {
-        "baseUrl": "http://STORE_URL_IMAGES",
+        "baseUrl": "STORE_URL_IMAGES",
         "httpBased": "STORE_HTTP_BASED"
       }
     },
