@@ -11,7 +11,7 @@ RUN apk --no-cache --update upgrade musl \
 	&& apk add --no-cache \
       # --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
       # --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
-    #  --virtual .build-deps \
+      --virtual .build-deps \
     curl \
 		# TODO: verify git
 		git \
@@ -55,8 +55,9 @@ RUN yarn install --no-cache \
 	&& yarn cache clean \
   && rm -rf node_modules/sharp \
 	&& yarn add sharp --ignore-workspace-root-check \
-  && npm install --arch=x64 --platform=linux sharp \
-	&& yarn cache clean
+	# delete unUsed files
+	&& yarn cache clean \
+  && apk del .build-deps
 
 
 # Start app
