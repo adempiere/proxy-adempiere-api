@@ -9,8 +9,8 @@ LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 # Add system dependencies
 RUN apk --no-cache --update upgrade musl \
 	&& apk add --no-cache \
-      --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-      --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+      # --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+      # --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
     #  --virtual .build-deps \
     curl \
 		git \
