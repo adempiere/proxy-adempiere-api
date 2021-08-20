@@ -1,16 +1,17 @@
-FROM node:10-alpine3.11
 
+FROM node:14.17.5-alpine3.11
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 	description="Proxy ADempiere API RESTful"
 
 
 # Add system dependencies
-RUN rm -rf /var/cache/apk/* && \
-	apk update && \
-	apk upgrade musl && \
-	apk add \
-		--virtual .build-deps \
+RUN apk --no-cache --update upgrade musl \
+	&& apk add --no-cache \
+      --virtual .build-deps \
+    curl \
+		# TODO: verify git
+		git \
 		python \
 		make \
 		g++ \
@@ -45,6 +46,16 @@ COPY dist-app/ /var/www/proxy-adempiere-api/
 
 
 WORKDIR /var/www/proxy-adempiere-api/
+
+
+RUN yarn install --no-cache \
+	&& yarn cache clean \
+  && rm -rf node_modules/sharp \
+	&& yarn add sharp --ignore-workspace-root-check \
+	# delete unUsed files
+	&& yarn cache clean \
+  && apk del .build-deps
+
 
 # Start app
 CMD	'sh' 'start.sh'

@@ -87,9 +87,5 @@ if [ "$RESTORE_DB" = 'Y' ]; then
 fi
 
 
-# Install required npm packages
-yarn install || exit $?
-
-
 # Run app
 yarn dev && tail -f /dev/null
