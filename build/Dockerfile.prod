@@ -39,8 +39,8 @@ ENV \
 # Create work dir
 RUN mkdir -p /var/www/proxy-adempiere-api/
 
-RUN rm /var/www/proxy-adempiere-api/config/default.json
-COPY build/default.json /var/www/proxy-adempiere-api/config/default.json
+# Copy src files
+COPY build/default.json /var/www/proxy-adempiere-api/config/default-template.json
 COPY build/start.sh /var/www/proxy-adempiere-api/start.sh
 COPY dist-app/ /var/www/proxy-adempiere-api/
 
@@ -52,7 +52,10 @@ RUN yarn install --no-cache \
 	&& yarn cache clean \
   && rm -rf node_modules/sharp \
 	&& yarn add sharp --ignore-workspace-root-check \
-	# delete unUsed files
+	# set config template file
+  mv config/default.json config/default-dist.json
+  mv config/default-template.json config/default.json
+  # delete unused files
 	&& yarn cache clean \
   && apk del .build-deps
 
