@@ -31,7 +31,7 @@ jobs:
       - run: cp -rf ./packages/default-vsf ./src/modules/
 
       - name: Install dependencies
-        run: yarn install --no-cache
+        run: yarn install
 
       - name: Run test
         run: yarn lint
@@ -43,8 +43,6 @@ jobs:
   
       - name: Unit Test
         run: yarn test:unit
-
-      - run: yarn install --no-cache
 
       - name: Compress files for application dist
         uses: TheDoctor0/zip-release@0.6.0

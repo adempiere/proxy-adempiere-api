@@ -49,7 +49,7 @@ COPY dist-app/ /var/www/proxy-adempiere-api/
 WORKDIR /var/www/proxy-adempiere-api/
 
 
-RUN yarn install --no-cache
+RUN yarn install
 
 
 # Start app
