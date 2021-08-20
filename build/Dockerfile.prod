@@ -39,7 +39,7 @@ ENV \
 # Create work dir
 RUN mkdir -p /var/www/proxy-adempiere-api/
 
-
+RUN rm /var/www/proxy-adempiere-api/config/default.json
 COPY build/default.json /var/www/proxy-adempiere-api/config/default.json
 COPY build/start.sh /var/www/proxy-adempiere-api/start.sh
 COPY dist-app/ /var/www/proxy-adempiere-api/
