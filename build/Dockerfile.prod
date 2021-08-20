@@ -1,6 +1,6 @@
 #FROM node:10-alpine3.11
 #FROM node:12.22.5-alpine3.14
-FROM node:14.17.5-alpine3.14
+FROM node:14.17.5-alpine3.11
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 	description="Proxy ADempiere API RESTful"
