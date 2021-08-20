@@ -1182,6 +1182,7 @@ module.exports = ({ config, db }) => {
         contactName: req.body.contact_name,
         email: req.body.email,
         phone: req.body.phone,
+        addressUuid: req.body.address_uuid,
         address1: req.body.address1,
         address2: req.body.address2,
         address3: req.body.address3,
@@ -1193,6 +1194,50 @@ module.exports = ({ config, db }) => {
         regionName: req.body.region_name,
         countryUuid: req.body.country_uuid,
         posUuid: req.body.pos_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Customer
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * req.query.search_value - Search Value
+   * req.query.value - Value
+   * req.query.name - Name
+   * req.query.contact_name - Contact Name
+   * req.query.email - EMail
+   * req.query.postal_code - Postal Code
+   * req.query.phone - Phone
+   * Details:
+   */
+  api.get('/customer', (req, res) => {
+    if (req.query) {
+      service.getCustomer({
+        token: req.query.token,
+        language: req.query.language,
+        searchValue: req.query.search_value,
+        value: req.query.value,
+        name: req.query.name,
+        contactName: req.query.contact_name,
+        email: req.query.email,
+        postalCode: req.query.postal_code,
+        phone: req.query.phone
       }, function (err, response) {
         if (response) {
           res.json({
