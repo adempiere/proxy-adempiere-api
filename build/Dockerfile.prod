@@ -13,6 +13,7 @@ RUN apk --no-cache --update upgrade musl \
       # --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
     #  --virtual .build-deps \
     curl \
+		# TODO: verify git
 		git \
 		python \
 		make \
@@ -50,13 +51,13 @@ COPY dist-app/ /var/www/proxy-adempiere-api/
 WORKDIR /var/www/proxy-adempiere-api/
 
 
-RUN \
-	git config --global --add url."git@github.com:".insteadOf "https://github.com/" \
-	&& git config --list
+RUN yarn install --no-cache \
+	&& yarn cache clean \
+  && rm -rf node_modules/sharp \
+	&& yarn add sharp --ignore-workspace-root-check \
+  && npm install --arch=x64 --platform=linux sharp \
+	&& yarn cache clean
 
-RUN yarn install
-
-RUN yarn add sharp
 
 # Start app
 CMD	'sh' 'start.sh'
