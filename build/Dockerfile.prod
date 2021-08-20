@@ -50,7 +50,10 @@ COPY dist-app/ /var/www/proxy-adempiere-api/
 WORKDIR /var/www/proxy-adempiere-api/
 
 
-RUN yarn install
+RUN \
+	git config --global --add url."git@github.com".insteadOf "https://github.com/"
+	&& git config --list
+	&& yarn install
 
 
 # Start app
