@@ -31,7 +31,7 @@ jobs:
       - run: cp -rf ./packages/default-vsf ./src/modules/
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Run test
         run: yarn lint
@@ -97,8 +97,6 @@ jobs:
         with:
           name: proxy-adempiere-api
 
-      - run: ls
-
       - name: Uncompress dist files
         run: unzip proxy-adempiere-api.zip -d dist-app
 
@@ -147,8 +145,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: proxy-adempiere-api
-
-      - run: ls
 
       - name: Uncompress dist files
         run: unzip proxy-adempiere-api.zip -d dist-app
