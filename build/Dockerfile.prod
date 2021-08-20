@@ -52,8 +52,9 @@ WORKDIR /var/www/proxy-adempiere-api/
 
 RUN \
 	git config --global --add url."git@github.com:".insteadOf "https://github.com/" \
-	&& git config --list \
-	&& yarn install
+	&& git config --list
+
+RUN yarn install
 
 
 # Start app
