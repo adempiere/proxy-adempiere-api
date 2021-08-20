@@ -40,8 +40,8 @@ ENV \
 RUN mkdir -p /var/www/proxy-adempiere-api/
 
 
-COPY build/default.json /var/www/proxy-adempiere-api/config/default.json
-COPY build/start.sh /var/www/proxy-adempiere-api/start.sh
+COPY default.json /var/www/proxy-adempiere-api/config/default.json
+COPY start.sh /var/www/proxy-adempiere-api/start.sh
 COPY dist-app/ /var/www/proxy-adempiere-api/
 
 
