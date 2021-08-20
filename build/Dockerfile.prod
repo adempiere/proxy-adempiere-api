@@ -53,8 +53,8 @@ RUN yarn install --no-cache \
   && rm -rf node_modules/sharp \
 	&& yarn add sharp --ignore-workspace-root-check \
 	# set config template file
-  mv config/default.json config/default-dist.json
-  mv config/default-template.json config/default.json
+  && mv config/default.json config/default-dist.json \
+  && cp config/default-template.json config/default.json \
   # delete unused files
 	&& yarn cache clean \
   && apk del .build-deps
