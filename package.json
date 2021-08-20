@@ -96,7 +96,7 @@
     "kue": "^0.11.6",
     "lodash": "^4.17.10",
     "mage2vuestorefront": "git+https://github.com/vuestorefront/mage2vuestorefront.git#master",
-    "magento2-rest-client": "github:vuestorefront/magento2-rest-client#master",
+    "magento2-rest-client": "git+https://github.com/vuestorefront/magento2-rest-client.git#master",
     "migrate": "^1.6.2",
     "mime-types": "^2.1.18",
     "module-alias": "^2.2.2",
