@@ -8,7 +8,7 @@ import {
   convertAvailableWarehouse,
   convertAvailablePriceList,
   convertAvailableDocumentType,
-  convertAvailableTenderType,
+  convertAvailablePaymentMethod,
   convertAvailableCurrency,
   convertCustomerFromGRPC,
   convertAvailableRefundGRPC
@@ -941,7 +941,7 @@ module.exports = ({ config, db }) => {
   });
 
   /**
-   * GET List Available Tender Types
+   * GET List Available Payment Methods
    *
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
@@ -949,9 +949,9 @@ module.exports = ({ config, db }) => {
    * req.query.pos_uuid - POS UUID reference
    * Details:
    */
-  api.get('/available-tender-types', (req, res) => {
+  api.get('/available-payment-methods', (req, res) => {
     if (req.query) {
-      service.listAvailableTenderTypes({
+      service.listAvailablePaymentMethods({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
@@ -965,8 +965,8 @@ module.exports = ({ config, db }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getTenderTypesList().map(tenderType => {
-                return convertAvailableTenderType(tenderType)
+              records: response.getPaymentMethodsList().map(tenderType => {
+                return convertAvailablePaymentMethod(tenderType)
               })
             }
           })
