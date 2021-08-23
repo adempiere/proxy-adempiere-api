@@ -35,7 +35,7 @@ jobs:
         run: cp -rf ./packages/default-vsf ./src/modules/
 
       - name: Install node dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install 
 
       - name: Run test
         run: yarn lint
