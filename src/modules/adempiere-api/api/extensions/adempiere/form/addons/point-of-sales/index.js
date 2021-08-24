@@ -258,7 +258,9 @@ module.exports = ({ config, db }) => {
         amount: req.body.amount,
         tenderTypeCode: req.body.tender_type_code,
         paymentDate: req.body.payment_date,
-        currencyUuid: req.body.currency_uuid
+        paymentAccountDate: req.body.payment_account_date,
+        currencyUuid: req.body.currency_uuid,
+        paymentMethodUuid: req.body.payment_method_uuid
       }, function (err, response) {
         if (response) {
           res.json({
