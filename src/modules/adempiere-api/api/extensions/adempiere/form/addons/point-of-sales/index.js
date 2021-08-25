@@ -436,6 +436,39 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Print Ticket: Run it after complete order
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - Point Of sales UUID reference
+   * req.body.order_uuid - Sales Order UUID reference
+   *
+   * Details:
+   */
+  api.post('/print-ticket', (req, res) => {
+    if (req.body) {
+      service.printTicket({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response.getResult()
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+  /**
    * POST Create Sales Order Line
    *
    * req.query.token - user token
