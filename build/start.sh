@@ -71,11 +71,16 @@ sed -i "s|STORE_URL_IMAGES|$STORE_URL_IMAGES|g"  /var/www/proxy-adempiere-api/co
 sed -i "s|\"STORE_HTTP_BASED\"|$STORE_HTTP_BASED|g"  /var/www/proxy-adempiere-api/config/default.json
 
 
+# Set env values to redis service
+sed -i "s|REDIS_HOST|$REDIS_HOST|g"  /var/www/proxy-adempiere-api/config/default.json
+sed -i "s|REDIS_PORT|$REDIS_PORT|g"  /var/www/proxy-adempiere-api/config/default.json
+sed -i "s|REDIS_DB|$REDIS_DB|g"  /var/www/proxy-adempiere-api/config/default.json
+
+
 # Set env elastic search values
 sed -i "s|ES_HOST|$ES_HOST|g"  /var/www/proxy-adempiere-api/config/default.json
 sed -i "s|ES_PORT|$ES_PORT|g"  /var/www/proxy-adempiere-api/config/default.json
-
-# Set indices value
+# Set elastic search indices value
 sed -i "s|vue_storefront_catalog|$INDEX|g"  /var/www/proxy-adempiere-api/config/default.json
 
 
