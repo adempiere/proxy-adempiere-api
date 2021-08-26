@@ -8,8 +8,8 @@ LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 # Add system dependencies
 RUN apk --no-cache --update upgrade musl \
 	&& apk add --no-cache \
-      --virtual .build-deps \
-    curl \
+		--virtual .build-deps \
+	curl \
 		# TODO: verify git
 		git \
 		python \
@@ -24,6 +24,9 @@ ENV \
 	SERVER_PORT=8085 \
 	ES_HOST="localhost" \
 	ES_PORT=9200 \
+	REDIS_HOST="localhost" \
+	REDIS_PORT=6379 \
+	REDIS_DB=0 \
 	AD_DEFAULT_HOST="localhost" \
 	AD_DEFAULT_PORT=50059 \
 	AD_TOKEN="adempiere_token" \

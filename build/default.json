@@ -116,9 +116,9 @@
     }
   },
   "redis": {
-    "host": "localhost",
-    "port": 6379,
-    "db": 0,
+    "host": "REDIS_HOST",
+    "port": "REDIS_PORT",
+    "db": "REDIS_DB",
     "auth": false
   },
   "kue": {},
@@ -161,7 +161,7 @@
       "name": "German Store",
       "url": "/de",
       "elasticsearch": {
-        "host": "localhost:8080/api/catalog",
+        "host": "SERVER_HOST:SERVER_PORT/api/catalog",
         "index": "vue_storefront_catalog_de"
       },
       "msi": {
@@ -196,7 +196,7 @@
       "name": "Italian Store",
       "url": "/it",
       "elasticsearch": {
-        "host": "localhost:8080/api/catalog",
+        "host": "SERVER_HOST:SERVER_PORT/api/catalog",
         "index": "vue_storefront_catalog_it"
       },
       "msi": {
