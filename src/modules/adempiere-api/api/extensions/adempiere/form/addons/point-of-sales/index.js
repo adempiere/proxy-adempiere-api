@@ -241,6 +241,10 @@ module.exports = ({ config, db }) => {
    * req.body.amount - Payment Amount
    * req.body.tender_type_code - Tender Type
    * req.body.currency_uuid - Currency UUID reference
+   * req.body.payment_date - Payment Date
+   * req.body.payment_account_date - Accounting Date
+   * req.body.payment_method_uuid - Payment Method Uuid
+   * req.body.is_refund - Is a Refund
    *
    * Details:
    */
@@ -260,7 +264,8 @@ module.exports = ({ config, db }) => {
         paymentDate: req.body.payment_date,
         paymentAccountDate: req.body.payment_account_date,
         currencyUuid: req.body.currency_uuid,
-        paymentMethodUuid: req.body.payment_method_uuid
+        paymentMethodUuid: req.body.payment_method_uuid,
+        isRefund: req.body.is_refund
       }, function (err, response) {
         if (response) {
           res.json({
@@ -321,6 +326,9 @@ module.exports = ({ config, db }) => {
    * req.body.amount - Amount of Document
    * req.body.payment_date - Payment Date
    * req.body.tender_type_code - tender Type
+   * req.body.payment_date - Payment Date
+   * req.body.payment_account_date - Accounting Date
+   * req.body.payment_method_uuid - Payment Method Uuid
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -335,7 +343,9 @@ module.exports = ({ config, db }) => {
         description: req.body.description,
         amount: req.body.amount,
         paymentDate: req.body.payment_date,
-        tenderTypeCode: req.body.tender_type_code
+        tenderTypeCode: req.body.tender_type_code,
+        paymentAccountDate: req.body.payment_account_date,
+        paymentMethodUuid: req.body.payment_method_uuid
       }, function (err, response) {
         if (response) {
           res.json({
