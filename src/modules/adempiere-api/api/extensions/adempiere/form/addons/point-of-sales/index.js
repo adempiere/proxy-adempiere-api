@@ -11,7 +11,8 @@ import {
   convertAvailablePaymentMethod,
   convertAvailableCurrency,
   convertCustomerFromGRPC,
-  convertAvailableRefundGRPC
+  convertAvailableRefundGRPC,
+  convertCustomerBankAccountFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -1287,6 +1288,246 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertCustomerFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Customer Bank Account
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.customer_uuid - Customer UUID
+   * req.body.pos_uuid - Value
+   * req.body.city - City
+   * req.body.country - Country
+   * req.body.email - EMail
+   * req.body.driver_license - Driver Licence
+   * req.body.social_security_number - Social Security Number (SSN)
+   * req.body.name - Name
+   * req.body.state - State
+   * req.body.street - Strert
+   * req.body.zip - ZIP
+   * req.body.bank_account_type - Bank Accoubnt Type
+   * req.body.bank_uuid - Bank UUID
+   * req.body.is_ach - ACH
+   * req.body.address_verified - Address Verified
+   * req.body.zip_verified - ZIP Verified
+   * req.body.routing_no - Routing No
+   * req.body.iban - IBAN
+   * req.body.is_payroll_account - Payroll Account
+   * Details:
+   */
+  api.post('/create-customer-bank-account', (req, res) => {
+    if (req.body) {
+      service.createCustomerBankAccount({
+        token: req.query.token,
+        language: req.query.language,
+        customerUuid: req.body.customer_uuid,
+        posUuid: req.body.pos_uuid,
+        city: req.body.city,
+        country: req.body.country,
+        email: req.body.email,
+        driverLicense: req.body.driver_license,
+        socialSecurityNumber: req.body.social_security_number,
+        name: req.body.name,
+        state: req.body.state,
+        street: req.body.street,
+        zip: req.body.zip,
+        bankAccountType: req.body.bank_account_type,
+        bankUuid: req.body.bank_uuid,
+        isAch: req.body.is_ach,
+        addressVerified: req.body.address_verified,
+        zipVerified: req.body.zip_verified,
+        routingNo: req.body.routing_no,
+        iban: req.body.iban,
+        isPayrollAccount: req.body.is_payroll_account
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerBankAccountFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Update Customer Bank Account
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Body:
+   * req.body.customer_bank_account_uuid - Customer Bank Account UUID
+   * req.body.pos_uuid - Value
+   * req.body.city - City
+   * req.body.country - Country
+   * req.body.email - EMail
+   * req.body.driver_license - Driver Licence
+   * req.body.social_security_number - Social Security Number (SSN)
+   * req.body.name - Name
+   * req.body.state - State
+   * req.body.street - Strert
+   * req.body.zip - ZIP
+   * req.body.bank_account_type - Bank Accoubnt Type
+   * req.body.bank_uuid - Bank UUID
+   * req.body.is_ach - ACH
+   * req.body.address_verified - Address Verified
+   * req.body.zip_verified - ZIP Verified
+   * req.body.routing_no - Routing No
+   * req.body.iban - IBAN
+   * req.body.is_payroll_account - Payroll Account
+   * Details:
+   */
+  api.post('/update-customer-bank-account', (req, res) => {
+    if (req.body) {
+      service.createCustomerBankAccount({
+        token: req.query.token,
+        language: req.query.language,
+        customerBankAccountUuid: req.body.customer_bank_account_uuid,
+        posUuid: req.body.pos_uuid,
+        city: req.body.city,
+        country: req.body.country,
+        email: req.body.email,
+        driverLicense: req.body.driver_license,
+        socialSecurityNumber: req.body.social_security_number,
+        name: req.body.name,
+        state: req.body.state,
+        street: req.body.street,
+        zip: req.body.zip,
+        bankAccountType: req.body.bank_account_type,
+        bankUuid: req.body.bank_uuid,
+        isAch: req.body.is_ach,
+        addressVerified: req.body.address_verified,
+        zipVerified: req.body.zip_verified,
+        routingNo: req.body.routing_no,
+        iban: req.body.iban,
+        isPayrollAccount: req.body.is_payroll_account
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerBankAccountFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Customer Bank Account
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.customer_bank_account_uuid - Customer Bank Account UUID
+   * req.query.date - Date of Statement
+   * Details:
+   */
+  api.get('/customer-bank-account', (req, res) => {
+    if (req.query) {
+      service.getCustomerBankAccount({
+        token: req.query.token,
+        language: req.query.language,
+        customerBankAccountUuid: req.query.customer_bank_account_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCustomerBankAccountFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * DELETE Customer Bank Account
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.date - Date of Statement
+   * req.body.customer_bank_account_uuid - Customer Bank Account UUID
+   * Details:
+   */
+  api.post('/delete-bank-account', (req, res) => {
+    if (req.query) {
+      service.deleteCustomerBankAccount({
+        token: req.query.token,
+        language: req.query.language,
+        customerBankAccountUuid: req.body.customer_bank_account_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Customer Bank Accounts
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.customer_uuid - Customer UUID
+   * Details:
+   */
+  api.get('/customer-bank-accounts', (req, res) => {
+    if (req.query) {
+      service.listCustomerBankAccounts({
+        token: req.query.token,
+        language: req.query.language,
+        customerUuid: req.query.customer_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getCustomerBankAccountsList().map(customerBankAccount => {
+                return convertCustomerBankAccountFromGRPC(customerBankAccount)
+              })
+            }
           })
         } else if (err) {
           res.json({
