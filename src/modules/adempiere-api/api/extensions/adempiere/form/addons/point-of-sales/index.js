@@ -109,6 +109,8 @@ module.exports = ({ config, db }) => {
    * req.query.name - product name
    * req.query.pos_uuid - POS UUID reference
    * req.query.business_partner_uuid - Business partner UUID reference
+   * req.query.price_list_uuid - Price List UUID
+   * req.query.warehouse_uuid - Warehouse UUID
    * req.query.valid_from - Prioce List Valid From
    *
    * Details:
@@ -124,6 +126,8 @@ module.exports = ({ config, db }) => {
         name: req.query.name,
         posUuid: req.query.pos_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
+        priceListUuid: req.query.price_list_uuid,
+        warehouseUuid: req.query.warehouse_uuid,
         validFrom: req.query.valid_from,
         //  Page Data
         pageSize: req.query.page_size,
@@ -151,6 +155,8 @@ module.exports = ({ config, db }) => {
    * req.query.search_value - product search value
    * req.query.pos_uuid - POS UUID reference
    * req.query.business_partner_uuid - Business partner UUID reference
+   * req.query.price_list_uuid - Price List UUID
+   * req.query.warehouse_uuid - Warehouse UUID
    * req.query.valid_from - Prioce List Valid From
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
@@ -164,6 +170,8 @@ module.exports = ({ config, db }) => {
         searchValue: req.query.search_value,
         posUuid: req.query.pos_uuid,
         businessPartnerUuid: req.query.business_partner_uuid,
+        priceListUuid: req.query.price_list_uuid,
+        warehouseUuid: req.query.warehouse_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, function (err, response) {
@@ -779,18 +787,18 @@ module.exports = ({ config, db }) => {
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
    * Body:
-   * req.body.pos_uuid - POS UUID reference
-   * req.body.document_no - Document No
-   * req.body.business_partner_uuid - Business Partner UUID reference
-   * req.body.grand_total - Grand Total
-   * req.body.open_amount - Open Amount
-   * req.body.is_paid - Is Paid
-   * req.body.is_processed - Is Processed
-   * req.body.is_aisle_seller - Is from Aisle Seller
-   * req.body.is_invoiced - Is Invoiced
-   * req.body.date_ordered_from - Date Ordered From
-   * req.body.date_ordered_to - Date Ordered To
-   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * req.query.pos_uuid - POS UUID reference
+   * req.query.document_no - Document No
+   * req.query.business_partner_uuid - Business Partner UUID reference
+   * req.query.grand_total - Grand Total
+   * req.query.open_amount - Open Amount
+   * req.query.is_paid - Is Paid
+   * req.query.is_processed - Is Processed
+   * req.query.is_aisle_seller - Is from Aisle Seller
+   * req.query.is_invoiced - Is Invoiced
+   * req.query.date_ordered_from - Date Ordered From
+   * req.query.date_ordered_to - Date Ordered To
+   * req.query.sales_representative_uuid - Sales Representative UUID reference
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
    * Details:
