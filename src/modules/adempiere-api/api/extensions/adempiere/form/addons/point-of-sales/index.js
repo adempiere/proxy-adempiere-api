@@ -1148,6 +1148,31 @@ module.exports = ({ config, db }) => {
    */
   api.post('/create-customer', (req, res) => {
     if (req.body) {
+      let addresses
+      if (req.body.addresses) {
+        addresses = req.body.addresses.map(address => {
+          return {
+            email: address.email,
+            phone: address.phone,
+            address1: address.address1,
+            address2: address.address2,
+            address3: address.address3,
+            address4: address.address4,
+            cityUuid: address.city_uuid,
+            cityName: address.city_name,
+            postalCode: address.postal_code,
+            regionUuid: address.region_uuid,
+            regionName: address.region_name,
+            countryUuid: address.country_uuid,
+            firstName: address.first_name,
+            lastName: address.last_name,
+            description: address.description,
+            contactName: address.contact_name,
+            isDefaultBilling: address.is_default_billing,
+            isDefaultShipping: address.is_default_shipping
+          }
+        })
+      }
       service.createCustomer({
         token: req.query.token,
         language: req.query.language,
@@ -1158,21 +1183,9 @@ module.exports = ({ config, db }) => {
         name: req.body.name,
         lastName: req.body.last_name,
         description: req.body.description,
-        contactName: req.body.contact_name,
-        email: req.body.email,
-        phone: req.body.phone,
         businessPartnerGroupUuid: req.body.business_partner_group_uuid,
-        address1: req.body.address1,
-        address2: req.body.address2,
-        address3: req.body.address3,
-        address4: req.body.address4,
-        cityUuid: req.body.city_uuid,
-        cityName: req.body.city_name,
-        postalCode: req.body.postal_code,
-        regionUuid: req.body.region_uuid,
-        regionName: req.body.region_name,
-        countryUuid: req.body.country_uuid,
-        posUuid: req.body.pos_uuid
+        posUuid: req.body.pos_uuid,
+        addresses
       }, function (err, response) {
         if (response) {
           res.json({
@@ -1223,6 +1236,31 @@ module.exports = ({ config, db }) => {
    */
   api.post('/update-customer', (req, res) => {
     if (req.body) {
+      let addresses
+      if (req.body.addresses) {
+        addresses = req.body.addresses.map(address => {
+          return {
+            email: address.email,
+            phone: address.phone,
+            address1: address.address1,
+            address2: address.address2,
+            address3: address.address3,
+            address4: address.address4,
+            cityUuid: address.city_uuid,
+            cityName: address.city_name,
+            postalCode: address.postal_code,
+            regionUuid: address.region_uuid,
+            regionName: address.region_name,
+            countryUuid: address.country_uuid,
+            firstName: address.first_name,
+            lastName: address.last_name,
+            description: address.description,
+            contactName: address.contact_name,
+            isDefaultBilling: address.is_default_billing,
+            isDefaultShipping: address.is_default_shipping
+          }
+        })
+      }
       service.updateCustomer({
         token: req.query.token,
         uuid: req.body.uuid,
@@ -1234,20 +1272,7 @@ module.exports = ({ config, db }) => {
         name: req.body.name,
         lastName: req.body.last_name,
         description: req.body.description,
-        contactName: req.body.contact_name,
-        email: req.body.email,
-        phone: req.body.phone,
-        addressUuid: req.body.address_uuid,
-        address1: req.body.address1,
-        address2: req.body.address2,
-        address3: req.body.address3,
-        address4: req.body.address4,
-        cityUuid: req.body.city_uuid,
-        cityName: req.body.city_name,
-        postalCode: req.body.postal_code,
-        regionUuid: req.body.region_uuid,
-        regionName: req.body.region_name,
-        countryUuid: req.body.country_uuid,
+        addresses,
         posUuid: req.body.pos_uuid
       }, function (err, response) {
         if (response) {
