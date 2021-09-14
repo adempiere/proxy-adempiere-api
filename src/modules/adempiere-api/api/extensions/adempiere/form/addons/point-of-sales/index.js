@@ -726,6 +726,7 @@ module.exports = ({ config, db }) => {
    * req.body.pos_uuid - POS UUID reference
    * req.body.order_uuid - Order UUID reference
    * req.body.create_payments - Optional create payments (if is true then hope payments array)
+   * req.body.is_open_refund - default false and can be used for order after process it
    * req.body.payments
    * [
    * invoice_uuid - Invoice UUID reference
@@ -751,6 +752,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
+        isOpenRefund: req.body.is_open_refund,
         createPayments: req.body.create_payments,
         payments: payments.map(payment => {
           return {
