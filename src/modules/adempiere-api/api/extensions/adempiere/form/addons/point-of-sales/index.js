@@ -1259,7 +1259,8 @@ module.exports = ({ config, db }) => {
             description: address.description,
             contactName: address.contact_name,
             isDefaultBilling: address.is_default_billing,
-            isDefaultShipping: address.is_default_shipping
+            isDefaultShipping: address.is_default_shipping,
+            uuid: address.uuid
           }
         })
       }
@@ -1274,8 +1275,7 @@ module.exports = ({ config, db }) => {
         name: req.body.name,
         lastName: req.body.last_name,
         description: req.body.description,
-        addresses,
-        posUuid: req.body.pos_uuid
+        addresses
       }, function (err, response) {
         if (response) {
           res.json({
