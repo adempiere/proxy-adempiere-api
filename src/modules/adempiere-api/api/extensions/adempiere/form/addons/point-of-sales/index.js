@@ -12,7 +12,9 @@ import {
   convertAvailableCurrency,
   convertCustomerFromGRPC,
   convertAvailableRefundGRPC,
-  convertCustomerBankAccountFromGRPC
+  convertCustomerBankAccountFromGRPC,
+  convertShipmentFromGRPC,
+  convertShipmentLineFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -225,6 +227,147 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Shipment
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.order_uuid - POS UUID reference
+   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/create-shipment', (req, res) => {
+    if (req.body) {
+      service.createShipment({
+        token: req.query.token,
+        language: req.query.language,
+        orderUuid: req.body.order_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertShipmentFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Shipment Line
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.order_line_uuid - Order Line UUID reference
+   * req.body.description - Description UUID reference
+   * req.body.quantity - Quantity UUID reference
+   * req.body.shipment_uuid - Header UUID reference
+   *
+   * Details:
+   */
+  api.post('/create-shipment-line', (req, res) => {
+    if (req.body) {
+      service.createShipmentLine({
+        token: req.query.token,
+        language: req.query.language,
+        orderLineUuid: req.body.order_line_uuid,
+        description: req.body.description,
+        quantity: req.body.quantity,
+        shipmentUuid: req.body.shipment_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertShipmentLineFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Delete Shipment Line
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.shipment_line_uuid - Shipment Line UUID reference
+   *
+   * Details:
+   */
+  api.post('/delete-shipment-line', (req, res) => {
+    if (req.body) {
+      service.deleteShipmentLine({
+        token: req.query.token,
+        language: req.query.language,
+        shipmentLineUuid: req.body.shipment_line_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Shipment Lines
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.shipment_uuid - Shipment UUID reference
+   * Details:
+   */
+  api.get('/shipment-lines', (req, res) => {
+    if (req.query) {
+      service.listShipmentLines({
+        token: req.query.token,
+        language: req.query.language,
+        shipmentUuid: req.query.shipment_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getShipmentLinesList().map(shipmentLine => {
+                return convertShipmentLineFromGRPC(shipmentLine)
+              })
+            }
           })
         } else if (err) {
           res.json({
@@ -487,6 +630,7 @@ module.exports = ({ config, db }) => {
       })
     }
   });
+
   /**
    * POST Create Sales Order Line
    *
