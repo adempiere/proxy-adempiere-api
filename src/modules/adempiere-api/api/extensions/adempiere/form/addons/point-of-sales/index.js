@@ -271,6 +271,74 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Process Shipment
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.shipment_uuid - POS UUID shipment uuid
+   * req.body.description - POS UUID description
+   * req.body.document_action - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/process-shipment', (req, res) => {
+    if (req.body) {
+      service.processShipment({
+        token: req.query.token,
+        language: req.query.language,
+        shipmentUuid: req.body.shipment_uuid,
+        description: req.body.description,
+        documentAction: req.body.document_action
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertShipmentFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Reverse Sales
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.order_uuid - Order UUID
+   * req.body.pos_uuid - POS UUID
+   * req.body.description - POS UUID description
+   * Details:
+   */
+  api.post('/reverse-sales', (req, res) => {
+    if (req.body) {
+      service.reverseSales({
+        token: req.query.token,
+        language: req.query.language,
+        orderUuid: req.body.order_uuid,
+        posUuid: req.body.pos_uuid,
+        description: req.body.description
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Create Shipment Line
    *
    * req.query.token - user token
