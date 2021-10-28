@@ -277,7 +277,7 @@ module.exports = ({ config, db }) => {
    * Body:
    * req.body.shipment_uuid - POS UUID shipment uuid
    * req.body.description - POS UUID description
-   * req.body.document_action - Sales Representative UUID reference
+   * req.body.document_action - Document Action (CO, VO, RE)
    * Details:
    */
   api.post('/process-shipment', (req, res) => {
