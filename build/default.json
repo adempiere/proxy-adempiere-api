@@ -124,7 +124,8 @@
   "kue": {},
   "availableStores": [
     "de",
-    "it"
+    "it",
+    "es"
   ],
   "msi": {
     "enabled": false,
@@ -221,6 +222,41 @@
         "currencyCode": "EUR",
         "currencySign": "EUR",
         "dateFormat": "HH:mm D-M-YYYY"
+      }
+    },
+    "es": {
+      "storeCode": "es",
+      "disabled": false,
+      "storeId": 4,
+      "websiteId": 1,
+      "name": "Tienda en Español",
+      "url": "/es",
+      "elasticsearch": {
+        "host": "SERVER_HOST:SERVER_PORT/api/catalog",
+        "index": "vue_storefront_catalog_it"
+      },
+      "msi": {
+        "stockId": 5
+      },
+      "tax": {
+        "defaultCountry": "VE",
+        "defaultRegion": "",
+        "calculateServerSide": true,
+        "sourcePriceIncludesTax": false,
+        "deprecatedPriceFieldsSupport": false,
+        "finalPriceIncludesTax": false,
+        "userGroupId": null,
+        "useOnlyDefaultUserGroupId": false
+      },
+      "i18n": {
+        "fullCountryName": "Venezuela",
+        "fullLanguageName": "Español",
+        "defaultCountry": "VE",
+        "defaultLanguage": "ES",
+        "defaultLocale": "es-VE",
+        "currencyCode": "VES",
+        "currencySign": "VES",
+        "dateFormat": "HH:mm D/M/YYYY"
       }
     }
   },
