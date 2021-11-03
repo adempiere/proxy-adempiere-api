@@ -280,9 +280,6 @@ module.exports = ({ config, db }) => {
       description: browser.getDescription(),
       help: browser.getHelp(),
       access_level: browser.getAccessLevel(),
-      query: browser.getQuery(),
-      where_clause: browser.getWhereClause(),
-      order_by_clause: browser.getOrderByClause(),
       is_updateable: browser.getIsUpdateable(),
       is_deleteable: browser.getIsDeleteable(),
       is_selected_by_default: browser.getIsSelectedByDefault(),
@@ -295,12 +292,18 @@ module.exports = ({ config, db }) => {
       is_active: browser.getIsActive(),
       fields: browser.getFieldsList().map(field => {
         return convertField(field)
+      }),
+      context_column_names: browser.getContextColumnNamesList().map(contextValue => {
+        return contextValue
       })
     }
   }
 
   //  convert window from gRPC
   function convertWindow (window) {
+    if (!window) {
+      return undefined
+    }
     return {
       id: window.getId(),
       uuid: window.getUuid(),
@@ -351,9 +354,6 @@ module.exports = ({ config, db }) => {
       parent_column_name: tab.getParentColumnName(),
       display_logic: tab.getDisplayLogic(),
       commit_warning: tab.getCommitWarning(),
-      query: tab.getQuery(),
-      where_clause: tab.getWhereClause(),
-      order_by_clause: tab.getOrderByClause(),
       parent_tab_uuid: tab.getParentTabUuid(),
       context_info: convertContextInfo(tab.getContextInfo()),
       field_group: convertFieldGroup(tab.getFieldGroup()),
@@ -362,6 +362,9 @@ module.exports = ({ config, db }) => {
       }),
       fields: tab.getFieldsList().map(field => {
         return convertField(field)
+      }),
+      context_column_names: tab.getContextColumnNamesList().map(contextValue => {
+        return contextValue
       })
     }
   }

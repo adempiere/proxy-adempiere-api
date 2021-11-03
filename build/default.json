@@ -153,7 +153,8 @@
     "multistore": true,
     "mapStoreUrlsFor": [
       "de",
-      "it"
+      "it",
+      "es"
     ],
     "de": {
       "storeCode": "de",
@@ -234,7 +235,7 @@
       "url": "/es",
       "elasticsearch": {
         "host": "SERVER_HOST:SERVER_PORT/api/catalog",
-        "index": "vue_storefront_catalog_it"
+        "index": "vue_storefront_catalog_es"
       },
       "msi": {
         "stockId": 5

@@ -238,7 +238,7 @@ module.exports = ({ config, db }) => {
    * req.body.value - new value of column
    * req.body.window_no - window number
    * req.body.attributes - attributes of entity
-   "attributes": [
+   "context_attributes": [
       {
         "key": "AD_Client_ID",
         "value": 1000000
@@ -280,7 +280,7 @@ module.exports = ({ config, db }) => {
         oldValue: req.body.old_value,
         value: req.body.value,
         windowNo: req.body.window_no,
-        attributes: req.body.attributes
+        contextAttributes: req.body.context_attributes
       }, function (err, response) {
         if (response) {
           res.json({
@@ -326,7 +326,7 @@ module.exports = ({ config, db }) => {
         filters: req.query.filters,
         //  Custom Query
         sorting: req.query.sorting,
-        attributes: req.query.attributes,
+        contextAttributes: req.query.context_attributes,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token

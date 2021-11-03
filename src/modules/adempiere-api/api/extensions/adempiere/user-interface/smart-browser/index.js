@@ -41,10 +41,7 @@ module.exports = ({ config }) => {
       //  DSL Query
       browserRequest.filters = req.body.filters;
       //  Custom Query
-      browserRequest.query = req.body.query;
-      browserRequest.whereClause = req.body.where_clause;
-      browserRequest.orderByClause = req.body.order_by_clause;
-      browserRequest.limit = req.body.limit;
+      browserRequest.contextAttributes = req.body.context_attributes;
     }
 
     service.listBrowserItems(browserRequest, (err, response) => {
