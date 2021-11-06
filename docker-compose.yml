@@ -24,31 +24,31 @@ services:
     ports:
       - '6379:6379'
 
-  app:
-    # image: erpya/proxy-adempiere-api:latest
-    build:
-      context: .
-      dockerfile: docker/proxy-api/Dockerfile
-    depends_on:
-      - es7
-      - redis
-    env_file: docker/proxy-api/default.env
-    environment:
-      VS_ENV: dev
-    volumes:
-      - './config:/var/www/config'
-      - './ecosystem.json:/var/www/ecosystem.json'
-      - './migrations:/var/www/migrations'
-      - './package.json:/var/www/package.json'
-      - './babel.config.js:/var/www/babel.config.js'
-      - './tsconfig.json:/var/www/tsconfig.json'
-      - './nodemon.json:/var/www/nodemon.json'
-      - './graphql-schema-linter.config.js:/var/www/graphql-schema-linter.config.js'
-      - './scripts:/var/www/scripts'
-      - './src:/var/www/src'
-      - './var:/var/www/var'
-      - './packages:/var/www/packages'
-    tmpfs:
-      - /var/www/dist
-    ports:
-      - '8080:8080'
+  # app:
+  #   # image: erpya/proxy-adempiere-api:latest
+  #   build:
+  #     context: .
+  #     dockerfile: docker/proxy-api/Dockerfile
+  #   depends_on:
+  #     - es7
+  #     - redis
+  #   env_file: docker/proxy-api/default.env
+  #   environment:
+  #     VS_ENV: dev
+  #   volumes:
+  #     - './config:/var/www/config'
+  #     - './ecosystem.json:/var/www/ecosystem.json'
+  #     - './migrations:/var/www/migrations'
+  #     - './package.json:/var/www/package.json'
+  #     - './babel.config.js:/var/www/babel.config.js'
+  #     - './tsconfig.json:/var/www/tsconfig.json'
+  #     - './nodemon.json:/var/www/nodemon.json'
+  #     - './graphql-schema-linter.config.js:/var/www/graphql-schema-linter.config.js'
+  #     - './scripts:/var/www/scripts'
+  #     - './src:/var/www/src'
+  #     - './var:/var/www/var'
+  #     - './packages:/var/www/packages'
+  #   tmpfs:
+  #     - /var/www/dist
+  #   ports:
+  #     - '8080:8080'
