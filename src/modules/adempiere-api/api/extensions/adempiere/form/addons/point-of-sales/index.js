@@ -221,7 +221,8 @@ module.exports = ({ config, db }) => {
         documentTypeUuid: req.body.document_type_uuid,
         warehouseUuid: req.body.warehouse_uuid,
         priceListUuid: req.body.price_list_uuid,
-        salesRepresentativeUuid: req.body.sales_representative_uuid
+        salesRepresentativeUuid: req.body.sales_representative_uuid,
+        campaignUuid: req.body.campaign_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -788,6 +789,7 @@ module.exports = ({ config, db }) => {
    * req.body.sales_representative_uuid - Sales Representative UUID reference
    * req.body.warehouse_uuid - Warehouse (Oprional)
    * req.body.price_list_uuid - Price List (Oprional)
+   * req.body.campaign_uuid - Campaign
    *
    * Details:
    */
@@ -802,7 +804,8 @@ module.exports = ({ config, db }) => {
         documentTypeUuid: req.body.document_type_uuid,
         warehouseUuid: req.body.warehouse_uuid,
         priceListUuid: req.body.price_list_uuid,
-        description: req.body.description
+        description: req.body.description,
+        campaignUuid: req.body.campaign_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -1006,10 +1009,11 @@ module.exports = ({ config, db }) => {
    * req.query.business_partner_uuid - Business Partner UUID reference
    * req.query.grand_total - Grand Total
    * req.query.open_amount - Open Amount
-   * req.query.is_paid - Is Paid
-   * req.query.is_processed - Is Processed
-   * req.query.is_aisle_seller - Is from Aisle Seller
-   * req.query.is_invoiced - Is Invoiced
+   * req.query.is_waiting_for_pay - Is Wainting for a payment
+   * req.query.is_only_processed - Is Only the  Processed Orders
+   * req.query.is_only_aisle_seller - Is Only from Aisle Seller
+   * req.query.is_waiting_for_invoice - Is Ready for Invoiced
+   * req.query.is_waiting_for_shipment Is ready for shipment
    * req.query.date_ordered_from - Date Ordered From
    * req.query.date_ordered_to - Date Ordered To
    * req.query.sales_representative_uuid - Sales Representative UUID reference
@@ -1034,6 +1038,11 @@ module.exports = ({ config, db }) => {
         dateOrderedFrom: req.query.date_ordered_from,
         dateOrderedTo: req.query.date_ordered_to,
         salesRepresentativeUuid: req.query.sales_representative_uuid,
+        isWaitingForPay: req.query.is_waiting_for_pay,
+        isOnlyProcessed: req.query.is_only_processed,
+        isOnlyAisleSeller: req.query.is_only_aisle_seller,
+        isWaitingForInvoice: req.query.is_waiting_for_invoice,
+        isWaitingForShipment: req.query.is_waiting_for_shipment,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, function (err, response) {
