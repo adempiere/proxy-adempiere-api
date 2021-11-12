@@ -476,6 +476,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
+        chargeUuid: req.body.charge_uuid,
         invoiceUuid: req.body.invoice_uuid,
         bankUuid: req.body.bank_uuid,
         referenceNo: req.body.reference_no,
@@ -486,7 +487,8 @@ module.exports = ({ config, db }) => {
         paymentAccountDate: req.body.payment_account_date,
         currencyUuid: req.body.currency_uuid,
         paymentMethodUuid: req.body.payment_method_uuid,
-        isRefund: req.body.is_refund
+        isRefund: req.body.is_refund,
+        collectingAgentUuid: req.body.collecting_agent_uuid
       }, function (err, response) {
         if (response) {
           res.json({
@@ -519,6 +521,150 @@ module.exports = ({ config, db }) => {
         token: req.query.token,
         language: req.query.language,
         paymentUuid: req.body.payment_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Cash Opening
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.collecting_agent_uuid - Collecting Agent
+   * req.body.description - a Description
+   * req.body.payments
+   * [
+   * uuid - payment uuid reference
+   * id - id payment reference
+   * invoice_uuid - Invoice UUID reference
+   * bank_uuid - Bank UUID reference
+   * reference_no - Reference no
+   * description - Description for Payment
+   * amount - Payment Amount
+   * tender_type_code - Tender Type
+   * payment_date - Payment Date (default now)
+   * currency_uuid - Currency UUID reference,
+   * collecting_agent_uuid - Collecting Agent
+   * is_refund - is a refund to customer?
+   * ]
+   *
+   * Details:
+   */
+  api.post('/cash-opening', (req, res) => {
+    if (req.body) {
+      let payments = []
+      if (req.body.payments) {
+        payments = req.body.payments
+      }
+      service.cashOpening({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        collectingAgentUuid: req.body.collecting_agent_uuid,
+        description: req.body.description,
+        payments: payments.map(payment => {
+          return {
+            uuid: payment.uuid,
+            id: payment.id,
+            invoiceUuid: payment.invoice_uuid,
+            bankUuid: payment.bank_uuid,
+            referenceNo: payment.reference_no,
+            description: payment.description,
+            amount: payment.amount,
+            tenderTypeCode: payment.tender_type_code,
+            paymentDate: payment.payment_date,
+            currencyUuid: payment.currency_uuid,
+            isRefund: payment.is_refund,
+            collectingAgentUuid: payment.collecting_agent_uuid,
+            chargeUuid: payment.charge_uuid
+          }
+        })
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Cash Withdrawal
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.collecting_agent_uuid - Collecting Agent
+   * req.body.description - a Description
+   * req.body.payments
+   * [
+   * uuid - payment uuid reference
+   * id - id payment reference
+   * invoice_uuid - Invoice UUID reference
+   * bank_uuid - Bank UUID reference
+   * reference_no - Reference no
+   * description - Description for Payment
+   * amount - Payment Amount
+   * tender_type_code - Tender Type
+   * payment_date - Payment Date (default now)
+   * currency_uuid - Currency UUID reference,
+   * collecting_agent_uuid - Collecting Agent
+   * is_refund - is a refund to customer?
+   * ]
+   *
+   * Details:
+   */
+  api.post('/cash-withdrawal', (req, res) => {
+    if (req.body) {
+      let payments = []
+      if (req.body.payments) {
+        payments = req.body.payments
+      }
+      service.cashWithdrawal({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        collectingAgentUuid: req.body.collecting_agent_uuid,
+        description: req.body.description,
+        payments: payments.map(payment => {
+          return {
+            uuid: payment.uuid,
+            id: payment.id,
+            invoiceUuid: payment.invoice_uuid,
+            bankUuid: payment.bank_uuid,
+            referenceNo: payment.reference_no,
+            description: payment.description,
+            amount: payment.amount,
+            tenderTypeCode: payment.tender_type_code,
+            paymentDate: payment.payment_date,
+            currencyUuid: payment.currency_uuid,
+            isRefund: payment.is_refund,
+            collectingAgentUuid: payment.collecting_agent_uuid,
+            chargeUuid: payment.charge_uuid
+          }
+        })
       }, function (err, response) {
         if (response) {
           res.json({
@@ -589,6 +735,8 @@ module.exports = ({ config, db }) => {
    * req.query.token - user token
    * req.query.page_size - custom page size for batch
    * req.query.page_token - specific page token
+   * req.query.is_only_refund - Is a Refund
+   * req.query.is_only_receipt - Is a Receipt
    * req.query.order_uuid - Order UUID reference
    * req.query.pos_uuid - POS UUID reference
    * Details:
@@ -600,6 +748,8 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         orderUuid: req.query.order_uuid,
         posUuid: req.query.pos_uuid,
+        isOnlyRefund: req.query.is_only_refund,
+        isOnlyReceipt: req.query.is_only_receipt,
         tableName: req.query.table_name,
         //  DSL Query
         filters: req.query.filters,
@@ -951,7 +1101,9 @@ module.exports = ({ config, db }) => {
    * amount - Payment Amount
    * tender_type_code - Tender Type
    * payment_date - Payment Date (default now)
-   * currency_uuid - Currency UUID reference
+   * currency_uuid - Currency UUID reference,
+   * collecting_agent_uuid - Collecting Agent
+   * is_refund - is a refund to customer?
    * ]
    *
    * Details:
@@ -971,6 +1123,8 @@ module.exports = ({ config, db }) => {
         createPayments: req.body.create_payments,
         payments: payments.map(payment => {
           return {
+            uuid: payment.uuid,
+            id: payment.id,
             invoiceUuid: payment.invoice_uuid,
             bankUuid: payment.bank_uuid,
             referenceNo: payment.reference_no,
@@ -978,7 +1132,9 @@ module.exports = ({ config, db }) => {
             amount: payment.amount,
             tenderTypeCode: payment.tender_type_code,
             paymentDate: payment.payment_date,
-            currencyUuid: payment.currency_uuid
+            currencyUuid: payment.currency_uuid,
+            isRefund: payment.is_refund,
+            collectingAgentUuid: payment.collecting_agent_uuid
           }
         })
       }, function (err, response) {
