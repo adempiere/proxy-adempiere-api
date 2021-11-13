@@ -14,7 +14,9 @@ import {
   convertAvailableRefundGRPC,
   convertCustomerBankAccountFromGRPC,
   convertShipmentFromGRPC,
-  convertShipmentLineFromGRPC
+  convertShipmentLineFromGRPC,
+  convertCashSummaryMovements,
+  convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -538,6 +540,84 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Process Cash Closing
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.uuid - Bank Statement UUID reference
+   * req.body.id - Bank Statement ID reference
+   *
+   * Details:
+   */
+  api.post('/cash-closing', (req, res) => {
+    if (req.body) {
+      service.processCashClosing({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        uuid: req.body.uuid,
+        id: req.body.id
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertCashClosing(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Cash Summary Movements
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/cash-summary-movements', (req, res) => {
+    if (req.query) {
+      service.listCashSummaryMovements({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              id: response.getId(),
+              uuid: response.getUuid(),
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getCashMovementsList().map(movement => {
+                return convertCashSummaryMovements(movement)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Cash Opening
    *
    * req.query.token - user token
@@ -570,7 +650,7 @@ module.exports = ({ config, db }) => {
       if (req.body.payments) {
         payments = req.body.payments
       }
-      service.cashOpening({
+      service.processCashOpening({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
@@ -642,7 +722,7 @@ module.exports = ({ config, db }) => {
       if (req.body.payments) {
         payments = req.body.payments
       }
-      service.cashWithdrawal({
+      service.processCashWithdrawal({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
