@@ -540,6 +540,39 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Allocate Seller
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/allocate-seller', (req, res) => {
+    if (req.body) {
+      service.allocateSeller({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Process Cash Closing
    *
    * req.query.token - user token
