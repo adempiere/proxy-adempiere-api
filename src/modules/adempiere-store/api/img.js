@@ -51,7 +51,6 @@ export default ({ config, db, service }) =>
       res.set('Allow', 'GET');
       return res.status(405).send('Method Not Allowed');
     }
-
     req.socket.setMaxListeners(config.imageable.maxListeners || 50);
 
     let width;
@@ -111,7 +110,6 @@ export default ({ config, db, service }) =>
     console.log(
       `[URL]: ${imgUrl} - [ACTION]: ${action} - [WIDTH]: ${width} - [HEIGHT]: ${height}`
     );
-
     let buffer;
     if (config.modules.adempiereStore.images.httpBased) {
       try {
@@ -125,6 +123,12 @@ export default ({ config, db, service }) =>
     } else {
       try {
         buffer = Buffer.from(await getResource(service, resourceName));
+        if (buffer.length === 0) {
+          return res.status(400).send({
+            code: 400,
+            result: `Unable to download the requested image ${imgUrl}`
+          });
+        }
       } catch (err) {
         return res.status(400).send({
           code: 400,
