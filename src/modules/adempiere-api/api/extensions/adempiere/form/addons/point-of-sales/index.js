@@ -509,7 +509,7 @@ module.exports = ({ config, db }) => {
   });
 
   /**
-   * POST Create Payment
+   * POST Create Refund Reference
    *
    * req.query.token - user token
    * Body:
@@ -549,6 +549,50 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertRefundReferenceFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Refund references
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * req.query.customer_uuid - Customer UUID reference
+   * req.query.order_uuid - Order UUID reference
+   * Details:
+   */
+  api.get('/refund-references', (req, res) => {
+    if (req.query) {
+      service.listRefundReferences({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        customerUuid: req.query.customer_uuid,
+        orderUuid: req.query.order_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRefundReferencesList().map(refundReference => {
+                return convertRefundReferenceFromGRPC(refundReference)
+              })
+            }
           })
         } else if (err) {
           res.json({
