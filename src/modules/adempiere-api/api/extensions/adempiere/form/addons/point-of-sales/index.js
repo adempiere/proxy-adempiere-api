@@ -16,7 +16,8 @@ import {
   convertShipmentFromGRPC,
   convertShipmentLineFromGRPC,
   convertCashSummaryMovements,
-  convertCashClosing
+  convertCashClosing,
+  convertRefundReferenceFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -496,6 +497,58 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertPaymentFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Payment
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.order_uuid - Order UUID reference
+   * req.body.customer_bank_account_uuid - Bank UUID reference
+   * req.body.description - Description for Payment
+   * req.body.amount - Payment Amount
+   * req.body.tender_type_code - Tender Type
+   * req.body.currency_uuid - Currency UUID reference
+   * req.body.conversion_type_uuid - Conversion Type UUID
+   * req.body.payment_date - Payment Date
+   * req.body.payment_account_date - Accounting Date
+   * req.body.payment_method_uuid - Payment Method Uuid
+   *
+   * Details:
+   */
+  api.post('/create-refund-reference', (req, res) => {
+    if (req.body) {
+      service.createRefundReference({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        customerBankAccountUuid: req.body.customer_bank_account_uuid,
+        description: req.body.description,
+        amount: req.body.amount,
+        tenderTypeCode: req.body.tender_type_code,
+        paymentDate: req.body.payment_date,
+        paymentAccountDate: req.body.payment_account_date,
+        currencyUuid: req.body.currency_uuid,
+        conversionTypeUuid: req.body.conversion_type_uuid,
+        paymentMethodUuid: req.body.payment_method_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertRefundReferenceFromGRPC(response)
           })
         } else if (err) {
           res.json({
