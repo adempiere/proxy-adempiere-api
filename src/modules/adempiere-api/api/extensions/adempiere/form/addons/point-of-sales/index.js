@@ -637,6 +637,39 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Delete Payment
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.uuid - Refund Reference UUID reference
+   * req.body.id - Refund Reference ID reference
+   * Details:
+   */
+  api.post('/delete-refund-reference', (req, res) => {
+    if (req.body) {
+      service.deleteRefundReference({
+        token: req.query.token,
+        language: req.query.language,
+        uuid: req.body.uuid,
+        id: req.body.id
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Allocate Seller
    *
    * req.query.token - user token
