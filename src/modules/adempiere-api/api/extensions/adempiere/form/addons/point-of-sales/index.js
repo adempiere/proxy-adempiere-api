@@ -243,6 +243,81 @@ module.exports = ({ config, db }) => {
   });
 
   /**
+   * POST Release Sales Order
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.order_uuid - Order UUID reference
+   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/release-order', (req, res) => {
+    if (req.body) {
+      service.releaseOrder({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Release Sales Order
+   *
+   * req.query.token - user token
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.order_uuid - Order UUID reference
+   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/hold-order', (req, res) => {
+    if (req.body) {
+      console.log({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      })
+      service.holdOrder({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertOrderFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Create Shipment
    *
    * req.query.token - user token
