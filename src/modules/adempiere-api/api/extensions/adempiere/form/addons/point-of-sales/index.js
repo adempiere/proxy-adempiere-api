@@ -288,13 +288,6 @@ module.exports = ({ config, db }) => {
    */
   api.post('/hold-order', (req, res) => {
     if (req.body) {
-      console.log({
-        token: req.query.token,
-        language: req.query.language,
-        posUuid: req.body.pos_uuid,
-        orderUuid: req.body.order_uuid,
-        salesRepresentativeUuid: req.body.sales_representative_uuid
-      })
       service.holdOrder({
         token: req.query.token,
         language: req.query.language,
