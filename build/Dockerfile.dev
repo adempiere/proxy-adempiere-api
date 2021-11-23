@@ -30,7 +30,8 @@ ENV \
 	STORE_URL_IMAGES="localhost" \
 	STORE_HTTP_BASED="false"\
 	RESTORE_DB="N" \
-	INDEX="vue_storefront_catalog"
+	INDEX="vue_storefront_catalog" \
+  LANGUAGE="en_US"
 
 RUN mkdir -p /var/www/proxy-adempiere-api/
 
