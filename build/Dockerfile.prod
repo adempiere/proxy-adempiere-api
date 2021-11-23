@@ -37,6 +37,7 @@ ENV \
 	STORE_HTTP_BASED="false"\
 	RESTORE_DB="N" \
 	INDEX="vue_storefront_catalog"
+	LANGUAGE="en_US"
 
 
 # Create work dir
