@@ -53,7 +53,8 @@ export default ({ config, db, service }) => {
   api.get('/check', (req, res) => {
     if (req.body) {
       service.getStock({
-        sku: req.query.sku
+        sku: req.query.sku,
+        storeCode: req.query.storeCode
       }, function (err, response) {
         if (response) {
           res.json({
@@ -105,7 +106,8 @@ export default ({ config, db, service }) => {
   api.get('/list', (req, res) => {
     if (req.body) {
       service.listStock({
-        sku: req.query.sku
+        sku: req.query.sku,
+        storeCode: req.query.storeCode
       }, function (err, response) {
         if (response) {
           const stockResult = []
