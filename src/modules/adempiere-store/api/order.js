@@ -123,6 +123,7 @@ export default ({ config, db, service }) =>
           token: req.query.token,
           cartId: req.body.cart_id,
           userId: req.body.user_id,
+          customerId: req.body.customer_id,
           shippingAddress,
           billingAddress,
           carrierCode,
