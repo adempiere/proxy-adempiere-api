@@ -12,7 +12,6 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
     const api = Router();
     const Api = require('@adempiere/grpc-api');
     const service = new Api(config);
-    service.initService();
 
     // Mount the services
     // Image

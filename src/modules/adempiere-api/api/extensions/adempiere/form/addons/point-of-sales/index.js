@@ -27,7 +27,6 @@ module.exports = ({ config, db }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
-  service.initService()
 
   /**
    * GET Selling Points

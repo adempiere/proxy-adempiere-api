@@ -6,7 +6,6 @@ module.exports = ({ config }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
-  service.initService()
 
   /**
    * GET Browser Items
