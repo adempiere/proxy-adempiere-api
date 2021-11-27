@@ -24,4 +24,3 @@ yarn-error.log
 .classpath
 .project
 .gitmodules
-src/modules/adempiere-store/api/extensions
