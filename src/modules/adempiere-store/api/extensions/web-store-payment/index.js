@@ -8,7 +8,6 @@ module.exports = ({ config, db }) => {
   const ServiceApi = require('@adempiere/grpc-api')
   // console.log('Config: ', config)
   let service = new ServiceApi(config)
-  service.initService()
 
   /**
    * List Banks
