@@ -133,7 +133,8 @@ export default ({ config, db, service }) =>
           products: req.body.products.map(product => {
             return {
               id: product.id,
-              quantity: product.qty
+              quantity: product.qty,
+              sku: product.sku
             }
           })
         }, function (err, response) {

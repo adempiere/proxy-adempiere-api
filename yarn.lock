@@ -32,10 +32,10 @@
     "@grpc/grpc-js" "1.3.7"
     google-protobuf "3.17.3"
 
-"@adempiere/grpc-web-store-api@1.4.8":
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-web-store-api/-/grpc-web-store-api-1.4.8.tgz#6e1edb9d30907ad914761621a007a52e85bd0484"
-  integrity sha512-zFy3MkC8nGJl7NsAv9EjWRgLvn3VAu9JExhmivhmRQgzGcoAg9bwLswi3jQBRJvjvu3HlIQQAyimO5qOyF5xIA==
+"@adempiere/grpc-web-store-api@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-web-store-api/-/grpc-web-store-api-1.5.0.tgz#767068b270ef6945460143098e2744d863c93d22"
+  integrity sha512-AvSv9rhdo/a0/IXXwS77DC6Ppjb/BtyREDSwSYBysn7nHb5hMgqQXtpqTGmcPucPpdmnRgLDkTvAiDcu2svLUw==
   dependencies:
     "@grpc/grpc-js" "1.3.7"
     google-protobuf "3.17.3"
