@@ -80,11 +80,21 @@ export default ({ config, db, service }) => {
    */
   cartApi.post('/update', (req, res) => {
     if (req.body) {
+      let configurableOptions
+      if (req.body.cartItem.product_option) {
+        configurableOptions = req.body.cartItem.product_option.extension_attributes.configurable_item_options.map(option => {
+          return {
+            id: option.option_id,
+            value: option.option_value
+          }
+        })
+      }
       service.updateCart({
         token: req.query.token,
         cartId: req.query.cartId,
         sku: req.body.cartItem.sku,
-        quantity: req.body.cartItem.qty
+        quantity: req.body.cartItem.qty,
+        configurableOptions
         //  TODO: support to attribute
       }, function (err, response) {
         if (response) {
@@ -233,7 +243,17 @@ export default ({ config, db, service }) => {
                 sku: item.getSku(),
                 qty: item.getQuantity(),
                 name: item.getName(),
-                price: item.getPrice()
+                price: item.getPrice(),
+                product_option: {
+                  extension_attributes: {
+                    configurable_item_options: item.getConfigurableItemOptionsList().map(value => {
+                      return {
+                        option_id: value.getId(),
+                        option_value: value.getValue()
+                      }
+                    })
+                  }
+                }
                 //  TODO: Add the folows support
                 // product_type:
                 //  quote_id

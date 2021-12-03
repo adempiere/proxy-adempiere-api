@@ -131,10 +131,20 @@ export default ({ config, db, service }) =>
           paymentMethodCode,
           paymentAdditionalMethod,
           products: req.body.products.map(product => {
+            let configurableOptions
+            if (product.product_option) {
+              configurableOptions = product.product_option.extension_attributes.configurable_item_options.map(option => {
+                return {
+                  id: option.option_id,
+                  value: option.option_value
+                }
+              })
+            }
             return {
               id: product.id,
               quantity: product.qty,
-              sku: product.sku
+              sku: product.sku,
+              configurableOptions
             }
           })
         }, function (err, response) {

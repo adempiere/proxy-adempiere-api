@@ -2047,6 +2047,7 @@ module.exports = ({ config, db }) => {
    * req.body.zip_verified - ZIP Verified
    * req.body.routing_no - Routing No
    * req.body.iban - IBAN
+   * req.body.account_no Account No
    * req.body.is_payroll_account - Payroll Account
    * Details:
    */
@@ -2073,6 +2074,7 @@ module.exports = ({ config, db }) => {
         zipVerified: req.body.zip_verified,
         routingNo: req.body.routing_no,
         iban: req.body.iban,
+        accountNo: req.body.account_no,
         isPayrollAccount: req.body.is_payroll_account
       }, function (err, response) {
         if (response) {
@@ -2116,6 +2118,7 @@ module.exports = ({ config, db }) => {
    * req.body.zip_verified - ZIP Verified
    * req.body.routing_no - Routing No
    * req.body.iban - IBAN
+   * req.body.account_no Account No
    * req.body.is_payroll_account - Payroll Account
    * Details:
    */
@@ -2142,6 +2145,7 @@ module.exports = ({ config, db }) => {
         zipVerified: req.body.zip_verified,
         routingNo: req.body.routing_no,
         iban: req.body.iban,
+        accountNo: req.body.account_no,
         isPayrollAccount: req.body.is_payroll_account
       }, function (err, response) {
         if (response) {
