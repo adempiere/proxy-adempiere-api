@@ -12,6 +12,7 @@ import {
   convertAvailableCurrency,
   convertCustomerFromGRPC,
   convertAvailableRefundGRPC,
+  convertAvailableSeller,
   convertCustomerBankAccountFromGRPC,
   convertShipmentFromGRPC,
   convertShipmentLineFromGRPC,
@@ -2286,6 +2287,48 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertAvailableRefundGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Sellers
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * req.query.is_only_allocated - Only allocated to current point of sales
+   * Details:
+   */
+  api.get('/available-sellers', (req, res) => {
+    if (req.query) {
+      service.listAvailableSellers({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        isOnlyAllocated: req.query.is_only_allocated,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getSellersList().map(seller => {
+                return convertAvailableSeller(seller)
+              })
+            }
           })
         } else if (err) {
           res.json({
