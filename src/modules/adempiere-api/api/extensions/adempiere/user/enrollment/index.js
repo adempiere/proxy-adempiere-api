@@ -68,7 +68,7 @@ module.exports = ({ config, db }) => {
         clientVersion: req.body.client_version
       }, function (err, response) {
         if (response) {
-          if (response.getResponseType() !== 0) {
+          if (response.getResponseType() === 0) {
             res.json({
               code: 200,
               result: 'Ok'
@@ -109,7 +109,7 @@ module.exports = ({ config, db }) => {
         clientVersion: req.body.client_version
       }, function (err, response) {
         if (response) {
-          if (response.getResponseType() !== 0) {
+          if (response.getResponseType() === 0) {
             res.json({
               code: 200,
               result: 'Ok'
@@ -148,7 +148,7 @@ module.exports = ({ config, db }) => {
         clientVersion: req.body.client_version
       }, function (err, response) {
         if (response) {
-          if (response.getResponseType() !== 0) {
+          if (response.getResponseType() === 0) {
             res.json({
               code: 200,
               result: 'Ok'
