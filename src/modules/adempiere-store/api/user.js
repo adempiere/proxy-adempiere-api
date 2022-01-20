@@ -41,7 +41,7 @@ export default ({ config, db, service }) => {
               email: response.getEmail(),
               firstname: response.getFirstName(),
               lastname: response.getLastName(),
-              store_id: 1,
+              store_id: response.getWebStoreId(),
               website_id: 1,
               addresses: response.getAddressesList().map(address => {
                 return {
