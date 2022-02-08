@@ -18,9 +18,12 @@ const asyncMiddleware = fn => (req, res, next) => {
 };
 
 //  Get Image from gRPC
-function getResource (service, resourceName) {
+function getResource (service, resourceName, token) {
   return new Promise((resolve, reject) => {
-    service.getResource({resourceName}, (err, data) => {
+    service.getResource({
+      resourceName,
+      token
+    }, (err, data) => {
       if (err) {
         reject(err)
       } else {
@@ -59,6 +62,7 @@ export default ({ config, db, service }) =>
     let action;
     let imgUrl;
     let resourceName;
+    let token;
     if (req.query.url) {
       // url provided as the query param
       imgUrl = decodeURIComponent(req.query.url);
@@ -66,6 +70,7 @@ export default ({ config, db, service }) =>
       height = parseInt(req.query.height);
       action = req.query.action;
       resourceName = req.query.url;
+      token = req.query.token;
     } else {
       let urlParts = req.url.split('/');
       width = parseInt(urlParts[1]);
@@ -124,7 +129,7 @@ export default ({ config, db, service }) =>
       }
     } else {
       try {
-        buffer = Buffer.from(await getResource(service, resourceName));
+        buffer = Buffer.from(await getResource(service, resourceName, token));
       } catch (err) {
         return res.status(400).send({
           code: 400,
