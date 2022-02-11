@@ -24,10 +24,10 @@
     striptags "^3.0.1"
     word-wrap "^1.2.1"
 
-"@adempiere/grpc-api@2.5.6":
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-2.5.6.tgz#504bbfb31f1d254541cff2087680b3db91002a93"
-  integrity sha512-xQyZETKvGULBV6hJyUqgEm9hpqYA+snT0s/QA6IVcAcFapSrqAuUUiWOo0nThtTbpHXrOYeuvbxk4xezEa3dLQ==
+"@adempiere/grpc-api@2.5.7":
+  version "2.5.7"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-2.5.7.tgz#d42bed7520bf95127de1a4aed8e79b67faec7daf"
+  integrity sha512-7PjxeW6xsknmsDkpg87z7AAebvuX/Uwweg//NJYWEp2hFG1y8g5JYfvCTJZCMqojCa/Tc6r/9QQB2b20bZOfnA==
   dependencies:
     "@grpc/grpc-js" "1.3.7"
     google-protobuf "3.17.3"
