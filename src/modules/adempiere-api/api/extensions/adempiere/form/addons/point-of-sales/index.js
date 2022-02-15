@@ -18,7 +18,7 @@ import {
   convertShipmentLineFromGRPC,
   convertCashSummaryMovements,
   convertCashClosing,
-  convertRefundReferenceFromGRPC
+  convertPaymentReferenceFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC
@@ -595,16 +595,19 @@ module.exports = ({ config, db }) => {
    *
    * Details:
    */
-  api.post('/create-refund-reference', (req, res) => {
+  api.post('/create-payment-reference', (req, res) => {
     if (req.body) {
-      service.createRefundReference({
+      service.createPaymentReference({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
         customerBankAccountUuid: req.body.customer_bank_account_uuid,
+        customerUuid: req.body.customer_uuid,
         description: req.body.description,
         amount: req.body.amount,
+        sourceAmount: req.body.source_amount,
+        isReceipt: req.body.is_receipt,
         tenderTypeCode: req.body.tender_type_code,
         paymentDate: req.body.payment_date,
         paymentAccountDate: req.body.payment_account_date,
@@ -616,7 +619,7 @@ module.exports = ({ config, db }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertRefundReferenceFromGRPC(response)
+            result: convertPaymentReferenceFromGRPC(response)
           })
         } else if (err) {
           res.json({
@@ -639,9 +642,9 @@ module.exports = ({ config, db }) => {
    * req.query.order_uuid - Order UUID reference
    * Details:
    */
-  api.get('/refund-references', (req, res) => {
+  api.get('/payment-references', (req, res) => {
     if (req.query) {
-      service.listRefundReferences({
+      service.listPaymentReferences({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
@@ -657,8 +660,8 @@ module.exports = ({ config, db }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getRefundReferencesList().map(refundReference => {
-                return convertRefundReferenceFromGRPC(refundReference)
+              records: response.getPaymentReferencesList().map(refundReference => {
+                return convertPaymentReferenceFromGRPC(refundReference)
               })
             }
           })
@@ -714,9 +717,9 @@ module.exports = ({ config, db }) => {
    * req.body.id - Refund Reference ID reference
    * Details:
    */
-  api.post('/delete-refund-reference', (req, res) => {
+  api.post('/delete-payment-reference', (req, res) => {
     if (req.body) {
-      service.deleteRefundReference({
+      service.deletePaymentReference({
         token: req.query.token,
         language: req.query.language,
         uuid: req.body.uuid,
@@ -750,6 +753,39 @@ module.exports = ({ config, db }) => {
   api.post('/allocate-seller', (req, res) => {
     if (req.body) {
       service.allocateSeller({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Deallocate Seller
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - POS UUID reference
+   * req.body.sales_representative_uuid - Sales Representative UUID reference
+   * Details:
+   */
+  api.post('/deallocate-seller', (req, res) => {
+    if (req.body) {
+      service.deallocateSeller({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
@@ -2310,6 +2346,7 @@ module.exports = ({ config, db }) => {
    */
   api.get('/available-sellers', (req, res) => {
     if (req.query) {
+      console.log('req.query.is_only_allocated', req.query.is_only_allocated)
       service.listAvailableSellers({
         token: req.query.token,
         language: req.query.language,
