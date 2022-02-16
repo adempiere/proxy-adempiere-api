@@ -2346,7 +2346,6 @@ module.exports = ({ config, db }) => {
    */
   api.get('/available-sellers', (req, res) => {
     if (req.query) {
-      console.log('req.query.is_only_allocated', req.query.is_only_allocated)
       service.listAvailableSellers({
         token: req.query.token,
         language: req.query.language,
