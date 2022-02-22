@@ -137,7 +137,8 @@ module.exports = ({ config, db }) => {
       name: userInfo.getName(),
       description: userInfo.getDescription(),
       comments: userInfo.getComments(),
-      image: userInfo.getImage()
+      image: userInfo.getImage(),
+      connection_timeout: userInfo.getConnectionTimeout()
     }
   }
 

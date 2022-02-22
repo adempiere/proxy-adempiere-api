@@ -24,18 +24,18 @@
     striptags "^3.0.1"
     word-wrap "^1.2.1"
 
-"@adempiere/grpc-api@2.6.6":
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-2.6.6.tgz#56eeef10c5264220a2692007cb7c5625c7f6e3f8"
-  integrity sha512-GSikjniX6HHEi4ZPLHS784xwJJpJyWsZYBXHYeOlHznqTcIfykLMGhm6sAprzzdtxOi9lOBETMXxGQhWdd1UIQ==
+"@adempiere/grpc-api@2.7.3":
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-2.7.3.tgz#28e99b0c858aa2e530f0f642c5f53d4b55685772"
+  integrity sha512-0TANIv7mwMoh9cbUf800H+FIWp//4C5q7Ji2czc5PfViNmFdZOgvUdI3Qi/tbTnnAbUp1SmewZpPWUlaWpJhKw==
   dependencies:
     "@grpc/grpc-js" "1.3.7"
     google-protobuf "3.17.3"
 
-"@adempiere/grpc-web-store-api@1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-web-store-api/-/grpc-web-store-api-1.5.5.tgz#1599bdda0d130a11377b4742dcbdaf6eb3cd8fa6"
-  integrity sha512-nCluwzWKlz7qR1zGVR3v9Mb2ed9aenqqKMCUsHy2j0X2eDj/rt/9/3V/tGHLbsF8a+MCjDfCAXNcAN9RqOeJQA==
+"@adempiere/grpc-web-store-api@1.5.6":
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-web-store-api/-/grpc-web-store-api-1.5.6.tgz#f3ccc4f13b557869f92864545728736eb0123bf9"
+  integrity sha512-MQ3jymsCsNv/o0dMM/J9kL8sur3Lp1Ju8FpHqltKOFuDci9h7dR3GoGEAKdeY1VELfajPmb9ibVdGH9O/OOLZQ==
   dependencies:
     "@grpc/grpc-js" "1.3.7"
     google-protobuf "3.17.3"

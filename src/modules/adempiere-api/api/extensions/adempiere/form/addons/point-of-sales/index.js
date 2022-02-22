@@ -1895,7 +1895,8 @@ module.exports = ({ config, db }) => {
             description: address.description,
             contactName: address.contact_name,
             isDefaultBilling: address.is_default_billing,
-            isDefaultShipping: address.is_default_shipping
+            isDefaultShipping: address.is_default_shipping,
+            additionalAttributes: address.additional_attributes
           }
         })
       }
@@ -1911,6 +1912,7 @@ module.exports = ({ config, db }) => {
         description: req.body.description,
         businessPartnerGroupUuid: req.body.business_partner_group_uuid,
         posUuid: req.body.pos_uuid,
+        additionalAttributes: req.body.additional_attributes,
         addresses
       }, function (err, response) {
         if (response) {
