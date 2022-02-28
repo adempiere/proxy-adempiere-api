@@ -1993,7 +1993,6 @@ module.exports = ({ config, db }) => {
           }
         })
       }
-      console.log('req.body.additional_attributes: ', req.body.additional_attributes);
       service.updateCustomer({
         token: req.query.token,
         uuid: req.body.uuid,
