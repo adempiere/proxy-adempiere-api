@@ -1988,10 +1988,12 @@ module.exports = ({ config, db }) => {
             contactName: address.contact_name,
             isDefaultBilling: address.is_default_billing,
             isDefaultShipping: address.is_default_shipping,
-            uuid: address.uuid
+            uuid: address.uuid,
+            additionalAttributes: req.body.additional_attributes
           }
         })
       }
+      console.log('req.body.additional_attributes: ', req.body.additional_attributes);
       service.updateCustomer({
         token: req.query.token,
         uuid: req.body.uuid,
@@ -2003,6 +2005,7 @@ module.exports = ({ config, db }) => {
         name: req.body.name,
         lastName: req.body.last_name,
         description: req.body.description,
+        additionalAttributes: req.body.additional_attributes,
         addresses
       }, function (err, response) {
         if (response) {
