@@ -1304,7 +1304,8 @@ module.exports = ({ config, db }) => {
         priceListUuid: req.body.price_list_uuid,
         description: req.body.description,
         campaignUuid: req.body.campaign_uuid,
-        discountRate: req.body.discount_rate
+        discountRate: req.body.discount_rate,
+        discountRateOff: req.body.discount_rate_off
       }, function (err, response) {
         if (response) {
           res.json({
