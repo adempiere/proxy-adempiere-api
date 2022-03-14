@@ -1287,7 +1287,8 @@ module.exports = ({ config, db }) => {
    * req.body.warehouse_uuid - Warehouse (Oprional)
    * req.body.price_list_uuid - Price List (Oprional)
    * req.body.campaign_uuid - Campaign
-   * req.body.discount_rate - Discount rate for all lines
+   * req.body.discount_rate - Discount rate for order
+   * req.body.discount_amount_off - Dicount based on amount
    *
    * Details:
    */
@@ -1305,7 +1306,8 @@ module.exports = ({ config, db }) => {
         description: req.body.description,
         campaignUuid: req.body.campaign_uuid,
         discountRate: req.body.discount_rate,
-        discountRateOff: req.body.discount_rate_off
+        discountRateOff: req.body.discount_rate_off,
+        discountAmountOff: req.body.discount_amount_off
       }, function (err, response) {
         if (response) {
           res.json({
