@@ -61,7 +61,7 @@
   "dependencies": {
     "@2fd/graphdoc": "^2.4.0",
     "@adempiere/grpc-api": "2.8.5",
-    "@adempiere/grpc-web-store-api": "1.5.6",
+    "@adempiere/grpc-web-store-api": "1.5.7",
     "@elastic/elasticsearch": "7.14.0",
     "@google-cloud/storage": "^3.0.3",
     "@storefront-api/core": "1.0.0-rc.3",
