@@ -507,11 +507,11 @@ module.exports = ({ config, db }) => {
       table_name: reference.getTableName(),
       key_column_name: reference.getKeyColumnName(),
       display_column_name: reference.getDisplayColumnName(),
-      query: reference.getQuery(),
-      direct_query: reference.getDirectQuery(),
-      validation_code: reference.getValidationCode(),
       zoom_windows: reference.getZoomWindowsList().map(zoomWindow => {
         return convertZoomWindow(zoomWindow)
+      }),
+      context_column_names: reference.getContextColumnNamesList().map(columnName => {
+        return columnName
       })
     }
   }
