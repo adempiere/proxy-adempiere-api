@@ -219,7 +219,8 @@ export default ({ config, db, service }) => {
                   city: city.name,
                   firstname: address.getFirstName(),
                   lastname: address.getLastName(),
-                  default_shipping: address.getIsDefaultShipping()
+                  default_shipping: address.getIsDefaultShipping(),
+                  default_billing: address.getIsDefaultBilling()
                 }
               }),
               //  TODO: Add addresses
@@ -875,7 +876,8 @@ export default ({ config, db, service }) => {
                   city: address.getCity().getName(),
                   firstname: address.getFirstName(),
                   lastname: address.getLastName(),
-                  default_shipping: address.getIsDefaultShipping()
+                  default_shipping: address.getIsDefaultShipping(),
+                  default_billing: address.getIsDefaultBilling()
                 }
               }),
               disable_auto_group_change: 0
