@@ -56,10 +56,17 @@ export default ({ config, db, service }) =>
         resourceName: req.query.resource_name,
         service
       }))
-      return res.status(200).send({
-        code: 200,
-        result: buffer
-      });
+      if (buffer && buffer.length > 0) {
+        return res.status(200).send({
+          code: 200,
+          result: buffer
+        });
+      } else {
+        return res.status(400).send({
+          code: 400,
+          result: 'Unable to download the requested resource'
+        })
+      }
     } catch (err) {
       return res.status(400).send({
         code: 400,
