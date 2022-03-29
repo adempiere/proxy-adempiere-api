@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
   convertRecordReferenceInfoFromGRPC,
-  convertValueFromGRPC,
+  convertAttributes,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
@@ -195,7 +195,6 @@ module.exports = ({ config, db }) => {
    * req.query.reference_uuid - when ius called from reference only
    * req.query.column_uuid - when ius called from column uuid
    * req.query.column_name - when ius called from column name only
-   * req.query.search_value - search value optional
    * req.query.context_attributes - attributes
    * "context_attributes": [
       {
@@ -238,7 +237,6 @@ module.exports = ({ config, db }) => {
         referenceUuid: req.query.reference_uuid,
         columnUuid: req.query.column_uuid,
         columnName: req.query.column_name,
-        searchValue: req.query.search_value,
         contextAttributes: req.query.context_attributes,
         id: req.query.id,
         uuid: req.query.uuid
@@ -263,7 +261,40 @@ module.exports = ({ config, db }) => {
    *
    * req.query.token - user token
    * req.query.language - login language
-   * req.body.query - default valuen query
+   * req.query.process_parameter_uuid - when ius called from process
+   * req.query.field_uuid - when ius called from window
+   * req.query.browse_field_uuid - when ius called from browser
+   * req.query.reference_uuid - when ius called from reference only
+   * req.query.column_uuid - when ius called from column uuid
+   * req.query.column_name - when ius called from column name only
+   * req.query.search_value - search value optional
+   * req.query.context_attributes - attributes
+   * "context_attributes": [
+      {
+        "key": "AD_Client_ID",
+        "value": 1000000
+      },
+      {
+        "key": "AD_Org_ID",
+        "value": 1000000
+      },
+      {
+        "key": "Created",
+        "value": "2020-10-13T16:14:23.000Z"
+      },
+      {
+        "key": "CreatedBy",
+        "value": 1000017
+      },
+      {
+        "key": "IsActive",
+        "value": true
+      },
+      {
+        "key": "Value",
+        "value": "Solo Pruebas"
+      }
+    ]
    *
    * Details:
    */
@@ -273,12 +304,22 @@ module.exports = ({ config, db }) => {
         token: req.query.token,
         language: req.query.language,
         //  Default Value Query
-        query: req.query.query
+        processParameterUuid: req.query.process_parameter_uuid,
+        fieldUuid: req.query.field_uuid,
+        browseFieldUuid: req.query.browse_field_uuid,
+        referenceUuid: req.query.reference_uuid,
+        columnUuid: req.query.column_uuid,
+        columnName: req.query.column_name,
+        contextAttributes: req.query.context_attributes
       }, function (err, response) {
         if (response) {
           res.json({
             code: 200,
-            result: convertValueFromGRPC(response)
+            result: {
+              id: response.getId(),
+              uuid: response.getUuid(),
+              attributes: convertAttributes(response.getValuesMap())
+            }
           })
         } else if (err) {
           res.json({
