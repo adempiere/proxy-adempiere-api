@@ -462,7 +462,10 @@ module.exports = ({ config, db }) => {
       is_info_only: field.getIsInfoOnly(),
       is_active: field.getIsActive(),
       default_value_to: field.getDefaultValueTo(),
-      field_length: field.getFieldLength()
+      field_length: field.getFieldLength(),
+      context_column_names: field.getContextColumnNamesList().map(contextValue => {
+        return contextValue
+      })
     }
   }
 
