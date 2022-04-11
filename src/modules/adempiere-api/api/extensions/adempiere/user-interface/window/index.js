@@ -435,6 +435,7 @@ module.exports = ({ config, db }) => {
         //  Custom Query
         sorting: req.query.sorting,
         contextAttributes: req.query.context_attributes,
+        searchValue: req.query.search_value,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
