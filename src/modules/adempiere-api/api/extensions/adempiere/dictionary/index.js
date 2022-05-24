@@ -289,6 +289,7 @@ module.exports = ({ config, db }) => {
       window: convertWindow(browser.getWindow()),
       process: convertProcess(browser.getProcess()),
       is_active: browser.getIsActive(),
+      table_name: browser.getTableName(),
       fields: browser.getFieldsList().map(field => {
         return convertField(field)
       }),
@@ -384,6 +385,9 @@ module.exports = ({ config, db }) => {
       show_help: process.getShowHelp(),
       is_direct_print: process.getIsDirectPrint(),
       is_active: process.getIsActive(),
+      browser_uuid: process.getBrowserUuid(),
+      form_uuid: process.getFormUuid(),
+      workflow_uuid: process.getWorkflowUuid(),
       report_export_types: process.getReportExportTypesList().map(reportExportType => {
         return convertReportExportType(reportExportType)
       }),
