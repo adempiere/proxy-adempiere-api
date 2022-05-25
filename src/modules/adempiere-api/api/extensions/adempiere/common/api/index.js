@@ -329,6 +329,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
+        ids: req.body.ids,
         tableName: req.body.table_name
       }, function (err, response) {
         if (response) {
