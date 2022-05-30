@@ -44,19 +44,35 @@ jobs:
       - name: Unit Test
         run: yarn test:unit
 
-      - name: Compress files for application dist
-        uses: TheDoctor0/zip-release@0.6.0
+      - name: Copy Default.json to deploy
+        run: cp docker/adempiere-api/default.json config
+        
+      - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
         with:
-          type: 'zip'
-          filename: 'proxy-adempiere-api.zip'
-          path: './'
-          exclusions: './dist ./docker ./docs'
+          command: c
+          cwd: .
+          files: |
+            config
+            migrations
+            scripts
+            src
+            var
+            packages
+            package.json
+            ecosystem.json
+            tsconfig.json
+            nodemon.json
+            graphql-schema-linter.config.js
+            yarn.lock
+          outPath: ./proxy-adempiere-api.tar.gz
 
       - name: Upload app as artifact
         uses: actions/upload-artifact@v2
         with:
           name: proxy-adempiere-api        
-          path: ./proxy-adempiere-api.zip
+          path: ./proxy-adempiere-api.tar.gz
 
 
   # Publish dist binaries to application
@@ -72,64 +88,14 @@ jobs:
           name: proxy-adempiere-api
 
       - name: Rename binary file
-        run: mv proxy-adempiere-api.zip Proxy-ADempiere-API.zip
+        run: cp proxy-adempiere-api.tar.gz Proxy-ADempiere-API.tar.gz
 
       - name: Publish application binary in repository
         uses: skx/github-action-publish-binaries@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'Proxy-ADempiere-API.zip'
-
-
-  # Publish docker image in Github Container Registry to application
-  push-imame-ghcr:
-    name: Push Docker image to GitHub Container
-    needs:
-      - build-app
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
-
-      - name: Download build dist app
-        uses: actions/download-artifact@v2
-        with:
-          name: proxy-adempiere-api
-
-      - name: Uncompress dist files
-        run: unzip proxy-adempiere-api.zip -d dist-app
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set Lower Case to owner and repository
-        run: |
-          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
-          echo "REPO_LC=${NAME,,}" >> ${GITHUB_ENV}
-        env:
-          OWNER: '${{ github.repository_owner }}'
-          NAME: '${{ github.event.repository.name }}'
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./build/Dockerfile.prod
-          push: true
-          # load: true
-          tags: |
-            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:latest
-            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:${{ github.sha }}
-            ghcr.io/${{ env.OWNER_LC }}/${{ env.REPO_LC }}:${{ github.event.release.tag_name }}
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
+          args: 'Proxy-ADempiere-API.tar.gz'
 
   # Publish docker image in Docker Hub registry to application
   push-imame-dhr:
@@ -140,53 +106,48 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-
+        
       - name: Download build dist app
         uses: actions/download-artifact@v2
         with:
           name: proxy-adempiere-api
-
-      - name: Uncompress dist files
-        run: unzip proxy-adempiere-api.zip -d dist-app
-
+          
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
           # CONFIGURE DOCKER SECRETS INTO REPOSITORY
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Set Lower Case to owner and repository
-        run: |
-          ORG=$OWNER
-          if [ -n "${{ secrets.DOCKERHUB_ORG }}" ]; then
-            echo "Set secret DOCKERHUB_ORG as namespace"
-            ORG=${{ secrets.DOCKERHUB_ORG }}
-          else
-            echo "Set OWNER ($OWNER) as namespace "
-          fi
-          echo "ORG_LC=${ORG,,}" >> ${GITHUB_ENV}
-          echo "OWNER_LC=${OWNER,,}" >> ${GITHUB_ENV}
-          echo "REPO_LC=${NAME,,}" >> ${GITHUB_ENV}
-        env:
-          # to docker image namespace
-          OWNER: '${{ github.repository_owner }}'
-          NAME: '${{ github.event.repository.name }}'
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./build/Dockerfile.prod
+          file: ./docker/adempiere-api/Dockerfile
           push: true
           tags: |
-            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:latest
-            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:${{ github.sha }}
-            ${{ env.ORG_LC }}/${{ env.REPO_LC }}:${{ github.event.release.tag_name }}
+            ${{ secrets.DOCKER_REPO_PROXI_API }}:latest
+            ${{ secrets.DOCKER_REPO_PROXI_API }}:${{ github.event.release.tag_name }}
+          build-args: |
+            NODE_RELEASE=14.17.5
 
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
+      # Setting Dockerfile for Alpine Image      
+      - name: Set Alpine Dockerfile 
+        run: |
+          cp docker/adempiere-api/Dockerfile docker/adempiere-api/Dockerfile.alpine
+          sed -i "s|sh setting.sh|$(cat docker/adempiere-api/alpine-adds-on.txt)|g" docker/adempiere-api/Dockerfile.alpine
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./docker/adempiere-api/Dockerfile.alpine
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_REPO_PROXI_API }}:alpine
+            ${{ secrets.DOCKER_REPO_PROXI_API }}:alpine-${{ github.event.release.tag_name }}
+          build-args: |
+            NODE_RELEASE=14.17.5-alpine3.11
 
   # Build dist documentation ADempiere-Proxy
   build-docs:

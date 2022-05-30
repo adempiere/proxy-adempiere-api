@@ -51,6 +51,7 @@ jobs:
 
       - name: Copy Default.json to deploy
         run: cp docker/adempiere-api/default.json config
+        
       - name: Compress action step
         uses: a7ul/tar-action@v1.1.0
         id: compress
