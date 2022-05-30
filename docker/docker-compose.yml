@@ -1,0 +1,70 @@
+version: '3.7'
+
+networks:
+  adempiere-api:
+
+volumes:
+  pgdata:
+
+services:
+  es7:
+    container_name: api_elasticsearch
+    image: elasticsearch:7.17.4
+    environment:
+      - discovery.type=single-node
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xmx512m -Xms512m"
+    networks:
+      - adempiere-api
+
+  redis:
+    container_name: api_redis
+    image: redis:4-alpine
+    networks:
+      - adempiere-api
+  
+  adempiere.db:
+    image: solopcloud/adempiere-postgres
+    volumes:
+      - "pgdata:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_PASSWORD=adempiere
+      - DB_NAME=adempiere
+      - ADEMPIERE_PASSWORD=adempiere
+    networks:
+      - adempiere-api
+
+  adempiere.backend:
+    image: solopcloud/adempiere-backend
+    environment:
+      - SERVICES_ENABLED=access; business; core; dashboarding; dictionary; enrollment; log; ui; workflow; store; pos;
+      - DB_HOST=adempiere.db
+    depends_on:
+      - adempiere.db
+    restart: unless-stopped
+    networks:
+      - adempiere-api
+
+  adempiere.proxy:
+    image: solopcloud/adempiere-proxy
+    ports:
+      - "3000:3000"
+    environment:
+      - SERVER_PORT=3000
+      - ES_HOST=es7
+      - ES_PORT=9200
+      - REDIS_HOST=redis
+      - REDIS_DB=0
+      - AD_DEFAULT_HOST=adempiere.backend
+      - AD_DEFAULT_PORT=50059
+      - API_URL_IMAGES=adempiere.proxy
+      - STORE_URL_IMAGES=adempiere.proxy
+    depends_on:
+      - redis
+      - es7
+      - adempiere.backend
+    restart: unless-stopped
+    networks:
+      - adempiere-api
+

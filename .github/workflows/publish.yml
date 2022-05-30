@@ -126,8 +126,8 @@ jobs:
           file: ./docker/adempiere-api/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_REPO_PROXI_API }}:latest
-            ${{ secrets.DOCKER_REPO_PROXI_API }}:${{ github.event.release.tag_name }}
+            ${{ secrets.DOCKER_REPO_PROXY_API }}:latest
+            ${{ secrets.DOCKER_REPO_PROXY_API }}:${{ github.event.release.tag_name }}
           build-args: |
             NODE_RELEASE=14.17.5
 
@@ -144,8 +144,8 @@ jobs:
           file: ./docker/adempiere-api/Dockerfile.alpine
           push: true
           tags: |
-            ${{ secrets.DOCKER_REPO_PROXI_API }}:alpine
-            ${{ secrets.DOCKER_REPO_PROXI_API }}:alpine-${{ github.event.release.tag_name }}
+            ${{ secrets.DOCKER_REPO_PROXY_API }}:alpine
+            ${{ secrets.DOCKER_REPO_PROXY_API }}:alpine-${{ github.event.release.tag_name }}
           build-args: |
             NODE_RELEASE=14.17.5-alpine3.11
 

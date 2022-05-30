@@ -27,6 +27,8 @@ ENV \
 
 WORKDIR /var/www/proxy-adempiere-api/
 
+EXPOSE ${SERVER_PORT}
+
 # Copy src files
 ADD proxy-adempiere-api.tar.gz /var/www/proxy-adempiere-api
 COPY docker/adempiere-api/start.sh /var/www/proxy-adempiere-api/start.sh
