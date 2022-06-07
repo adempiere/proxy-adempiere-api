@@ -310,6 +310,7 @@ module.exports = ({ config, db }) => {
         referenceUuid: req.query.reference_uuid,
         columnUuid: req.query.column_uuid,
         columnName: req.query.column_name,
+        value: req.query.value,
         contextAttributes: req.query.context_attributes
       }, function (err, response) {
         if (response) {

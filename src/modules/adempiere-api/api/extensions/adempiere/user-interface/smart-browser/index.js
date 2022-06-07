@@ -64,5 +64,39 @@ module.exports = ({ config }) => {
     });
   });
 
+  /**
+   * POST Browser Items
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.body.id - browser id
+   * req.body.record_id - record id
+   * req.body.attributes - attributes changes
+   *
+   * Details:
+   */
+  api.post('/update-browser-entity', (req, res) => {
+    service.updateBrowserEntity({
+      token: req.query.token,
+      language: req.query.language,
+      id: req.body.id,
+      uuid: req.body.uuid,
+      recordId: req.body.record_id,
+      attributes: req.body.attributes
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: convertEntityFromGRPC(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
   return api;
 };
