@@ -1,0 +1,3 @@
+[submodule "src/modules/adempiere-store/api/extensions/erpya"]
+	path = src/modules/adempiere-store/api/extensions/erpya
+	url = /opt/Development/workspace-e-commerce/gateway-customer-api/

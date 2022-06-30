@@ -66,18 +66,20 @@ export default ({config, db}) => async function (req, res, body) {
 
   let indexName = ''
   let entityType = ''
-  if (urlSegments.length < 2) { throw new Error('No index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/<entity_type>_search') } else {
-    indexName = urlSegments[1];
-
-    if (urlSegments.length > 2) { entityType = urlSegments[2] }
-
-    if (config.elasticsearch.indices.indexOf(indexName) < 0) {
-      throw new Error('Invalid / inaccessible index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/_search')
+  try {
+    if (urlSegments.length < 2) { throw new Error('No index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/<entity_type>_search') } else {
+      indexName = urlSegments[1];
+      if (urlSegments.length > 2) { entityType = urlSegments[2] }
+      if (config.elasticsearch.indices.indexOf(indexName) < 0) {
+        throw new Error('Invalid / inaccessible index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/_search => Invalid Index: ' + indexName)
+      }
+      if (urlSegments[urlSegments.length - 1].indexOf('_search') !== 0) {
+        throw new Error('Please do use following URL format: /api/catalog/<index_name>/_search')
+      }
     }
-
-    if (urlSegments[urlSegments.length - 1].indexOf('_search') !== 0) {
-      throw new Error('Please do use following URL format: /api/catalog/<index_name>/_search')
-    }
+  } catch (err) {
+    apiError(res, err)
+    return
   }
 
   // pass the request to elasticsearch
