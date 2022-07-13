@@ -8,7 +8,7 @@ import {
   convertLookupFromGRPC,
   convertCalloutFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
-module.exports = ({ config, db }) => {
+module.exports = ({ config }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
@@ -403,6 +403,45 @@ module.exports = ({ config, db }) => {
           })
         }
       })
+    }
+  });
+
+  /**
+   * GET Entities, used for window list
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.tab_uuid - uuid of tab
+   * req.query.id - record id
+   * req.query.uuid - record uuid
+   *
+   * Details:
+   */
+  api.get('/entity', (req, res) => {
+    if (req.query) {
+      service.getTabEntity({
+        token: req.query.token,
+        language: req.query.language,
+        //  Running parameters
+        windowUuid: req.query.window_uuid,
+        tabUuid: req.query.tab_uuid,
+        windowNo: req.query.window_no,
+        //  DSL Query
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntityFromGRPC(response)
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
     }
   });
 
