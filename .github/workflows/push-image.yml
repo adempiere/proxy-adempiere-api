@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -30,13 +30,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          # cache: 'yarn'
+          cache: 'yarn'
 
       - name: Copy default vue store front
         run: cp -rf ./packages/default-vsf ./src/modules/
 
+      - name: Enable https to install packages
+        run: git config --global url."https://".insteadOf git://
+
       - name: Install node dependencies
-        run: yarn install 
+        run: yarn ci
 
       - name: Run test
         run: yarn lint
