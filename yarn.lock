@@ -25,9 +25,9 @@
     word-wrap "^1.2.1"
 
 "@adempiere/grpc-api@3.0.5":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.0.4.tgz#e262e2e4e9c1d3ef7c5e3ad7042d84fa57734bbc"
-  integrity sha512-/PgyhNtxzh07Uxb6ki2U/ixO7O3JEwgLL54xo0Lvae7GvBOSzdYOinmKD6DHJSntM161Whr/MOlFYwd4fb4EhQ==
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.0.5.tgz#274d20d808f41ca0add6f4f2dc44f1ca9ac907d7"
+  integrity sha512-3Zf2xmdf4PNjJ5FwyRySe0TPd0yYWmQFIr5eQgt9U/pvxbekZO4l0+p6Q+EISQRoh4Sll1a97CmGno0Xd+qKmA==
   dependencies:
     "@grpc/grpc-js" "1.6.7"
     google-protobuf "3.20.1"
