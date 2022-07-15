@@ -353,6 +353,7 @@ module.exports = ({ config, db }) => {
       sort_yes_no_column_name: tab.getSortYesNoColumnName(),
       parent_column_name: tab.getParentColumnName(),
       display_logic: tab.getDisplayLogic(),
+      read_only_logic: tab.getReadOnlyLogic(),
       commit_warning: tab.getCommitWarning(),
       parent_tab_uuid: tab.getParentTabUuid(),
       context_info: convertContextInfo(tab.getContextInfo()),
