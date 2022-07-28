@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-module.exports = ({ config, db }) => {
+module.exports = ({ config }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
@@ -238,6 +238,96 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertValidationRule(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Identifiers Fields List
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_uuid - id of table
+   * req.query.table_id - uuid of table
+   * req.query.tab_uuid - id of tab
+   * req.query.tab_id - uuid of tab
+   *
+   */
+  api.get('/identifiers-fields', (req, res) => {
+    if (req.query) {
+      service.listIdentifiersFields({
+        token: req.query.token,
+        language: req.query.language,
+        // with table
+        tableUuid: req.query.table_uuid,
+        tableId: req.query.table_id,
+        tableName: req.query.table_name,
+        // with tab
+        tabUuid: req.query.tab_uuid,
+        tabId: req.query.tab_id
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getFieldsList().map(field => {
+                return convertField(field);
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Table Search Fields List
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_uuid - id of table
+   * req.query.table_id - uuid of table
+   * req.query.tab_uuid - id of tab
+   * req.query.tab_id - uuid of tab
+   *
+   */
+  api.get('/table-search-fields', (req, res) => {
+    if (req.query) {
+      service.listTableSearchFields({
+        token: req.query.token,
+        language: req.query.language,
+        // with table
+        tableUuid: req.query.table_uuid,
+        tableId: req.query.table_id,
+        tableName: req.query.table_name,
+        // with tab
+        tabUuid: req.query.tab_uuid,
+        tabId: req.query.tab_id
+      }, function (err, response) {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getFieldsList().map(field => {
+                return convertField(field);
+              })
+            }
           })
         } else if (err) {
           res.json({
