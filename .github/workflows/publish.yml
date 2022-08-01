@@ -48,7 +48,7 @@ jobs:
 
       - name: Copy Default.json to deploy
         run: cp docker/adempiere-api/default.json config
-        
+
       - name: Compress action step
         uses: a7ul/tar-action@v1.1.0
         id: compress
@@ -73,7 +73,7 @@ jobs:
       - name: Upload app as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: proxy-adempiere-api        
+          name: proxy-adempiere-api
           path: ./proxy-adempiere-api.tar.gz
 
 
@@ -99,11 +99,37 @@ jobs:
         with:
           args: 'Proxy-ADempiere-API.tar.gz'
 
+  # Check secrets to push image in docker hub registry
+  check-docker-secrets:
+    name: Check if docker hub registry information was set on secrets
+    needs:
+      - build-app
+    runs-on: ubuntu-latest
+    outputs:
+      is_have_secrets: ${{ steps.check_secret_job.outputs.is_have_secrets }}
+    steps:
+      - id: check_secret_job
+        run: |
+          if [[ "${{ secrets.DOCKER_REPO_PROXY_API }}" != "" && \
+                "${{ secrets.DOCKER_USERNAME }}" != "" && \
+                "${{ secrets.DOCKER_TOKEN }}" != "" ]]; \
+          then
+            echo "Secrets to use a container registry are configured in the repo"
+            echo "::set-output name=is_have_secrets::true"
+          else
+            echo "Secrets to use a container registry were not configured in the repo"
+            echo "::set-output name=is_have_secrets::false"
+          fi
+
   # Publish docker image in Docker Hub registry to application
   push-imame-dhr:
     name: Push Docker image to Docker Hub
     needs:
-      - build-app
+      - check-docker-secrets
+
+    # Skip step based on secret
+    if: needs.check-docker-secrets.outputs.is_have_secrets == 'true'
+
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -192,7 +218,7 @@ jobs:
           name: adempiere-proxy-docs
 
       - name: Compress files for documentation dist
-        uses: TheDoctor0/zip-release@0.6.3
+        uses: TheDoctor0/zip-release@0.6.2
         with:
           filename: 'Proxy-ADempiere-API-Documentation.zip'
           path: './'
