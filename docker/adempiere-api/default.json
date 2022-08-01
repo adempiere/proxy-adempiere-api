@@ -306,6 +306,7 @@
     },
     "adempiereApi": {
       "registeredExtensions": [
+        "adempiere",
         "adempiere/dictionary",
         "adempiere/common",
         "adempiere/common/api",
@@ -327,7 +328,15 @@
         "adempiere/user-interface/component/record-access",
         "adempiere/user-interface/component/notes",
         "adempiere/user-interface/component/translation",
-        "adempiere/form/addons/point-of-sales"
+        "adempiere/form/addons/point-of-sales",
+        "adempiere/grid",
+        "adempiere/business-partner",
+        "adempiere/in-out",
+        "adempiere/invoice",
+        "adempiere/order",
+        "adempiere/payment",
+        "adempiere/invoice",
+        "adempiere/product"
       ],
       "images": {
         "baseUrl": "API_URL_IMAGES",
