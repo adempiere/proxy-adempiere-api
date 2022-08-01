@@ -19,17 +19,15 @@ jobs:
   build-app:
     name: Build dist ADempiere-Proxy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
+
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Node configuration
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
           cache: 'yarn'
 
       - name: Copy default vue store front
@@ -77,7 +75,7 @@ jobs:
           outPath: ./proxy-adempiere-api.tar.gz
 
       - name: Upload app as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: proxy-adempiere-api        
+          name: proxy-adempiere-api
           path: ./proxy-adempiere-api.tar.gz

@@ -15,17 +15,15 @@ jobs:
   build-app:
     name: Build ADempiere-Proxy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
+
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Node configuration
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
           cache: 'yarn'
 
       - name: Copy default vue store front
@@ -73,7 +71,7 @@ jobs:
           outPath: ./proxy-adempiere-api.tar.gz
 
       - name: Upload app as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: proxy-adempiere-api        
           path: ./proxy-adempiere-api.tar.gz
@@ -87,7 +85,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build dist app
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: proxy-adempiere-api
 
@@ -109,13 +107,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
-        
+        uses: actions/checkout@v3
+
       - name: Download build dist app
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: proxy-adempiere-api
-          
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -124,7 +122,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./docker/adempiere-api/Dockerfile
@@ -140,9 +138,9 @@ jobs:
         run: |
           cp docker/adempiere-api/Dockerfile docker/adempiere-api/Dockerfile.alpine
           sed -i "s|sh setting.sh|$(cat docker/adempiere-api/alpine-adds-on.txt)|g" docker/adempiere-api/Dockerfile.alpine
-      
+  
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./docker/adempiere-api/Dockerfile.alpine
@@ -157,27 +155,25 @@ jobs:
   build-docs:
     name: Build dist ADempiere Proxy docs
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x]
+
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Node configuration
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          node-version: 14.x
+          cache: 'yarn'
 
       - name: Generate dist docs
         run: |
           cd docs
-          npm i
-          npm run build --if-present
+          yarn ci
+          yarn build
 
       - name: Upload dist docs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: adempiere-proxy-docs
           path: docs/.vuepress/dist
@@ -191,12 +187,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build dist docs
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: adempiere-proxy-docs
 
       - name: Compress files for documentation dist
-        uses: TheDoctor0/zip-release@0.6.0
+        uses: TheDoctor0/zip-release@0.6.3
         with:
           filename: 'Proxy-ADempiere-API-Documentation.zip'
           path: './'

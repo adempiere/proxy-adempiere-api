@@ -4,6 +4,7 @@
   "description": "proxy-adempiere-site have all related to documentation of ADempiere Vue Client",
   "main": "index.js",
   "scripts": {
+    "ci": "yarn install --frozen-lockfile",
     "start": "vuepress dev",
     "dev": "vuepress dev",
     "build": "vuepress build",
