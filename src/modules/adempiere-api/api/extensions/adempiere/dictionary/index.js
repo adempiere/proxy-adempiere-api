@@ -512,7 +512,12 @@ module.exports = ({ config }) => {
       description: field.getDescription(),
       help: field.getHelp(),
       sequence: field.getSequence(),
+      column_id: field.getColumnId(),
+      column_uuid: field.getColumnUuid(),
       column_name: field.getColumnName(),
+      column_sql: field.getColumnSql(),
+      element_id: field.getElementId(),
+      element_uuid: field.getElementUuid(),
       element_name: field.getElementName(),
       is_displayed: field.getIsDisplayed(),
       is_displayed_grid: field.getIsDisplayedGrid(),
@@ -540,7 +545,6 @@ module.exports = ({ config }) => {
       read_only_logic: field.getReadOnlyLogic(),
       mandatory_logic: field.getMandatoryLogic(),
       callout: field.getCallout(),
-      column_sql: field.getColumnSql(),
       v_format: field.getVFormat(),
       value_min: field.getValueMin(),
       value_max: field.getValueMax(),
@@ -602,6 +606,8 @@ module.exports = ({ config }) => {
       return undefined
     }
     return {
+      id: reference.getId(),
+      uuid: reference.getUuid(),
       table_name: reference.getTableName(),
       key_column_name: reference.getKeyColumnName(),
       display_column_name: reference.getDisplayColumnName(),
