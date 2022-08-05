@@ -328,6 +328,7 @@
         "adempiere/user-interface/component/record-access",
         "adempiere/user-interface/component/notes",
         "adempiere/user-interface/component/translation",
+        "adempiere/form/addons/payroll-action-notice",
         "adempiere/form/addons/point-of-sales",
         "adempiere/grid",
         "adempiere/business-partner",
@@ -335,7 +336,6 @@
         "adempiere/invoice",
         "adempiere/order",
         "adempiere/payment",
-        "adempiere/invoice",
         "adempiere/product"
       ],
       "images": {
