@@ -125,6 +125,30 @@ module.exports = ({ config }) => {
     }
   });
 
+  api.get('/get-payroll-concept-definition', (req, res) => {
+    if (req.query) {
+      service.getPayrollConceptDefinition({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntityFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
   api.get('/list-payroll-movements', (req, res) => {
     if (req.query) {
       service.listPayrollMovements({
