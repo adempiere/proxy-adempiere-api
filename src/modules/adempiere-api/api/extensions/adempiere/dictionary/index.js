@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { convertWorkflowDefinitionFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
 
 //  Convert Message Text
 function convertMessageText (messageText) {
@@ -376,9 +377,9 @@ function convertValidationRule (validationRule) {
 }
 
 module.exports = ({ config }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/dictionary');
+  const service = new ServiceApi(config);
 
   /**
    * GET window definition
@@ -505,6 +506,39 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertForm(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Workflow
+   *
+   * req.query.token - user token
+   * req.query.id - id of workflow
+   * req.query.uuid - uuid of workflow
+   * req.query.language - login language
+   * Details:
+   */
+  api.get('/workflow', (req, res) => {
+    if (req.query) {
+      service.getWorkflow({
+        token: req.query.token,
+        language: req.query.language,
+        // identifiers
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertWorkflowDefinitionFromGRPC(response)
           })
         } else if (err) {
           res.json({
