@@ -4,12 +4,45 @@ import {
   convertWorkflowActivityFromGRPC,
   convertDocumentAction,
   convertDocumentStatus
-} from '@adempiere/grpc-api/lib/convertBusinessData';
+} from '@adempiere/grpc-api/lib/convertWorkflow';
 
 module.exports = ({ config }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/workflow')
+  const service = new ServiceApi(config)
+
+  /**
+   * GET Workflow
+   *
+   * req.query.token - user token
+   * req.query.id - id of workflow
+   * req.query.uuid - uuid of workflow
+   * req.query.language - login language
+   * Details:
+   */
+  api.get('/workflow', (req, res) => {
+    if (req.query) {
+      service.getWorkflow({
+        token: req.query.token,
+        language: req.query.language,
+        // identifiers
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertWorkflowDefinitionFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
 
   /**
    * GET Workflows
@@ -30,7 +63,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -71,7 +104,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -120,7 +153,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -168,7 +201,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

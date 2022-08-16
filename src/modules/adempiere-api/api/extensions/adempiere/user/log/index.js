@@ -5,14 +5,15 @@ import {
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
   convertEntityChatsFromGRPC,
-  convertChatEntryFromGRPC,
-  convertWorkflowProcessFomGRPC,
-  convertRecentItemFromGRPC
+  convertChatEntryFromGRPC
+  // convertRecentItemFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
-module.exports = ({ config, db }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+import { convertWorkflowProcessFomGRPC } from '@adempiere/grpc-api/lib/convertWorkflow';
+
+module.exports = ({ config }) => {
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/logs')
+  const service = new ServiceApi(config)
 
   /**
    * GET List Process Logs
@@ -90,7 +91,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -137,7 +138,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -181,7 +182,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -228,7 +229,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
