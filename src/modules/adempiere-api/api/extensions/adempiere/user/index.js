@@ -1,10 +1,157 @@
 import { Router } from 'express';
-import { convertContextValue } from '@adempiere/grpc-api/lib/convertValues';
 
-module.exports = ({ config, db }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+/**
+ * convert the value obtained from gRPC according to the type of value
+ * @param {object} valueToConvert
+ * @returns {mixed}
+ */
+function convertContextValue (valueToConvert) {
+  const { ContextValue } = require('@adempiere/grpc-api/src/grpc/proto/access_pb.js');
+  const { ValueType } = ContextValue;
+
+  if (valueToConvert === undefined || valueToConvert === null) {
+    return undefined;
+  }
+
+  let returnValue;
+  switch (valueToConvert.getValueType()) {
+    // data type Null or undefined
+    default:
+    case ValueType.NULL:
+      returnValue = undefined;
+      break;
+    // data type Number (integer)
+    case ValueType.INTEGER:
+      returnValue = valueToConvert.getIntValue();
+      break;
+    // data type Number (integer)
+    case ValueType.LONG:
+      returnValue = valueToConvert.getLongValue();
+      break;
+    // data type Number (float)
+    case ValueType.DOUBLE:
+      returnValue = valueToConvert.getDoubleValue();
+      break;
+    // data type Boolean
+    case ValueType.BOOLEAN:
+      returnValue = valueToConvert.getBooleanValue();
+      break;
+    // data type String
+    case ValueType.STRING:
+      returnValue = valueToConvert.getStringValue();
+      break;
+    // data type Date
+    case ValueType.DATE:
+      returnValue = new Date(valueToConvert.getLongValue());
+      break;
+  }
+  return returnValue;
+}
+
+//  get Context
+function getContext (context) {
+  let values = []
+  context.forEach((value, key) => {
+    values.push({
+      key: key,
+      value: convertContextValue(value)
+    })
+  })
+  return values
+}
+
+//  get user info
+function getUserInfo (userInfo) {
+  return {
+    id: userInfo.getId(),
+    uuid: userInfo.getUuid(),
+    name: userInfo.getName(),
+    description: userInfo.getDescription(),
+    comments: userInfo.getComments(),
+    image: userInfo.getImage(),
+    connection_timeout: userInfo.getConnectionTimeout()
+  }
+}
+
+//  get Role
+function getRole (role) {
+  return {
+    id: role.getId(),
+    uuid: role.getUuid(),
+    name: role.getName(),
+    description: role.getDescription(),
+    client_id: role.getClientId(),
+    client_name: role.getClientName(),
+    is_can_report: role.getIsCanReport(),
+    is_can_export: role.getIsCanExport(),
+    is_personal_lock: role.getIsPersonalLock(),
+    is_personal_access: role.getIsPersonalAccess(),
+    is_allow_info_account: role.getIsAllowInfoAccount(),
+    is_allow_info_business_partner: role.getIsAllowInfoBusinessPartner(),
+    is_allow_info_in_out: role.getIsAllowInfoInOut(),
+    is_allow_info_order: role.getIsAllowInfoOrder(),
+    is_allow_info_product: role.getIsAllowInfoProduct(),
+    is_allow_info_schedule: role.getIsAllowInfoSchedule(),
+    is_allow_info_mrp: role.getIsAllowInfoMrp(),
+    is_allow_html_view: role.getIsAllowHtmlView(),
+    is_allow_info_asset: role.getIsAllowInfoAsset(),
+    is_allow_info_cash_journal: role.getIsAllowInfoCashJournal(),
+    is_allow_info_invoice: role.getIsAllowInfoInvoice(),
+    is_allow_info_payment: role.getIsAllowInfoPayment(),
+    is_allow_info_resource: role.getIsAllowInfoResource(),
+    is_allow_info_crp: role.getIsAllowInfoCrp(),
+    is_allow_xls_view: role.getIsAllowXlsView()
+  }
+}
+
+//  Convert session
+function getSession (session) {
+  return {
+    id: session.getId(),
+    uuid: session.getUuid(),
+    name: session.getName(),
+    user_info: getUserInfo(session.getUserInfo()),
+    role: getRole(session.getRole()),
+    processed: session.getProcessed(),
+    language: session.getLanguage(),
+    country_id: session.getCountryId(),
+    country_code: session.getCountryCode(),
+    country_name: session.getCountryName(),
+    display_sequence: session.getDisplaySequence(),
+    currency_iso_code: session.getCurrencyIsoCode(),
+    currency_name: session.getCurrencyName(),
+    currency_symbol: session.getCurrencySymbol(),
+    standard_precision: session.getStandardPrecision(),
+    costing_precision: session.getCostingPrecision(),
+    default_context: getContext(session.getDefaultContextMap())
+  }
+}
+
+//  recursive function for get menu
+function getMenu (menu) {
+  return {
+    id: menu.getId(),
+    uuid: menu.getUuid(),
+    parent_uuid: menu.getParentUuid(),
+    name: menu.getName(),
+    description: menu.getDescription(),
+    sequence: menu.getSequence(),
+    is_read_only: menu.getIsReadOnly(),
+    is_summary: menu.getIsSummary(),
+    is_sales_transaction: menu.getIsSOTrx(),
+    action: menu.getAction(),
+    reference_uuid: menu.getReferenceUuid(),
+    childs: menu.getChildsList().map(child => {
+      return getMenu(child)
+    }),
+    is_active: menu.getIsActive()
+  }
+}
+
+module.exports = ({ config }) => {
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/access')
+  const service = new ServiceApi(config)
 
   /**
    * POST login an user
@@ -29,7 +176,7 @@ module.exports = ({ config, db }) => {
         organizationUuid: req.body.organization_uuid,
         warehouseUuid: req.body.warehouse_uuid,
         language: req.query.language
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -57,7 +204,7 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.logout({
         token: req.body.token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -92,7 +239,7 @@ module.exports = ({ config, db }) => {
         role: req.body.role,
         organization: req.body.organization,
         warehouse: req.body.warehouse
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -108,106 +255,6 @@ module.exports = ({ config, db }) => {
     }
   });
 
-  //  recursive function for get menu
-  function getMenu (menu) {
-    return {
-      id: menu.getId(),
-      uuid: menu.getUuid(),
-      parent_uuid: menu.getParentUuid(),
-      name: menu.getName(),
-      description: menu.getDescription(),
-      sequence: menu.getSequence(),
-      is_read_only: menu.getIsReadOnly(),
-      is_summary: menu.getIsSummary(),
-      is_sales_transaction: menu.getIsSOTrx(),
-      action: menu.getAction(),
-      reference_uuid: menu.getReferenceUuid(),
-      childs: menu.getChildsList().map(child => {
-        return getMenu(child)
-      }),
-      is_active: menu.getIsActive()
-    }
-  }
-
-  //  get user info
-  function getUserInfo (userInfo) {
-    return {
-      id: userInfo.getId(),
-      uuid: userInfo.getUuid(),
-      name: userInfo.getName(),
-      description: userInfo.getDescription(),
-      comments: userInfo.getComments(),
-      image: userInfo.getImage(),
-      connection_timeout: userInfo.getConnectionTimeout()
-    }
-  }
-
-  //  get Role
-  function getRole (role) {
-    return {
-      id: role.getId(),
-      uuid: role.getUuid(),
-      name: role.getName(),
-      description: role.getDescription(),
-      client_id: role.getClientId(),
-      client_name: role.getClientName(),
-      is_can_report: role.getIsCanReport(),
-      is_can_export: role.getIsCanExport(),
-      is_personal_lock: role.getIsPersonalLock(),
-      is_personal_access: role.getIsPersonalAccess(),
-      is_allow_info_account: role.getIsAllowInfoAccount(),
-      is_allow_info_business_partner: role.getIsAllowInfoBusinessPartner(),
-      is_allow_info_in_out: role.getIsAllowInfoInOut(),
-      is_allow_info_order: role.getIsAllowInfoOrder(),
-      is_allow_info_product: role.getIsAllowInfoProduct(),
-      is_allow_info_schedule: role.getIsAllowInfoSchedule(),
-      is_allow_info_mrp: role.getIsAllowInfoMrp(),
-      is_allow_html_view: role.getIsAllowHtmlView(),
-      is_allow_info_asset: role.getIsAllowInfoAsset(),
-      is_allow_info_cash_journal: role.getIsAllowInfoCashJournal(),
-      is_allow_info_invoice: role.getIsAllowInfoInvoice(),
-      is_allow_info_payment: role.getIsAllowInfoPayment(),
-      is_allow_info_resource: role.getIsAllowInfoResource(),
-      is_allow_info_crp: role.getIsAllowInfoCrp(),
-      is_allow_xls_view: role.getIsAllowXlsView()
-    }
-  }
-
-  //  Convert session
-  function getSession (session) {
-    return {
-      id: session.getId(),
-      uuid: session.getUuid(),
-      name: session.getName(),
-      user_info: getUserInfo(session.getUserInfo()),
-      role: getRole(session.getRole()),
-      processed: session.getProcessed(),
-      language: session.getLanguage(),
-      country_id: session.getCountryId(),
-      country_code: session.getCountryCode(),
-      country_name: session.getCountryName(),
-      display_sequence: session.getDisplaySequence(),
-      currency_iso_code: session.getCurrencyIsoCode(),
-      currency_name: session.getCurrencyName(),
-      currency_symbol: session.getCurrencySymbol(),
-      standard_precision: session.getStandardPrecision(),
-      costing_precision: session.getCostingPrecision(),
-      default_context: getContext(session.getDefaultContextMap())
-    }
-  }
-
-  //  get Context
-  function getContext (context) {
-    let values = []
-    context.forEach((value, key) => {
-      values.push({
-        key: key,
-        value: convertContextValue(value)
-      })
-    })
-    return values
-  }
-
   /**
    * GET  an user menu
    *
@@ -221,7 +268,7 @@ module.exports = ({ config, db }) => {
       service.getMenu({
         token: req.query.token,
         language: req.query.language
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -250,7 +297,7 @@ module.exports = ({ config, db }) => {
       service.getSessionInfo({
         token: req.query.token,
         language: req.query.language
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -279,7 +326,7 @@ module.exports = ({ config, db }) => {
       service.getUserInfo({
         token: req.query.token,
         language: req.query.language
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -308,7 +355,7 @@ module.exports = ({ config, db }) => {
       service.getUserRoles({
         token: req.query.token,
         language: req.query.language
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

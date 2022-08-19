@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import {
-  convertPointOfSalesFromGRPC,
   convertOrderFromGRPC,
   convertOrderLineFromGRPC,
   convertKeyLayoutFromGRPC,
@@ -21,13 +20,98 @@ import {
   convertPaymentReferenceFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
-  convertProductPriceFromGRPC
+  convertProductPriceFromGRPC,
+  convertBankAccountFromGRPC,
+  convertDocumentTypeFromGRPC,
+  convertSalesRepresentativeFromGRPC,
+  convertPriceListFromGRPC,
+  convertCurrencyFromGRPC,
+  convertWarehouseFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality'
 
-module.exports = ({ config, db }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+function convertPointOfSalesFromGRPC (pointOfSales) {
+  if (pointOfSales) {
+    const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
+
+    return {
+      uuid: pointOfSales.getUuid(),
+      id: pointOfSales.getId(),
+      name: pointOfSales.getName(),
+      description: pointOfSales.getDescription(),
+      help: pointOfSales.getHelp(),
+      is_modify_price: pointOfSales.getIsModifyPrice(),
+      is_pos_required_pin: pointOfSales.getIsPosRequiredPin(),
+      is_aisle_seller: pointOfSales.getIsAisleSeller(),
+      is_shared_pos: pointOfSales.getIsSharedPos(),
+      document_type: convertDocumentTypeFromGRPC(
+        pointOfSales.getDocumentType()
+      ),
+      return_document_type: convertDocumentTypeFromGRPC(
+        pointOfSales.getReturnDocumentType()
+      ),
+      cash_bank_account: convertBankAccountFromGRPC(
+        pointOfSales.getCashBankAccount()
+      ),
+      cash_transfer_bank_account: convertBankAccountFromGRPC(
+        pointOfSales.getCashTransferBankAccount()
+      ),
+      sales_representative: convertSalesRepresentativeFromGRPC(
+        pointOfSales.getSalesRepresentative()
+      ),
+      template_customer: convertCustomerFromGRPC(
+        pointOfSales.getTemplateCustomer()
+      ),
+      price_list: convertPriceListFromGRPC(
+        pointOfSales.getPriceList()
+      ),
+      display_currency: convertCurrencyFromGRPC(
+        pointOfSales.getDisplayCurrency()
+      ),
+      warehouse: convertWarehouseFromGRPC(
+        pointOfSales.getWarehouse()
+      ),
+      refund_reference_currency: convertCurrencyFromGRPC(
+        pointOfSales.getRefundReferenceCurrency()
+      ),
+      conversion_type_uuid: pointOfSales.getConversionTypeUuid(),
+      key_layout_uuid: pointOfSales.getKeyLayoutUuid(),
+      is_allows_modify_quantity: pointOfSales.getIsAllowsModifyQuantity(),
+      is_allows_return_order: pointOfSales.getIsAllowsReturnOrder(),
+      is_allows_collect_order: pointOfSales.getIsAllowsCollectOrder(),
+      is_allows_create_order: pointOfSales.getIsAllowsCreateOrder(),
+      is_allows_confirm_shipment: pointOfSales.getIsAllowsConfirmShipment(),
+      is_display_discount: pointOfSales.getIsDisplayDiscount(),
+      is_display_tax_amount: pointOfSales.getIsDisplayTaxAmount(),
+      is_allows_allocate_seller: pointOfSales.getIsAllowsAllocateSeller(),
+      is_allows_concurrent_use: pointOfSales.getIsAllowsConcurrentUse(),
+      is_confirm_complete_shipment: pointOfSales.getIsConfirmCompleteShipment(),
+      is_allows_cash_closing: pointOfSales.getIsAllowsCashClosing(),
+      is_allows_cash_opening: pointOfSales.getIsAllowsCashOpening(),
+      is_allows_cash_withdrawal: pointOfSales.getIsAllowsCashWithdrawal(),
+      is_allows_apply_discount: pointOfSales.getIsAllowsApplyDiscount(),
+      default_campaign_uuid: pointOfSales.getDefaultCampaignUuid(),
+      default_opening_charge_uuid: pointOfSales.getDefaultOpeningChargeUuid(),
+      default_withdrawal_charge_uuid: pointOfSales.getDefaultWithdrawalChargeUuid(),
+      maximum_refund_allowed: getDecimalFromGRPC(
+        pointOfSales.getMaximumRefundAllowed()
+      ),
+      maximum_discount_allowed: getDecimalFromGRPC(
+        pointOfSales.getMaximumDiscountAllowed()
+      ),
+      write_off_amount_tolerance: getDecimalFromGRPC(
+        pointOfSales.getWriteOffAmountTolerance()
+      ),
+      is_allows_business_partner_create: pointOfSales.getIsAllowsBusinessPartnerCreate(),
+      is_allows_print_document: pointOfSales.getIsAllowsPrintDocument()
+    };
+  }
+  return undefined;
+}
+
+module.exports = ({ config }) => {
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales')
+  const service = new ServiceApi(config)
 
   /**
    * GET Selling Points
@@ -48,7 +132,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -88,7 +172,7 @@ module.exports = ({ config, db }) => {
         posUuid: req.query.pos_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -137,7 +221,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -179,7 +263,7 @@ module.exports = ({ config, db }) => {
         warehouseUuid: req.query.warehouse_uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -226,7 +310,7 @@ module.exports = ({ config, db }) => {
         priceListUuid: req.body.price_list_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid,
         campaignUuid: req.body.campaign_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -260,7 +344,7 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -294,7 +378,7 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -324,9 +408,10 @@ module.exports = ({ config, db }) => {
       service.createShipment({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -357,10 +442,11 @@ module.exports = ({ config, db }) => {
       service.processShipment({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         shipmentUuid: req.body.shipment_uuid,
         description: req.body.description,
         documentAction: req.body.document_action
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -394,7 +480,7 @@ module.exports = ({ config, db }) => {
         orderUuid: req.body.order_uuid,
         posUuid: req.body.pos_uuid,
         description: req.body.description
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -427,11 +513,12 @@ module.exports = ({ config, db }) => {
       service.createShipmentLine({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid,
         description: req.body.description,
         quantity: req.body.quantity,
         shipmentUuid: req.body.shipment_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -462,8 +549,9 @@ module.exports = ({ config, db }) => {
       service.deleteShipmentLine({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         shipmentLineUuid: req.body.shipment_line_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -493,11 +581,12 @@ module.exports = ({ config, db }) => {
       service.listShipmentLines({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         shipmentUuid: req.query.shipment_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -560,7 +649,7 @@ module.exports = ({ config, db }) => {
         paymentMethodUuid: req.body.payment_method_uuid,
         isRefund: req.body.is_refund,
         collectingAgentUuid: req.body.collecting_agent_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -615,7 +704,7 @@ module.exports = ({ config, db }) => {
         conversionTypeUuid: req.body.conversion_type_uuid,
         paymentMethodUuid: req.body.payment_method_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -653,7 +742,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -690,8 +779,9 @@ module.exports = ({ config, db }) => {
       service.deletePayment({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         paymentUuid: req.body.payment_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -722,9 +812,10 @@ module.exports = ({ config, db }) => {
       service.deletePaymentReference({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         uuid: req.body.uuid,
         id: req.body.id
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -757,7 +848,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -790,7 +881,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -826,7 +917,7 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         uuid: req.body.uuid,
         id: req.body.id
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -860,7 +951,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -940,7 +1031,7 @@ module.exports = ({ config, db }) => {
             chargeUuid: payment.charge_uuid
           }
         })
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1012,7 +1103,7 @@ module.exports = ({ config, db }) => {
             chargeUuid: payment.charge_uuid
           }
         })
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1051,6 +1142,7 @@ module.exports = ({ config, db }) => {
       service.updatePayment({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         paymentUuid: req.body.payment_uuid,
         bankUuid: req.body.bank_uuid,
         referenceNo: req.body.reference_no,
@@ -1060,7 +1152,7 @@ module.exports = ({ config, db }) => {
         tenderTypeCode: req.body.tender_type_code,
         paymentAccountDate: req.body.payment_account_date,
         paymentMethodUuid: req.body.payment_method_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1109,7 +1201,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1146,8 +1238,9 @@ module.exports = ({ config, db }) => {
       service.deleteOrder({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1181,7 +1274,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1218,6 +1311,7 @@ module.exports = ({ config, db }) => {
       service.createOrderLine({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
         productUuid: req.body.product_uuid,
         chargeUuid: req.body.charge_uuid,
@@ -1226,7 +1320,7 @@ module.exports = ({ config, db }) => {
         price: req.body.price,
         discountRate: req.body.discount_rate,
         warehouseUuid: req.body.warehouse_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1257,8 +1351,9 @@ module.exports = ({ config, db }) => {
       service.deleteOrderLine({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1308,7 +1403,7 @@ module.exports = ({ config, db }) => {
         discountRate: req.body.discount_rate,
         discountRateOff: req.body.discount_rate_off,
         discountAmountOff: req.body.discount_amount_off
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1344,6 +1439,7 @@ module.exports = ({ config, db }) => {
       service.updateOrderLine({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid,
         description: req.body.description,
         warehouseUuid: req.body.warehouse_uuid,
@@ -1351,7 +1447,7 @@ module.exports = ({ config, db }) => {
         price: req.body.price,
         discountRate: req.body.discount_rate,
         isAddQuantity: req.body.is_add_quantity
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1384,7 +1480,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         pin: req.body.pin
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1417,8 +1513,9 @@ module.exports = ({ config, db }) => {
       service.getOrder({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         orderUuid: req.query.order_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1489,7 +1586,7 @@ module.exports = ({ config, db }) => {
             collectingAgentUuid: payment.collecting_agent_uuid
           }
         })
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1553,7 +1650,7 @@ module.exports = ({ config, db }) => {
         isWaitingForShipment: req.query.is_waiting_for_shipment,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1589,11 +1686,12 @@ module.exports = ({ config, db }) => {
       service.listOrderLines({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         orderUuid: req.query.order_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1628,8 +1726,9 @@ module.exports = ({ config, db }) => {
       service.getKeyLayout({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         keyLayoutUuid: req.query.key_layout_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1663,7 +1762,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1703,7 +1802,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1743,7 +1842,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1783,7 +1882,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1823,7 +1922,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1919,7 +2018,7 @@ module.exports = ({ config, db }) => {
         posUuid: req.body.pos_uuid,
         additionalAttributes: req.body.additional_attributes,
         addresses
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -1998,8 +2097,9 @@ module.exports = ({ config, db }) => {
       }
       service.updateCustomer({
         token: req.query.token,
-        uuid: req.body.uuid,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        uuid: req.body.uuid,
         value: req.body.value,
         taxId: req.body.tax_id,
         duns: req.body.duns,
@@ -2009,7 +2109,7 @@ module.exports = ({ config, db }) => {
         description: req.body.description,
         additionalAttributes: req.body.additional_attributes,
         addresses
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2044,6 +2144,7 @@ module.exports = ({ config, db }) => {
       service.getCustomer({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         searchValue: req.query.search_value,
         value: req.query.value,
         name: req.query.name,
@@ -2051,7 +2152,7 @@ module.exports = ({ config, db }) => {
         email: req.query.email,
         postalCode: req.query.postal_code,
         phone: req.query.phone
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2122,7 +2223,7 @@ module.exports = ({ config, db }) => {
         iban: req.body.iban,
         accountNo: req.body.account_no,
         isPayrollAccount: req.body.is_payroll_account
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2193,7 +2294,7 @@ module.exports = ({ config, db }) => {
         iban: req.body.iban,
         accountNo: req.body.account_no,
         isPayrollAccount: req.body.is_payroll_account
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2223,8 +2324,9 @@ module.exports = ({ config, db }) => {
       service.getCustomerBankAccount({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         customerBankAccountUuid: req.query.customer_bank_account_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2254,8 +2356,9 @@ module.exports = ({ config, db }) => {
       service.deleteCustomerBankAccount({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.body.pos_uuid,
         customerBankAccountUuid: req.body.customer_bank_account_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2285,11 +2388,12 @@ module.exports = ({ config, db }) => {
       service.listCustomerBankAccounts({
         token: req.query.token,
         language: req.query.language,
+        posUuid: req.query.pos_uuid,
         customerUuid: req.query.customer_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2327,7 +2431,7 @@ module.exports = ({ config, db }) => {
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         date: req.query.date
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -2363,7 +2467,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

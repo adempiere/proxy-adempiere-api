@@ -4,10 +4,10 @@ import {
   convertRecentItemFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
 
-module.exports = ({ config, db }) => {
-  let api = Router();
+module.exports = ({ config }) => {
+  const api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const service = new ServiceApi(config)
 
   /**
    * GET Favourites
@@ -30,7 +30,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -66,6 +66,9 @@ module.exports = ({ config, db }) => {
    */
   api.get('/recent-items', (req, res) => {
     if (req.query) {
+      const ServiceApi = require('@adempiere/grpc-api/src/services/logs')
+      const service = new ServiceApi(config)
+
       service.listRecentItems({
         token: req.query.token,
         language: req.query.language,
@@ -76,7 +79,7 @@ module.exports = ({ config, db }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

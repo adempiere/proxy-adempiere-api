@@ -1,8 +1,9 @@
 import { Router } from 'express';
-module.exports = ({ config, db }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+
+module.exports = ({ config }) => {
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api/src/services/enrollment')
+  const service = new ServiceApi(config)
 
   /**
    * POST enroll an user
@@ -28,7 +29,7 @@ module.exports = ({ config, db }) => {
         clientVersion: req.body.client_version,
         applicationType: req.body.application_type,
         password: req.body.password
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -66,7 +67,7 @@ module.exports = ({ config, db }) => {
         userName: req.body.user_name,
         email: req.body.email,
         clientVersion: req.body.client_version
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           if (response.getResponseType() === 0) {
             res.json({
@@ -107,7 +108,7 @@ module.exports = ({ config, db }) => {
         token: req.body.token,
         password: req.body.password,
         clientVersion: req.body.client_version
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           if (response.getResponseType() === 0) {
             res.json({
@@ -146,7 +147,7 @@ module.exports = ({ config, db }) => {
       service.activateUser({
         token: req.body.token,
         clientVersion: req.body.client_version
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           if (response.getResponseType() === 0) {
             res.json({
