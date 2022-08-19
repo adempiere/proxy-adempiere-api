@@ -28,6 +28,7 @@ import {
   convertCurrencyFromGRPC,
   convertWarehouseFromGRPC
 } from '@adempiere/grpc-api/lib/convertCoreFunctionality'
+import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 function convertPointOfSalesFromGRPC (pointOfSales) {
   if (pointOfSales) {
@@ -101,7 +102,7 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       write_off_amount_tolerance: getDecimalFromGRPC(
         pointOfSales.getWriteOffAmountTolerance()
       ),
-      is_allows_business_partner_create: pointOfSales.getIsAllowsBusinessPartnerCreate(),
+      is_allows_create_customer: pointOfSales.getIsAllowsCreateCustomer(),
       is_allows_print_document: pointOfSales.getIsAllowsPrintDocument()
     };
   }
@@ -1278,7 +1279,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: response.getResult()
+            result: convertProcessLogFromGRPC(response)
           })
         } else if (err) {
           res.json({
