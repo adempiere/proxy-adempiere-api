@@ -1279,7 +1279,10 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertProcessLogFromGRPC(response)
+            result: {
+              result: response.getResult(),
+              processLog: convertProcessLogFromGRPC(response.getProcessLog())
+            }
           })
         } else if (err) {
           res.json({
