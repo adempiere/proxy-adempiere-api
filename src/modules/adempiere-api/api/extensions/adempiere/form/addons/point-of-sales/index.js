@@ -104,7 +104,7 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       ),
       is_allows_create_customer: pointOfSales.getIsAllowsCreateCustomer(),
       is_allows_print_document: pointOfSales.getIsAllowsPrintDocument(),
-      is_allows_preview_document: pointOfSales.getIsAllowsPrintPreview()
+      is_allows_preview_document: pointOfSales.getIsAllowsPreviewDocument()
     };
   }
   return undefined;
