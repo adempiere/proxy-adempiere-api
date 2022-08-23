@@ -463,7 +463,8 @@ module.exports = ({ config }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
-        salesRepresentativeUuid: req.body.sales_representative_uuid
+        salesRepresentativeUuid: req.body.sales_representative_uuid,
+        isCreateLinesFromOrder: req.body.is_create_lines_from_order
       }, (err, response) => {
         if (response) {
           res.json({
