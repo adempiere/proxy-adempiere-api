@@ -103,7 +103,8 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
         pointOfSales.getWriteOffAmountTolerance()
       ),
       is_allows_create_customer: pointOfSales.getIsAllowsCreateCustomer(),
-      is_allows_print_document: pointOfSales.getIsAllowsPrintDocument()
+      is_allows_print_document: pointOfSales.getIsAllowsPrintDocument(),
+      is_allows_preview_document: pointOfSales.getIsAllowsPrintPreview()
     };
   }
   return undefined;
@@ -1328,6 +1329,42 @@ module.exports = ({ config }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response.getResult()
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Print Preview: Run it to preview PDF file
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - Point Of sales UUID reference
+   * req.body.order_uuid - Sales Order UUID reference
+   * req.body.report_type - File format to report
+   *
+   * Details:
+   */
+  api.post('/print-preview', (req, res) => {
+    if (req.body) {
+      service.printTicket({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        orderUuid: req.body.order_uuid,
+        reportType: req.body.report_type
       }, (err, response) => {
         if (response) {
           res.json({
