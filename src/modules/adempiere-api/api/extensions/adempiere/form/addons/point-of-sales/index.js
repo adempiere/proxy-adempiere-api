@@ -109,6 +109,58 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
   return undefined;
 }
 
+function convertStock (stock) {
+  if (stock) {
+    return {
+      item_id: stock.getProductId(), // duplicated and rename field
+      product_id: stock.getProductId(), // required field
+      qty: stock.getQuantity(), // required field // duplicated and rename field
+      quantity: stock.getQuantity(), // required field
+      is_in_stock: stock.getIsInStock(), // required field
+      is_qty_decimal: stock.getIsDecimalQuantity(), // duplicated and rename field
+      is_decimal_quantity: stock.getIsDecimalQuantity(),
+      show_default_notification_message: stock.getIsShowDefaultNotificationMessage(),
+      use_config_min_qty: stock.getIsUseConfigMinimumQuantity(), // duplicated and rename field
+      use_config_minimum_quantity: stock.getIsUseConfigMinimumQuantity(),
+      min_qty: stock.getMinimumQuantity(),
+      minimium_quantity: stock.getMinimumQuantity(),
+      use_config_min_sale_qty: stock.getIsUseConfigMinimumSaleQuantity(), // duplicated and rename field
+      use_config_minimum_sale_quantity: stock.getIsUseConfigMinimumSaleQuantity(),
+      min_sale_qty: stock.getMinimumSaleQuantity(), // duplicated and rename field
+      minimun_sale_quantity: stock.getMinimumSaleQuantity(),
+      use_config_max_sale_qty: stock.getIsUseConfigMaximumSaleQuantity(), // duplicated and rename field
+      use_config_maximum_sale_quantity: stock.getIsUseConfigMaximumSaleQuantity(),
+      max_sale_qty: stock.getMaximumSaleQuantity(), // duplicated and rename field
+      maximun_sale_quantity: stock.getMaximumSaleQuantity(),
+      use_config_backorders: stock.getIsUseConfigBackorders(),
+      backorders: stock.getBackorders(),
+      use_config_notify_stock_qty: stock.getIsUseConfigNotifyStockQuantity(), // duplicated and rename field
+      use_config_notify_stock_quantity: stock.getIsUseConfigNotifyStockQuantity(),
+      notify_stock_qty: stock.getNotifyStockQuantity(), // duplicated and rename field
+      notify_stock_quantity: stock.getNotifyStockQuantity(),
+      use_config_qty_increments: stock.getIsUseConfigQuantityIncrements(), // duplicated and rename field
+      use_config_quantity_increments: stock.getIsUseConfigQuantityIncrements(),
+      qty_increments: stock.getQuantityIncrements(), // duplicated and rename field
+      quantity_increments: stock.getQuantityIncrements(),
+      use_config_enable_qty_inc: stock.getIsUseConfigEnableQuantityIncrements(), // duplicated and rename field
+      use_config_enable_quantity_increments: stock.getIsUseConfigEnableQuantityIncrements(),
+      enable_qty_increments: stock.getIsEnableQuantityIncrements(), // duplicated and rename field
+      enable_quantity_increments: stock.getIsEnableQuantityIncrements(),
+      use_config_manage_stock: stock.getIsUseConfigManageStock(),
+      manage_stock: stock.getIsManageStock(),
+      low_stock_date: stock.getLowStockDate(),
+      is_decimal_divided: stock.getIsDecimalDivided(),
+      stock_status_changed_auto: stock.getStockStatusChangedAuto(),
+      warehouse_id: stock.getWarehouseId(),
+      warehouse_uuid: stock.getWarehouseUuid(),
+      warehouse_name: stock.getWarehouseName(),
+      attribute_name: stock.getAttributeName()
+    }
+  }
+
+  return undefined
+}
+
 module.exports = ({ config }) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales')
@@ -2480,6 +2532,46 @@ module.exports = ({ config }) => {
               next_page_token: response.getNextPageToken(),
               records: response.getSellersList().map(seller => {
                 return convertAvailableSeller(seller)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET get stock item list by skus (comma separated)
+   *
+   * req.query.skus = url encoded list of the SKUs
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   */
+  api.get('/stocks', (req, res) => {
+    if (req.query) {
+      service.listStocks({
+        token: req.query.token,
+        language: req.query.language,
+        value: req.query.value,
+        sku: req.query.sku,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              stocks: response.getStocksList().map(stock => {
+                return convertStock(stock)
               })
             }
           })
