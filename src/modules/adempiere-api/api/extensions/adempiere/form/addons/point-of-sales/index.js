@@ -1363,7 +1363,8 @@ module.exports = ({ config }) => {
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
-        orderUuid: req.body.order_uuid
+        orderUuid: req.body.order_uuid,
+        reportType: req.body.report_type
       }, (err, response) => {
         if (response) {
           res.json({
