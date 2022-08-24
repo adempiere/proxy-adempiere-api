@@ -1359,12 +1359,11 @@ module.exports = ({ config }) => {
    */
   api.post('/print-preview', (req, res) => {
     if (req.body) {
-      service.printTicket({
+      service.printPreview({
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
-        orderUuid: req.body.order_uuid,
-        reportType: req.body.report_type
+        orderUuid: req.body.order_uuid
       }, (err, response) => {
         if (response) {
           res.json({
