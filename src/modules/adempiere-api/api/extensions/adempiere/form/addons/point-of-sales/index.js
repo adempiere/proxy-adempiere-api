@@ -7,7 +7,6 @@ import {
   convertAvailableWarehouse,
   convertAvailablePriceList,
   convertAvailableDocumentType,
-  convertAvailablePaymentMethod,
   convertAvailableCurrency,
   convertCustomerFromGRPC,
   convertAvailableRefundGRPC,
@@ -160,6 +159,57 @@ function convertStock (stock) {
   }
 
   return undefined
+}
+
+// Convert available tender type from gRPC to JSON
+function convertPaymentMethod (paymentMethod) {
+  if (paymentMethod) {
+    return {
+      id: paymentMethod.getId(),
+      uuid: paymentMethod.getUuid(),
+      value: paymentMethod.getValue(),
+      name: paymentMethod.getName(),
+      description: paymentMethod.getDescription(),
+      tender_type: paymentMethod.getTenderType(),
+      is_active: paymentMethod.getIsActive()
+    }
+  }
+  return undefined;
+}
+
+// Convert available tender type from gRPC to JSON
+function convertAvailablePaymentMethod (availablePaymentMethod) {
+  if (availablePaymentMethod) {
+    const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
+
+    return {
+      id: availablePaymentMethod.getId(),
+      uuid: availablePaymentMethod.getUuid(),
+      name: availablePaymentMethod.getName(),
+      pos_uuid: availablePaymentMethod.getPosUuid(),
+      is_displayedfrom_collection: availablePaymentMethod.getIsDisplayedfromCollection(),
+      is_pos_required_pin: availablePaymentMethod.getIsPosRequiredPin(),
+      is_allowed_to_refund: availablePaymentMethod.getIsAllowedToRefund(),
+      is_allowed_to_refund_open: availablePaymentMethod.getIsAllowedToRefundOpen(),
+      maximum_refund_allowed: getDecimalFromGRPC(
+        availablePaymentMethod.getMaximumRefundAllowed()
+      ),
+      maximum_daily_refund_allowed: getDecimalFromGRPC(
+        availablePaymentMethod.getMaximumDailyRefundAllowed()
+      ),
+      refund_reference_currency: convertCurrencyFromGRPC(
+        availablePaymentMethod.getRefundReferenceCurrency()
+      ),
+      reference_currency: convertCurrencyFromGRPC(
+        availablePaymentMethod.getReferenceCurrency()
+      ),
+      is_payment_reference: availablePaymentMethod.getIsPaymentReference(),
+      payment_method: convertPaymentMethod(
+        availablePaymentMethod.getPaymentMethod()
+      )
+    }
+  }
+  return undefined;
 }
 
 module.exports = ({ config }) => {
@@ -1573,7 +1623,8 @@ module.exports = ({ config }) => {
         token: req.query.token,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
-        pin: req.body.pin
+        pin: req.body.pin,
+        requestedAccess: req.body.requested_access
       }, (err, response) => {
         if (response) {
           res.json({
