@@ -232,7 +232,9 @@ function convertPaymentFromGRPC (payment) {
         payment.getOrderCurrencyRate()
       ),
       tender_type_code: payment.getTenderTypeCode(),
-      currency_uuid: payment.getCurrencyUuid(),
+      currency: convertCurrencyFromGRPC(
+        payment.getCurrency()
+      ),
       description: payment.getDescription(),
       reference_no: payment.getReferenceNo(),
       order_uuid: payment.getOrderUuid(),
