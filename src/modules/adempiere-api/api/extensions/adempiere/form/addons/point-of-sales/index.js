@@ -1,9 +1,13 @@
 import { Router } from 'express';
+
+import {
+  convertDocumentStatusFromGRPC,
+  getDecimalFromGRPC
+} from '@adempiere/grpc-api/lib/convertBaseDataType.js';
 import {
   convertOrderFromGRPC,
   convertOrderLineFromGRPC,
   convertKeyLayoutFromGRPC,
-  convertPaymentFromGRPC,
   convertAvailableWarehouse,
   convertAvailablePriceList,
   convertAvailableDocumentType,
@@ -15,8 +19,7 @@ import {
   convertShipmentFromGRPC,
   convertShipmentLineFromGRPC,
   convertCashSummaryMovements,
-  convertCashClosing,
-  convertPaymentReferenceFromGRPC
+  convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
   convertProductPriceFromGRPC,
@@ -180,8 +183,6 @@ function convertPaymentMethod (paymentMethod) {
 // Convert available tender type from gRPC to JSON
 function convertAvailablePaymentMethod (availablePaymentMethod) {
   if (availablePaymentMethod) {
-    const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
-
     return {
       id: availablePaymentMethod.getId(),
       uuid: availablePaymentMethod.getUuid(),
@@ -208,6 +209,79 @@ function convertAvailablePaymentMethod (availablePaymentMethod) {
         availablePaymentMethod.getPaymentMethod()
       )
     }
+  }
+  return undefined;
+}
+
+function convertPaymentFromGRPC (payment) {
+  if (payment) {
+    return {
+      uuid: payment.getUuid(),
+      id: payment.getId(),
+      document_no: payment.getDocumentNo(),
+      collecting_agent: convertSalesRepresentativeFromGRPC(
+        payment.getCollectingAgent()
+      ),
+      document_status: convertDocumentStatusFromGRPC(
+        payment.getDocumentStatus()
+      ),
+      amount: getDecimalFromGRPC(
+        payment.getAmount()
+      ),
+      order_currency_rate: getDecimalFromGRPC(
+        payment.getOrderCurrencyRate()
+      ),
+      tender_type_code: payment.getTenderTypeCode(),
+      currency_uuid: payment.getCurrencyUuid(),
+      description: payment.getDescription(),
+      reference_no: payment.getReferenceNo(),
+      order_uuid: payment.getOrderUuid(),
+      bank_uuid: payment.getBankUuid(),
+      payment_date: new Date(payment.getPaymentDate()),
+      payment_account_date: new Date(payment.getPaymentAccountDate()),
+      is_refund: payment.getIsRefund(),
+      customer: convertCustomerFromGRPC(
+        payment.getCustomer()
+      ),
+      payment_method: convertPaymentMethod(
+        payment.getPaymentMethod()
+      )
+    };
+  }
+  return undefined;
+}
+
+function convertPaymentReferenceFromGRPC (refund) {
+  if (refund) {
+    return {
+      uuid: refund.getUuid(),
+      id: refund.getId(),
+      sales_representative: convertSalesRepresentativeFromGRPC(
+        refund.getSalesRepresentative()
+      ),
+      amount: getDecimalFromGRPC(
+        refund.getAmount()
+      ),
+      source_amount: getDecimalFromGRPC(
+        refund.getSourceAmount()
+      ),
+      tender_type_code: refund.getTenderTypeCode(),
+      currency: convertCurrencyFromGRPC(
+        refund.getCurrency()
+      ),
+      description: refund.getDescription(),
+      order_uuid: refund.getOrderUuid(),
+      customer_bank_account_uuid: refund.getCustomerBankAccountUuid(),
+      payment_account_date: new Date(refund.getPaymentAccountDate()),
+      payment_date: new Date(refund.getPaymentDate()),
+      is_paid: refund.getIsPaid(),
+      is_receipt: refund.getIsReceipt(),
+      payment_method: convertPaymentMethod(
+        refund.getPaymentMethod()
+      ),
+      is_automatic: refund.getIsAutomatic(),
+      is_processed: refund.getIsProcessed()
+    };
   }
   return undefined;
 }
