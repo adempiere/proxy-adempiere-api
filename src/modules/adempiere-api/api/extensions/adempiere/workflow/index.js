@@ -5,6 +5,7 @@ import {
   convertDocumentAction,
   convertDocumentStatus
 } from '@adempiere/grpc-api/lib/convertWorkflow';
+import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config }) => {
   const api = Router();
@@ -212,6 +213,42 @@ module.exports = ({ config }) => {
                 return convertDocumentStatus(documentStatus)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Run Document Action
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
+   * req.query.document_action - Current Action
+   * Details:
+   */
+  api.get('/run-document-action', (req, res) => {
+    if (req.query) {
+      service.runDocumentAction({
+        token: req.query.token,
+        language: req.query.language,
+        tableName: req.query.table_name,
+        id: req.query.id,
+        uuid: req.query.uuid,
+        documentAction: req.query.document_action
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertProcessLogFromGRPC(response)
           })
         } else if (err) {
           res.json({
