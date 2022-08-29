@@ -337,6 +337,9 @@ function convertOrderFromGRPC (order) {
       date_ordered: new Date(order.getDateOrdered()),
       customer: convertCustomerFromGRPC(
         order.getCustomer()
+      ),
+      charge_amount: getDecimalFromGRPC(
+        order.getChargeAmount()
       )
     };
   }
