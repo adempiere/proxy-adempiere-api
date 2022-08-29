@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import {
-  convertCountryFromGRPC,
-  convertOrganizationFromGRPC,
-  convertWarehouseFromGRPC,
-  convertLanguageFromGRPC,
   convertBusinessPartnerFromGRPC,
-  convertConversionRateFromGRPC
-} from '@adempiere/grpc-api/lib/convertCoreFunctionality';
-module.exports = ({ config, db }) => {
+  convertCountryFromGRPC,
+  convertConversionRateFromGRPC,
+  convertLanguageFromGRPC,
+  convertOrganizationFromGRPC,
+  convertProductConversionFromGRPC,
+  convertWarehouseFromGRPC
+} from '@adempiere/grpc-api/src/utils/convertCoreFunctionality';
+
+module.exports = ({ config }) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
   let service = new ServiceApi(config)
@@ -382,6 +384,52 @@ module.exports = ({ config, db }) => {
           res.json({
             code: 200,
             result: convertConversionRateFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Product Conversion
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * req.query.product_uuid - Currency From reference UUID
+   * req.query.product_id - Currency To reference UUID
+   * req.query.conversion_date - Conversion Date reference UUID
+   * Details:
+   */
+  api.get('/list-product-conversion', (req, res) => {
+    if (req.query) {
+      const CoreService = require('@adempiere/grpc-api/src/services/coreFunctionality')
+      const service = new CoreService(config)
+
+      service.listProductConversion({
+        token: req.query.token,
+        language: req.query.language,
+        productUuid: req.query.product_uuid,
+        productId: req.query.product_id,
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getProductConversionList().map(productConversion => {
+                return convertProductConversionFromGRPC(productConversion)
+              })
+            }
           })
         } else if (err) {
           res.json({
