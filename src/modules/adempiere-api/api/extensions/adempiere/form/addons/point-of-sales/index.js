@@ -2,11 +2,10 @@ import { Router } from 'express';
 
 import {
   convertDocumentStatusFromGRPC,
-  getDecimalFromGRPC
+  getDecimalFromGRPC,
+  convertProcessLogFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType.js';
 import {
-  convertOrderFromGRPC,
-  convertOrderLineFromGRPC,
   convertKeyLayoutFromGRPC,
   convertAvailableWarehouse,
   convertAvailablePriceList,
@@ -22,6 +21,7 @@ import {
   convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
+  convertProductConversionFromGRPC,
   convertProductPriceFromGRPC,
   convertBankAccountFromGRPC,
   convertDocumentTypeFromGRPC,
@@ -29,13 +29,10 @@ import {
   convertPriceListFromGRPC,
   convertCurrencyFromGRPC,
   convertWarehouseFromGRPC
-} from '@adempiere/grpc-api/lib/convertCoreFunctionality'
-import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
 
 function convertPointOfSalesFromGRPC (pointOfSales) {
   if (pointOfSales) {
-    const { getDecimalFromGRPC } = require('@adempiere/grpc-api/lib/convertBaseDataType.js');
-
     return {
       uuid: pointOfSales.getUuid(),
       id: pointOfSales.getId(),
@@ -283,6 +280,143 @@ function convertPaymentReferenceFromGRPC (refund) {
       ),
       is_automatic: refund.getIsAutomatic(),
       is_processed: refund.getIsProcessed()
+    };
+  }
+  return undefined;
+}
+
+function convertOrderFromGRPC (order) {
+  if (order) {
+    return {
+      uuid: order.getUuid(),
+      id: order.getId(),
+      document_no: order.getDocumentNo(),
+      order_reference: order.getOrderReference(),
+      is_delivered: order.getIsDelivered(),
+      description: order.getDescription(),
+      document_type: convertDocumentTypeFromGRPC(
+        order.getDocumentType()
+      ),
+      sales_representative: convertSalesRepresentativeFromGRPC(
+        order.getSalesRepresentative()
+      ),
+      price_list: convertPriceListFromGRPC(
+        order.getPriceList()
+      ),
+      warehouse: convertWarehouseFromGRPC(
+        order.getWarehouse()
+      ),
+      document_status: convertDocumentStatusFromGRPC(
+        order.getDocumentStatus()
+      ),
+      total_lines: getDecimalFromGRPC(
+        order.getTotalLines()
+      ),
+      tax_amount: getDecimalFromGRPC(
+        order.getTaxAmount()
+      ),
+      discount_amount: getDecimalFromGRPC(
+        order.getDiscountAmount()
+      ),
+      grand_total: getDecimalFromGRPC(
+        order.getGrandTotal()
+      ),
+      display_currency_rate: getDecimalFromGRPC(
+        order.getDisplayCurrencyRate()
+      ),
+      open_amount: getDecimalFromGRPC(
+        order.getOpenAmount()
+      ),
+      payment_amount: getDecimalFromGRPC(
+        order.getPaymentAmount()
+      ),
+      refund_amount: getDecimalFromGRPC(
+        order.getRefundAmount()
+      ),
+      campaign_uuid: order.getCampaignUuid(),
+      date_ordered: new Date(order.getDateOrdered()),
+      customer: convertCustomerFromGRPC(
+        order.getCustomer()
+      )
+    };
+  }
+  return undefined;
+}
+
+function convertOrderLineFromGRPC (orderLineToConvert) {
+  if (orderLineToConvert) {
+    const {
+      convertChargeFromGRPC,
+      convertProductFromGRPC,
+      convertTaxRateFromGRPC
+    } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
+
+    return {
+      uuid: orderLineToConvert.getUuid(),
+      order_uuid: orderLineToConvert.getOrderUuid(),
+      line: orderLineToConvert.getLine(),
+      product: convertProductFromGRPC(
+        orderLineToConvert.getProduct()
+      ),
+      charge: convertChargeFromGRPC(
+        orderLineToConvert.getCharge()
+      ),
+      description: orderLineToConvert.getDescription(),
+      line_description: orderLineToConvert.getLineDescription(),
+      quantity: getDecimalFromGRPC(
+        orderLineToConvert.getQuantity()
+      ),
+      price_list: getDecimalFromGRPC(
+        orderLineToConvert.getPriceList()
+      ),
+      price: getDecimalFromGRPC(
+        orderLineToConvert.getPrice()
+      ),
+      discount_rate: getDecimalFromGRPC(
+        orderLineToConvert.getDiscountRate()
+      ),
+      discount_amount: getDecimalFromGRPC(
+        orderLineToConvert.getDiscountAmount()
+      ),
+      tax_amount: getDecimalFromGRPC(
+        orderLineToConvert.getTaxAmount()
+      ),
+      price_with_tax: getDecimalFromGRPC(
+        orderLineToConvert.getPriceWithTax()
+      ),
+      price_list_with_tax: getDecimalFromGRPC(
+        orderLineToConvert.getPriceListWithTax()
+      ),
+      tax_rate: convertTaxRateFromGRPC(
+        orderLineToConvert.getTaxRate()
+      ),
+      total_discount_amount: getDecimalFromGRPC(
+        orderLineToConvert.getTotalDiscountAmount()
+      ),
+      total_tax_amount: getDecimalFromGRPC(
+        orderLineToConvert.getTotalTaxAmount()
+      ),
+      total_base_amount: getDecimalFromGRPC(
+        orderLineToConvert.getTotalBaseAmount()
+      ),
+      total_base_amount_with_tax: getDecimalFromGRPC(
+        orderLineToConvert.getTotalBaseAmountWithTax()
+      ),
+      total_amount: getDecimalFromGRPC(
+        orderLineToConvert.getTotalAmount()
+      ),
+      total_amount_with_tax: getDecimalFromGRPC(
+        orderLineToConvert.getTotalAmountWithTax()
+      ),
+      warehouse: convertWarehouseFromGRPC(
+        orderLineToConvert.getWarehouse()
+      ),
+      uom: convertProductConversionFromGRPC(
+        orderLineToConvert.getUom()
+      ),
+      product_uom: convertProductConversionFromGRPC(
+        orderLineToConvert.getProductUom()
+      )
     };
   }
   return undefined;
@@ -1664,7 +1798,9 @@ module.exports = ({ config }) => {
         description: req.body.description,
         warehouseUuid: req.body.warehouse_uuid,
         quantity: req.body.quantity,
+        quantityOrdered: req.body.quantity_ordered,
         price: req.body.price,
+        priceActual: req.body.price_actual,
         discountRate: req.body.discount_rate,
         isAddQuantity: req.body.is_add_quantity
       }, (err, response) => {
