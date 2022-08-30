@@ -21,6 +21,7 @@ import {
   convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
+  convertChargeFromGRPC,
   convertProductConversionFromGRPC,
   convertProductPriceFromGRPC,
   convertBankAccountFromGRPC,
@@ -244,6 +245,18 @@ function convertPaymentFromGRPC (payment) {
       ),
       payment_method: convertPaymentMethod(
         payment.getPaymentMethod()
+      ),
+      banck_account: convertBankAccountFromGRPC(
+        payment.getBankAccount()
+      ),
+      reference_bank_account: convertBankAccountFromGRPC(
+        payment.getReferenceBankAccount()
+      ),
+      charge: convertChargeFromGRPC(
+        payment.getCharge()
+      ),
+      document_type: convertDocumentTypeFromGRPC(
+        payment.getDocumentType()
       )
     };
   }
@@ -966,7 +979,8 @@ module.exports = ({ config }) => {
         currencyUuid: req.body.currency_uuid,
         paymentMethodUuid: req.body.payment_method_uuid,
         isRefund: req.body.is_refund,
-        collectingAgentUuid: req.body.collecting_agent_uuid
+        collectingAgentUuid: req.body.collecting_agent_uuid,
+        referenceBankAccountUuid: req.body.reference_bank_account_uuid
       }, (err, response) => {
         if (response) {
           res.json({
@@ -1469,7 +1483,8 @@ module.exports = ({ config }) => {
         paymentDate: req.body.payment_date,
         tenderTypeCode: req.body.tender_type_code,
         paymentAccountDate: req.body.payment_account_date,
-        paymentMethodUuid: req.body.payment_method_uuid
+        paymentMethodUuid: req.body.payment_method_uuid,
+        referenceBankAccountUuid: req.body.reference_bank_account_uuid
       }, (err, response) => {
         if (response) {
           res.json({
@@ -1801,11 +1816,10 @@ module.exports = ({ config }) => {
         description: req.body.description,
         warehouseUuid: req.body.warehouse_uuid,
         quantity: req.body.quantity,
-        quantityOrdered: req.body.quantity_ordered,
         price: req.body.price,
-        priceActual: req.body.price_actual,
         discountRate: req.body.discount_rate,
-        isAddQuantity: req.body.is_add_quantity
+        isAddQuantity: req.body.is_add_quantity,
+        uomUuid: req.body.uom_uuid
       }, (err, response) => {
         if (response) {
           res.json({
