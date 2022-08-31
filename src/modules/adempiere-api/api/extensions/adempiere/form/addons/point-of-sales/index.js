@@ -441,6 +441,21 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
   return undefined;
 }
 
+function convertAvalableCashFromGRPC (cashToConvert) {
+  if (cashToConvert) {
+    return {
+      id: cashToConvert.getId(),
+      uuid: cashToConvert.getUuid(),
+      name: cashToConvert.getName(),
+      key: cashToConvert.getKey(),
+      bank_account: convertBankAccountFromGRPC(
+        cashToConvert.getBankAccount()
+      )
+    };
+  }
+  return undefined;
+}
+
 module.exports = ({ config }) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales')
@@ -2893,6 +2908,46 @@ module.exports = ({ config }) => {
               next_page_token: response.getNextPageToken(),
               stocks: response.getStocksList().map(stock => {
                 return convertStock(stock)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Available Cash
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/available-cash', (req, res) => {
+    if (req.query) {
+      service.listAvailableCash({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.query.pos_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getCashList().map(cash => {
+                return convertAvalableCashFromGRPC(cash)
               })
             }
           })
