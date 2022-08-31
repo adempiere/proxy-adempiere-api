@@ -385,6 +385,9 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
       quantity: getDecimalFromGRPC(
         orderLineToConvert.getQuantity()
       ),
+      quantity_ordered: getDecimalFromGRPC(
+        orderLineToConvert.getQuantityOrdered()
+      ),
       price_list: getDecimalFromGRPC(
         orderLineToConvert.getPriceList()
       ),
