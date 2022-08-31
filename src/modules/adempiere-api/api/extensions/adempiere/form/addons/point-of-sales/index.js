@@ -353,6 +353,9 @@ function convertOrderFromGRPC (order) {
       ),
       charge_amount: getDecimalFromGRPC(
         order.getChargeAmount()
+      ),
+      credit_amount: getDecimalFromGRPC(
+        order.getCreditAmount()
       )
     };
   }
