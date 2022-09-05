@@ -257,7 +257,8 @@ function convertPaymentFromGRPC (payment) {
       ),
       document_type: convertDocumentTypeFromGRPC(
         payment.getDocumentType()
-      )
+      ),
+      is_processed: payment.getIsProcessed()
     };
   }
   return undefined;
@@ -387,6 +388,9 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
       ),
       quantity_ordered: getDecimalFromGRPC(
         orderLineToConvert.getQuantityOrdered()
+      ),
+      available_quantity: getDecimalFromGRPC(
+        orderLineToConvert.getAvailableQuantity()
       ),
       price_list: getDecimalFromGRPC(
         orderLineToConvert.getPriceList()
