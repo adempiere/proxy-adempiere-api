@@ -398,6 +398,9 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
       price: getDecimalFromGRPC(
         orderLineToConvert.getPrice()
       ),
+      price_base: getDecimalFromGRPC(
+        orderLineToConvert.getPriceBase()
+      ),
       discount_rate: getDecimalFromGRPC(
         orderLineToConvert.getDiscountRate()
       ),
@@ -407,11 +410,20 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
       tax_amount: getDecimalFromGRPC(
         orderLineToConvert.getTaxAmount()
       ),
+      base_tax_amount: getDecimalFromGRPC(
+        orderLineToConvert.getBaseTaxAmount()
+      ),
+      list_tax_amount: getDecimalFromGRPC(
+        orderLineToConvert.getListTaxAmount()
+      ),
       price_with_tax: getDecimalFromGRPC(
         orderLineToConvert.getPriceWithTax()
       ),
       price_list_with_tax: getDecimalFromGRPC(
         orderLineToConvert.getPriceListWithTax()
+      ),
+      price_base_with_tax: getDecimalFromGRPC(
+        orderLineToConvert.getPriceBaseWithTax()
       ),
       tax_rate: convertTaxRateFromGRPC(
         orderLineToConvert.getTaxRate()
