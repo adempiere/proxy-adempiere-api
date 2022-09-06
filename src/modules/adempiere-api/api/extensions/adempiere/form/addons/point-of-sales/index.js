@@ -226,8 +226,8 @@ function convertPaymentFromGRPC (payment) {
       amount: getDecimalFromGRPC(
         payment.getAmount()
       ),
-      order_currency_rate: getDecimalFromGRPC(
-        payment.getOrderCurrencyRate()
+      converted_amount: getDecimalFromGRPC(
+        payment.getConvertedAmount()
       ),
       tender_type_code: payment.getTenderTypeCode(),
       currency: convertCurrencyFromGRPC(
@@ -277,6 +277,9 @@ function convertPaymentReferenceFromGRPC (refund) {
       ),
       source_amount: getDecimalFromGRPC(
         refund.getSourceAmount()
+      ),
+      converted_amount: getDecimalFromGRPC(
+        refund.getConvertedAmount()
       ),
       tender_type_code: refund.getTenderTypeCode(),
       currency: convertCurrencyFromGRPC(
