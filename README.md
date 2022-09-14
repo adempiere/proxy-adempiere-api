@@ -53,10 +53,70 @@ Details:
 - [Configuration file explained](https://docs.storefrontapi.com/guide/general/config.html)
 
 ### Using Docker hub images
-You can use images from Docker hub:
-- ADempiere Base Server: https://hub.docker.com/r/erpya/adempiere-base
-- Backend gRPC Server: https://hub.docker.com/r/erpya/adempiere-grpc-all-in-one
-- Proxy ADempiere API: https://hub.docker.com/r/erpya/proxy-adempiere-api
+#### You can use images from Docker hub:
+- ADempiere Base Zk: https://hub.docker.com/r/solopcloud/adempiere-base
+- Backend gRPC Server: https://hub.docker.com/r/solopcloud/adempiere-backend
+- ADempiere-Vue: https://hub.docker.com/r/solopcloud/adempiere-vue
+- Proxy ADempiere API: https://hub.docker.com/r/solopcloud/adempiere-proxy
+
+```shell
+docker pull solopcloud/adempiere-proxy:alpine
+```
+
+#### Run with default connection
+For generate your server you should generate a ADempiere Third Party Access token, see the follow image for generate it from ADempiere installed service
+![Generate Token for ADempiere Access](https://user-images.githubusercontent.com/2333092/99605765-bd47a600-29de-11eb-9987-3a7a23f356e3.gif)
+
+Run Docker Image
+```shell
+docker run -it -d \
+	--name proxy-adempiere-api \
+	-p 8085:8085 \
+	-e SERVER_PORT="8085" \
+	-e AD_DEFAULT_HOST="Your_gRPC_Server_IP" \
+	-e AD_DEFAULT_PORT="50059" \
+	docker pull solopcloud/adempiere-proxy:alpine
+```
+#### Environment variables for the configuration
+
+* **`SERVER_PORT`**: Indicates the port on which the RESTful proxy service will start, by default its value is `8085`.
+
+Location Settings:
+* **`LANGUAGE`**: Indicate the language, by default its value is `en_US`
+
+Backend setting:
+* **`AD_DEFAULT_HOST`**: Specifies the host to point to the gRPC service, by default its value is `localhost`. All hosts pointing to gRPC services will take the value you set for this environment variable unless you set a value to overwrite the specific service.
+* **`AD_DEFAULT_PORT`**: Specifies the listening port to point to the gRPC service, by default its value is `50059`. All ports to be pointed to from gRPC services will take the value you set for this environment variable unless you set a value to overwrite the specific service.
+* **`AD_ACCESS_HOST`**: If not set it takes the value of `AD_DEFAULT_HOST`, it is used to indicate the host for the adempiere access grpc service.
+* **`AD_ACCESS_PORT`**: If not set it takes the value of `AD_DEFAULT_PORT`, it is used to indicate the port for the adempiere access grpc service.
+* **`AD_BUSINESS_HOST`**: If not set it takes the value of `AD_DEFAULT_HOST`, it is used to indicate the host for the adempiere business data grpc service.
+* **`AD_BUSINESS_PORT`**: If not set it takes the value of `AD_DEFAULT_PORT`, it is used to indicate the port for the adempiere business data grpc service.
+* **`AD_DICTIONARY_HOST`**: If not set it takes the value of `AD_DEFAULT_HOST`, it is used to indicate the host for the adempiere dictionary grpc service.
+* **`AD_DICTIONARY_PORT`**: If not set it takes the value of `AD_DEFAULT_PORT`, it is used to indicate the port for the adempiere dictionary grpc service.
+* **`API_URL_IMAGES`**: By default its value is `localhost`.
+* **`API_HTTP_BASED`**: By default its value is `false`.
+* **`AD_TOKEN`**: ADempiere access token.
+
+Backend e-Commerce Setting:
+* **`AD_STORE_HOST`**: If not set it takes the value of `AD_DEFAULT_HOST`, it is used to indicate the host for the adempiere store data grpc service.
+* **`AD_STORE_PORT`**: If not set it takes the value of `AD_DEFAULT_PORT`, it is used to indicate the port for the adempiere store data grpc service.
+* **`AD_STORE_ACCESS_HOST`**: It is used to indicate the host for the adempiere access store grpc service. If not set it takes the value of `AD_STORE_HOST` (and if that is not defined then it takes the value of `AD_DEFAULT_HOST`).
+* **`AD_STORE_ACCESS_PORT`**: It is used to indicate the port for the adempiere access store grpc service. If not set it takes the value of `AD_STORE_PORT` (and if that is not defined then it takes the value of `AD_DEFAULT_PORT`).
+* **`STORE_URL_IMAGES`**: By default its value is `localhost`.
+* **`STORE_HTTP_BASED`**: By default its value is `false`.
+* **`AD_STORE_TOKEN`**: Store access token.
+
+Elasticsearch Connection:
+* **`ES_HOST`**: Indicates the host to point to where the elasticsearch service is, by default its value is `localhost`.
+* **`ES_PORT`**: Indicates the listening port of the elasticsearch service to be pointed to, by default its value is `9200`.
+* **`INDEX`**: Elasticsearch index (is like a ‘database’ in a relational database).
+* **`RESTORE_DB`**: If you restore the database and product catalog, the only value that activates it is `Y`.
+
+Redis Connection:
+* **`REDIS_HOST`**: Indicates the host to point to where the redis service is, by default its value is `localhost`.
+* **`REDIS_PORT`**: Indicates the listening port of the redis service to be pointed to, by default its value is `6379`.
+* **`REDIS_DB`**: Indicates the data base to be pointed to, by default its value is `0`.
+
 
 ## Core Team
 
