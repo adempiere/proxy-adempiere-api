@@ -1,3 +1,18 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
 import {
   convertRecordReferenceInfoFromGRPC,
@@ -8,10 +23,11 @@ import {
   convertLookupFromGRPC,
   convertCalloutFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
+
 module.exports = ({ config }) => {
-  let api = Router();
+  const api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const service = new ServiceApi(config)
 
   /**
    * GET Context Information Value
@@ -386,11 +402,12 @@ module.exports = ({ config }) => {
         tabUuid: req.body.tab_uuid,
         callout: req.body.callout,
         columnName: req.body.column_name,
+        valueType: req.body.value_type,
         oldValue: req.body.old_value,
         value: req.body.value,
         windowNo: req.body.window_no,
         contextAttributes: req.body.context_attributes
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
