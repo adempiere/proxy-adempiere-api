@@ -118,5 +118,65 @@ module.exports = ({ config }) => {
     }
   });
 
+  api.post('/start-re-post', (req, res) => {
+    if (req.body) {
+      service.srartRePost({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        tableName: req.body.table_name,
+        recordId: req.body.record_id,
+        recordUuid: req.body.record_uuid,
+        isForce: req.body.is_force,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              error_msg: response.getErrorMsg()
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  api.post('/accounting-facts', (req, res) => {
+    if (req.body) {
+      service.listAccoutingFacts({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        tableName: req.query.table_name,
+        recordId: req.query.record_id,
+        recordUuid: req.query.record_uuid,
+        filters: req.body.filters,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntitiesListFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
   return api;
 };

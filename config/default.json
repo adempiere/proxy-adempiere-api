@@ -277,6 +277,7 @@
         "adempiere/dashboard/addons/tasks",
         "adempiere/dashboard/addons/charts",
         "adempiere/general-ledger",
+        "adempiere/material-management",
         "adempiere/user",
         "adempiere/user/enrollment",
         "adempiere/user/log",
