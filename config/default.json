@@ -294,6 +294,7 @@
         "adempiere/user-interface/component/translation",
         "adempiere/form/addons/payroll-action-notice",
         "adempiere/form/addons/point-of-sales",
+        "adempiere/form/addons/time-control",
         "adempiere/grid",
         "adempiere/business-partner",
         "adempiere/in-out",
