@@ -15,6 +15,10 @@
 
 import { Router } from 'express';
 
+import {
+  getDecimalFromGRPC
+} from '@adempiere/grpc-api/lib/convertBaseDataType.js';
+
 // Convert resourtce type from gRPC to JSON
 function convertResourceType (resourceType) {
   if (resourceType) {
@@ -44,20 +48,21 @@ function convertResource (resource) {
   return undefined;
 }
 
-// Convert resourtce assigment from gRPC to JSON
-function convertResourceAssigment (resourceAssigment) {
-  if (resourceAssigment) {
+// Convert resourtce assignment from gRPC to JSON
+function convertResourceAssignment (resourceAssignment) {
+  if (resourceAssignment) {
     return {
-      id: resourceAssigment.getId(),
-      uuid: resourceAssigment.getUuid(),
+      id: resourceAssignment.getId(),
+      uuid: resourceAssignment.getUuid(),
       resource: convertResource(
-        resourceAssigment.getResource()
+        resourceAssignment.getResource()
       ),
-      name: resourceAssigment.getName(),
-      description: resourceAssigment.getDescription(),
-      assign_date_from: resourceAssigment.getAssignDateFrom(),
-      assign_date_to: resourceAssigment.getAssignDateTo(),
-      is_confirmed: resourceAssigment.getIsConfirmed()
+      name: resourceAssignment.getName(),
+      description: resourceAssignment.getDescription(),
+      assign_date_from: resourceAssignment.getAssignDateFrom(),
+      assign_date_to: resourceAssignment.getAssignDateTo(),
+      is_confirmed: resourceAssignment.getIsConfirmed(),
+      quantity: getDecimalFromGRPC(resourceAssignment.getQuantity())
     }
   }
   return undefined;
@@ -68,21 +73,21 @@ module.exports = ({ config }) => {
   const ServiceApi = require('@adempiere/grpc-api/src/services/timeControl')
   const service = new ServiceApi(config);
 
-  api.get('/create-resource-assigment', (req, res) => {
+  api.get('/create-resource-assignment', (req, res) => {
     if (req.query) {
       service.createResourceAssignment({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
-        typeId: req.query.type_id,
-        typeUuid: req.query.type_uuid,
+        resourceTypeId: req.query.resource_type_id,
+        resourceTypeUuid: req.query.resource_type_uuid,
         name: req.query.name,
         description: req.query.description
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertResourceAssigment(
+            result: convertResourceAssignment(
               response
             )
           })
@@ -105,14 +110,14 @@ module.exports = ({ config }) => {
    * req.query.context_attributes - attributes
    * req.query.filters - filters to reduce list values
    */
-  api.get('/list-resources-assigment', (req, res) => {
+  api.get('/list-resources-assignment', (req, res) => {
     if (req.query) {
-      service.listResourcesAssigment({
+      service.listResourcesAssignment({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
-        typeId: req.query.type_id,
-        typeUuid: req.query.type_uuid,
+        resourceTypeId: req.query.resource_resource_type_id,
+        resourceTypeUuid: req.query.resource_resource_type_uuid,
         name: req.query.name,
         description: req.query.description,
         //  Page Data
@@ -126,7 +131,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(entity => {
-                return convertResourceAssigment(entity);
+                return convertResourceAssignment(entity);
               })
             }
           })
@@ -140,23 +145,21 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.get('/update-resource-assigment', (req, res) => {
+  api.get('/update-resource-assignment', (req, res) => {
     if (req.query) {
       service.updateResourceAssignment({
         token: req.query.token,
         language: req.query.language,
-        id: req.query.uuid,
+        id: req.query.id,
         uuid: req.query.uuid,
         //  DSL Query
-        typeId: req.query.type_id,
-        typeUuid: req.query.type_uuid,
         name: req.query.name,
         description: req.query.description
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertResourceAssigment(
+            result: convertResourceAssignment(
               response
             )
           })
@@ -170,19 +173,43 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.get('/delete-resource-assigment', (req, res) => {
+  api.get('/delete-resource-assignment', (req, res) => {
     if (req.query) {
       service.deleteResourceAssignment({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
-        id: req.query.uuid,
+        id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  api.get('/confirm-resource-assignment', (req, res) => {
+    if (req.query) {
+      service.confirmResourceAssignment({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        id: req.query.id,
+        uuid: req.query.uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertResourceAssignment(response)
           })
         } else if (err) {
           res.json({
