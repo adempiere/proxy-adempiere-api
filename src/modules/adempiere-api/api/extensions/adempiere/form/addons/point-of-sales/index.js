@@ -31,6 +31,7 @@ import {
   convertCurrencyFromGRPC,
   convertWarehouseFromGRPC
 } from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
+import { convertResourceAssignment } from '../../../util/convertData';
 
 function convertPointOfSalesFromGRPC (pointOfSales) {
   if (pointOfSales) {
@@ -460,6 +461,9 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
       ),
       product_uom: convertProductConversionFromGRPC(
         orderLineToConvert.getProductUom()
+      ),
+      resource_assignment: convertResourceAssignment(
+        orderLineToConvert.getResourceAssignment()
       )
     };
   }
@@ -1730,6 +1734,7 @@ module.exports = ({ config }) => {
         orderUuid: req.body.order_uuid,
         productUuid: req.body.product_uuid,
         chargeUuid: req.body.charge_uuid,
+        resourceAssignmentUuid: req.body.resource_assignment_uuid,
         description: req.body.description,
         quantity: req.body.quantity,
         price: req.body.price,

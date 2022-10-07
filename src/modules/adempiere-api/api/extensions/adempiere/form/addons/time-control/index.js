@@ -15,58 +15,7 @@
 
 import { Router } from 'express';
 
-import {
-  getDecimalFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType.js';
-
-// Convert resourtce type from gRPC to JSON
-function convertResourceType (resourceType) {
-  if (resourceType) {
-    return {
-      id: resourceType.getId(),
-      uuid: resourceType.getUuid(),
-      value: resourceType.getValue(),
-      name: resourceType.getName(),
-      description: resourceType.getDescription()
-    }
-  }
-  return undefined;
-}
-
-// Convert resourtce from gRPC to JSON
-function convertResource (resource) {
-  if (resource) {
-    return {
-      id: resource.getId(),
-      uuid: resource.getUuid(),
-      name: resource.getName(),
-      resource_type: convertResourceType(
-        resource.getResourceType()
-      )
-    }
-  }
-  return undefined;
-}
-
-// Convert resourtce assignment from gRPC to JSON
-function convertResourceAssignment (resourceAssignment) {
-  if (resourceAssignment) {
-    return {
-      id: resourceAssignment.getId(),
-      uuid: resourceAssignment.getUuid(),
-      resource: convertResource(
-        resourceAssignment.getResource()
-      ),
-      name: resourceAssignment.getName(),
-      description: resourceAssignment.getDescription(),
-      assign_date_from: resourceAssignment.getAssignDateFrom(),
-      assign_date_to: resourceAssignment.getAssignDateTo(),
-      is_confirmed: resourceAssignment.getIsConfirmed(),
-      quantity: getDecimalFromGRPC(resourceAssignment.getQuantity())
-    }
-  }
-  return undefined;
-}
+import { convertResourceAssignment } from '../../../util/convertData';
 
 module.exports = ({ config }) => {
   const api = Router();
@@ -102,24 +51,22 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET List Accounting Combinations
-   *
-   * req.query.token - user token
-   * req.query.language - login language
-   * req.query.search_value - search value optional
-   * req.query.context_attributes - attributes
-   * req.query.filters - filters to reduce list values
+   * POST List Accounting Combinations
    */
-  api.get('/list-resources-assignment', (req, res) => {
-    if (req.query) {
+  api.post('/list-resources-assignment', (req, res) => {
+    if (req.body) {
       service.listResourcesAssignment({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
-        resourceTypeId: req.query.resource_resource_type_id,
-        resourceTypeUuid: req.query.resource_resource_type_uuid,
-        name: req.query.name,
-        description: req.query.description,
+        resourceTypeId: req.body.resource_type_id,
+        resourceTypeUuid: req.body.resource_type_uuid,
+        name: req.body.name,
+        description: req.body.description,
+        isOnlyConfirmed: req.body.is_only_confirmed,
+        isWaitingForOrdered: req.body.is_waiting_for_ordered,
+        dateFrom: req.body.date_from,
+        dateTo: req.body.date_to,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
