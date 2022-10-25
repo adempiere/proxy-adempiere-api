@@ -63,7 +63,7 @@ module.exports = ({ config }) => {
         resourceTypeUuid: req.body.resource_type_uuid,
         name: req.body.name,
         description: req.body.description,
-        isOnlyConfirmed: req.body.is_only_confirmed,
+        confirmed: req.body.confirmed,
         isWaitingForOrdered: req.body.is_waiting_for_ordered,
         dateFrom: req.body.date_from,
         dateTo: req.body.date_to,
