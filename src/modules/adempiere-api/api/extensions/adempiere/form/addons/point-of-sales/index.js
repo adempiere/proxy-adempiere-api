@@ -1822,7 +1822,8 @@ module.exports = ({ config }) => {
         campaignUuid: req.body.campaign_uuid,
         discountRate: req.body.discount_rate,
         discountRateOff: req.body.discount_rate_off,
-        discountAmountOff: req.body.discount_amount_off
+        discountAmountOff: req.body.discount_amount_off,
+        salesRepresentativeUuid: req.body.sales_representative_uuid
       }, (err, response) => {
         if (response) {
           res.json({
