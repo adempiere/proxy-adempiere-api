@@ -100,6 +100,9 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       maximum_discount_allowed: getDecimalFromGRPC(
         pointOfSales.getMaximumDiscountAllowed()
       ),
+      maximum_line_discount_allowed: getDecimalFromGRPC(
+        pointOfSales.getMaximumLineDiscountAllowed()
+      ),
       write_off_amount_tolerance: getDecimalFromGRPC(
         pointOfSales.getWriteOffAmountTolerance()
       ),
@@ -108,7 +111,8 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       is_allows_preview_document: pointOfSales.getIsAllowsPreviewDocument(),
       is_pos_manager: pointOfSales.getIsPosManager(),
       is_allows_modify_discount: pointOfSales.getIsAllowsModifyDiscount(),
-      is_keep_price_from_customer: pointOfSales.getIsKeepPriceFromCustomer()
+      is_keep_price_from_customer: pointOfSales.getIsKeepPriceFromCustomer(),
+      is_allows_modify_customer: pointOfSales.getIsAllowsModifyCustomer()
     };
   }
   return undefined;
@@ -1902,7 +1906,8 @@ module.exports = ({ config }) => {
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         pin: req.body.pin,
-        requestedAccess: req.body.requested_access
+        requestedAccess: req.body.requested_access,
+        requestedAmount: req.body.requested_amount
       }, (err, response) => {
         if (response) {
           res.json({
