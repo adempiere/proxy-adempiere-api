@@ -291,6 +291,7 @@
         "adempiere/user-interface/component/private-access",
         "adempiere/user-interface/component/record-access",
         "adempiere/user-interface/component/notes",
+        "adempiere/user-interface/component/tab-sequence",
         "adempiere/user-interface/component/translation",
         "adempiere/form/addons/payroll-action-notice",
         "adempiere/form/addons/point-of-sales",
