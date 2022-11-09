@@ -24,7 +24,7 @@ module.exports = ({ config }) => {
   const service = new ServiceApi(config)
 
   /**
-   * POST Tab Sequences
+   * POST List Tab Sequences
    *
    * req.query.token - user token
    * req.query.language - login language
@@ -61,5 +61,40 @@ module.exports = ({ config }) => {
     }
   });
 
+  /**
+   * POST Update Tab Sequences
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.body.tab_uuid - Tab Uuid
+   * req.body.table_name - Table Name
+   * req.body.context_attributes - custom query instead a table name based on SQL
+   * req.body.entities_list - custom query instead a table name based on SQL
+   * Details:
+   */
+  api.post('/save-tab-sequences', (req, res) => {
+    if (req.body) {
+      service.saveTabSequences({
+        token: req.query.token,
+        language: req.query.language,
+        //
+        tabUuid: req.body.tab_uuid,
+        contextAttributes: req.body.context_attributes,
+        entitiesList: req.body.entities_list
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntitiesListFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
   return api;
 };
