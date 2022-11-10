@@ -13,6 +13,10 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
  ************************************************************************************/
 
+import {
+  getDecimalFromGRPC
+} from '@adempiere/grpc-api/lib/convertBaseDataType';
+
 export function convertProductAttributeValue (productAttributeValue) {
   if (!productAttributeValue) {
     return undefined
@@ -80,6 +84,27 @@ export function convertProductAttributeSet (productAttributeSet) {
   }
 }
 
+export function convertProductAttributeInstance (productAttributeInstance) {
+  if (!productAttributeInstance) {
+    return undefined
+  }
+
+  return {
+    id: productAttributeInstance.getId(),
+    uuid: productAttributeInstance.getUuid(),
+    value: productAttributeInstance.getValue(),
+    value_number: getDecimalFromGRPC(
+      productAttributeInstance.getValueNumber()
+    ),
+    product_attribute_id: productAttributeInstance.getProductAttributeId(),
+    product_attribute_uuid: productAttributeInstance.getProductAttributeUuid(),
+    product_attribute_value_id: productAttributeInstance.getProductAttributeValueId(),
+    product_attribute_value_uuid: productAttributeInstance.getProductAttributeValueUuid(),
+    product_attribute_set_instance_id: productAttributeInstance.getProductAttributeSetInstanceId(),
+    product_attribute_set_instance_uuid: productAttributeInstance.getProductAttributeSetInstanceUuid()
+  }
+}
+
 export function convertProductAttributeSetInstance (productAttributeSetInstance) {
   if (!productAttributeSetInstance) {
     return undefined
@@ -95,7 +120,10 @@ export function convertProductAttributeSetInstance (productAttributeSetInstance)
     serial: productAttributeSetInstance.getSerial(),
     product_attribute_set: convertProductAttributeSet(
       productAttributeSetInstance.getProductAttributeSet()
-    )
+    ),
+    product_attribute_instances: productAttributeSetInstance.getProductAttributeInstancesList().map(attributeInstance => {
+      return convertProductAttributeInstance(attributeInstance);
+    })
   }
 }
 
