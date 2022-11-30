@@ -1714,6 +1714,45 @@ module.exports = ({ config }) => {
   });
 
   /**
+   * POST Print Shipment Preview: Run it to preview PDF file for Shipment
+   *
+   * req.query.token - user token
+   * req.query.language - user language
+   * Body:
+   * req.body.pos_uuid - Point Of sales UUID reference
+   * req.body.shipment_uuid - Shipment UUID reference
+   * req.body.report_type - File format to report
+   *
+   * Details:
+   */
+   api.post('/print-shipment-preview', (req, res) => {
+    if (req.body) {
+      service.printShipmentPreview({
+        token: req.query.token,
+        language: req.query.language,
+        posUuid: req.body.pos_uuid,
+        shipmentUuid: req.body.shipment_uuid,
+        reportType: req.body.report_type
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              result: response.getResult(),
+              processLog: convertProcessLogFromGRPC(response.getProcessLog())
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * POST Create Sales Order Line
    *
    * req.query.token - user token
