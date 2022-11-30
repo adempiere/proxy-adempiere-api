@@ -393,6 +393,9 @@ module.exports = ({ config }) => {
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   api.post('/run-callout', (req, res) => {
+    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const service = new ServiceApi(config);
+
     if (req.body) {
       service.runCallout({
         token: req.query.token,
