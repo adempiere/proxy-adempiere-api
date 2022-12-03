@@ -48,12 +48,14 @@ function getResource (service, resourceName, token) {
  *
  * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#img
  */
-export default ({ config, db, service }) =>
-  asyncMiddleware(async (req, res, body) => {
+export default ({ config, db, service: parentService }) => {
+  return asyncMiddleware(async (req, res, body) => {
     if (!(req.method === 'GET')) {
       res.set('Allow', 'GET');
       return res.status(405).send('Method Not Allowed');
     }
+    const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+    const service = new ServiceApi(config);
 
     req.socket.setMaxListeners(config.imageable.maxListeners || 50);
 
@@ -157,6 +159,7 @@ export default ({ config, db, service }) =>
         throw new Error('Unknown action');
     }
   });
+}
 
 function _isUrlWhitelisted (url, whitelistType, defaultValue, whitelist) {
   if (arguments.length !== 4) throw new Error('params are not optional!');

@@ -47,7 +47,7 @@ module.exports = ({ config }) => {
         query: req.query.query,
         uuid: req.query.uuid,
         id: req.query.id
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -91,7 +91,7 @@ module.exports = ({ config }) => {
         uuid: req.query.uuid,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -175,7 +175,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -256,7 +256,7 @@ module.exports = ({ config }) => {
         contextAttributes: req.query.context_attributes,
         id: req.query.id,
         uuid: req.query.uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -328,7 +328,7 @@ module.exports = ({ config }) => {
         columnName: req.query.column_name,
         value: req.query.value,
         contextAttributes: req.query.context_attributes
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -499,7 +499,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

@@ -1,80 +1,27 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
 import {
-  convertAttachmentFromGRPC,
-  convertResourceReferenceFromGRPC,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
-module.exports = ({ config, db }) => {
-  let api = Router();
+module.exports = ({ config }) => {
+  const api = Router();
   const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
-
-  /**
-   * GET Entity Attachment Information
-   *
-   * req.query.token - user token
-   * req.query.id - id of entity
-   * req.query.uuid - uuid of entity
-   * req.query.table_name - table name of entity
-   * req.query.language - login language
-   *
-   * Details:
-   */
-  api.get('/attachment', (req, res) => {
-    if (req.query) {
-      service.getAttachment({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.query.table_name,
-        id: req.query.id,
-        uuid: req.query.uuid
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: convertAttachmentFromGRPC(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
-  });
-
-  /**
-   * GET Resource Reference Information
-   *
-   * req.query.token - user token
-   * req.query.image_id - id of image
-   * req.query.language - login language
-   *
-   * Details:
-   */
-  api.get('/resource-reference', (req, res) => {
-    if (req.query) {
-      service.getResourceReference({
-        token: req.query.token,
-        language: req.query.language,
-        imageId: req.query.image_id
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: convertResourceReferenceFromGRPC(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
-  });
+  const service = new ServiceApi(config)
 
   /**
    * POST Rollback record
@@ -97,7 +44,7 @@ module.exports = ({ config, db }) => {
         uuid: req.body.uuid,
         id: req.body.id,
         logId: req.body.log_id
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

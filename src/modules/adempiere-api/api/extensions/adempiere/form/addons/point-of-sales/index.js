@@ -1725,7 +1725,7 @@ module.exports = ({ config }) => {
    *
    * Details:
    */
-   api.post('/print-shipment-preview', (req, res) => {
+  api.post('/print-shipment-preview', (req, res) => {
     if (req.body) {
       service.printShipmentPreview({
         token: req.query.token,

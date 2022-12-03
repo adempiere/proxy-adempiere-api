@@ -41,21 +41,27 @@ function getResource ({
  *
  * Details: https://sfa-docs.now.sh/guide/default-modules/api.html#img
  */
-export default ({ config, db, service }) =>
-  asyncMiddleware(async (req, res, body) => {
+export default ({ config, db, service: parentService }) => {
+  return asyncMiddleware(async (req, res, body) => {
     if (!(req.method === 'GET')) {
       res.set('Allow', 'GET');
       return res.status(405).send('Method Not Allowed');
     }
     //
     try {
-      let buffer = Buffer.from(await getResource({
-        token: req.query.token,
-        language: req.query.language,
-        resourceUuid: req.query.resource_uuid,
-        resourceName: req.query.resource_name,
-        service
-      }))
+      const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+      const service = new ServiceApi(config);
+
+      let buffer = Buffer.from(
+        await getResource({
+          token: req.query.token,
+          language: req.query.language,
+          resourceUuid: req.query.resource_uuid,
+          resourceName: req.query.resource_name,
+          service
+        })
+      );
+
       if (buffer && buffer.length > 0) {
         return res.status(200).send({
           code: 200,
@@ -74,3 +80,4 @@ export default ({ config, db, service }) =>
       })
     }
   });
+}
