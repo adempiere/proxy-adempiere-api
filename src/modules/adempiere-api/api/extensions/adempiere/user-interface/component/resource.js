@@ -47,6 +47,40 @@ module.exports = ({ config }) => {
   const service = new ServiceApi(config)
 
   /**
+   * GET Exists Attachment
+   *
+   * req.query.token - user token
+   * req.query.record_id - id of entity
+   * req.query.record_uuid - uuid of entity
+   * req.query.table_name - table name of entity
+   * req.query.language - login language
+   */
+  api.get('/exists-attachment', (req, res) => {
+    if (req.query) {
+      service.existsAttachment({
+        token: req.query.token,
+        language: req.query.language,
+        // attachment information
+        tableName: req.query.table_name,
+        recordId: req.query.record_id,
+        recordUuid: req.query.record_uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response.getRecordCount()
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * GET Entity Attachment Information
    *
    * req.query.token - user token
