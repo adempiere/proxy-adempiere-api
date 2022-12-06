@@ -24,13 +24,13 @@
     striptags "^3.0.1"
     word-wrap "^1.2.1"
 
-"@adempiere/grpc-api@3.6.6":
-  version "3.6.6"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.6.6.tgz#d24c753c3e5f034d077ee87416f3dcc6c452b9a3"
-  integrity sha512-wczrqmZFy0MPJbZ4D2bheyBPr+9Dqaz+IHZ08gkd0t1m5VSvuk/sqffarB7AYrnU31NsHxm74uH69E68e/S7+A==
+"@adempiere/grpc-api@3.6.8":
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.6.8.tgz#5e747c4bd46ea77a40c41303b14f0d66e751184c"
+  integrity sha512-KSVCpz/NrxcKsBEuH/Cm/59rFzdku9PDuDW4bn2oxAiFv4g31i4fNj5ODst8kh3/iSff8ZscNYhxclreTL6JAA==
   dependencies:
-    "@grpc/grpc-js" "1.7.0"
-    google-protobuf "3.21.0"
+    "@grpc/grpc-js" "1.7.3"
+    google-protobuf "3.21.2"
 
 "@adempiere/grpc-web-store-api@1.5.7":
   version "1.5.7"
@@ -1207,10 +1207,10 @@
   dependencies:
     "@types/node" ">=12.12.47"
 
-"@grpc/grpc-js@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.7.0.tgz#5a96bdbe51cce23faa38a4db6e43595a5c584849"
-  integrity sha512-wvKxal+40Xx11DXO2q5PfY3UiE25iwTb8SOz6A9IJII/V7d19x2ex0he+GJfVW0JZCaBjCPSjUB0yU9Ecm4WCw==
+"@grpc/grpc-js@1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.7.3.tgz#f2ea79f65e31622d7f86d4b4c9ae38f13ccab99a"
+  integrity sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==
   dependencies:
     "@grpc/proto-loader" "^0.7.0"
     "@types/node" ">=12.12.47"
@@ -8155,10 +8155,10 @@ google-protobuf@3.17.3:
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.17.3.tgz#f87595073545a77946c8f0b67c302c5f7646d700"
   integrity sha512-OVPzcSWIAJ+d5yiHyeaLrdufQtrvaBrF4JQg+z8ynTkbO3uFcujqXszTumqg1cGsAsjkWnI+M5B1xZ19yR4Wyg==
 
-google-protobuf@3.21.0:
-  version "3.21.0"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.21.0.tgz#8dfa3fca16218618d373d414d3c1139e28034d6e"
-  integrity sha512-byR7MBTK4tZ5PZEb+u5ZTzpt4SfrTxv5682MjPlHN16XeqgZE2/8HOIWeiXe8JKnT9OVbtBGhbq8mtvkK8cd5g==
+google-protobuf@3.21.2:
+  version "3.21.2"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.21.2.tgz#4580a2bea8bbb291ee579d1fefb14d6fa3070ea4"
+  integrity sha512-3MSOYFO5U9mPGikIYCzK0SaThypfGgS6bHqrUGXG3DPHCrb+txNqeEcns1W0lkGfk0rCyNXm7xB9rMxnCiZOoA==
 
 got@^6.7.1:
   version "6.7.1"

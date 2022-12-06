@@ -93,6 +93,44 @@ module.exports = ({ config }) => {
   });
 
   /**
+   * POST Resource Reference
+   *
+   * req.query.token - user token
+   * req.query.image_id - id of image
+   * req.query.language - login language
+   *
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  api.post('/set-resource-reference', (req, res) => {
+    if (req.body) {
+      service.setResourceReference({
+        token: req.query.token,
+        language: req.query.language,
+        // attachment values
+        tableName: req.body.table_name,
+        recordId: req.body.record_id,
+        recordUuid: req.body.record_uuid,
+        // attachment reference values
+        textMessage: req.body.text_message,
+        fileName: req.body.file_name,
+        fileSize: req.body.file_size
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertResourceReferenceFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
    * GET Resource Reference Information
    *
    * req.query.token - user token
