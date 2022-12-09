@@ -118,12 +118,36 @@ module.exports = ({ config }) => {
   /**
    * TODO: Add support in the BackEnd and Generate Proto
    */
-  api.post('/save-attachment', upload.single('avatar'), (req, res) => {
-    console.log(req.avatar)
-    res.json({
-      code: 200,
-      result: 'OK'
-    })
+  api.post('/save-attachment', upload.single('file'), (req, res) => {
+    if (req.body) {
+      const fileName = req.body.file_name;
+
+      service.loadResource({
+        token: req.query.token,
+        language: req.query.language,
+        // attachment resource
+        fileName: fileName,
+        resourceUuid: req.body.resource_uuid,
+        file: req.file
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response
+          })
+        } else if (err) {
+          const filePath = uploadPath + '/' + fileName
+          if (fs.existsSync(filePath)) {
+            console.log('Delete file: ' + fileName)
+            fs.promises.unlink(filePath);
+          }
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
   });
 
   /**

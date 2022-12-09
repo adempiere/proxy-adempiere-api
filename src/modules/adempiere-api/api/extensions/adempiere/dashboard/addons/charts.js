@@ -15,7 +15,7 @@
 
 import { Router } from 'express';
 import {
-  convertDashboardFromGRPC
+  convertChartFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }) => {
@@ -24,37 +24,26 @@ module.exports = ({ config }) => {
   const service = new ServiceApi(config)
 
   /**
-   * GET Dashboards
+   * GET Chart Data
    *
    * req.query.token - user token
    * req.query.language - login language
-   * req.query.page_size - size of page (customized)
-   * req.query.page_token - token of page (optional for get a specific page)
-   * req.query.role_uuid - uuid of current role
-   * req.query.role_id - id of current role
+   * req.query.uuid - uuid of chart
+   * req.query.id - id of chart
    * Details:
    */
-  api.get('/dashboards', (req, res) => {
+  api.get('/metrics', (req, res) => {
     if (req.query) {
-      service.listDashboards({
+      service.getChart({
         token: req.query.token,
         language: req.query.language,
-        roleUuid: req.query.role_uuid,
-        roleId: req.query.role_id,
-        //  Page Data
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
+        uuid: req.query.uuid,
+        id: req.query.id
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getDashboardsList().map(dadshboard => {
-                return convertDashboardFromGRPC(dadshboard)
-              })
-            }
+            result: convertChartFromGRPC(response)
           })
         } else if (err) {
           res.json({
