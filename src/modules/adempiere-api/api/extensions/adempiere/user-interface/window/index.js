@@ -26,8 +26,8 @@ import {
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  const service = new ServiceApi(config)
+  const ServiceApi = require('@adempiere/grpc-api');
+  const service = new ServiceApi(config);
 
   /**
    * GET Context Information Value
@@ -102,6 +102,45 @@ module.exports = ({ config }) => {
                 return convertRecordReferenceInfoFromGRPC(reference)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Exists References on Record
+   *
+   * req.query.token - user token
+   * req.query.record_id - id of entity
+   * req.query.record_uuid - uuid of entity
+   * req.query.tab_id - tab of entity
+   * req.query.tab_uuid - tab of entity
+   * req.query.language - login language
+   */
+  api.get('/exists-references', (req, res) => {
+    if (req.query) {
+      const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+      const service = new ServiceApi(config);
+
+      service.existsReferences({
+        token: req.query.token,
+        language: req.query.language,
+        // record information
+        tabId: req.query.tab_id,
+        tabUuid: req.query.tab_uuid,
+        recordId: req.query.record_id,
+        recordUuid: req.query.record_uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response.getRecordCount()
           })
         } else if (err) {
           res.json({
