@@ -21,7 +21,12 @@ import { Router } from 'express';
 // } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import { convertLookupFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
 import {
-  getPaymentSelectionFromGRPC
+  getPaymentSelectionFromGRPC,
+  getPaymentFromGRPC,
+  getProcessFromGRPC,
+  getExportFromGRPC,
+  getPrintFromGRPC,
+  getPrintRemittanceFromGRPC
 } from '@adempiere/grpc-api/src/utils/paymentPrintExportFromGRPC';
 
 module.exports = ({ config }) => {
@@ -55,13 +60,12 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.post('/list-payment-selection', (req, res) => {
+  api.post('/list-payment-selections', (req, res) => {
     if (req.body) {
       service.listPaymentSelection({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
-        contextAttributes: req.body.context_attributes,
         searchValue: req.body.search_value,
         //  Page Data
         pageSize: req.query.page_size,
@@ -122,6 +126,40 @@ module.exports = ({ config }) => {
     }
   });
 
+  api.post('/list-payments', (req, res) => {
+    if (req.body) {
+      service.listPaymentSelection({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        searchValue: req.body.search_value,
+        paymentSelectionId: req.body.payment_selection_id,
+        paymentSelectionUuid: req.body.payment_selection_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(payment => {
+                return getPaymentFromGRPC(payment)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
   api.get('document-no', (req, res) => {
     if (req.query) {
       service.getDocumentNo({
@@ -150,9 +188,9 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.post('/create-eft-payment', (req, res) => {
+  api.post('/process', (req, res) => {
     if (req.body) {
-      service.createEFTPayment({
+      service.process({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
@@ -165,7 +203,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getPaymentSelectionFromGRPC(
+            result: getProcessFromGRPC(
               response
             )
           })
@@ -179,9 +217,9 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.post('/print-payments', (req, res) => {
+  api.post('/export', (req, res) => {
     if (req.body) {
-      service.printPayments({
+      service.export({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
@@ -194,7 +232,36 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getPaymentSelectionFromGRPC(
+            result: getExportFromGRPC(
+              response
+            )
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  api.post('/print', (req, res) => {
+    if (req.body) {
+      service.print({
+        token: req.query.token,
+        language: req.query.language,
+        //  DSL Query
+        paymentSelectionId: req.body.payment_selection_id,
+        paymentSelectionUuid: req.body.payment_selection_uuid,
+        paymentRuleId: req.body.payment_rule_id,
+        paymentRuleUuid: req.body.payment_rule_uuid,
+        documentNo: req.body.document_no
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getPrintFromGRPC(
               response
             )
           })
@@ -223,9 +290,9 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getPaymentSelectionFromGRPC(
-              response
-            )
+            result: {
+              document_no: response.getDocumentNo()
+            }
           })
         } else if (err) {
           res.json({
@@ -252,7 +319,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getPaymentSelectionFromGRPC(
+            result: getPrintRemittanceFromGRPC(
               response
             )
           })
