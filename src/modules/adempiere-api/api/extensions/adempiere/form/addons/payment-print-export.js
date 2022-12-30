@@ -15,10 +15,6 @@
 
 import { Router } from 'express';
 
-// import { convertEntitiesListFromGRPC } from '../../../util/convertData';
-// import {
-//   convertEntityFromGRPC
-// } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import { convertLookupFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
 import {
   getPaymentSelectionFromGRPC,
@@ -62,7 +58,7 @@ module.exports = ({ config }) => {
 
   api.post('/list-payment-selections', (req, res) => {
     if (req.body) {
-      service.listPaymentSelection({
+      service.listPaymentSelections({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
@@ -128,13 +124,15 @@ module.exports = ({ config }) => {
 
   api.post('/list-payments', (req, res) => {
     if (req.body) {
-      service.listPaymentSelection({
+      service.listPayments({
         token: req.query.token,
         language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,
+        paymentRuleId: req.body.payment_rule_id,
+        paymentRuleUuid: req.body.payment_rule_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -160,14 +158,14 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.get('document-no', (req, res) => {
+  api.get('/document-no', (req, res) => {
     if (req.query) {
       service.getDocumentNo({
         token: req.query.token,
         language: req.query.language,
         // DSL Query
-        paymentSelectionId: req.query.payment_selection_id,
-        paymentSelectionUuid: req.query.payment_selection_uuid,
+        bankAccountId: req.query.bank_account_id,
+        bankAccountUuid: req.query.bank_account_uuid,
         paymentRuleId: req.query.payment_rule_id,
         paymentRuleUuid: req.query.payment_rule_uuid
       }, (err, response) => {
