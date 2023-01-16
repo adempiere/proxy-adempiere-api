@@ -477,6 +477,9 @@ module.exports = ({ config }) => {
    * Details:
    */
   api.get('/entity', (req, res) => {
+    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const service = new ServiceApi(config);
+
     if (req.query) {
       service.getTabEntity({
         token: req.query.token,
@@ -549,6 +552,110 @@ module.exports = ({ config }) => {
                 return convertEntityFromGRPC(entity);
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Create Entity data
+   *
+   * req.query.token - user token
+   * req.body.tab_uuid - Uuid for tab
+   * req.body.attributes - attributes for entity
+   "attributes": [
+      {
+        "key": "AD_Client_ID",
+        "value": 1000000
+      },
+      {
+        "key": "Created",
+        "value": "2020-10-13T16:14:23.000Z"
+      },
+      {
+        "key": "IsActive",
+        "value": true
+      },
+      {
+        "key": "Name",
+        "value": "Solo Pruebas"
+      },
+      {
+        "key": "UUID",
+        "value": "c326454b-0b5a-441d-8312-c86d504820ca"
+      },
+      {
+        "key": "Value",
+        "value": "Solo Pruebas"
+      }
+    ]
+   * Details:
+   */
+  api.post('/create-entity', (req, res) => {
+    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const service = new ServiceApi(config);
+
+    if (req.body) {
+      service.createTabEntity({
+        token: req.query.token,
+        language: req.query.language,
+        tabUuid: req.body.tab_uuid,
+        attributes: req.body.attributes
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntityFromGRPC(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Update Entity data
+   *
+   * req.query.token - user token
+   * req.body.tab_uuid - Uuid for tab
+   * req.body.id - id of entity
+   * req.body.uuid - uuid of entity
+   * req.body.attributes - attributes for entity
+   * req.query.language - login language
+   "attributes": [
+      {
+        "key": "AD_Client_ID",
+        "value": 1000000
+      },
+    ]
+   */
+  api.post('/update-entity', (req, res) => {
+    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const service = new ServiceApi(config);
+
+    if (req.body) {
+      service.updateTabEntity({
+        token: req.query.token,
+        language: req.query.language,
+        tabUuid: req.body.tab_uuid,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        attributes: req.body.attributes
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertEntityFromGRPC(response)
           })
         } else if (err) {
           res.json({
