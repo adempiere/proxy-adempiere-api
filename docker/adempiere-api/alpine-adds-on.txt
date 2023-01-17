@@ -1,1 +1,0 @@
-apk --no-cache --update upgrade musl \&\& \\\ \n    apk add --no-cache --virtual .build-deps \\\ \n    curl git python make g++ ca-certificates wget \&\& \\\ \n    sh setting.sh \&\& \\\ \n    apk del .build-deps

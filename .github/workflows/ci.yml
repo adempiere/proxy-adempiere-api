@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Container Registry and Docker Hub Regitry when a pushed into main branches
 # This file was contributed by EdwinBetanc0urt@outlook.com from ERP Consultores y Asociados, C.A
 
-name: Push Main Branches
+name: Continuous Integration
 
 on:
   # Triggers the workflow on push events but only for the main branches
@@ -12,6 +12,15 @@ on:
       - experimental
     paths-ignore:
       - 'docs/**'
+
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+      - experimental
+      - bugfix/**
+      - feature/**
 
 jobs:
 

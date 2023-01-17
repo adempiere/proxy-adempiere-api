@@ -83,6 +83,7 @@ docker run -it -d \
 
 Location Settings:
 * **`LANGUAGE`**: Indicate the language, by default its value is `en_US`
+* **`TZ`**: (Time Zone) Indicates the time zone to set in the nginx-based container, the default value is `America/Caracas` (UTC -4:00).
 
 Backend setting:
 * **`AD_DEFAULT_HOST`**: Specifies the host to point to the gRPC service, by default its value is `localhost`. All hosts pointing to gRPC services will take the value you set for this environment variable unless you set a value to overwrite the specific service.

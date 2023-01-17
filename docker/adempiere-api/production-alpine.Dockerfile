@@ -23,7 +23,8 @@ ENV \
 	STORE_HTTP_BASED="false"\
 	RESTORE_DB="N" \
 	INDEX="vue_storefront_catalog" \
-	LANGUAGE="en_US"
+	LANGUAGE="en_US" \
+	TZ="America/Caracas"
 
 WORKDIR /var/www/proxy-adempiere-api/
 
@@ -36,11 +37,19 @@ COPY docker/adempiere-api/setting.sh /var/www/proxy-adempiere-api/setting.sh
 
 
 RUN cd /var/www/proxy-adempiere-api/ && \
-    addgroup adempiere && \
-    adduser --disabled-password --gecos ""  --ingroup adempiere --no-create-home adempiere && \
-    chown -R adempiere ../ && \
-    chmod +x *.sh && \
-    sh setting.sh
+	addgroup adempiere && \
+	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
+	chown -R adempiere ../ && \
+	chmod +x *.sh && \
+	# set time zone
+	echo $TZ > /etc/timezone && \
+	apk add --no-cache tzdata && \
+	# install operative system dependencies
+	apk --no-cache --update upgrade musl && \
+	apk add --no-cache --virtual .build-deps \
+		curl git python make g++ ca-certificates wget && \
+	sh setting.sh && \
+	apk del .build-deps
 
 
 USER adempiere
