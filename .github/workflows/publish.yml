@@ -2,7 +2,7 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 # This file was contributed by EdwinBetanc0urt@outlook.com from ERP Consultores y Asociados, C.A
 
-name: Publish Proxy ADempiere API
+name: Publish Project
 
 on:
   release:
@@ -121,9 +121,9 @@ jobs:
             echo "::set-output name=is_have_secrets::false"
           fi
 
-  # Publish docker image in Docker Hub registry to application
+  # Publish docker alpine image in Docker Hub registry to application
   push-alpine-imame-dhr:
-    name: Push Docker image to Docker Hub
+    name: Push docker alpine image to Docker Hub
     needs:
       - check-docker-secrets
     # Skip step based on secret
@@ -162,7 +162,7 @@ jobs:
 
   # Publish docker image in Docker Hub registry to application
   push-imame-dhr:
-    name: Push Docker image to Docker Hub
+    name: Push docker image to Docker Hub
     needs:
       - check-docker-secrets
     # Skip step based on secret

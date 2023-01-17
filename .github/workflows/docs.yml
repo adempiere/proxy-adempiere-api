@@ -1,7 +1,7 @@
 # This workflow will be deployed documentation using node in GitHub Pages when a change is generated in the 'docs/' folder.
 # This file was contributed by Carlos Parada and Yamel Senih from ERP Consultores y Asociados, C.A
 
-name: ADempiere Proxy Deploy on Github Pages
+name: Docs Deploy on Github Pages
 
 # Controls when the action will run. 
 on:
@@ -10,6 +10,7 @@ on:
       # Push events on master and develop branchs
       - master
       - develop
+      - experimental
     # takes only the directory changes
     paths:
       - 'docs/**'
