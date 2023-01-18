@@ -18,7 +18,7 @@ import {
   convertFavoriteFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 import {
-  convertRecentItemFromGRPC
+  getRecentItemFromGRPC
 } from '@adempiere/grpc-api/src/utils/logsFromGRPC';
 
 module.exports = ({ config }) => {
@@ -104,7 +104,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecentItemsList().map(recentItem => {
-                return convertRecentItemFromGRPC(recentItem)
+                return getRecentItemFromGRPC(recentItem)
               })
             }
           })

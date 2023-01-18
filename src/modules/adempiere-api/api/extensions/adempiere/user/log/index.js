@@ -4,10 +4,11 @@ import {
   convertEntityLogFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
-  convertEntityChatsFromGRPC,
   convertChatEntryFromGRPC
-  // convertRecentItemFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
+import {
+  getEntityChatsFromGRPC
+} from '@adempiere/grpc-api/src/utils/logsFromGRPC';
 import { convertWorkflowProcessFomGRPC } from '@adempiere/grpc-api/lib/convertWorkflow';
 
 module.exports = ({ config }) => {
@@ -146,9 +147,44 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getEntityChatsList().map(entityChat => {
-                return convertEntityChatsFromGRPC(entityChat)
+                return getEntityChatsFromGRPC(entityChat)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET Exists chats entries
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_name - table name
+   * req.query.record_id - record identifier
+   * req.query.record_uuid - record uuid
+   * Details:
+   */
+  api.get('/exists-chat-entries', (req, res) => {
+    if (req.query) {
+      service.existsChatEntries({
+        token: req.query.token,
+        language: req.query.language,
+        recordId: req.query.record_id,
+        recordUuid: req.query.record_uuid,
+        //  Running parameters
+        tableName: req.query.table_name
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: response.getRecordCount()
           })
         } else if (err) {
           res.json({
