@@ -3,7 +3,6 @@ node_modules/
 dist/
 docs/public
 npm-debug.log
-.vscode/
 .idea/
 api_start.sh
 api_test.sh
