@@ -16,24 +16,22 @@
 import { Router } from 'express';
 import fs from 'fs';
 import multer from 'multer';
-import mimeTypes from 'mime-types';
 import {
   convertAttachmentFromGRPC,
   convertResourceReferenceFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
-const uploadPath = 'tmp'
+const os = require('os');
+const path = require('path');
+const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
 
+
+const uploadPath = 'tmp';
 const storage = multer.diskStorage({
-  destination: uploadPath + '/',
-  filename: (req, file, callback) => {
-    const dir = uploadPath;
-    // create folder if no exists
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    callback(null, file.originalname + '.' + (mimeTypes.extension(file.mimetype)));
+  destination: os.tmpdir(),
+  filename: 
+  (req, file, callback) => {
+    callback(null, req.body.file_name);
   }
 })
 
@@ -121,14 +119,11 @@ module.exports = ({ config }) => {
   api.post('/save-attachment', upload.single('file'), (req, res) => {
     if (req.body) {
       const fileName = req.body.file_name;
-
-      service.loadResource({
+      const completeName = getCompleteFileName(fileName);
+      const resourceUuid = req.body.resource_uuid;
+      let call = service.loadResource({
         token: req.query.token,
-        language: req.query.language,
-        // attachment resource
-        fileName: fileName,
-        resourceUuid: req.body.resource_uuid,
-        file: req.file
+        language: req.query.language 
       }, (err, response) => {
         if (response) {
           res.json({
@@ -136,19 +131,40 @@ module.exports = ({ config }) => {
             result: response
           })
         } else if (err) {
-          const filePath = uploadPath + '/' + fileName
-          if (fs.existsSync(filePath)) {
+          if (fs.existsSync(completeName)) {
             console.log('Delete file: ' + fileName)
-            fs.promises.unlink(filePath);
+            fs.promises.unlink(completeName);
           }
           res.json({
             code: 500,
             result: err.details
           })
         }
+        call.end();
       })
+      const { LoadResourceRequest } = stubLoader;
+      const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
+      let bufferSize = 256 * 1024; // 256k
+      var buffer = fs.readFileSync(completeName);
+      var length = buffer.length;
+      var chunkPosition = 0;
+      while (chunkPosition < length) {
+        let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
+        const request = new LoadResourceRequest();
+        request.setResourceUuid(resourceUuid);
+        request.setFileSize(getDecimalFromNumber(length));
+        request.setData(bytes);
+        call.write(request);
+      }
+      setTimeout(() => {
+        call.end();
+      }, 5000);
     }
   });
+
+  function getCompleteFileName(fileName) {
+    return path.join(os.tmpdir(), fileName);
+  }
 
   /**
    * POST Resource Reference
