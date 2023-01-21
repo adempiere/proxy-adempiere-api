@@ -286,6 +286,7 @@
         "adempiere/user-interface/window",
         "adempiere/user-interface/smart-browser",
         "adempiere/user-interface/process",
+        "adempiere/user-interface/component/issue",
         "adempiere/user-interface/component/notes",
         "adempiere/user-interface/component/preference",
         "adempiere/user-interface/component/private-access",
