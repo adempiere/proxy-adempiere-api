@@ -23,14 +23,14 @@ import {
 
 const os = require('os');
 const path = require('path');
-const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
 
+function getCompleteFileName (fileName) {
+  return path.join(os.tmpdir(), fileName);
+}
 
-const uploadPath = 'tmp';
 const storage = multer.diskStorage({
   destination: os.tmpdir(),
-  filename: 
-  (req, file, callback) => {
+  filename: (req, file, callback) => {
     callback(null, req.body.file_name);
   }
 })
@@ -114,16 +114,19 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * TODO: Add support in the BackEnd and Generate Proto
+   * Upload attachemnt file
+   * @param {string} file_name
+   * @param {string} resource_uuid
    */
   api.post('/save-attachment', upload.single('file'), (req, res) => {
     if (req.body) {
       const fileName = req.body.file_name;
       const completeName = getCompleteFileName(fileName);
       const resourceUuid = req.body.resource_uuid;
-      let call = service.loadResource({
+
+      const call = service.loadResource({
         token: req.query.token,
-        language: req.query.language 
+        language: req.query.language
       }, (err, response) => {
         if (response) {
           res.json({
@@ -141,13 +144,16 @@ module.exports = ({ config }) => {
           })
         }
         call.end();
-      })
+      });
+
+      const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
       const { LoadResourceRequest } = stubLoader;
       const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
-      let bufferSize = 256 * 1024; // 256k
-      var buffer = fs.readFileSync(completeName);
-      var length = buffer.length;
-      var chunkPosition = 0;
+
+      const bufferSize = 256 * 1024; // 256k
+      const buffer = fs.readFileSync(completeName);
+      const length = buffer.length;
+      let chunkPosition = 0;
       while (chunkPosition < length) {
         let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
         const request = new LoadResourceRequest();
@@ -158,13 +164,13 @@ module.exports = ({ config }) => {
       }
       setTimeout(() => {
         call.end();
-      }, 5000);
+        if (fs.existsSync(completeName)) {
+          console.log('Delete temporary file uploaded: ' + fileName)
+          fs.promises.unlink(completeName);
+        }
+      }, 300);
     }
   });
-
-  function getCompleteFileName(fileName) {
-    return path.join(os.tmpdir(), fileName);
-  }
 
   /**
    * POST Resource Reference
