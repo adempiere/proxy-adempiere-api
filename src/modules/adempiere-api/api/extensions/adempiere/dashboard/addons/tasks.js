@@ -15,7 +15,7 @@
 
 import { Router } from 'express';
 import {
-  convertPendingDocumentFromGRPC
+  getPendingDocumentFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }) => {
@@ -56,7 +56,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getPendingDocumentsList().map(pendingDocument => {
-                return convertPendingDocumentFromGRPC(pendingDocument)
+                return getPendingDocumentFromGRPC(pendingDocument)
               })
             }
           })

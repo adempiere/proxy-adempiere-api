@@ -15,7 +15,7 @@
 
 import { Router } from 'express';
 import {
-  convertChartFromGRPC
+  getChartFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }) => {
@@ -43,7 +43,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertChartFromGRPC(response)
+            result: getChartFromGRPC(response)
           })
         } else if (err) {
           res.json({

@@ -15,7 +15,7 @@
 
 import { Router } from 'express';
 import {
-  convertFavoriteFromGRPC
+  getFavoriteFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 import {
   getRecentItemFromGRPC
@@ -55,7 +55,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getFavoritesList().map(favorite => {
-                return convertFavoriteFromGRPC(favorite)
+                return getFavoriteFromGRPC(favorite)
               })
             }
           })

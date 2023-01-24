@@ -15,7 +15,8 @@
 
 import { Router } from 'express';
 import {
-  convertDashboardFromGRPC
+  getDashboardFromGRPC,
+  getNotificationFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }) => {
@@ -52,7 +53,47 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getDashboardsList().map(dadshboard => {
-                return convertDashboardFromGRPC(dadshboard)
+                return getDashboardFromGRPC(dadshboard)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Notifications
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.page_size - size of page (customized)
+   * req.query.page_token - token of page (optional for get a specific page)
+   * Details:
+   */
+  api.get('/list-notifications', (req, res) => {
+    if (req.query) {
+      service.listNotifications({
+        token: req.query.token,
+        language: req.query.language,
+        searchValue: req.query.search_Value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getNotificationsList().map(notification => {
+                return getNotificationFromGRPC(notification)
               })
             }
           })
