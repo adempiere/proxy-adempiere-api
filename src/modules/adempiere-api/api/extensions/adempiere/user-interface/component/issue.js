@@ -499,8 +499,8 @@ module.exports = ({ config }) => {
         token: req.query.token,
         language: req.query.language,
         // DSL
-        issueId: req.body.issue_id,
-        issueUuid: req.body.issue_uuid,
+        id: req.body.id,
+        uuid: req.body.uuid,
         result: req.body.result,
         dateNextAction: req.body.date_next_action
       }, (err, response) => {
