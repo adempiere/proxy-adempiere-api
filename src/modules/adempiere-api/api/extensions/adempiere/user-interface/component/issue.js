@@ -459,7 +459,7 @@ module.exports = ({ config }) => {
    */
   api.post('/create-issue-comment', (req, res) => {
     if (req.body) {
-      service.createIssue({
+      service.createIssueComment({
         token: req.query.token,
         language: req.query.language,
         // DSL
@@ -471,7 +471,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getIssueFromGRPC(response)
+            result: getIssueCommentFromGRPC(response)
           });
         } else if (err) {
           res.json({
