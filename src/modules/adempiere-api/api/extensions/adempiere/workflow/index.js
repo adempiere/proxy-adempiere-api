@@ -1,10 +1,25 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
 import {
-  convertWorkflowDefinitionFromGRPC,
-  convertWorkflowActivityFromGRPC,
-  convertDocumentAction,
-  convertDocumentStatus
-} from '@adempiere/grpc-api/lib/convertWorkflow';
+  getWorkflowDefinitionFromGRPC,
+  getWorkflowActivityFromGRPC,
+  getDocumentActionFromGRPC,
+  gettDocumentStatusFromGRPC
+} from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
 import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config }) => {
@@ -33,7 +48,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertWorkflowDefinitionFromGRPC(response)
+            result: getWorkflowDefinitionFromGRPC(response)
           })
         } else if (err) {
           res.json({
@@ -72,7 +87,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getWorkflowsList().map(workflow => {
-                return convertWorkflowDefinitionFromGRPC(workflow)
+                return getWorkflowActivityFromGRPC(workflow)
               })
             }
           })
@@ -113,9 +128,82 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getActivitiesList().map(workflowActivity => {
-                return convertWorkflowActivityFromGRPC(workflowActivity)
+                return getWorkflowActivityFromGRPC(workflowActivity)
               })
             }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Process Workflow Acitity
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
+   * req.query.document_action - Current Action
+   * Details:
+   */
+  api.post('/process-workflow-activity', (req, res) => {
+    if (req.body) {
+      service.process({
+        token: req.query.token,
+        language: req.query.language,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        message: req.body.message,
+        isApproved: req.body.is_approved
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'OK'
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST Forward Process Activity
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.table_name - table name (Mandatory for get translation)
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
+   * req.query.document_action - Current Action
+   * Details:
+   */
+  api.post('/forward-workflow-activity', (req, res) => {
+    if (req.body) {
+      service.forward({
+        token: req.query.token,
+        language: req.query.language,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        message: req.body.message,
+        userId: req.body.user_id,
+        userUuid: req.body.user_uuid
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'OK'
           })
         } else if (err) {
           res.json({
@@ -161,9 +249,9 @@ module.exports = ({ config }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              default_document_action: convertDocumentAction(response.getDefaultDocumentAction()),
+              default_document_action: getDocumentActionFromGRPC(response.getDefaultDocumentAction()),
               records: response.getDocumentActionsList().map(documentAction => {
-                return convertDocumentAction(documentAction)
+                return getDocumentActionFromGRPC(documentAction)
               })
             }
           })
@@ -210,7 +298,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getDocumentStatusesList().map(documentStatus => {
-                return convertDocumentStatus(documentStatus)
+                return gettDocumentStatusFromGRPC(documentStatus)
               })
             }
           })

@@ -9,7 +9,9 @@ import {
 import {
   getEntityChatsFromGRPC
 } from '@adempiere/grpc-api/src/utils/logsFromGRPC';
-import { convertWorkflowProcessFomGRPC } from '@adempiere/grpc-api/lib/convertWorkflow';
+import {
+  getWorkflowProcessFomGRPC
+} from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
 
 module.exports = ({ config }) => {
   const api = Router();
@@ -45,7 +47,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -273,7 +275,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getWorkflowLogsList().map(workflowLog => {
-                return convertWorkflowProcessFomGRPC(workflowLog)
+                return getWorkflowProcessFomGRPC(workflowLog)
               })
             }
           })
