@@ -18,7 +18,7 @@ import {
   getWorkflowDefinitionFromGRPC,
   getWorkflowActivityFromGRPC,
   getDocumentActionFromGRPC,
-  gettDocumentStatusFromGRPC
+  getDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
 import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
@@ -298,7 +298,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getDocumentStatusesList().map(documentStatus => {
-                return gettDocumentStatusFromGRPC(documentStatus)
+                return getDocumentStatusFromGRPC(documentStatus)
               })
             }
           })
