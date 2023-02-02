@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Product: ADempiere gRPC User Interface Client                                     *
+ * Product: ADempiere gRPC Issue Management Client                                   *
  * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
@@ -292,6 +292,7 @@ module.exports = ({ config }) => {
    * req.body.summary - summary
    * req.body.requestTypeId - request type id
    * req.body.requestTypeUuid - request type uuid
+   * req.body.dateNextAction - date to next action
    */
   api.post('/create-issue', (req, res) => {
     if (req.body) {
@@ -310,7 +311,8 @@ module.exports = ({ config }) => {
         salesRepresentativeUuid: req.body.sales_representative_uuid,
         statusId: req.body.status_id,
         statusUuid: req.body.status_uuid,
-        priorityValue: req.body.priority_value
+        priorityValue: req.body.priority_value,
+        dateNextAction: req.body.date_next_action
       }, (err, response) => {
         if (response) {
           res.json({
@@ -338,6 +340,7 @@ module.exports = ({ config }) => {
    * req.body.summary - summary
    * req.body.requestTypeId - request type id
    * req.body.requestTypeUuid - request type uuid
+   * req.body.dateNextAction - date to next action
    */
   api.post('/update-issue', (req, res) => {
     if (req.body) {
@@ -355,7 +358,8 @@ module.exports = ({ config }) => {
         salesRepresentativeUuid: req.body.sales_representative_uuid,
         statusId: req.body.status_id,
         statusUuid: req.body.status_uuid,
-        priorityValue: req.body.priority_value
+        priorityValue: req.body.priority_value,
+        dateNextAction: req.body.date_next_action
       }, (err, response) => {
         if (response) {
           res.json({
@@ -455,7 +459,6 @@ module.exports = ({ config }) => {
    * req.body.issue_id - id of record parent issue
    * req.body.issue_uuid - uuid of record parent issued
    * req.body.result - result
-   * req.body.dateNextAction - date to next action
    */
   api.post('/create-issue-comment', (req, res) => {
     if (req.body) {
@@ -465,8 +468,7 @@ module.exports = ({ config }) => {
         // DSL
         issueId: req.body.issue_id,
         issueUuid: req.body.issue_uuid,
-        result: req.body.result,
-        dateNextAction: req.body.date_next_action
+        result: req.body.result
       }, (err, response) => {
         if (response) {
           res.json({
@@ -491,7 +493,6 @@ module.exports = ({ config }) => {
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    * req.body.result - result
-   * req.body.dateNextAction - date to next action
    */
   api.post('/update-issue-comment', (req, res) => {
     if (req.body) {
@@ -501,8 +502,7 @@ module.exports = ({ config }) => {
         // DSL
         id: req.body.id,
         uuid: req.body.uuid,
-        result: req.body.result,
-        dateNextAction: req.body.date_next_action
+        result: req.body.result
       }, (err, response) => {
         if (response) {
           res.json({
@@ -520,7 +520,7 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * POST Delete Issue
+   * POST Delete Issue Comment
    *
    * req.query.token - user token
    * req.query.language - login language
