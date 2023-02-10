@@ -42,9 +42,10 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
 	# set time zone
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \ 
-	echo $TZ > /etc/timezone && \
 	apt-get update && apt-get install -y tzdata && \
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone && \
+	# install operative system dependencies
 	sh setting.sh
 
 

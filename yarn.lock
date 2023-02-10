@@ -24,12 +24,12 @@
     striptags "^3.0.1"
     word-wrap "^1.2.1"
 
-"@adempiere/grpc-api@3.9.6":
-  version "3.9.6"
-  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.9.6.tgz#aa4274f5ce759b3edf6b7113f4970d5928aeb8cf"
-  integrity sha512-og+8AFI9h7dd8QQrqA/H5XmrC5GMKl7TSgVtK0EDB5u6R8tLOLzFx2U6NZg2PoB9T1dWuUk2Q8IT3zpwMuUGsA==
+"@adempiere/grpc-api@3.9.7":
+  version "3.9.7"
+  resolved "https://registry.yarnpkg.com/@adempiere/grpc-api/-/grpc-api-3.9.7.tgz#cbfc52fc2bc4f5f93a91bb81d3963a3d43f1e849"
+  integrity sha512-hVX7UXT2GJoQhaIcuUlFBuvJtqHIkvjJRqQSht6zoa0RtTlpET0uy8PTaOh9YthO//l3kkMmOfKuC3rv/kQxTw==
   dependencies:
-    "@grpc/grpc-js" "1.7.3"
+    "@grpc/grpc-js" "1.8.8"
     google-protobuf "3.21.2"
 
 "@adempiere/grpc-web-store-api@1.5.7":
@@ -1207,10 +1207,10 @@
   dependencies:
     "@types/node" ">=12.12.47"
 
-"@grpc/grpc-js@1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.7.3.tgz#f2ea79f65e31622d7f86d4b4c9ae38f13ccab99a"
-  integrity sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==
+"@grpc/grpc-js@1.8.8":
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.8.8.tgz#a7c6765d0302f47ba67c0ce3cb79718d6b028248"
+  integrity sha512-4gfDqMLXTrorvYTKA1jL22zLvVwiHJ73t6Re1OHwdCFRjdGTDOVtSJuaWhtHaivyeDGg0LeCkmU77MTKoV3wPA==
   dependencies:
     "@grpc/proto-loader" "^0.7.0"
     "@types/node" ">=12.12.47"

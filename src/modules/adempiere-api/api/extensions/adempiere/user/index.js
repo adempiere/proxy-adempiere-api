@@ -1,3 +1,18 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
 
 /**
@@ -127,8 +142,11 @@ function getSession (session) {
   }
 }
 
-//  recursive function for get menu
+// recursive function for get menu
 function getMenu (menu) {
+  if (!menu) {
+    return undefined;
+  }
   return {
     id: menu.getId(),
     uuid: menu.getUuid(),
@@ -142,10 +160,10 @@ function getMenu (menu) {
     action: menu.getAction(),
     reference_uuid: menu.getReferenceUuid(),
     childs: menu.getChildsList().map(child => {
-      return getMenu(child)
+      return getMenu(child);
     }),
     is_active: menu.getIsActive()
-  }
+  };
 }
 
 module.exports = ({ config }) => {

@@ -3,9 +3,26 @@ Proxy ADempiere-API (A ADempiere Gateway using Rest API)
 
 <div align="center"><img src="https://camo.githubusercontent.com/911c5d54ded447403e56de3f96f332c06bceb8bd/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f622f62312f4164656d70696572652d6c6f676f2e706e67" style="text-align:center;" width="400" /></div>
 
-![version](https://img.shields.io/badge/node-v10.x-blue.svg)
-![Branch Develop](https://img.shields.io/badge/dev%20branch-develop-blue.svg)
-<a href="http://slack.vuestorefront.io">![Join Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)</a>
+<p align="center">
+  <a href="https://nodejs.org">
+    <img src="https://img.shields.io/badge/node-v14.x-blue.svg" alt="Node">
+  </a>
+  <a href="https://hub.docker.com/r/solopcloud/adempiere-proxy">
+    <img src="https://img.shields.io/docker/pulls/solopcloud/adempiere-proxy.svg" alt="Docker Pulls">
+  </a>
+  <a href="https://github.com/solop-develop/proxy-adempiere-api/actions/workflows/publish.yml">
+    <img src="https://github.com/solop-develop/proxy-adempiere-api/actions/workflows/publish.yml/badge.svg" alt="Publish GH Action">
+  </a>
+  <a href="https://github.com/solop-develop/proxy-adempiere-api/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/solop-develop/proxy-adempiere-api" alt="License">
+  </a>
+  <a href="https://github.com/solop-develop/proxy-adempiere-api/releases/latest">
+    <img src="https://img.shields.io/github/release/solop-develop/proxy-adempiere-api.svg" alt="GitHub release">
+  </a>
+  <a href="https://discord.gg/T6eH6A7PJZ">
+    <img src="https://badgen.net/badge/discord/join%20chat" alt="Discord">
+  </a>
+</p>
 
 ### What is?
 A simple proxy for synchronize ADempiere Backend based on [ADempiere-gRPC-Server](https://github.com/adempiere/adempiere-gRPC-Server) with any frontend using api REST ans GraphQL.
