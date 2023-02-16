@@ -508,36 +508,40 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET Entities, used for window list
+   * POST Get List Entities, used for window list
    *
    * req.query.token - user token
    * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
-   * req.query.filters - query filters
-   * req.query.table_name - table name (Mandatory if is not a query)
-   * req.query.query - custom query instead a table name based on SQL
-   * req.query.where_clause - where clause of search based on SQL
-   * req.query.order_by_clause - order by clause based on SQL
-   * req.query.limit - records limit
+   * req.body.search_value - search value
+   * req.body.filters - query filters
+   * req.body.table_name - table name (Mandatory if is not a query)
+   * req.body.query - custom query instead a table name based on SQL
+   * req.body.where_clause - where clause of search based on SQL
+   * req.body.order_by_clause - order by clause based on SQL
+   * req.body.limit - records limit
    *
    * Details:
    */
-  api.get('/entities', (req, res) => {
-    if (req.query) {
+  api.post('/entities', (req, res) => {
+    if (req.body) {
+      const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+      const service = new ServiceApi(config);
+
       service.listTabEntities({
         token: req.query.token,
         language: req.query.language,
         //  Running parameters
-        windowUuid: req.query.window_uuid,
-        tabUuid: req.query.tab_uuid,
-        windowNo: req.query.window_no,
+        windowUuid: req.body.window_uuid,
+        tabUuid: req.body.tab_uuid,
+        windowNo: req.body.window_no,
         //  DSL Query
-        filters: req.query.filters,
+        filters: req.body.filters,
         //  Custom Query
-        sorting: req.query.sorting,
-        contextAttributes: req.query.context_attributes,
-        searchValue: req.query.search_value,
+        sorting: req.body.sorting,
+        contextAttributes: req.body.context_attributes,
+        searchValue: req.body.search_value,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
