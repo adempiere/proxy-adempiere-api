@@ -136,3 +136,58 @@ export function convertListProductAttributeSetInstances (productAttributeSetInst
     })
   }
 }
+
+export function convertWarehouse (warehouse) {
+  if (!warehouse) {
+    return undefined;
+  }
+  return {
+    id: warehouse.getId(),
+    uuid: warehouse.getUuid(),
+    value: warehouse.getValue(),
+    name: warehouse.getName(),
+    description: warehouse.getDescription(),
+    is_in_transit: warehouse.getIsInTransit(),
+    warehouse_source: convertWarehouse(
+      warehouse.getWarehouseSource()
+    )
+  };
+}
+
+export function convertListAvailableWarehouses (warehousesList) {
+  return {
+    record_count: warehousesList.getRecordCount(),
+    next_page_token: warehousesList.getNextPageToken(),
+    records: warehousesList.getRecordsList().map(warehouse => {
+      return convertWarehouse(warehouse);
+    })
+  };
+}
+
+export function convertLocator (locator) {
+  if (!locator) {
+    return undefined;
+  }
+  return {
+    id: locator.getId(),
+    uuid: locator.getUuid(),
+    value: locator.getValue(),
+    is_default: locator.getIsDefault(),
+    aisle: locator.getAisle(),
+    bin: locator.getBin(),
+    level: locator.getLevel(),
+    warehouse: convertWarehouse(
+      locator.getWarehouse()
+    )
+  };
+}
+
+export function convertListLocators (locatorsList) {
+  return {
+    record_count: locatorsList.getRecordCount(),
+    next_page_token: locatorsList.getNextPageToken(),
+    records: locatorsList.getRecordsList().map(locator => {
+      return convertLocator(locator);
+    })
+  };
+}

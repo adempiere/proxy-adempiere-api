@@ -18,7 +18,9 @@ import { convertEntitiesListFromGRPC } from '../util/convertData';
 import {
   convertProductAttributeSet,
   convertProductAttributeSetInstance,
-  convertListProductAttributeSetInstances
+  convertListProductAttributeSetInstances,
+  convertListAvailableWarehouses,
+  convertListLocators
 } from '../util/convertMaterialManagement';
 
 module.exports = ({ config }) => {
@@ -206,6 +208,80 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertProductAttributeSetInstance(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST List Available Warehouses
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.search_value - search value optional
+   * req.body.warehouse_id
+   * req.body.warehouse_uuid
+   */
+  api.post('/list-available-warehouses', (req, res) => {
+    if (req.body) {
+      service.listAvailableWarehouses({
+        token: req.query.token,
+        language: req.query.language,
+        // DSL Query
+        searchValue: req.query.search_value,
+        warehouseId: req.body.warehouse_id,
+        warehouseUuid: req.body.warehouse_uuid,
+        // Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertListAvailableWarehouses(response)
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * POST List Warehouses Locators
+   *
+   * req.query.token - user token
+   * req.query.language - login language
+   * req.query.search_value - search value optional
+   * req.body.warehouse_id
+   * req.body.warehouse_uuid
+   */
+  api.post('/list-warehouse-locators', (req, res) => {
+    if (req.body) {
+      service.listLocators({
+        token: req.query.token,
+        language: req.query.language,
+        // DSL Query
+        searchValue: req.query.search_value,
+        warehouseId: req.body.warehouse_id,
+        warehouseUuid: req.body.warehouse_uuid,
+        // Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: convertListLocators(response)
           })
         } else if (err) {
           res.json({
