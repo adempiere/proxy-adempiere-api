@@ -274,6 +274,15 @@ module.exports = ({ config }) => {
         searchValue: req.query.search_value,
         warehouseId: req.body.warehouse_id,
         warehouseUuid: req.body.warehouse_uuid,
+        contextAttributes: req.body.context_attributes,
+        // Dynamic Validation Query
+        fieldUuid: req.body.field_uuid,
+        processParameterUuid: req.body.process_parameter_uuid,
+        browseFieldUuid: req.body.browse_field_uuid,
+        referenceUuid: req.body.reference_uuid,
+        columnUuid: req.body.column_uuid,
+        tableName: req.body.table_name,
+        columnName: req.body.column_name,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
