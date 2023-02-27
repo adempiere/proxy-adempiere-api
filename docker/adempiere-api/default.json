@@ -317,6 +317,7 @@
         "adempiere/general-ledger",
         "adempiere/general-ledger/accouting-combination",
         "adempiere/material-management",
+        "adempiere/material-management/product-attribute",
         "adempiere/material-management/warehouse-locator",
         "adempiere/user",
         "adempiere/user/enrollment",
