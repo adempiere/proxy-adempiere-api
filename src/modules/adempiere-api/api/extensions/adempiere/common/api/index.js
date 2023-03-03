@@ -1,13 +1,29 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
+
 import {
   convertProcessLogFromGRPC,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config, db }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api');
+  const service = new ServiceApi(config);
 
   /**
    * GET Entity data
@@ -237,6 +253,9 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.post('/process', (req, res) => {
+    const BusinessDataService = require('@adempiere/grpc-api/src/services/businessData');
+    const service = new BusinessDataService(config);
+
     if (req.body) {
       service.runProcess({
         token: req.query.token,
@@ -251,21 +270,21 @@ module.exports = ({ config, db }) => {
         printFormatUuid: req.body.print_format_uuid,
         reportViewUuid: req.body.report_view_uuid,
         isSummary: req.body.is_summary,
-        parameters: req.body.parameters,
-        selections: req.body.selections
-      }, function (err, response) {
+        parametersList: req.body.parameters,
+        selectionsList: req.body.selections
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertProcessLogFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
