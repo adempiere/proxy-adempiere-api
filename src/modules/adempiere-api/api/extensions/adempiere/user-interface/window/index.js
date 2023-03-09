@@ -14,8 +14,12 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+
 import {
-  convertRecordReferenceInfoFromGRPC,
+  getRecordReferenceInfoFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+
+import {
   convertAttributes,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
@@ -99,7 +103,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getReferencesList().map(reference => {
-                return convertRecordReferenceInfoFromGRPC(reference)
+                return getRecordReferenceInfoFromGRPC(reference)
               })
             }
           })
@@ -466,7 +470,7 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET Entities, used for window list
+   * GET Entity, used for window refresh current record
    *
    * req.query.token - user token
    * req.query.language - login language
@@ -537,6 +541,7 @@ module.exports = ({ config }) => {
         tabUuid: req.body.tab_uuid,
         windowNo: req.body.window_no,
         //  DSL Query
+        referenceUuid: req.body.reference_uuid,
         filters: req.body.filters,
         //  Custom Query
         sorting: req.body.sorting,
