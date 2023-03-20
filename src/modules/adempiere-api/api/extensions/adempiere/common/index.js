@@ -1,4 +1,20 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
+
 import {
   convertBusinessPartnerFromGRPC,
   convertCountryFromGRPC,
@@ -10,9 +26,9 @@ import {
 } from '@adempiere/grpc-api/src/utils/convertCoreFunctionality';
 
 module.exports = ({ config }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const api = Router();
+  const CoreService = require('@adempiere/grpc-api/src/services/coreFunctionality');
+  const service = new CoreService(config);
 
   /**
    * GET Country
@@ -31,19 +47,19 @@ module.exports = ({ config }) => {
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertCountryFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -68,7 +84,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -79,14 +95,14 @@ module.exports = ({ config }) => {
                 return convertOrganizationFromGRPC(organization)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -111,7 +127,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -122,14 +138,14 @@ module.exports = ({ config }) => {
                 return convertWarehouseFromGRPC(warehouse)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -150,7 +166,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -161,14 +177,14 @@ module.exports = ({ config }) => {
                 return convertLanguageFromGRPC(language)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -199,19 +215,19 @@ module.exports = ({ config }) => {
         token: req.query.token,
         language: req.query.language,
         searchValue: req.query.search_value
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertBusinessPartnerFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -274,19 +290,19 @@ module.exports = ({ config }) => {
         regionName: req.body.region_name,
         countryUuid: req.body.country_uuid,
         posUuid: req.body.pos_uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertBusinessPartnerFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -335,7 +351,7 @@ module.exports = ({ config }) => {
         limit: req.query.limit,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -346,14 +362,14 @@ module.exports = ({ config }) => {
                 return convertBusinessPartnerFromGRPC(businessPartner)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -379,19 +395,19 @@ module.exports = ({ config }) => {
         currencyFromUuid: req.query.currency_from_uuid,
         currencyToUuid: req.query.currency_to_uuid,
         conversionDate: req.query.conversion_date
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertConversionRateFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -409,9 +425,6 @@ module.exports = ({ config }) => {
    */
   api.get('/list-product-conversion', (req, res) => {
     if (req.query) {
-      const CoreService = require('@adempiere/grpc-api/src/services/coreFunctionality')
-      const service = new CoreService(config)
-
       service.listProductConversion({
         token: req.query.token,
         language: req.query.language,
@@ -430,14 +443,14 @@ module.exports = ({ config }) => {
                 return convertProductConversionFromGRPC(productConversion)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

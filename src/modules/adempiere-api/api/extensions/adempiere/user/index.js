@@ -221,7 +221,9 @@ module.exports = ({ config }) => {
   api.post('/logout', (req, res) => {
     if (req.body) {
       service.logout({
-        token: req.body.token
+        sessionUuid: req.body.session_uuid,
+        token: req.query.token,
+        language: req.query.language
       }, (err, response) => {
         if (response) {
           res.json({

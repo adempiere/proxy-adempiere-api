@@ -358,6 +358,9 @@ module.exports = ({ config }) => {
    * Details:
    */
   api.get('/default-value', (req, res) => {
+    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const service = new ServiceApi(config);
+
     if (req.query) {
       service.getDefaultValue({
         token: req.query.token,
@@ -380,14 +383,14 @@ module.exports = ({ config }) => {
               uuid: response.getUuid(),
               attributes: convertAttributes(response.getValuesMap())
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
