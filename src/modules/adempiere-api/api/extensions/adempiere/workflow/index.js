@@ -39,7 +39,7 @@ module.exports = ({ config }) => {
   api.get('/workflow', (req, res) => {
     if (req.query) {
       service.getWorkflow({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // identifiers
         id: req.query.id,
@@ -73,7 +73,7 @@ module.exports = ({ config }) => {
   api.get('/workflows', (req, res) => {
     if (req.query) {
       service.listWorkflows({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         //  Page Data
@@ -114,7 +114,7 @@ module.exports = ({ config }) => {
   api.get('/workflow-activities', (req, res) => {
     if (req.query) {
       service.listWorkflowActivities({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         userUuid: req.query.user_uuid,
         //  Page Data
@@ -156,7 +156,7 @@ module.exports = ({ config }) => {
   api.post('/process-workflow-activity', (req, res) => {
     if (req.body) {
       service.process({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
@@ -192,7 +192,7 @@ module.exports = ({ config }) => {
   api.post('/forward-workflow-activity', (req, res) => {
     if (req.body) {
       service.forward({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
@@ -232,7 +232,7 @@ module.exports = ({ config }) => {
   api.get('/document-actions', (req, res) => {
     if (req.query) {
       service.listDocumentActions({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
@@ -281,7 +281,7 @@ module.exports = ({ config }) => {
   api.get('/document-statuses', (req, res) => {
     if (req.query) {
       service.listDocumentStatuses({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
@@ -326,7 +326,7 @@ module.exports = ({ config }) => {
   api.get('/run-document-action', (req, res) => {
     if (req.query) {
       service.runDocumentAction({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,

@@ -34,7 +34,7 @@ module.exports = ({ config }) => {
   api.get('/list-product-storage', (req, res) => {
     if (req.query) {
       service.listProductStorage({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         tableName: req.query.table_name,

@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -127,7 +127,7 @@ module.exports = ({ config }) => {
   api.post('/', (req, res) => {
     if (req.body) {
       service.createTimeRecord({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         requestId: req.body.request_id,
@@ -162,7 +162,7 @@ module.exports = ({ config }) => {
   api.get('/', (req, res) => {
     if (req.query) {
       service.listTimeRecord({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
@@ -200,7 +200,7 @@ module.exports = ({ config }) => {
   api.get('/issues', (req, res) => {
     if (req.query) {
       service.listIssues({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
@@ -235,7 +235,7 @@ module.exports = ({ config }) => {
   api.get('/projects', (req, res) => {
     if (req.query) {
       service.listProjects({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,

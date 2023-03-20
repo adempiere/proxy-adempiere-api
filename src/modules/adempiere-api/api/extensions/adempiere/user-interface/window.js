@@ -46,7 +46,7 @@ module.exports = ({ config }) => {
   api.get('/context-info-value', (req, res) => {
     if (req.query) {
       service.getContextInfoValue({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         query: req.query.query,
         uuid: req.query.uuid,
@@ -59,14 +59,14 @@ module.exports = ({ config }) => {
               message_text: response.getMessageText(),
               message_tip: response.getMessageTip()
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -87,7 +87,7 @@ module.exports = ({ config }) => {
   api.get('/references', (req, res) => {
     if (req.query) {
       service.listReferences({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         windowUuid: req.query.window_uuid,
@@ -106,14 +106,14 @@ module.exports = ({ config }) => {
                 return getRecordReferenceInfoFromGRPC(reference)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -133,7 +133,7 @@ module.exports = ({ config }) => {
       const service = new ServiceApi(config);
 
       service.existsReferences({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // record information
         tabId: req.query.tab_id,
@@ -145,14 +145,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: response.getRecordCount()
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -203,7 +203,7 @@ module.exports = ({ config }) => {
   api.get('/lookup-items', (req, res) => {
     if (req.query) {
       service.listLookupItems({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         tableName: req.query.table_name,
@@ -229,14 +229,14 @@ module.exports = ({ config }) => {
                 return convertLookupFromGRPC(lookupItem)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -286,7 +286,7 @@ module.exports = ({ config }) => {
   api.get('/lookup-item', (req, res) => {
     if (req.query) {
       service.getLookupItem({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         tableName: req.query.table_name,
@@ -304,14 +304,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertLookupFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -363,7 +363,7 @@ module.exports = ({ config }) => {
 
     if (req.query) {
       service.getDefaultValue({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Default Value Query
         processParameterUuid: req.query.process_parameter_uuid,
@@ -444,7 +444,7 @@ module.exports = ({ config }) => {
 
     if (req.body) {
       service.runCallout({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         windowUuid: req.body.window_uuid,
@@ -461,14 +461,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertCalloutFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -489,7 +489,7 @@ module.exports = ({ config }) => {
 
     if (req.query) {
       service.getTabEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         windowUuid: req.query.window_uuid,
@@ -537,7 +537,7 @@ module.exports = ({ config }) => {
       const service = new ServiceApi(config);
 
       service.listTabEntities({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         windowUuid: req.body.window_uuid,
@@ -564,14 +564,14 @@ module.exports = ({ config }) => {
                 return convertEntityFromGRPC(entity);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -615,7 +615,7 @@ module.exports = ({ config }) => {
 
     if (req.body) {
       service.createTabEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tabUuid: req.body.tab_uuid,
         attributes: req.body.attributes
@@ -624,14 +624,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertEntityFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -657,7 +657,7 @@ module.exports = ({ config }) => {
 
     if (req.body) {
       service.updateTabEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tabUuid: req.body.tab_uuid,
         id: req.body.id,
@@ -668,14 +668,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertEntityFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

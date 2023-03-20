@@ -41,7 +41,7 @@ module.exports = ({ config }) => {
   api.get('/general-info', (req, res) => {
     if (req.query) {
       service.listGeneralInfo({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Default Value Query
         fieldUuid: req.query.field_uuid,

@@ -33,7 +33,7 @@ module.exports = ({ config }) => {
   api.get('/payment-selection', (req, res) => {
     if (req.query) {
       service.getPaymentSelection({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,
@@ -45,21 +45,21 @@ module.exports = ({ config }) => {
             result: getPaymentSelectionFromGRPC(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/list-payment-selections', (req, res) => {
     if (req.body) {
       service.listPaymentSelections({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
@@ -77,21 +77,21 @@ module.exports = ({ config }) => {
                 return convertLookupFromGRPC(lookupItem)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/list-payment-rules', (req, res) => {
     if (req.body) {
       service.listPaymentRules({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
@@ -111,21 +111,21 @@ module.exports = ({ config }) => {
                 return convertLookupFromGRPC(lookupItem)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/list-payments', (req, res) => {
     if (req.body) {
       service.listPayments({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
@@ -147,21 +147,21 @@ module.exports = ({ config }) => {
                 return getPaymentFromGRPC(payment)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.get('/document-no', (req, res) => {
     if (req.query) {
       service.getDocumentNo({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         bankAccountId: req.query.bank_account_id,
@@ -175,12 +175,12 @@ module.exports = ({ config }) => {
             result: {
               document_no: response.getDocumentNo()
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
       });
     }
@@ -189,7 +189,7 @@ module.exports = ({ config }) => {
   api.post('/process', (req, res) => {
     if (req.body) {
       service.process({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
@@ -204,21 +204,21 @@ module.exports = ({ config }) => {
             result: getProcessFromGRPC(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/export', (req, res) => {
     if (req.body) {
       service.export({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
@@ -233,21 +233,21 @@ module.exports = ({ config }) => {
             result: getExportFromGRPC(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/print', (req, res) => {
     if (req.body) {
       service.print({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
@@ -262,21 +262,21 @@ module.exports = ({ config }) => {
             result: getPrintFromGRPC(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/confirm-print', (req, res) => {
     if (req.body) {
       service.confirmPrint({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
@@ -291,21 +291,21 @@ module.exports = ({ config }) => {
             result: {
               document_no: response.getDocumentNo()
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   api.post('/print-remittance', (req, res) => {
     if (req.body) {
       service.printRemittance({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
@@ -320,14 +320,14 @@ module.exports = ({ config }) => {
             result: getPrintRemittanceFromGRPC(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

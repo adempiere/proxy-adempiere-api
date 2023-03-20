@@ -39,7 +39,7 @@ module.exports = ({ config }) => {
   api.get('/pending-documents', (req, res) => {
     if (req.query) {
       service.listPendingDocuments({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         userUuid: req.query.user_uuid,
         userId: req.query.user_id,

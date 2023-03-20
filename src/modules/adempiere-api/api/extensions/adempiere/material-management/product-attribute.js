@@ -38,7 +38,7 @@ module.exports = ({ config }) => {
   api.post('/get-product-attribute-set', (req, res) => {
     if (req.body) {
       service.getProductAttributeSet({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.body.id,
@@ -76,7 +76,7 @@ module.exports = ({ config }) => {
   api.post('/get-product-attribute-set-instance', (req, res) => {
     if (req.body) {
       service.getProductAttributeSetInstance({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.body.id,
@@ -111,7 +111,7 @@ module.exports = ({ config }) => {
   api.post('/list-product-attribute-set-instances', (req, res) => {
     if (req.body) {
       service.listProductAttributeSetInstances({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         searchValue: req.query.search_value,
@@ -155,7 +155,7 @@ module.exports = ({ config }) => {
   api.post('/save-product-attribute-set-instance', (req, res) => {
     if (req.body) {
       service.saveProductAttributeSetInstance({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.body.id,

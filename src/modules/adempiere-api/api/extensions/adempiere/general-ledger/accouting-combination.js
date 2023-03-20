@@ -31,7 +31,7 @@ module.exports = ({ config }) => {
   api.get('/accounting-combination', (req, res) => {
     if (req.query) {
       service.getAccountingCombination({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,
@@ -83,7 +83,7 @@ module.exports = ({ config }) => {
   api.get('/accounting-combinations', (req, res) => {
     if (req.query) {
       service.listAccountingCombinations({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         filters: req.query.filters,
@@ -111,7 +111,7 @@ module.exports = ({ config }) => {
   api.get('/save-accounting-combination', (req, res) => {
     if (req.query) {
       service.saveAccountingCombination({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,

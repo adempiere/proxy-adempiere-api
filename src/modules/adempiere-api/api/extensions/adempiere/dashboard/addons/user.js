@@ -40,7 +40,7 @@ module.exports = ({ config }) => {
   api.get('/favorites', (req, res) => {
     if (req.query) {
       service.listFavorites({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         userUuid: req.query.user_uuid,
         userId: req.query.user_id,
@@ -87,7 +87,7 @@ module.exports = ({ config }) => {
       const service = new ServiceApi(config)
 
       service.listRecentItems({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         userUuid: req.query.user_uuid,

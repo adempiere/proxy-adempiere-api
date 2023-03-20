@@ -48,38 +48,36 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.get('/report-output', (req, res) => {
-    if (req.query) {
-      service.getReportOutput({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.query.table_name,
-        //  Reference
-        printFormatUuid: req.query.print_format_uuid,
-        reportViewUuid: req.query.report_view_uuid,
-        isSummary: req.query.is_summary,
-        reportName: req.query.report_name,
-        reportType: req.query.report_type,
-        //  DSL Query
-        filters: req.query.filters,
-        //  Custom Query
-        query: req.query.query,
-        whereClause: req.query.where_clause,
-        orderByClause: req.query.order_by_clause,
-        limit: req.query.limit
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: convertReportOutputFromGRPC(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.getReportOutput({
+      token: req.headers.authorization,
+      language: req.query.language,
+      tableName: req.query.table_name,
+      // Reference
+      printFormatUuid: req.query.print_format_uuid,
+      reportViewUuid: req.query.report_view_uuid,
+      isSummary: req.query.is_summary,
+      reportName: req.query.report_name,
+      reportType: req.query.report_type,
+      // DSL Query
+      filters: req.query.filters,
+      // Custom Query
+      query: req.query.query,
+      whereClause: req.query.where_clause,
+      orderByClause: req.query.order_by_clause,
+      limit: req.query.limit
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: convertReportOutputFromGRPC(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
@@ -94,33 +92,31 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.get('/drill-tables', (req, res) => {
-    if (req.query) {
-      service.listDrillTables({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.query.table_name,
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getDrillTablesList().map(drillTable => {
-                return convertDrillTableFromGRPC(drillTable)
-              })
-            }
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.listDrillTables({
+      token: req.headers.authorization,
+      language: req.query.language,
+      tableName: req.query.table_name,
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            record_count: response.getRecordCount(),
+            next_page_token: response.getNextPageToken(),
+            records: response.getDrillTablesList().map(drillTable => {
+              return convertDrillTableFromGRPC(drillTable)
+            })
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
@@ -136,34 +132,32 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.get('/report-views', (req, res) => {
-    if (req.query) {
-      service.listReportViews({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.query.table_name,
-        processUuid: req.query.process_uuid,
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getReportViewsList().map(reportView => {
-                return convertReportViewFromGRPC(reportView)
-              })
-            }
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.listReportViews({
+      token: req.headers.authorization,
+      language: req.query.language,
+      tableName: req.query.table_name,
+      processUuid: req.query.process_uuid,
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            record_count: response.getRecordCount(),
+            next_page_token: response.getNextPageToken(),
+            records: response.getReportViewsList().map(reportView => {
+              return convertReportViewFromGRPC(reportView)
+            })
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
@@ -180,35 +174,33 @@ module.exports = ({ config, db }) => {
    * Details:
    */
   api.get('/print-formats', (req, res) => {
-    if (req.query) {
-      service.listPrintFormats({
-        token: req.query.token,
-        language: req.query.language,
-        tableName: req.query.table_name,
-        reportViewUuid: req.query.report_view_uuid,
-        processUuid: req.query.process_uuid,
-        pageSize: req.query.page_size,
-        pageToken: req.query.page_token
-      }, function (err, response) {
-        if (response) {
-          res.json({
-            code: 200,
-            result: {
-              record_count: response.getRecordCount(),
-              next_page_token: response.getNextPageToken(),
-              records: response.getPrintFormatsList().map(drillTable => {
-                return convertPrintFromatFromGRPC(drillTable)
-              })
-            }
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.listPrintFormats({
+      token: req.headers.authorization,
+      language: req.query.language,
+      tableName: req.query.table_name,
+      reportViewUuid: req.query.report_view_uuid,
+      processUuid: req.query.process_uuid,
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            record_count: response.getRecordCount(),
+            next_page_token: response.getNextPageToken(),
+            records: response.getPrintFormatsList().map(drillTable => {
+              return convertPrintFromatFromGRPC(drillTable)
+            })
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   return api;

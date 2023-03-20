@@ -39,7 +39,7 @@ module.exports = ({ config, db }) => {
   api.get('/entity', (req, res) => {
     if (req.query) {
       service.getEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
@@ -105,7 +105,7 @@ module.exports = ({ config, db }) => {
   api.get('/entites', (req, res) => {
     if (req.query) {
       service.listEntities({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         //  DSL Query
@@ -202,7 +202,7 @@ module.exports = ({ config, db }) => {
   api.post('/create', (req, res) => {
     if (req.body) {
       service.createEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         attributes: req.body.attributes
@@ -258,7 +258,7 @@ module.exports = ({ config, db }) => {
 
     if (req.body) {
       service.runProcess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Running parameters
         processUuid: req.body.process_uuid,
@@ -307,7 +307,7 @@ module.exports = ({ config, db }) => {
   api.post('/update', (req, res) => {
     if (req.body) {
       service.updateEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,
@@ -344,7 +344,7 @@ module.exports = ({ config, db }) => {
   api.post('/delete', (req, res) => {
     if (req.body) {
       service.deleteEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,

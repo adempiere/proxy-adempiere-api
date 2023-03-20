@@ -25,7 +25,7 @@ module.exports = ({ config }) => {
   api.get('/create-resource-assignment', (req, res) => {
     if (req.query) {
       service.createResourceAssignment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         resourceTypeId: req.query.resource_type_id,
@@ -56,7 +56,7 @@ module.exports = ({ config }) => {
   api.post('/list-resources-assignment', (req, res) => {
     if (req.body) {
       service.listResourcesAssignment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         resourceTypeId: req.body.resource_type_id,
@@ -95,7 +95,7 @@ module.exports = ({ config }) => {
   api.get('/update-resource-assignment', (req, res) => {
     if (req.query) {
       service.updateResourceAssignment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -123,7 +123,7 @@ module.exports = ({ config }) => {
   api.get('/delete-resource-assignment', (req, res) => {
     if (req.query) {
       service.deleteResourceAssignment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,
@@ -147,7 +147,7 @@ module.exports = ({ config }) => {
   api.get('/confirm-resource-assignment', (req, res) => {
     if (req.query) {
       service.confirmResourceAssignment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,

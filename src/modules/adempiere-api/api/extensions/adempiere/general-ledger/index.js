@@ -25,7 +25,7 @@ module.exports = ({ config }) => {
   api.post('/start-re-post', (req, res) => {
     if (req.body) {
       service.srartRePost({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         tableName: req.body.table_name,
@@ -56,7 +56,7 @@ module.exports = ({ config }) => {
   api.post('/accounting-facts', (req, res) => {
     if (req.body) {
       service.listAccoutingFacts({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         tableName: req.query.table_name,

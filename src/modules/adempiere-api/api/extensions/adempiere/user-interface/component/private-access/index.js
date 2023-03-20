@@ -21,7 +21,7 @@ module.exports = ({ config, db }) => {
   api.post('/unlock-private-access', (req, res) => {
     if (req.body) {
       service.unlockPrivateAccess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,
@@ -56,7 +56,7 @@ module.exports = ({ config, db }) => {
   api.post('/lock-private-access', (req, res) => {
     if (req.body) {
       service.lockPrivateAccess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,
@@ -91,7 +91,7 @@ module.exports = ({ config, db }) => {
   api.get('/private-access', (req, res) => {
     if (req.query) {
       service.getPrivateAccess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,

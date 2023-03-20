@@ -38,7 +38,7 @@ module.exports = ({ config }) => {
   api.get('/dashboards', (req, res) => {
     if (req.query) {
       service.listDashboards({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         roleUuid: req.query.role_uuid,
         roleId: req.query.role_id,
@@ -79,7 +79,7 @@ module.exports = ({ config }) => {
   api.get('/list-notifications', (req, res) => {
     if (req.query) {
       service.listNotifications({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_Value,
         //  Page Data

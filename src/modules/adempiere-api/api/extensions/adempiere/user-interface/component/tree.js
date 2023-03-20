@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC User Interface Client                                     *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -8,7 +8,7 @@
  * (at your option) any later version.                                               *
  * This program is distributed in the hope that it will be useful,                   *
  * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
  * GNU General Public License for more details.                                      *
  * You should have received a copy of the GNU General Public License                 *
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
@@ -58,7 +58,7 @@ module.exports = ({ config }) => {
   api.post('/list-tree-nodes', (req, res) => {
     if (req.body) {
       service.listTreeNodes({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //
         tableName: req.body.table_name,
@@ -77,14 +77,14 @@ module.exports = ({ config }) => {
                 return getTreeNode(childNode);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

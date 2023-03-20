@@ -37,7 +37,7 @@ module.exports = ({ config }) => {
   api.post('/list-available-warehouses', (req, res) => {
     if (req.body) {
       service.listAvailableWarehouses({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
@@ -74,7 +74,7 @@ module.exports = ({ config }) => {
   api.post('/list-warehouse-locators', (req, res) => {
     if (req.body) {
       service.listLocators({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,

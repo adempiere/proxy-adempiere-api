@@ -37,7 +37,7 @@ module.exports = ({ config }) => {
   api.post('/list-tab-sequences', (req, res) => {
     if (req.body) {
       service.listTabSequences({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //
         tabUuid: req.body.tab_uuid,
@@ -50,14 +50,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertEntitiesListFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -75,7 +75,7 @@ module.exports = ({ config }) => {
   api.post('/save-tab-sequences', (req, res) => {
     if (req.body) {
       service.saveTabSequences({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //
         tabUuid: req.body.tab_uuid,
@@ -86,14 +86,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertEntitiesListFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
   return api;

@@ -35,7 +35,7 @@ module.exports = ({ config }) => {
   api.get('/metrics', (req, res) => {
     if (req.query) {
       service.getChart({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         uuid: req.query.uuid,
         id: req.query.id

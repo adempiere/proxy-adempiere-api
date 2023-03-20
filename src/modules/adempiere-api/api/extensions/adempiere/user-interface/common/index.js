@@ -38,7 +38,7 @@ module.exports = ({ config }) => {
   api.post('/rollback-entity', (req, res) => {
     if (req.body) {
       service.rollbackEntity({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         uuid: req.body.uuid,

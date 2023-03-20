@@ -1,11 +1,28 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
+
 import {
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
+
 module.exports = ({ config }) => {
-  let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
-  let service = new ServiceApi(config)
+  const api = Router();
+  const ServiceApi = require('@adempiere/grpc-api');
+  const service = new ServiceApi(config);
 
   /**
    * GET Browser Items
@@ -25,25 +42,20 @@ module.exports = ({ config }) => {
    * Details:
    */
   api.post('/browser-items', (req, res) => {
-    const browserRequest = {};
-    if (req.query) {
-      browserRequest.token = req.query.token;
-      browserRequest.language = req.query.language;
-      //  Page Data
-      browserRequest.pageSize = req.query.page_size;
-      browserRequest.pageToken = req.query.page_token;
-    }
-    if (req.body) {
-      //  Running parameters
-      browserRequest.uuid = req.body.uuid;
-      browserRequest.tableName = req.body.table_name;
-      //  DSL Query
-      browserRequest.filters = req.body.filters;
-      //  Custom Query
-      browserRequest.contextAttributes = req.body.context_attributes;
-    }
-
-    service.listBrowserItems(browserRequest, (err, response) => {
+    service.listBrowserItems({
+      token: req.headers.authorization,
+      language: req.query.language,
+      // Page Data
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token,
+      // Running parameters
+      uuid: req.body.uuid,
+      tableName: req.body.table_name,
+      // DSL Query
+      filters: req.body.filters,
+      // Custom Query
+      contextAttributes: req.body.context_attributes
+    }, (err, response) => {
       if (response) {
         res.json({
           code: 200,
@@ -77,7 +89,7 @@ module.exports = ({ config }) => {
    */
   api.post('/update-browser-entity', (req, res) => {
     service.updateBrowserEntity({
-      token: req.query.token,
+      token: req.headers.authorization,
       language: req.query.language,
       id: req.body.id,
       uuid: req.body.uuid,

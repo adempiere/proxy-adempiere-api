@@ -29,7 +29,7 @@ module.exports = ({ config }) => {
   api.get('/list-payroll-process', (req, res) => {
     if (req.query) {
       service.listPayrollProcess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
@@ -62,7 +62,7 @@ module.exports = ({ config }) => {
   api.get('/list-employee-valid', (req, res) => {
     if (req.query) {
       service.listEmployeeValid({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
@@ -95,7 +95,7 @@ module.exports = ({ config }) => {
   api.get('/list-payroll-concepts', (req, res) => {
     if (req.query) {
       service.listPayrollConcepts({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
@@ -128,7 +128,7 @@ module.exports = ({ config }) => {
   api.get('/get-payroll-concept-definition', (req, res) => {
     if (req.query) {
       service.getPayrollConceptDefinition({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,
@@ -152,7 +152,7 @@ module.exports = ({ config }) => {
   api.get('/list-payroll-movements', (req, res) => {
     if (req.query) {
       service.listPayrollMovements({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         filters: req.query.filters,
@@ -180,7 +180,7 @@ module.exports = ({ config }) => {
   api.get('/save-payroll-movement', (req, res) => {
     if (req.query) {
       service.savePayrollMovement({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         id: req.query.id,
@@ -206,7 +206,7 @@ module.exports = ({ config }) => {
   api.get('/delete-payroll-movements', (req, res) => {
     if (req.query) {
       service.deletePayrollMovements({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,

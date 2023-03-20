@@ -507,7 +507,7 @@ module.exports = ({ config }) => {
   api.get('/selling-points', (req, res) => {
     if (req.query) {
       service.listPointOfSales({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         userUuid: req.query.user_uuid,
         //  Page Data
@@ -548,7 +548,7 @@ module.exports = ({ config }) => {
   api.get('/point-of-sales', (req, res) => {
     if (req.query) {
       service.getPointOfSales({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         pageSize: req.query.page_size,
@@ -588,7 +588,7 @@ module.exports = ({ config }) => {
   api.get('/product-price', (req, res) => {
     if (req.query) {
       service.getProductPrice({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         upc: req.query.upc,
@@ -635,7 +635,7 @@ module.exports = ({ config }) => {
   api.get('/product-prices', (req, res) => {
     if (req.query) {
       service.listProductPrice({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         posUuid: req.query.pos_uuid,
@@ -682,7 +682,7 @@ module.exports = ({ config }) => {
   api.post('/create-order', (req, res) => {
     if (req.body) {
       service.createOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         customerUuid: req.body.customer_uuid,
@@ -720,7 +720,7 @@ module.exports = ({ config }) => {
   api.post('/release-order', (req, res) => {
     if (req.body) {
       service.releaseOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -754,7 +754,7 @@ module.exports = ({ config }) => {
   api.post('/hold-order', (req, res) => {
     if (req.body) {
       service.holdOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -787,7 +787,7 @@ module.exports = ({ config }) => {
   api.post('/create-shipment', (req, res) => {
     if (req.body) {
       service.createShipment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -822,7 +822,7 @@ module.exports = ({ config }) => {
   api.post('/process-shipment', (req, res) => {
     if (req.body) {
       service.processShipment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         shipmentUuid: req.body.shipment_uuid,
@@ -857,7 +857,7 @@ module.exports = ({ config }) => {
   api.post('/reverse-sales', (req, res) => {
     if (req.body) {
       service.reverseSales({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         orderUuid: req.body.order_uuid,
         posUuid: req.body.pos_uuid,
@@ -893,7 +893,7 @@ module.exports = ({ config }) => {
   api.post('/create-shipment-line', (req, res) => {
     if (req.body) {
       service.createShipmentLine({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid,
@@ -929,7 +929,7 @@ module.exports = ({ config }) => {
   api.post('/delete-shipment-line', (req, res) => {
     if (req.body) {
       service.deleteShipmentLine({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         shipmentLineUuid: req.body.shipment_line_uuid
@@ -961,7 +961,7 @@ module.exports = ({ config }) => {
   api.get('/shipment-lines', (req, res) => {
     if (req.query) {
       service.listShipmentLines({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         shipmentUuid: req.query.shipment_uuid,
@@ -1014,7 +1014,7 @@ module.exports = ({ config }) => {
   api.post('/create-payment', (req, res) => {
     if (req.body) {
       service.createPayment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -1070,7 +1070,7 @@ module.exports = ({ config }) => {
   api.post('/create-payment-reference', (req, res) => {
     if (req.body) {
       service.createPaymentReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -1117,7 +1117,7 @@ module.exports = ({ config }) => {
   api.get('/payment-references', (req, res) => {
     if (req.query) {
       service.listPaymentReferences({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         customerUuid: req.query.customer_uuid,
@@ -1160,7 +1160,7 @@ module.exports = ({ config }) => {
   api.post('/delete-payment', (req, res) => {
     if (req.body) {
       service.deletePayment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         paymentUuid: req.body.payment_uuid
@@ -1193,7 +1193,7 @@ module.exports = ({ config }) => {
   api.post('/delete-payment-reference', (req, res) => {
     if (req.body) {
       service.deletePaymentReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         uuid: req.body.uuid,
@@ -1227,7 +1227,7 @@ module.exports = ({ config }) => {
   api.post('/allocate-seller', (req, res) => {
     if (req.body) {
       service.allocateSeller({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
@@ -1260,7 +1260,7 @@ module.exports = ({ config }) => {
   api.post('/deallocate-seller', (req, res) => {
     if (req.body) {
       service.deallocateSeller({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         salesRepresentativeUuid: req.body.sales_representative_uuid
@@ -1295,7 +1295,7 @@ module.exports = ({ config }) => {
   api.post('/cash-closing', (req, res) => {
     if (req.body) {
       service.processCashClosing({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         uuid: req.body.uuid,
@@ -1328,7 +1328,7 @@ module.exports = ({ config }) => {
   api.get('/cash-summary-movements', (req, res) => {
     if (req.query) {
       service.listCashSummaryMovements({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -1392,7 +1392,7 @@ module.exports = ({ config }) => {
         payments = req.body.payments
       }
       service.processCashOpening({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         collectingAgentUuid: req.body.collecting_agent_uuid,
@@ -1464,7 +1464,7 @@ module.exports = ({ config }) => {
         payments = req.body.payments
       }
       service.processCashWithdrawal({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         collectingAgentUuid: req.body.collecting_agent_uuid,
@@ -1523,7 +1523,7 @@ module.exports = ({ config }) => {
   api.post('/update-payment', (req, res) => {
     if (req.body) {
       service.updatePayment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         paymentUuid: req.body.payment_uuid,
@@ -1567,7 +1567,7 @@ module.exports = ({ config }) => {
   api.get('/payments', (req, res) => {
     if (req.query) {
       service.listPayments({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         orderUuid: req.query.order_uuid,
         posUuid: req.query.pos_uuid,
@@ -1620,7 +1620,7 @@ module.exports = ({ config }) => {
   api.post('/delete-order', (req, res) => {
     if (req.body) {
       service.deleteOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid
@@ -1654,7 +1654,7 @@ module.exports = ({ config }) => {
   api.post('/print-ticket', (req, res) => {
     if (req.body) {
       service.printTicket({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid
@@ -1689,7 +1689,7 @@ module.exports = ({ config }) => {
   api.post('/print-preview', (req, res) => {
     if (req.body) {
       service.printPreview({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -1728,7 +1728,7 @@ module.exports = ({ config }) => {
   api.post('/print-shipment-preview', (req, res) => {
     if (req.body) {
       service.printShipmentPreview({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         shipmentUuid: req.body.shipment_uuid,
@@ -1771,7 +1771,7 @@ module.exports = ({ config }) => {
   api.post('/create-order-line', (req, res) => {
     if (req.body) {
       service.createOrderLine({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -1812,7 +1812,7 @@ module.exports = ({ config }) => {
   api.post('/delete-order-line', (req, res) => {
     if (req.body) {
       service.deleteOrderLine({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid
@@ -1853,7 +1853,7 @@ module.exports = ({ config }) => {
   api.post('/update-order', (req, res) => {
     if (req.body) {
       service.updateOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         orderUuid: req.body.order_uuid,
         posUuid: req.body.pos_uuid,
@@ -1901,7 +1901,7 @@ module.exports = ({ config }) => {
   api.post('/update-order-line', (req, res) => {
     if (req.body) {
       service.updateOrderLine({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderLineUuid: req.body.order_line_uuid,
@@ -1941,7 +1941,7 @@ module.exports = ({ config }) => {
   api.post('/validate-pin', (req, res) => {
     if (req.body) {
       service.validatePIN({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         pin: req.body.pin,
@@ -1978,7 +1978,7 @@ module.exports = ({ config }) => {
   api.get('/order', (req, res) => {
     if (req.query) {
       service.getOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         orderUuid: req.query.order_uuid
@@ -2031,7 +2031,7 @@ module.exports = ({ config }) => {
         payments = req.body.payments
       }
       service.processOrder({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         orderUuid: req.body.order_uuid,
@@ -2096,7 +2096,7 @@ module.exports = ({ config }) => {
   api.get('/orders', (req, res) => {
     if (req.query) {
       service.listOrders({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         documentNo: req.query.document_no,
@@ -2151,7 +2151,7 @@ module.exports = ({ config }) => {
   api.get('/order-lines', (req, res) => {
     if (req.query) {
       service.listOrderLines({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         orderUuid: req.query.order_uuid,
@@ -2191,7 +2191,7 @@ module.exports = ({ config }) => {
   api.get('/key-layout', (req, res) => {
     if (req.query) {
       service.getKeyLayout({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         keyLayoutUuid: req.query.key_layout_uuid
@@ -2223,7 +2223,7 @@ module.exports = ({ config }) => {
   api.get('/available-warehouses', (req, res) => {
     if (req.query) {
       service.listAvailableWarehouses({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -2263,7 +2263,7 @@ module.exports = ({ config }) => {
   api.get('/available-document-types', (req, res) => {
     if (req.query) {
       service.listAvailableDocumentTypes({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -2303,7 +2303,7 @@ module.exports = ({ config }) => {
   api.get('/available-payment-methods', (req, res) => {
     if (req.query) {
       service.listAvailablePaymentMethods({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -2343,7 +2343,7 @@ module.exports = ({ config }) => {
   api.get('/available-price-list', (req, res) => {
     if (req.query) {
       service.listAvailablePriceList({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -2383,7 +2383,7 @@ module.exports = ({ config }) => {
   api.get('/available-currencies', (req, res) => {
     if (req.query) {
       service.listAvailableCurrencies({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data
@@ -2472,7 +2472,7 @@ module.exports = ({ config }) => {
         })
       }
       service.createCustomer({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         value: req.body.value,
         taxId: req.body.tax_id,
@@ -2563,7 +2563,7 @@ module.exports = ({ config }) => {
         })
       }
       service.updateCustomer({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         uuid: req.body.uuid,
@@ -2609,7 +2609,7 @@ module.exports = ({ config }) => {
   api.get('/customer', (req, res) => {
     if (req.query) {
       service.getCustomer({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         searchValue: req.query.search_value,
@@ -2668,7 +2668,7 @@ module.exports = ({ config }) => {
   api.post('/create-customer-bank-account', (req, res) => {
     if (req.body) {
       service.createCustomerBankAccount({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         customerUuid: req.body.customer_uuid,
         posUuid: req.body.pos_uuid,
@@ -2739,7 +2739,7 @@ module.exports = ({ config }) => {
   api.post('/update-customer-bank-account', (req, res) => {
     if (req.body) {
       service.createCustomerBankAccount({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         customerBankAccountUuid: req.body.customer_bank_account_uuid,
         posUuid: req.body.pos_uuid,
@@ -2789,7 +2789,7 @@ module.exports = ({ config }) => {
   api.get('/customer-bank-account', (req, res) => {
     if (req.query) {
       service.getCustomerBankAccount({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         customerBankAccountUuid: req.query.customer_bank_account_uuid
@@ -2821,7 +2821,7 @@ module.exports = ({ config }) => {
   api.post('/delete-bank-account', (req, res) => {
     if (req.query) {
       service.deleteCustomerBankAccount({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.body.pos_uuid,
         customerBankAccountUuid: req.body.customer_bank_account_uuid
@@ -2853,7 +2853,7 @@ module.exports = ({ config }) => {
   api.get('/customer-bank-accounts', (req, res) => {
     if (req.query) {
       service.listCustomerBankAccounts({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         customerUuid: req.query.customer_uuid,
@@ -2894,7 +2894,7 @@ module.exports = ({ config }) => {
   api.get('/available-refund', (req, res) => {
     if (req.query) {
       service.getAvailableRefund({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         date: req.query.date
@@ -2927,7 +2927,7 @@ module.exports = ({ config }) => {
   api.get('/available-sellers', (req, res) => {
     if (req.query) {
       service.listAvailableSellers({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         isOnlyAllocated: req.query.is_only_allocated,
@@ -2966,7 +2966,7 @@ module.exports = ({ config }) => {
   api.get('/stocks', (req, res) => {
     if (req.query) {
       service.listStocks({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         value: req.query.value,
         sku: req.query.sku,
@@ -3008,7 +3008,7 @@ module.exports = ({ config }) => {
   api.get('/available-cash', (req, res) => {
     if (req.query) {
       service.listAvailableCash({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         posUuid: req.query.pos_uuid,
         //  Page Data

@@ -24,7 +24,7 @@ module.exports = ({ config, db }) => {
   api.post('/set-preference', (req, res) => {
     if (req.body) {
       service.setPreference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         containerUuid: req.body.container_uuid,
         columnName: req.body.column_name,
@@ -65,7 +65,7 @@ module.exports = ({ config, db }) => {
   api.post('/delete-preference', (req, res) => {
     if (req.body) {
       service.deletePreference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         containerUuid: req.body.container_uuid,
         columnName: req.body.column_name,

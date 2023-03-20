@@ -37,7 +37,7 @@ module.exports = ({ config }) => {
   api.post('/list-mail-templates', (req, res) => {
     if (req.query) {
       service.listMailTemplates({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //
         searchValue: req.query.search_value,

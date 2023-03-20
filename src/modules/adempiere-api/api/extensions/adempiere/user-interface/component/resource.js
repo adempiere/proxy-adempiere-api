@@ -56,7 +56,7 @@ module.exports = ({ config }) => {
   api.get('/exists-attachment', (req, res) => {
     if (req.query) {
       service.existsAttachment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // attachment information
         tableName: req.query.table_name,
@@ -92,7 +92,7 @@ module.exports = ({ config }) => {
   api.get('/attachment', (req, res) => {
     if (req.query) {
       service.getAttachment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
@@ -125,23 +125,23 @@ module.exports = ({ config }) => {
       const resourceUuid = req.body.resource_uuid;
 
       const call = service.loadResource({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: response
-          })
+          });
         } else if (err) {
           if (fs.existsSync(completeName)) {
-            console.log('Delete file: ' + fileName)
+            console.log('Delete file: ' + fileName);
             fs.promises.unlink(completeName);
           }
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
         call.end();
       });
@@ -184,7 +184,7 @@ module.exports = ({ config }) => {
   api.post('/set-resource-reference', (req, res) => {
     if (req.body) {
       service.setResourceReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // attachment values
         tableName: req.body.table_name,
@@ -222,7 +222,7 @@ module.exports = ({ config }) => {
   api.get('/resource-reference', (req, res) => {
     if (req.query) {
       service.getResourceReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         imageId: req.query.image_id
       }, (err, response) => {
@@ -253,7 +253,7 @@ module.exports = ({ config }) => {
   api.get('/delete-resource-reference', (req, res) => {
     if (req.query) {
       service.deleteResourceReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         resourceId: req.query.resource_id,
         resourceUuid: req.query.resource_uuid,

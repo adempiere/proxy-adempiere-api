@@ -189,7 +189,6 @@ module.exports = ({ config }) => {
       service.login({
         user: req.body.username,
         password: req.body.password,
-        token: req.body.token,
         roleUuid: req.body.role_uuid,
         organizationUuid: req.body.organization_uuid,
         warehouseUuid: req.body.warehouse_uuid,
@@ -199,14 +198,14 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: response.getUuid()
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -219,25 +218,23 @@ module.exports = ({ config }) => {
    * Details:
    */
   api.post('/logout', (req, res) => {
-    if (req.body) {
-      service.logout({
-        sessionUuid: req.body.session_uuid,
-        token: req.query.token,
-        language: req.query.language
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: 'Ok'
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.logout({
+      token: req.headers.authorization,
+      sessionUuid: req.body.session_uuid,
+      language: req.query.language
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: 'Ok'
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
@@ -252,145 +249,135 @@ module.exports = ({ config }) => {
    * Details:
    */
   api.post('/change-role', (req, res) => {
-    if (req.body) {
-      service.changeRole({
-        token: req.query.token,
-        language: req.query.language,
-        role: req.body.role,
-        organization: req.body.organization,
-        warehouse: req.body.warehouse
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: getSession(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.changeRole({
+      token: req.headers.authorization,
+      language: req.query.language,
+      role: req.body.role,
+      organization: req.body.organization,
+      warehouse: req.body.warehouse
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getSession(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
    * GET  an user menu
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
    * req.query.language - login language
    *
    * Details:
    */
   api.get('/menu', (req, res) => {
-    if (req.query) {
-      service.getMenu({
-        token: req.query.token,
-        language: req.query.language
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: getMenu(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.getMenu({
+      token: req.headers.authorization,
+      language: req.query.language
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getMenu(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
    * GET  an user menu
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
    * req.query.language - login language
    *
    * Details:
    */
   api.get('/session', (req, res) => {
-    if (req.query) {
-      service.getSessionInfo({
-        token: req.query.token,
-        language: req.query.language
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: getSession(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.getSessionInfo({
+      token: req.headers.authorization,
+      language: req.query.language
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getSession(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
    * GET  an user menu
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
    * req.query.language - login language
    *
    * Details:
    */
   api.get('/info', (req, res) => {
-    if (req.query) {
-      service.getUserInfo({
-        token: req.query.token,
-        language: req.query.language
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: getUserInfo(response)
-          })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+    service.getUserInfo({
+      token: req.headers.authorization,
+      language: req.query.language
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getUserInfo(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   /**
    * GET  an user menu
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
    * req.query.language - login language
    *
    * Details:
    */
   api.get('/roles', (req, res) => {
-    if (req.query) {
-      service.getUserRoles({
-        token: req.query.token,
-        language: req.query.language
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: response.getRolesList().map(role => {
-              return getRole(role)
-            })
+    service.getUserRoles({
+      token: req.headers.authorization,
+      language: req.query.language
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: response.getRolesList().map(role => {
+            return getRole(role)
           })
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          })
-        }
-      })
-    }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
   });
 
   return api;

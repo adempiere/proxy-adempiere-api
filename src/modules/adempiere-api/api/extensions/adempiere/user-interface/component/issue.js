@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Issue Management Client                                   *
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -43,7 +43,7 @@ module.exports = ({ config }) => {
           method: 'POST'
         }
       ]
-    })
+    });
   });
 
   /**
@@ -57,7 +57,7 @@ module.exports = ({ config }) => {
   api.post('/list-request-types', (req, res) => {
     if (req.body) {
       service.listRequestTypes({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
@@ -95,7 +95,7 @@ module.exports = ({ config }) => {
   api.post('/list-sales-representatives', (req, res) => {
     if (req.body) {
       service.listSalesRepresentatives({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
@@ -133,7 +133,7 @@ module.exports = ({ config }) => {
   api.post('/list-priorities', (req, res) => {
     if (req.body) {
       service.listPriorities({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
@@ -171,7 +171,7 @@ module.exports = ({ config }) => {
   api.post('/list-statuses', (req, res) => {
     if (req.body) {
       service.listStatuses({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         requestTypeId: req.body.request_type_id,
@@ -214,7 +214,7 @@ module.exports = ({ config }) => {
   api.get('/exists-issues', (req, res) => {
     if (req.body) {
       service.existsIssues({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         recordId: req.query.record_id,
@@ -249,7 +249,7 @@ module.exports = ({ config }) => {
   api.post('/list-issues', (req, res) => {
     if (req.body) {
       service.listIssues({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         tableName: req.body.table_name,
@@ -297,7 +297,7 @@ module.exports = ({ config }) => {
   api.post('/create-issue', (req, res) => {
     if (req.body) {
       service.createIssue({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         tableName: req.body.table_name,
@@ -345,7 +345,7 @@ module.exports = ({ config }) => {
   api.post('/update-issue', (req, res) => {
     if (req.body) {
       service.updateIssue({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         id: req.body.id,
@@ -387,7 +387,7 @@ module.exports = ({ config }) => {
   api.post('/delete-issue', (req, res) => {
     if (req.body) {
       service.deleteIssue({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         id: req.body.id,
@@ -421,7 +421,7 @@ module.exports = ({ config }) => {
   api.post('/list-issue-comments', (req, res) => {
     if (req.body) {
       service.listIssueComments({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         issueId: req.body.issue_id,
@@ -463,7 +463,7 @@ module.exports = ({ config }) => {
   api.post('/create-issue-comment', (req, res) => {
     if (req.body) {
       service.createIssueComment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         issueId: req.body.issue_id,
@@ -497,7 +497,7 @@ module.exports = ({ config }) => {
   api.post('/update-issue-comment', (req, res) => {
     if (req.body) {
       service.updateIssueComment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         id: req.body.id,
@@ -530,7 +530,7 @@ module.exports = ({ config }) => {
   api.post('/delete-issue-comment', (req, res) => {
     if (req.body) {
       service.deleteIssueComment({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // DSL
         id: req.body.id,

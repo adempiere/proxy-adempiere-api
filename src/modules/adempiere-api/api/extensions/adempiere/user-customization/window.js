@@ -38,7 +38,7 @@ module.exports = ({ config }) => {
   api.post('/save-window-customization', (req, res) => {
     if (req.body) {
       service.saveWindowCustomization({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //
         tabUuid: req.body.tab_uuid,

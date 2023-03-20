@@ -37,7 +37,7 @@ module.exports = ({ config }) => {
   api.get('/list-users', (req, res) => {
     if (req.query) {
       service.listUsers({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data
@@ -77,7 +77,7 @@ module.exports = ({ config }) => {
   api.get('/list-roles', (req, res) => {
     if (req.query) {
       service.listRoles({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data
@@ -117,7 +117,7 @@ module.exports = ({ config }) => {
   api.get('/list-customizations-level', (req, res) => {
     if (req.query) {
       service.listCustomizationsLevel({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data

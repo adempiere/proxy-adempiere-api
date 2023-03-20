@@ -18,12 +18,12 @@ function getResource ({
       resourceName
     }, (err, data) => {
       if (err) {
-        reject(err)
+        reject(err);
       } else {
-        resolve(data.buffer)
+        resolve(data.buffer);
       }
-    })
-  })
+    });
+  });
 }
 
 /**
@@ -54,7 +54,7 @@ export default ({ config, db, service: parentService }) => {
 
       let buffer = Buffer.from(
         await getResource({
-          token: req.query.token,
+          token: req.headers.authorization,
           language: req.query.language,
           resourceUuid: req.query.resource_uuid,
           resourceName: req.query.resource_name,
@@ -71,13 +71,13 @@ export default ({ config, db, service: parentService }) => {
         return res.status(400).send({
           code: 400,
           result: 'Unable to download the requested resource'
-        })
+        });
       }
     } catch (err) {
       return res.status(400).send({
         code: 400,
         result: 'Unable to download the requested resource'
-      })
+      });
     }
   });
 }

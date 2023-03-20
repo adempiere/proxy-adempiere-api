@@ -23,7 +23,7 @@ module.exports = ({ config, db }) => {
   api.get('/translations', (req, res) => {
     if (req.query) {
       service.listTranslations({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,

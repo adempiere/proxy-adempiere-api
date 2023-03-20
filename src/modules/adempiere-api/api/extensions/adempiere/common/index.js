@@ -43,7 +43,7 @@ module.exports = ({ config }) => {
   api.get('/country', (req, res) => {
     if (req.query) {
       service.getCountry({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -77,7 +77,7 @@ module.exports = ({ config }) => {
   api.get('/organizations', (req, res) => {
     if (req.query) {
       service.listOrganizations({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         roleUuid: req.query.role_uuid,
         roleId: req.query.role_id,
@@ -120,7 +120,7 @@ module.exports = ({ config }) => {
   api.get('/warehouses', (req, res) => {
     if (req.query) {
       service.listWarehouses({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         organizationUuid: req.query.organization_uuid,
         organizationId: req.query.organization_id,
@@ -161,7 +161,7 @@ module.exports = ({ config }) => {
   api.get('/languages', (req, res) => {
     if (req.query) {
       service.listLanguages({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         //  Page Data
         pageSize: req.query.page_size,
@@ -212,7 +212,7 @@ module.exports = ({ config }) => {
   api.get('/business-partner', (req, res) => {
     if (req.query) {
       service.getBusinessPartner({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value
       }, (err, response) => {
@@ -266,7 +266,7 @@ module.exports = ({ config }) => {
   api.post('/create-business-partner', (req, res) => {
     if (req.body) {
       service.createBusinessPartner({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         value: req.body.value,
         taxId: req.body.tax_id,
@@ -332,7 +332,7 @@ module.exports = ({ config }) => {
   api.get('/business-partners', (req, res) => {
     if (req.query) {
       service.listBusinessPartners({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         searchValue: req.query.search_value,
         value: req.query.value,
@@ -389,7 +389,7 @@ module.exports = ({ config }) => {
   api.get('/conversion-rate', (req, res) => {
     if (req.query) {
       service.getConversionRate({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         conversionTypeUuid: req.query.conversion_type_uuid,
         currencyFromUuid: req.query.currency_from_uuid,
@@ -426,7 +426,7 @@ module.exports = ({ config }) => {
   api.get('/list-product-conversion', (req, res) => {
     if (req.query) {
       service.listProductConversion({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         productUuid: req.query.product_uuid,
         productId: req.query.product_id,

@@ -21,7 +21,7 @@ module.exports = ({ config, db }) => {
   api.get('/record-access', (req, res) => {
     if (req.query) {
       service.getRecordAccess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
@@ -80,7 +80,7 @@ module.exports = ({ config, db }) => {
         })
       }
       service.setRecordAccess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,

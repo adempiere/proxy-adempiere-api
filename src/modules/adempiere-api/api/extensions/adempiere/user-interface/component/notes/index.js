@@ -22,7 +22,7 @@ module.exports = ({ config, db }) => {
   api.post('/create-chat-entry', (req, res) => {
     if (req.body) {
       service.createChatEntry({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,

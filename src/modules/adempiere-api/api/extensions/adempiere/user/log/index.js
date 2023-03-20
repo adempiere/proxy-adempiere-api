@@ -36,7 +36,7 @@ module.exports = ({ config }) => {
   api.get('/process-logs', (req, res) => {
     if (req.query) {
       service.listProcessLogs({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -85,7 +85,7 @@ module.exports = ({ config }) => {
   api.get('/entity-logs', (req, res) => {
     if (req.query) {
       service.listEntityLogs({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -132,7 +132,7 @@ module.exports = ({ config }) => {
   api.get('/entity-chats', (req, res) => {
     if (req.query) {
       service.listEntityChats({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -176,7 +176,7 @@ module.exports = ({ config }) => {
   api.get('/exists-chat-entries', (req, res) => {
     if (req.query) {
       service.existsChatEntries({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         recordId: req.query.record_id,
         recordUuid: req.query.record_uuid,
@@ -213,7 +213,7 @@ module.exports = ({ config }) => {
   api.get('/chat-entries', (req, res) => {
     if (req.query) {
       service.listChatEntries({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -258,7 +258,7 @@ module.exports = ({ config }) => {
   api.get('/workflow-logs', (req, res) => {
     if (req.query) {
       service.listWorkflowLogs({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,

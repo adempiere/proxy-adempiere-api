@@ -394,7 +394,7 @@ module.exports = ({ config }) => {
   api.get('/window', (req, res) => {
     if (req.query) {
       service.getWindow({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -428,7 +428,7 @@ module.exports = ({ config }) => {
   api.get('/process', (req, res) => {
     if (req.query) {
       service.getProcess({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -462,7 +462,7 @@ module.exports = ({ config }) => {
   api.get('/browser', (req, res) => {
     if (req.query) {
       service.getBrowser({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -496,7 +496,7 @@ module.exports = ({ config }) => {
   api.get('/form', (req, res) => {
     if (req.query) {
       service.getForm({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -533,7 +533,7 @@ module.exports = ({ config }) => {
   api.get('/field', (req, res) => {
     if (req.query) {
       service.getField({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         uuid: req.query.uuid,
         columnUuid: req.query.column_uuid,
@@ -570,7 +570,7 @@ module.exports = ({ config }) => {
   api.get('/reference', (req, res) => {
     if (req.query) {
       service.getReference({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         uuid: req.query.uuid,
         columnName: req.query.column_name
@@ -604,7 +604,7 @@ module.exports = ({ config }) => {
   api.get('/validation', (req, res) => {
     if (req.query) {
       service.getValidationRule({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
@@ -638,7 +638,7 @@ module.exports = ({ config }) => {
   api.get('/identifiers-fields', (req, res) => {
     if (req.query) {
       service.listIdentifiersFields({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // with table
         tableUuid: req.query.table_uuid,
@@ -683,7 +683,7 @@ module.exports = ({ config }) => {
   api.get('/table-search-fields', (req, res) => {
     if (req.query) {
       service.listTableSearchFields({
-        token: req.query.token,
+        token: req.headers.authorization,
         language: req.query.language,
         // with table
         tableUuid: req.query.table_uuid,
