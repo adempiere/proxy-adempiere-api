@@ -252,6 +252,7 @@ module.exports = ({ config }) => {
     service.changeRole({
       token: req.headers.authorization,
       language: req.query.language,
+      sessionUuid: req.body.session_uuid,
       role: req.body.role,
       organization: req.body.organization,
       warehouse: req.body.warehouse
