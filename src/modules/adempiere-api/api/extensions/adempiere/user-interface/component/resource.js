@@ -123,9 +123,10 @@ module.exports = ({ config }) => {
       const fileName = req.body.file_name;
       const completeName = getCompleteFileName(fileName);
       const resourceUuid = req.body.resource_uuid;
+      const token = req.headers.authorization;
 
       const call = service.loadResource({
-        token: req.headers.authorization,
+        token,
         language: req.query.language
       }, (err, response) => {
         if (response) {
