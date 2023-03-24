@@ -128,7 +128,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.createTimeRecord({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         requestId: req.body.request_id,
         requestUuid: req.body.request_uuid,
@@ -163,7 +162,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listTimeRecord({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
         quantity: req.query.quantity,
@@ -201,7 +199,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listIssues({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
         // Page Data
@@ -236,7 +233,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listProjects({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
         // Page Data

@@ -27,7 +27,6 @@ module.exports = ({ config }) => {
    * POST List Tab Sequences
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.body.tab_uuid - Tab Uuid
@@ -38,7 +37,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listTabSequences({
         token: req.headers.authorization,
-        language: req.query.language,
         //
         tabUuid: req.body.tab_uuid,
         contextAttributes: req.body.context_attributes,
@@ -65,7 +63,6 @@ module.exports = ({ config }) => {
    * POST Update Tab Sequences
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.tab_uuid - Tab Uuid
    * req.body.table_name - Table Name
    * req.body.context_attributes - custom query instead a table name based on SQL
@@ -76,7 +73,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.saveTabSequences({
         token: req.headers.authorization,
-        language: req.query.language,
         //
         tabUuid: req.body.tab_uuid,
         contextAttributes: req.body.context_attributes,

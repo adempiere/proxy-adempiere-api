@@ -386,7 +386,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of window
    * req.query.uuid - uuid of window
-   * req.query.language - login language
    *
    *
    * Details:
@@ -395,7 +394,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getWindow({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -420,7 +418,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of process
    * req.query.uuid - uuid of process
-   * req.query.language - login language
    *
    *
    * Details:
@@ -429,7 +426,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getProcess({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -454,7 +450,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of browser
    * req.query.uuid - uuid of browser
-   * req.query.language - login language
    *
    *
    * Details:
@@ -463,7 +458,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getBrowser({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -488,7 +482,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of form
    * req.query.uuid - uuid of form
-   * req.query.language - login language
    *
    *
    * Details:
@@ -497,7 +490,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getForm({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -526,7 +518,6 @@ module.exports = ({ config }) => {
    * req.query.table_name - table name of field
    * req.query.column_name - column name of field
    * req.query.element_column_name - element column name of field
-   * req.query.language - login language
    *
    * Details:
    */
@@ -534,7 +525,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getField({
         token: req.headers.authorization,
-        language: req.query.language,
         uuid: req.query.uuid,
         columnUuid: req.query.column_uuid,
         elementUuid: req.query.element_uuid,
@@ -563,7 +553,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.uuid - uuid of reference
    * req.query.column_name - column name of reference as table dir
-   * req.query.language - login language
    *
    * Details:
    */
@@ -571,7 +560,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getReference({
         token: req.headers.authorization,
-        language: req.query.language,
         uuid: req.query.uuid,
         columnName: req.query.column_name
       }, (err, response) => {
@@ -596,7 +584,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of validation
    * req.query.uuid - uuid of validation
-   * req.query.language - login language
    *
    *
    * Details:
@@ -605,7 +592,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getValidationRule({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -628,7 +614,6 @@ module.exports = ({ config }) => {
    * GET Identifiers Fields List
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_uuid - id of table
    * req.query.table_id - uuid of table
    * req.query.tab_uuid - id of tab
@@ -639,7 +624,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listIdentifiersFields({
         token: req.headers.authorization,
-        language: req.query.language,
         // with table
         tableUuid: req.query.table_uuid,
         tableId: req.query.table_id,
@@ -673,7 +657,6 @@ module.exports = ({ config }) => {
    * GET Table Search Fields List
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_uuid - id of table
    * req.query.table_id - uuid of table
    * req.query.tab_uuid - id of tab
@@ -684,7 +667,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listTableSearchFields({
         token: req.headers.authorization,
-        language: req.query.language,
         // with table
         tableUuid: req.query.table_uuid,
         tableId: req.query.table_id,

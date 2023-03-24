@@ -27,7 +27,6 @@ module.exports = ({ config }) => {
    * POST Rollback record
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - TableName
    * req.body.id - id of record
    * req.body.uuid - uuid of record
@@ -39,7 +38,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.rollbackEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.body.table_name,
         uuid: req.body.uuid,
         id: req.body.id,

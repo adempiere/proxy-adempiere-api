@@ -11,7 +11,6 @@ module.exports = ({ config, db }) => {
    * GET Translations
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -24,7 +23,6 @@ module.exports = ({ config, db }) => {
     if (req.query) {
       service.listTranslations({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Running parameters

@@ -5,7 +5,6 @@ const asyncMiddleware = fn => (req, res, next) => {
 //  Get Resource from gRPC
 function getResource ({
   token,
-  language,
   resourceUuid,
   resourceName,
   service
@@ -13,7 +12,6 @@ function getResource ({
   return new Promise((resolve, reject) => {
     service.getResource({
       token,
-      language,
       resourceUuid,
       resourceName
     }, (err, data) => {
@@ -55,7 +53,6 @@ export default ({ config, db, service: parentService }) => {
       let buffer = Buffer.from(
         await getResource({
           token: req.headers.authorization,
-          language: req.query.language,
           resourceUuid: req.query.resource_uuid,
           resourceName: req.query.resource_name,
           service

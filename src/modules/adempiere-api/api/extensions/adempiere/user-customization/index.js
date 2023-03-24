@@ -29,7 +29,6 @@ module.exports = ({ config }) => {
    * GET List Users
    *
    * @param {string} token - user token
-   * @param {string} language - login language
    * @param {number} search_value - value to filter list
    * @param {number} page_size - size of page (customized)
    * @param {string} page_token - token of page (optional for get a specific page)
@@ -38,7 +37,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listUsers({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data
         pageSize: req.query.page_size,
@@ -69,7 +67,6 @@ module.exports = ({ config }) => {
    * GET List Roles
    *
    * @param {string} token - user token
-   * @param {string} language - login language
    * @param {number} search_value - value to filter list
    * @param {number} page_size - size of page (customized)
    * @param {string} page_token - token of page (optional for get a specific page)
@@ -78,7 +75,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listRoles({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data
         pageSize: req.query.page_size,
@@ -109,7 +105,6 @@ module.exports = ({ config }) => {
    * GET List Customizations Level
    *
    * @param {string} token - user token
-   * @param {string} language - login language
    * @param {number} search_value - value to filter list
    * @param {number} page_size - size of page (customized)
    * @param {string} page_token - token of page (optional for get a specific page)
@@ -118,7 +113,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listCustomizationsLevel({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_value,
         //  Page Data
         pageSize: req.query.page_size,

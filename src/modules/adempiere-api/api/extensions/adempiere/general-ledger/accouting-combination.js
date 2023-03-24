@@ -32,7 +32,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getAccountingCombination({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.query.id,
         uuid: req.query.uuid,
@@ -57,7 +56,6 @@ module.exports = ({ config }) => {
    * GET List Accounting Combinations
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.query.context_attributes - attributes
    * "context_attributes": [
@@ -84,7 +82,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listAccountingCombinations({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         filters: req.query.filters,
         contextAttributes: req.query.context_attributes,
@@ -112,7 +109,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.saveAccountingCombination({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
         id: req.query.id,

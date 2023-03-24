@@ -22,7 +22,7 @@ import {
   convertReportViewFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
-module.exports = ({ config, db }) => {
+module.exports = ({ config }) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface')
   const service = new ServiceApi(config)
@@ -31,7 +31,6 @@ module.exports = ({ config, db }) => {
    * GET Report Output
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.print_format_uuid - print format reference
    * req.query.report_view_uuid - report view reference
    * req.query.is_summary - summary
@@ -50,7 +49,6 @@ module.exports = ({ config, db }) => {
   api.get('/report-output', (req, res) => {
     service.getReportOutput({
       token: req.headers.authorization,
-      language: req.query.language,
       tableName: req.query.table_name,
       // Reference
       printFormatUuid: req.query.print_format_uuid,
@@ -84,7 +82,6 @@ module.exports = ({ config, db }) => {
    * GET Tables for Drill
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - page token
    * req.query.page_token - page size
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -94,7 +91,6 @@ module.exports = ({ config, db }) => {
   api.get('/drill-tables', (req, res) => {
     service.listDrillTables({
       token: req.headers.authorization,
-      language: req.query.language,
       tableName: req.query.table_name,
       pageSize: req.query.page_size,
       pageToken: req.query.page_token
@@ -123,7 +119,6 @@ module.exports = ({ config, db }) => {
    * GET Report Views
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - page token
    * req.query.page_token - page size
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -134,7 +129,6 @@ module.exports = ({ config, db }) => {
   api.get('/report-views', (req, res) => {
     service.listReportViews({
       token: req.headers.authorization,
-      language: req.query.language,
       tableName: req.query.table_name,
       processUuid: req.query.process_uuid,
       pageSize: req.query.page_size,
@@ -164,7 +158,6 @@ module.exports = ({ config, db }) => {
    * GET Print Formats
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - page token
    * req.query.page_token - page size
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -176,7 +169,6 @@ module.exports = ({ config, db }) => {
   api.get('/print-formats', (req, res) => {
     service.listPrintFormats({
       token: req.headers.authorization,
-      language: req.query.language,
       tableName: req.query.table_name,
       reportViewUuid: req.query.report_view_uuid,
       processUuid: req.query.process_uuid,

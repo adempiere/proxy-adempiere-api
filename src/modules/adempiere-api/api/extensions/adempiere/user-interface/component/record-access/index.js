@@ -14,7 +14,6 @@ module.exports = ({ config, db }) => {
    * req.query.id - id of entity
    * req.query.uuid - uuid of entity
    * req.query.table_name - table name of entity
-   * req.query.language - login language
    *
    * Details:
    */
@@ -22,7 +21,6 @@ module.exports = ({ config, db }) => {
     if (req.query) {
       service.getRecordAccess({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid
@@ -59,7 +57,6 @@ module.exports = ({ config, db }) => {
    *  is_read_only,
    *  is_dependent_entities
    * }]
-   * req.query.language - login language
    *
    */
   api.post('/set-record-access', (req, res) => {
@@ -81,7 +78,6 @@ module.exports = ({ config, db }) => {
       }
       service.setRecordAccess({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
         tableName: req.body.table_name,

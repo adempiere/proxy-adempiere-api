@@ -11,7 +11,6 @@ module.exports = ({ config, db }) => {
    * POST Create Chat Entry
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.table_name - table name of chat entry
    * req.body.id - id of record
    * req.body.uuid - uuid of record
@@ -23,7 +22,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.createChatEntry({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,
         uuid: req.body.uuid,

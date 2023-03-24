@@ -49,7 +49,6 @@ module.exports = ({ config }) => {
    * POST Update Tab Sequences
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.table_name - Table Name
    * req.body.id - Record ID
    * req.body.uuid - Record UUID
@@ -59,7 +58,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listTreeNodes({
         token: req.headers.authorization,
-        language: req.query.language,
         //
         tableName: req.body.table_name,
         id: req.body.id,

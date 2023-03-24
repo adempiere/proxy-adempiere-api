@@ -30,7 +30,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listPayrollProcess({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
         searchValue: req.query.search_value,
@@ -63,7 +62,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listEmployeeValid({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
         searchValue: req.query.search_value,
@@ -96,7 +94,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listPayrollConcepts({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
         searchValue: req.query.search_value,
@@ -129,7 +126,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getPayrollConceptDefinition({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.query.id,
         uuid: req.query.uuid
@@ -153,7 +149,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listPayrollMovements({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         filters: req.query.filters,
         contextAttributes: req.query.context_attributes,
@@ -181,7 +176,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.savePayrollMovement({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.query.id,
         uuid: req.query.uuid,
@@ -207,7 +201,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.deletePayrollMovements({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         contextAttributes: req.query.context_attributes,
         ids: req.query.ids,

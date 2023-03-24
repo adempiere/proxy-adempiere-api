@@ -33,14 +33,12 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of workflow
    * req.query.uuid - uuid of workflow
-   * req.query.language - login language
    * Details:
    */
   api.get('/workflow', (req, res) => {
     if (req.query) {
       service.getWorkflow({
         token: req.headers.authorization,
-        language: req.query.language,
         // identifiers
         id: req.query.id,
         uuid: req.query.uuid
@@ -64,7 +62,6 @@ module.exports = ({ config }) => {
    * GET Workflows
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -74,7 +71,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listWorkflows({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         //  Page Data
         pageSize: req.query.page_size,
@@ -105,7 +101,6 @@ module.exports = ({ config }) => {
    * GET Workflow Activities
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.user_uuid - User UUID (Mandatory for get activities)
@@ -115,7 +110,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listWorkflowActivities({
         token: req.headers.authorization,
-        language: req.query.language,
         userUuid: req.query.user_uuid,
         //  Page Data
         pageSize: req.query.page_size,
@@ -146,7 +140,6 @@ module.exports = ({ config }) => {
    * POST Process Workflow Acitity
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - table name (Mandatory for get translation)
    * req.query.id - id of record
    * req.query.uuid - uuid of record
@@ -157,7 +150,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.process({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
         message: req.body.message,
@@ -182,7 +174,6 @@ module.exports = ({ config }) => {
    * POST Forward Process Activity
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - table name (Mandatory for get translation)
    * req.query.id - id of record
    * req.query.uuid - uuid of record
@@ -193,7 +184,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.forward({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
         message: req.body.message,
@@ -219,7 +209,6 @@ module.exports = ({ config }) => {
    * GET Document Actions
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -233,7 +222,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listDocumentActions({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -269,7 +257,6 @@ module.exports = ({ config }) => {
    * GET Document Statuses
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -282,7 +269,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listDocumentStatuses({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid,
@@ -316,7 +302,6 @@ module.exports = ({ config }) => {
    * GET Run Document Action
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - table name (Mandatory for get translation)
    * req.query.id - id of record
    * req.query.uuid - uuid of record
@@ -327,7 +312,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.runDocumentAction({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid,

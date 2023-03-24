@@ -26,7 +26,6 @@ module.exports = ({ config }) => {
    * GET List Product Storage
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.query.context_attributes - attributes
    * req.query.filters - filters to reduce list values
@@ -35,7 +34,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listProductStorage({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         tableName: req.query.table_name,
         recordId: req.query.record_id,

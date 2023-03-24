@@ -22,7 +22,6 @@ module.exports = ({ config }) => {
    * GET List Process Logs
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -37,7 +36,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listProcessLogs({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Running parameters
@@ -73,7 +71,6 @@ module.exports = ({ config }) => {
    * GET Entity Logs
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -86,7 +83,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listEntityLogs({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Running parameters
@@ -120,7 +116,6 @@ module.exports = ({ config }) => {
    * GET Entity chats
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -133,7 +128,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listEntityChats({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Running parameters
@@ -167,7 +161,6 @@ module.exports = ({ config }) => {
    * GET Exists chats entries
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - table name
    * req.query.record_id - record identifier
    * req.query.record_uuid - record uuid
@@ -177,7 +170,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.existsChatEntries({
         token: req.headers.authorization,
-        language: req.query.language,
         recordId: req.query.record_id,
         recordUuid: req.query.record_uuid,
         //  Running parameters
@@ -202,7 +194,6 @@ module.exports = ({ config }) => {
    * GET Entity chats
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.uuid - uuid of chat
@@ -214,7 +205,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listChatEntries({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Page Data
@@ -246,7 +236,6 @@ module.exports = ({ config }) => {
    * GET Workflow logs
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory for get translation)
@@ -259,7 +248,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listWorkflowLogs({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid,
         //  Running parameters

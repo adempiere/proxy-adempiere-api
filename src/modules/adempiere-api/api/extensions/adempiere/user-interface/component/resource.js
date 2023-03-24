@@ -51,13 +51,11 @@ module.exports = ({ config }) => {
    * req.query.record_id - id of entity
    * req.query.record_uuid - uuid of entity
    * req.query.table_name - table name of entity
-   * req.query.language - login language
    */
   api.get('/exists-attachment', (req, res) => {
     if (req.query) {
       service.existsAttachment({
         token: req.headers.authorization,
-        language: req.query.language,
         // attachment information
         tableName: req.query.table_name,
         recordId: req.query.record_id,
@@ -85,7 +83,6 @@ module.exports = ({ config }) => {
    * req.query.id - id of entity
    * req.query.uuid - uuid of entity
    * req.query.table_name - table name of entity
-   * req.query.language - login language
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -93,7 +90,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getAttachment({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid
@@ -126,8 +122,7 @@ module.exports = ({ config }) => {
       const token = req.headers.authorization;
 
       const call = service.loadResource({
-        token,
-        language: req.query.language
+        token
       }, (err, response) => {
         if (response) {
           res.json({
@@ -178,7 +173,6 @@ module.exports = ({ config }) => {
    *
    * req.query.token - user token
    * req.query.image_id - id of image
-   * req.query.language - login language
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -186,7 +180,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.setResourceReference({
         token: req.headers.authorization,
-        language: req.query.language,
         // attachment values
         tableName: req.body.table_name,
         recordId: req.body.record_id,
@@ -216,7 +209,6 @@ module.exports = ({ config }) => {
    *
    * req.query.token - user token
    * req.query.image_id - id of image
-   * req.query.language - login language
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -224,7 +216,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getResourceReference({
         token: req.headers.authorization,
-        language: req.query.language,
         imageId: req.query.image_id
       }, (err, response) => {
         if (response) {
@@ -247,7 +238,6 @@ module.exports = ({ config }) => {
    *
    * req.query.token - user token
    * req.query.image_id - id of image
-   * req.query.language - login language
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -255,7 +245,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.deleteResourceReference({
         token: req.headers.authorization,
-        language: req.query.language,
         resourceId: req.query.resource_id,
         resourceUuid: req.query.resource_uuid,
         resourceName: req.query.resource_name

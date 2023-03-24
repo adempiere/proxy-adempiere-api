@@ -28,7 +28,6 @@ module.exports = ({ config }) => {
    * POST List Mail Templates
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value to filter
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
@@ -38,7 +37,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listMailTemplates({
         token: req.headers.authorization,
-        language: req.query.language,
         //
         searchValue: req.query.search_value,
         //  Page Data

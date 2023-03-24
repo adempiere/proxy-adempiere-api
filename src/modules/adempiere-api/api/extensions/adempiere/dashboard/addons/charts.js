@@ -27,7 +27,6 @@ module.exports = ({ config }) => {
    * GET Chart Data
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.uuid - uuid of chart
    * req.query.id - id of chart
    * Details:
@@ -36,7 +35,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getChart({
         token: req.headers.authorization,
-        language: req.query.language,
         uuid: req.query.uuid,
         id: req.query.id
       }, (err, response) => {

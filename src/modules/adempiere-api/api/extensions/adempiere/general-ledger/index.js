@@ -26,7 +26,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.srartRePost({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         tableName: req.body.table_name,
         recordId: req.body.record_id,
@@ -57,7 +56,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listAccoutingFacts({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         tableName: req.query.table_name,
         recordId: req.query.record_id,

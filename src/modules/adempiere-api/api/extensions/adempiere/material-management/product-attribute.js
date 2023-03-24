@@ -30,7 +30,6 @@ module.exports = ({ config }) => {
    * POST List Product Attribute Set Instances
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.query.context_attributes - attributes
    * req.query.filters - filters to reduce list values
@@ -39,7 +38,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.getProductAttributeSet({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.body.id,
         uuid: req.body.uuid,
@@ -67,7 +65,6 @@ module.exports = ({ config }) => {
    * POST Get Product Attribute Set Instances
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - attribute set instance identifier
    * req.body.uuid - attribute set instance universally unique identifier
    * req.body.product_id
@@ -77,7 +74,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.getProductAttributeSetInstance({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.body.id,
         uuid: req.body.uuid,
@@ -103,7 +99,6 @@ module.exports = ({ config }) => {
    * POST List Product Attribute Set Instances
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.query.context_attributes - attributes
    * req.query.filters - filters to reduce list values
@@ -112,7 +107,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listProductAttributeSetInstances({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         searchValue: req.query.search_value,
         filters: req.body.filters,
@@ -143,7 +137,6 @@ module.exports = ({ config }) => {
    * POST Save Product Attribute Set Instance
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - attribute set instance identifier
    * req.body.uuid - attribute set instance universally unique identifier
    * req.body.product_id
@@ -156,7 +149,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.saveProductAttributeSetInstance({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.body.id,
         uuid: req.body.uuid,

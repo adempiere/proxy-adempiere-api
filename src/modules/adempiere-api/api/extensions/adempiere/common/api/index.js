@@ -32,7 +32,6 @@ module.exports = ({ config, db }) => {
    * req.query.id - id of entity
    * req.query.uuid - uuid of entity
    * req.query.table_name - table name of entity
-   * req.query.language - login language
    *
    * Details:
    */
@@ -40,7 +39,6 @@ module.exports = ({ config, db }) => {
     if (req.query) {
       service.getEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid
@@ -98,7 +96,6 @@ module.exports = ({ config, db }) => {
    * req.query.where_clause - where clause of search based on SQL
    * req.query.order_by_clause - order by clause based on SQL
    * req.query.limit - records limit
-   * req.query.language - login language
    *
    * Details:
    */
@@ -106,7 +103,6 @@ module.exports = ({ config, db }) => {
     if (req.query) {
       service.listEntities({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         //  DSL Query
         filters: req.query.filters,
@@ -203,7 +199,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.createEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.body.table_name,
         attributes: req.body.attributes
       }, function (err, response) {
@@ -226,7 +221,6 @@ module.exports = ({ config, db }) => {
    * POST Run Process
    *
    * req.query.token - user token
-   * req.query.language - user language
    * req.body.table_name - table name of entity
    * req.body.parameters - parameters for running
    * req.body.process_uuid,
@@ -259,7 +253,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.runProcess({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         processUuid: req.body.process_uuid,
         tableName: req.body.table_name,
@@ -296,7 +289,6 @@ module.exports = ({ config, db }) => {
    * req.body.id - id of entity
    * req.body.uuid - uuid of entity
    * req.body.attributes - attributes for entity
-   * req.query.language - login language
    "attributes": [
       {
         "key": "AD_Client_ID",
@@ -308,7 +300,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.updateEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.body.table_name,
         id: req.body.id,
         uuid: req.body.uuid,
@@ -338,14 +329,12 @@ module.exports = ({ config, db }) => {
    * req.body.id - id of entity
    * req.body.uuid - uuid of entity
    * req.body.table_name - table name of entity
-   * req.query.language - login language
    * Details:
    */
   api.post('/delete', (req, res) => {
     if (req.body) {
       service.deleteEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.body.id,
         uuid: req.body.uuid,
         ids: req.body.ids,

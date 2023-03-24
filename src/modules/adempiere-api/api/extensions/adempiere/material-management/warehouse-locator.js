@@ -29,7 +29,6 @@ module.exports = ({ config }) => {
    * POST List Available Warehouses
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.body.warehouse_id
    * req.body.warehouse_uuid
@@ -38,7 +37,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listAvailableWarehouses({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
         warehouseId: req.body.warehouse_id,
@@ -66,7 +64,6 @@ module.exports = ({ config }) => {
    * POST List Warehouses Locators
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.search_value - search value optional
    * req.body.warehouse_id
    * req.body.warehouse_uuid
@@ -75,7 +72,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listLocators({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         searchValue: req.query.search_value,
         warehouseId: req.body.warehouse_id,

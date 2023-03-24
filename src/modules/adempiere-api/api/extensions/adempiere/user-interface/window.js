@@ -37,7 +37,6 @@ module.exports = ({ config }) => {
    * GET Context Information Value
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.uuid - uuid of record
    * req.query.query - query for search
    *
@@ -47,7 +46,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getContextInfoValue({
         token: req.headers.authorization,
-        language: req.query.language,
         query: req.query.query,
         uuid: req.query.uuid,
         id: req.query.id
@@ -74,7 +72,6 @@ module.exports = ({ config }) => {
    * GET References
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - page token
    * req.query.page_token - page size
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -88,7 +85,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listReferences({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         windowUuid: req.query.window_uuid,
         id: req.query.id,
@@ -125,7 +121,6 @@ module.exports = ({ config }) => {
    * req.query.record_uuid - uuid of entity
    * req.query.tab_id - tab of entity
    * req.query.tab_uuid - tab of entity
-   * req.query.language - login language
    */
   api.get('/exists-references', (req, res) => {
     if (req.query) {
@@ -134,7 +129,6 @@ module.exports = ({ config }) => {
 
       service.existsReferences({
         token: req.headers.authorization,
-        language: req.query.language,
         // record information
         tabId: req.query.tab_id,
         tabUuid: req.query.tab_uuid,
@@ -160,7 +154,6 @@ module.exports = ({ config }) => {
    * GET Lookup Items
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -204,7 +197,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listLookupItems({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         tableName: req.query.table_name,
         processParameterUuid: req.query.process_parameter_uuid,
@@ -244,7 +236,6 @@ module.exports = ({ config }) => {
    * GET Lookup Item
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.id - record id
    * req.query.uuid - uuid
    * req.query.table_name - table name (Mandatory if is not a query)
@@ -287,7 +278,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getLookupItem({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         tableName: req.query.table_name,
         processParameterUuid: req.query.process_parameter_uuid,
@@ -319,7 +309,6 @@ module.exports = ({ config }) => {
    * GET Default Value
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.process_parameter_uuid - when ius called from process
    * req.query.field_uuid - when ius called from window
    * req.query.browse_field_uuid - when ius called from browser
@@ -364,7 +353,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getDefaultValue({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Default Value Query
         processParameterUuid: req.query.process_parameter_uuid,
         fieldUuid: req.query.field_uuid,
@@ -398,7 +386,6 @@ module.exports = ({ config }) => {
    * POST Run Callout
    *
    * req.query.token - user token
-   * req.query.language - login language
    * Body:
    * req.body.table_name - Table name of calling
    * req.body.window_uuid - uuid of window from call
@@ -445,7 +432,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.runCallout({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.body.table_name,
         windowUuid: req.body.window_uuid,
         tabUuid: req.body.tab_uuid,
@@ -476,7 +462,6 @@ module.exports = ({ config }) => {
    * GET Entity, used for window refresh current record
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.tab_uuid - uuid of tab
    * req.query.id - record id
    * req.query.uuid - record uuid
@@ -490,7 +475,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getTabEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         windowUuid: req.query.window_uuid,
         tabUuid: req.query.tab_uuid,
@@ -518,7 +502,6 @@ module.exports = ({ config }) => {
    * POST Get List Entities, used for window list
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.body.search_value - search value
@@ -538,7 +521,6 @@ module.exports = ({ config }) => {
 
       service.listTabEntities({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         windowUuid: req.body.window_uuid,
         tabUuid: req.body.tab_uuid,
@@ -616,7 +598,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.createTabEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tabUuid: req.body.tab_uuid,
         attributes: req.body.attributes
       }, (err, response) => {
@@ -643,7 +624,6 @@ module.exports = ({ config }) => {
    * req.body.id - id of entity
    * req.body.uuid - uuid of entity
    * req.body.attributes - attributes for entity
-   * req.query.language - login language
    "attributes": [
       {
         "key": "AD_Client_ID",
@@ -658,7 +638,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.updateTabEntity({
         token: req.headers.authorization,
-        language: req.query.language,
         tabUuid: req.body.tab_uuid,
         id: req.body.id,
         uuid: req.body.uuid,

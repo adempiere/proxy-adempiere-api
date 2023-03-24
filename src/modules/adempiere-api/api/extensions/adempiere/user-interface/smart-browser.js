@@ -28,7 +28,6 @@ module.exports = ({ config }) => {
    * GET Browser Items
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.body.uuid - browser uuid
@@ -44,7 +43,6 @@ module.exports = ({ config }) => {
   api.post('/browser-items', (req, res) => {
     service.listBrowserItems({
       token: req.headers.authorization,
-      language: req.query.language,
       // Page Data
       pageSize: req.query.page_size,
       pageToken: req.query.page_token,
@@ -80,7 +78,6 @@ module.exports = ({ config }) => {
    * POST Browser Items
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - browser id
    * req.body.record_id - record id
    * req.body.attributes - attributes changes
@@ -90,7 +87,6 @@ module.exports = ({ config }) => {
   api.post('/update-browser-entity', (req, res) => {
     service.updateBrowserEntity({
       token: req.headers.authorization,
-      language: req.query.language,
       id: req.body.id,
       uuid: req.body.uuid,
       recordId: req.body.record_id,

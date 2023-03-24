@@ -34,7 +34,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getPaymentSelection({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         id: req.query.id,
         uuid: req.query.uuid
@@ -60,7 +59,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listPaymentSelections({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
         //  Page Data
@@ -92,7 +90,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listPaymentRules({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
         paymentSelectionId: req.body.payment_selection_id,
@@ -126,7 +123,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listPayments({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         searchValue: req.body.search_value,
         paymentSelectionId: req.body.payment_selection_id,
@@ -162,7 +158,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getDocumentNo({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL Query
         bankAccountId: req.query.bank_account_id,
         bankAccountUuid: req.query.bank_account_uuid,
@@ -190,7 +185,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.process({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,
@@ -219,7 +213,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.export({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,
@@ -248,7 +241,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.print({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,
@@ -277,7 +269,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.confirmPrint({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,
@@ -306,7 +297,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.printRemittance({
         token: req.headers.authorization,
-        language: req.query.language,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
         paymentSelectionUuid: req.body.payment_selection_uuid,

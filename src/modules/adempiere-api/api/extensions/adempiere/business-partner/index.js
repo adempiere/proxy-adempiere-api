@@ -10,7 +10,6 @@ module.exports = ({ config }) => {
    * GET List Grid Info
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.process_parameter_uuid - when ius called from process
    * req.query.field_uuid - when ius called from window
    * req.query.browse_field_uuid - when ius called from browser
@@ -42,7 +41,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listBusinessPartnerInfo({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Default Value Query
         fieldUuid: req.query.field_uuid,
         processParameterUuid: req.query.process_parameter_uuid,

@@ -36,7 +36,6 @@ module.exports = ({ config }) => {
    * req.query.token - user token
    * req.query.id - id of country
    * req.query.uuid - uuid of country
-   * req.query.language - login language
    *
    * Details:
    */
@@ -44,7 +43,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getCountry({
         token: req.headers.authorization,
-        language: req.query.language,
         id: req.query.id,
         uuid: req.query.uuid
       }, (err, response) => {
@@ -67,7 +65,6 @@ module.exports = ({ config }) => {
    * GET Organizations
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.role_uuid - uuid of current role
@@ -78,7 +75,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listOrganizations({
         token: req.headers.authorization,
-        language: req.query.language,
         roleUuid: req.query.role_uuid,
         roleId: req.query.role_id,
         //  Page Data
@@ -110,7 +106,6 @@ module.exports = ({ config }) => {
    * GET Warehouses
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.organization_uuid - uuid of current organization
@@ -121,7 +116,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listWarehouses({
         token: req.headers.authorization,
-        language: req.query.language,
         organizationUuid: req.query.organization_uuid,
         organizationId: req.query.organization_id,
         //  Page Data
@@ -153,7 +147,6 @@ module.exports = ({ config }) => {
    * GET Languages
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * Details:
@@ -162,7 +155,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listLanguages({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -192,7 +184,6 @@ module.exports = ({ config }) => {
    * GET Business Partner
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.search_value - Search Value
@@ -213,7 +204,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getBusinessPartner({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_value
       }, (err, response) => {
         if (response) {
@@ -235,7 +225,6 @@ module.exports = ({ config }) => {
    * POST Create Business Partner
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * Body:
@@ -267,7 +256,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.createBusinessPartner({
         token: req.headers.authorization,
-        language: req.query.language,
         value: req.body.value,
         taxId: req.body.tax_id,
         duns: req.body.duns,
@@ -310,7 +298,6 @@ module.exports = ({ config }) => {
    * GET Business Partner
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.search_value - Search Value
@@ -333,7 +320,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listBusinessPartners({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_value,
         value: req.query.value,
         name: req.query.name,
@@ -377,7 +363,6 @@ module.exports = ({ config }) => {
    * GET Conversion Rate
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.conversion_type_uuid - Conversion Type reference UUID
@@ -390,7 +375,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.getConversionRate({
         token: req.headers.authorization,
-        language: req.query.language,
         conversionTypeUuid: req.query.conversion_type_uuid,
         currencyFromUuid: req.query.currency_from_uuid,
         currencyToUuid: req.query.currency_to_uuid,
@@ -415,7 +399,6 @@ module.exports = ({ config }) => {
    * GET List Product Conversion
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.product_uuid - Currency From reference UUID
@@ -427,7 +410,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listProductConversion({
         token: req.headers.authorization,
-        language: req.query.language,
         productUuid: req.query.product_uuid,
         productId: req.query.product_id,
         pageSize: req.query.page_size,

@@ -24,7 +24,6 @@ module.exports = ({ config }) => {
    * POST Save Process Customization
    *
    * @param {string} token - user token
-   * @param {string} language - login language
    * @param {string} process_uuid - process uuid
    * @param {number} level - asp level to apply (user/role/client)
    * @param {number} level_id - value of level
@@ -39,7 +38,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.saveProcessCustomization({
         token: req.headers.authorization,
-        language: req.query.language,
         //
         processUuid: req.body.process_uuid,
         level: req.body.level,

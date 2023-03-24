@@ -30,7 +30,6 @@ module.exports = ({ config }) => {
    * GET Favourites
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.user_uuid - uuid of current user
@@ -41,7 +40,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listFavorites({
         token: req.headers.authorization,
-        language: req.query.language,
         userUuid: req.query.user_uuid,
         userId: req.query.user_id,
         //  Page Data
@@ -73,7 +71,6 @@ module.exports = ({ config }) => {
    * GET Recent Items
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.user_uuid - user uuid
@@ -88,7 +85,6 @@ module.exports = ({ config }) => {
 
       service.listRecentItems({
         token: req.headers.authorization,
-        language: req.query.language,
         //  Running parameters
         userUuid: req.query.user_uuid,
         roleUuid: req.query.role_uuid,

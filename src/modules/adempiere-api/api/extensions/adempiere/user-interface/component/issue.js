@@ -50,7 +50,6 @@ module.exports = ({ config }) => {
    * POST List Request Types
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
@@ -58,7 +57,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listRequestTypes({
         token: req.headers.authorization,
-        language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -88,7 +86,6 @@ module.exports = ({ config }) => {
    * POST List Sales Representatives
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
@@ -96,7 +93,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listSalesRepresentatives({
         token: req.headers.authorization,
-        language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -126,7 +122,6 @@ module.exports = ({ config }) => {
    * POST List Priority
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
@@ -134,7 +129,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listPriorities({
         token: req.headers.authorization,
-        language: req.query.language,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -164,7 +158,6 @@ module.exports = ({ config }) => {
    * POST List Priority
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
@@ -172,7 +165,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listStatuses({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         requestTypeId: req.body.request_type_id,
         requestTypeUuid: req.body.request_type_uuid,
@@ -205,7 +197,6 @@ module.exports = ({ config }) => {
    * GET Exists Issues
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.table_name - table name of chat entry
    * req.query.record_id - id of record
    * req.query.record_uuid - uuid of record
@@ -215,7 +206,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.existsIssues({
         token: req.headers.authorization,
-        language: req.query.language,
         tableName: req.query.table_name,
         recordId: req.query.record_id,
         recordUuid: req.query.record_uuid
@@ -239,7 +229,6 @@ module.exports = ({ config }) => {
    * POST List Issues
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.table_name - table name of chat entry
    * req.body.record_id - id of record
    * req.body.record_uuid - uuid of record
@@ -250,7 +239,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listIssues({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         tableName: req.body.table_name,
         recordId: req.body.record_id,
@@ -284,7 +272,6 @@ module.exports = ({ config }) => {
    * POST Create Issue
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.table_name - table name of chat entry
    * req.body.id - id of record
    * req.body.uuid - uuid of record
@@ -298,7 +285,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.createIssue({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         tableName: req.body.table_name,
         recordId: req.body.record_id,
@@ -333,7 +319,6 @@ module.exports = ({ config }) => {
    * POST Update Issue
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    * req.body.subject - subject
@@ -346,7 +331,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.updateIssue({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         id: req.body.id,
         uuid: req.body.uuid,
@@ -380,7 +364,6 @@ module.exports = ({ config }) => {
    * POST Delete Issue
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    */
@@ -388,7 +371,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.deleteIssue({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         id: req.body.id,
         uuid: req.body.uuid
@@ -412,7 +394,6 @@ module.exports = ({ config }) => {
    * POST List Issue Comments
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.issue_id - id of record parent issue
    * req.body.issue_uuid - uuid of record parent issued
    * req.query.page_size - size of page (customized)
@@ -422,7 +403,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.listIssueComments({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         issueId: req.body.issue_id,
         issueUuid: req.body.issue_uuid,
@@ -455,7 +435,6 @@ module.exports = ({ config }) => {
    * POST Create Issue Comment
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.issue_id - id of record parent issue
    * req.body.issue_uuid - uuid of record parent issued
    * req.body.result - result
@@ -464,7 +443,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.createIssueComment({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         issueId: req.body.issue_id,
         issueUuid: req.body.issue_uuid,
@@ -489,7 +467,6 @@ module.exports = ({ config }) => {
    * POST Update Issue Comment
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    * req.body.result - result
@@ -498,7 +475,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.updateIssueComment({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         id: req.body.id,
         uuid: req.body.uuid,
@@ -523,7 +499,6 @@ module.exports = ({ config }) => {
    * POST Delete Issue Comment
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    */
@@ -531,7 +506,6 @@ module.exports = ({ config }) => {
     if (req.body) {
       service.deleteIssueComment({
         token: req.headers.authorization,
-        language: req.query.language,
         // DSL
         id: req.body.id,
         uuid: req.body.uuid

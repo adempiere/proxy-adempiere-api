@@ -11,7 +11,6 @@ module.exports = ({ config, db }) => {
    * POST Set User Preference
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.container_uuid - Container UUID, usually is a window
    * req.body.column_name - attribute or column name
    * req.body.is_for_current_user  - apply for current user (boolean)
@@ -25,7 +24,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.setPreference({
         token: req.headers.authorization,
-        language: req.query.language,
         containerUuid: req.body.container_uuid,
         columnName: req.body.column_name,
         isForCurrentUser: req.body.is_for_current_user,
@@ -53,7 +51,6 @@ module.exports = ({ config, db }) => {
    * POST Delete User Preference
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.body.container_uuid - Container UUID, usually is a window
    * req.body.column_name - attribute or column name
    * req.body.is_for_current_user  - apply for current user (boolean)
@@ -66,7 +63,6 @@ module.exports = ({ config, db }) => {
     if (req.body) {
       service.deletePreference({
         token: req.headers.authorization,
-        language: req.query.language,
         containerUuid: req.body.container_uuid,
         columnName: req.body.column_name,
         isForCurrentUser: req.body.is_for_current_user,

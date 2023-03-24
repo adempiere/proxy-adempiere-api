@@ -27,7 +27,6 @@ module.exports = ({ config }) => {
    * GET Pending Documents
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.user_uuid - uuid of current user
@@ -40,7 +39,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listPendingDocuments({
         token: req.headers.authorization,
-        language: req.query.language,
         userUuid: req.query.user_uuid,
         userId: req.query.user_id,
         roleUuid: req.query.role_uuid,

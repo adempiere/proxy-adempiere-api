@@ -28,7 +28,6 @@ module.exports = ({ config }) => {
    * GET Dashboards
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.role_uuid - uuid of current role
@@ -39,7 +38,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listDashboards({
         token: req.headers.authorization,
-        language: req.query.language,
         roleUuid: req.query.role_uuid,
         roleId: req.query.role_id,
         //  Page Data
@@ -71,7 +69,6 @@ module.exports = ({ config }) => {
    * GET List Notifications
    *
    * req.query.token - user token
-   * req.query.language - login language
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * Details:
@@ -80,7 +77,6 @@ module.exports = ({ config }) => {
     if (req.query) {
       service.listNotifications({
         token: req.headers.authorization,
-        language: req.query.language,
         searchValue: req.query.search_Value,
         //  Page Data
         pageSize: req.query.page_size,
