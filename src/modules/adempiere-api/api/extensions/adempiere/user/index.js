@@ -372,9 +372,9 @@ module.exports = ({ config }) => {
   api.put('/set-session-attribute', (req, res) => {
     service.setSessionAttribute({
       token: req.headers.authorization,
-      key: req.body.key,
-      value: req.body.value,
-      valueType: req.body.value_type
+      language: req.body.language,
+      warehouseId: req.body.warehouse_id,
+      warehouseUuid: req.body.warehouse_uuid
     }, (err, response) => {
       if (response) {
         res.json({
