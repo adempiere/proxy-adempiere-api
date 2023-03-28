@@ -369,14 +369,17 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.put('change-attibute', (req, res) => {
-    service.changeContextAttribute({
-      token: req.headers.authorization
+  api.put('/set-session-attribute', (req, res) => {
+    service.setSessionAttribute({
+      token: req.headers.authorization,
+      key: req.body.key,
+      value: req.body.value,
+      valueType: req.body.value_type
     }, (err, response) => {
       if (response) {
         res.json({
           code: 200,
-          result: getContext(response.getDefaultContextMap())
+          result: response.getToken()
         });
       } else if (err) {
         res.json({
