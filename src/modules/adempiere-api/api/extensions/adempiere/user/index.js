@@ -21,12 +21,10 @@ import { Router } from 'express';
  * @returns {mixed}
  */
 function convertContextValue (valueToConvert) {
-  const { ContextValue } = require('@adempiere/grpc-api/src/grpc/proto/access_pb.js');
-  const { ValueType } = ContextValue;
-
   if (valueToConvert === undefined || valueToConvert === null) {
     return undefined;
   }
+  const { ValueType } = require('@adempiere/grpc-api/src/grpc/proto/security_pb.js');
 
   let returnValue;
   switch (valueToConvert.getValueType()) {
@@ -63,20 +61,26 @@ function convertContextValue (valueToConvert) {
   return returnValue;
 }
 
-//  get Context
+// get Context
 function getContext (context) {
-  let values = []
+  const values = []
+  if (!context) {
+    return values;
+  }
   context.forEach((value, key) => {
     values.push({
       key: key,
       value: convertContextValue(value)
-    })
-  })
-  return values
+    });
+  });
+  return values;
 }
 
-//  get user info
+// get user info
 function getUserInfo (userInfo) {
+  if (!userInfo) {
+    return undefined;
+  }
   return {
     id: userInfo.getId(),
     uuid: userInfo.getUuid(),
@@ -85,11 +89,14 @@ function getUserInfo (userInfo) {
     comments: userInfo.getComments(),
     image: userInfo.getImage(),
     connection_timeout: userInfo.getConnectionTimeout()
-  }
+  };
 }
 
-//  get Role
+// get Role
 function getRole (role) {
+  if (!role) {
+    return undefined;
+  }
   return {
     id: role.getId(),
     uuid: role.getUuid(),
@@ -116,11 +123,14 @@ function getRole (role) {
     is_allow_info_resource: role.getIsAllowInfoResource(),
     is_allow_info_crp: role.getIsAllowInfoCrp(),
     is_allow_xls_view: role.getIsAllowXlsView()
-  }
+  };
 }
 
-//  Convert session
+// Convert session
 function getSession (session) {
+  if (!session) {
+    return undefined;
+  }
   return {
     id: session.getId(),
     uuid: session.getUuid(),
@@ -139,7 +149,7 @@ function getSession (session) {
     standard_precision: session.getStandardPrecision(),
     costing_precision: session.getCostingPrecision(),
     default_context: getContext(session.getDefaultContextMap())
-  }
+  };
 }
 
 // recursive function for get menu
@@ -158,6 +168,7 @@ function getMenu (menu) {
     is_summary: menu.getIsSummary(),
     is_sales_transaction: menu.getIsSOTrx(),
     action: menu.getAction(),
+    reference_id: menu.getReferenceId(),
     reference_uuid: menu.getReferenceUuid(),
     childs: menu.getChildsList().map(child => {
       return getMenu(child);
@@ -168,7 +179,7 @@ function getMenu (menu) {
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/access')
+  const ServiceApi = require('@adempiere/grpc-api/src/services/security.js');
   const service = new ServiceApi(config)
 
   /**
@@ -176,19 +187,17 @@ module.exports = ({ config }) => {
    * req.query.language - login language
    *
    * Request body:
-   *
    * {
    * "username":"pkarwatka102@divante.pl",
    * "password":"TopSecretPassword"
    * }
-   *
-   * Details:
    */
   api.post('/login', (req, res) => {
     if (req.body) {
       service.login({
         user: req.body.username,
         password: req.body.password,
+        token: req.body.token,
         roleUuid: req.body.role_uuid,
         organizationUuid: req.body.organization_uuid,
         warehouseUuid: req.body.warehouse_uuid,
@@ -197,7 +206,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: response.getUuid()
+            result: response.getToken()
           });
         } else if (err) {
           res.json({
@@ -212,16 +221,11 @@ module.exports = ({ config }) => {
   /**
    * POST logout session
    *
-   * req.body.token - user token obtained from the `/api/user/login`
-   * req.query.language - login language
-   *
-   * Details:
+   * req.headers.authorization - user token obtained from the `/api/user/login`
    */
   api.post('/logout', (req, res) => {
     service.logout({
-      token: req.headers.authorization,
-      sessionUuid: req.body.session_uuid,
-      language: req.query.language
+      token: req.headers.authorization
     }, (err, response) => {
       if (response) {
         res.json({
@@ -245,22 +249,19 @@ module.exports = ({ config }) => {
    * req.body.organization - user token obtained from the `/api/user/session`
    * req.body.warehouse - user token obtained from the `/api/user/session`
    * req.query.language - login language
-   *
-   * Details:
    */
   api.post('/change-role', (req, res) => {
     service.changeRole({
       token: req.headers.authorization,
-      language: req.query.language,
-      sessionUuid: req.body.session_uuid,
-      role: req.body.role,
-      organization: req.body.organization,
-      warehouse: req.body.warehouse
+      roleUuid: req.body.role,
+      organizationUuid: req.body.organization,
+      warehouseUuid: req.body.warehouse,
+      language: req.query.language
     }, (err, response) => {
       if (response) {
         res.json({
           code: 200,
-          result: getSession(response)
+          result: response.getToken()
         });
       } else if (err) {
         res.json({
@@ -275,14 +276,10 @@ module.exports = ({ config }) => {
    * GET  an user menu
    *
    * req.headers.authorization - user token
-   * req.query.language - login language
-   *
-   * Details:
    */
   api.get('/menu', (req, res) => {
     service.getMenu({
-      token: req.headers.authorization,
-      language: req.query.language
+      token: req.headers.authorization
     }, (err, response) => {
       if (response) {
         res.json({
@@ -299,17 +296,13 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET  an user menu
+   * GET Session Info
    *
    * req.headers.authorization - user token
-   * req.query.language - login language
-   *
-   * Details:
    */
   api.get('/session', (req, res) => {
     service.getSessionInfo({
-      token: req.headers.authorization,
-      language: req.query.language
+      token: req.headers.authorization
     }, (err, response) => {
       if (response) {
         res.json({
@@ -326,17 +319,13 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET  an user menu
+   * GET user info
    *
    * req.headers.authorization - user token
-   * req.query.language - login language
-   *
-   * Details:
    */
   api.get('/info', (req, res) => {
     service.getUserInfo({
-      token: req.headers.authorization,
-      language: req.query.language
+      token: req.headers.authorization
     }, (err, response) => {
       if (response) {
         res.json({
@@ -353,17 +342,16 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET  an user menu
+   * GET list roles
    *
    * req.headers.authorization - user token
    * req.query.language - login language
-   *
-   * Details:
    */
   api.get('/roles', (req, res) => {
     service.getUserRoles({
       token: req.headers.authorization,
-      language: req.query.language
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
     }, (err, response) => {
       if (response) {
         res.json({
@@ -371,6 +359,24 @@ module.exports = ({ config }) => {
           result: response.getRolesList().map(role => {
             return getRole(role)
           })
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  api.put('change-attibute', (req, res) => {
+    service.changeContextAttribute({
+      token: req.headers.authorization
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getContext(response.getDefaultContextMap())
         });
       } else if (err) {
         res.json({
