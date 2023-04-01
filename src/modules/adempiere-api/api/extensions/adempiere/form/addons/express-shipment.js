@@ -153,7 +153,7 @@ module.exports = ({ config }) => {
       token: req.headers.authorization,
       // DSL Query
       orderId: req.body.order_id,
-      orderUuid: req.body.orderUuid
+      orderUuid: req.body.order_uuid
     }, (err, response) => {
       if (response) {
         res.json({
@@ -212,7 +212,7 @@ module.exports = ({ config }) => {
   });
 
   api.post('/shipment-line', (req, res) => {
-    service.createShipment({
+    service.createShipmentLine({
       token: req.headers.authorization,
       // DSL Query
       shipmentId: req.body.shipment_id,
@@ -270,8 +270,8 @@ module.exports = ({ config }) => {
     service.deleteShipmentLine({
       token: req.headers.authorization,
       // DSL Query
-      id: req.query.id,
-      uuid: req.query.uuid
+      id: req.body.id,
+      uuid: req.body.uuid
     }, (err, response) => {
       if (response) {
         res.json({
@@ -287,7 +287,7 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/shipment-line', (req, res) => {
+  api.put('/shipment-line', (req, res) => {
     service.updateShipmentLine({
       token: req.headers.authorization,
       // DSL Query
