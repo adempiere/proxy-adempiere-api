@@ -15,7 +15,7 @@ ENV \
 	REDIS_DB=0 \
 	AD_DEFAULT_HOST="localhost" \
 	AD_DEFAULT_PORT=50059 \
-	AD_TOKEN="adempiere_token" \
+	AD_TOKEN="" \
 	AD_STORE_TOKEN="" \
 	API_URL_IMAGES="localhost" \
 	API_HTTP_BASED="false" \
