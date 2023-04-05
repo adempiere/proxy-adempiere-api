@@ -31,31 +31,31 @@ function getBusinessPartnerFromGRPC (businessPartnertoConvert) {
   };
 }
 
-function getSalesOrderFromGRPC (salesOrdertoConvert) {
-  if (!salesOrdertoConvert) {
+function getPurchaseOrderFromGRPC (purchaseOrdertoConvert) {
+  if (!purchaseOrdertoConvert) {
     return undefined;
   }
   return {
-    id: salesOrdertoConvert.getId(),
-    uuid: salesOrdertoConvert.getUuid(),
-    document_no: salesOrdertoConvert.getDocumentNo(),
-    date_ordered: salesOrdertoConvert.getDateOrdered()
+    id: purchaseOrdertoConvert.getId(),
+    uuid: purchaseOrdertoConvert.getUuid(),
+    document_no: purchaseOrdertoConvert.getDocumentNo(),
+    date_ordered: purchaseOrdertoConvert.getDateOrdered()
   };
 }
 
-function getShipmentFromGRPC (shipmentToConvert) {
-  if (!shipmentToConvert) {
+function getReceiptFromGRPC (receiptToConvert) {
+  if (!receiptToConvert) {
     return undefined;
   }
   return {
-    id: shipmentToConvert.getId(),
-    uuid: shipmentToConvert.getUuid(),
-    document_no: shipmentToConvert.getDocumentNo(),
-    date_ordered: shipmentToConvert.getDateOrdered(),
-    movement_date: shipmentToConvert.getMovementDate(),
-    order_id: shipmentToConvert.getOrderId(),
-    order_uuid: shipmentToConvert.getOrderUuid(),
-    is_completed: shipmentToConvert.getIsCompleted()
+    id: receiptToConvert.getId(),
+    uuid: receiptToConvert.getUuid(),
+    document_no: receiptToConvert.getDocumentNo(),
+    date_ordered: receiptToConvert.getDateOrdered(),
+    movement_date: receiptToConvert.getMovementDate(),
+    order_id: receiptToConvert.getOrderId(),
+    order_uuid: receiptToConvert.getOrderUuid(),
+    is_completed: receiptToConvert.getIsCompleted()
   };
 }
 
@@ -73,30 +73,30 @@ function getProductFromGRPC (productToConvert) {
   };
 }
 
-function getShipmentLineFromGRPC (shipmentLineToConvert) {
-  if (!shipmentLineToConvert) {
+function getReceiptLineFromGRPC (receiptLineToConvert) {
+  if (!receiptLineToConvert) {
     return undefined;
   }
 
   return {
-    id: shipmentLineToConvert.getId(),
-    uuid: shipmentLineToConvert.getUuid(),
-    order_line_id: shipmentLineToConvert.getOrderLineId(),
-    order_Line_uuid: shipmentLineToConvert.getOrderLineUuid(),
-    description: shipmentLineToConvert.getDescription(),
+    id: receiptLineToConvert.getId(),
+    uuid: receiptLineToConvert.getUuid(),
+    order_line_id: receiptLineToConvert.getOrderLineId(),
+    order_Line_uuid: receiptLineToConvert.getOrderLineUuid(),
+    description: receiptLineToConvert.getDescription(),
     product: getProductFromGRPC(
-      shipmentLineToConvert.getProduct()
+      receiptLineToConvert.getProduct()
     ),
     quantity: getDecimalFromGRPC(
-      shipmentLineToConvert.getQuantity()
+      receiptLineToConvert.getQuantity()
     ),
-    line: shipmentLineToConvert.getLine()
+    line: receiptLineToConvert.getLine()
   };
 }
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/expressShipment');
+  const ServiceApi = require('@adempiere/grpc-api/src/services/expressReceipt');
   const service = new ServiceApi(config);
 
   api.get('/business-partners', (req, res) => {
@@ -130,9 +130,9 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.get('/sales-orders', (req, res) => {
+  api.get('/purchase-orders', (req, res) => {
     if (req.query) {
-      service.listSalesOrders({
+      service.listPurchaseOrders({
         token: req.headers.authorization,
         // DSL Query
         businessPartnerId: req.query.business_partner_id,
@@ -148,8 +148,8 @@ module.exports = ({ config }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getRecordsList().map(salesOrder => {
-                return getSalesOrderFromGRPC(salesOrder)
+              records: response.getRecordsList().map(purchaseOrder => {
+                return getPurchaseOrderFromGRPC(purchaseOrder);
               })
             }
           });
@@ -198,8 +198,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/shipment', (req, res) => {
-    service.createShipment({
+  api.post('/receipt', (req, res) => {
+    service.createReceipt({
       token: req.headers.authorization,
       // DSL Query
       orderId: req.body.order_id,
@@ -209,7 +209,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getShipmentFromGRPC(response)
+          result: getReceiptFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -220,8 +220,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/shipment', (req, res) => {
-    service.deleteShipment({
+  api.delete('/receipt', (req, res) => {
+    service.deleteReceipt({
       token: req.headers.authorization,
       // DSL Query
       id: req.query.id,
@@ -241,8 +241,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/process-shipment', (req, res) => {
-    service.processShipment({
+  api.post('/process-receipt', (req, res) => {
+    service.processReceipt({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -251,7 +251,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getShipmentFromGRPC(response)
+          result: getReceiptFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -262,12 +262,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/shipment-line', (req, res) => {
-    service.createShipmentLine({
+  api.post('/receipt-line', (req, res) => {
+    service.createReceiptLine({
       token: req.headers.authorization,
       // DSL Query
-      shipmentId: req.body.shipment_id,
-      shipmentUuid: req.body.shipment_uuid,
+      receiptId: req.body.receipt_id,
+      receiptUuid: req.body.receipt_uuid,
       description: req.body.description,
       productId: req.body.product_id,
       productUuid: req.body.product_uuid,
@@ -277,7 +277,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getShipmentLineFromGRPC(response)
+          result: getReceiptLineFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -288,12 +288,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.get('/shipment-line', (req, res) => {
-    service.listShipmentLines({
+  api.get('/receipt-line', (req, res) => {
+    service.listReceiptLines({
       token: req.headers.authorization,
       // DSL Query
-      shipmentId: req.query.shipment_id,
-      shipmentUuid: req.query.shipment_uuid,
+      receiptId: req.query.receipt_id,
+      receiptUuid: req.query.receipt_uuid,
       searchValue: req.query.searchValue,
       pageSize: req.query.page_size,
       pageToken: req.query.page_token
@@ -304,8 +304,8 @@ module.exports = ({ config }) => {
           result: {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
-            records: response.getRecordsList().map(shipmentLine => {
-              return getShipmentLineFromGRPC(shipmentLine);
+            records: response.getRecordsList().map(receiptLine => {
+              return getReceiptLineFromGRPC(receiptLine);
             })
           }
         });
@@ -318,8 +318,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/shipment-line', (req, res) => {
-    service.deleteShipmentLine({
+  api.delete('/receipt-line', (req, res) => {
+    service.deleteReceiptLine({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -339,8 +339,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.put('/shipment-line', (req, res) => {
-    service.updateShipmentLine({
+  api.put('/receipt-line', (req, res) => {
+    service.updateReceiptLine({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -351,7 +351,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getShipmentLineFromGRPC(response)
+          result: getReceiptLineFromGRPC(response)
         });
       } else if (err) {
         res.json({

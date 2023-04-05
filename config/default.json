@@ -303,6 +303,7 @@
         "adempiere/user-interface/component/tab-sequence",
         "adempiere/user-interface/component/translation",
         "adempiere/user-interface/component/tree",
+        "adempiere/form/addons/express-receipt",
         "adempiere/form/addons/express-shipment",
         "adempiere/form/addons/payment-print-export",
         "adempiere/form/addons/payroll-action-notice",
