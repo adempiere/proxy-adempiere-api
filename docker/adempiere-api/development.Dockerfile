@@ -26,9 +26,27 @@ ENV \
 	LANGUAGE="en_US" \
 	TZ="America/Caracas"
 
+EXPOSE ${SERVER_PORT}
+
+
+# install operative system dependencies
+RUN apk --no-cache --update upgrade \
+		tzdata \
+		curl \
+		git \
+		python \
+		make \
+		g++ \
+		ca-certificates \
+		wget \
+		musl && \
+	# set time zone
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone
+
+
 WORKDIR /var/www/proxy-adempiere-api/
 
-EXPOSE ${SERVER_PORT}
 
 # Copy src files
 ADD proxy-adempiere-api.tar.gz /var/www/proxy-adempiere-api
@@ -41,15 +59,7 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	# set time zone
-	echo $TZ > /etc/timezone && \
-	apk add --no-cache tzdata && \
-	# install operative system dependencies
-	apk --no-cache --update upgrade musl && \
-	apk add --no-cache --virtual .build-deps \
-		curl git python make g++ ca-certificates wget && \
-	sh setting.sh && \
-	apk del .build-deps
+	sh setting.sh 
 
 
 USER adempiere

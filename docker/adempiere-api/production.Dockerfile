@@ -1,5 +1,5 @@
-ARG NODE_RELEASE $NODE_RELEASE
-FROM node:$NODE_RELEASE
+FROM node:14.17.5
+
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 	description="Proxy ADempiere API RESTful"
@@ -26,6 +26,15 @@ ENV \
 	LANGUAGE="en_US" \
 	TZ="America/Caracas"
 
+
+# install operative system dependencies
+RUN apt-get update && apt-get install -y \
+		tzdata && \
+	# set time zone
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone
+
+
 WORKDIR /var/www/proxy-adempiere-api/
 
 EXPOSE ${SERVER_PORT}
@@ -41,11 +50,6 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	# set time zone
-	apt-get update && apt-get install -y tzdata && \
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-	echo $TZ > /etc/timezone && \
-	# install operative system dependencies
 	sh setting.sh
 
 

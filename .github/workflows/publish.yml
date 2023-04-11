@@ -156,8 +156,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_REPO_PROXY_API }}:alpine
             ${{ secrets.DOCKER_REPO_PROXY_API }}:alpine-${{ github.event.release.tag_name }}
-          build-args: |
-            NODE_RELEASE=14.17.5-alpine3.11
 
 
   # Publish docker image in Docker Hub registry to application
@@ -197,8 +195,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_REPO_PROXY_API }}:latest
             ${{ secrets.DOCKER_REPO_PROXY_API }}:${{ github.event.release.tag_name }}
-          build-args: |
-            NODE_RELEASE=14.17.5
 
 
   # Build dist documentation ADempiere-Proxy
