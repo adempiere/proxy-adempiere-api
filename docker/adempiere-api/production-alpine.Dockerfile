@@ -29,16 +29,6 @@ ENV \
 EXPOSE ${SERVER_PORT}
 
 
-# install operative system dependencies
-RUN apk --no-cache --update upgrade \
-		musl && \
-	apk add --no-cache \
-		tzdata && \
-	# set time zone
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-	echo $TZ > /etc/timezone
-
-
 WORKDIR /var/www/proxy-adempiere-api/
 
 
@@ -53,16 +43,14 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	# install project build dependencies
+	# set time zone
+	apk add --no-cache tzdata && \
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone && \
+	# install operative system dependencies
+	apk --no-cache --update upgrade musl && \
 	apk add --no-cache --virtual .build-deps \
-		curl \
-		git \
-		python \
-		make \
-		g++ \
-		ca-certificates \
-		wget && \
-	# reinstall sharp
+		curl git python make g++ ca-certificates wget && \
 	sh setting.sh && \
 	apk del .build-deps
 

@@ -29,15 +29,6 @@ ENV \
 EXPOSE ${SERVER_PORT}
 
 
-# install operative system dependencies
-RUN apt-get update && \
-	apt-get install -y \
-		tzdata && \
-	# set time zone
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-	echo $TZ > /etc/timezone
-
-
 WORKDIR /var/www/proxy-adempiere-api/
 
 
@@ -52,6 +43,12 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
+	# set time zone
+	apt-get update && \
+	apt-get install -y \
+		tzdata && \
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone && \
 	# reinstall sharp
 	sh setting.sh
 
