@@ -1,4 +1,4 @@
-FROM node:14.17.5-alpine3.11
+FROM node:14.21.3-alpine3.17
 
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
@@ -30,9 +30,11 @@ EXPOSE ${SERVER_PORT}
 
 
 # install operative system dependencies
-RUN apk --no-cache --update upgrade \
-		tzdata \
-		musl && \
+RUN apk add --no-cache --update \
+		musl \
+		curl \
+		git \
+		tzdata && \
 	# set time zone
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone
@@ -53,13 +55,11 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
 	apk add --no-cache --virtual .build-deps \
-		curl \
-		git \
+		ca-certificates \
+		wget \
 		python \
 		make \
-		g++ \
-		ca-certificates \
-		wget && \
+		g++ && \
 	sh setting.sh && \
 	apk del .build-deps
 

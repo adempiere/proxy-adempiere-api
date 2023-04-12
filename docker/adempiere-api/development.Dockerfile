@@ -1,4 +1,4 @@
-FROM node:14.17.5-alpine3.11
+FROM node:14.21.3-alpine3.17
 
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
@@ -59,7 +59,7 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	sh setting.sh 
+	sh setting.sh
 
 
 USER adempiere

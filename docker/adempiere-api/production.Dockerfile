@@ -1,4 +1,4 @@
-FROM node:14.17.5
+FROM node:14.21.3
 
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
@@ -26,6 +26,8 @@ ENV \
 	LANGUAGE="en_US" \
 	TZ="America/Caracas"
 
+EXPOSE ${SERVER_PORT}
+
 
 # install operative system dependencies
 RUN apt-get update && apt-get install -y \
@@ -37,7 +39,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /var/www/proxy-adempiere-api/
 
-EXPOSE ${SERVER_PORT}
 
 # Copy src files
 ADD proxy-adempiere-api.tar.gz /var/www/proxy-adempiere-api
