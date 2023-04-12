@@ -32,13 +32,6 @@ EXPOSE ${SERVER_PORT}
 # install operative system dependencies
 RUN apk --no-cache --update upgrade \
 		tzdata \
-		curl \
-		git \
-		python \
-		make \
-		g++ \
-		ca-certificates \
-		wget \
 		musl && \
 	# set time zone
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -59,7 +52,16 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	sh setting.sh
+	apk add --no-cache --virtual .build-deps \
+		curl \
+		git \
+		python \
+		make \
+		g++ \
+		ca-certificates \
+		wget && \
+	sh setting.sh && \
+	apk del .build-deps
 
 
 USER adempiere
