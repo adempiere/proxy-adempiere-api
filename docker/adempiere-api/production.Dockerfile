@@ -30,7 +30,8 @@ EXPOSE ${SERVER_PORT}
 
 
 # install operative system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+	apt-get install -y \
 		tzdata && \
 	# set time zone
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -51,6 +52,7 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
+	# reinstall sharp
 	sh setting.sh
 
 
