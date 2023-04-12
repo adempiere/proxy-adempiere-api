@@ -153,7 +153,7 @@ module.exports = ({ config }) => {
   });
 
   api.post('/movement', (req, res) => {
-    service.createReceipt({
+    service.createMovement({
       token: req.headers.authorization
     }, (err, response) => {
       if (response) {
@@ -171,7 +171,7 @@ module.exports = ({ config }) => {
   });
 
   api.delete('/movement', (req, res) => {
-    service.deleteReceipt({
+    service.deleteMovement({
       token: req.headers.authorization,
       // DSL Query
       id: req.query.id,
@@ -192,7 +192,7 @@ module.exports = ({ config }) => {
   });
 
   api.post('/process-movement', (req, res) => {
-    service.processReceipt({
+    service.processMovement({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -216,8 +216,8 @@ module.exports = ({ config }) => {
     service.createMovementLine({
       token: req.headers.authorization,
       // DSL Query
-      receiptId: req.body.receipt_id,
-      receiptUuid: req.body.receipt_uuid,
+      movementId: req.body.movement_id,
+      movementUuid: req.body.movement_uuid,
       warehouseId: req.body.warehouse_id,
       warehouseUuid: req.body.warehouse_uuid,
       warehouseToId: req.body.warehouse_to_id,
@@ -257,8 +257,8 @@ module.exports = ({ config }) => {
           result: {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
-            records: response.getRecordsList().map(receiptLine => {
-              return getMovementLineFromGRPC(receiptLine);
+            records: response.getRecordsList().map(movementLine => {
+              return getMovementLineFromGRPC(movementLine);
             })
           }
         });
@@ -292,7 +292,7 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.put('/receipt-line', (req, res) => {
+  api.put('/movement-line', (req, res) => {
     service.updateMovementLine({
       token: req.headers.authorization,
       // DSL Query

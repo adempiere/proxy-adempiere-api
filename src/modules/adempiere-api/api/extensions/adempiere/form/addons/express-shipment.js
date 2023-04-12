@@ -17,17 +17,17 @@ import { Router } from 'express';
 
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
-function getBusinessPartnerFromGRPC (businessPartnertoConvert) {
-  if (!businessPartnertoConvert) {
+function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
+  if (!businessPartnerToConvert) {
     return undefined;
   }
   return {
-    id: businessPartnertoConvert.getId(),
-    uuid: businessPartnertoConvert.getUuid(),
-    value: businessPartnertoConvert.getValue(),
-    tax_id: businessPartnertoConvert.getTaxId(),
-    name: businessPartnertoConvert.getName(),
-    description: businessPartnertoConvert.getDescription()
+    id: businessPartnerToConvert.getId(),
+    uuid: businessPartnerToConvert.getUuid(),
+    value: businessPartnerToConvert.getValue(),
+    tax_id: businessPartnerToConvert.getTaxId(),
+    name: businessPartnerToConvert.getName(),
+    description: businessPartnerToConvert.getDescription()
   };
 }
 
