@@ -10,6 +10,7 @@ on:
       - develop
       - master
       - experimental
+      - test/**
     paths-ignore:
       - 'docs/**'
 
@@ -19,6 +20,7 @@ on:
       - master
       - develop
       - experimental
+      - test/**
       - bugfix/**
       - feature/**
 
