@@ -50,7 +50,7 @@ jobs:
         run: cp docker/adempiere-api/default.json config
 
       - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
+        uses: a7ul/tar-action@v1.1.3
         id: compress
         with:
           command: c
@@ -115,10 +115,10 @@ jobs:
                 "${{ secrets.DOCKER_TOKEN }}" != "" ]]; \
           then
             echo "Secrets to use a container registry are configured in the repo"
-            echo "::set-output name=is_have_secrets::true"
+            echo "is_have_secrets=true" >> $GITHUB_OUTPUT
           else
             echo "Secrets to use a container registry were not configured in the repo"
-            echo "::set-output name=is_have_secrets::false"
+            echo "is_have_secrets=false" >> $GITHUB_OUTPUT
           fi
 
   # Publish docker alpine image in Docker Hub registry to application
@@ -197,55 +197,55 @@ jobs:
   #           ${{ secrets.DOCKER_REPO_PROXY_API }}:${{ github.event.release.tag_name }}
 
 
-  # Build dist documentation ADempiere-Proxy
-  build-docs:
-    name: Build dist ADempiere Proxy docs
-    runs-on: ubuntu-latest
+  # # Build dist documentation ADempiere-Proxy
+  # build-docs:
+  #   name: Build dist ADempiere Proxy docs
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Check out the repo
+  #       uses: actions/checkout@v3
 
-      - name: Node configuration
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14.x
-          cache: 'yarn'
+  #     - name: Node configuration
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 14.x
+  #         cache: 'yarn'
 
-      - name: Generate dist docs
-        run: |
-          cd docs
-          yarn ci
-          yarn build
+  #     - name: Generate dist docs
+  #       run: |
+  #         cd docs
+  #         yarn ci
+  #         yarn build
 
-      - name: Upload dist docs
-        uses: actions/upload-artifact@v3
-        with:
-          name: adempiere-proxy-docs
-          path: docs/.vuepress/dist
+  #     - name: Upload dist docs
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: adempiere-proxy-docs
+  #         path: docs/.vuepress/dist
 
 
-  # Publish dist binaries to documentation
-  publish-docs-dist:
-    name: Upload ADempiere Proxy docs binaries
-    needs:
-      - build-docs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build dist docs
-        uses: actions/download-artifact@v3
-        with:
-          name: adempiere-proxy-docs
+  # # Publish dist binaries to documentation
+  # publish-docs-dist:
+  #   name: Upload ADempiere Proxy docs binaries
+  #   needs:
+  #     - build-docs
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download build dist docs
+  #       uses: actions/download-artifact@v3
+  #       with:
+  #         name: adempiere-proxy-docs
 
-      - name: Compress files for documentation dist
-        uses: TheDoctor0/zip-release@0.6.2
-        with:
-          filename: 'Proxy-ADempiere-API-Documentation.zip'
-          path: './'
+  #     - name: Compress files for documentation dist
+  #       uses: TheDoctor0/zip-release@0.6.2
+  #       with:
+  #         filename: 'Proxy-ADempiere-API-Documentation.zip'
+  #         path: './'
 
-      - name: Publish documentation binary in repository
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: 'Proxy-ADempiere-API-Documentation.zip'
+  #     - name: Publish documentation binary in repository
+  #       uses: skx/github-action-publish-binaries@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         args: 'Proxy-ADempiere-API-Documentation.zip'
