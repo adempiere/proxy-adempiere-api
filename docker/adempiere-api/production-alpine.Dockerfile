@@ -50,7 +50,7 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	# install operative system dependencies
 	apk --no-cache --update upgrade musl && \
 	apk add --no-cache --virtual .build-deps \
-		curl git python make g++ ca-certificates wget && \
+		curl git python2 make g++ ca-certificates wget && \
 	sh setting.sh && \
 	apk del .build-deps
 
