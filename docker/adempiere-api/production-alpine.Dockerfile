@@ -1,4 +1,4 @@
-FROM node:14.21.3-alpine3.17
+FROM node:14.17.5-alpine3.11
 
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
@@ -50,7 +50,7 @@ RUN cd /var/www/proxy-adempiere-api/ && \
 	# install operative system dependencies
 	apk --no-cache --update upgrade musl && \
 	apk add --no-cache --virtual .build-deps \
-		curl git python2 make g++ ca-certificates wget && \
+		curl git python make g++ ca-certificates wget && \
 	sh setting.sh && \
 	apk del .build-deps
 

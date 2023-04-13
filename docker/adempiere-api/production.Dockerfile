@@ -1,4 +1,4 @@
-FROM node:14.21.3
+FROM node:14.17.5
 
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
