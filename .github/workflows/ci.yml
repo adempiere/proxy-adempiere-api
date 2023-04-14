@@ -10,6 +10,7 @@ on:
       - develop
       - master
       - experimental
+      - test/**
     paths-ignore:
       - 'docs/**'
 
@@ -19,6 +20,7 @@ on:
       - master
       - develop
       - experimental
+      - test/**
       - bugfix/**
       - feature/**
 
@@ -59,11 +61,11 @@ jobs:
       - name: Unit Test
         run: yarn test:unit
 
-      - name: Copy Default.json to deploy
-        run: cp docker/adempiere-api/default.json config
+      - name: Copy template.json to deploy
+        run: cp docker/adempiere-api/template.json config
         
       - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
+        uses: a7ul/tar-action@v1.1.3
         id: compress
         with:
           command: c

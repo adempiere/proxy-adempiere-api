@@ -26,7 +26,24 @@ ENV \
 	LANGUAGE="en_US" \
 	TZ="America/Caracas"
 
-EXPOSE ${SERVER_PORT}
+EXPOSE ${SERVER_PORT}/tcp
+
+
+# Install operative system dependencies
+RUN apk upgrade --no-cache --update \
+		musl && \
+	apk add --no-cache \
+		curl \
+		git \
+		tzdata && \
+	# Set time zone
+	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+	echo $TZ > /etc/timezone
+
+
+# Create adempiere user
+RUN addgroup adempiere && \
+	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere
 
 
 WORKDIR /var/www/proxy-adempiere-api/
@@ -39,18 +56,17 @@ COPY docker/adempiere-api/setting.sh /var/www/proxy-adempiere-api/setting.sh
 
 
 RUN cd /var/www/proxy-adempiere-api/ && \
-	addgroup adempiere && \
-	adduser --disabled-password --gecos "" --ingroup adempiere --no-create-home adempiere && \
+	# Set permissions
 	chown -R adempiere ../ && \
 	chmod +x *.sh && \
-	# set time zone
-	apk add --no-cache tzdata && \
-	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-	echo $TZ > /etc/timezone && \
-	# install operative system dependencies
-	apk --no-cache --update upgrade musl && \
+	# install system dependencies to build
 	apk add --no-cache --virtual .build-deps \
-		curl git python make g++ ca-certificates wget && \
+		ca-certificates \
+		python \
+		make \
+		g++ \
+		wget && \
+	# Reinstall sharp package
 	sh setting.sh && \
 	apk del .build-deps
 
