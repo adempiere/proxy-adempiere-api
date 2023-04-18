@@ -14,21 +14,55 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+// import { StorefrontApiContext } from '@storefront-api/lib/module/types';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getWindowChartFromGRPC,
   getWindowMetricsFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding');
   const service = new ServiceApi(config);
 
   /**
-   * GET Window Charts
+   * GET Exists Window Charts
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
+   * req.query.window_id - uuid of current window
+   * req.query.window_uuid - identifier of current window
+   * req.query.tab_id - uuid of current tab
+   * req.query.tab_uuid - identifier of current tab
+   * Details:
+   */
+  api.get('/exists-charts', (req, res) => {
+    service.existsWindowCharts({
+      token: req.headers.authorization,
+      windowId: req.query.window_id,
+      windowUuid: req.query.window_uuid,
+      tabId: req.query.tab_id,
+      tabUuid: req.query.tab_uuid
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: response.getRecordCount()
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  /**
+   * GET Charts Definition
+   *
+   * req.headers.authorization - user token
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    * req.query.role_uuid - uuid of current role
@@ -68,9 +102,9 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * GET Chart Data
+   * GET Metrics Data
    *
-   * req.query.token - user token
+   * req.headers.authorization - user token
    * req.query.uuid - uuid of chart
    * req.query.id - id of chart
    * Details:
