@@ -1,7 +1,9 @@
 
 import {
-  convertEntityFromGRPC,
   getDecimalFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+import {
+  convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
   convertUnitOfMeasureFromGRPC

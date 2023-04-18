@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,8 +14,9 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { convertLookupFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
+import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 import {
   getPaymentSelectionFromGRPC,
   getPaymentFromGRPC,
@@ -25,7 +26,7 @@ import {
   getPrintRemittanceFromGRPC
 } from '@adempiere/grpc-api/src/utils/paymentPrintExportFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/paymentPrintExport')
   const service = new ServiceApi(config);
@@ -72,7 +73,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem)
               })
             }
           });
@@ -105,7 +106,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem)
               })
             }
           });

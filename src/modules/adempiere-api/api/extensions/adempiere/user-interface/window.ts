@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,21 +14,24 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getRecordReferenceInfoFromGRPC
 } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+import {
+  getLookupItemFromGRPC
+} from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 
 import {
   convertAttributes,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
-  convertLookupFromGRPC,
   convertCalloutFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api');
   const service = new ServiceApi(config);
@@ -218,7 +221,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem);
               })
             }
           });
@@ -293,7 +296,7 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertLookupFromGRPC(response)
+            result: getLookupItemFromGRPC(response)
           });
         } else if (err) {
           res.json({

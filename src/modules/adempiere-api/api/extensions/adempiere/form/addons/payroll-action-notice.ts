@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,14 +14,15 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { convertEntitiesListFromGRPC } from '../../../util/convertData';
+import { convertEntitiesListFromGRPC } from '../../util/convertData';
 import {
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
-import { convertLookupFromGRPC } from '@adempiere/grpc-api/lib/convertBusinessData';
+import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/payrollActionNotice')
   const service = new ServiceApi(config);
@@ -36,7 +37,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -44,17 +45,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -68,7 +69,7 @@ module.exports = ({ config }) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -76,17 +77,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -108,17 +109,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(lookupItem => {
-                return convertLookupFromGRPC(lookupItem)
+                return getLookupItemFromGRPC(lookupItem);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

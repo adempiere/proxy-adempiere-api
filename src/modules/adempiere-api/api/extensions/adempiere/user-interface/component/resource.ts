@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -16,6 +16,8 @@
 import { Router } from 'express';
 import fs from 'fs';
 import multer from 'multer';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
 import {
   convertAttachmentFromGRPC,
   convertResourceReferenceFromGRPC
@@ -39,7 +41,7 @@ const upload = multer({
   storage: storage
 })
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement')
   const service = new ServiceApi(config)
@@ -144,7 +146,7 @@ module.exports = ({ config }) => {
 
       const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
       const { LoadResourceRequest } = stubLoader;
-      const { getDecimalFromNumber } = require('@adempiere/grpc-api/lib/convertValues.js');
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
 
       const bufferSize = 256 * 1024; // 256k
       const buffer = fs.readFileSync(completeName);
@@ -154,7 +156,9 @@ module.exports = ({ config }) => {
         let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
         const request = new LoadResourceRequest();
         request.setResourceUuid(resourceUuid);
-        request.setFileSize(getDecimalFromNumber(length));
+        request.setFileSize(
+          getDecimalToGRPC(length)
+        );
         request.setData(bytes);
         call.write(request);
       }

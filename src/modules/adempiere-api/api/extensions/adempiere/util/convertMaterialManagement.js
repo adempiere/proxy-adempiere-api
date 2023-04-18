@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -15,7 +15,7 @@
 
 import {
   getDecimalFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
 export function convertProductAttributeValue (productAttributeValue) {
   if (!productAttributeValue) {

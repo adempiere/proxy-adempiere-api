@@ -14,10 +14,11 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getDecimalFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
   convertUnitOfMeasureFromGRPC
 } from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
@@ -119,7 +120,7 @@ export function getResourceAssignmentFromGRPC (resourceAssignment) {
   };
 }
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/timeRecord.js')
   const service = new ServiceApi(config);
