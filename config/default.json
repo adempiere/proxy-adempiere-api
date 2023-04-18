@@ -276,6 +276,7 @@
         "adempiere/dashboard/addons/user",
         "adempiere/dashboard/addons/tasks",
         "adempiere/dashboard/addons/charts",
+        "adempiere/dashboard/window",
         "adempiere/general-ledger",
         "adempiere/general-ledger/accouting-combination",
         "adempiere/material-management",
