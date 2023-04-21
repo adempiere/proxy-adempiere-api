@@ -342,6 +342,7 @@
         "adempiere/user-interface/component/tab-sequence",
         "adempiere/user-interface/component/translation",
         "adempiere/user-interface/component/tree",
+        "adempiere/form/addons/bank-statement-match",
         "adempiere/form/addons/express-movement",
         "adempiere/form/addons/express-receipt",
         "adempiere/form/addons/express-shipment",
