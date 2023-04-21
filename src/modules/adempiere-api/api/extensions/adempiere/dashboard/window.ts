@@ -14,21 +14,20 @@
  ************************************************************************************/
 
 import { Router } from 'express';
-// import { StorefrontApiContext } from '@storefront-api/lib/module/types';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
-  getWindowChartFromGRPC,
+  getWindowDashboardFromGRPC,
   getWindowMetricsFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding');
+  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding.js');
   const service = new ServiceApi(config);
 
   /**
-   * GET Exists Window Charts
+   * GET Exists Window Dashboards
    *
    * req.headers.authorization - user token
    * req.query.window_id - uuid of current window
@@ -37,8 +36,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * req.query.tab_uuid - identifier of current tab
    * Details:
    */
-  api.get('/exists-charts', (req, res) => {
-    service.existsWindowCharts({
+  api.get('/exists-dashboards', (req, res) => {
+    service.existsWindowDashboards({
       token: req.headers.authorization,
       windowId: req.query.window_id,
       windowUuid: req.query.window_uuid,
@@ -69,8 +68,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * req.query.role_id - id of current role
    * Details:
    */
-  api.get('/charts', (req, res) => {
-    service.listWindowCharts({
+  api.get('/dashboards', (req, res) => {
+    service.listWindowDashboards({
       token: req.headers.authorization,
       windowId: req.query.window_id,
       windowUuid: req.query.window_uuid,
@@ -88,7 +87,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
             records: response.getRecordsList().map(dadshboard => {
-              return getWindowChartFromGRPC(dadshboard)
+              return getWindowDashboardFromGRPC(dadshboard);
             })
           }
         });

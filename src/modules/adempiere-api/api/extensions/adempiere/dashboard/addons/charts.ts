@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,14 +14,16 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
 import {
-  getChartFromGRPC
+  getMetricsFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding')
-  const service = new ServiceApi(config)
+  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding');
+  const service = new ServiceApi(config);
 
   /**
    * GET Chart Data
@@ -33,7 +35,7 @@ module.exports = ({ config }) => {
    */
   api.get('/metrics', (req, res) => {
     if (req.query) {
-      service.getChart({
+      service.getMetrics({
         token: req.headers.authorization,
         uuid: req.query.uuid,
         id: req.query.id
@@ -41,17 +43,17 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: getChartFromGRPC(response)
-          })
+            result: getMetricsFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  return api
+  return api;
 }

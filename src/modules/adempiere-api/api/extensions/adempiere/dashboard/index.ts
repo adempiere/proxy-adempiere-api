@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,15 +14,17 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
 import {
   getDashboardFromGRPC,
   getNotificationFromGRPC
 } from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding')
-  const service = new ServiceApi(config)
+  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding');
+  const service = new ServiceApi(config);
 
   /**
    * GET Dashboards
@@ -51,17 +53,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getDashboardsList().map(dadshboard => {
-                return getDashboardFromGRPC(dadshboard)
+                return getDashboardFromGRPC(dadshboard);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -92,16 +94,16 @@ module.exports = ({ config }) => {
                 return getNotificationFromGRPC(notification)
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  return api
+  return api;
 }
