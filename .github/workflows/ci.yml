@@ -13,6 +13,8 @@ on:
       - test/**
     paths-ignore:
       - 'docs/**'
+      - README.md
+      - README.es.md
 
   pull_request:
     branches:
@@ -23,6 +25,8 @@ on:
       - test/**
       - bugfix/**
       - feature/**
+      - README.md
+      - README.es.md
 
 jobs:
 
