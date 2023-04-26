@@ -19,20 +19,6 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 
-function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
-  if (!businessPartnerToConvert) {
-    return undefined;
-  }
-  return {
-    id: businessPartnerToConvert.getId(),
-    uuid: businessPartnerToConvert.getUuid(),
-    value: businessPartnerToConvert.getValue(),
-    tax_id: businessPartnerToConvert.getTaxId(),
-    name: businessPartnerToConvert.getName(),
-    description: businessPartnerToConvert.getDescription()
-  };
-}
-
 function getOrganizationFromGRPC (organizationToConvert) {
   if (!organizationToConvert) {
     return undefined;
@@ -84,10 +70,7 @@ function getPaymentFromGRPC (paymentToConvert) {
       paymentToConvert.getTransactionType()
     ),
     organization: getOrganizationFromGRPC(
-      paymentToConvert.getDescription()
-    ),
-    business_partner: getBusinessPartnerFromGRPC(
-      paymentToConvert.getBusinessPartner()
+      paymentToConvert.getOrganization()
     ),
     description: paymentToConvert.getDescription(),
     currency: getCurrencyFromGRPC(
@@ -112,17 +95,14 @@ function getInvoiceFromGRPC (invoiceToConvert) {
   return {
     id: invoiceToConvert.getId(),
     uuid: invoiceToConvert.getUuid(),
+    date_invoiced: invoiceToConvert.getDateInvoiced(),
     is_sales_transaction: invoiceToConvert.getIsSalesTransaction(),
-    is_receipt: invoiceToConvert.getIsReceipt(),
     document_no: invoiceToConvert.getDocumentNo(),
     transaction_type: getTransactionTypeFromGRPC(
       invoiceToConvert.getTransactionType()
     ),
     organization: getOrganizationFromGRPC(
-      invoiceToConvert.getDescription()
-    ),
-    business_partner: getBusinessPartnerFromGRPC(
-      invoiceToConvert.getBusinessPartner()
+      invoiceToConvert.getOrganization()
     ),
     description: invoiceToConvert.getDescription(),
     currency: getCurrencyFromGRPC(
@@ -405,29 +385,6 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
               return getLookupItemFromGRPC(organization);
             })
           }
-        });
-      } else if (err) {
-        res.json({
-          code: 500,
-          result: err.details
-        });
-      }
-    });
-  });
-
-  api.post('/calculate-difference', (req, res) => {
-    service.calculateDifference({
-      token: req.headers.authorization,
-      // DSL Query
-      paymentSelectionsList: req.body.payment_selections,
-      invoiceSelectionList: req.body.invoice_selections
-    }, (err, response) => {
-      if (response) {
-        res.json({
-          code: 200,
-          result: getDecimalFromGRPC(
-            response.getDifference()
-          )
         });
       } else if (err) {
         res.json({
