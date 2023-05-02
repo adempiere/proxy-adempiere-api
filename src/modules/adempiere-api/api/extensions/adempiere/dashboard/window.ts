@@ -116,7 +116,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       tableName: req.body.table_name,
       recordId: req.body.record_id,
       recordUuid: req.body.record_uuid,
-      contextAttributes: req.body.context_attributes
+      contextAttributes: req.body.context_attributes,
+      filters: req.body.filters
     }, (err, response) => {
       if (response) {
         res.json({
