@@ -388,7 +388,7 @@
   },
   "adempiereStore": {
     "api": {
-      "token": "adempiere_store_token",
+      "token": "",
       "accessHost": "localhost:50059",
       "storeHost": "localhost:50059",
       "language": "en_US",

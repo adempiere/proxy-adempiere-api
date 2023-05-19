@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "node",
+            "runtimeVersion": "14", // specific node version
             "request": "launch",
             "name": "Proxy ADempiere API",
             "skipFiles": [
