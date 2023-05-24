@@ -69,6 +69,27 @@ Details:
 - [REST API](https://docs.storefrontapi.com/guide/default-modules/api.html)
 - [Configuration file explained](https://docs.storefrontapi.com/guide/general/config.html)
 
+### Using Locally
+
+#### Linux (Debian Based)
+
+```shell
+apt install -y \
+  curl \
+  git \
+  make \
+  g++ \
+  musl \
+  ca-certificates \
+  wget
+```
+
+its is working with `python2`
+
+```shell
+apt install -y python2
+```
+
 ### Using Docker hub images
 #### You can use images from Docker hub:
 - ADempiere Base Zk: https://hub.docker.com/r/solopcloud/adempiere-base
