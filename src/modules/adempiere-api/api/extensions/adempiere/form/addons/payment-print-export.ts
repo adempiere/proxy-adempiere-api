@@ -94,7 +94,6 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         //  DSL Query
         searchValue: req.body.search_value,
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -127,9 +126,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         //  DSL Query
         searchValue: req.body.search_value,
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -161,9 +158,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         // DSL Query
         bankAccountId: req.query.bank_account_id,
-        bankAccountUuid: req.query.bank_account_uuid,
-        paymentRuleId: req.query.payment_rule_id,
-        paymentRuleUuid: req.query.payment_rule_uuid
+        paymentRuleId: req.query.payment_rule_id
       }, (err, response) => {
         if (response) {
           res.json({
@@ -188,10 +183,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
-        documentNo: req.body.document_no
+        documentNo: req.body.document_no,
+        bankAccountId: req.body.bank_account_id
       }, (err, response) => {
         if (response) {
           res.json({
@@ -216,10 +210,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
-        documentNo: req.body.document_no
+        documentNo: req.body.document_no,
+        bankAccountId: req.body.bank_account_id
       }, (err, response) => {
         if (response) {
           res.json({
@@ -244,9 +237,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
         documentNo: req.body.document_no
       }, (err, response) => {
         if (response) {
@@ -272,10 +263,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
-        documentNo: req.body.document_no
+        documentNo: req.body.document_no,
+        bankAccountId: req.body.bank_account_id
       }, (err, response) => {
         if (response) {
           res.json({
@@ -300,9 +290,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         //  DSL Query
         paymentSelectionId: req.body.payment_selection_id,
-        paymentSelectionUuid: req.body.payment_selection_uuid,
         paymentRuleId: req.body.payment_rule_id,
-        paymentRuleUuid: req.body.payment_rule_uuid,
         documentNo: req.body.document_no
       }, (err, response) => {
         if (response) {
