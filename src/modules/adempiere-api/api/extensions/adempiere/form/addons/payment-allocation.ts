@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -265,12 +265,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       // DSL Query
       searchValue: req.query.search_value,
       businessPartnerId: req.query.business_partner_id,
-      businessPartnerUuid: req.query.business_partner_uuid,
       date: req.query.date,
       organizationId: req.query.organization_id,
-      organizationUuid: req.query.organization_uuid,
       currencyId: req.query.currency_id,
-      currencyUuid: req.query.currency_uuid,
       isMultiCurrency: req.query.is_multi_currency,
       transactionType: req.query.transaction_type,
       isAutomaticWriteOff: req.query.is_automatic_write_off,
@@ -304,12 +301,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       // DSL Query
       searchValue: req.query.search_value,
       businessPartnerId: req.query.business_partner_id,
-      businessPartnerUuid: req.query.business_partner_uuid,
       date: req.query.date,
       organizationId: req.query.organization_id,
-      organizationUuid: req.query.organization_uuid,
       currencyId: req.query.currency_id,
-      currencyUuid: req.query.currency_uuid,
       isMultiCurrency: req.query.is_multi_currency,
       transactionType: req.query.transaction_type,
       isAutomaticWriteOff: req.query.is_automatic_write_off,
@@ -396,18 +390,15 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   api.post('/process-receipt', (req, res) => {
-    service.processReceipt({
+    service.process({
       token: req.headers.authorization,
       // DSL Query
       businessPartnerId: req.body.business_partner_id,
-      businessPartnerUuid: req.body.business_partner_uuid,
       currencyId: req.body.currency_id,
-      currencyUuid: req.body.currency_uuid,
       chargeId: req.body.charge_id,
-      chargeUuid: req.body.charge_uuid,
       transactionOrganizationId: req.body.transaction_organization_id,
-      transactionOrganizationUuid: req.body.transaction_organization_uuid,
       date: req.body.date,
+      totalDifference: req.body.total_difference,
       description: req.body.description,
       paymentSelectionsList: req.body.payment_selections,
       invoiceSelectionList: req.body.invoice_selections
