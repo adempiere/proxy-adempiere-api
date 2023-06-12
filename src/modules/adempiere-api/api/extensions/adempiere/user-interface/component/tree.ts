@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 // Recursive function for tree node
 function getTreeNode (treeNode) {
@@ -37,12 +38,26 @@ function getTreeNode (treeNode) {
     childs: treeNode.getChildsList().map(child => {
       return getTreeNode(child)
     })
-  }
+  };
 }
 
-module.exports = ({ config }) => {
+function getTreeType (treeType) {
+  if (!treeType) {
+    return undefined;
+  }
+
+  return {
+    id: treeType.getId(),
+    uuid: treeType.getUuid(),
+    value: treeType.getValue(),
+    name: treeType.getName(),
+    description: treeType.getDescription()
+  };
+}
+
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface')
+  const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface.js')
   const service = new ServiceApi(config)
 
   /**
@@ -59,11 +74,13 @@ module.exports = ({ config }) => {
       service.listTreeNodes({
         token: req.headers.authorization,
         //
+        tabId: req.body.tab_id,
         tableName: req.body.table_name,
         id: req.body.id,
         uuid: req.body.uuid,
         elementId: req.body.element_id,
-        elementUuid: req.body.element_uuid
+        elementUuid: req.body.element_uuid,
+        contextAttributes: req.body.context_attributes
       }, (err, response) => {
         if (response) {
           res.json({
@@ -73,7 +90,10 @@ module.exports = ({ config }) => {
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(childNode => {
                 return getTreeNode(childNode);
-              })
+              }),
+              tree_type: getTreeType(
+                response.getTreeType()
+              )
             }
           });
         } else if (err) {
