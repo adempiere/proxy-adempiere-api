@@ -1,245 +1,28 @@
+/************************************************************************************
+ * Copyright (C) 2018-Present E.R.P. Consultores y Asociados, C.A.                  *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
 import { Router } from 'express';
 
-//  Convert Message Text
-function convertMessageText (messageText) {
-  if (!messageText) {
-    return undefined
-  }
-  return {
-    id: messageText.getId(),
-    uuid: messageText.getUuid(),
-    value: messageText.getValue(),
-    message_type: messageText.getMessageType(),
-    message_text: messageText.getMessageText(),
-    message_tip: messageText.getMessageTip(),
-    is_active: messageText.getIsActive()
-  }
-}
+import {
+  getReferenceFromGRPC,
+  getContextInfoFromGRPC,
+  getFieldGroupFromGRPC,
+  getProcessFromGRPC,
+  getFiledFromGRPC
+} from '../util/dictionaryFromGRPC';
 
-//  Convert Context info
-function convertContextInfo (contextInfo) {
-  if (!contextInfo) {
-    return undefined
-  }
-  return {
-    id: contextInfo.getId(),
-    uuid: contextInfo.getUuid(),
-    name: contextInfo.getName(),
-    description: contextInfo.getDescription(),
-    sql_statement: contextInfo.getSqlStatement(),
-    message_text: convertMessageText(contextInfo.getMessageText()),
-    is_active: contextInfo.getIsActive()
-  }
-}
-
-// Convert Field Dependent
-function convertFieldDependent (fieldDependent) {
-  if (!fieldDependent) {
-    return undefined
-  }
-  return {
-    container_id: fieldDependent.getContainerId(),
-    container_uuid: fieldDependent.getContainerUuid(),
-    container_name: fieldDependent.getContainerName(),
-    id: fieldDependent.getId(),
-    uuid: fieldDependent.getUuid(),
-    column_name: fieldDependent.getColumnName()
-  }
-}
-
-//  Convert Zoom Window
-function convertZoomWindow (zoomWindow) {
-  if (!zoomWindow) {
-    return undefined
-  }
-  return {
-    id: zoomWindow.getId(),
-    uuid: zoomWindow.getUuid(),
-    name: zoomWindow.getName(),
-    description: zoomWindow.getDescription(),
-    is_sales_transaction: zoomWindow.getIsSalesTransaction(),
-    is_active: zoomWindow.getIsActive()
-  }
-}
-
-//  Convert Reference
-function convertReference (reference) {
-  if (!reference) {
-    return undefined
-  }
-  return {
-    id: reference.getId(),
-    uuid: reference.getUuid(),
-    table_name: reference.getTableName(),
-    key_column_name: reference.getKeyColumnName(),
-    display_column_name: reference.getDisplayColumnName(),
-    zoom_windows: reference.getZoomWindowsList().map(zoomWindow => {
-      return convertZoomWindow(zoomWindow)
-    }),
-    context_column_names: reference.getContextColumnNamesList().map(columnName => {
-      return columnName
-    })
-  }
-}
-
-//  Convert Field group
-function convertFieldGroup (fieldGroup) {
-  if (!fieldGroup) {
-    return undefined
-  }
-  return {
-    id: fieldGroup.getId(),
-    uuid: fieldGroup.getUuid(),
-    name: fieldGroup.getName(),
-    field_group_type: fieldGroup.getFieldGroupType(),
-    is_active: fieldGroup.getIsActive()
-  }
-}
-
-//  Convert Field Condition
-function convertFieldCondition (fieldCondition) {
-  if (!fieldCondition) {
-    return undefined
-  }
-  return {
-    id: fieldCondition.getId(),
-    uuid: fieldCondition.getUuid(),
-    condition: fieldCondition.getCondition(),
-    stylesheet: fieldCondition.getStylesheet(),
-    is_active: fieldCondition.getIsActive()
-  }
-}
-
-//  Convert Field Definition
-function convertFieldDefinition (fieldDefinition) {
-  if (!fieldDefinition) {
-    return undefined
-  }
-  return {
-    id: fieldDefinition.getId(),
-    uuid: fieldDefinition.getUuid(),
-    value: fieldDefinition.getValue(),
-    name: fieldDefinition.getName(),
-    field_group_type: fieldDefinition.getFieldGroupType(),
-    is_active: fieldDefinition.getIsActive(),
-    conditions: fieldDefinition.getConditionsList().map(condition => {
-      return convertFieldCondition(condition)
-    })
-  }
-}
-
-//  Convert field
-function convertField (field) {
-  if (!field) {
-    return undefined
-  }
-  return {
-    id: field.getId(),
-    uuid: field.getUuid(),
-    name: field.getName(),
-    description: field.getDescription(),
-    help: field.getHelp(),
-    sequence: field.getSequence(),
-    column_id: field.getColumnId(),
-    column_uuid: field.getColumnUuid(),
-    column_name: field.getColumnName(),
-    column_sql: field.getColumnSql(),
-    element_id: field.getElementId(),
-    element_uuid: field.getElementUuid(),
-    element_name: field.getElementName(),
-    is_displayed: field.getIsDisplayed(),
-    is_displayed_grid: field.getIsDisplayedGrid(),
-    is_read_only: field.getIsReadOnly(),
-    is_allow_copy: field.getIsAllowCopy(),
-    is_encrypted: field.getIsEncrypted(),
-    is_same_line: field.getIsSameLine(),
-    is_heading: field.getIsHeading(),
-    is_field_only: field.getIsFieldOnly(),
-    is_quick_entry: field.getIsQuickEntry(),
-    is_mandatory: field.getIsMandatory(),
-    is_key: field.getIsKey(),
-    is_parent: field.getIsParent(),
-    is_updateable: field.getIsUpdateable(),
-    is_identifier: field.getIsIdentifier(),
-    is_allow_logging: field.getIsAllowLogging(),
-    is_selection_column: field.getIsSelectionColumn(),
-    is_range: field.getIsRange(),
-    is_always_updateable: field.getIsAlwaysUpdateable(),
-    is_translated: field.getIsTranslated(),
-    identifier_sequence: field.getIdentifierSequence(),
-    display_logic: field.getDisplayLogic(),
-    display_type: field.getDisplayType(),
-    default_value: field.getDefaultValue(),
-    read_only_logic: field.getReadOnlyLogic(),
-    mandatory_logic: field.getMandatoryLogic(),
-    callout: field.getCallout(),
-    v_format: field.getVFormat(),
-    value_min: field.getValueMin(),
-    value_max: field.getValueMax(),
-    format_pattern: field.getFormatPattern(),
-    context_info: convertContextInfo(field.getContextInfo()),
-    field_group: convertFieldGroup(field.getFieldGroup()),
-    field_definition: convertFieldDefinition(field.getFieldDefinition()),
-    reference: convertReference(field.getReference()),
-    process: convertProcess(field.getProcess()),
-    is_query_criteria: field.getIsQueryCriteria(),
-    is_order_by: field.getIsOrderBy(),
-    seq_no_grid: field.getSeqNoGrid(),
-    sort_no: field.getSortNo(),
-    is_info_only: field.getIsInfoOnly(),
-    is_active: field.getIsActive(),
-    default_value_to: field.getDefaultValueTo(),
-    field_length: field.getFieldLength(),
-    context_column_names: field.getContextColumnNamesList().map(contextValue => {
-      return contextValue
-    }),
-    dependent_fields: field.getDependentFieldsList().map(dependentField => {
-      return convertFieldDependent(dependentField);
-    })
-  }
-}
-
-//  Convert report export type
-function convertReportExportType (reportExportType) {
-  if (!reportExportType) {
-    return undefined
-  }
-  return {
-    name: reportExportType.getName(),
-    description: reportExportType.getDescription(),
-    type: reportExportType.getType()
-  }
-}
-
-//  Convert process
-function convertProcess (process) {
-  if (!process) {
-    return undefined
-  }
-  return {
-    id: process.getId(),
-    uuid: process.getUuid(),
-    name: process.getName(),
-    description: process.getDescription(),
-    help: process.getHelp(),
-    is_report: process.getIsReport(),
-    access_level: process.getAccessLevel(),
-    show_help: process.getShowHelp(),
-    is_direct_print: process.getIsDirectPrint(),
-    is_active: process.getIsActive(),
-    browser_uuid: process.getBrowserUuid(),
-    form_uuid: process.getFormUuid(),
-    workflow_uuid: process.getWorkflowUuid(),
-    report_export_types: process.getReportExportTypesList().map(reportExportType => {
-      return convertReportExportType(reportExportType)
-    }),
-    parameters: process.getParametersList().map(parameter => {
-      return convertField(parameter)
-    })
-  }
-}
-
-//  Convert Tabs
+// Convert Tabs
 function convertTab (tab) {
   if (!tab) {
     return undefined
@@ -275,13 +58,17 @@ function convertTab (tab) {
     read_only_logic: tab.getReadOnlyLogic(),
     commit_warning: tab.getCommitWarning(),
     parent_tab_uuid: tab.getParentTabUuid(),
-    context_info: convertContextInfo(tab.getContextInfo()),
-    field_group: convertFieldGroup(tab.getFieldGroup()),
+    context_info: getContextInfoFromGRPC(
+      tab.getContextInfo()
+    ),
+    field_group: getFieldGroupFromGRPC(
+      tab.getFieldGroup()
+    ),
     processes: tab.getProcessesList().map(process => {
-      return convertProcess(process)
+      return getProcessFromGRPC(process)
     }),
     fields: tab.getFieldsList().map(field => {
-      return convertField(field)
+      return getFiledFromGRPC(field)
     }),
     context_column_names: tab.getContextColumnNamesList().map(contextValue => {
       return contextValue
@@ -289,7 +76,7 @@ function convertTab (tab) {
   }
 }
 
-//  convert window from gRPC
+// convert window from gRPC
 function convertWindow (window) {
   if (!window) {
     return undefined
@@ -303,14 +90,16 @@ function convertWindow (window) {
     is_active: window.getIsActive(),
     is_sales_transaction: window.getIsSalesTransaction(),
     window_type: window.getWindowType(),
-    context_info: convertContextInfo(window.getContextInfo()),
+    context_info: getContextInfoFromGRPC(
+      window.getContextInfo()
+    ),
     tabs: window.getTabsList().map(tab => {
       return convertTab(tab)
     })
   }
 }
 
-//  Convert browser
+// Convert browser
 function convertBrowser (browser) {
   if (!browser) {
     return undefined
@@ -330,12 +119,16 @@ function convertBrowser (browser) {
     is_executed_query_by_default: browser.getIsExecutedQueryByDefault(),
     is_show_total: browser.getIsShowTotal(),
     view_uuid: browser.getViewUuid(),
-    window: convertWindow(browser.getWindow()),
-    process: convertProcess(browser.getProcess()),
+    window: convertWindow(
+      browser.getWindow()
+    ),
+    process: getProcessFromGRPC(
+      browser.getProcess()
+    ),
     is_active: browser.getIsActive(),
     table_name: browser.getTableName(),
     fields: browser.getFieldsList().map(field => {
-      return convertField(field)
+      return getFiledFromGRPC(field)
     }),
     context_column_names: browser.getContextColumnNamesList().map(contextValue => {
       return contextValue
@@ -343,7 +136,7 @@ function convertBrowser (browser) {
   }
 }
 
-//  Convert form
+// Convert form
 function convertForm (form) {
   if (!form) {
     return undefined
@@ -360,7 +153,7 @@ function convertForm (form) {
   }
 }
 
-//  Convert Validation Rule
+// Convert Validation Rule
 function convertValidationRule (validationRule) {
   if (!validationRule) {
     return undefined
@@ -432,15 +225,15 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertProcess(response)
-          })
+            result: getProcessFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -535,15 +328,15 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertField(response)
-          })
+            result: getFiledFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -566,15 +359,15 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertReference(response)
-          })
+            result: getReferenceFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -639,17 +432,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getFieldsList().map(field => {
-                return convertField(field);
+                return getFiledFromGRPC(field);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -682,17 +475,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getFieldsList().map(field => {
-                return convertField(field);
+                return getFiledFromGRPC(field);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

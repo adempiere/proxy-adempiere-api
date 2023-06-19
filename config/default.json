@@ -269,7 +269,6 @@
     "adempiereApi": {
       "registeredExtensions": [
         "adempiere",
-        "adempiere/dictionary",
         "adempiere/common",
         "adempiere/common/api",
         "adempiere/dashboard",
@@ -277,6 +276,8 @@
         "adempiere/dashboard/addons/tasks",
         "adempiere/dashboard/addons/charts",
         "adempiere/dashboard/window",
+        "adempiere/dictionary",
+        "adempiere/dictionary/search-info",
         "adempiere/general-ledger",
         "adempiere/general-ledger/accouting-combination",
         "adempiere/material-management",
