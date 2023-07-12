@@ -347,6 +347,7 @@
         "adempiere/form/addons/express-movement",
         "adempiere/form/addons/express-receipt",
         "adempiere/form/addons/express-shipment",
+        "adempiere/form/addons/import-file-loader",
         "adempiere/form/addons/v-match",
         "adempiere/form/addons/payment-allocation",
         "adempiere/form/addons/payment-print-export",
