@@ -61,7 +61,7 @@
   "license": "MIT",
   "dependencies": {
     "@2fd/graphdoc": "^2.4.0",
-    "@adempiere/grpc-api": "4.5.6",
+    "@adempiere/grpc-api": "4.5.8",
     "@adempiere/grpc-web-store-api": "1.5.7",
     "@elastic/elasticsearch": "7.14.0",
     "@google-cloud/storage": "^3.0.3",
@@ -108,7 +108,7 @@
     "request-promise-native": "^1.0.5",
     "resource-router-middleware": "^0.6.0",
     "semver": "^6.3.0",
-    "sharp": "^0.23.4",
+    "sharp": "0.32.2",
     "soap": "^0.25.0",
     "storefront-query-builder": "^1.0.0",
     "supertest": "^4.0.2",

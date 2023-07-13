@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,17 +14,17 @@
  ************************************************************************************/
 
 import { Router } from 'express';
-import fs from 'fs';
-import multer from 'multer';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
+import os from 'os'
+import fs from 'fs';
+import path from 'path'
+import multer from 'multer';
 
 import {
   convertAttachmentFromGRPC,
   convertResourceReferenceFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
-
-const os = require('os');
-const path = require('path');
 
 function getCompleteFileName (fileName) {
   return path.join(os.tmpdir(), fileName);
@@ -129,7 +129,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         if (response) {
           res.json({
             code: 200,
-            result: response
+            result: convertResourceReferenceFromGRPC(response)
           });
         } else if (err) {
           if (fs.existsSync(completeName)) {
