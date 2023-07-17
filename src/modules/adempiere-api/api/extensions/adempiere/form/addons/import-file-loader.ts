@@ -14,10 +14,28 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
+import os from 'os'
 import fs from 'fs';
+import path from 'path'
 import multer from 'multer';
+
 import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 import { convertEntitiesListFromGRPC } from '../../util/convertData';
+import { getResourceReferenceFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+
+function getImportTableFromGRPC (importTableToConvert) {
+  if (!importTableToConvert) {
+    return undefined;
+  }
+  return {
+    id: importTableToConvert.getId(),
+    uuid: importTableToConvert.getUuid(),
+    name: importTableToConvert.getName(),
+    table_name: importTableToConvert.getTableName()
+  };
+}
 
 function getImportFormatFromGRPC (importFormatToConvert) {
   if (!importFormatToConvert) {
@@ -56,24 +74,6 @@ function getFormatFieldsFromGRPC (formatFieldsToConvert) {
   };
 }
 
-// function resourceReferenceFromGRPC (resourceReferenceToConvert) {
-//   if (!resourceReferenceToConvert) {
-//     return undefined;
-//   }
-//   return {
-//     resourceId: resourceReferenceToConvert.getResourceId(),
-//     resourceUuid: resourceReferenceToConvert.getResourceUuid(),
-//     fileName: resourceReferenceToConvert.getFileName(),
-//     fileSize: resourceReferenceToConvert.getFileSize(),
-//     description: resourceReferenceToConvert.getDescription(),
-//     textMsg: resourceReferenceToConvert.getTextMsg(),
-//     contentType: resourceReferenceToConvert.getContentType()
-//   };
-// }
-
-const os = require('os');
-const path = require('path');
-
 function getCompleteFileName (fileName) {
   return path.join(os.tmpdir(), fileName);
 }
@@ -89,10 +89,11 @@ const upload = multer({
   storage: storage
 })
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   let api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/ImportFileLoader')
   const service = new ServiceApi(config);
+
   api.get('/list-charsets', (req, res) => {
     if (req.query) {
       service.listCharsets({
@@ -112,20 +113,20 @@ module.exports = ({ config }) => {
                 return getLookupItemFromGRPC(charset);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/list-import-formats', (req, res) => {
+  api.get('/list-import-tables', (req, res) => {
     if (req.query) {
-      service.listImportFormats({
+      service.listImportTables({
         token: req.headers.authorization,
         searchValue: req.query.search_value,
         //  Page Data
@@ -138,18 +139,82 @@ module.exports = ({ config }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getRecordsList().map(charset => {
-                return getLookupItemFromGRPC(charset);
+              records: response.getRecordsList().map(importTable => {
+                return getImportTableFromGRPC(importTable);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
+    }
+  });
+
+  api.get('/list-import-formats', (req, res) => {
+    if (req.query) {
+      service.listImportFormats({
+        token: req.headers.authorization,
+        tableId: req.query.table_id,
+        tableName: req.query.table_name,
+        searchValue: req.query.search_value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(importFormat => {
+                return getLookupItemFromGRPC(importFormat);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  api.get('/list-client-import-formats', (req, res) => {
+    if (req.query) {
+      service.listClientImportFormats({
+        token: req.headers.authorization,
+        tableId: req.query.table_id,
+        tableName: req.query.table_name,
+        searchValue: req.query.search_value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(importFormat => {
+                return getLookupItemFromGRPC(importFormat);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
     }
   });
 
@@ -163,70 +228,39 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: getImportFormatFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.post('/load-import-file', (req, res) => {
+  api.post('/save-records', (req, res) => {
     if (req.body) {
-      const fileName = req.body.file_name;
-      const completeName = getCompleteFileName(fileName);
-      const resourceUuid = req.body.resource_uuid;
-      const token = req.headers.authorization;
-
-      const call = service.loadImportFile({
-        token
+      service.saveRecords({
+        token: req.headers.authorization,
+        importFormatId: req.body.import_format_id,
+        resourceId: req.body.resource_id
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: response
+            result: {
+              message: response.getMessage(),
+              total: response.getTotal()
+            }
           });
         } else if (err) {
-          if (fs.existsSync(completeName)) {
-            console.log('Delete file: ' + fileName);
-            fs.promises.unlink(completeName);
-          }
           res.json({
             code: 500,
             result: err.details
           });
         }
-        call.end();
       });
-
-      const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/import_file_loader_pb.js');
-      const { LoadImportFileRequest } = stubLoader;
-      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-
-      const bufferSize = 256 * 1024; // 256k
-      const buffer = fs.readFileSync(completeName);
-      const length = buffer.length;
-      let chunkPosition = 0;
-      while (chunkPosition < length) {
-        let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
-        const request = new LoadImportFileRequest();
-        request.setResourceUuid(resourceUuid);
-        request.setFileSize(
-          getDecimalToGRPC(length)
-        );
-        request.setData(bytes);
-        call.write(request);
-      }
-      setTimeout(() => {
-        call.end();
-        if (fs.existsSync(completeName)) {
-          console.log('Delete temporary file uploaded: ' + fileName)
-          fs.promises.unlink(completeName);
-        }
-      }, 300);
     }
   });
 
@@ -236,7 +270,7 @@ module.exports = ({ config }) => {
         token: req.headers.authorization,
         searchValue: req.query.search_value,
         importFormatId: req.query.import_format_id,
-        resourceReferenceId: req.query.resource_reference_id,
+        resourceId: req.query.resource_id,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -245,35 +279,46 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: convertEntitiesListFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/process-import', (req, res) => {
+  api.get('/list-import-processes', (req, res) => {
     if (req.query) {
-      service.processImport({
+      service.listImportProcesses({
         token: req.headers.authorization,
-        importFormatId: req.query.import_format_id
+        searchValue: req.query.search_value,
+        tableId: req.query.tableId,
+        tableName: req.query.table_name,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: response
-          })
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(importProcess => {
+                return getLookupItemFromGRPC(importProcess);
+              })
+            }
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
