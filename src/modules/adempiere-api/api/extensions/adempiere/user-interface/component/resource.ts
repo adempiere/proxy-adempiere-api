@@ -22,9 +22,9 @@ import path from 'path'
 import multer from 'multer';
 
 import {
-  convertAttachmentFromGRPC,
-  convertResourceReferenceFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+  getAttachmentFromGRPC,
+  getResourceReferenceFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
 function getCompleteFileName (fileName) {
   return path.join(os.tmpdir(), fileName);
@@ -35,16 +35,16 @@ const storage = multer.diskStorage({
   filename: (req, file, callback) => {
     callback(null, req.body.file_name);
   }
-})
+});
 
 const upload = multer({
   storage: storage
-})
+});
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement')
-  const service = new ServiceApi(config)
+  const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+  const service = new ServiceApi(config);
 
   /**
    * GET Exists Attachment
@@ -67,14 +67,14 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           res.json({
             code: 200,
             result: response.getRecordCount()
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -93,34 +93,40 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       service.getAttachment({
         token: req.headers.authorization,
         tableName: req.query.table_name,
-        id: req.query.id,
-        uuid: req.query.uuid
+        recordId: req.query.record_id || req.query.id, // TODO: Remove with support on client
+        recordUuid: req.query.record_uuid || req.query.uuid // TODO: Remove with support on client
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertAttachmentFromGRPC(response)
-          })
+            result: getAttachmentFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   /**
    * Upload attachemnt file
    * @param {string} file_name
+   * @param {number} resource_id
    * @param {string} resource_uuid
    */
   api.post('/save-attachment', upload.single('file'), (req, res) => {
     if (req.body) {
+      const { getValidInteger } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+
       const fileName = req.body.file_name;
       const completeName = getCompleteFileName(fileName);
       const resourceUuid = req.body.resource_uuid;
+      const resourceId = getValidInteger(
+        req.body.resource_id
+      );
       const token = req.headers.authorization;
 
       const call = service.loadResource({
@@ -129,11 +135,11 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertResourceReferenceFromGRPC(response)
+            result: getResourceReferenceFromGRPC(response)
           });
         } else if (err) {
           if (fs.existsSync(completeName)) {
-            console.log('Delete file: ' + fileName);
+            console.log('Error delete file: ' + fileName);
             fs.promises.unlink(completeName);
           }
           res.json({
@@ -155,6 +161,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       while (chunkPosition < length) {
         let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
         const request = new LoadResourceRequest();
+        request.setResourceId(resourceId);
         request.setResourceUuid(resourceUuid);
         request.setFileSize(
           getDecimalToGRPC(length)
@@ -196,15 +203,15 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertResourceReferenceFromGRPC(response)
-          })
+            result: getResourceReferenceFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -220,20 +227,21 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     if (req.query) {
       service.getResourceReference({
         token: req.headers.authorization,
-        imageId: req.query.image_id
+        imageId: req.query.image_id,
+        imageUuid: req.query.image_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertResourceReferenceFromGRPC(response)
-          })
+            result: getResourceReferenceFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -257,14 +265,14 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
