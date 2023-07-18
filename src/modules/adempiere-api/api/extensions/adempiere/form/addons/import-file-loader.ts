@@ -16,14 +16,22 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import os from 'os'
-import fs from 'fs';
-import path from 'path'
-import multer from 'multer';
-
+// Utils and Helper Methods
 import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 import { convertEntitiesListFromGRPC } from '../../util/convertData';
-import { getResourceReferenceFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+
+function getImportColumnFromGRPC (importColumnToConvert) {
+  if (!importColumnToConvert) {
+    return undefined;
+  }
+  return {
+    id: importColumnToConvert.getId(),
+    uuid: importColumnToConvert.getUuid(),
+    name: importColumnToConvert.getName(),
+    column_name: importColumnToConvert.getColumnName(),
+    display_type: importColumnToConvert.getDisplayType()
+  };
+}
 
 function getImportTableFromGRPC (importTableToConvert) {
   if (!importTableToConvert) {
@@ -33,24 +41,9 @@ function getImportTableFromGRPC (importTableToConvert) {
     id: importTableToConvert.getId(),
     uuid: importTableToConvert.getUuid(),
     name: importTableToConvert.getName(),
-    table_name: importTableToConvert.getTableName()
-  };
-}
-
-function getImportFormatFromGRPC (importFormatToConvert) {
-  if (!importFormatToConvert) {
-    return undefined;
-  }
-  return {
-    id: importFormatToConvert.getId(),
-    uuid: importFormatToConvert.getUuid(),
-    name: importFormatToConvert.getName(),
-    description: importFormatToConvert.getDescription(),
-    tableName: importFormatToConvert.getTableName(),
-    formatType: importFormatToConvert.getFormatType(),
-    separatorCharacter: importFormatToConvert.getSeparatorCharacter(),
-    formatFields: importFormatToConvert.getFormatFieldsList().map(formatField => {
-      return getFormatFieldsFromGRPC(formatField)
+    table_name: importTableToConvert.getTableName(),
+    import_columns: importTableToConvert.getImportColumnsList().map(importColumn => {
+      return getImportColumnFromGRPC(importColumn);
     })
   };
 }
@@ -74,20 +67,23 @@ function getFormatFieldsFromGRPC (formatFieldsToConvert) {
   };
 }
 
-function getCompleteFileName (fileName) {
-  return path.join(os.tmpdir(), fileName);
-}
-
-const storage = multer.diskStorage({
-  destination: os.tmpdir(),
-  filename: (req, file, callback) => {
-    callback(null, req.body.file_name);
+function getImportFormatFromGRPC (importFormatToConvert) {
+  if (!importFormatToConvert) {
+    return undefined;
   }
-})
-
-const upload = multer({
-  storage: storage
-})
+  return {
+    id: importFormatToConvert.getId(),
+    uuid: importFormatToConvert.getUuid(),
+    name: importFormatToConvert.getName(),
+    description: importFormatToConvert.getDescription(),
+    tableName: importFormatToConvert.getTableName(),
+    formatType: importFormatToConvert.getFormatType(),
+    separatorCharacter: importFormatToConvert.getSeparatorCharacter(),
+    formatFields: importFormatToConvert.getFormatFieldsList().map(formatField => {
+      return getFormatFieldsFromGRPC(formatField)
+    })
+  };
+}
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   let api = Router();
@@ -244,7 +240,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       service.saveRecords({
         token: req.headers.authorization,
         importFormatId: req.body.import_format_id,
-        resourceId: req.body.resource_id
+        resourceId: req.body.resource_id,
+        charset: req.body.charset
       }, (err, response) => {
         if (response) {
           res.json({
