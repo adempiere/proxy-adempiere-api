@@ -22,7 +22,6 @@ import path from 'path'
 import multer from 'multer';
 
 import {
-  getAttachmentFromGRPC,
   getResourceReferenceFromGRPC
 } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
@@ -40,6 +39,24 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage
 });
+
+function getAttachmentFromGRPC (attachmentToConvert) {
+  if (!attachmentToConvert) {
+    return undefined;
+  }
+  return {
+    id: attachmentToConvert.getId(),
+    uuid: attachmentToConvert.getUuid(),
+    attachment_uuid: attachmentToConvert.getUuid(), // TODO: Remove when add support to uuid attribute
+    title: attachmentToConvert.getTitle(),
+    text_message: attachmentToConvert.getTextMessage(),
+    resource_references_list: attachmentToConvert.getResourceReferencesList().map(itemResourceReference => {
+      return getResourceReferenceFromGRPC(
+        itemResourceReference
+      );
+    })
+  };
+}
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
@@ -67,6 +84,39 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           res.json({
             code: 200,
             result: response.getRecordCount()
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  /**
+   * GET Entity Attachment Information
+   *
+   * req.query.token - user token
+   * req.query.id - id of attachment
+   * req.query.uuid - uuid of attachment
+   * req.query.text_message - message or description
+   *
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  api.put('/attachment-description', (req, res) => {
+    if (req.body) {
+      service.setAttachmentDescription({
+        token: req.headers.authorization,
+        id: req.body.id,
+        uuid: req.body.uuid,
+        textMessage: req.body.text_message
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getAttachmentFromGRPC(response)
           });
         } else if (err) {
           res.json({
@@ -159,13 +209,14 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       const length = buffer.length;
       let chunkPosition = 0;
       while (chunkPosition < length) {
-        let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
         const request = new LoadResourceRequest();
         request.setResourceId(resourceId);
         request.setResourceUuid(resourceUuid);
         request.setFileSize(
           getDecimalToGRPC(length)
         );
+
+        let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
         request.setData(bytes);
         call.write(request);
       }
@@ -176,6 +227,40 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           fs.promises.unlink(completeName);
         }
       }, 300);
+    }
+  });
+
+  /**
+   * PUT Attachment Description
+   *
+   * req.query.token - user token
+   * req.body.id - id of resource reference
+   * req.body.uuid - uuid of resource reference
+   * req.body.text_message - text message of resource reference
+   *
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  api.put('/set-attachment-description', (req, res) => {
+    if (req.body) {
+      service.setAttachmentDescription({
+        token: req.headers.authorization,
+        // attachment values
+        id: req.body.id,
+        uuid: req.body.uuid,
+        textMessage: req.body.text_message
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getAttachmentFromGRPC(response)
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
     }
   });
 
@@ -196,9 +281,47 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         recordId: req.body.record_id,
         recordUuid: req.body.record_uuid,
         // attachment reference values
+        description: req.body.description,
         textMessage: req.body.text_message,
         fileName: req.body.file_name,
         fileSize: req.body.file_size
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getResourceReferenceFromGRPC(response)
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  /**
+   * PUT Resource Reference Description
+   *
+   * req.query.token - user token
+   * req.body.id - id of resource reference
+   * req.body.uuid - uuid of resource reference
+   * req.body.description - description of resource reference
+   * req.body.text_message - text message of resource reference
+   *
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  api.put('/set-resource-reference-description', (req, res) => {
+    if (req.body) {
+      service.setResourceReferenceDescription({
+        token: req.headers.authorization,
+        // attachment values
+        id: req.body.id,
+        uuid: req.body.uuid,
+        // attachment reference values
+        description: req.body.description,
+        textMessage: req.body.text_message
       }, (err, response) => {
         if (response) {
           res.json({

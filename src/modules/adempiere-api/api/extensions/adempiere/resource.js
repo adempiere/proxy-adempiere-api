@@ -11,6 +11,9 @@ function getResource ({
   service
 }) {
   return new Promise((resolve, reject) => {
+    if (token != null && !token.startsWith('Bearer')) {
+      token = 'Bearer ' + token;
+    }
     service.getResource({
       token,
       resourceId,
@@ -20,7 +23,7 @@ function getResource ({
       if (err) {
         reject(err);
       } else {
-        resolve(data.buffer);
+        resolve(data);
       }
     });
   });
