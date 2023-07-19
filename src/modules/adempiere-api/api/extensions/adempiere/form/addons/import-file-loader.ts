@@ -241,7 +241,10 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         importFormatId: req.body.import_format_id,
         resourceId: req.body.resource_id,
-        charset: req.body.charset
+        charset: req.body.charset,
+        isProcess: req.body.is_process,
+        processId: req.body.process_id,
+        parametersList: req.body.parameters
       }, (err, response) => {
         if (response) {
           res.json({
