@@ -399,5 +399,53 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     }
   });
 
+  /**
+   * GET Resource
+   *
+   * req.query.token - user token
+   * req.body.id - id of resource
+   * req.body.uuid - uuid of resource
+   * req.body.resource_name - uuid and file name of resource
+   *
+   * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
+   */
+  api.get('/download', (req, res) => {
+    service.getResource({
+      token: req.headers.authorization || req.query.token,
+      resourceId: req.query.id,
+      resourceUuid: req.query.uuid,
+      resourceName: req.query.resource_name
+    }, (err, response) => {
+      if (response) {
+        const resourceName = req.query.resource_name;
+        const fileName = path.basename(
+          String(resourceName)
+        ).replace(req.query.uuid + '-', '');
+        const completeName = getCompleteFileName(fileName);
+
+        fs.writeFileSync(completeName, response);
+
+        const mime = require('mime');
+        const mimetype = mime.getType(fileName);
+        res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+        res.setHeader('Content-type', mimetype);
+
+        // const buffer = Buffer.from(response.buffer)
+        const filestream = fs.createReadStream(completeName);
+        filestream.pipe(res);
+
+        if (fs.existsSync(completeName)) {
+          console.log('Delete temporary file generated: ' + fileName)
+          fs.promises.unlink(completeName);
+        }
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
   return api;
 };
