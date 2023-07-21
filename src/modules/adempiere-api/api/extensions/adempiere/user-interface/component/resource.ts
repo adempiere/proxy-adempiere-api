@@ -32,11 +32,14 @@ function getCompleteFileName (fileName) {
 const storage = multer.diskStorage({
   destination: os.tmpdir(),
   filename: (req, file, callback) => {
-    // if (Object.keys(req.body).length === 0) {
-    //   callback(new Error('¡Ups!'))
-    // }
-    callback(null, req.body.file_name);
-    // callback(null, file.originalname);
+    const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+    if (isEmptyValue(req.body)) {
+      callback(new Error('Save Attachment: Without body request'));
+    } else if (isEmptyValue(req.body.file_name)) {
+      callback(new Error('Save Attachment: Without file properites'));
+    } else {
+      callback(null, req.body.file_name);
+    }
   }
 });
 
@@ -165,91 +168,100 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     }
   });
 
+  const uploadSingleFile = upload.single('file');
   /**
    * Upload attachemnt file
    * @param {string} file_name
    * @param {number} resource_id
    * @param {string} resource_uuid
    */
-  api.post('/save-attachment', upload.single('file'), (req, res) => {
-    const { getValidInteger, isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
-
-    if (isEmptyValue(req.body)) {
-      return res.json({
-        code: 500,
-        result: 'Save Attachment: Without body request'
-      });
-    }
-
-    const resourceId = getValidInteger(
-      req.body.resource_id
-    );
-    const resourceUuid = req.body.resource_uuid;
-    if (resourceId <= 0 && isEmptyValue(resourceUuid)) {
-      return res.json({
-        code: 500,
-        result: 'Save Attachment: Without Resource Identifier'
-      });
-    }
-
-    const fileName = req.body.file_name;
-    if (isEmptyValue(fileName)) {
-      return res.json({
-        code: 500,
-        result: 'Save Attachment: Without file properites'
-      });
-    }
-    const completeName = getCompleteFileName(fileName);
-    const token = req.headers.authorization;
-
-    const call = service.loadResource({
-      token
-    }, (err, response) => {
-      if (response) {
-        res.json({
-          code: 200,
-          result: getResourceReferenceFromGRPC(response)
+  api.post('/save-attachment', (req, res) => {
+    uploadSingleFile(req, res, (error) => {
+      if (error) {
+        return res.json({
+          code: 400,
+          result: error.message
         });
-      } else if (err) {
+      }
+
+      const { getValidInteger, isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      if (isEmptyValue(req.body)) {
+        return res.json({
+          code: 400,
+          result: 'Save Attachment: Without body request'
+        });
+      }
+
+      const resourceId = getValidInteger(
+        req.body.resource_id
+      );
+      const resourceUuid = req.body.resource_uuid;
+      if (resourceId <= 0 && isEmptyValue(resourceUuid)) {
+        return res.json({
+          code: 400,
+          result: 'Save Attachment: Without Resource Identifier'
+        });
+      }
+
+      const fileName = req.body.file_name;
+      if (isEmptyValue(fileName)) {
+        return res.json({
+          code: 400,
+          result: 'Save Attachment: Without file properites'
+        });
+      }
+      const completeName = getCompleteFileName(fileName);
+      const token = req.headers.authorization;
+
+      const call = service.loadResource({
+        token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getResourceReferenceFromGRPC(response)
+          });
+        } else if (err) {
+          if (fs.existsSync(completeName)) {
+            console.log('Error delete file: ' + fileName);
+            fs.promises.unlink(completeName);
+          }
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+        call.end();
+      });
+
+      const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
+      const { LoadResourceRequest } = stubLoader;
+      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+
+      const bufferSize = 256 * 1024; // 256k
+      const buffer = fs.readFileSync(completeName);
+      const length = buffer.length;
+      let chunkPosition = 0;
+      while (chunkPosition < length) {
+        const request = new LoadResourceRequest();
+        request.setResourceId(resourceId);
+        request.setResourceUuid(resourceUuid);
+        request.setFileSize(
+          getDecimalToGRPC(length)
+        );
+
+        let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
+        request.setData(bytes);
+        call.write(request);
+      }
+      setTimeout(() => {
+        call.end();
         if (fs.existsSync(completeName)) {
-          console.log('Error delete file: ' + fileName);
+          console.log('Delete temporary file uploaded: ' + fileName)
           fs.promises.unlink(completeName);
         }
-        res.json({
-          code: 500,
-          result: err.details
-        });
-      }
-      call.end();
+      }, 300);
     });
-
-    const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
-    const { LoadResourceRequest } = stubLoader;
-    const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
-
-    const bufferSize = 256 * 1024; // 256k
-    const buffer = fs.readFileSync(completeName);
-    const length = buffer.length;
-    let chunkPosition = 0;
-    while (chunkPosition < length) {
-      const request = new LoadResourceRequest();
-      request.setResourceId(resourceId);
-      request.setResourceUuid(resourceUuid);
-      request.setFileSize(
-        getDecimalToGRPC(length)
-      );
-
-      let bytes = buffer.slice(chunkPosition, chunkPosition += bufferSize);
-      request.setData(bytes);
-      call.write(request);
-    }
-    setTimeout(() => {
-      call.end();
-      if (fs.existsSync(completeName)) {
-        console.log('Delete temporary file uploaded: ' + fileName)
-        fs.promises.unlink(completeName);
-      }
-    }, 300);
   });
 
   /**
