@@ -49,9 +49,13 @@ module.exports = ({ config }) => {
   api.get('/report-output', (req, res) => {
     service.getReportOutput({
       token: req.headers.authorization,
+      processId: req.query.process_id,
+      processUuid: req.query.process_uuid,
       tableName: req.query.table_name,
       // Reference
+      printFormatId: req.query.print_format_id,
       printFormatUuid: req.query.print_format_uuid,
+      reportViewId: req.query.report_view_id,
       reportViewUuid: req.query.report_view_uuid,
       isSummary: req.query.is_summary,
       reportName: req.query.report_name,
