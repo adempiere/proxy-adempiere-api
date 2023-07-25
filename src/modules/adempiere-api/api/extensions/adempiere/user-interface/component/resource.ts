@@ -310,6 +310,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     if (req.body) {
       service.setResourceReference({
         token: req.headers.authorization,
+        resourceType: req.body.resource_type,
+        resourceId: req.body.resource_id,
         // attachment values
         tableName: req.body.table_name,
         recordId: req.body.record_id,
