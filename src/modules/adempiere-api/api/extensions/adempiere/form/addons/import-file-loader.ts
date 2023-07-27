@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Elsio Sanchez elsiosanchez15@outlook.com                         *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -80,14 +80,14 @@ function getImportFormatFromGRPC (importFormatToConvert) {
     formatType: importFormatToConvert.getFormatType(),
     separatorCharacter: importFormatToConvert.getSeparatorCharacter(),
     formatFields: importFormatToConvert.getFormatFieldsList().map(formatField => {
-      return getFormatFieldsFromGRPC(formatField)
+      return getFormatFieldsFromGRPC(formatField);
     })
   };
 }
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/ImportFileLoader')
+  const ServiceApi = require('@adempiere/grpc-api/src/services/importFileLoader');
   const service = new ServiceApi(config);
 
   api.get('/list-charsets', (req, res) => {
