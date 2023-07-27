@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -104,6 +104,9 @@ function getRole (role) {
     description: role.getDescription(),
     client_id: role.getClientId(),
     client_name: role.getClientName(),
+    client_logo: role.getClientLogo(),
+    client_report_logo: role.getClientReportLogo(),
+    client_web_logo: role.getClientWebLogo(),
     is_can_report: role.getIsCanReport(),
     is_can_export: role.getIsCanExport(),
     is_personal_lock: role.getIsPersonalLock(),
