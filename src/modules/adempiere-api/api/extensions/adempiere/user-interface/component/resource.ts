@@ -378,7 +378,13 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * GET Resource Reference Information
    *
    * req.query.token - user token
+   * req.query.id - id of attachment reference
+   * req.query.uuid - uuid of attachment reference
+   * req.query.resource_name - uuid + fileName of attachment reference
    * req.query.image_id - id of image
+   * req.query.image_uuid - uuid of image
+   * req.query.archive_id - id of archive
+   * req.query.archive_id - uuid of archive
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
@@ -386,8 +392,13 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     if (req.query) {
       service.getResourceReference({
         token: req.headers.authorization,
+        id: req.query.id,
+        uuid: req.query.uuid,
+        resourceName: req.query.resource_name,
         imageId: req.query.image_id,
-        imageUuid: req.query.image_uuid
+        imageUuid: req.query.image_uuid,
+        archiveId: req.query.archive_id,
+        archiveUuid: req.query.archive_uuid
       }, (err, response) => {
         if (response) {
           res.json({
