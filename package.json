@@ -61,7 +61,7 @@
   "license": "MIT",
   "dependencies": {
     "@2fd/graphdoc": "^2.4.0",
-    "@adempiere/grpc-api": "4.7.0",
+    "@adempiere/grpc-api": "4.7.1",
     "@adempiere/grpc-web-store-api": "1.5.7",
     "@elastic/elasticsearch": "7.14.0",
     "@google-cloud/storage": "^3.0.3",

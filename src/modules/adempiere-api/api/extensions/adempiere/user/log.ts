@@ -1,13 +1,30 @@
+/************************************************************************************
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+
 import { Router } from 'express';
+
 import {
-  convertProcessLogFromGRPC,
-  convertEntityLogFromGRPC
+  convertProcessLogFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
 import {
   convertChatEntryFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
 import {
-  getEntityChatsFromGRPC
+  getEntityChatsFromGRPC,
+  getEntityLogFromGRPC,
+  getUserActivityFromGRPC
 } from '@adempiere/grpc-api/src/utils/logsFromGRPC';
 import {
   getWorkflowProcessFomGRPC
@@ -98,7 +115,7 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getEntityLogsList().map(entityLog => {
-                return convertEntityLogFromGRPC(entityLog)
+                return getEntityLogFromGRPC(entityLog)
               })
             }
           })
@@ -274,6 +291,37 @@ module.exports = ({ config }) => {
           })
         }
       })
+    }
+  });
+
+  api.get('/user-activities', (req, res) => {
+    if (req.query) {
+      service.listUserActivites({
+        token: req.headers.authorization,
+        date: req.query.date,
+        searchValue: req.query.search_value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(userActivity => {
+                return getUserActivityFromGRPC(userActivity);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
     }
   });
 
