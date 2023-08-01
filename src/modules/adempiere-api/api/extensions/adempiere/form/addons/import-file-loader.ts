@@ -271,6 +271,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         searchValue: req.query.search_value,
         importFormatId: req.query.import_format_id,
         resourceId: req.query.resource_id,
+        charset: req.query.charset,
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
