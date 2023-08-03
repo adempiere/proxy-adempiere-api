@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -17,11 +17,11 @@ import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
-  getDecimalFromGRPC
+  getDecimalFromGRPC,
+  getProcessLogFromGRPC
 } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
-  convertDocumentStatusFromGRPC,
-  convertProcessLogFromGRPC
+  convertDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType.js';
 import {
   convertKeyLayoutFromGRPC,
@@ -1678,16 +1678,16 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             code: 200,
             result: {
               result: response.getResult(),
-              processLog: convertProcessLogFromGRPC(response.getProcessLog())
+              processLog: getProcessLogFromGRPC(response.getProcessLog())
             }
           })
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -1715,16 +1715,16 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             code: 200,
             result: {
               result: response.getResult(),
-              processLog: convertProcessLogFromGRPC(response.getProcessLog())
+              processLog: getProcessLogFromGRPC(response.getProcessLog())
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

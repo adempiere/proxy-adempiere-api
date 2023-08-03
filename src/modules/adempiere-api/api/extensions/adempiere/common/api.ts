@@ -14,13 +14,16 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
-  convertProcessLogFromGRPC,
   convertEntityFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
+import {
+  getProcessLogFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
-module.exports = ({ config, db }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api');
   const service = new ServiceApi(config);
@@ -272,7 +275,7 @@ module.exports = ({ config, db }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertProcessLogFromGRPC(response)
+            result: getProcessLogFromGRPC(response)
           });
         } else if (err) {
           res.json({

@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,15 +14,18 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
-  convertReportOutputFromGRPC,
   convertDrillTableFromGRPC,
   convertPrintFromatFromGRPC,
   convertReportViewFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType';
+import {
+  getReportOutputFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface')
   const service = new ServiceApi(config)
@@ -71,7 +74,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: convertReportOutputFromGRPC(response)
+          result: getReportOutputFromGRPC(response)
         });
       } else if (err) {
         res.json({

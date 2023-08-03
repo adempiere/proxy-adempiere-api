@@ -14,10 +14,11 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
-  convertProcessLogFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+  getProcessLogFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
   convertChatEntryFromGRPC
 } from '@adempiere/grpc-api/lib/convertBusinessData';
@@ -30,7 +31,7 @@ import {
   getWorkflowProcessFomGRPC
 } from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/logs')
   const service = new ServiceApi(config)
@@ -70,17 +71,17 @@ module.exports = ({ config }) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getProcessLogsList().map(processsLog => {
-                return convertProcessLogFromGRPC(processsLog)
+                return getProcessLogFromGRPC(processsLog);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

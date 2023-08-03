@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2022 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,15 +14,19 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
+
+import {
+  getProcessLogFromGRPC
+} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
   getWorkflowDefinitionFromGRPC,
   getWorkflowActivityFromGRPC,
   getDocumentActionFromGRPC,
   getDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
-import { convertProcessLogFromGRPC } from '@adempiere/grpc-api/lib/convertBaseDataType';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/workflow')
   const service = new ServiceApi(config)
@@ -320,15 +324,15 @@ module.exports = ({ config }) => {
         if (response) {
           res.json({
             code: 200,
-            result: convertProcessLogFromGRPC(response)
-          })
+            result: getProcessLogFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
