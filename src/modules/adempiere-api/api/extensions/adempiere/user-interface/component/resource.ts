@@ -103,7 +103,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * GET Entity Attachment Information
+   * PUT Entity Attachment Information
    *
    * req.query.token - user token
    * req.query.id - id of attachment
@@ -423,7 +423,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    *
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
-  api.get('/delete-resource-reference', (req, res) => {
+  api.delete('/delete-resource-reference', (req, res) => {
     if (req.query) {
       service.deleteResourceReference({
         token: req.headers.authorization,

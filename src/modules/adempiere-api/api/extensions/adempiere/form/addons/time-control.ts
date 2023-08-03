@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2022 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,23 +14,24 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { convertResourceAssignment } from '../../../util/convertData';
+import { convertResourceAssignment } from '../../util/convertData';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/timeControl')
   const service = new ServiceApi(config);
 
-  api.get('/create-resource-assignment', (req, res) => {
-    if (req.query) {
+  api.post('/create-resource-assignment', (req, res) => {
+    if (req.body) {
       service.createResourceAssignment({
         token: req.headers.authorization,
         //  DSL Query
-        resourceTypeId: req.query.resource_type_id,
-        resourceTypeUuid: req.query.resource_type_uuid,
-        name: req.query.name,
-        description: req.query.description
+        resourceTypeId: req.body.resource_type_id,
+        resourceTypeUuid: req.body.resource_type_uuid,
+        name: req.body.name,
+        description: req.body.description
       }, (err, response) => {
         if (response) {
           res.json({
@@ -38,14 +39,14 @@ module.exports = ({ config }) => {
             result: convertResourceAssignment(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -79,26 +80,26 @@ module.exports = ({ config }) => {
                 return convertResourceAssignment(entity);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/update-resource-assignment', (req, res) => {
-    if (req.query) {
+  api.put('/update-resource-assignment', (req, res) => {
+    if (req.body) {
       service.updateResourceAssignment({
         token: req.headers.authorization,
-        id: req.query.id,
-        uuid: req.query.uuid,
+        id: req.body.id,
+        uuid: req.body.uuid,
         //  DSL Query
-        name: req.query.name,
-        description: req.query.description
+        name: req.body.name,
+        description: req.body.description
       }, (err, response) => {
         if (response) {
           res.json({
@@ -106,18 +107,18 @@ module.exports = ({ config }) => {
             result: convertResourceAssignment(
               response
             )
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/delete-resource-assignment', (req, res) => {
+  api.delete('/delete-resource-assignment', (req, res) => {
     if (req.query) {
       service.deleteResourceAssignment({
         token: req.headers.authorization,
@@ -129,37 +130,37 @@ module.exports = ({ config }) => {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/confirm-resource-assignment', (req, res) => {
-    if (req.query) {
+  api.put('/confirm-resource-assignment', (req, res) => {
+    if (req.body) {
       service.confirmResourceAssignment({
         token: req.headers.authorization,
         //  DSL Query
-        id: req.query.id,
-        uuid: req.query.uuid
+        id: req.body.id,
+        uuid: req.body.uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertResourceAssignment(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

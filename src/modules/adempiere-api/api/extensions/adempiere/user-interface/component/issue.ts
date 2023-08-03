@@ -1,6 +1,6 @@
 /*************************************************************************************
  * Product: ADempiere gRPC Issue Management Client                                   *
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                      *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                      *
  * This program is free software: you can redistribute it and/or modify              *
  * it under the terms of the GNU General Public License as published by              *
@@ -15,6 +15,7 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getRequestTypeFromGRPC,
@@ -25,7 +26,7 @@ import {
   getIssueCommentFromGRPC
 } from '@adempiere/grpc-api/src/utils/issueManagementFromGRPC';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/issueManagement')
   const service = new ServiceApi(config)
@@ -316,7 +317,7 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * POST Update Issue
+   * PUT Update Issue
    *
    * req.query.token - user token
    * req.body.id - id of record
@@ -327,7 +328,7 @@ module.exports = ({ config }) => {
    * req.body.requestTypeUuid - request type uuid
    * req.body.dateNextAction - date to next action
    */
-  api.post('/update-issue', (req, res) => {
+  api.put('/update-issue', (req, res) => {
     if (req.body) {
       service.updateIssue({
         token: req.headers.authorization,
@@ -361,19 +362,19 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * POST Delete Issue
+   * DELETE Delete Issue
    *
    * req.query.token - user token
-   * req.body.id - id of record
-   * req.body.uuid - uuid of record
+   * req.query.id - id of record
+   * req.query.uuid - uuid of record
    */
-  api.post('/delete-issue', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-issue', (req, res) => {
+    if (req.query) {
       service.deleteIssue({
         token: req.headers.authorization,
         // DSL
-        id: req.body.id,
-        uuid: req.body.uuid
+        id: req.query.id,
+        uuid: req.query.uuid
       }, (err, response) => {
         if (response) {
           res.json({
@@ -464,14 +465,14 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * POST Update Issue Comment
+   * PUT Update Issue Comment
    *
    * req.query.token - user token
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    * req.body.result - result
    */
-  api.post('/update-issue-comment', (req, res) => {
+  api.put('/update-issue-comment', (req, res) => {
     if (req.body) {
       service.updateIssueComment({
         token: req.headers.authorization,
@@ -496,19 +497,19 @@ module.exports = ({ config }) => {
   });
 
   /**
-   * POST Delete Issue Comment
+   * DELETE Delete Issue Comment
    *
    * req.query.token - user token
    * req.body.id - id of record
    * req.body.uuid - uuid of record
    */
-  api.post('/delete-issue-comment', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-issue-comment', (req, res) => {
+    if (req.query) {
       service.deleteIssueComment({
         token: req.headers.authorization,
         // DSL
-        id: req.body.id,
-        uuid: req.body.uuid
+        id: req.query.id,
+        uuid: req.query.uuid
       }, (err, response) => {
         if (response) {
           res.json({

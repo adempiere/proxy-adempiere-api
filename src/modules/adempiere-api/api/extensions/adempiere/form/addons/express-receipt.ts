@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,19 +14,49 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
-function getWarehouseFromGRPC (warehouseToConvert) {
-  if (!warehouseToConvert) {
+function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
+  if (!businessPartnerToConvert) {
     return undefined;
   }
   return {
-    id: warehouseToConvert.getId(),
-    uuid: warehouseToConvert.getUuid(),
-    value: warehouseToConvert.getValue(),
-    name: warehouseToConvert.getName(),
-    description: warehouseToConvert.getDescription()
+    id: businessPartnerToConvert.getId(),
+    uuid: businessPartnerToConvert.getUuid(),
+    value: businessPartnerToConvert.getValue(),
+    tax_id: businessPartnerToConvert.getTaxId(),
+    name: businessPartnerToConvert.getName(),
+    description: businessPartnerToConvert.getDescription()
+  };
+}
+
+function getPurchaseOrderFromGRPC (purchaseOrdertoConvert) {
+  if (!purchaseOrdertoConvert) {
+    return undefined;
+  }
+  return {
+    id: purchaseOrdertoConvert.getId(),
+    uuid: purchaseOrdertoConvert.getUuid(),
+    document_no: purchaseOrdertoConvert.getDocumentNo(),
+    date_ordered: purchaseOrdertoConvert.getDateOrdered()
+  };
+}
+
+function getReceiptFromGRPC (receiptToConvert) {
+  if (!receiptToConvert) {
+    return undefined;
+  }
+  return {
+    id: receiptToConvert.getId(),
+    uuid: receiptToConvert.getUuid(),
+    document_no: receiptToConvert.getDocumentNo(),
+    date_ordered: receiptToConvert.getDateOrdered(),
+    movement_date: receiptToConvert.getMovementDate(),
+    order_id: receiptToConvert.getOrderId(),
+    order_uuid: receiptToConvert.getOrderUuid(),
+    is_completed: receiptToConvert.getIsCompleted()
   };
 }
 
@@ -44,51 +74,35 @@ function getProductFromGRPC (productToConvert) {
   };
 }
 
-function getMovementFromGRPC (movementToConvert) {
-  if (!movementToConvert) {
-    return undefined;
-  }
-  return {
-    id: movementToConvert.getId(),
-    uuid: movementToConvert.getUuid(),
-    document_no: movementToConvert.getDocumentNo(),
-    movement_date: movementToConvert.getMovementDate(),
-    description: movementToConvert.getDescription(),
-    is_completed: movementToConvert.getIsCompleted()
-  };
-}
-
-function getMovementLineFromGRPC (movementLineToConvert) {
-  if (!movementLineToConvert) {
+function getReceiptLineFromGRPC (receiptLineToConvert) {
+  if (!receiptLineToConvert) {
     return undefined;
   }
 
   return {
-    id: movementLineToConvert.getId(),
-    uuid: movementLineToConvert.getUuid(),
-    warehouse_id: movementLineToConvert.getWarehouseId(),
-    warehouse_uuid: movementLineToConvert.getWarehouseUuid(),
-    warehouse_to_id: movementLineToConvert.getWarehouseToId(),
-    warehouse_to_uuid: movementLineToConvert.getWarehouseToUuid(),
-    description: movementLineToConvert.getDescription(),
+    id: receiptLineToConvert.getId(),
+    uuid: receiptLineToConvert.getUuid(),
+    order_line_id: receiptLineToConvert.getOrderLineId(),
+    order_Line_uuid: receiptLineToConvert.getOrderLineUuid(),
+    description: receiptLineToConvert.getDescription(),
     product: getProductFromGRPC(
-      movementLineToConvert.getProduct()
+      receiptLineToConvert.getProduct()
     ),
     quantity: getDecimalFromGRPC(
-      movementLineToConvert.getQuantity()
+      receiptLineToConvert.getQuantity()
     ),
-    line: movementLineToConvert.getLine()
+    line: receiptLineToConvert.getLine()
   };
 }
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/expressMovement');
+  const ServiceApi = require('@adempiere/grpc-api/src/services/expressReceipt');
   const service = new ServiceApi(config);
 
-  api.get('/warehouses', (req, res) => {
+  api.get('/business-partners', (req, res) => {
     if (req.query) {
-      service.listWarehouses({
+      service.listBusinessPartners({
         token: req.headers.authorization,
         // DSL Query
         searchValue: req.query.search_value,
@@ -102,8 +116,41 @@ module.exports = ({ config }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getRecordsList().map(warehouse => {
-                return getWarehouseFromGRPC(warehouse);
+              records: response.getRecordsList().map(businessPartner => {
+                return getBusinessPartnerFromGRPC(businessPartner);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  api.get('/purchase-orders', (req, res) => {
+    if (req.query) {
+      service.listPurchaseOrders({
+        token: req.headers.authorization,
+        // DSL Query
+        businessPartnerId: req.query.business_partner_id,
+        businessPartnerUuid: req.query.business_partner_uuid,
+        searchValue: req.query.search_value,
+        // Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(purchaseOrder => {
+                return getPurchaseOrderFromGRPC(purchaseOrder);
               })
             }
           });
@@ -152,14 +199,18 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/movement', (req, res) => {
-    service.createMovement({
-      token: req.headers.authorization
+  api.post('/receipt', (req, res) => {
+    service.createReceipt({
+      token: req.headers.authorization,
+      // DSL Query
+      orderId: req.body.order_id,
+      orderUuid: req.body.order_uuid,
+      isCreateLinesFromOrder: req.body.is_create_lines_from_order
     }, (err, response) => {
       if (response) {
         res.json({
           code: 200,
-          result: getMovementFromGRPC(response)
+          result: getReceiptFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -170,8 +221,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/movement', (req, res) => {
-    service.deleteMovement({
+  api.delete('/receipt', (req, res) => {
+    service.deleteReceipt({
       token: req.headers.authorization,
       // DSL Query
       id: req.query.id,
@@ -191,8 +242,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/process-movement', (req, res) => {
-    service.processMovement({
+  api.post('/process-receipt', (req, res) => {
+    service.processReceipt({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -201,7 +252,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getMovementFromGRPC(response)
+          result: getReceiptFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -212,25 +263,22 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/movement-line', (req, res) => {
-    service.createMovementLine({
+  api.post('/receipt-line', (req, res) => {
+    service.createReceiptLine({
       token: req.headers.authorization,
       // DSL Query
-      movementId: req.body.movement_id,
-      movementUuid: req.body.movement_uuid,
-      warehouseId: req.body.warehouse_id,
-      warehouseUuid: req.body.warehouse_uuid,
-      warehouseToId: req.body.warehouse_to_id,
-      warehouseToUuid: req.body.warehouse_to_uuid,
+      receiptId: req.body.receipt_id,
+      receiptUuid: req.body.receipt_uuid,
       description: req.body.description,
       productId: req.body.product_id,
       productUuid: req.body.product_uuid,
-      quantity: req.body.quantity
+      quantity: req.body.quantity,
+      isQuantityFromOrderLine: req.body.is_quantity_from_order_line
     }, (err, response) => {
       if (response) {
         res.json({
           code: 200,
-          result: getMovementLineFromGRPC(response)
+          result: getReceiptLineFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -241,12 +289,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.get('/movement-lines', (req, res) => {
-    service.listMovementLines({
+  api.get('/receipt-line', (req, res) => {
+    service.listReceiptLines({
       token: req.headers.authorization,
       // DSL Query
-      movementId: req.query.movement_id,
-      movementUuid: req.query.movement_uuid,
+      receiptId: req.query.receipt_id,
+      receiptUuid: req.query.receipt_uuid,
       searchValue: req.query.searchValue,
       pageSize: req.query.page_size,
       pageToken: req.query.page_token
@@ -257,8 +305,8 @@ module.exports = ({ config }) => {
           result: {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
-            records: response.getRecordsList().map(movementLine => {
-              return getMovementLineFromGRPC(movementLine);
+            records: response.getRecordsList().map(receiptLine => {
+              return getReceiptLineFromGRPC(receiptLine);
             })
           }
         });
@@ -271,12 +319,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/movement-line', (req, res) => {
-    service.deleteMovementLine({
+  api.delete('/receipt-line', (req, res) => {
+    service.deleteReceiptLine({
       token: req.headers.authorization,
       // DSL Query
-      id: req.body.id,
-      uuid: req.body.uuid
+      id: req.query.id,
+      uuid: req.query.uuid
     }, (err, response) => {
       if (response) {
         res.json({
@@ -292,8 +340,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.put('/movement-line', (req, res) => {
-    service.updateMovementLine({
+  api.put('/receipt-line', (req, res) => {
+    service.updateReceiptLine({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -304,7 +352,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getMovementLineFromGRPC(response)
+          result: getReceiptLineFromGRPC(response)
         });
       } else if (err) {
         res.json({

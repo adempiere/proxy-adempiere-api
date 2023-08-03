@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,6 +14,7 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 
@@ -31,31 +32,31 @@ function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
   };
 }
 
-function getPurchaseOrderFromGRPC (purchaseOrdertoConvert) {
-  if (!purchaseOrdertoConvert) {
+function getSalesOrderFromGRPC (salesOrdertoConvert) {
+  if (!salesOrdertoConvert) {
     return undefined;
   }
   return {
-    id: purchaseOrdertoConvert.getId(),
-    uuid: purchaseOrdertoConvert.getUuid(),
-    document_no: purchaseOrdertoConvert.getDocumentNo(),
-    date_ordered: purchaseOrdertoConvert.getDateOrdered()
+    id: salesOrdertoConvert.getId(),
+    uuid: salesOrdertoConvert.getUuid(),
+    document_no: salesOrdertoConvert.getDocumentNo(),
+    date_ordered: salesOrdertoConvert.getDateOrdered()
   };
 }
 
-function getReceiptFromGRPC (receiptToConvert) {
-  if (!receiptToConvert) {
+function getShipmentFromGRPC (shipmentToConvert) {
+  if (!shipmentToConvert) {
     return undefined;
   }
   return {
-    id: receiptToConvert.getId(),
-    uuid: receiptToConvert.getUuid(),
-    document_no: receiptToConvert.getDocumentNo(),
-    date_ordered: receiptToConvert.getDateOrdered(),
-    movement_date: receiptToConvert.getMovementDate(),
-    order_id: receiptToConvert.getOrderId(),
-    order_uuid: receiptToConvert.getOrderUuid(),
-    is_completed: receiptToConvert.getIsCompleted()
+    id: shipmentToConvert.getId(),
+    uuid: shipmentToConvert.getUuid(),
+    document_no: shipmentToConvert.getDocumentNo(),
+    date_ordered: shipmentToConvert.getDateOrdered(),
+    movement_date: shipmentToConvert.getMovementDate(),
+    order_id: shipmentToConvert.getOrderId(),
+    order_uuid: shipmentToConvert.getOrderUuid(),
+    is_completed: shipmentToConvert.getIsCompleted()
   };
 }
 
@@ -73,30 +74,30 @@ function getProductFromGRPC (productToConvert) {
   };
 }
 
-function getReceiptLineFromGRPC (receiptLineToConvert) {
-  if (!receiptLineToConvert) {
+function getShipmentLineFromGRPC (shipmentLineToConvert) {
+  if (!shipmentLineToConvert) {
     return undefined;
   }
 
   return {
-    id: receiptLineToConvert.getId(),
-    uuid: receiptLineToConvert.getUuid(),
-    order_line_id: receiptLineToConvert.getOrderLineId(),
-    order_Line_uuid: receiptLineToConvert.getOrderLineUuid(),
-    description: receiptLineToConvert.getDescription(),
+    id: shipmentLineToConvert.getId(),
+    uuid: shipmentLineToConvert.getUuid(),
+    order_line_id: shipmentLineToConvert.getOrderLineId(),
+    order_Line_uuid: shipmentLineToConvert.getOrderLineUuid(),
+    description: shipmentLineToConvert.getDescription(),
     product: getProductFromGRPC(
-      receiptLineToConvert.getProduct()
+      shipmentLineToConvert.getProduct()
     ),
     quantity: getDecimalFromGRPC(
-      receiptLineToConvert.getQuantity()
+      shipmentLineToConvert.getQuantity()
     ),
-    line: receiptLineToConvert.getLine()
+    line: shipmentLineToConvert.getLine()
   };
 }
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/expressReceipt');
+  const ServiceApi = require('@adempiere/grpc-api/src/services/expressShipment');
   const service = new ServiceApi(config);
 
   api.get('/business-partners', (req, res) => {
@@ -130,9 +131,9 @@ module.exports = ({ config }) => {
     }
   });
 
-  api.get('/purchase-orders', (req, res) => {
+  api.get('/sales-orders', (req, res) => {
     if (req.query) {
-      service.listPurchaseOrders({
+      service.listSalesOrders({
         token: req.headers.authorization,
         // DSL Query
         businessPartnerId: req.query.business_partner_id,
@@ -148,8 +149,8 @@ module.exports = ({ config }) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
-              records: response.getRecordsList().map(purchaseOrder => {
-                return getPurchaseOrderFromGRPC(purchaseOrder);
+              records: response.getRecordsList().map(salesOrder => {
+                return getSalesOrderFromGRPC(salesOrder)
               })
             }
           });
@@ -198,8 +199,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/receipt', (req, res) => {
-    service.createReceipt({
+  api.post('/shipment', (req, res) => {
+    service.createShipment({
       token: req.headers.authorization,
       // DSL Query
       orderId: req.body.order_id,
@@ -209,7 +210,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getReceiptFromGRPC(response)
+          result: getShipmentFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -220,8 +221,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/receipt', (req, res) => {
-    service.deleteReceipt({
+  api.delete('/shipment', (req, res) => {
+    service.deleteShipment({
       token: req.headers.authorization,
       // DSL Query
       id: req.query.id,
@@ -241,8 +242,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/process-receipt', (req, res) => {
-    service.processReceipt({
+  api.post('/process-shipment', (req, res) => {
+    service.processShipment({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -251,7 +252,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getReceiptFromGRPC(response)
+          result: getShipmentFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -262,12 +263,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.post('/receipt-line', (req, res) => {
-    service.createReceiptLine({
+  api.post('/shipment-line', (req, res) => {
+    service.createShipmentLine({
       token: req.headers.authorization,
       // DSL Query
-      receiptId: req.body.receipt_id,
-      receiptUuid: req.body.receipt_uuid,
+      shipmentId: req.body.shipment_id,
+      shipmentUuid: req.body.shipment_uuid,
       description: req.body.description,
       productId: req.body.product_id,
       productUuid: req.body.product_uuid,
@@ -277,7 +278,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getReceiptLineFromGRPC(response)
+          result: getShipmentLineFromGRPC(response)
         });
       } else if (err) {
         res.json({
@@ -288,12 +289,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.get('/receipt-line', (req, res) => {
-    service.listReceiptLines({
+  api.get('/shipment-line', (req, res) => {
+    service.listShipmentLines({
       token: req.headers.authorization,
       // DSL Query
-      receiptId: req.query.receipt_id,
-      receiptUuid: req.query.receipt_uuid,
+      shipmentId: req.query.shipment_id,
+      shipmentUuid: req.query.shipment_uuid,
       searchValue: req.query.searchValue,
       pageSize: req.query.page_size,
       pageToken: req.query.page_token
@@ -304,8 +305,8 @@ module.exports = ({ config }) => {
           result: {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
-            records: response.getRecordsList().map(receiptLine => {
-              return getReceiptLineFromGRPC(receiptLine);
+            records: response.getRecordsList().map(shipmentLine => {
+              return getShipmentLineFromGRPC(shipmentLine);
             })
           }
         });
@@ -318,12 +319,12 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.delete('/receipt-line', (req, res) => {
-    service.deleteReceiptLine({
+  api.delete('/shipment-line', (req, res) => {
+    service.deleteShipmentLine({
       token: req.headers.authorization,
       // DSL Query
-      id: req.body.id,
-      uuid: req.body.uuid
+      id: req.query.id,
+      uuid: req.query.uuid
     }, (err, response) => {
       if (response) {
         res.json({
@@ -339,8 +340,8 @@ module.exports = ({ config }) => {
     });
   });
 
-  api.put('/receipt-line', (req, res) => {
-    service.updateReceiptLine({
+  api.put('/shipment-line', (req, res) => {
+    service.updateShipmentLine({
       token: req.headers.authorization,
       // DSL Query
       id: req.body.id,
@@ -351,7 +352,7 @@ module.exports = ({ config }) => {
       if (response) {
         res.json({
           code: 200,
-          result: getReceiptLineFromGRPC(response)
+          result: getShipmentLineFromGRPC(response)
         });
       } else if (err) {
         res.json({

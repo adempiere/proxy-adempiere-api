@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -173,32 +173,32 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     }
   });
 
-  api.get('/save-payroll-movement', (req, res) => {
-    if (req.query) {
+  api.put('/save-payroll-movement', (req, res) => {
+    if (req.body) {
       service.savePayrollMovement({
         token: req.headers.authorization,
         //  DSL Query
-        id: req.query.id,
-        uuid: req.query.uuid,
-        contextAttributes: req.query.context_attributes,
-        attributes: req.query.attributes
+        id: req.body.id,
+        uuid: req.body.uuid,
+        contextAttributes: req.body.context_attributes,
+        attributes: req.body.attributes
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertEntityFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
-  api.get('/delete-payroll-movements', (req, res) => {
+  api.delete('/delete-payroll-movements', (req, res) => {
     if (req.query) {
       service.deletePayrollMovements({
         token: req.headers.authorization,
@@ -211,14 +211,14 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

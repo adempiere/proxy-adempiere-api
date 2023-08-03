@@ -288,7 +288,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Update Entity data
+   * PUT Update Entity data
    *
    * req.query.token - user token
    * req.body.table_name - table name of entity
@@ -302,7 +302,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       },
     ]
    */
-  api.post('/update', (req, res) => {
+  api.put('/update', (req, res) => {
     if (req.body) {
       service.updateEntity({
         token: req.headers.authorization,
@@ -310,19 +310,19 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         id: req.body.id,
         uuid: req.body.uuid,
         attributes: req.body.attributes
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: convertEntityFromGRPC(response)
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -331,33 +331,32 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    *
    * req.query.token - user token
    * Body:
-   * req.body.table_name - table name (Mandatory if is not a query)
-   * req.body.id - id of entity
-   * req.body.uuid - uuid of entity
-   * req.body.table_name - table name of entity
+   * req.query.table_name - table name (Mandatory if is not a query)
+   * req.query.id - id of entity
+   * req.query.uuid - uuid of entity
    * Details:
    */
-  api.post('/delete', (req, res) => {
-    if (req.body) {
+  api.delete('/delete', (req, res) => {
+    if (req.query) {
       service.deleteEntity({
         token: req.headers.authorization,
-        id: req.body.id,
-        uuid: req.body.uuid,
-        ids: req.body.ids,
-        tableName: req.body.table_name
-      }, function (err, response) {
+        tableName: req.query.table_name,
+        id: req.query.id,
+        uuid: req.query.uuid,
+        ids: req.query.ids
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 

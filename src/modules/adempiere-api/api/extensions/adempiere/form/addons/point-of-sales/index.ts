@@ -924,33 +924,33 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Delete Shipment Line
+   * DELETE Delete Shipment Line
    *
    * req.query.token - user token
    * Body:
-   * req.body.shipment_line_uuid - Shipment Line UUID reference
+   * req.query.shipment_line_uuid - Shipment Line UUID reference
    *
    * Details:
    */
-  api.post('/delete-shipment-line', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-shipment-line', (req, res) => {
+    if (req.query) {
       service.deleteShipmentLine({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        shipmentLineUuid: req.body.shipment_line_uuid
+        posUuid: req.query.pos_uuid,
+        shipmentLineUuid: req.query.shipment_line_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -1149,65 +1149,65 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Delete Payment
+   * DELETE Delete Payment
    *
    * req.query.token - user token
    * Body:
-   * req.body.payment_uuid - Payment UUID reference
+   * req.query.payment_uuid - Payment UUID reference
    *
    * Details:
    */
-  api.post('/delete-payment', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-payment', (req, res) => {
+    if (req.query) {
       service.deletePayment({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        paymentUuid: req.body.payment_uuid
+        posUuid: req.query.pos_uuid,
+        paymentUuid: req.query.payment_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
   /**
-   * POST Delete Payment
+   * DELETE Delete Payment
    *
    * req.query.token - user token
    * Body:
-   * req.body.uuid - Refund Reference UUID reference
-   * req.body.id - Refund Reference ID reference
+   * req.query.uuid - Refund Reference UUID reference
+   * req.query.id - Refund Reference ID reference
    * Details:
    */
-  api.post('/delete-payment-reference', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-payment-reference', (req, res) => {
+    if (req.query) {
       service.deletePaymentReference({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        uuid: req.body.uuid,
-        id: req.body.id
+        posUuid: req.query.pos_uuid,
+        uuid: req.query.uuid,
+        id: req.query.id
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -1592,33 +1592,33 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Delete Sales Order
+   * DELETE Delete Sales Order
    *
    * req.query.token - user token
    * Body:
-   * req.body.order_uuid - Sales Order UUID reference
+   * req.query.order_uuid - Sales Order UUID reference
    *
    * Details:
    */
-  api.post('/delete-order', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-order', (req, res) => {
+    if (req.query) {
       service.deleteOrder({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        orderUuid: req.body.order_uuid
+        posUuid: req.query.pos_uuid,
+        orderUuid: req.query.order_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -1775,33 +1775,33 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Delete Sales Order Line
+   * DELETE Delete Sales Order Line
    *
    * req.query.token - user token
    * Body:
-   * req.body.order_line_uuid - Sales Order Line UUID reference
+   * req.query.order_line_uuid - Sales Order Line UUID reference
    *
    * Details:
    */
-  api.post('/delete-order-line', (req, res) => {
-    if (req.body) {
+  api.delete('/delete-order-line', (req, res) => {
+    if (req.query) {
       service.deleteOrderLine({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        orderLineUuid: req.body.order_line_uuid
+        posUuid: req.query.pos_uuid,
+        orderLineUuid: req.query.order_line_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
@@ -2762,28 +2762,28 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    *
    * req.query.token - user token
    * req.query.date - Date of Statement
-   * req.body.customer_bank_account_uuid - Customer Bank Account UUID
+   * req.query.customer_bank_account_uuid - Customer Bank Account UUID
    * Details:
    */
-  api.post('/delete-bank-account', (req, res) => {
+  api.delete('/delete-bank-account', (req, res) => {
     if (req.query) {
       service.deleteCustomerBankAccount({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        customerBankAccountUuid: req.body.customer_bank_account_uuid
+        posUuid: req.query.pos_uuid,
+        customerBankAccountUuid: req.query.customer_bank_account_uuid
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
             result: 'Ok'
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
