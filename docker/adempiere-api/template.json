@@ -362,7 +362,8 @@
         "adempiere/invoice",
         "adempiere/order",
         "adempiere/payment",
-        "adempiere/product"
+        "adempiere/product",
+        "adempiere/record-management"
       ],
       "images": {
         "baseUrl": "API_URL_IMAGES",
