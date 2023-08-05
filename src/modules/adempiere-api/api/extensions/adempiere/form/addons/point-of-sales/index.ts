@@ -1034,7 +1034,8 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         paymentMethodUuid: req.body.payment_method_uuid,
         isRefund: req.body.is_refund,
         collectingAgentUuid: req.body.collecting_agent_uuid,
-        referenceBankAccountUuid: req.body.reference_bank_account_uuid
+        referenceBankAccountUuid: req.body.reference_bank_account_uuid,
+        customerBankAccountUuid: req.body.customer_bank_account_uuid
       }, (err, response) => {
         if (response) {
           res.json({
