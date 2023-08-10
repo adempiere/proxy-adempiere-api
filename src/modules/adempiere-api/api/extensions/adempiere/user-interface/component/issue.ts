@@ -19,7 +19,7 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getRequestTypeFromGRPC,
-  getSalesRepresentativeFromGRPC,
+  getUserFromGRPC,
   getPriorityFromGRPC,
   getStatusFromGRPC,
   getIssueFromGRPC,
@@ -105,7 +105,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getRecordsList().map(entity => {
-                return getSalesRepresentativeFromGRPC(entity);
+                return getUserFromGRPC(entity);
               })
             }
           });
