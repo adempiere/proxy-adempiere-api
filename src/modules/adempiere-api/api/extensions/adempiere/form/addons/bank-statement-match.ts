@@ -19,6 +19,24 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 
+function getBankStatementFromGRPC (bankStatementToConvert) {
+  if (!bankStatementToConvert) {
+    return undefined;
+  }
+  return {
+    id: bankStatementToConvert.getId(),
+    uuid: bankStatementToConvert.getUuid(),
+    bank_account_id: bankStatementToConvert.getBankAccountId(),
+    document_no: bankStatementToConvert.getDocumentNo(),
+    name: bankStatementToConvert.getName(),
+    statement_date: bankStatementToConvert.getStatementDate(),
+    description: bankStatementToConvert.getDescription(),
+    is_manual: bankStatementToConvert.getIsManual(),
+    document_status: bankStatementToConvert.getDocumentStatus(),
+    is_processing: bankStatementToConvert.getIsProcessing()
+  };
+}
+
 function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
   if (!businessPartnerToConvert) {
     return undefined;
@@ -139,6 +157,27 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/bankStatementMatch');
   const service = new ServiceApi(config);
+
+  api.get('/bank-statement', (req, res) => {
+    service.getBankStatement({
+      token: req.headers.authorization,
+      //  DSL Query
+      id: req.query.id,
+      uuid: req.query.uuid
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: getBankStatementFromGRPC(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
 
   api.get('/bank-accounts', (req, res) => {
     service.listBankAccounts({
@@ -269,6 +308,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       token: req.headers.authorization,
       // DSL Query
       searchValue: req.query.search_value,
+      bankStatementId: req.query.bank_statement_id,
       bankAccountId: req.query.bank_account_id,
       bankAccountUuid: req.query.bank_account_uuid,
       businessPartnerId: req.query.business_partner_id,
@@ -307,6 +347,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       token: req.headers.authorization,
       // DSL Query
       searchValue: req.query.search_value,
+      bankStatementId: req.query.bank_statement_id,
       bankAccountId: req.query.bank_account_id,
       bankAccountUuid: req.query.bank_account_uuid,
       businessPartnerId: req.query.business_partner_id,
@@ -328,6 +369,36 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             next_page_token: response.getNextPageToken(),
             records: response.getRecordsList().map(payment => {
               return getMatchingMovementFromGRPC(payment);
+            })
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  api.get('/bank-statements', (req, res) => {
+    service.listBankStatements({
+      token: req.headers.authorization,
+      //  DSL Query
+      bankAccountId: req.query.bank_account_id,
+      searchValue: req.query.search_value,
+      // Page Data
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            record_count: response.getRecordCount(),
+            next_page_token: response.getNextPageToken(),
+            records: response.getRecordsList().map(bankStatement => {
+              return getBankStatementFromGRPC(bankStatement);
             })
           }
         });
