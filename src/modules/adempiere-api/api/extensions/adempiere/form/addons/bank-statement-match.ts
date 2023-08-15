@@ -33,7 +33,7 @@ function getBankStatementFromGRPC (bankStatementToConvert) {
     description: bankStatementToConvert.getDescription(),
     is_manual: bankStatementToConvert.getIsManual(),
     document_status: bankStatementToConvert.getDocumentStatus(),
-    is_processing: bankStatementToConvert.getIsProcessing()
+    is_processed: bankStatementToConvert.getIsProcessed()
   };
 }
 
@@ -135,6 +135,7 @@ function getMatchingMovementFromGRPC (matchingMovementToConvert) {
     transaction_date: matchingMovementToConvert.getTransactionDate(),
     is_receipt: matchingMovementToConvert.getIsReceipt(),
     document_no: matchingMovementToConvert.getDocumentNo(),
+    payment_id: matchingMovementToConvert.getPaymentId(),
     reference_no: matchingMovementToConvert.getReferenceNo(),
     description: matchingMovementToConvert.getDescription(),
     memo: matchingMovementToConvert.getMemo(),
@@ -149,6 +150,35 @@ function getMatchingMovementFromGRPC (matchingMovementToConvert) {
     ),
     amount: getDecimalFromGRPC(
       matchingMovementToConvert.getAmount()
+    )
+  };
+}
+
+function getResultMovementFromGRPC (resultMovementToConvert) {
+  if (!resultMovementToConvert) {
+    return undefined;
+  }
+  return {
+    id: resultMovementToConvert.getId(),
+    uuid: resultMovementToConvert.getUuid(),
+    transaction_date: resultMovementToConvert.getTransactionDate(),
+    is_receipt: resultMovementToConvert.getIsReceipt(),
+    document_no: resultMovementToConvert.getDocumentNo(),
+    payment_id: resultMovementToConvert.getPaymentId(),
+    reference_no: resultMovementToConvert.getReferenceNo(),
+    description: resultMovementToConvert.getDescription(),
+    memo: resultMovementToConvert.getMemo(),
+    business_partner: getBusinessPartnerFromGRPC(
+      resultMovementToConvert.getBusinessPartner()
+    ),
+    tender_type: getTenderTypeFromGRPC(
+      resultMovementToConvert.getTenderType()
+    ),
+    currency: getCurrencyFromGRPC(
+      resultMovementToConvert.getCurrency()
+    ),
+    amount: getDecimalFromGRPC(
+      resultMovementToConvert.getAmount()
     )
   };
 }
@@ -169,6 +199,36 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         res.json({
           code: 200,
           result: getBankStatementFromGRPC(response)
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  api.get('/bank-statements', (req, res) => {
+    service.listBankStatements({
+      token: req.headers.authorization,
+      //  DSL Query
+      bankAccountId: req.query.bank_account_id,
+      searchValue: req.query.search_value,
+      // Page Data
+      pageSize: req.query.page_size,
+      pageToken: req.query.page_token
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            record_count: response.getRecordCount(),
+            next_page_token: response.getNextPageToken(),
+            records: response.getRecordsList().map(bankStatement => {
+              return getBankStatementFromGRPC(bankStatement);
+            })
+          }
         });
       } else if (err) {
         res.json({
@@ -271,9 +331,6 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       // DSL Query
       searchValue: req.query.search_value,
       bankAccountId: req.query.bank_account_id,
-      bankAccountUuid: req.query.bank_account_uuid,
-      businessPartnerId: req.query.business_partner_id,
-      businessPartnerUuid: req.query.business_partner_uuid,
       paymnetAmountFrom: req.query.payment_amount_from,
       paymentAmountTo: req.query.payment_amount_to,
       transactionDateFrom: req.query.transaction_date_from,
@@ -310,9 +367,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       searchValue: req.query.search_value,
       bankStatementId: req.query.bank_statement_id,
       bankAccountId: req.query.bank_account_id,
-      bankAccountUuid: req.query.bank_account_uuid,
       businessPartnerId: req.query.business_partner_id,
-      businessPartnerUuid: req.query.business_partner_uuid,
       paymnetAmountFrom: req.query.payment_amount_from,
       paymentAmountTo: req.query.payment_amount_to,
       transactionDateFrom: req.query.transaction_date_from,
@@ -349,9 +404,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       searchValue: req.query.search_value,
       bankStatementId: req.query.bank_statement_id,
       bankAccountId: req.query.bank_account_id,
-      bankAccountUuid: req.query.bank_account_uuid,
       businessPartnerId: req.query.business_partner_id,
-      businessPartnerUuid: req.query.business_partner_uuid,
       paymnetAmountFrom: req.query.payment_amount_from,
       paymentAmountTo: req.query.payment_amount_to,
       transactionDateFrom: req.query.transaction_date_from,
@@ -381,12 +434,17 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     });
   });
 
-  api.get('/bank-statements', (req, res) => {
-    service.listBankStatements({
+  api.get('/result-movements', (req, res) => {
+    service.listResultMovements({
       token: req.headers.authorization,
-      //  DSL Query
-      bankAccountId: req.query.bank_account_id,
+      // DSL Query
       searchValue: req.query.search_value,
+      bankStatementId: req.query.bank_statement_id,
+      bankAccountId: req.query.bank_account_id,
+      paymnetAmountFrom: req.query.payment_amount_from,
+      paymentAmountTo: req.query.payment_amount_to,
+      transactionDateFrom: req.query.transaction_date_from,
+      transactionDateTo: req.query.transaction_date_to,
       // Page Data
       pageSize: req.query.page_size,
       pageToken: req.query.page_token
@@ -397,9 +455,53 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           result: {
             record_count: response.getRecordCount(),
             next_page_token: response.getNextPageToken(),
-            records: response.getRecordsList().map(bankStatement => {
-              return getBankStatementFromGRPC(bankStatement);
+            records: response.getRecordsList().map(bankMovement => {
+              return getResultMovementFromGRPC(bankMovement);
             })
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  api.put('/match', (req, res) => {
+    service.matchPayments({
+      token: req.headers.authorization,
+      // DSL Query
+      keyMatchesList: req.body.key_matches
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            message: response.getMessage()
+          }
+        });
+      } else if (err) {
+        res.json({
+          code: 500,
+          result: err.details
+        });
+      }
+    });
+  });
+
+  api.put('/unmatch', (req, res) => {
+    service.unmatchPayments({
+      token: req.headers.authorization,
+      // DSL Query
+      importedMovementsIdsList: req.body.imported_movements_ids
+    }, (err, response) => {
+      if (response) {
+        res.json({
+          code: 200,
+          result: {
+            message: response.getMessage()
           }
         });
       } else if (err) {
@@ -417,9 +519,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       // DSL Query
       searchValue: req.body.search_value,
       bankAccountId: req.body.bank_account_id,
-      bankAccountUuid: req.body.bank_account_uuid,
       businessPartnerId: req.body.business_partner_id,
-      businessPartnerUuid: req.body.business_partner_uuid,
       paymnetAmountFrom: req.body.payment_amount_from,
       paymentAmountTo: req.body.payment_amount_to,
       transactionDateFrom: req.body.transaction_date_from,
