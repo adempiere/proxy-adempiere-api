@@ -518,14 +518,12 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       token: req.headers.authorization,
       // DSL Query
       searchValue: req.body.search_value,
+      bankStatementId: req.body.bank_statement_id,
       bankAccountId: req.body.bank_account_id,
-      businessPartnerId: req.body.business_partner_id,
       paymnetAmountFrom: req.body.payment_amount_from,
       paymentAmountTo: req.body.payment_amount_to,
       transactionDateFrom: req.body.transaction_date_from,
-      transactionDateTo: req.body.transaction_date_to,
-      matchMode: req.body.match_mode,
-      macthingSelectionsList: req.body.matching_selections_list
+      transactionDateTo: req.body.transaction_date_to
     }, (err, response) => {
       if (response) {
         res.json({
