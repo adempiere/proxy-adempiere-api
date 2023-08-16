@@ -150,6 +150,10 @@ function getMatchingMovementFromGRPC (matchingMovementToConvert) {
     ),
     amount: getDecimalFromGRPC(
       matchingMovementToConvert.getAmount()
+    ),
+    is_automatic: matchingMovementToConvert.getIsAutomatic(),
+    payment_amount: getDecimalFromGRPC(
+      matchingMovementToConvert.getPaymentAmount()
     )
   };
 }
@@ -179,6 +183,10 @@ function getResultMovementFromGRPC (resultMovementToConvert) {
     ),
     amount: getDecimalFromGRPC(
       resultMovementToConvert.getAmount()
+    ),
+    is_automatic: resultMovementToConvert.getIsAutomatic(),
+    payment_amount: getDecimalFromGRPC(
+      resultMovementToConvert.getPaymentAmount()
     )
   };
 }
