@@ -19,6 +19,39 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
 
+function getCurrencyFromGRPC (currencyToConvert) {
+  if (!currencyToConvert) {
+    return undefined;
+  }
+  return {
+    id: currencyToConvert.getId(),
+    uuid: currencyToConvert.getUuid(),
+    iso_code: currencyToConvert.getIsoCode(),
+    description: currencyToConvert.getDescription()
+  };
+}
+
+function getBankAccountFromGRPC (bankAccountToConvert) {
+  if (!bankAccountToConvert) {
+    return undefined
+  }
+  console.log(bankAccountToConvert.getCurrency())
+  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+  return {
+    id: bankAccountToConvert.getId(),
+    uuid: bankAccountToConvert.getUuid(),
+    account_no: bankAccountToConvert.getAccountNo(),
+    account_name: bankAccountToConvert.getAccountName(),
+    bank_name: bankAccountToConvert.getBankName(),
+    currency: getCurrencyFromGRPC(
+      bankAccountToConvert.getCurrency()
+    ),
+    current_balance: getDecimalFromGRPC(
+      bankAccountToConvert.getCurrentBalance()
+    )
+  };
+}
+
 function getBankStatementFromGRPC (bankStatementToConvert) {
   if (!bankStatementToConvert) {
     return undefined;
@@ -26,14 +59,25 @@ function getBankStatementFromGRPC (bankStatementToConvert) {
   return {
     id: bankStatementToConvert.getId(),
     uuid: bankStatementToConvert.getUuid(),
-    bank_account_id: bankStatementToConvert.getBankAccountId(),
+    bank_account: getBankAccountFromGRPC(
+      bankStatementToConvert.getBankAccount()
+    ),
     document_no: bankStatementToConvert.getDocumentNo(),
     name: bankStatementToConvert.getName(),
     statement_date: bankStatementToConvert.getStatementDate(),
     description: bankStatementToConvert.getDescription(),
     is_manual: bankStatementToConvert.getIsManual(),
     document_status: bankStatementToConvert.getDocumentStatus(),
-    is_processed: bankStatementToConvert.getIsProcessed()
+    is_processed: bankStatementToConvert.getIsProcessed(),
+    beginning_balance: getDecimalFromGRPC(
+      bankStatementToConvert.getBeginningBalance()
+    ),
+    statement_difference: getDecimalFromGRPC(
+      bankStatementToConvert.getStatementDifference()
+    ),
+    ending_balance: getDecimalFromGRPC(
+      bankStatementToConvert.getEndingBalance()
+    )
   };
 }
 
@@ -61,18 +105,6 @@ function getTenderTypeFromGRPC (tenderTypeToConvert) {
     value: tenderTypeToConvert.getValue(),
     name: tenderTypeToConvert.getName(),
     description: tenderTypeToConvert.getDescription()
-  };
-}
-
-function getCurrencyFromGRPC (currencyToConvert) {
-  if (!currencyToConvert) {
-    return undefined;
-  }
-  return {
-    id: currencyToConvert.getId(),
-    uuid: currencyToConvert.getUuid(),
-    iso_code: currencyToConvert.getIsoCode(),
-    description: currencyToConvert.getDescription()
   };
 }
 
@@ -154,7 +186,8 @@ function getMatchingMovementFromGRPC (matchingMovementToConvert) {
     is_automatic: matchingMovementToConvert.getIsAutomatic(),
     payment_amount: getDecimalFromGRPC(
       matchingMovementToConvert.getPaymentAmount()
-    )
+    ),
+    payment_date: matchingMovementToConvert.getPaymentDate()
   };
 }
 
@@ -187,7 +220,8 @@ function getResultMovementFromGRPC (resultMovementToConvert) {
     is_automatic: resultMovementToConvert.getIsAutomatic(),
     payment_amount: getDecimalFromGRPC(
       resultMovementToConvert.getPaymentAmount()
-    )
+    ),
+    payment_date: resultMovementToConvert.getPaymentDate()
   };
 }
 
