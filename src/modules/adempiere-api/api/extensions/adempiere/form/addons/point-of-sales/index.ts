@@ -2068,6 +2068,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         posUuid: req.query.pos_uuid,
         documentNo: req.query.document_no,
+        documentStatus: req.query.document_status,
         businessPartnerUuid: req.query.business_partner_uuid,
         grandTotal: req.query.grand_total,
         openAmount: req.query.open_amount,
@@ -2083,6 +2084,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         isOnlyAisleSeller: req.query.is_only_aisle_seller,
         isWaitingForInvoice: req.query.is_waiting_for_invoice,
         isWaitingForShipment: req.query.is_waiting_for_shipment,
+        isBindingOffer: req.query.is_binding_offer,
+        isClosed: req.query.is_closed,
+        isNullified: req.query.is_nullified,
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
       }, (err, response) => {
