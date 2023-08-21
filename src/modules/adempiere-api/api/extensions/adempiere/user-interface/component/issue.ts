@@ -36,28 +36,83 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       code: 200,
       result: [
         {
+          path: '/list-request-types',
+          method: 'GET'
+        },
+        {
+          path: '/list-sales-representatives',
+          method: 'GET'
+        },
+        {
+          path: '/list-priorities',
+          method: 'GET'
+        },
+        {
+          path: '/list-statuses',
+          method: 'GET'
+        },
+        {
+          path: '/list-priorities',
+          method: 'GET'
+        },
+        {
           path: '/exists-issues',
+          method: 'GET'
+        },
+        {
+          path: '/list-issues',
           method: 'GET'
         },
         {
           path: '/create-issue',
           method: 'POST'
+        },
+        {
+          path: '/update-issue',
+          method: 'PUT'
+        },
+        {
+          path: '/delete-issue',
+          method: 'DELETE'
+        },
+        {
+          path: '/list-issue-comments',
+          method: 'GET'
+        },
+        {
+          path: '/update-issue',
+          method: 'PUT'
+        },
+        {
+          path: '/create-issue-comment',
+          method: 'POST'
+        },
+        {
+          path: '/update-issue-comment',
+          method: 'PUT'
+        },
+        {
+          path: '/delete-issue-comment',
+          method: 'DELETE'
         }
       ]
     });
   });
 
   /**
-   * POST List Request Types
+   * GET List Request Types
    *
    * req.query.token - user token
+   * req.query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-request-types', (req, res) => {
-    if (req.body) {
+  api.get('/list-request-types', (req, res) => {
+    if (req.query) {
       service.listRequestTypes({
         token: req.headers.authorization,
+        // DSL
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -84,16 +139,19 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST List Sales Representatives
+   * GET List Sales Representatives
    *
    * req.query.token - user token
+   * req.query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-sales-representatives', (req, res) => {
-    if (req.body) {
+  api.get('/list-sales-representatives', (req, res) => {
+    if (req.query) {
       service.listSalesRepresentatives({
         token: req.headers.authorization,
+        // DSL
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -120,16 +178,19 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST List Priority
+   * GET List Priorities
    *
    * req.query.token - user token
+   * req.query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-priorities', (req, res) => {
-    if (req.body) {
+  api.get('/list-priorities', (req, res) => {
+    if (req.query) {
       service.listPriorities({
         token: req.headers.authorization,
+        // DSL
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -156,19 +217,21 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST List Priority
+   * GET List Statuses
    *
    * req.query.token - user token
+   * req.query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-statuses', (req, res) => {
-    if (req.body) {
+  api.get('/list-statuses', (req, res) => {
+    if (req.query) {
       service.listStatuses({
         token: req.headers.authorization,
         // DSL
-        requestTypeId: req.body.request_type_id,
-        requestTypeUuid: req.body.request_type_uuid,
+        requestTypeId: req.query.request_type_id,
+        requestTypeUuid: req.query.request_type_uuid,
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -204,7 +267,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * req.query.comments - comments
    */
   api.get('/exists-issues', (req, res) => {
-    if (req.body) {
+    if (req.query) {
       service.existsIssues({
         token: req.headers.authorization,
         tableName: req.query.table_name,
@@ -227,23 +290,25 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST List Issues
+   * GET List Issues
    *
    * req.query.token - user token
-   * req.body.table_name - table name of chat entry
-   * req.body.record_id - id of record
-   * req.body.record_uuid - uuid of record
+   * req.query.table_name - table name of chat entry
+   * req.query.record_id - id of record
+   * req.query.record_uuid - uuid of record
+   * req.query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-issues', (req, res) => {
-    if (req.body) {
+  api.get('/list-issues', (req, res) => {
+    if (req.query) {
       service.listIssues({
         token: req.headers.authorization,
         // DSL
-        tableName: req.body.table_name,
-        recordId: req.body.record_id,
-        recordUuid: req.body.record_uuid,
+        tableName: req.query.table_name,
+        recordId: req.query.record_id,
+        recordUuid: req.query.record_uuid,
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
@@ -392,21 +457,23 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST List Issue Comments
+   * GET List Issue Comments
    *
    * req.query.token - user token
-   * req.body.issue_id - id of record parent issue
-   * req.body.issue_uuid - uuid of record parent issued
+   * req.query.issue_id - id of record parent issue
+   * req.query.issue_uuid - uuid of record parent issued
+   * req,query.search_value - Search Value
    * req.query.page_size - size of page (customized)
    * req.query.page_token - token of page (optional for get a specific page)
    */
-  api.post('/list-issue-comments', (req, res) => {
-    if (req.body) {
+  api.get('/list-issue-comments', (req, res) => {
+    if (req.query) {
       service.listIssueComments({
         token: req.headers.authorization,
         // DSL
-        issueId: req.body.issue_id,
-        issueUuid: req.body.issue_uuid,
+        issueId: req.query.issue_id,
+        issueUuid: req.query.issue_uuid,
+        searchValue: req.query.search_value,
         // Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
