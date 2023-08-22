@@ -507,6 +507,20 @@ function convertAvalableCashFromGRPC (cashToConvert) {
   return undefined;
 }
 
+function convertBankFromGRPC (bankToConvert) {
+  if (!bankToConvert) {
+    return undefined;
+  }
+  return {
+    id: bankToConvert.getId(),
+    uuid: bankToConvert.getUuid(),
+    name: bankToConvert.getName(),
+    description: bankToConvert.getDescription(),
+    routing_no: bankToConvert.getRoutingNo(),
+    swift_code: bankToConvert.getSwiftCode()
+  }
+}
+
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales')
@@ -2591,6 +2605,47 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           })
         }
       })
+    }
+  });
+
+  /**
+   * GET List Banks
+   *
+   * req.query.token - user token
+   * req.query.pos_uuid - POS UUID
+   * req.query.search_value - search value
+  * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * Details:
+   */
+  api.get('/banks', (req, res) => {
+    if (req.query) {
+      service.listBanks({
+        token: req.headers.authorization,
+        posUuid: req.query.pos_uuid,
+        searchValue: req.query.search_value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(bank => {
+                return convertBankFromGRPC(bank);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      });
     }
   });
 
