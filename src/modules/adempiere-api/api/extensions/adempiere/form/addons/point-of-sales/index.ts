@@ -34,7 +34,6 @@ import {
   convertAvailableSeller,
   convertCustomerBankAccountFromGRPC,
   convertShipmentFromGRPC,
-  convertShipmentLineFromGRPC,
   convertCashSummaryMovements,
   convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
@@ -508,6 +507,41 @@ function convertOrderLineFromGRPC (orderLineToConvert) {
     };
   }
   return undefined;
+}
+
+function convertShipmentLineFromGRPC (shipmentLineToConvert) {
+  if (!shipmentLineToConvert) {
+    return undefined;
+  }
+  const {
+    convertProductFromGRPC
+  } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
+
+  return {
+    id: shipmentLineToConvert.getId(),
+    uuid: shipmentLineToConvert.getUuid(),
+    order_line_uuid: shipmentLineToConvert.getOrderLineUuid(),
+    line: shipmentLineToConvert.getLine(),
+    product: convertProductFromGRPC(
+      shipmentLineToConvert.getProduct()
+    ),
+    charge: convertChargeFromGRPC(
+      shipmentLineToConvert.getCharge()
+    ),
+    description: shipmentLineToConvert.getDescription(),
+    quantity: getDecimalFromGRPC(
+      shipmentLineToConvert.getQuantity()
+    ),
+    movement_quantity: getDecimalFromGRPC(
+      shipmentLineToConvert.getMovementQuantity()
+    ),
+    uom: convertProductConversionFromGRPC(
+      shipmentLineToConvert.getUom()
+    ),
+    product_uom: convertProductConversionFromGRPC(
+      shipmentLineToConvert.getProductUom()
+    )
+  };
 }
 
 function convertAvalableCashFromGRPC (cashToConvert) {
