@@ -51,6 +51,20 @@ import {
 } from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
 import { convertResourceAssignment } from '../../../util/convertData';
 
+function convertCampaignFromGRPC (campaignToConvert) {
+  if (!campaignToConvert) {
+    return undefined;
+  }
+  return {
+    id: campaignToConvert.getId(),
+    uuid: campaignToConvert.getUuid(),
+    name: campaignToConvert.getName(),
+    description: campaignToConvert.getDescription(),
+    start_date: campaignToConvert.getStartDate(),
+    end_date: campaignToConvert.getEndDate()
+  }
+}
+
 function convertPointOfSalesFromGRPC (pointOfSales) {
   if (pointOfSales) {
     return {
@@ -109,7 +123,9 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       is_allows_cash_opening: pointOfSales.getIsAllowsCashOpening(),
       is_allows_cash_withdrawal: pointOfSales.getIsAllowsCashWithdrawal(),
       is_allows_apply_discount: pointOfSales.getIsAllowsApplyDiscount(),
-      default_campaign_uuid: pointOfSales.getDefaultCampaignUuid(),
+      default_campaign: convertCampaignFromGRPC(
+        pointOfSales.getDefaultCampaign()
+      ),
       default_opening_charge_uuid: pointOfSales.getDefaultOpeningChargeUuid(),
       default_withdrawal_charge_uuid: pointOfSales.getDefaultWithdrawalChargeUuid(),
       maximum_refund_allowed: getDecimalFromGRPC(
@@ -376,7 +392,9 @@ function convertOrderFromGRPC (order) {
       refund_amount: getDecimalFromGRPC(
         order.getRefundAmount()
       ),
-      campaign_uuid: order.getCampaignUuid(),
+      campaign: convertCampaignFromGRPC(
+        order.getCampaign()
+      ),
       date_ordered: new Date(order.getDateOrdered()),
       customer: convertCustomerFromGRPC(
         order.getCustomer()
@@ -3033,6 +3051,47 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           })
         }
       })
+    }
+  });
+
+  /**
+   * GET List Campaigns
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.search_value - search value
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/campaigns', (req, res) => {
+    if (req.query) {
+      service.listCampaigns({
+        token: req.headers.authorization,
+        posUuid: req.query.pos_uuid,
+        searchValue: req.query.search_value,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(campaign => {
+                return convertCampaignFromGRPC(campaign);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
     }
   });
 
