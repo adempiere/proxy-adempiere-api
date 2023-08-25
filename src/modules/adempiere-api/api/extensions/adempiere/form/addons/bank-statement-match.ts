@@ -35,7 +35,7 @@ function getBankAccountFromGRPC (bankAccountToConvert) {
   if (!bankAccountToConvert) {
     return undefined
   }
-  console.log(bankAccountToConvert.getCurrency())
+
   const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
   return {
     id: bankAccountToConvert.getId(),

@@ -21,6 +21,9 @@ import {
   getProcessLogFromGRPC
 } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
+  getBankAccountFromGRPC
+} from '@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC'
+import {
   convertDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType.js';
 import {
@@ -41,7 +44,6 @@ import {
   convertChargeFromGRPC,
   convertProductConversionFromGRPC,
   convertProductPriceFromGRPC,
-  convertBankAccountFromGRPC,
   convertDocumentTypeFromGRPC,
   convertSalesRepresentativeFromGRPC,
   convertPriceListFromGRPC,
@@ -82,10 +84,10 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       return_document_type: convertDocumentTypeFromGRPC(
         pointOfSales.getReturnDocumentType()
       ),
-      cash_bank_account: convertBankAccountFromGRPC(
+      cash_bank_account: getBankAccountFromGRPC(
         pointOfSales.getCashBankAccount()
       ),
-      cash_transfer_bank_account: convertBankAccountFromGRPC(
+      cash_transfer_bank_account: getBankAccountFromGRPC(
         pointOfSales.getCashTransferBankAccount()
       ),
       sales_representative: convertSalesRepresentativeFromGRPC(
@@ -287,10 +289,10 @@ function convertPaymentFromGRPC (payment) {
       payment_method: convertPaymentMethod(
         payment.getPaymentMethod()
       ),
-      banck_account: convertBankAccountFromGRPC(
+      banck_account: getBankAccountFromGRPC(
         payment.getBankAccount()
       ),
-      reference_bank_account: convertBankAccountFromGRPC(
+      reference_bank_account: getBankAccountFromGRPC(
         payment.getReferenceBankAccount()
       ),
       charge: convertChargeFromGRPC(
@@ -551,7 +553,7 @@ function convertAvalableCashFromGRPC (cashToConvert) {
       uuid: cashToConvert.getUuid(),
       name: cashToConvert.getName(),
       key: cashToConvert.getKey(),
-      bank_account: convertBankAccountFromGRPC(
+      bank_account: getBankAccountFromGRPC(
         cashToConvert.getBankAccount()
       )
     };
@@ -2696,6 +2698,49 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             code: 500,
             result: err.details
           })
+        }
+      });
+    }
+  });
+
+  /**
+   * GET List Bank Accounts
+   *
+   * req.query.token - user token
+   * req.query.pos_uuid - POS UUID
+   * req.query.bank_id - bank identifier
+   * req.query.search_value - search value
+  * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * Details:
+   */
+  api.get('/bank-accounts', (req, res) => {
+    if (req.query) {
+      service.listBankAccounts({
+        token: req.headers.authorization,
+        posUuid: req.query.pos_uuid,
+        bankId: req.query.bank_id,
+        searchValue: req.query.search_value,
+        // Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getRecordsList().map(bankAccount => {
+                return getBankAccountFromGRPC(bankAccount);
+              })
+            }
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
         }
       });
     }
