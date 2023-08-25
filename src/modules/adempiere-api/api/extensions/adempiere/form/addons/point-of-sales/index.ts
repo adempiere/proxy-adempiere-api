@@ -38,6 +38,7 @@ import {
   convertCustomerBankAccountFromGRPC,
   convertShipmentFromGRPC,
   convertCashSummaryMovements,
+  convertCashMovements,
   convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
@@ -1404,6 +1405,47 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
               next_page_token: response.getNextPageToken(),
               records: response.getCashMovementsList().map(movement => {
                 return convertCashSummaryMovements(movement)
+              })
+            }
+          })
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          })
+        }
+      })
+    }
+  });
+
+  /**
+   * GET List Cash Movements
+   *
+   * req.query.token - user token
+   * req.query.page_size - custom page size for batch
+   * req.query.page_token - specific page token
+   * req.query.pos_uuid - POS UUID reference
+   * Details:
+   */
+  api.get('/cash-movements', (req, res) => {
+    if (req.query) {
+      service.listCashMovements({
+        token: req.headers.authorization,
+        posUuid: req.query.pos_uuid,
+        customerUuid: req.query.cuatomer_uuid,
+        salesRepresentativeUuid: req.query.sales_representative_uuid,
+        //  Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: {
+              record_count: response.getRecordCount(),
+              next_page_token: response.getNextPageToken(),
+              records: response.getCashMovementsList().map(movement => {
+                return convertCashMovements(movement)
               })
             }
           })
