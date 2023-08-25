@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                  *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -127,7 +127,8 @@ function getImportedBankMovementFromGRPC (importedBankMovementToConvert) {
     ),
     amount: getDecimalFromGRPC(
       importedBankMovementToConvert.getAmount()
-    )
+    ),
+    bank_statement_line_id: importedBankMovementToConvert.getBankStatementLineId()
   };
 }
 
@@ -372,6 +373,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
       token: req.headers.authorization,
       // DSL Query
       searchValue: req.query.search_value,
+      bankStatementId: req.query.bank_statement_id,
       bankAccountId: req.query.bank_account_id,
       paymnetAmountFrom: req.query.payment_amount_from,
       paymentAmountTo: req.query.payment_amount_to,
