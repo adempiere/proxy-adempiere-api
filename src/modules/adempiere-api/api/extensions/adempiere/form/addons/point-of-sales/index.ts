@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                  *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -21,8 +21,9 @@ import {
   getProcessLogFromGRPC
 } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
 import {
-  getBankAccountFromGRPC
-} from '@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC'
+  getBankAccountFromGRPC,
+  getCurrencyFromGRPC
+} from '@adempiere/grpc-api/src/utils/coreFunctionalityFromGRPC';
 import {
   convertDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType.js';
@@ -31,7 +32,6 @@ import {
   convertAvailableWarehouse,
   convertAvailablePriceList,
   convertAvailableDocumentType,
-  convertAvailableCurrency,
   convertCustomerFromGRPC,
   convertAvailableRefundGRPC,
   convertAvailableSeller,
@@ -48,7 +48,6 @@ import {
   convertDocumentTypeFromGRPC,
   convertSalesRepresentativeFromGRPC,
   convertPriceListFromGRPC,
-  convertCurrencyFromGRPC,
   convertWarehouseFromGRPC
 } from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
 import { convertResourceAssignment } from '../../../util/convertData';
@@ -100,13 +99,13 @@ function convertPointOfSalesFromGRPC (pointOfSales) {
       price_list: convertPriceListFromGRPC(
         pointOfSales.getPriceList()
       ),
-      display_currency: convertCurrencyFromGRPC(
+      display_currency: getCurrencyFromGRPC(
         pointOfSales.getDisplayCurrency()
       ),
       warehouse: convertWarehouseFromGRPC(
         pointOfSales.getWarehouse()
       ),
-      refund_reference_currency: convertCurrencyFromGRPC(
+      refund_reference_currency: getCurrencyFromGRPC(
         pointOfSales.getRefundReferenceCurrency()
       ),
       conversion_type_uuid: pointOfSales.getConversionTypeUuid(),
@@ -240,10 +239,10 @@ function convertAvailablePaymentMethod (availablePaymentMethod) {
       maximum_daily_refund_allowed: getDecimalFromGRPC(
         availablePaymentMethod.getMaximumDailyRefundAllowed()
       ),
-      refund_reference_currency: convertCurrencyFromGRPC(
+      refund_reference_currency: getCurrencyFromGRPC(
         availablePaymentMethod.getRefundReferenceCurrency()
       ),
-      reference_currency: convertCurrencyFromGRPC(
+      reference_currency: getCurrencyFromGRPC(
         availablePaymentMethod.getReferenceCurrency()
       ),
       is_payment_reference: availablePaymentMethod.getIsPaymentReference(),
@@ -274,7 +273,7 @@ function convertPaymentFromGRPC (payment) {
         payment.getConvertedAmount()
       ),
       tender_type_code: payment.getTenderTypeCode(),
-      currency: convertCurrencyFromGRPC(
+      currency: getCurrencyFromGRPC(
         payment.getCurrency()
       ),
       description: payment.getDescription(),
@@ -326,7 +325,7 @@ function convertPaymentReferenceFromGRPC (refund) {
         refund.getConvertedAmount()
       ),
       tender_type_code: refund.getTenderTypeCode(),
-      currency: convertCurrencyFromGRPC(
+      currency: getCurrencyFromGRPC(
         refund.getCurrency()
       ),
       description: refund.getDescription(),
@@ -2472,7 +2471,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
               records: response.getCurrenciesList().map(currency => {
-                return convertAvailableCurrency(currency)
+                return getCurrencyFromGRPC(currency)
               })
             }
           })
