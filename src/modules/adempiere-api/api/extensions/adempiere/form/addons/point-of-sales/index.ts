@@ -1443,18 +1443,20 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
             result: {
               record_count: response.getRecordCount(),
               next_page_token: response.getNextPageToken(),
+              id: response.getId(),
+              uuid: response.getUuid(),
               records: response.getCashMovementsList().map(movement => {
-                return convertCashMovements(movement)
+                return convertCashMovements(movement);
               })
             }
-          })
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
