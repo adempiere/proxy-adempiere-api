@@ -575,6 +575,23 @@ function convertBankFromGRPC (bankToConvert) {
   }
 }
 
+function getPrintTicketFromGRPC (printTicketToConvert) {
+  if (!printTicketToConvert) {
+    return undefined;
+  }
+  return {
+    summary: printTicketToConvert.getSummary(),
+    is_error: printTicketToConvert.getIsError(),
+    file_name: printTicketToConvert.getFileName(),
+    mime_type: printTicketToConvert.getMimeType(),
+    output_stream: printTicketToConvert.getOutputStream(),
+    result_type: printTicketToConvert.getResultType(),
+    result_values: Object.entries(
+      printTicketToConvert.getReturnValuesMap()
+    )
+  };
+}
+
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales')
@@ -1748,21 +1765,25 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     if (req.body) {
       service.printTicket({
         token: req.headers.authorization,
-        posUuid: req.body.pos_uuid,
-        orderUuid: req.body.order_uuid
+        posId: req.body.pos_id,
+        orderId: req.body.order_id,
+        invoiceId: req.body.invoice_id,
+        shipmentId: req.body.shipment_id,
+        tableName: req.body.table_name,
+        recordId: req.body.record_id
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: response.getResult()
-          })
+            result: getPrintTicketFromGRPC(response)
+          });
         } else if (err) {
           res.json({
             code: 500,
             result: err.details
-          })
+          });
         }
-      })
+      });
     }
   });
 
