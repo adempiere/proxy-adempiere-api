@@ -579,6 +579,11 @@ function getPrintTicketFromGRPC (printTicketToConvert) {
   if (!printTicketToConvert) {
     return undefined;
   }
+
+  const resultValues = {};
+  printTicketToConvert.getResultValuesMap().forEach((value, key) => {
+    resultValues[key] = value;
+  });
   return {
     summary: printTicketToConvert.getSummary(),
     is_error: printTicketToConvert.getIsError(),
@@ -586,9 +591,10 @@ function getPrintTicketFromGRPC (printTicketToConvert) {
     mime_type: printTicketToConvert.getMimeType(),
     output_stream: printTicketToConvert.getOutputStream(),
     result_type: printTicketToConvert.getResultType(),
-    result_values: Object.entries(
-      printTicketToConvert.getReturnValuesMap()
-    )
+    // result_values: Object.fromEntries(
+    //   printTicketToConvert.getResultValuesMap()
+    // )
+    resultValues: resultValues
   };
 }
 
