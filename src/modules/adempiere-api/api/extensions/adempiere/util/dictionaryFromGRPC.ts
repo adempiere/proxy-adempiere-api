@@ -187,7 +187,7 @@ export function getProcessFromGRPC (process) {
 // Convert field
 export function getFiledFromGRPC (fieldToConvert) {
   if (!fieldToConvert) {
-    return undefined
+    return undefined;
   }
   return {
     id: fieldToConvert.getId(),
@@ -223,6 +223,8 @@ export function getFiledFromGRPC (fieldToConvert) {
     is_always_updateable: fieldToConvert.getIsAlwaysUpdateable(),
     is_translated: fieldToConvert.getIsTranslated(),
     identifier_sequence: fieldToConvert.getIdentifierSequence(),
+    is_displayed_as_panel: fieldToConvert.getIsDisplayedAsPanel(),
+    is_displayed_as_table: fieldToConvert.getIsDisplayedAsTable(),
     display_logic: fieldToConvert.getDisplayLogic(),
     display_type: fieldToConvert.getDisplayType(),
     default_value: fieldToConvert.getDefaultValue(),
@@ -262,5 +264,5 @@ export function getFiledFromGRPC (fieldToConvert) {
     dependent_fields: fieldToConvert.getDependentFieldsList().map(dependentField => {
       return getDependentFieldFromGRPC(dependentField);
     })
-  }
+  };
 }

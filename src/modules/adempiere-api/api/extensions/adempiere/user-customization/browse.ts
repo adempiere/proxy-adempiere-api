@@ -1,5 +1,5 @@
 /************************************************************************************
- * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                  *
  * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
  * This program is free software: you can redistribute it and/or modify             *
  * it under the terms of the GNU General Public License as published by             *
@@ -14,8 +14,9 @@
  ************************************************************************************/
 
 import { Router } from 'express';
+import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-module.exports = ({ config }) => {
+module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/userCustomization');
   const service = new ServiceApi(config);
@@ -25,7 +26,7 @@ module.exports = ({ config }) => {
    *
    * @param {string} token - user token
    * @param {string} browseUuid - browse uuid
-   * @param {number} level - asp level to apply (user/role/client)
+   * @param {number} level_type - asp level to apply (user/role/client)
    * @param {number} level_id - value of level
    * @param {string} level_uuid - value of level
    * @param {array} field_attributes - attributes to set
@@ -40,7 +41,7 @@ module.exports = ({ config }) => {
         token: req.headers.authorization,
         //
         browseUuid: req.body.browse_uuid,
-        level: req.body.level,
+        levelType: req.body.level_type,
         levelId: req.body.level_id,
         levelUuid: req.body.level_uuid,
         fieldAttributes: req.body.field_attributes
@@ -60,5 +61,5 @@ module.exports = ({ config }) => {
     }
   });
 
-  return api
+  return api;
 }
