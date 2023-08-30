@@ -286,6 +286,7 @@
         "adempiere/user",
         "adempiere/user/enrollment",
         "adempiere/user/log",
+        "adempiere/user/open-id",
         "adempiere/workflow",
         "adempiere/user-customization",
         "adempiere/user-customization/browse",
