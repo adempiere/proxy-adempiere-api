@@ -20,12 +20,15 @@ import {
   convertDocumentStatusFromGRPC
 } from '@adempiere/grpc-api/lib/convertBaseDataType.js';
 import {
+  convertChargeFromGRPC,
+  convertProductFromGRPC,
+  convertTaxRateFromGRPC,
   convertDocumentTypeFromGRPC,
   convertPriceListFromGRPC,
   convertProductConversionFromGRPC as getProductConversionFromGRPC,
   convertSalesRepresentativeFromGRPC,
   convertWarehouseFromGRPC
-} from '@adempiere/grpc-api/src/utils/convertCoreFunctionality'
+} from '@adempiere/grpc-api/src/utils/convertCoreFunctionality';
 import {
   convertCustomerFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
@@ -117,11 +120,6 @@ export function getOrderLineFromGRPC (orderLineToConvert) {
   if (!orderLineToConvert) {
     return undefined;
   }
-  const {
-    convertChargeFromGRPC,
-    convertProductFromGRPC,
-    convertTaxRateFromGRPC
-  } = require('@adempiere/grpc-api/src/utils/convertCoreFunctionality');
 
   return {
     uuid: orderLineToConvert.getUuid(),
@@ -211,5 +209,167 @@ export function getOrderLineFromGRPC (orderLineToConvert) {
       orderLineToConvert.getResourceAssignment()
     ),
     source_rma_line_id: orderLineToConvert.getSourceRmaLineId()
+  };
+}
+
+export function getRMAFromGRPC (rmaToConvert) {
+  if (!rmaToConvert) {
+    return undefined;
+  }
+  return {
+    id: rmaToConvert.getId(),
+    uuid: undefined,
+    document_no: rmaToConvert.getDocumentNo(),
+    description: rmaToConvert.getDescription(),
+    document_type: convertDocumentTypeFromGRPC(
+      rmaToConvert.getDocumentType()
+    ),
+    sales_representative: convertSalesRepresentativeFromGRPC(
+      rmaToConvert.getSalesRepresentative()
+    ),
+    document_status: convertDocumentStatusFromGRPC(
+      rmaToConvert.getDocumentStatus()
+    ),
+    price_list: convertPriceListFromGRPC(
+      rmaToConvert.getPriceList()
+    ),
+    warehouse: convertWarehouseFromGRPC(
+      rmaToConvert.getWarehouse()
+    ),
+    total_lines: getDecimalFromGRPC(
+      rmaToConvert.getTotalLines()
+    ),
+    grand_total: getDecimalFromGRPC(
+      rmaToConvert.getGrandTotal()
+    ),
+    tax_amount: getDecimalFromGRPC(
+      rmaToConvert.getTaxAmount()
+    ),
+    discount_amount: getDecimalFromGRPC(
+      rmaToConvert.getDiscountAmount()
+    ),
+    date_ordered: rmaToConvert.getDateOrdered(),
+    customer: convertCustomerFromGRPC(
+      rmaToConvert.getCustomer()
+    ),
+    is_delivered: rmaToConvert.getIsDelivered(),
+    order_reference: rmaToConvert.getOrderReference(),
+    campaign: getCampaignFromGRPC(
+      rmaToConvert.getCampaign()
+    ),
+    display_currency_rate: getDecimalFromGRPC(
+      rmaToConvert.getDisplayCurrencyRate()
+    ),
+    open_amount: getDecimalFromGRPC(
+      rmaToConvert.getOpenAmount()
+    ),
+    payment_amount: getDecimalFromGRPC(
+      rmaToConvert.getPaymentAmount()
+    ),
+    refund_amount: getDecimalFromGRPC(
+      rmaToConvert.getRefundAmount()
+    ),
+    charge_amount: getDecimalFromGRPC(
+      rmaToConvert.getChargeAmount()
+    ),
+    credit_amount: getDecimalFromGRPC(
+      rmaToConvert.getCreditAmount()
+    ),
+    source_order_id: rmaToConvert.getSourceOrderId()
+  };
+}
+
+export function getRMALineFromGRPC (rmaLineToConvert) {
+  if (!rmaLineToConvert) {
+    return undefined;
+  }
+
+  return {
+    id: rmaLineToConvert.getId(),
+    uuid: undefined, // orderLineToConvert.getUuid(),
+    rma_id: rmaLineToConvert.getRmaId(),
+    product: convertProductFromGRPC(
+      rmaLineToConvert.getProduct()
+    ),
+    charge: convertChargeFromGRPC(
+      rmaLineToConvert.getCharge()
+    ),
+    line_description: rmaLineToConvert.getLineDescription(),
+    description: rmaLineToConvert.getDescription(),
+    warehouse: convertWarehouseFromGRPC(
+      rmaLineToConvert.getWarehouse()
+    ),
+    quantity: getDecimalFromGRPC(
+      rmaLineToConvert.getQuantity()
+    ),
+    quantity_ordered: getDecimalFromGRPC(
+      rmaLineToConvert.getQuantityOrdered()
+    ),
+    available_quantity: getDecimalFromGRPC(
+      rmaLineToConvert.getAvailableQuantity()
+    ),
+    price: getDecimalFromGRPC(
+      rmaLineToConvert.getPrice()
+    ),
+    price_with_tax: getDecimalFromGRPC(
+      rmaLineToConvert.getPriceWithTax()
+    ),
+    price_base: getDecimalFromGRPC(
+      rmaLineToConvert.getPriceBase()
+    ),
+    price_base_with_tax: getDecimalFromGRPC(
+      rmaLineToConvert.getPriceBaseWithTax()
+    ),
+    price_list: getDecimalFromGRPC(
+      rmaLineToConvert.getPriceList()
+    ),
+    price_list_with_tax: getDecimalFromGRPC(
+      rmaLineToConvert.getPriceListWithTax()
+    ),
+    discount_rate: getDecimalFromGRPC(
+      rmaLineToConvert.getDiscountRate()
+    ),
+    discount_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getDiscountAmount()
+    ),
+    tax_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getTaxAmount()
+    ),
+    base_tax_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getBaseTaxAmount()
+    ),
+    list_tax_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getListTaxAmount()
+    ),
+    tax_rate: convertTaxRateFromGRPC(
+      rmaLineToConvert.getTaxRate()
+    ),
+    // Totals
+    total_discount_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalDiscountAmount()
+    ),
+    total_tax_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalTaxAmount()
+    ),
+    total_base_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalBaseAmount()
+    ),
+    total_base_amount_with_tax: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalBaseAmountWithTax()
+    ),
+    total_amount: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalAmount()
+    ),
+    total_amount_with_tax: getDecimalFromGRPC(
+      rmaLineToConvert.getTotalAmountWithTax()
+    ),
+    line: rmaLineToConvert.getLine(),
+    uom: getProductConversionFromGRPC(
+      rmaLineToConvert.getUom()
+    ),
+    product_uom: getProductConversionFromGRPC(
+      rmaLineToConvert.getProductUom()
+    ),
+    source_order_line_id: rmaLineToConvert.getSourceRmaLineId()
   };
 }

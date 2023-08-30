@@ -16,36 +16,30 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getOrderFromGRPC } from './pointOfSalesFromGRPC';
+import { getRMALineFromGRPC } from '../pointOfSalesFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
   const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales');
-  const service = new ServiceApi(config)
+  const service = new ServiceApi(config);
 
   /**
-   * GET Sales Order
-   *
-   * req.headers.authorization - user token
-   * req.query.order_uuid - Order UUID reference
-   * req.query.pos_uuid - POS UUID reference
-   * req.query.customer_uuid - Customer UUID reference
-   * req.query.document_type_uuid - Document Type UUID reference
-   * req.query.sales_representative_uuid - Sales Representative UUID reference
-   *
-   * Details:
+   * GET List Return Material Authorization
    */
-  api.get('/', (req, res) => {
+  api.get('/list', (req, res) => {
     if (req.query) {
-      service.getOrder({
+      service.listRMALines({
         token: req.headers.authorization,
-        posUuid: req.query.pos_uuid,
-        orderUuid: req.query.order_uuid
+        posId: req.query.pos_id,
+        rmaId: req.query.rma_id,
+        // Page Data
+        pageSize: req.query.page_size,
+        pageToken: req.query.page_token
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: getOrderFromGRPC(response)
+            result: getRMALineFromGRPC(response)
           });
         } else if (err) {
           res.json({
@@ -58,25 +52,74 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   });
 
   /**
-   * POST Copy Order
-   *
-   * req.headers.authorization - user token
-   * req.body.pos_id - point of sales terminal
-   * req.body.source_order_id - source order to copy
-   *
-   * Details:
+   * POST Create Return Material Authorization
    */
-  api.post('/copy-order', (req, res) => {
-    if (req.query) {
-      service.copyOrder({
+  api.post('/', (req, res) => {
+    if (req.body) {
+      service.createRMALine({
         token: req.headers.authorization,
         posId: req.body.pos_id,
-        sourceOrderId: req.body.source_order_id
+        rmaId: req.body.rma_id,
+        sourceOrderLineId: req.body.source_order_line_id,
+        description: req.body.description,
+        quantity: req.body.quantity
       }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
-            result: getOrderFromGRPC(response)
+            result: getRMALineFromGRPC(response)
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  /**
+   * PUT Update Return Material Authorization Line
+   */
+  api.put('/', (req, res) => {
+    if (req.body) {
+      service.updateRMALine({
+        token: req.headers.authorization,
+        posId: req.body.pos_id,
+        id: req.body.id,
+        description: req.body.description,
+        quantity: req.body.quantity
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: getRMALineFromGRPC(response)
+          });
+        } else if (err) {
+          res.json({
+            code: 500,
+            result: err.details
+          });
+        }
+      });
+    }
+  });
+
+  /**
+   * DELETE Remove Return Material Authorization
+   */
+  api.delete('/', (req, res) => {
+    if (req.query) {
+      service.deleteRMALine({
+        token: req.headers.authorization,
+        posId: req.query.pos_id,
+        id: req.query.id
+      }, (err, response) => {
+        if (response) {
+          res.json({
+            code: 200,
+            result: 'Ok'
           });
         } else if (err) {
           res.json({

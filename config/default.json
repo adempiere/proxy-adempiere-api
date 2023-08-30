@@ -318,6 +318,8 @@
         "adempiere/form/addons/point-of-sales",
         "adempiere/form/addons/point-of-sales/command-shortcut",
         "adempiere/form/addons/point-of-sales/order",
+        "adempiere/form/addons/point-of-sales/return-material",
+        "adempiere/form/addons/point-of-sales/return-material/line",
         "adempiere/form/addons/time-control",
         "adempiere/form/addons/time-record",
         "adempiere/grid",
