@@ -29,7 +29,8 @@ import {
 import {
   convertCustomerFromGRPC
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
-import { getResourceAssignmentFromGRPC } from '../time-record';
+// import { getResourceAssignmentFromGRPC } from '../time-record';
+import { convertResourceAssignment as getResourceAssignmentFromGRPC } from '../../../util/convertData';
 
 export function getCampaignFromGRPC (campaignToConvert) {
   if (!campaignToConvert) {
