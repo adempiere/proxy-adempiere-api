@@ -1880,10 +1880,12 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     if (req.body) {
       service.validatePIN({
         token: req.headers.authorization,
+        posId: req.body.pos_id,
         posUuid: req.body.pos_uuid,
         pin: req.body.pin,
         requestedAccess: req.body.requested_access,
-        requestedAmount: req.body.requested_amount
+        requestedAmount: req.body.requested_amount,
+        orderId: req.body.order_id
       }, (err, response) => {
         if (response) {
           res.json({
