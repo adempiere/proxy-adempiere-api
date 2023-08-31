@@ -56,7 +56,7 @@ COPY docker/adempiere-api/setting.sh /var/www/proxy-adempiere-api/setting.sh
 
 
 # Set release version on package.json
-RUN sed -i sed -i "s|\"version\": \"1.0.0-rc.3\"|\"version\": \"$PROXY_VERSION\"|g" /var/www/proxy-adempiere-api/package.json
+RUN sed -i sed -i 's|"version": "1.0.0-rc.3"|"version": "$PROXY_VERSION"|g' /var/www/proxy-adempiere-api/package.json
 
 RUN cd /var/www/proxy-adempiere-api/ && \
 	addgroup adempiere && \
