@@ -39,7 +39,13 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         if (response) {
           res.json({
             code: 200,
-            result: getRMALineFromGRPC(response)
+            result: {
+              record_count: response.getRecordCount(),
+              records: response.getRmaLinesList().map(rmaLine => {
+                return getRMALineFromGRPC(rmaLine);
+              }),
+              next_page_token: response.getNextPageToken()
+            }
           });
         } else if (err) {
           res.json({

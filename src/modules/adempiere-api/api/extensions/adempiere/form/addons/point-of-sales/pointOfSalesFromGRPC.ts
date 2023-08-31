@@ -370,6 +370,6 @@ export function getRMALineFromGRPC (rmaLineToConvert) {
     product_uom: getProductConversionFromGRPC(
       rmaLineToConvert.getProductUom()
     ),
-    source_order_line_id: rmaLineToConvert.getSourceRmaLineId()
+    source_order_line_id: rmaLineToConvert.getSourceOrderLineId()
   };
 }
