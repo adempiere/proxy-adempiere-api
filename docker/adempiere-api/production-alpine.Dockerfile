@@ -1,6 +1,6 @@
 FROM node:14.17.5-alpine3.11
 
-ARG PROXY_VERSION $PROXY_VERSION
+ARG PROXY_VERSION 1.0.0-rc.3
 
 LABEL maintainer="EdwinBetanc0urt@outlook.com" \
 	description="Proxy ADempiere API RESTful"
@@ -56,7 +56,7 @@ COPY docker/adempiere-api/start.sh /var/www/proxy-adempiere-api/start.sh
 COPY docker/adempiere-api/setting.sh /var/www/proxy-adempiere-api/setting.sh
 
 # Set release version on package.json
-RUN sed -i 's|"version": "1.0.0-rc.3"|"version": "$PROXY_VERSION"|g' /var/www/proxy-adempiere-api/package.json
+RUN sed -i "s|\"version\": \"1.0.0-rc.3\"|\"version\": \"${PROXY_VERSION}\"|g" /var/www/proxy-adempiere-api/package.json
 
 RUN cd /var/www/proxy-adempiere-api/ && \
 	# Set permissions
