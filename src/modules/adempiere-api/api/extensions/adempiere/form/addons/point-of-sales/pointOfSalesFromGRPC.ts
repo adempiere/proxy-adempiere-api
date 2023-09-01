@@ -122,6 +122,7 @@ export function getOrderLineFromGRPC (orderLineToConvert) {
   }
 
   return {
+    id: orderLineToConvert.getId(),
     uuid: orderLineToConvert.getUuid(),
     order_uuid: orderLineToConvert.getOrderUuid(),
     line: orderLineToConvert.getLine(),
@@ -286,8 +287,7 @@ export function getRMALineFromGRPC (rmaLineToConvert) {
 
   return {
     id: rmaLineToConvert.getId(),
-    uuid: undefined, // orderLineToConvert.getUuid(),
-    rma_id: rmaLineToConvert.getRmaId(),
+    uuid: rmaLineToConvert.getUuid(),
     product: convertProductFromGRPC(
       rmaLineToConvert.getProduct()
     ),
