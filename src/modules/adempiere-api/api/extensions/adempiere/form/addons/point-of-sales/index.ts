@@ -19,7 +19,8 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import {
   getCampaignFromGRPC,
   getOrderFromGRPC,
-  getOrderLineFromGRPC
+  getOrderLineFromGRPC,
+
 } from './pointOfSalesFromGRPC';
 import {
   getDecimalFromGRPC,
@@ -43,7 +44,6 @@ import {
   convertCustomerBankAccountFromGRPC,
   convertShipmentFromGRPC,
   convertCashSummaryMovements,
-  convertCashMovements,
   convertCashClosing
 } from '@adempiere/grpc-api/lib/convertPointOfSales'
 import {
@@ -1298,7 +1298,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
               id: response.getId(),
               uuid: response.getUuid(),
               records: response.getCashMovementsList().map(movement => {
-                return convertCashMovements(movement);
+                return convertPaymentFromGRPC(movement);
               })
             }
           });
