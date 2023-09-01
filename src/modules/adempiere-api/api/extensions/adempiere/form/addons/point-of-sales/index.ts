@@ -19,8 +19,7 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import {
   getCampaignFromGRPC,
   getOrderFromGRPC,
-  getOrderLineFromGRPC,
-
+  getOrderLineFromGRPC
 } from './pointOfSalesFromGRPC';
 import {
   getDecimalFromGRPC,
@@ -1901,40 +1900,6 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
           })
         }
       })
-    }
-  });
-
-  /**
-   * GET Sales Order
-   *
-   * req.query.token - user token
-   * req.query.order_uuid - Order UUID reference
-   * req.query.pos_uuid - POS UUID reference
-   * req.query.customer_uuid - Customer UUID reference
-   * req.query.document_type_uuid - Document Type UUID reference
-   * req.query.sales_representative_uuid - Sales Representative UUID reference
-   *
-   * Details:
-   */
-  api.get('/order', (req, res) => {
-    if (req.query) {
-      service.getOrder({
-        token: req.headers.authorization,
-        posUuid: req.query.pos_uuid,
-        orderUuid: req.query.order_uuid
-      }, (err, response) => {
-        if (response) {
-          res.json({
-            code: 200,
-            result: getOrderFromGRPC(response)
-          });
-        } else if (err) {
-          res.json({
-            code: 500,
-            result: err.details
-          });
-        }
-      });
     }
   });
 

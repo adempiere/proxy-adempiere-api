@@ -67,11 +67,11 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * Details:
    */
   api.post('/copy-order', (req, res) => {
-    if (req.query) {
+    if (req.body) {
       service.copyOrder({
         token: req.headers.authorization,
         posId: req.body.pos_id,
-        salesRepresentativeId: req.query.sales_representative_id,
+        salesRepresentativeId: req.body.sales_representative_id,
         sourceOrderId: req.body.source_order_id
       }, (err, response) => {
         if (response) {
