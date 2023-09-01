@@ -250,6 +250,8 @@ function convertPaymentFromGRPC (payment) {
       uuid: payment.getUuid(),
       id: payment.getId(),
       document_no: payment.getDocumentNo(),
+      order_document_no: payment.getOrderDocumentNo(),
+      invoice_document_no: payment.getInvoiceDocumentNo(),
       collecting_agent: convertSalesRepresentativeFromGRPC(
         payment.getCollectingAgent()
       ),
