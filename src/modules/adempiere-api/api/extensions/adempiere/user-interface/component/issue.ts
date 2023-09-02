@@ -24,11 +24,11 @@ import {
   getStatusFromGRPC,
   getIssueFromGRPC,
   getIssueCommentFromGRPC
-} from '@adempiere/grpc-api/src/utils/issueManagementFromGRPC';
+} from '../.././grpc-api/utils/issueManagementFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/issueManagement')
+  const ServiceApi = require('../.././grpc-api/services/issueManagement')
   const service = new ServiceApi(config)
 
   api.get('/', (req, res) => {

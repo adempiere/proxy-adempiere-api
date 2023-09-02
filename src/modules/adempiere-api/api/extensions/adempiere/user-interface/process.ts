@@ -20,14 +20,14 @@ import {
   convertDrillTableFromGRPC,
   convertPrintFromatFromGRPC,
   convertReportViewFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '.././grpc-api/lib/convertBaseDataType';
 import {
   getReportOutputFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '.././grpc-api/utils/baseDataTypeFromGRPC.js';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface')
+  const ServiceApi = require('.././grpc-api/services/userInterface')
   const service = new ServiceApi(config)
 
   /**

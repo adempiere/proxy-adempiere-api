@@ -31,7 +31,7 @@ function getCommnandShortcutFromGRPC (commandShortcutToConvert) {
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales');
+  const ServiceApi = require('../../.././grpc-api/services/pointOfSales');
   const service = new ServiceApi(config);
 
   api.post('/', (req, res) => {

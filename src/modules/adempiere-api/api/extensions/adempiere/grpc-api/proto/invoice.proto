@@ -1,0 +1,48 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.invoice";
+option java_outer_classname = "ADempiereInvoice";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package invoice;
+
+// The invoice service definition.
+service Invoice {
+	// List Invoice Info Request
+	rpc ListInvoiceInfo(ListInvoiceInfoRequest) returns (data.ListEntitiesResponse) {}
+}
+
+// List Invoice Info Request
+message ListInvoiceInfoRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	data.Criteria filters = 4;
+	repeated data.KeyValue context_attributes = 5;
+	string search_value = 6;
+	// references
+	string process_parameter_uuid = 7;
+	string field_uuid = 8;
+	string browse_field_uuid = 9;
+	string reference_uuid = 10;
+	string column_uuid = 11;
+	string column_name = 13;
+}

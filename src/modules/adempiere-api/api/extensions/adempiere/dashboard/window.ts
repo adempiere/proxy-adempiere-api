@@ -19,11 +19,11 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import {
   getWindowDashboardFromGRPC,
   getWindowMetricsFromGRPC
-} from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
+} from '.././grpc-api/utils/dashboardingFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding.js');
+  const ServiceApi = require('.././grpc-api/services/dashboarding.js');
   const service = new ServiceApi(config);
 
   /**

@@ -1,0 +1,94 @@
+{
+  "name": "@adempiere/grpc-api",
+  "version": "5.1.0",
+  "description": "ADempiere Web write in Javascript for a node service",
+  "author": "Yamel Senih",
+  "contributors": [
+    {
+      "name": "Edwin Betancourt",
+      "email": "EdwinBetanc0urt@outlook.com",
+      "url": "https://github.com/EdwinBetanc0urt/"
+    },
+    {
+      "name": "Elsio Sanchez",
+      "email": "Elsiosanchez15@outlook.com",
+      "url": "https://github.com/elsiosanchez"
+    }
+  ],
+  "main": "index.js",
+  "files": [
+    "lib",
+    "proto",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "ci": "yarn install --frozen-lockfile",
+    "stub": "npm run stub:bank_statement_match && npm run stub:base_data_type && npm run stub:business && npm run stub:business_partner && npm run stub:core_functionality && npm run stub:dashboarding && npm run stub:dictionary && npm run stub:enrollment && npm run stub:express_movement && npm run stub:express_receipt && npm run stub:express_shipment && npm run stub:file_management && npm run stub:general_ledger && npm run stub:import_file_loader && npm run stub:in_out && npm run stub:invoice && npm run stub:issue_management && npm run stub:logs && npm run stub:material_management && npm run stub:match_po_receipt_invoice && npm run stub:order && npm run stub:payment && npm run stub:payment_allocation && npm run stub:payment_print_export && npm run stub:payroll_action_notice && npm run stub:point_of_sales && npm run stub:product && npm run stub:record_management && npm run stub:security && npm run stub:time_control && npm run stub:time_record && npm run stub:user_customization && npm run stub:workflow",
+    "stub:all": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/ proto/base_data_type.proto proto/business.proto proto/business_partner.proto proto/core_functionality.proto proto/dashboarding.proto proto/dictionary.proto proto/enrollment.proto proto/express_movement.proto proto/express_receipt.proto proto/express_shipment.proto proto/file_management.proto proto/general_ledger.proto proto/import_file_loader.proto proto/in_out.proto proto/invoice.proto proto/issue_management.proto proto/logs.proto proto/material_management.proto proto/match_po_receipt_invoice.proto proto/order.proto proto/payment.proto proto/payment_allocation.proto proto/payment_print_export.proto proto/payroll_action_notice.proto proto/point_of_sales.proto proto/product.proto proto/record_management.proto proto/security.proto proto/time_control.proto proto/time_record.proto proto/user_customization.proto proto/workflow.proto",
+    "stub:bank_statement_match": "grpc_tools_node_protoc proto/bank_statement_match.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:base_data_type": "grpc_tools_node_protoc proto/base_data_type.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:business": "grpc_tools_node_protoc proto/business.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:business_partner": "grpc_tools_node_protoc proto/business_partner.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:core_functionality": "grpc_tools_node_protoc proto/core_functionality.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:dashboarding": "grpc_tools_node_protoc proto/dashboarding.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:dictionary": "grpc_tools_node_protoc proto/dictionary.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:enrollment": "grpc_tools_node_protoc proto/enrollment.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:express_movement": "grpc_tools_node_protoc proto/express_movement.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:express_receipt": "grpc_tools_node_protoc proto/express_receipt.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:express_shipment": "grpc_tools_node_protoc proto/express_shipment.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:file_management": "grpc_tools_node_protoc proto/file_management.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:general_ledger": "grpc_tools_node_protoc proto/general_ledger.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:import_file_loader": "grpc_tools_node_protoc proto/import_file_loader.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:in_out": "grpc_tools_node_protoc proto/in_out.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:invoice": "grpc_tools_node_protoc proto/invoice.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:issue_management": "grpc_tools_node_protoc proto/issue_management.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:logs": "grpc_tools_node_protoc proto/logs.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:match_po_receipt_invoice": "grpc_tools_node_protoc proto/match_po_receipt_invoice.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:material_management": "grpc_tools_node_protoc proto/material_management.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:order": "grpc_tools_node_protoc proto/order.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:payment": "grpc_tools_node_protoc proto/payment.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:payment_allocation": "grpc_tools_node_protoc proto/payment_allocation.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:payment_print_export": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/ proto/payment_print_export.proto",
+    "stub:payroll_action_notice": "grpc_tools_node_protoc proto/payroll_action_notice.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:point_of_sales": "grpc_tools_node_protoc proto/point_of_sales.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:product": "grpc_tools_node_protoc proto/product.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:record_management": "grpc_tools_node_protoc proto/record_management.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:security": "grpc_tools_node_protoc proto/security.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:time_control": "grpc_tools_node_protoc proto/time_control.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:time_record": "grpc_tools_node_protoc proto/time_record.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:user_customization": "grpc_tools_node_protoc proto/user_customization.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/",
+    "stub:workflow": "grpc_tools_node_protoc proto/workflow.proto --js_out=import_style=commonjs,binary:grpc/ --grpc_out=grpc_js:grpc/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adempiere/gRPC-API.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/erpcya/gRPC-API/issues"
+  },
+  "homepage": "https://github.com/erpcya/gRPC-API#readme",
+  "dependencies": {
+    "@grpc/grpc-js": "1.8.18",
+    "google-protobuf": "3.21.2"
+  },
+  "devDependencies": {
+    "grpc-tools": "1.12.4"
+  },
+  "engines": {
+    "node": ">= 14.0",
+    "npm": ">= 6.0.0"
+  },
+  "keywords": [
+    "compiere",
+    "adempiere",
+    "erp",
+    "grpc",
+    "webstore",
+    "java",
+    "web"
+  ]
+}

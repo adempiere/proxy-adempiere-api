@@ -3,7 +3,7 @@ import { convertEntitiesListFromGRPC } from '../util/convertData';
 
 module.exports = ({ config }) => {
   let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/invoice')
+  const ServiceApi = require('.././grpc-api/services/invoice')
   const service = new ServiceApi(config);
 
   /**

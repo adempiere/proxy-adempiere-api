@@ -1,0 +1,101 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form";
+option java_outer_classname = "ADempierePayrollActionNotice";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package payroll_action_notice;
+
+// The payroll-action-notice service definition.
+service PayrollActionNotice {
+	// List Payroll Process
+	rpc ListPayrollProcess(ListPayrollProcessRequest) returns (data.ListLookupItemsResponse) {}
+	// List Employee Valid
+	rpc ListEmployeeValid(ListEmployeeValidRequest) returns (data.ListLookupItemsResponse) {}
+	// List Payroll Concepts
+	rpc ListPayrollConcepts(ListPayrollConceptsRequest) returns (data.ListLookupItemsResponse) {}
+	// Get Payroll Concept Definition
+	rpc GetPayrollConceptDefinition(GetPayrollConceptDefinitionRequest) returns (data.Entity) {}
+	// List Payroll Movements
+	rpc ListPayrollMovements(ListPayrollMovementsRequest) returns (data.ListEntitiesResponse) {}
+	// Save Payroll Movement
+	rpc SavePayrollMovement(SavePayrollMovementRequest) returns (data.Entity) {}
+	// Delete Payroll Movements
+	rpc DeletePayrollMovements(DeletePayrollMovementsRequest) returns (data.Empty) {}
+}
+
+// List Payroll Process Request
+message ListPayrollProcessRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	repeated data.KeyValue context_attributes = 5;
+}
+
+// List Employee Request
+message ListEmployeeValidRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	repeated data.KeyValue context_attributes = 5;
+}
+
+// List Payroll Conceps Request
+message ListPayrollConceptsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	repeated data.KeyValue context_attributes = 4;
+	string search_value = 5;
+}
+
+// Get Payroll Concept Definition Request
+message GetPayrollConceptDefinitionRequest {
+	int32 id = 2;
+	string uuid = 3;
+}
+
+// List Payroll Movements Request
+message ListPayrollMovementsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	data.Criteria filters = 4;
+	repeated data.KeyValue context_attributes = 5;
+	string search_value = 6;
+}
+
+// Save Payroll Movement Request
+message SavePayrollMovementRequest {
+	repeated data.KeyValue context_attributes = 2;
+	string uuid = 3;
+	int32 id = 4;
+	repeated data.KeyValue attributes = 5;
+}
+
+// Delete Payroll Movements Request
+message DeletePayrollMovementsRequest {
+	repeated data.KeyValue context_attributes = 2;
+	repeated string uuids = 3;
+	repeated int32 ids = 4;
+}

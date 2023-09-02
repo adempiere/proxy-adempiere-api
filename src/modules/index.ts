@@ -9,18 +9,18 @@ import { StorefrontApiModule } from '@storefront-api/lib/module'
 import * as magento2 from '@storefront-api/platform-magento2'
 
 export let modules: StorefrontApiModule[] = [
-  DefaultVuestorefrontApiModule({
-    platform: {
-      name: 'magento2',
-      platformImplementation: magento2
-    }
-  }),
-  DefaultCatalogModule(),
+  // DefaultVuestorefrontApiModule({
+  //   platform: {
+  //     name: 'magento2',
+  //     platformImplementation: magento2
+  //   }
+  // }),
+  // DefaultCatalogModule(),
   // DefaultImgModule(),
   // SampleApiModule,
   // TemplateModule,
   ADempiereApi,
-  ADempiereStore
+  // ADempiereStore
 ]
 
 export default modules

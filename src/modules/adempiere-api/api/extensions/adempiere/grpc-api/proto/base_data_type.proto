@@ -1,0 +1,236 @@
+/************************************************************************************
+ * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.common";
+option java_outer_classname = "ADempiereBase";
+
+package data;
+
+//  Empty message
+message Empty {
+	
+}
+
+//	Entities Selections
+message KeyValueSelection {
+	int32 selection_id = 1;
+	string selection_uuid = 2;
+	repeated KeyValue values = 3;
+}
+
+// Key and Value pairs
+message KeyValue {
+	string key = 1;
+	Value value = 2;
+}
+
+// Define value for object
+message Value {
+	int32 int_value = 1;
+	int64 long_value = 2;
+	bool boolean_value = 3;
+	string string_value = 4;
+	Decimal decimal_value = 5;
+	enum ValueType {
+		UNKNOWN = 0;
+		INTEGER = 1;
+		DECIMAL = 2;
+		BOOLEAN = 3;
+		STRING = 4;
+		DATE = 5;
+	}
+	ValueType value_type = 6;
+}
+
+// Define numeric types
+message Decimal {
+	string decimal_value = 1;
+	int32 scale = 2;
+}
+
+// Query for Request Object
+message Criteria {
+	string table_name = 1;
+	string query = 2;
+	string where_clause = 3;
+	string order_by_clause = 4;
+	string reference_uuid = 5;
+	repeated Condition conditions = 6;
+	repeated Value values = 7;
+	repeated OrderByProperty order_by_column = 8;
+	int64 limit = 9;
+}
+
+enum OrderType {
+	ASCENDING = 0;
+	DESCENDING = 1;
+}
+
+// Order By Property
+message OrderByProperty {
+	string column_name = 1;
+	//	Operators
+	OrderType order_type = 2;
+}
+
+enum Operator {
+	VOID = 0;
+	EQUAL = 1;
+	NOT_EQUAL = 2;
+	LIKE = 3;
+	NOT_LIKE = 4;
+	GREATER = 5;
+	GREATER_EQUAL = 6;
+	LESS = 7;
+	LESS_EQUAL = 8;
+	BETWEEN = 9;
+	NOT_BETWEEN = 10;
+	NOT_NULL = 11;
+	NULL = 12;
+	IN = 13;
+	NOT_IN = 14;
+}
+
+// Condition for query data
+message Condition {
+	string column_name = 1;
+	Value value = 2;
+	Value value_to = 3;
+	repeated Value values = 4;
+	//	Operators
+	Operator operator = 5;
+	repeated Condition conditions = 6;
+}
+
+// Zoom Information
+message RecordReferenceInfo {
+	string uuid = 1;
+	string window_uuid = 2;
+	string tab_uuid = 3;
+	string table_name = 4;
+	string where_clause = 5;
+	int64 record_count = 6;
+	string column_name = 7;
+	string display_name = 8;
+	Value value = 9;
+}
+
+// Document Item
+message DocumentStatus {
+	string value = 1;
+	string name = 2;
+	string description = 3;
+}
+
+// Document Item
+message DocumentAction {
+	string value = 1;
+	string name = 2;
+	string description = 3;
+}
+
+// Value Object from ADempiere
+message Entity {
+	int32 id = 1;
+	string uuid = 2;
+	string table_name = 3;
+	map<string, Value> values = 4;
+}
+
+//	Response with log and values from server
+message ProcesInstanceParameter {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string column_name = 4;
+	Value value = 5;
+	Value value_to = 6;
+}
+
+message ProcessLog {
+	string uuid = 1;
+	string name = 2;
+	string description = 3;
+	string instance_uuid = 4;
+	bool is_error = 5;
+	string summary = 6;
+	string result_table_name = 7;
+	bool is_processing = 8;
+	int64 last_run = 9;
+	repeated ProcessInfoLog logs = 10;
+	map<string, Value> parameters = 11;
+	ReportOutput output = 12;
+	repeated ProcesInstanceParameter process_intance_parameters = 13;
+}
+
+//	BusinessProcess Log result
+message ProcessInfoLog {
+	int32 record_id = 1;
+	string log = 2;
+}
+
+// Translations Item
+message Translation {
+	string language = 1;
+	string uuid = 2;
+	map<string, Value> values = 3;
+}
+
+// Print Format
+message PrintFormat {
+	string uuid = 1;
+	string name = 2;
+	string description = 3;
+	string table_name = 4;
+	bool is_default = 5;
+	string report_view_uuid = 6;
+}
+
+
+// Report View
+message ReportView {
+	string uuid = 1;
+	string name = 2;
+	string description = 3;
+	string table_name = 4;
+}
+
+// Drill Table
+message DrillTable {
+	string table_name = 1;
+	string print_name = 2;
+}
+
+//	Used for get output from report / BusinessProcess like PDF, HTML another result for show to end user
+message ReportOutput {
+	string uuid = 1;
+	string name = 2;
+	string description = 3;
+	string file_name = 4;
+	string output = 5;
+	string mime_type = 6;
+	int64 data_cols = 7;
+	int64 data_rows = 8;
+	string header_name = 9;
+	string footer_name = 10;
+	string print_format_uuid = 11;
+	string report_view_uuid = 12;
+	string table_name = 13;
+	bytes output_stream = 14;
+	//	Output Type
+	string report_type = 15;
+}

@@ -20,7 +20,7 @@ import { convertResourceAssignment } from '../../util/convertData';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/timeControl')
+  const ServiceApi = require('../.././grpc-api/services/timeControl')
   const service = new ServiceApi(config);
 
   api.post('/create-resource-assignment', (req, res) => {

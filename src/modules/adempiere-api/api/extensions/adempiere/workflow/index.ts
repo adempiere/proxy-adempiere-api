@@ -18,17 +18,17 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getProcessLogFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '.././grpc-api/utils/baseDataTypeFromGRPC.js';
 import {
   getWorkflowDefinitionFromGRPC,
   getWorkflowActivityFromGRPC,
   getDocumentActionFromGRPC,
   getDocumentStatusFromGRPC
-} from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
+} from '.././grpc-api/utils/workflowFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/workflow')
+  const ServiceApi = require('.././grpc-api/services/workflow')
   const service = new ServiceApi(config)
 
   /**

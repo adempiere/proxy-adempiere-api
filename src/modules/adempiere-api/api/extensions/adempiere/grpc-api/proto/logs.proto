@@ -1,0 +1,260 @@
+/************************************************************************************
+ * Copyright (C) 2018-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.logs";
+option java_outer_classname = "ADempiereLogs";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+import "proto/workflow.proto";
+
+package logs;
+
+
+//	Logger services
+service Logs {
+	//	Request BusinessProcess Activity from current session
+	rpc ListProcessLogs(ListProcessLogsRequest) returns (ListProcessLogsResponse) {}
+	//	Request Record Log List
+	rpc ListEntityLogs(ListEntityLogsRequest) returns (ListEntityLogsResponse) {}
+	//	Request Record Chat List
+	rpc ListEntityChats(ListEntityChatsRequest) returns (ListEntityChatsResponse) {}
+	//	Exists Chat Entries
+	rpc ExistsChatEntries(ExistsChatEntriesRequest) returns (ExistsChatEntriesResponse) {}
+	//	Request Chat Entries List
+	rpc ListChatEntries(ListChatEntriesRequest) returns (ListChatEntriesResponse) {}
+	//	List workflow processes
+	rpc ListWorkflowLogs(ListWorkflowLogsRequest) returns (ListWorkflowLogsResponse) {}
+	//	Request Recent Items
+	rpc ListRecentItems(ListRecentItemsRequest) returns (ListRecentItemsResponse) {}
+	// Request List User Activities
+	rpc ListUserActivites(ListUserActivitesRequest) returns (ListUserActivitesResponse) {}
+}
+
+// BusinessProcess Activity Request
+message ListProcessLogsRequest {
+	string user_uuid = 2;
+	string instance_uuid = 3;
+	string table_name = 4;
+	int32 id = 5;
+	string uuid = 6;
+	int32 page_size = 7;
+	string page_token = 8;
+}
+
+// BusinessProcess Response List
+message ListProcessLogsResponse {
+	int64 record_count = 1;
+	repeated data.ProcessLog process_logs = 2;
+	string next_page_token = 3;
+}
+
+// Record Log Request
+message ListEntityLogsRequest {
+	string table_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+// Record Log
+message ChangeLog {
+	string column_name = 4;
+	string display_column_name = 5;
+	string old_value = 10;
+	string old_display_value = 11;
+	string new_value = 12;
+	string new_display_value = 13;
+	string description = 14;
+}
+
+enum EntityEventType {
+	INSERT = 0;
+	UPDATE = 1;
+	DELETE = 2;
+}
+
+message EntityLog {
+	int32 log_id = 1;
+	int32 id = 2;
+	string uuid = 3;
+	string displayed_name = 4;
+	int32 window_id = 5;
+	string window_uuid = 6;
+	string table_name = 7;
+	string session_uuid = 8;
+	int32 user_id = 9;
+	string user_uuid = 10;
+	string user_name = 11;
+	string transaction_name = 12;
+	EntityEventType event_type = 13;
+	int64 log_date = 14;
+	repeated ChangeLog change_logs = 15;
+}
+
+message ListEntityLogsResponse {
+	int64 record_count = 1;
+	repeated EntityLog entity_logs = 2;
+	string next_page_token = 3;
+}
+
+// Exists References Request
+message ExistsChatEntriesRequest {
+	string table_name = 2;
+	int32 record_id = 4;
+	string record_uuid = 5;
+}
+
+// Entity Chats Count
+message ExistsChatEntriesResponse {
+	int32 record_count = 1;
+}
+
+// Record Chat Request
+message ListEntityChatsRequest {
+	string table_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+//	Record Chats List
+message ListEntityChatsResponse {
+	int64 record_count = 1;
+	repeated EntityChat entity_chats = 2;
+	string next_page_token = 3;
+}
+
+// Record Chat
+message EntityChat {
+	string chat_uuid = 1;
+	int32 id = 2;
+	string uuid = 3;
+	string table_name = 4;
+	string chat_type_uuid = 5;
+	string description = 6;
+	enum ConfidentialType {
+		PUBLIC = 0;
+		PARTER = 1;
+		INTERNAL = 2;
+	}
+	enum ModerationType {
+		NOT_MODERATED = 0;
+		BEFORE_PUBLISHING = 1;
+		AFTER_PUBLISHING = 2;
+	}
+	ConfidentialType confidential_type = 7;
+	ModerationType moderation_type = 8;
+	int64 log_date = 9;
+	int32 user_id = 10;
+	string user_uuid = 11;
+	string user_name = 12;
+}
+
+// Record Chat Entry Request
+message ListChatEntriesRequest {
+	string uuid = 2;
+	int32 id = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+//	Record Chats List
+message ListChatEntriesResponse {
+	int64 record_count = 1;
+	repeated data.ChatEntry chat_entries = 2;
+	string next_page_token = 3;
+}
+
+// Recent Items Request
+message ListRecentItemsRequest {
+	string user_uuid = 2;
+	string role_uuid = 3;
+	bool current_session = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+//	Recent Items List
+message ListRecentItemsResponse {
+	int64 record_count = 1;
+	repeated RecentItem recent_items = 2;
+	string next_page_token = 3;
+}
+
+// Recent Item
+message RecentItem {
+	string menu_uuid = 1;
+	string menu_name = 2;
+	string menu_description = 3;
+	string window_uuid = 4;
+	string tab_uuid = 5;
+	int32 table_id = 6;
+	string table_name = 7;
+	int32 id = 8;
+	string uuid = 9;
+	string display_name = 10;
+	int64 updated = 11;
+	string reference_uuid = 12;
+	string action = 13;
+}
+
+// Workflow Activities Request
+message ListWorkflowLogsRequest {
+	string table_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+//	Workflow Activities List
+message ListWorkflowLogsResponse {
+	int64 record_count = 1;
+	repeated workflow.WorkflowProcess workflow_logs = 2;
+	string next_page_token = 3;
+}
+
+//	User Activity
+message ListUserActivitesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int64 date = 4;
+}
+
+enum UserActivityType {
+	ENTITY_LOG = 0;
+	PROCESS_LOG = 1;
+}
+
+message UserActivity {
+	UserActivityType user_activity_type = 1;
+	// int64 date = 2;
+	EntityLog entity_log = 2;
+	data.ProcessLog process_log = 3;
+}
+
+message ListUserActivitesResponse {
+	int64 record_count = 1;
+	repeated UserActivity records = 2;
+	string next_page_token = 3;
+}

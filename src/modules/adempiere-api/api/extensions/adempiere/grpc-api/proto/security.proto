@@ -1,0 +1,230 @@
+/*************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                      *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                      *
+ * This program is free software: you can redistribute it and/or modify              *
+ * it under the terms of the GNU General Public License as published by              *
+ * the Free Software Foundation, either version 2 of the License, or                 *
+ * (at your option) any later version.                                               *
+ * This program is distributed in the hope that it will be useful,                   *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                      *
+ * GNU General Public License for more details.                                      *
+ * You should have received a copy of the GNU General Public License                 *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.security";
+option java_outer_classname = "ADempiereSecurity";
+
+package security;
+
+// The greeting service definition.
+service Security {
+	// Request login from user
+	rpc RunLogin(LoginRequest) returns (Session) {}
+	// Request a Role from uuid
+	rpc RunLogout(LogoutRequest) returns (Session) {}
+	// Request user roles from SessionInfo
+	rpc GetUserInfo(UserInfoRequest) returns (UserInfo) {}
+	// Request Menu from Parent UUID
+	rpc GetMenu(MenuRequest) returns (Menu) {}
+	// Request change role
+	rpc RunChangeRole(ChangeRoleRequest) returns (Session) {}
+	// Request session
+	rpc GetSessionInfo(SessionInfoRequest) returns (SessionInfo) {}
+	rpc SetSessionAttribute(SetSessionAttributeRequest) returns (Session) {}
+	// List Roles
+	rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {}
+	// List Available Services
+	rpc ListServices(ListServicesRequest) returns (ListServicesResponse) {}
+	// Request login from Open ID
+	rpc RunLoginOpenID(LoginOpenIDRequest) returns (Session) {}
+}
+
+
+//	Token after session
+message Session {
+	string token = 1;
+}
+
+// List Roles Request
+message ListRolesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+}
+
+//	Roles List
+message ListRolesResponse {
+	int64 record_count = 1;
+	repeated Role roles = 2;
+	string next_page_token = 3;
+}
+
+// Request a Login SessionInfo
+message LoginRequest {
+	string user_name = 1;
+	string user_pass = 2;
+	string token = 3;
+	string role_uuid = 4;
+	string organization_uuid = 5;
+	string warehouse_uuid = 6;
+	string language = 7;
+	string client_version = 8;
+}
+
+// Request a Logout
+message LogoutRequest {
+}
+
+// Request a SessionInfo
+message SessionInfoRequest {
+}
+
+// Request a Change Role
+message ChangeRoleRequest {
+	string role_uuid = 1;
+	string organization_uuid = 2;
+	string warehouse_uuid = 3;
+	string language = 4;
+}
+
+// Request User Info
+message UserInfoRequest {
+}
+
+// Request Menu
+message MenuRequest {
+}
+
+// User information
+message UserInfo {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string comments = 5;
+	string image = 6;
+	int64 connection_timeout = 7;
+}
+
+
+// SessionInfo
+message SessionInfo {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	UserInfo user_info = 4;
+	Role role = 5;
+	bool processed = 6;
+	string language = 7;
+	int32 country_id = 8;
+	string country_code = 9;
+	string country_name = 10;
+	string display_sequence = 11;
+	string currency_name = 12;
+	string currency_iso_code = 13;
+	string currency_symbol = 14;
+	int32 standard_precision = 15;
+	int32 costing_precision = 16;
+	map<string, ContextValue> default_context = 17;
+}
+
+enum ValueType {
+	NULL = 0;
+	INTEGER = 1;
+	LONG = 2;
+	DOUBLE = 3;
+	BOOLEAN = 4;
+	STRING = 5;
+	DATE = 6;
+}
+
+// Define value for object
+message ContextValue {
+	int32 int_value = 1;
+	int64 long_value = 2;
+	double double_value = 3;
+	bool boolean_value = 4;
+	string string_value = 5;
+	ValueType value_type = 6;
+}
+
+message SetSessionAttributeRequest {
+	string language = 1;
+	int32 warehouse_id = 2;
+	string warehouse_uuid = 3;
+}
+
+// Role Definition
+message Role {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	int32 client_id = 5;
+	string client_name = 6;
+	bool is_can_report = 7;
+	bool is_can_export = 8;
+	bool is_personal_lock = 9;
+	bool is_personal_access = 10;
+	bool is_allow_info_account = 11;
+	bool is_allow_info_business_partner = 12;
+	bool is_allow_info_in_out = 13;
+	bool is_allow_info_order = 14;
+	bool is_allow_info_product = 15;
+	bool is_allow_info_schedule = 16;
+	bool is_allow_info_mrp = 17;
+	bool is_allow_html_view = 18;
+	bool is_allow_info_asset = 19;
+	bool is_allow_info_cash_journal = 20;
+	bool is_allow_info_invoice = 21;
+	bool is_allow_info_payment = 22;
+	bool is_allow_info_resource = 23;
+	bool is_allow_info_crp = 24;
+	bool is_allow_xls_view = 25;
+	string client_logo = 26;
+	string client_logo_report = 27;
+	string client_logo_web = 28;
+}
+
+// Menu
+message Menu {
+	int32 id = 1;
+	string uuid = 2;
+	string parent_uuid = 3;
+	string name = 4;
+	string description = 5;
+	string sequence = 6;
+	bool is_read_only = 7;
+	bool is_summary = 8;
+	bool is_s_o_trx = 9;
+	string action = 10;
+	// Supported References
+	int32 reference_id = 11;
+	string reference_uuid = 12;
+	repeated Menu childs = 13;
+	bool is_active = 14;
+}
+
+//	Open ID
+message ListServicesRequest {
+}
+
+message ListServicesResponse {
+	repeated Service services = 1;
+}
+
+message Service {
+	int32 id = 1;
+	string display_name = 2;
+	string authorization_uri = 3;
+}
+
+message LoginOpenIDRequest {
+	string code_parameter = 1;
+	string state_parameter = 2;
+	string language = 3;
+	string client_version = 4;
+}

@@ -22,7 +22,7 @@ import {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/pointOfSales');
+  const ServiceApi = require('../../../.././grpc-api/services/pointOfSales');
   const service = new ServiceApi(config);
 
   /**

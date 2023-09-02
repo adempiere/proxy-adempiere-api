@@ -1,0 +1,429 @@
+/************************************************************************************
+ * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.common";
+option java_outer_classname = "ADempiereCoreFunctionality";
+
+import "proto/base_data_type.proto";
+
+package data;
+
+service CoreFunctionality {
+	//	Get Country Information
+	rpc GetCountry(GetCountryRequest) returns (Country) {}
+	//	List Organizations
+	rpc ListOrganizations(ListOrganizationsRequest) returns (ListOrganizationsResponse) {}
+	//	Warehouses
+	rpc ListWarehouses(ListWarehousesRequest) returns (ListWarehousesResponse) {}
+	//	Request Language List
+	rpc ListLanguages(ListLanguagesRequest) returns (ListLanguagesResponse) {}
+	//	Get Business Partner from search
+	rpc GetBusinessPartner(GetBusinessPartnerRequest) returns (BusinessPartner) {}
+	//	Create Business Partner
+	rpc CreateBusinessPartner(CreateBusinessPartnerRequest) returns (BusinessPartner) {}
+	//	List Business Partner
+	rpc ListBusinessPartners(ListBusinessPartnersRequest) returns (ListBusinessPartnersResponse) {}
+	//	Get Currency Rate
+	rpc GetConversionRate(GetConversionRateRequest) returns (ConversionRate) {}
+	//	List Product Conversion UOM
+	rpc ListProductConversion(ListProductConversionRequest) returns (ListProductConversionResponse) {}
+}
+
+// Get Country Request
+message GetCountryRequest {
+	string uuid = 1;
+	int32 id = 2;
+}
+
+//	List Business Partner Response
+message ListBusinessPartnersResponse {
+	int64 record_count = 1;
+	repeated BusinessPartner business_partners = 2;
+	string next_page_token = 3;
+}
+
+// List Business Partner Request
+message ListBusinessPartnersRequest {
+	string search_value = 2;
+	string value = 3;
+	string name = 4;
+	string contact_name = 6;
+	string email = 7;
+	string postal_code = 8;
+	string phone = 9;
+	// Query
+	Criteria criteria = 10;
+	int32 page_size = 11;
+	string page_token = 12;
+}
+
+// Request Business Partner
+message GetBusinessPartnerRequest {
+	string search_value = 2;
+	string value = 3;
+	string name = 4;
+	string contact_name = 6;
+	string email = 7;
+	string postal_code = 8;
+	string phone = 9;
+	// Query
+	Criteria criteria = 10;
+}
+
+// Request Business Partner
+message CreateBusinessPartnerRequest {
+	string value = 2;
+	string tax_id = 3;
+	string duns = 4;
+	string naics = 5;
+	string name = 6;
+	string last_name = 7;
+	string description = 8;
+	string contact_name = 9;
+	string email = 10;
+	string phone = 11;
+	string business_partner_group_uuid = 12;
+	//	Location
+	string address1 = 13;
+	string address2 = 14;
+	string address3 = 15;
+	string address4 = 16;
+	string city_uuid = 17;
+	string city_name = 18;
+	string postal_code = 19;
+	string region_uuid = 20;
+	string region_name = 21;
+	string country_uuid = 22;
+	string pos_uuid = 23;
+}
+
+// Languages Request
+message ListLanguagesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+}
+
+//	Languages List
+message ListLanguagesResponse {
+	int64 record_count = 1;
+	repeated Language languages = 2;
+	string next_page_token = 3;
+}
+
+// Country
+message Country {
+	string uuid = 1;
+	int32 id = 2;
+	string country_code = 3;
+	string name = 4;
+	string description = 5;
+	bool has_region = 6;
+	string region_name = 7;
+	string display_sequence = 8;
+	bool is_address_lines_reverse = 9;
+	string capture_sequence = 10;
+	string display_sequence_local = 11;
+	bool is_address_lines_local_reverse = 12;
+	string expression_postal = 13;
+	bool has_postal_add = 14;
+	string expression_phone = 15;
+	string media_size = 16;
+	string expression_bank_routing_no = 17;
+	string expression_bank_account_no = 18;
+	string language = 19;
+	bool allow_cities_out_of_list = 20;
+	bool is_postcode_lookup = 21;
+	Currency currency = 22;
+}
+
+// Request Currency Rate
+message GetConversionRateRequest {
+	string conversion_type_uuid = 2;
+	string currency_from_uuid = 3;
+	string currency_to_uuid = 4;
+	string conversion_date = 5;
+}
+
+// Currency info
+message Currency {
+	string uuid = 1;
+	int32 id = 2;
+	string iso_code = 3;
+	string cur_symbol = 4;
+	string description = 5;
+	int32 standard_precision = 6;
+	int32 costing_precision = 7;
+}
+
+// Conversion Rate
+message ConversionRate {
+	string uuid = 1;
+	int32 id = 2;
+	string conversion_type_uuid = 3;
+	string valid_from = 4;
+	string valid_to = 5;
+	Currency currency_from = 6;
+	Currency currency_to = 7;
+	Decimal multiply_rate = 8;
+	Decimal divide_rate = 9;
+}
+
+// Organization
+message Organization {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	bool is_read_only = 5;
+	string duns = 6;
+	string tax_id = 7;
+	string phone = 8;
+	string phone2 = 9;
+	string fax = 10;
+	string corporate_branding_image = 11;
+}
+
+//	List Organizations Response
+message ListOrganizationsResponse {
+	int64 record_count = 1;
+	repeated Organization organizations = 2;
+	string next_page_token = 4;
+}
+
+// Organization from Role
+message ListOrganizationsRequest {
+	int32 role_id = 2;
+	string role_uuid = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+// Warehouse
+message Warehouse {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+}
+
+//	Lost Warehouses Response
+message ListWarehousesResponse {
+	int64 record_count = 1;
+	repeated Warehouse warehouses = 2;
+	string next_page_token = 4;
+}
+
+// Warehouses Request
+message ListWarehousesRequest {
+	int32 organization_id = 2;
+	string organization_uuid = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+// Unit of Measure
+message UnitOfMeasure {
+	string uuid = 1;
+	int32 id = 2;
+	string code = 3;
+	string symbol = 4;
+	string name = 5;
+	string description = 6;
+	int32 standard_precision = 7;
+	int32 costing_precision = 8;
+}
+
+// List Product UOM Conversion Request
+message ListProductConversionRequest {
+	string product_uuid = 2;
+	int32 product_id = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+// Product UOM Conversion
+message ProductConversion {
+	string uuid = 1;
+	int32 id = 2;
+	UnitOfMeasure uom = 3;
+	UnitOfMeasure product_uom = 4;
+	Decimal multiply_rate = 5;
+	Decimal divide_rate = 6;
+}
+
+//	List Product Conversion Response
+message ListProductConversionResponse {
+	int64 record_count = 1;
+	repeated ProductConversion product_conversion = 2;
+	string next_page_token = 3;
+}
+
+// Charge definition
+message Charge {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+}
+
+// Business Partner
+message BusinessPartner {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string tax_id = 4;
+	string duns = 5;
+	string naics = 6;
+	string name = 7;
+	string last_name = 8;
+	string description = 9;
+	
+}
+
+// Document Type definition
+message DocumentType {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string print_name = 4;
+	string description = 5;
+}
+
+// Sales Representative definition
+message SalesRepresentative {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+}
+
+// Product Definition
+message Product {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string name = 4;
+	string help = 5;
+	string document_note = 6;
+	string uom_name = 7;
+	string product_type = 8;
+	bool is_stocked = 9;
+	bool is_drop_ship = 10;
+	bool is_purchased = 11;
+	bool is_sold = 12;
+	string image_url = 13;
+	string product_category_name = 14;
+	string product_group_name = 15;
+	string product_class_name = 16;
+	string product_classification_name = 17;
+	Decimal weight = 18;
+	Decimal volume = 19;
+	string upc = 20;
+	string sku = 21;
+	int32 shelf_width = 22;
+	Decimal shelf_height = 23;
+	int32 shelf_depth = 24;
+	int32 units_per_pack = 25;
+	Decimal units_per_pallet = 26;
+	int32 guarantee_days = 27;
+	string description_url = 28;
+	string version_no = 29;
+	string tax_category = 30;
+	string description = 31;
+}
+
+// Tax Rate
+message TaxRate {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	string tax_indicator = 5;
+	Decimal rate = 6;
+}
+
+// Product Price
+message ProductPrice {
+	Product product = 1;
+	Decimal price_list = 2;
+	Decimal price_standard = 3;
+	Decimal price_limit = 4;
+	string price_list_name = 5;
+	bool is_tax_included = 6;
+	string valid_from = 7;
+	Currency currency = 8;
+	TaxRate tax_rate = 9;
+	int32 price_precision = 10;
+	Decimal quantity_on_hand = 11;
+	Decimal quantity_reserved = 12;
+	Decimal quantity_ordered = 13;
+	Decimal quantity_available = 14;
+	//	Schema Values
+	Currency display_currency = 15;
+	Decimal display_price_list = 16;
+	Decimal display_price_standard = 17;
+	Decimal display_price_limit = 18;
+	ConversionRate conversion_rate = 19;
+}
+
+// Language Item
+message Language {
+	string language = 1;
+	string language_name = 2;
+	string language_iso = 3;
+	string country_code = 4;
+	bool is_base_language = 5;
+	bool is_system_language = 6;
+	bool is_decimal_point = 7;
+	string date_pattern = 8;
+	string time_pattern = 9;
+}
+
+//	Price List
+message PriceList {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	Currency currency = 5;
+	bool is_default = 6;
+	bool is_tax_included = 7;
+	bool is_enforce_price_limit = 8;
+	bool is_net_price = 9;
+	int32 price_precision = 10;
+}
+
+//	Bank Account
+message BankAccount {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string account_no = 4;
+	string description = 5;
+	Currency currency = 6;
+	string bban = 7;
+	string iban = 8;
+	Decimal credit_limit = 9;
+	Decimal current_balance = 10;
+	bool is_default = 11;
+	BusinessPartner business_partner = 12;
+	enum BankAccountType {
+		CHECKING = 0;
+		SAVINGS = 1;
+	}
+	BankAccountType bank_account_type = 13;
+}

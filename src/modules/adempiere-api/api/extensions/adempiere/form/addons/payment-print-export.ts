@@ -16,7 +16,7 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 import {
   getPaymentSelectionFromGRPC,
   getPaymentFromGRPC,
@@ -24,11 +24,11 @@ import {
   getExportFromGRPC,
   getPrintFromGRPC,
   getPrintRemittanceFromGRPC
-} from '@adempiere/grpc-api/src/utils/paymentPrintExportFromGRPC';
+} from '../.././grpc-api/utils/paymentPrintExportFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/paymentPrintExport')
+  const ServiceApi = require('../.././grpc-api/services/paymentPrintExport')
   const service = new ServiceApi(config);
 
   api.get('/payment-selection', (req, res) => {

@@ -52,7 +52,7 @@ export default ({ config, db, service: parentService }) => {
     }
     //
     try {
-      const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+      const ServiceApi = require('./grpc-api/services/fileManagement');
       const service = new ServiceApi(config);
 
       let buffer = Buffer.from(

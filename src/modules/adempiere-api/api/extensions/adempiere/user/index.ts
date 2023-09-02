@@ -49,7 +49,7 @@ function getMenu (menu) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/security.js');
+  const ServiceApi = require('.././grpc-api/services/security.js');
   const service = new ServiceApi(config)
 
   /**

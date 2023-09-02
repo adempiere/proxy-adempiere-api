@@ -15,7 +15,7 @@
 
 import {
   getDecimalFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '.././grpc-api/utils/baseDataTypeFromGRPC.js';
 
 export function convertProductAttributeValue (productAttributeValue) {
   if (!productAttributeValue) {

@@ -1,0 +1,1689 @@
+/************************************************************************************
+ * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.pos";
+option java_outer_classname = "ADempierePOS";
+
+import "proto/core_functionality.proto";
+import "proto/base_data_type.proto";
+import "proto/file_management.proto";
+import "proto/time_control.proto";
+
+package data;
+
+//	POS Service used for ADempiere integration 
+service Store {
+	//	Get POS Definition
+	rpc GetPointOfSales(PointOfSalesRequest) returns (PointOfSales) {}
+	//	List Point of Sales
+	rpc ListPointOfSales(ListPointOfSalesRequest) returns (ListPointOfSalesResponse) {}
+	//	Get Product Price from Code / UPC / Name
+	rpc GetProductPrice(GetProductPriceRequest) returns (ProductPrice) {}
+	//	List Product Price
+	rpc ListProductPrice(ListProductPriceRequest) returns (ListProductPriceResponse) {}
+	//	Create Order
+	rpc CreateOrder(CreateOrderRequest) returns (Order) {}
+	//	Delete Order
+	rpc DeleteOrder(DeleteOrderRequest) returns (Empty) {}
+	//	Create Order Line
+	rpc CreateOrderLine(CreateOrderLineRequest) returns (OrderLine) {}
+	//	Delete Order Line
+	rpc DeleteOrderLine(DeleteOrderLineRequest) returns (Empty) {}
+	//	Update Order
+	rpc UpdateOrder(UpdateOrderRequest) returns (Order) {}
+	//	Release Order
+	rpc ReleaseOrder(ReleaseOrderRequest) returns (Order) {}
+	//	Hold Order
+	rpc HoldOrder(HoldOrderRequest) returns (Order) {}
+	//	Update Order Line
+	rpc UpdateOrderLine(UpdateOrderLineRequest) returns (OrderLine) {}
+	//	Get a Order
+	rpc GetOrder(GetOrderRequest) returns (Order) {}
+	//	List Orders
+	rpc ListOrders(ListOrdersRequest) returns (ListOrdersResponse) {}
+	//	List Order Lines
+	rpc ListOrderLines(ListOrderLinesRequest) returns (ListOrderLinesResponse) {}
+	//	Get a Key Layout
+	rpc GetKeyLayout(GetKeyLayoutRequest) returns (KeyLayout) {}
+	//	Payments
+	//	Create Payment
+	rpc CreatePayment(CreatePaymentRequest) returns (Payment) {}
+	//	Update Payment
+	rpc UpdatePayment(UpdatePaymentRequest) returns (Payment) {}
+	//	Delete Payment
+	rpc DeletePayment(DeletePaymentRequest) returns (Empty) {}
+	//	List Payments
+	rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse) {}
+	//	Process Order
+	rpc ProcessOrder(ProcessOrderRequest) returns (Order) {}
+	//	Validate PIN
+	rpc ValidatePIN(ValidatePINRequest) returns (Empty) {}
+	//	List of Available Warehouses
+	rpc ListAvailableWarehouses(ListAvailableWarehousesRequest) returns (ListAvailableWarehousesResponse) {}
+	//	List of Available Tender Types
+	rpc ListAvailablePaymentMethods(ListAvailablePaymentMethodsRequest) returns (ListAvailablePaymentMethodsResponse) {}
+	//	List of Available Price List
+	rpc ListAvailablePriceList(ListAvailablePriceListRequest) returns (ListAvailablePriceListResponse) {}
+	//	List of Available Currencies
+	rpc ListAvailableCurrencies(ListAvailableCurrenciesRequest) returns (ListAvailableCurrenciesResponse) {}
+	//	List of Available Document Types
+	rpc ListAvailableDocumentTypes(ListAvailableDocumentTypesRequest) returns (ListAvailableDocumentTypesResponse) {}
+	//	List of Available Discounts
+	rpc ListAvailableDiscounts(ListAvailableDiscountsRequest) returns (ListAvailableDiscountsResponse) {}
+	//	List of Available Sellers
+	rpc ListAvailableSellers(ListAvailableSellersRequest) returns (ListAvailableSellersResponse) {}
+	//	Customer
+	//	Create Customer
+	rpc CreateCustomer(CreateCustomerRequest) returns (Customer) {}
+	//	Update Customer Info
+	rpc UpdateCustomer(UpdateCustomerRequest) returns (Customer) {}
+	//	Get Customer from search
+	rpc GetCustomer(GetCustomerRequest) returns (Customer) {}
+	//	Get Daily Refund
+	rpc GetAvailableRefund(GetAvailableRefundRequest) returns (AvailableRefund) {}
+	//	Print Ticket
+	rpc PrintTicket(PrintTicketRequest) returns (PrintTicketResponse) {}
+	//	Print Preview
+	rpc PrintPreview(PrintPreviewRequest) returns (PrintPreviewResponse) {}
+	//	Print Preview for Shipment
+	rpc PrintShipmentPreview(PrintShipmentPreviewRequest) returns (PrintShipmentPreviewResponse) {}
+	// Bank
+	rpc ListBanks(ListBanksRequest) returns (ListBanksResponse) {}
+	rpc ListBankAccounts(ListBankAccountsRequest) returns (ListBankAccountsResponse) {}
+	//	Create Customer Account
+	rpc CreateCustomerBankAccount(CreateCustomerBankAccountRequest) returns (CustomerBankAccount) {}
+	//	Update Customer Account
+	rpc UpdateCustomerBankAccount(UpdateCustomerBankAccountRequest) returns (CustomerBankAccount) {}
+	//	Get Customer Account
+	rpc GetCustomerBankAccount(GetCustomerBankAccountRequest) returns (CustomerBankAccount) {}
+	//	Delete Customer Account
+	rpc DeleteCustomerBankAccount(DeleteCustomerBankAccountRequest) returns (Empty) {}
+	//	List Customer Accounts
+	rpc ListCustomerBankAccounts(ListCustomerBankAccountsRequest) returns (ListCustomerBankAccountsResponse) {}
+	//	shipment
+	//	Create Shipment
+	rpc CreateShipment(CreateShipmentRequest) returns (Shipment) {}
+	//	Delete Shipment
+	rpc DeleteShipment(DeleteShipmentRequest) returns (Empty) {}
+	//	Create Shipment Line
+	rpc CreateShipmentLine(CreateShipmentLineRequest) returns (ShipmentLine) {}
+	//	Delete Shipment Line
+	rpc DeleteShipmentLine(DeleteShipmentLineRequest) returns (Empty) {}
+	//	Update Order Line
+	rpc UpdateShipmentLine(UpdateShipmentLineRequest) returns (ShipmentLine) {}
+	//	Get a Open Shipment
+	rpc GetOpenShipment(GetOpenShipmentRequest) returns (Shipment) {}
+	//	List Shipment Line
+	rpc ListShipmentLines(ListShipmentLinesRequest) returns (ListShipmentLinesResponse) {}
+	//	Process Shipment
+	rpc ProcessShipment(ProcessShipmentRequest) returns (Shipment) {}
+	//	Return Order
+	//	Reverse Sales Transaction
+	rpc ReverseSales(ReverseSalesRequest) returns (Order) {}
+	//	Cash Management
+	rpc ProcessCashOpening(CashOpeningRequest) returns (Empty) {}
+	//	Cash Withdrawal
+	rpc ProcessCashWithdrawal(CashWithdrawalRequest) returns (Empty) {}
+	//	Cash Closing
+	rpc ProcessCashClosing(CashClosingRequest) returns (CashClosing) {}
+	//	List all cash movements
+	rpc ListCashMovements(ListCashMovementsRequest) returns (ListCashMovementsResponse) {}
+	//	List Cash Summary
+	rpc ListCashSummaryMovements(ListCashSummaryMovementsRequest) returns (ListCashSummaryMovementsResponse) {}
+	//	Allocate Seller
+	rpc AllocateSeller(AllocateSellerRequest) returns (Empty) {}
+	//	Allocate Seller
+	rpc DeallocateSeller(DeallocateSellerRequest) returns (Empty) {}
+	//	Create Refund Reference
+	rpc CreatePaymentReference(CreatePaymentReferenceRequest) returns (PaymentReference) {}
+	//	Delete Refund Reference
+	rpc DeletePaymentReference(DeletePaymentReferenceRequest) returns (Empty) {}
+	//	List Refund References
+	rpc ListPaymentReferences(ListPaymentReferencesRequest) returns (ListPaymentReferencesResponse) {}
+	//  List Stock: GET /api/stocks
+	rpc ListStocks(ListStocksRequest) returns (ListStocksResponse) {}
+	//  List Available Cash 
+	rpc ListAvailableCash(ListAvailableCashRequest) returns (ListAvailableCashResponse) {}
+	// Command Shortcut
+	rpc SaveCommandShortcut(SaveCommandShortcutRequest) returns (CommandShortcut) {}
+	rpc ListCommandShortcuts(ListCommandShortcutsRequest) returns (ListCommandShortcutsResponse) {}
+	rpc DeleteCommandShortcut(DeleteCommandShortcutRequest) returns (Empty) {}
+	// Campaign
+	rpc ListCampaigns(ListCampaignsRequest) returns (ListCampaignsResponse) {}
+	//	Copy Order
+	rpc CopyOrder(CopyOrderRequest) returns (Order) {}
+	//	Return
+	//	Create Return
+	rpc CreateRMA(CreateRMARequest) returns (RMA) {}
+	//	Delete Return
+	rpc DeleteRMA(DeleteRMARequest) returns (Empty) {}
+	//	Create Return Line
+	rpc CreateRMALine(CreateRMALineRequest) returns (RMALine) {}
+	//	Delete Return Line
+	rpc DeleteRMALine(DeleteRMALineRequest) returns (Empty) {}
+	//	Update RMA Line
+	rpc UpdateRMALine(UpdateRMALineRequest) returns (RMALine) {}
+	//	Get a Open Return
+	rpc GetOpenRMA(GetOpenRMARequest) returns (RMA) {}
+	//	List Return Line
+	rpc ListRMALines(ListRMALinesRequest) returns (ListRMALinesResponse) {}
+	//	Process Return
+	rpc ProcessRMA(ProcessRMARequest) returns (RMA) {}
+}
+
+//	Delete Refund reference request
+message DeletePaymentReferenceRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string pos_uuid = 4;
+}
+
+//	Allocate Seller Request
+message AllocateSellerRequest {
+	string pos_uuid = 2;
+	string sales_representative_uuid = 3;
+}
+
+//	Deallocate Seller Request
+message DeallocateSellerRequest {
+	string pos_uuid = 2;
+	string sales_representative_uuid = 3;
+}
+
+//	List allocated sellers for POS
+message ListAvailableSellersRequest {
+	bool is_only_allocated = 2;
+	string pos_uuid = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+//	Discounts Response
+message ListAvailableSellersResponse {
+	int64 record_count = 1;
+	repeated AvailableSeller sellers = 2;
+	string next_page_token = 3;
+}
+
+// Available Discounts
+message AvailableSeller {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+	string description = 7;
+	string comments = 8;
+	string image = 9;
+}
+
+//	Refund reference request
+message CreatePaymentReferenceRequest {
+	string pos_uuid = 2;
+	string sales_representative_uuid = 3;
+	string description = 4;
+	Decimal source_amount = 5;
+	Decimal amount = 6;
+	string payment_date = 7;
+	string tender_type_code = 8;
+	string currency_uuid = 9;
+	string conversion_type_uuid = 10;
+	string payment_method_uuid = 11;
+	string payment_account_date = 12;
+	string customer_bank_account_uuid = 13;
+	string order_uuid = 14;
+	string customer_uuid = 15;
+	bool is_receipt = 16;
+	int32 invoice_reference_id = 17;
+}
+
+//	Refund Reference
+message PaymentReference {
+	int32 id = 1;
+	string uuid = 2;
+	string pos_uuid = 3;
+	SalesRepresentative sales_representative = 4;
+	string description = 5;
+	Decimal amount = 6;
+	string payment_date = 7;
+	string tender_type_code = 8;
+	Currency currency = 9;
+	PaymentMethod payment_method = 10;
+	string payment_account_date = 11;
+	string customer_bank_account_uuid = 12;
+	string order_uuid = 13;
+	bool is_paid = 14;
+	bool is_receipt = 15;
+	Decimal source_amount = 16;
+	bool is_automatic = 17;
+	bool is_processed = 18;
+	Decimal converted_amount = 19;
+	int32 invoice_reference_id = 20;
+}
+
+//	List Refund Reference Request
+message ListPaymentReferencesRequest {
+	string pos_uuid = 2;
+	string customer_uuid = 3;
+	string order_uuid = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+//	List Refund Reference Response
+message ListPaymentReferencesResponse {
+	int64 record_count = 1;
+	repeated PaymentReference payment_references = 2;
+	string next_page_token = 3;
+}
+
+//	Payment Summary
+message PaymentSummary {
+	string payment_method_uuid = 1;
+	string payment_method_name = 2;
+	string tender_type_code = 3;
+	Currency currency = 4;
+	bool is_refund = 5;
+	Decimal amount = 6;
+}
+
+//	List Cash Movements Request
+message ListCashMovementsRequest {
+	string pos_uuid = 2;
+	string business_partner_uuid = 3;
+	bool is_only_processed = 4;
+	bool is_only_refund = 5;
+	string sales_representative_uuid = 6;
+	int32 page_size = 7;
+	string page_token = 8;
+}
+
+//	List cash movements
+message ListCashMovementsResponse {
+	int64 record_count = 1;
+	repeated Payment cash_movements = 2;
+	string next_page_token = 3;
+	// header values
+	int32 id = 4;
+	string uuid = 5;
+}
+
+//	List Cash Summary Movements Request
+message ListCashSummaryMovementsRequest {
+	string pos_uuid = 2;
+	bool is_only_processed = 3;
+	bool is_only_refund = 4;
+	int32 page_size = 5;
+	string page_token = 6;
+}
+
+//	List cash summary movements
+message ListCashSummaryMovementsResponse {
+	int64 record_count = 1;
+	int32 id = 2;
+	string uuid = 3;
+	repeated PaymentSummary cash_movements = 4;
+	string next_page_token = 5;
+}
+
+//	Cash closing
+message CashClosing {
+	string uuid = 2;
+	int32 id = 3;
+	string document_no = 4;
+	DocumentType document_type = 5;
+	DocumentStatus document_status = 6;
+	string description = 7;
+}
+
+//	Request for create cash closing
+message CashClosingRequest {
+	string pos_uuid = 2;
+	string uuid = 3;
+	int32 id = 4;
+	string collecting_agent_uuid = 5;
+	string description = 6;
+}
+
+//	Request for create cash withdrawal
+message CashWithdrawalRequest {
+	string pos_uuid = 2;
+	string collecting_agent_uuid = 3;
+	string description = 4;
+	repeated CreatePaymentRequest payments = 5;
+}
+
+//	Request for create cash opening
+message CashOpeningRequest {
+	string pos_uuid = 2;
+	string collecting_agent_uuid = 3;
+	string description = 4;
+	repeated CreatePaymentRequest payments = 5;
+}
+
+// Request for create a Shipment from Order
+message CreateShipmentRequest {
+	string order_uuid = 2;
+	string sales_representative_uuid = 3;
+	string pos_uuid = 4;
+	bool is_create_lines_from_order = 5;
+}
+
+// Request for create a Shipment from Order
+message GetOpenShipmentRequest {
+	string order_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for delete a Shipment
+message DeleteShipmentRequest {
+	string shipment_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for delete a Shipment Line
+message DeleteShipmentLineRequest {
+	string shipment_line_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for delete a Shipment Line
+message UpdateShipmentLineRequest {
+	string shipment_line_uuid = 2;
+	string description = 5;
+	Decimal quantity = 6;
+	string pos_uuid = 7;
+}
+
+// Request for Create a Shipment Line
+message CreateShipmentLineRequest {
+	string shipment_uuid = 2;
+	string order_line_uuid = 3;
+	string description = 5;
+	Decimal quantity = 6;	
+	string pos_uuid = 7;
+}
+
+//	List Shipment Lines Request
+message ListShipmentLinesRequest {
+	string shipment_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+	string pos_uuid = 5;
+}
+
+//	List shipment Lines
+message ListShipmentLinesResponse {
+	int64 record_count = 1;
+	repeated ShipmentLine shipment_lines = 2;
+	string next_page_token = 3;
+}
+
+// Shipment
+message Shipment {
+	string uuid = 1;
+	int32 id = 2;
+	string document_no = 3;
+	DocumentType document_type = 4;
+	SalesRepresentative sales_representative = 5;
+	DocumentStatus document_status = 6;
+	Warehouse warehouse = 7;
+	string movement_date = 8;
+	string order_uuid = 9;
+}
+
+// Request for Process a Shipment
+message ProcessShipmentRequest {
+	string shipment_uuid = 2;
+	string description = 3;
+	string document_action = 4;
+	string pos_uuid = 5;
+}
+
+// Request for Reverse a Sales Transaction
+message ReverseSalesRequest {
+	string pos_uuid = 2;
+	string order_uuid = 3;
+	string description = 4;
+}
+
+// Sales Shipment Line
+message ShipmentLine {
+	int32 id = 1;
+	string uuid = 2;
+	string order_line_uuid = 3;
+	Product product = 4;
+	Charge charge = 5;
+	string description = 6;
+	Decimal quantity = 7;
+	Decimal movement_quantity = 8;
+	int32 line = 9;
+	ProductConversion uom = 10;
+	ProductConversion product_uom = 11;
+}
+
+// Bank
+message Bank {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string routing_no = 5;
+	string swift_code = 6;
+}
+
+message ListBanksRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	string pos_uuid = 4;
+}
+
+message ListBanksResponse {
+	int64 record_count = 1;
+	repeated Bank records = 2;
+	string next_page_token = 3;
+}
+
+// Bank Account
+message ListBankAccountsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_id = 4;
+	string pos_uuid = 5;
+}
+
+message ListBankAccountsResponse {
+	int64 record_count = 1;
+	repeated BankAccount records = 2;
+	string next_page_token = 3;
+}
+
+//	List Customer Accounts Request
+message ListCustomerBankAccountsRequest {
+	string customer_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+	string pos_uuid = 5;
+}
+
+//	List Customer Accounts Response
+message ListCustomerBankAccountsResponse {
+	int64 record_count = 1;
+	repeated CustomerBankAccount customer_bank_accounts = 2;
+	string next_page_token = 3;
+}
+
+//	Create Customer Account
+message CreateCustomerBankAccountRequest {
+	string customer_uuid = 2;
+	string pos_uuid = 3;
+	string city = 4;
+	string country = 5;
+	string email = 6;
+	string driver_license = 7;
+	string social_security_number = 8;
+	string name = 9;
+	string state = 10;
+	string street = 11;
+	string zip = 12;
+	string bank_account_type = 13;
+	string bank_uuid = 14;
+	bool is_ach = 15;
+	string address_verified = 16;
+	string zip_verified = 17;
+	string routing_no = 18;
+	string iban = 19;
+	bool is_payroll_account = 20;
+	string account_no = 21;
+}
+
+//	Update Customer Account
+message UpdateCustomerBankAccountRequest {
+	string customer_bank_account_uuid = 2;
+	string city = 3;
+	string country = 4;
+	string email = 5;
+	string driver_license = 6;
+	string social_security_number = 7;
+	string name = 8;
+	string state = 9;
+	string street = 10;
+	string zip = 11;
+	string bank_account_type = 12;
+	string bank_uuid = 13;
+	bool is_ach = 14;
+	string address_verified = 15;
+	string zip_verified = 16;
+	string routing_no = 17;
+	string iban = 18;
+	bool is_payroll_account = 19;
+	string account_no = 20;
+	string pos_uuid = 21;
+}
+
+//	Delete Customer Account
+message DeleteCustomerBankAccountRequest {
+	string customer_bank_account_uuid = 2;
+	string pos_uuid = 3;
+}
+
+//	Get Customer Account
+message GetCustomerBankAccountRequest {
+	string customer_bank_account_uuid = 2;
+	string pos_uuid = 3;
+}
+
+
+//	Customer Account
+message CustomerBankAccount {
+	string customer_uuid = 1;
+	string customer_bank_account_uuid = 2;
+	string city = 3;
+	string country = 4;
+	string email = 5;
+	string driver_license = 6;
+	string social_security_number = 7;
+	string name = 8;
+	string state = 9;
+	string street = 10;
+	string zip = 11;
+	string bank_account_type = 12;
+	string bank_uuid = 13;
+	bool is_ach = 14;
+	string address_verified = 15;
+	string zip_verified = 16;
+	string routing_no = 17;
+	string iban = 18;
+	bool is_payroll_account = 19;
+	string account_no = 20;
+}
+
+//	Print Ticket
+message PrintTicketRequest {
+	int32 pos_id = 1;
+	int32 order_id = 2;
+	int32 invoice_id = 3;
+	int32 shipment_id = 4;
+	int32 record_id = 5;
+	string table_name = 6;
+}
+
+//	Response after print
+message PrintTicketResponse {
+	string summary = 1;
+	bool is_error = 2;
+	string file_name = 3;
+	string mime_type = 4;
+	bytes output_stream = 5;
+	string result_type = 6;
+	map<string, string> result_values = 7;
+}
+
+//	Print Preview Ticket
+message PrintPreviewRequest {
+	string pos_uuid = 2;
+	string order_uuid = 3;
+	string report_type = 4;
+}
+
+//	Response after preview
+message PrintPreviewResponse {
+	string result = 1;
+	ProcessLog process_log = 2;
+}
+
+//	Print Preview Ticket for Shipment
+message PrintShipmentPreviewRequest {
+	string pos_uuid = 2;
+	string shipment_uuid = 3;
+	string report_type = 4;
+}
+
+//	Response after preview
+message PrintShipmentPreviewResponse {
+	string result = 1;
+	ProcessLog process_log = 2;
+}
+
+//	Request Daily Refund
+message GetAvailableRefundRequest {
+	string pos_uuid = 2;
+	string date = 3;
+}
+
+//	Daily Refund
+message AvailableRefund {
+	Decimal refund = 1;
+	repeated TenderTypeRefund tender_type_refunds = 2;
+}
+
+//	Tender Type Refund
+message TenderTypeRefund {
+	string tender_type = 1;
+	Decimal refund = 2;
+}
+
+//	Address information for request
+message AddressRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string first_name = 3;
+	string last_name = 4;
+	string address1 = 5;
+	string address2 = 6;
+	string address3 = 7;
+	string address4 = 8;
+	string city_uuid = 9;
+	string city_name = 10;
+	string postal_code = 11;
+	string region_uuid = 12;
+	string region_name = 13;
+	string country_uuid = 14;
+	string description = 15;
+	bool is_default_billing = 16;
+	bool is_default_shipping = 17;
+	string contact_name = 18;
+	string email = 19;
+	string phone = 20;
+	repeated KeyValue additional_attributes = 21;
+	string pos_uuid = 22;
+}
+
+// Request for create Customer
+message CreateCustomerRequest {
+	string value = 2;
+	string tax_id = 3;
+	string duns = 4;
+	string naics = 5;
+	string name = 6;
+	string last_name = 7;
+	string description = 8;
+	string business_partner_group_uuid = 12;
+	string pos_uuid = 13;
+	//	Location
+	repeated AddressRequest addresses = 14;
+	repeated KeyValue additional_attributes = 15;
+}
+
+// Request for update Customer
+message UpdateCustomerRequest {
+	string uuid = 2;
+	string value = 3;
+	string tax_id = 4;
+	string duns = 5;
+	string naics = 6;
+	string name = 7;
+	string last_name = 8;
+	string description = 9;
+	//	Location
+	repeated AddressRequest addresses = 10;
+	repeated KeyValue additional_attributes = 11;
+	string pos_uuid = 12;
+}
+
+// Request Get a Customer
+message GetCustomerRequest {
+	string search_value = 2;
+	string value = 3;
+	string name = 4;
+	string contact_name = 6;
+	string email = 7;
+	string postal_code = 8;
+	string phone = 9;
+	string pos_uuid = 10;
+}
+
+// Customer
+message Customer {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string tax_id = 4;
+	string duns = 5;
+	string naics = 6;
+	string name = 7;
+	string last_name = 8;
+	string description = 9;
+	repeated Address addresses = 10;
+	map<string, Value> additional_attributes = 11;
+}
+
+//	Address
+message Address {
+	int32 id = 1;
+	string uuid = 2;
+	//	Location
+	Region region = 4;
+	City city = 5;
+	string address1 = 6;
+	string address2 = 7;
+	string address3 = 8;
+	string address4 = 9;
+	string phone = 10;
+	string postal_code = 11;
+	string country_code = 12;
+	string country_uuid = 13;
+	int32 country_id = 14;
+	bool is_default_shipping = 15;
+	bool is_default_billing = 16;
+	string contact_name = 17;
+	string email = 18;
+	string description = 19;
+	string first_name = 20;
+	string last_name = 21;
+	map<string, Value> additional_attributes = 22;
+}
+
+//	City
+message City {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+}
+
+//	Region
+message Region {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+}
+
+
+// Available Warehouse
+message AvailableWarehouse {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+}
+
+// Available Tender Type
+message AvailablePaymentMethod {
+	int32 id = 2;
+	string uuid = 3;
+	string name = 4;
+	string pos_uuid = 5;
+	bool is_displayedfrom_collection = 6;
+	bool is_pos_required_pin = 7;
+	bool is_allowed_to_refund = 8;
+	bool is_allowed_to_refund_open = 9;
+	Decimal maximum_refund_allowed = 10;
+	Decimal maximum_daily_refund_allowed = 11;
+	Currency refund_reference_currency = 12;
+	Currency reference_currency = 13;
+	bool is_payment_reference = 14;
+	PaymentMethod payment_method = 15;
+}
+
+message PaymentMethod {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	string tender_type = 6;
+	bool is_active = 7;
+}
+
+//	List discount schema for POS
+message ListAvailableDiscountsRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	Discounts Response
+message ListAvailableDiscountsResponse {
+	int64 record_count = 1;
+	repeated AvailableDiscount discounts = 2;
+	string next_page_token = 3;
+}
+
+// Available Discounts
+message AvailableDiscount {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+}
+
+// Available Document Type
+message AvailableDocumentType {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+}
+
+// Available Price List
+message AvailablePriceList {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+}
+
+//	List warehouses for POS
+message ListAvailableWarehousesRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	List document types for POS
+message ListAvailableDocumentTypesRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	List Available Warehouses
+message ListAvailableWarehousesResponse {
+	int64 record_count = 1;
+	repeated AvailableWarehouse warehouses = 2;
+	string next_page_token = 3;
+}
+
+//	List payment type for POS
+message ListAvailablePaymentMethodsRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	List Available Tender Types
+message ListAvailablePaymentMethodsResponse {
+	int64 record_count = 1;
+	repeated AvailablePaymentMethod payment_methods = 2;
+	string next_page_token = 3;
+}
+
+//	List Available Document Types
+message ListAvailableDocumentTypesResponse {
+	int64 record_count = 1;
+	repeated AvailableDocumentType document_types = 2;
+	string next_page_token = 3;
+}
+
+//	List price list for POS
+message ListAvailablePriceListRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	Price List Response
+message ListAvailablePriceListResponse {
+	int64 record_count = 1;
+	repeated AvailablePriceList price_list = 2;
+	string next_page_token = 3;
+}
+
+//	List warehouses for POS
+message ListAvailableCurrenciesRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	Currencies Response
+message ListAvailableCurrenciesResponse {
+	int64 record_count = 1;
+	repeated Currency currencies = 2;
+	string next_page_token = 3;
+}
+
+//	List POS Response
+message ListPointOfSalesResponse {
+	int64 record_count = 1;
+	repeated PointOfSales selling_points = 2;
+	string next_page_token = 3;
+}
+
+//	List Product Price Response
+message ListProductPriceResponse {
+	int64 record_count = 1;
+	repeated ProductPrice product_prices = 2;
+	string next_page_token = 3;
+}
+
+//	List Orders Response
+message ListOrdersResponse {
+	int64 record_count = 1;
+	repeated Order orders = 2;
+	string next_page_token = 3;
+}
+
+// List Orders Request
+message ListOrdersRequest {
+	string pos_uuid = 1;
+	string document_no = 2;
+	string document_status = 3;
+	string business_partner_uuid = 4;
+	Decimal grand_total = 5;
+	Decimal open_amount = 6;
+	bool is_waiting_for_pay = 7;
+	bool is_only_processed = 8;
+	bool is_only_aisle_seller = 9;
+	bool is_waiting_for_invoice = 10;
+	bool is_waiting_for_shipment = 11;
+	bool is_binding_offer = 12;
+	bool is_closed = 13;
+	bool is_nullified = 14;
+	string date_ordered_from = 15;
+	string date_ordered_to = 16;
+	string sales_representative_uuid = 17;
+	string search_value = 18;
+	int32 page_size = 19;
+	string page_token = 20;
+	// Query
+	Criteria criteria = 21;
+}
+
+//	List Order Lines Response
+message ListOrderLinesResponse {
+	int64 record_count = 1;
+	repeated OrderLine order_lines = 2;
+	string next_page_token = 3;
+}
+
+// List Orders Request
+message ListOrderLinesRequest {
+	string order_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+	string pos_uuid = 5;
+}
+
+// List Product Price Request
+message ListProductPriceRequest {
+	string search_value = 2;
+	string business_partner_uuid = 3;
+	string valid_from = 4;
+	string pos_uuid = 5;
+	string price_list_uuid = 6;
+	string warehouse_uuid = 7;
+	// Query
+	Criteria criteria = 8;
+	int32 page_size = 9;
+	string page_token = 10;
+}
+
+// POS from user uuid
+message ListPointOfSalesRequest {
+	string user_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+	string pos_uuid = 5;
+}
+
+// Point of Sales request
+message PointOfSalesRequest {
+	string pos_uuid = 2;
+}
+
+// Point of Sales definition
+message PointOfSales {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	bool is_modify_price = 6;
+	bool is_pos_required_pin = 7;
+	bool is_aisle_seller = 8;
+	bool is_shared_pos = 9;
+	DocumentType document_type = 10;
+	BankAccount cash_bank_account = 11;
+	BankAccount cash_transfer_bank_account = 12;
+	SalesRepresentative sales_representative = 13;
+	Customer template_customer = 14;
+	PriceList price_list = 15;
+	Warehouse warehouse = 16;
+	Currency display_currency = 17;
+	string conversion_type_uuid = 18;
+	string key_layout_uuid = 19;
+	bool is_allows_modify_quantity = 20;
+	bool is_allows_return_order = 21;
+	bool is_allows_collect_order = 22;
+	bool is_allows_create_order = 23;
+	bool is_allows_confirm_shipment = 24;
+	bool is_display_tax_amount = 25;
+	bool is_display_discount = 26;
+	Decimal maximum_refund_allowed = 27;
+	Decimal maximum_daily_refund_allowed = 28;
+	Currency refund_reference_currency = 29;
+	DocumentType return_document_type = 30;
+	Campaign default_campaign = 31;
+	string default_opening_charge_uuid = 32;
+	string default_withdrawal_charge_uuid = 33;
+	Decimal maximum_discount_allowed = 34;
+	Decimal write_off_amount_tolerance = 35;
+	bool is_allows_allocate_seller = 36;
+	bool is_allows_concurrent_use = 37;
+	bool is_confirm_complete_shipment = 38;
+	bool is_allows_cash_closing = 39;
+	bool is_allows_cash_opening = 40;
+	bool is_allows_cash_withdrawal = 41;
+	bool is_allows_apply_discount = 42;
+	bool is_allows_create_customer = 43;
+	bool is_allows_print_document = 44;
+	bool is_allows_preview_document = 45;
+	bool is_pos_manager = 46;
+	bool is_allows_modify_discount = 47;
+	bool is_keep_price_from_customer = 48;
+	Decimal maximum_line_discount_allowed = 59;
+	bool is_allows_modify_customer = 50;
+}
+
+// Request for create a order
+message CreateOrderRequest {
+	string pos_uuid = 2;
+	string customer_uuid = 3;
+	string document_type_uuid = 4;
+	string price_list_uuid = 5;
+	string warehouse_uuid = 6;
+	string sales_representative_uuid = 7;
+	string campaign_uuid = 8;
+}
+
+// Request for release a order
+message ReleaseOrderRequest {
+	string pos_uuid = 2;
+	string sales_representative_uuid = 3;
+	string order_uuid = 4;
+}
+
+// Request for hold a order
+message HoldOrderRequest {
+	string pos_uuid = 2;
+	string sales_representative_uuid = 3;
+	string order_uuid = 4;
+}
+
+// Request for process a order
+message ProcessOrderRequest {
+	string pos_uuid = 2;
+	string order_uuid = 3;
+	bool create_payments = 4;
+	bool is_open_refund = 5;
+	repeated CreatePaymentRequest payments = 6;
+}
+
+//	Create Payment
+message CreatePaymentRequest {
+	string uuid = 2;
+	int32 id = 3;
+	string pos_uuid = 4;
+	string order_uuid = 5;
+	string invoice_uuid = 6;
+	string bank_uuid = 7;
+	string reference_no = 8;
+	string description = 9;
+	Decimal amount = 10;
+	string payment_date = 11;
+	string tender_type_code = 12;
+	string currency_uuid = 13;
+	string payment_method_uuid = 14;
+	string payment_account_date = 15;
+	bool is_refund = 16;
+	string charge_uuid = 17;
+	string collecting_agent_uuid = 18;
+	string reference_bank_account_uuid = 19;
+	string customer_bank_account_uuid = 20;
+	int32 invoice_reference_id = 21;
+}
+
+//	Update Payment
+message UpdatePaymentRequest {
+	string payment_uuid = 2;
+	string bank_uuid = 3;
+	string reference_no = 4;
+	string description = 5;
+	Decimal amount = 6;
+	string payment_date = 7;
+	string tender_type_code = 8;
+	string payment_method_uuid = 9;
+	string payment_account_date = 10;
+	string pos_uuid = 11;
+	string reference_bank_account_uuid = 12;
+	int32 invoice_reference_id = 13;
+}
+
+// Request for delete a payment
+message DeletePaymentRequest {
+	string payment_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// List Payments Request
+message ListPaymentsRequest {
+	string pos_uuid = 2;
+	string order_uuid = 3;
+	bool is_only_refund = 4;
+	bool is_only_receipt = 5;
+	int32 page_size = 6;
+	string page_token = 7;
+	// Query
+	Criteria criteria = 8;
+}
+
+// Validate PIN Request
+message ValidatePINRequest {
+	int32 pos_id = 1;
+	string pos_uuid = 2;
+	string pin = 3;
+	string requested_access = 4;
+	Decimal requested_amount = 5;
+	int32 order_id = 6;
+}
+
+//	List Payments Response
+message ListPaymentsResponse {
+	int64 record_count = 1;
+	repeated Payment payments = 2;
+	string next_page_token = 3;
+}
+
+//	Payment
+message Payment {
+	string uuid = 1;
+	int32 id = 2;
+	string document_no = 3;
+	SalesRepresentative collecting_agent = 4;
+	DocumentStatus document_status = 5;
+	Customer customer = 6;
+	string pos_uuid = 7;
+	string order_uuid = 8;
+	string invoice_uuid = 9;
+	string bank_uuid = 10;
+	string reference_no = 11;
+	string description = 12;
+	Decimal amount = 13;
+	string payment_date = 14;
+	string payment_account_date = 15;
+	string tender_type_code = 16;
+	Currency currency = 17;
+	bool is_refund = 18;
+	string name = 19;
+	Decimal converted_amount = 20;
+	PaymentMethod payment_method = 21;
+	BankAccount bank_account = 22;
+	BankAccount reference_bank_account = 23;
+	Charge charge = 24;
+	DocumentType document_type = 25;
+	bool is_processed = 27;
+	string order_document_no = 28;
+	string invoice_document_no = 29;
+}
+
+// Request for delete a order
+message DeleteOrderRequest {
+	string order_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for delete a order
+message DeleteOrderLineRequest {
+	string order_line_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for create a order line
+message CreateOrderLineRequest {
+	string order_uuid = 2;
+	string product_uuid = 3;
+	string charge_uuid = 4;
+	string description = 5;
+	Decimal quantity = 6;
+	Decimal price = 7;
+	Decimal discount_rate = 8;
+	string warehouse_uuid = 9;
+	string pos_uuid = 10;
+	string resource_assignment_uuid = 11;
+}
+
+// Request for update a order
+message UpdateOrderRequest {
+	string order_uuid = 2;
+	string pos_uuid = 3;
+	string customer_uuid = 4;
+	string document_type_uuid = 5;
+	string price_list_uuid = 6;
+	string warehouse_uuid = 7;
+	string description = 8;
+	string campaign_uuid = 9;
+	Decimal discount_rate = 10;
+	Decimal discount_rate_off = 11;
+	Decimal discount_amount_off = 12;
+	string sales_representative_uuid = 13;
+}
+
+// Request for update a order line
+message UpdateOrderLineRequest {
+	string order_line_uuid = 2;
+	string description = 3;
+	Decimal quantity = 4;
+	Decimal price = 5;
+	string uom_uuid = 6;
+	Decimal discount_rate = 7;
+	bool is_add_quantity = 8;
+	string warehouse_uuid = 9;
+	string pos_uuid = 10;
+}
+
+// Request for get a order
+message GetOrderRequest {
+	string order_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Request for get a key layout
+message GetKeyLayoutRequest {
+	string key_layout_uuid = 2;
+	string pos_uuid = 3;
+}
+
+// Sales Order
+message Order {
+	string uuid = 1;
+	int32 id = 2;
+	string document_no = 3;
+	DocumentType document_type = 4;
+	SalesRepresentative sales_representative = 5;
+	DocumentStatus document_status = 6;
+	PriceList price_list = 7;
+	Warehouse warehouse = 8;
+	Decimal total_lines = 9;
+	Decimal grand_total = 10;
+	Decimal tax_amount = 12;
+	Decimal discount_amount = 13;
+	string date_ordered = 14;
+	Customer customer = 15;
+	bool is_delivered = 16;
+	string order_reference = 17;
+	string description = 18;
+	Campaign campaign = 19;
+	Decimal display_currency_rate = 20;
+	Decimal open_amount = 21;
+	Decimal payment_amount = 22;
+	Decimal refund_amount = 23;
+	Decimal charge_amount = 24;
+	Decimal credit_amount = 25;
+	int32 source_rma_id = 26;
+}
+
+// Sales Order Line
+message OrderLine {
+	string uuid = 1;
+	string order_uuid = 2;
+	Product product = 3;
+	Charge charge = 4;
+	string line_description = 5;
+	string description = 6;
+	Warehouse warehouse = 7;
+	Decimal quantity = 8;
+	Decimal quantity_ordered = 9;
+	Decimal available_quantity = 10;
+	Decimal price = 11;
+	Decimal price_with_tax = 12;
+	Decimal price_base = 13;
+	Decimal price_base_with_tax = 14;
+	Decimal price_list = 15;
+	Decimal price_list_with_tax = 16;
+	Decimal discount_rate = 17;
+	Decimal discount_amount = 18;
+	Decimal tax_amount = 19;
+	Decimal base_tax_amount = 20;
+	Decimal list_tax_amount = 21;
+	TaxRate tax_rate = 22;
+	//	Totals
+	Decimal total_discount_amount = 23;
+	Decimal total_tax_amount = 24;
+	Decimal total_base_amount = 25;
+	Decimal total_base_amount_with_tax = 26;
+	Decimal total_amount = 27;
+	Decimal total_amount_with_tax = 28;
+	int32 line = 29;
+	ProductConversion uom = 30;
+	ProductConversion product_uom = 31;
+	time_control.ResourceAssignment resource_assignment = 32;
+	int32 id = 33;
+	int32 source_rma_line_id = 34;
+}
+
+// Request Product Price
+message GetProductPriceRequest {
+	string search_value = 2;
+	string upc = 3;
+	string value = 4;
+	string name = 5;
+	string business_partner_uuid = 6;
+	string valid_from = 7;
+	string pos_uuid = 8;
+	string price_list_uuid = 9;
+	string warehouse_uuid = 10;
+}
+
+// Layout for POS
+message KeyLayout {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	string layout_type = 6;
+	int32 columns = 7;
+	string color = 8;
+	repeated Key keys = 9;
+}
+
+// Key for layout
+message Key {
+	string uuid = 1;
+	int32 id = 2;
+	string name = 3;
+	string description = 4;
+	string sub_key_layout_uuid = 5;
+	string color = 6;
+	int32 sequence = 7;
+	int32 span_x = 8;
+	int32 span_y = 9;
+	string product_value = 10;
+	Decimal quantity = 11;
+	file_management.ResourceReference resource_reference = 12;
+}
+
+//	Stock
+message Stock {
+	int32 product_id = 1;
+	double quantity = 2;
+	bool is_in_stock = 3;
+	bool is_decimal_quantity = 4;
+	bool is_show_default_notification_message = 5;
+	bool is_use_config_minimum_quantity = 6;
+	double minimum_quantity = 7;
+	bool is_use_config_minimum_sale_quantity = 8;
+	double minimum_sale_quantity = 9;
+	bool is_use_config_maximum_sale_quantity = 10;
+	double maximum_sale_quantity = 11;
+	bool is_use_config_backorders = 12;
+	double backorders = 13;
+	bool is_use_config_notify_stock_quantity = 14;
+	double notify_stock_quantity = 15;
+	bool is_use_config_quantity_increments = 16;
+	double quantity_increments = 17;
+	bool is_use_config_enable_quantity_increments = 18;
+	bool is_enable_quantity_increments = 19;
+	bool is_use_config_manage_stock = 20;
+	bool is_manage_stock = 21;
+	string low_stock_date = 22;
+	bool is_decimal_divided = 23;
+	double stock_status_changed_auto = 24;
+	int32 warehouse_id = 25;
+	string warehouse_uuid = 26;
+	string warehouse_name = 27;
+	string attribute_name = 28;
+}
+
+message ListStocksRequest {
+	string sku = 2;
+	string value = 3;
+	int32 page_size = 4;
+	string page_token = 5;
+	string pos_uuid = 6;
+}
+
+//	List of Stock
+message ListStocksResponse {
+	int64 record_count = 1;
+	repeated Stock stocks = 2;
+	string next_page_token = 3;
+}
+
+//	List Cash Register for POS
+message ListAvailableCashRequest {
+	string pos_uuid = 2;
+	int32 page_size = 3;
+	string page_token = 4;
+}
+
+//	List Available Warehouses
+message ListAvailableCashResponse {
+	int64 record_count = 1;
+	repeated AvailableCash cash = 2;
+	string next_page_token = 3;
+}
+
+// Available Warehouse
+message AvailableCash {
+	int32 id = 2;
+	string uuid = 3;
+	string key = 4;
+	string name = 5;
+	bool is_pos_required_pin = 6;
+	BankAccount bank_account = 7;
+}
+
+// Mnemonic Commands
+message CommandShortcut {
+	int32 id = 1;
+	string uuid = 2;
+	int32 pos_id = 3;
+	string pos_uuid = 4;
+	string command = 5;
+	string shortcut = 6;
+}
+
+message SaveCommandShortcutRequest {
+	string pos_uuid = 1;
+	string command = 2;
+	string shortcut = 3;
+}
+
+message DeleteCommandShortcutRequest {
+	string pos_uuid = 1;
+	int32 id = 2;
+	string uuid = 3;
+}
+
+message ListCommandShortcutsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	string pos_uuid = 4;
+}
+
+message ListCommandShortcutsResponse {
+	int64 record_count = 1;
+	repeated CommandShortcut records = 2;
+	string next_page_token = 3;
+}
+
+
+// Campaign
+message Campaign {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	int64 start_date = 5;
+	int64 end_date = 6;
+}
+
+message ListCampaignsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	string pos_uuid = 4;
+}
+
+message ListCampaignsResponse {
+	int64 record_count = 1;
+	repeated Campaign records = 2;
+	string next_page_token = 3;
+}
+
+//	Copy Order
+// Request for Copy a Order from Source Order
+message CopyOrderRequest {
+	int32 source_order_id = 1;
+	int32 sales_representative_id = 2;
+	int32 pos_id = 3;
+}
+
+//	Return Order
+
+// Request for get a Return from Order
+message GetOpenRMARequest {
+	int32 source_order_id = 1;
+	int32 pos_id = 2;
+}
+
+// Request for create a Return from Order
+message CreateRMARequest {
+	int32 source_order_id = 1;
+	int32 sales_representative_id = 2;
+	int32 pos_id = 3;
+	bool is_create_lines_from_order = 4;
+}
+
+// Request for delete a Return
+message DeleteRMARequest {
+	int32 rma_id = 1;
+	int32 pos_id = 2;
+}
+
+// Request for delete a Return Line
+message DeleteRMALineRequest {
+	int32 rma_line_id = 1;
+	int32 pos_id = 2;
+}
+
+// Request for delete a Return Line
+message UpdateRMALineRequest {
+	int32 rma_line_id = 1;
+	string description = 2;
+	Decimal quantity = 3;
+	int32 pos_id = 4;
+}
+
+// Request for Create a Return Line
+message CreateRMALineRequest {
+	int32 rma_id = 1;
+	int32 source_order_line_id = 2;
+	string description = 3;
+	Decimal quantity = 4;	
+	int32 pos_id = 5;
+}
+
+//	List Return Lines Request
+message ListRMALinesRequest {
+	int32 rma_id = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+	int32 pos_id = 4;
+}
+
+//	List RMA Lines
+message ListRMALinesResponse {
+	int64 record_count = 1;
+	repeated RMALine rma_lines = 2;
+	string next_page_token = 3;
+}
+
+// Request for Process a Return
+message ProcessRMARequest {
+	int32 rma_id = 1;
+	string description = 2;
+	string document_action = 3;
+	int32 pos_id = 4;
+}
+
+// Return Order
+message RMA {
+	int32 id = 1;
+	string document_no = 2;
+	DocumentType document_type = 3;
+	SalesRepresentative sales_representative = 4;
+	DocumentStatus document_status = 5;
+	PriceList price_list = 6;
+	Warehouse warehouse = 7;
+	Decimal total_lines = 8;
+	Decimal grand_total = 9;
+	Decimal tax_amount = 10;
+	Decimal discount_amount = 11;
+	string date_ordered = 12;
+	Customer customer = 13;
+	bool is_delivered = 14;
+	string order_reference = 15;
+	string description = 16;
+	Campaign campaign = 17;
+	Decimal display_currency_rate = 18;
+	Decimal open_amount = 19;
+	Decimal payment_amount = 20;
+	Decimal refund_amount = 21;
+	Decimal charge_amount = 22;
+	Decimal credit_amount = 23;
+	int32 source_order_id = 24;
+}
+
+// Return Order Line
+message RMALine {
+	int32 id = 1;
+	string uuid = 2;
+	Product product = 3;
+	Charge charge = 4;
+	string line_description = 5;
+	string description = 6;
+	Warehouse warehouse = 7;
+	Decimal quantity = 8;
+	Decimal quantity_ordered = 9;
+	Decimal available_quantity = 10;
+	Decimal price = 11;
+	Decimal price_with_tax = 12;
+	Decimal price_base = 13;
+	Decimal price_base_with_tax = 14;
+	Decimal price_list = 15;
+	Decimal price_list_with_tax = 16;
+	Decimal discount_rate = 17;
+	Decimal discount_amount = 18;
+	Decimal tax_amount = 19;
+	Decimal base_tax_amount = 20;
+	Decimal list_tax_amount = 21;
+	TaxRate tax_rate = 22;
+	//	Totals
+	Decimal total_discount_amount = 23;
+	Decimal total_tax_amount = 24;
+	Decimal total_base_amount = 25;
+	Decimal total_base_amount_with_tax = 26;
+	Decimal total_amount = 27;
+	Decimal total_amount_with_tax = 28;
+	int32 line = 29;
+	ProductConversion uom = 30;
+	ProductConversion product_uom = 31;
+	int32 source_order_line_id = 32;
+}

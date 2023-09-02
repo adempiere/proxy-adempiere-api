@@ -1,0 +1,258 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.material_management";
+option java_outer_classname = "ADempiereMaterialManagement";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package material_management;
+
+// The Material Management service definition.
+service MaterialManagement {
+	// List Product Storage
+	rpc ListProductStorage(ListProductStorageRequest) returns (data.ListEntitiesResponse) {}
+	// Attribute Set
+	rpc ListProductAttributeValues(ListProductAttributeValuesRequest) returns (data.ListEntitiesResponse) {}
+	rpc ListProductAttributes(ListProductAttributesRequest) returns (data.ListEntitiesResponse) {}
+	rpc GetProductAttributeSet(GetProductAttributeSetRequest) returns (ProductAttributeSet) {}
+	rpc GetProductAttributeSetInstance(GetProductAttributeSetInstanceRequest) returns (ProductAttributeSetInstance) {}
+	rpc ListProductAttributeSetInstances(ListProductAttributeSetInstancesRequest) returns (ListProductAttributeSetInstancesResponse) {}
+	rpc SaveProductAttributeSetInstance(SaveProductAttributeSetInstanceRequest) returns (ProductAttributeSetInstance) {}
+	// Locator
+	rpc ListAvailableWarehouses(ListAvailableWarehousesRequest) returns (ListAvailableWarehousesResponse) {}
+	rpc ListLocators(ListLocatorsRequest) returns (ListLocatorsResponse) {}
+}
+
+// Get Accounting Combination Request
+message ListProductStorageRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string table_name = 4;
+	int32 record_id = 5;
+	string record_uuid = 6;
+}
+
+message ProductAttributeValue {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ProductAttribute {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string value_type = 5;
+	bool is_mandatory = 6;
+	bool is_instance_attribute = 7;
+	int32 sequence = 8;
+	repeated ProductAttributeValue product_attribute_values = 9;
+}
+
+message ProductAttributeSet {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	bool is_instance_attribute = 5;
+	// Lot Attributes
+	bool is_lot = 6;
+	bool is_lot_mandatory = 7;
+	int32 lot_control_id = 8;
+	string lot_char_start_overwrite = 9;
+	string lot_char_end_overwrite = 10;
+	// Serial Attributes
+	bool is_serial = 11;
+	bool is_serial_mandatory = 12;
+	int32 serial_control_id = 13;
+	string serial_char_start_overwrite = 14;
+	string serial_char_end_overwrite = 15;
+	// Guarantee Date Attributes
+	bool is_guarantee_date = 16;
+	bool is_guarantee_date_mandatory = 17;
+	int32 guarantee_days = 18;
+	string mandatory_type = 19;
+	repeated ProductAttribute product_attributes = 20;
+}
+
+// Based on M_AttributeInstance table
+message ProductAttributeInstance {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	data.Decimal value_number = 4;
+	int32 product_attribute_set_instance_id = 5;
+	string product_attribute_set_instance_uuid = 6;
+	int32 product_attribute_id = 7;
+	string product_attribute_uuid = 8;
+	int32 product_attribute_value_id = 9;
+	string product_attribute_value_uuid = 10;
+}
+
+message ProductAttributeSetInstance {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+	int64 guarantee_date = 4;
+	string lot = 5;
+	int32 lot_id = 6;
+	string serial = 7;
+	ProductAttributeSet product_attribute_set = 8;
+	repeated ProductAttributeInstance product_attribute_instances = 9;
+}
+
+message GetProductAttributeSetRequest {
+	int32 id = 2;
+	string uuid = 3;
+	int32 product_id = 4;
+	string product_uuid = 5;
+	int32 product_attribute_set_instance_id = 6;
+	string product_attribute_set_instance_uuid = 7;
+}
+
+message ListProductAttributesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	data.Criteria filters = 5;
+	//
+	int32 product_id = 6;
+	string product_uuid = 7;
+	int32 product_attribute_set_instance_id = 8;
+	string product_attribute_set_instance_uuid = 9;
+}
+
+message ListProductAttributeValuesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	data.Criteria filters = 5;
+	//
+	int32 product_attribute_id = 6;
+	string product_attribute_uuid = 7;
+}
+
+message GetProductAttributeSetInstanceRequest {
+	int32 id = 2;
+	string uuid = 3;
+	int32 product_id = 4;
+	string product_uuid = 5;
+}
+
+message ListProductAttributeSetInstancesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	data.Criteria filters = 5;
+	//
+	int32 product_id = 6;
+	string product_uuid = 7;
+	int32 product_attribute_set_id = 8;
+	string product_attribute_set_uuid = 9;
+}
+
+// List List Product Attribute Set Instances Response
+message ListProductAttributeSetInstancesResponse {
+	int64 record_count = 1;
+	repeated ProductAttributeSetInstance records = 2;
+	string next_page_token = 3;
+}
+
+// Save Product Attribute Set Instance Request
+message SaveProductAttributeSetInstanceRequest {
+	int32 id = 2;
+	string uuid = 3;
+	int64 guarantee_date = 4;
+	string lot = 5;
+	string serial = 6;
+	int32 product_id = 7;
+	string product_uuid = 8;
+	int32 product_attribute_set_id = 9;
+	string product_attribute_set_uuid = 10;
+	// Product Attribute UUID, Value
+	repeated data.KeyValue attributes = 11;
+}
+
+// Warehouse
+message Warehouse {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	bool is_in_transit = 6;
+	Warehouse warehouse_source = 7;
+}
+
+message ListAvailableWarehousesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	string search_value = 4;
+	int32 warehouse_id = 5;
+	string warehouse_uuid = 6;
+}
+
+message ListAvailableWarehousesResponse {
+	int64 record_count = 1;
+	repeated Warehouse records = 2;
+	string next_page_token = 3;
+}
+
+// Locator
+message Locator {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	bool is_default = 4;
+	string aisle = 5; // (X)
+	string bin = 6; // (Y)
+	string level = 7; // (Z)
+	Warehouse warehouse = 8;
+}
+
+message ListLocatorsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	repeated data.KeyValue context_attributes = 5;
+	int32 warehouse_id = 6;
+	string warehouse_uuid = 7;
+	// references
+	string process_parameter_uuid = 8;
+	string field_uuid = 9;
+	string browse_field_uuid = 10;
+	string reference_uuid = 11;
+	string column_uuid = 12;
+	string table_name = 13;
+	string column_name = 14;
+}
+
+message ListLocatorsResponse {
+	int64 record_count = 1;
+	repeated Locator records = 2;
+	string next_page_token = 3;
+}

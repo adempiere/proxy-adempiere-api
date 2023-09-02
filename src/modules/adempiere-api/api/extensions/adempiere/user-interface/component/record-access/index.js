@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import {
   convertRecordAccessFromGRPC
-} from '@adempiere/grpc-api/lib/convertBusinessData';
+} from '../../.././grpc-api/lib/convertBusinessData';
 module.exports = ({ config, db }) => {
   let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api')
+  const ServiceApi = require('../../.././grpc-api')
   let service = new ServiceApi(config)
 
   /**

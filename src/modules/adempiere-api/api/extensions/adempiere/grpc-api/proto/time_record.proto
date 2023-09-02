@@ -1,0 +1,144 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.time_record";
+option java_outer_classname = "ADempiereTimeRecord";
+
+import "proto/base_data_type.proto";
+import "proto/core_functionality.proto";
+import "proto/business.proto";
+
+package time_record;
+
+// The Time Record service definition
+service TimeRecord {
+	rpc ListIssues(ListIssuesRequest) returns (ListIssuesResponse) {}
+	rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse) {}
+	// Resource Assigment
+	rpc CreateTimeRecord(CreateTimeRecordRequest) returns (ResourceAssignment) {}
+	rpc ListTimeRecord(ListTimeRecordRequest) returns (ListTimeRecordResponse) {}
+}
+
+// Issue (Request)
+message Issue {
+	int32 id = 1;
+	string uuid = 2;
+	string document_no = 3;
+	string subject = 4;
+	string summary = 5;
+}
+
+message ListIssuesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	string search_value = 4;
+}
+
+message ListIssuesResponse {
+	int64 record_count = 1;
+	repeated Issue records = 2;
+	string next_page_token = 3;
+}
+
+
+// Project
+message Project {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+}
+
+message ListProjectsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	string search_value = 4;
+}
+
+message ListProjectsResponse {
+	int64 record_count = 1;
+	repeated Project records = 2;
+	string next_page_token = 3;
+}
+
+
+// Resource Assigment
+message ResourceType {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	data.UnitOfMeasure unit_of_measure = 6;
+}
+
+message User {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message Resource {
+	int32 id = 1;
+	string uuid = 2;
+	ResourceType resource_type = 3;
+	User user = 4;
+	string name = 5;
+	string description = 6;
+}
+
+message ResourceAssignment {
+	int32 id = 1;
+	string uuid = 2;
+	Resource resource = 3;
+	string name = 4;
+	string description = 5;
+	int64 assign_date_from = 6;
+	int64 assign_date_to = 7;
+	bool is_confirmed = 8;
+	data.Decimal quantity = 9;
+}
+
+message CreateTimeRecordRequest {
+	int32 request_id = 2;
+	string request_uuid = 3;
+	int32 project_id = 4;
+	string project_uuid = 5;
+	data.Decimal quantity = 6;
+	string name = 7;
+	string description = 8;
+	int64 date = 9;
+}
+
+message ListTimeRecordRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	string search_value = 4;
+	// filters
+	int32 quantity = 5;
+	int64 date_from = 6;
+	int64 date_to = 7;
+}
+
+message ListTimeRecordResponse {
+	int64 record_count = 1;
+	repeated ResourceAssignment records = 2;
+	string next_page_token = 3;
+}

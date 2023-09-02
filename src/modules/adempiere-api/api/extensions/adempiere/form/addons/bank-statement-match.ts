@@ -16,8 +16,8 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+import { getDecimalFromGRPC } from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 
 function getCurrencyFromGRPC (currencyToConvert) {
   if (!currencyToConvert) {
@@ -36,7 +36,7 @@ function getBankAccountFromGRPC (bankAccountToConvert) {
     return undefined
   }
 
-  const { getDecimalFromGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js');
+  const { getDecimalFromGRPC } = require('../.././grpc-api/utils/baseDataTypeFromGRPC.js');
   return {
     id: bankAccountToConvert.getId(),
     uuid: bankAccountToConvert.getUuid(),
@@ -228,7 +228,7 @@ function getResultMovementFromGRPC (resultMovementToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/bankStatementMatch');
+  const ServiceApi = require('../.././grpc-api/services/bankStatementMatch');
   const service = new ServiceApi(config);
 
   api.get('/bank-statement', (req, res) => {

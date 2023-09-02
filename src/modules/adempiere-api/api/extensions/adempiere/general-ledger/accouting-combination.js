@@ -18,11 +18,11 @@ import { Router } from 'express';
 import { convertEntitiesListFromGRPC } from '../util/convertData';
 import {
   convertEntityFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '.././grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/generalLedger');
+  const ServiceApi = require('.././grpc-api/services/generalLedger');
   const service = new ServiceApi(config);
 
   /**

@@ -1,0 +1,341 @@
+/************************************************************************************
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.bank_statement_match";
+option java_outer_classname = "ADempiereBankStatementMatch";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package bank_statement_match;
+
+// The Banck Statement Match form service definition.
+// - org.spin.apps.form.BankStatementMatchController
+// - org.spin.apps.form.VBankStatementMatch
+// - org.spin.apps.form.WBankStatementMatch
+service BankStatementMatch {
+	// lists criteria
+	rpc GetBankStatement(GetBankStatementRequest) returns (BankStatement) {}
+	rpc ListBankAccounts(ListBankAccountsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListBusinessPartners(ListBusinessPartnersRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListSearchModes(ListSearchModesRequest) returns (data.ListLookupItemsResponse) {}
+	// results
+	rpc ListImportedBankMovements(ListImportedBankMovementsRequest) returns (ListImportedBankMovementsResponse) {}
+	rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse) {}
+	rpc ListMatchingMovements(ListMatchingMovementsRequest) returns (ListMatchingMovementsResponse) {}
+	rpc ListResultMovements(ListResultMovementsRequest) returns (ListResultMovementsResponse) {}
+	// process
+	rpc MatchPayments(MatchPaymentsRequest) returns (MatchPaymentsResponse) {}
+	rpc UnmatchPayments(UnmatchPaymentsRequest) returns (UnmatchPaymentsResponse) {}
+	rpc ListBankStatements(ListBankStatementsRequest) returns (ListBankStatementsResponse) {}
+	rpc ProcessMovements(ProcessMovementsRequest) returns (ProcessMovementsResponse) {}
+}
+
+//	Bank Account
+message BankAccount {
+	int32 id = 1;
+	string uuid = 2;
+	string account_no = 3;
+	string account_name = 4;
+	string bank_name = 5;
+	Currency currency = 6;
+	data.Decimal current_balance = 7;
+}
+
+// Bank Statement
+message BankStatement {
+	int32 id = 1;
+	string uuid = 2;
+	BankAccount bank_account = 3;
+	string document_no = 4;
+	string name = 5;
+	int64 statement_date = 6;
+	string description = 7;
+	bool is_manual = 8;
+	string document_status = 9;
+	bool is_processed = 10;
+	data.Decimal beginning_balance = 11;
+	data.Decimal statement_difference = 12;
+	data.Decimal ending_balance = 13;
+}
+
+message GetBankStatementRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+message ListBankStatementsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_account_id = 4;
+}
+
+message ListBankStatementsResponse {
+	int64 record_count = 1;
+	repeated BankStatement records = 2;
+	string next_page_token = 3;
+}
+
+
+// Bank Account
+message ListBankAccountsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+
+// Business Partner
+message BusinessPartner {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string tax_id = 4;
+	string name = 5;
+	string description = 6;
+}
+
+message ListBusinessPartnersRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListBusinessPartnersResponse {
+	int64 record_count = 1;
+	repeated BusinessPartner records = 2;
+	string next_page_token = 3;
+}
+
+
+message ListSearchModesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+
+// Payment
+message Currency {
+	int32 id = 1;
+	string uuid = 2;
+	string iso_code = 3;
+	string description = 4;
+}
+
+message TenderType {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+enum MatchMode {
+	MODE_NOT_MATCHED = 0;
+	MODE_MATCHED = 1;
+}
+
+// Imported Bank Movements
+message ListImportedBankMovementsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_statement_id = 4;
+	int32 bank_account_id = 5;
+	data.Decimal payment_amount_from = 6;
+	data.Decimal payment_amount_to = 7;
+	int64 transaction_date_from = 8;
+	int64 transaction_date_to = 9;
+	MatchMode match_mode = 10;
+}
+
+message ImportedBankMovement {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	bool is_receipt = 4;
+	string reference_no = 5;
+	BusinessPartner business_partner = 6;
+	Currency currency = 7;
+	data.Decimal amount = 8;
+	string memo = 9;
+	int32 payment_id = 10;
+	int32 bank_statement_line_id = 11;
+}
+
+message ListImportedBankMovementsResponse {
+	int64 record_count = 1;
+	repeated ImportedBankMovement records = 2;
+	string next_page_token = 3;
+}
+
+// Payments Movements
+message ListPaymentsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_statement_id = 4;
+	int32 bank_account_id = 5;
+	int32 business_partner_id = 6;
+	data.Decimal payment_amount_from = 7;
+	data.Decimal payment_amount_to = 8;
+	int64 transaction_date_from = 9;
+	int64 transaction_date_to = 10;
+	MatchMode match_mode = 11;
+}
+
+message Payment {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	bool is_receipt = 4;
+	string document_no = 5;
+	BusinessPartner business_partner = 6;
+	TenderType tender_type = 7;
+	Currency currency = 8;
+	data.Decimal amount = 9;
+	string description = 10;
+}
+
+message ListPaymentsResponse {
+	int64 record_count = 1;
+	repeated Payment records = 2;
+	string next_page_token = 3;
+}
+
+
+// Matched Bank/Payment Movements
+message ListMatchingMovementsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_statement_id = 4;
+	int32 bank_account_id = 5;
+	int32 business_partner_id = 6;
+	data.Decimal payment_amount_from = 7;
+	data.Decimal payment_amount_to = 8;
+	int64 transaction_date_from = 9;
+	int64 transaction_date_to = 10;
+	MatchMode match_mode = 11;
+}
+
+message MatchingMovement {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	bool is_receipt = 4;
+	string document_no = 5;
+	BusinessPartner business_partner = 6;
+	TenderType tender_type = 7;
+	Currency currency = 8;
+	data.Decimal amount = 9;
+	string description = 10;
+	string reference_no = 11;
+	string memo = 12;
+	int32 payment_id = 13;
+	bool is_automatic = 14;
+	data.Decimal payment_amount = 15;
+	int64 payment_date = 16;
+}
+
+message ListMatchingMovementsResponse {
+	int64 record_count = 1;
+	repeated MatchingMovement records = 2;
+	string next_page_token = 3;
+}
+
+
+// Result Movement
+message ResultMovement {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	bool is_receipt = 4;
+	string document_no = 5;
+	BusinessPartner business_partner = 6;
+	TenderType tender_type = 7;
+	Currency currency = 8;
+	data.Decimal amount = 9;
+	string description = 10;
+	string reference_no = 11;
+	string memo = 12;
+	int32 payment_id = 13;
+	bool is_automatic = 14;
+	data.Decimal payment_amount = 15;
+	int64 payment_date = 16;
+}
+
+message ListResultMovementsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 bank_statement_id = 4;
+	int32 bank_account_id = 5;
+	data.Decimal payment_amount_from = 7;
+	data.Decimal payment_amount_to = 8;
+	int64 transaction_date_from = 9;
+	int64 transaction_date_to = 10;
+}
+
+message ListResultMovementsResponse {
+	int64 record_count = 1;
+	repeated ResultMovement records = 2;
+	string next_page_token = 3;
+}
+
+
+// Payment Bank keys
+message KeyMatch {
+	int32 payment_id = 1;
+	int32 imported_movement_id = 2;
+}
+
+message MatchPaymentsRequest {
+	repeated KeyMatch key_matches = 1;
+}
+
+message MatchPaymentsResponse {
+	string message = 1;
+}
+
+message UnmatchPaymentsRequest {
+	repeated int32 imported_movements_ids = 1;
+}
+
+message UnmatchPaymentsResponse {
+	string message = 1;
+}
+
+message ProcessMovementsRequest {
+	int32 bank_statement_id = 1;
+	int32 bank_account_id = 2;
+	data.Decimal payment_amount_from = 5;
+	data.Decimal payment_amount_to = 6;
+	int64 transaction_date_from = 7;
+	int64 transaction_date_to = 8;
+}
+
+message ProcessMovementsResponse {
+	string message = 1;
+}

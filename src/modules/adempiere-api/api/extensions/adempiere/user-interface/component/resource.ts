@@ -23,7 +23,7 @@ import multer from 'multer';
 
 import {
   getResourceReferenceFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
 
 function getCompleteFileName (fileName) {
   return path.join(os.tmpdir(), fileName);
@@ -32,7 +32,7 @@ function getCompleteFileName (fileName) {
 const storage = multer.diskStorage({
   destination: os.tmpdir(),
   filename: (req, file, callback) => {
-    const { isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+    const { isEmptyValue } = require('.././utils/valueUtils.js');
     if (isEmptyValue(req.body)) {
       callback(new Error('Save Attachment: Without body request'));
     } else if (isEmptyValue(req.body.file_name)) {
@@ -67,7 +67,7 @@ function getAttachmentFromGRPC (attachmentToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+  const ServiceApi = require('../.././grpc-api/services/fileManagement');
   const service = new ServiceApi(config);
 
   /**
@@ -184,7 +184,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         });
       }
 
-      const { getValidInteger, isEmptyValue } = require('@adempiere/grpc-api/src/utils/valueUtils.js');
+      const { getValidInteger, isEmptyValue } = require('.././utils/valueUtils.js');
       if (isEmptyValue(req.body)) {
         return res.json({
           code: 400,
@@ -234,9 +234,9 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         call.end();
       });
 
-      const stubLoader = require('@adempiere/grpc-api/src/grpc/proto/file_management_pb.js');
+      const stubLoader = require('../.././grpc/proto/file_management_pb.js');
       const { LoadResourceRequest } = stubLoader;
-      const { getDecimalToGRPC } = require('@adempiere/grpc-api/src/utils/baseDataTypeToGRPC.js');
+      const { getDecimalToGRPC } = require('../.././grpc-api/utils/baseDataTypeToGRPC.js');
 
       const bufferSize = 256 * 1024; // 256k
       const buffer = fs.readFileSync(completeName);

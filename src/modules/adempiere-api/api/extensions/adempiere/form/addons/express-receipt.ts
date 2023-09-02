@@ -16,7 +16,7 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+import { getDecimalFromGRPC } from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
 
 function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
   if (!businessPartnerToConvert) {
@@ -97,7 +97,7 @@ function getReceiptLineFromGRPC (receiptLineToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/expressReceipt');
+  const ServiceApi = require('../.././grpc-api/services/expressReceipt');
   const service = new ServiceApi(config);
 
   api.get('/business-partners', (req, res) => {

@@ -1,0 +1,172 @@
+/************************************************************************************
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.import_file_loader";
+option java_outer_classname = "ADempiereImportFileLoader";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package import_file_loader;
+
+service ImportFileLoader {
+	rpc ListCharsets(ListCharsetsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListImportTables(ListImportTablesRequest) returns (ListImportTablesResponse) {}
+	rpc ListImportFormats(ListImportFormatsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListClientImportFormats(ListClientImportFormatsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc GetImportFromat(GetImportFromatRequest) returns (ImportFormat) {}
+	// Manage File
+	rpc SaveRecords(SaveRecordsRequest) returns (SaveRecordsResponse) {}
+	rpc ListFilePreview(ListFilePreviewRequest) returns (data.ListEntitiesResponse) {}
+	// Process
+	rpc ListImportProcesses(ListImportProcessesRequest) returns (data.ListLookupItemsResponse) {}
+}
+
+// Charset
+message ListCharsetsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+}
+
+
+// Import Table
+message ListImportTablesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+}
+
+message ImportColumn {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string column_name = 4;
+	int32 display_type = 5;
+}
+
+message ImportTable {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string table_name = 4;
+	repeated ImportColumn import_columns = 5;
+}
+
+message ListImportTablesResponse {
+	int64 record_count = 1;
+	repeated ImportTable records = 2;
+	string next_page_token = 3;
+}
+
+
+// Import Format
+message ListImportFormatsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 table_id = 4;
+	string table_name = 5;
+}
+
+message ListClientImportFormatsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 table_id = 4;
+	string table_name = 5;
+}
+
+message ImportFormat {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string table_name = 5;
+	string format_type = 6;
+	string separator_character = 7;
+	repeated FormatField format_fields = 8;
+}
+
+message FormatField {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	int32 sequence = 4;
+	string column_name = 5;
+	string data_type = 6;
+	int32 start_no = 7;
+	int32 end_no = 8;
+	string default_value = 9;
+	// number
+	string defimal_point = 10;
+	bool is_divide_by_100 = 11;
+	// date
+	string date_format = 12;
+	// constant
+	string constant_value = 13;
+}
+
+// Format Field
+message GetImportFromatRequest {
+	int32 id = 1;
+}
+
+
+// Preview File
+message ListFilePreviewRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 import_format_id = 4;
+	int32 resource_id = 5;
+	string charset = 6;
+}
+
+
+// Save Record
+message SaveRecordsRequest {
+	int32 import_format_id = 1;
+	int32 resource_id = 2;
+	string charset = 3;
+	// process before save changes
+	bool is_process = 4;
+	int32 process_id = 5;
+	repeated data.KeyValue parameters = 6;
+}
+
+message SaveRecordsResponse {
+	string message = 1;
+	int64 total = 2;
+	data.ProcessLog process_log = 3;
+}
+
+
+// Process Import
+message ListImportProcessesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 table_id = 4;
+	string table_name = 5;
+}

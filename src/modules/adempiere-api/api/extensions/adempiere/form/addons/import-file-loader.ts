@@ -17,7 +17,7 @@ import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 // Utils and Helper Methods
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 import { convertEntitiesListFromGRPC } from '../../util/convertData';
 
 function getImportColumnFromGRPC (importColumnToConvert) {
@@ -87,7 +87,7 @@ function getImportFormatFromGRPC (importFormatToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   let api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/importFileLoader');
+  const ServiceApi = require('../.././grpc-api/services/importFileLoader');
   const service = new ServiceApi(config);
 
   api.get('/list-charsets', (req, res) => {

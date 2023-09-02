@@ -18,22 +18,22 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getProcessLogFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '.././grpc-api/utils/baseDataTypeFromGRPC.js';
 import {
   convertChatEntryFromGRPC
-} from '@adempiere/grpc-api/lib/convertBusinessData';
+} from '.././grpc-api/lib/convertBusinessData';
 import {
   getEntityChatsFromGRPC,
   getEntityLogFromGRPC,
   getUserActivityFromGRPC
-} from '@adempiere/grpc-api/src/utils/logsFromGRPC';
+} from '.././grpc-api/utils/logsFromGRPC';
 import {
   getWorkflowProcessFomGRPC
-} from '@adempiere/grpc-api/src/utils/workflowFromGRPC';
+} from '.././grpc-api/utils/workflowFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/logs')
+  const ServiceApi = require('.././grpc-api/services/logs')
   const service = new ServiceApi(config)
 
   /**

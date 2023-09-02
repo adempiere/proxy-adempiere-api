@@ -16,7 +16,7 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+import { getDecimalFromGRPC } from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
 
 function getWarehouseFromGRPC (warehouseToConvert) {
   if (!warehouseToConvert) {
@@ -84,7 +84,7 @@ function getMovementLineFromGRPC (movementLineToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/expressMovement');
+  const ServiceApi = require('../.././grpc-api/services/expressMovement');
   const service = new ServiceApi(config);
 
   api.get('/warehouses', (req, res) => {

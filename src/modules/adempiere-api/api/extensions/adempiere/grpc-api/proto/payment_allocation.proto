@@ -1,0 +1,276 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.payment_allocation";
+option java_outer_classname = "ADempierePaymentAllocation";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package payment_allocation;
+
+// The Banck Statement Match form service definition.
+// - org.compiere.apps.form.Allocation
+// - org.compiere.apps.form.VAllocation
+// - org.adempiere.webui.apps.form.WAllocation
+service PaymentAllocation {
+	// lists criteria
+	rpc ListBusinessPartners(ListBusinessPartnersRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListOrganizations(ListOrganizationsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListCurrencies(ListCurrenciesRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListTransactionTypes(ListTransactionTypesRequest) returns (data.ListLookupItemsResponse) {}
+	// list result
+	rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse) {}
+	rpc ListInvoices(ListInvoicesRequest) returns (ListInvoicesResponse) {}
+	// process
+	rpc ListCharges(ListChargesRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListTransactionOrganizations(ListTransactionOrganizationsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc Process(ProcessRequest) returns (ProcessResponse) {}
+}
+
+
+// Business Partner
+message BusinessPartner {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string tax_id = 4;
+	string name = 5;
+	string description = 6;
+}
+
+message ListBusinessPartnersRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListBusinessPartnersResponse {
+	int64 record_count = 1;
+	repeated BusinessPartner records = 2;
+	string next_page_token = 3;
+}
+
+
+// Organization
+message Organization {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+}
+
+message ListOrganizationsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListOrganizatiosResponse {
+	int64 record_count = 1;
+	repeated Organization records = 2;
+	string next_page_token = 3;
+}
+
+
+// Currency
+message Currency {
+	int32 id = 1;
+	string uuid = 2;
+	string iso_code = 3;
+	string description = 4;
+}
+
+message ListCurrenciesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListCurrenciesResponse {
+	int64 record_count = 1;
+	repeated Currency records = 2;
+	string next_page_token = 3;
+}
+
+
+// Transaction Type
+message TransactionType {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListTransactionTypesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListTransactionTypesResponse {
+	int64 record_count = 1;
+	repeated TransactionType records = 2;
+	string next_page_token = 3;
+}
+
+
+// Payments Movements
+message Payment {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	bool is_receipt = 4;
+	string document_no = 5;
+	TransactionType transaction_type = 6; // AP-AR
+	Organization organization = 7;
+	string description = 8;
+	Currency currency = 9;
+	data.Decimal payment_amount = 10;
+	data.Decimal converted_amount = 11;
+	data.Decimal open_amount = 12;
+}
+
+message ListPaymentsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 business_partner_id = 4;
+	int64 date = 5;
+	int32 organization_id = 6;
+	int32 currency_id = 7;
+	bool is_multi_currency = 8;
+	string transaction_type = 9; // AP-AR
+	bool is_automatic_write_off = 10;
+}
+
+message ListPaymentsResponse {
+	int64 record_count = 1;
+	repeated Payment records = 2;
+	string next_page_token = 3;
+}
+
+
+// Invoice
+message Invoice {
+	int32 id = 1;
+	string uuid = 2;
+	int64 date_invoiced = 3;
+	bool is_sales_transaction = 4;
+	string document_no = 5;
+	TransactionType transaction_type = 6; // AP-AR
+	Organization organization = 7;
+	string description = 8;
+	Currency currency = 9;
+	data.Decimal original_amount = 10;
+	data.Decimal converted_amount = 11;
+	data.Decimal open_amount = 12;
+	data.Decimal discount_amount = 13;
+}
+
+message ListInvoicesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	// filters
+	string search_value = 3;
+	int32 business_partner_id = 4;
+	int64 date = 5;
+	int32 organization_id = 6;
+	int32 currency_id = 7;
+	bool is_multi_currency = 8;
+	string transaction_type = 9; // AP-AR
+	bool is_automatic_write_off = 10;
+}
+
+message ListInvoicesResponse {
+	int64 record_count = 1;
+	repeated Invoice records = 2;
+	string next_page_token = 3;
+}
+
+
+// Charge
+message Charge {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	data.Decimal amount = 5;
+}
+
+message ListChargesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListChargesResponse {
+	int64 record_count = 1;
+	repeated Charge records = 2;
+	string next_page_token = 3;
+}
+
+
+// Transaction Organization
+message ListTransactionOrganizationsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListTransactionOrganizationsResponse {
+	int64 record_count = 1;
+	repeated Organization records = 2;
+	string next_page_token = 3;
+}
+
+message PaymentSelection {
+	int32 id = 1;
+	string uuid = 2;
+	int64 transaction_date = 3;
+	data.Decimal applied_amount = 4;
+}
+
+message InvoiceSelection {
+	int32 id = 1;
+	string uuid = 2;
+	int64 date_invoiced = 3;
+	data.Decimal applied_amount = 4;
+	data.Decimal discount_amount = 5;
+	data.Decimal write_off_amount = 6;
+	data.Decimal open_amount = 7;
+}
+
+// Process
+message ProcessRequest {
+	int32 business_partner_id = 1;
+	int32 currency_id = 2;
+	bool is_multi_currency = 3;
+	int32 charge_id = 4;
+	int32 transaction_organization_id = 5;
+	int64 date = 6;
+	string description = 7;
+	data.Decimal total_difference = 8;
+	repeated PaymentSelection payment_selections = 9;
+	repeated InvoiceSelection invoice_selections = 10;
+}
+
+message ProcessResponse {
+	string message = 1;
+}

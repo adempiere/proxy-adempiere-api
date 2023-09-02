@@ -1,0 +1,166 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.express_movement";
+option java_outer_classname = "ADempiereExpressMovement";
+
+import "proto/base_data_type.proto";
+
+package express_movement;
+
+service ExpressMovement {
+	rpc ListWarehouses(ListWarehousesRequest) returns (ListWarehousesResponse) {}
+	rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {}
+	// Movement
+	rpc CreateMovement(CreateMovementRequest) returns (Movement) {}
+	rpc DeleteMovement(DeleteMovementRequest) returns (data.Empty) {}
+	rpc ProcessMovement(ProcessMovementRequest) returns (Movement) {}
+	//	Movement Line
+	rpc CreateMovementLine(CreateMovementLineRequest) returns (MovementLine) {}
+	rpc DeleteMovementLine(DeleteMovementLineRequest) returns (data.Empty) {}
+	rpc UpdateMovementLine(UpdateMovementLineRequest) returns (MovementLine) {}
+	rpc ListMovementLines(ListMovementLinesRequest) returns (ListMovementLinesResponse) {}
+}
+
+
+// Warehouse
+message Warehouse {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListWarehousesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListWarehousesResponse {
+	int64 record_count = 1;
+	repeated Warehouse records = 2;
+	string next_page_token = 3;
+}
+
+
+// Product
+message ListProductsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	string upc = 4;
+	string sku = 5;
+	string value = 6;
+	string name = 7;
+}
+
+message Product {
+	string uuid = 1;
+	int32 id = 2;
+	string upc = 3;
+	string sku = 4;
+	string value = 5;
+	string name = 6;
+	string description = 7;
+}
+
+message ListProductsResponse {
+	int64 record_count = 1;
+	repeated Product records = 2;
+	string next_page_token = 3;
+}
+
+
+// Movement
+message CreateMovementRequest {
+}
+
+message Movement {
+	int32 id = 1;
+	string uuid = 2;
+	string document_no = 3;
+	int64 movement_date = 4;
+	string description = 5;
+	bool is_completed = 6;
+}
+
+message DeleteMovementRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+message ProcessMovementRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+}
+
+
+// Movement Line
+message CreateMovementLineRequest {
+	int32 movement_id = 1;
+	string movement_uuid = 2;
+	int32 warehouse_id = 3;
+	string warehouse_uuid = 4;
+	int32 warehouse_to_id = 5;
+	string warehouse_to_uuid = 6;
+	string description = 7;
+	int32 product_id = 8;
+	string product_uuid = 9;
+	data.Decimal quantity = 10;
+}
+
+message MovementLine {
+	int32 id = 1;
+	string uuid = 2;
+	int32 warehouse_id = 3;
+	string warehouse_uuid = 4;
+	int32 warehouse_to_id = 5;
+	string warehouse_to_uuid = 6;;
+	Product product = 7;
+	string description = 8;
+	data.Decimal quantity = 9;
+	int32 line = 10;
+}
+
+message ListMovementLinesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	int32 movement_id = 4;
+	string movement_uuid = 5;
+}
+
+message ListMovementLinesResponse {
+	int64 record_count = 1;
+	repeated MovementLine records = 2;
+	string next_page_token = 3;
+}
+
+message DeleteMovementLineRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+message UpdateMovementLineRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+	data.Decimal quantity = 4;
+}

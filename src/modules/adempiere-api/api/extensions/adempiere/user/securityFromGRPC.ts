@@ -22,7 +22,7 @@ export function getContextValueFromGRPC (valueToConvert) {
   if (valueToConvert === undefined || valueToConvert === null) {
     return undefined;
   }
-  const { ValueType } = require('@adempiere/grpc-api/src/grpc/proto/security_pb.js');
+  const { ValueType } = require('.././grpc-api/grpc/proto/security_pb.js');
 
   let returnValue;
   switch (valueToConvert.getValueType()) {

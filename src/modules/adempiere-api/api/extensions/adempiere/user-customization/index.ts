@@ -20,11 +20,11 @@ import {
   getUserFromGRPC,
   getRoleFromGRPC,
   getCustomizationLevelFromGRPC
-} from '@adempiere/grpc-api/src/utils/userCustomizationFromGRPC';
+} from '.././grpc-api/utils/userCustomizationFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/userCustomization');
+  const ServiceApi = require('.././grpc-api/services/userCustomization');
   const service = new ServiceApi(config);
 
   /**

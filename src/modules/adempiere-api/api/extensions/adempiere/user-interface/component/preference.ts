@@ -19,11 +19,11 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   convertPreferenceFromGRPC
-} from '@adempiere/grpc-api/lib/convertBusinessData';
+} from '../.././grpc-api/lib/convertBusinessData';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api');
+  const ServiceApi = require('../.././grpc-api');
   const service = new ServiceApi(config);
 
   /**

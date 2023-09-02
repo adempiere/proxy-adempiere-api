@@ -18,22 +18,22 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getRecordReferenceInfoFromGRPC
-} from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
+} from '.././grpc-api/utils/baseDataTypeFromGRPC.js';
 import {
   getLookupItemFromGRPC
-} from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+} from '.././grpc-api/utils/userInterfaceFromGRPC';
 
 import {
   convertAttributes,
   convertEntityFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '.././grpc-api/lib/convertBaseDataType';
 import {
   convertCalloutFromGRPC
-} from '@adempiere/grpc-api/lib/convertBusinessData';
+} from '.././grpc-api/lib/convertBusinessData';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api');
+  const ServiceApi = require('.././grpc-api');
   const service = new ServiceApi(config);
 
   /**
@@ -127,7 +127,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    */
   api.get('/exists-references', (req, res) => {
     if (req.query) {
-      const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+      const ServiceApi = require('.././grpc-api/services/userInterface');
       const service = new ServiceApi(config);
 
       service.existsReferences({
@@ -350,7 +350,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * Details:
    */
   api.get('/default-value', (req, res) => {
-    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const ServiceApi = require('.././grpc-api/services/userInterface');
     const service = new ServiceApi(config);
 
     if (req.query) {
@@ -429,7 +429,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * Details:https://sfa-docs.now.sh/guide/default-modules/api.html#get-vsbridgeuserorder-history
    */
   api.post('/run-callout', (req, res) => {
-    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const ServiceApi = require('.././grpc-api/services/userInterface');
     const service = new ServiceApi(config);
 
     if (req.body) {
@@ -472,7 +472,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * Details:
    */
   api.get('/entity', (req, res) => {
-    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const ServiceApi = require('.././grpc-api/services/userInterface');
     const service = new ServiceApi(config);
 
     if (req.query) {
@@ -519,7 +519,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    */
   api.post('/entities', (req, res) => {
     if (req.body) {
-      const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+      const ServiceApi = require('.././grpc-api/services/userInterface');
       const service = new ServiceApi(config);
 
       service.listTabEntities({
@@ -595,7 +595,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
    * Details:
    */
   api.post('/create-entity', (req, res) => {
-    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const ServiceApi = require('.././grpc-api/services/userInterface');
     const service = new ServiceApi(config);
 
     if (req.body) {
@@ -635,7 +635,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
     ]
    */
   api.post('/update-entity', (req, res) => {
-    const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface');
+    const ServiceApi = require('.././grpc-api/services/userInterface');
     const service = new ServiceApi(config);
 
     if (req.body) {

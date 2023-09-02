@@ -57,7 +57,7 @@ function getTreeType (treeType) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface.js')
+  const ServiceApi = require('../.././grpc-api/services/userInterface.js')
   const service = new ServiceApi(config)
 
   /**

@@ -1,0 +1,115 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.time_control";
+option java_outer_classname = "ADempiereTimeControl";
+
+import "proto/base_data_type.proto";
+import "proto/core_functionality.proto";
+
+package time_control;
+
+// The Time Control service definition.
+service TimeControl {
+	// Create Resource Assignment
+	rpc CreateResourceAssignment(CreateResourceAssignmentRequest) returns (ResourceAssignment) {}
+	// List Resource Assignment
+	rpc ListResourcesAssignment(ListResourcesAssignmentRequest) returns (ListResourcesAssignmentResponse) {}
+	// Update Resource Assignment
+	rpc UpdateResourceAssignment(UpdateResourceAssignmentRequest) returns (ResourceAssignment) {}
+	// Delete Resource Assignment
+	rpc DeleteResourceAssignment(DeleteResourceAssignmentRequest) returns (data.Empty) {}
+	// Confirm Resource Assignment
+	rpc ConfirmResourceAssignment(ConfirmResourceAssignmentRequest) returns (ResourceAssignment) {}
+}
+
+// Create Time Control Request
+message CreateResourceAssignmentRequest {
+	int32 resource_type_id = 2;
+	string resource_type_uuid = 3;
+	string name = 4;
+	string description = 5;
+}
+
+// List Time Control Request
+message ListResourcesAssignmentRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	int32 resource_type_id = 4;
+	string resource_type_uuid = 5;
+	string name = 6;
+	string description = 7;
+	string confirmed = 8;
+	bool is_waiting_for_ordered = 9;
+	int64 date_from = 10;
+	int64 date_to = 11;
+}
+
+// Update Time Control Request
+message UpdateResourceAssignmentRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string name = 4;
+	string description = 5;
+}
+
+// Delete Time Control Request
+message DeleteResourceAssignmentRequest {
+	int32 id = 2;
+	string uuid = 3;
+}
+
+message ResourceType {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	data.UnitOfMeasure unit_of_measure = 6;
+}
+
+message Resource {
+	int32 id = 1;
+	string uuid = 2;
+	ResourceType resource_type = 3;
+	string name = 4;
+}
+
+message ResourceAssignment {
+	int32 id = 1;
+	string uuid = 2;
+	Resource resource = 3;
+	string name = 4;
+	string description = 5;
+	int64 assign_date_from = 6;
+	int64 assign_date_to = 7;
+	bool is_confirmed = 8;
+	data.Decimal quantity = 9;
+}
+
+message ListResourcesAssignmentResponse {
+	int64 record_count = 1;
+	repeated ResourceAssignment records = 2;
+	string next_page_token = 3;
+}
+
+message ConfirmResourceAssignmentRequest {
+	int32 id = 2;
+	string uuid = 3;
+}

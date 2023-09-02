@@ -34,7 +34,7 @@ module.exports = ({ config }) => {
         name: 'adempiereApi',
         version,
         description: 'Registered Extensions on ADempiere-API',
-        '@adempiere/grpc-api': dependencies['@adempiere/grpc-api'],
+        './grpc-api': dependencies['./grpc-api'],
         '@adempiere/grpc-web-store-api': dependencies['@adempiere/grpc-web-store-api'],
         registeredExtensions: config.get('modules.adempiereApi.registeredExtensions')
       }

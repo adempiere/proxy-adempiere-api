@@ -16,8 +16,8 @@
 import { Router } from 'express';
 import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
-import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+import { getDecimalFromGRPC } from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 
 function getOrganizationFromGRPC (organizationToConvert) {
   if (!organizationToConvert) {
@@ -140,7 +140,7 @@ function getChargeFromGRPC (chargeToConvert) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/paymentAllocation');
+  const ServiceApi = require('../.././grpc-api/services/paymentAllocation');
   const service = new ServiceApi(config);
 
   api.get('/business-partners', (req, res) => {

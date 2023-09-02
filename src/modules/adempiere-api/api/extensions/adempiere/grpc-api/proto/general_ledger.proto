@@ -1,0 +1,138 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.general_ledger";
+option java_outer_classname = "ADempiereGeneralLedger";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package general_ledger;
+
+// The General Ledger service definition.
+service GeneralLedger {
+	// Accounting Combination
+	rpc getAccountingCombination(GetAccountingCombinationRequest) returns (data.Entity) {}
+	rpc ListAccountingCombinations(ListAccountingCombinationsRequest) returns (data.ListEntitiesResponse) {}
+	rpc SaveAccountingCombination(SaveAccountingCombinationRequest) returns (data.Entity) {}
+	// Accounting Viewer
+	rpc ListAccountingSchemas(ListAccountingSchemasRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListPostingTypes(ListPostingTypesRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListAccountingDocuments(ListAccountingDocumentsRequest) returns (ListAccountingDocumentsResponse) {}
+	rpc ListOrganizations(ListOrganizationsRequest) returns (data.ListLookupItemsResponse) {}
+	rpc ListAccountingFacts(ListAccountingFactsRequest) returns (data.ListEntitiesResponse) {}
+	rpc StartRePost(StartRePostRequest) returns (StartRePostResponse) {}
+}
+
+// Accounting Combination
+message GetAccountingCombinationRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string value = 4;
+}
+
+message ListAccountingCombinationsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+	repeated data.KeyValue context_attributes = 5;
+	data.Criteria filters = 6;
+}
+
+message SaveAccountingCombinationRequest {
+	repeated data.KeyValue context_attributes = 2;
+	string uuid = 3;
+	int32 id = 4;
+	repeated data.KeyValue attributes = 5;
+}
+
+
+// Accounting Schema
+message ListAccountingSchemasRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+// Posting Type
+message ListPostingTypesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+// Accounting Document
+message ListAccountingDocumentsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message AccountingDocument {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string table_name = 4;
+}
+
+message ListAccountingDocumentsResponse {
+	int64 record_count = 1;
+	repeated AccountingDocument records = 2;
+	string next_page_token = 3;
+}
+
+// Organization
+message ListOrganizationsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+// Accounting Fact
+message ListAccountingFactsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	// mandatory filters
+	int32 accounting_schema_id = 4;
+	// optional filter
+	string posting_type = 5;
+	// document filters
+	string table_name = 6;
+	int32 record_id = 7;
+	string record_uuid = 8;
+	//
+	int64 date_from = 9;
+	int64 date_to = 10;
+	int32 organization_id = 11; // OO
+	// accoutiing dimensions
+	data.Criteria filters = 12;
+}
+
+// Start Re-Post
+message StartRePostRequest {
+	string table_name = 2;
+	int32 record_id = 3;
+	string record_uuid = 4;
+	bool is_force = 5;
+}
+
+message StartRePostResponse {
+	string error_msg = 4;
+}

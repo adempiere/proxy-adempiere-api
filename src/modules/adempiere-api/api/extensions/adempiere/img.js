@@ -57,7 +57,7 @@ export default ({ config, db, service: parentService }) => {
       res.set('Allow', 'GET');
       return res.status(405).send('Method Not Allowed');
     }
-    const ServiceApi = require('@adempiere/grpc-api/src/services/fileManagement');
+    const ServiceApi = require('./grpc-api/services/fileManagement');
     const service = new ServiceApi(config);
 
     req.socket.setMaxListeners(config.imageable.maxListeners || 50);

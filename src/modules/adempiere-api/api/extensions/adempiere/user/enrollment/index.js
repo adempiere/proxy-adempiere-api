@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/enrollment')
+  const ServiceApi = require('../.././grpc-api/services/enrollment')
   const service = new ServiceApi(config)
 
   /**

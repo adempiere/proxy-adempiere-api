@@ -17,11 +17,11 @@ import { Router } from 'express';
 
 import {
   getMailTemplateFromGRPC
-} from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+} from '../.././grpc-api/utils/userInterfaceFromGRPC';
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/userInterface')
+  const ServiceApi = require('../.././grpc-api/services/userInterface')
   const service = new ServiceApi(config)
 
   /**

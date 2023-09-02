@@ -1,0 +1,193 @@
+/************************************************************************************
+* Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+* Contributor(s): Elsio Sanchez Elsiosanchez@outlook.com                           *
+* This program is free software: you can redistribute it and/or modify             *
+* it under the terms of the GNU General Public License as published by             *
+* the Free Software Foundation, either version 2 of the License, or                *
+* (at your option) any later version.                                              *
+* This program is distributed in the hope that it will be useful,                  *
+* but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+* GNU General Public License for more details.                                     *
+* You should have received a copy of the GNU General Public License                *
+* along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.match_po_receipt_invoice";
+option java_outer_classname = "ADempierePaymentAllocation";
+
+import "proto/base_data_type.proto";
+import "proto/business.proto";
+
+package match_po_receipt_invoice;
+
+// The Matching PO-Receipt-Invoice form service definition.
+// - org.compiere.apps.form.Match
+// - org.compiere.apps.form.VMatch
+// - org.adempiere.webui.apps.form.WMatch
+service MatchPORReceiptInvoice {
+    // lists criteria
+    rpc ListMatchesTypesFrom(ListMatchesTypesFromRequest) returns (data.ListLookupItemsResponse) {}
+    rpc ListMatchesTypesTo(ListMatchesTypesToRequest) returns (data.ListLookupItemsResponse) {}
+    rpc ListSearchModes(ListSearchModesRequest) returns (data.ListLookupItemsResponse) {}
+    rpc ListVendors(ListVendorsRequest) returns (data.ListLookupItemsResponse) {}
+    rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {}
+    // list result
+    rpc ListMatchedFrom(ListMatchedFromRequest) returns (ListMatchedFromResponse) {}
+    rpc ListMatchedTo(ListMatchedToRequest) returns (ListMatchedToResponse) {}
+    // process
+    rpc Process(ProcessRequest) returns (ProcessResponse) {}
+}
+
+
+// Match Type
+enum MatchType {
+    INVOICE = 0;
+    RECEIPT = 1;
+    PURCHASE_ORDER = 2;
+}
+
+message ListMatchesTypesFromRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+}
+
+message ListMatchesTypesToRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+    MatchType match_from_type = 4;
+}
+
+
+// Match Mode
+enum MatchMode {
+    MODE_NOT_MATCHED = 0;
+    MODE_MATCHED = 1;
+}
+
+message ListSearchModesRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+}
+
+
+// Vendor (Business Partner)
+message Vendor {
+    string uuid = 1;
+    int32 id = 2;
+    string value = 3;
+    string tax_id = 4;
+    string name = 5;
+    string description = 6;
+}
+
+message ListVendorsRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+}
+
+
+// Product
+message ListProductsRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+}
+
+message Product {
+    string uuid = 1;
+    int32 id = 2;
+    string upc = 3;
+    string sku = 4;
+    string value = 5;
+    string name = 6;
+    string description = 7;
+}
+
+message ListProductsResponse {
+    int64 record_count = 1;
+    repeated Product records = 2;
+    string next_page_token = 3;
+}
+
+
+// Matched
+message Matched {
+    int32 id = 1;
+    string uuid = 2;
+    int32 header_id = 3;
+    string header_uuid = 4;
+    string document_no = 5;
+    int64 date = 6;
+    int32 vendor_id = 7;
+    string vendor_name = 8;
+    int32 line_no = 9;
+    int32 product_id = 10;
+    string product_name = 11;
+    data.Decimal quantity = 12;
+    data.Decimal matched_quantity = 13;
+    MatchType match_type = 14;
+}
+
+message ListMatchedFromRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+    MatchMode match_mode = 4;
+    MatchType match_from_type = 5;
+    MatchType match_to_type = 6;
+    int32 vendor_id = 7;
+    int32 product_id = 8;
+    int64 date_from = 9;
+    int64 date_to = 10;
+}
+
+message ListMatchedFromResponse {
+    int64 record_count = 1;
+    repeated Matched records = 2;
+    string next_page_token = 3;
+}
+
+
+// Matched To
+message ListMatchedToRequest {
+    int32 page_size = 1;
+    string page_token = 2;
+    string search_value = 3;
+    MatchMode match_mode = 4;
+    MatchType match_from_type = 5;
+    MatchType match_to_type = 6;
+    int32 match_from_selected_id = 7;
+    int32 vendor_id = 8;
+    int32 product_id = 9;
+    int64 date_from = 10;
+    int64 date_to = 11;
+    bool is_same_quantity = 12;
+}
+
+message ListMatchedToResponse {
+    int64 record_count = 1;
+    repeated Matched records = 2;
+    string next_page_token = 3;
+}
+
+
+// Process
+message ProcessRequest {
+    MatchMode match_mode = 1;
+    MatchType match_from_type = 2;
+    MatchType match_to_type = 3;
+    int32 match_from_selected_id = 4;
+    repeated Matched matched_to_selections = 5;
+    data.Decimal quantity = 6;
+}
+
+message ProcessResponse {
+    string message = 1;
+}

@@ -10,7 +10,7 @@ export const ADempiereApi: StorefrontApiModule = new StorefrontApiModule({
   key: 'adempiere-api',
   initApi: ({ config, db, app }: StorefrontApiContext): void => {
     const api = Router();
-    const Api = require('@adempiere/grpc-api');
+    const Api = require('./api/extensions/adempiere/grpc-api');
     const service = new Api(config);
 
     // Mount the services

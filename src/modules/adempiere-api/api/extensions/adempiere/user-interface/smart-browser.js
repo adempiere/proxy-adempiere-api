@@ -17,11 +17,11 @@ import { Router } from 'express';
 
 import {
   convertEntityFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
+} from '.././grpc-api/lib/convertBaseDataType';
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api');
+  const ServiceApi = require('.././grpc-api');
   const service = new ServiceApi(config);
 
   /**

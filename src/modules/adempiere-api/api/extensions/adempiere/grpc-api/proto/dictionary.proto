@@ -1,0 +1,366 @@
+/************************************************************************************
+ * Copyright (C) 2012-2018 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Yamel Senih ysenih@erpya.com                                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.dictionary";
+option java_outer_classname = "ADempiereDictionary";
+
+package dictionary;
+
+// The greeting service definition.
+service Dictionary {
+	// Request a Window
+	rpc GetWindow(EntityRequest) returns (Window) {}
+	// Request a Tab
+	rpc GetTab(EntityRequest) returns (Tab) {}
+	// Request a Field
+	rpc GetField(FieldRequest) returns (Field) {}
+	// Reference Request
+	rpc GetReference(ReferenceRequest) returns (Reference) {}
+	// Reference Request
+	rpc GetValidationRule(EntityRequest) returns (ValidationRule) {}
+	// Request Process
+	rpc GetProcess(EntityRequest) returns (Process) {}
+	// Request Browser
+	rpc GetBrowser(EntityRequest) returns (Browser) {}
+	// Get Form
+	rpc GetForm(EntityRequest) returns (Form) {}
+	// List Search Info Fields
+	rpc ListSearchInfoFields(ListFieldsRequest) returns (ListFieldsResponse) {}
+	rpc ListIdentifiersFields(ListFieldsRequest) returns (ListFieldsResponse) {}
+	rpc ListTableSearchFields(ListFieldsRequest) returns (ListFieldsResponse) {}
+}
+
+// Object request
+message EntityRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+// Field request
+message FieldRequest {
+	string field_uuid = 2;
+	string column_uuid = 3;
+	string element_uuid = 4;
+	// Table_name + _column_name
+	string table_name = 5;
+	string column_name = 6;
+	string element_column_name = 7;
+}
+
+// Reference request
+message ReferenceRequest {
+	string reference_uuid = 2;
+	// Table_name + column_name assumed that it is Table Direct
+	string column_name = 3;
+}
+
+// Validation Code
+message ValidationRule {
+	int32 id = 1;
+	string uuid = 2;
+	string validation_code = 3;
+	string name = 4;
+	string description = 5;
+	string type = 6;
+}
+
+// Window
+message Window {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	bool is_active = 6;
+	bool is_sales_transaction = 7;
+	string window_type = 8;
+	//	External Info
+	ContextInfo context_info = 9;
+	repeated Tab tabs = 10;
+}
+
+// Tab
+message Tab {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	// Attributes
+	string table_name = 6;
+	int32 sequence = 7;
+	int32 tab_level = 8;
+	//
+	bool is_active = 9;
+	bool is_single_row = 10;
+	bool is_advanced_tab = 11;
+	bool is_has_tree = 12;
+	bool is_info_tab = 13;
+	bool is_sort_tab = 14;
+	bool is_translation_tab = 15;
+	bool is_read_only = 16;
+	bool is_insert_record = 17;
+	bool is_view = 18;
+	bool is_deleteable = 19;
+	bool is_document = 20;
+	bool is_change_log = 21;
+	int32 access_level = 22;
+	string link_column_name = 23;
+	string sort_order_column_name = 24;
+	string sort_yes_no_column_name = 25;
+	string parent_column_name = 26;
+	string display_logic = 27;
+	string commit_warning = 28;
+	string parent_tab_uuid = 32;
+	repeated string context_column_names = 33;
+	// External Info
+	ContextInfo context_info = 34;
+	repeated Process processes = 35;
+	repeated Field fields = 36;
+	FieldGroup field_group = 37;
+	string read_only_logic = 38;
+}
+
+// Field
+message Field {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	int32 sequence = 6;
+	string column_name = 7;
+	string element_name = 8;
+	bool is_displayed = 9;
+	bool is_displayed_grid = 10;
+	bool is_read_only = 11;
+	bool is_allow_copy = 12;
+	bool is_encrypted = 13;
+	bool is_same_line = 14;
+	bool is_heading = 15;
+	bool is_field_only = 16;
+	bool is_quick_entry = 17;
+	bool is_mandatory = 18;
+	bool is_key = 19;
+	bool is_parent = 20;
+	bool is_updateable = 21;
+	bool is_identifier = 22;
+	bool is_allow_logging = 23;
+	bool is_selection_column = 24;
+	bool is_range = 25;
+	bool is_always_updateable = 26;
+	bool is_translated = 27;
+	int32 identifier_sequence = 78;
+	string display_logic = 29;
+	int32 display_type = 30;
+	string default_value = 31;
+	string read_only_logic = 32;
+	string mandatory_logic = 33;
+	string callout = 34;
+	string column_sql = 35;
+	string v_format = 36;
+	string value_min = 37;
+	string value_max = 38;
+	string format_pattern = 39;
+	// External Info
+	ContextInfo context_info = 40;
+	FieldGroup field_group = 41;
+	FieldDefinition field_definition = 42;
+	Reference reference = 43;
+	Process process = 44;
+	// Smart Browser Field Compatibility
+	bool is_query_criteria = 45;
+	bool is_order_by = 46;
+	int32 seq_no_grid = 47;
+	int32 sort_no = 48;
+	bool is_info_only = 49;
+	bool is_active = 50;
+	// Process Parameter Compatibility
+	string default_value_to = 51;
+	int32 field_length = 52;
+	repeated string context_column_names = 53;
+	int32 column_id = 54;
+	string column_uuid = 55;
+	int32 element_id = 56;
+	string element_uuid = 57;
+	repeated DependentField dependent_fields = 58;
+	// ASP Custom Attributes
+	string is_displayed_as_panel = 59;
+	string is_displayed_as_table = 60;
+}
+
+message DependentField {
+	int32 container_id = 1;
+	string container_uuid = 2;
+	string container_name = 3;
+	int32 id = 4;
+	string uuid = 5;
+	string column_name = 6;
+}
+
+// Context Info
+message ContextInfo {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	MessageText message_text = 5;
+	string sql_statement = 6;
+	bool is_active = 7;
+}
+
+// Message
+message MessageText {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string message_type = 4;
+	string message_text = 5;
+	string message_tip = 6;
+	bool is_active = 7;
+}
+
+// Context Info
+message FieldGroup {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string field_group_type = 4;
+	bool is_active = 5;
+}
+
+// Context Info
+message FieldDefinition {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string field_group_type = 5;
+	repeated FieldCondition conditions = 6;
+	bool is_active = 7;
+}
+
+// Field Condition
+message FieldCondition {
+	int32 id = 1;
+	string uuid = 2;
+	string condition = 3;
+	string stylesheet = 4;
+	bool is_active = 5;
+}
+
+// Process
+message Process {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	string help = 6;
+	bool is_report = 7;
+	int32 access_level = 8;
+	string show_help = 9;
+	bool is_direct_print = 10;
+	repeated Field parameters = 11;
+	bool is_active = 12;
+	// Reporty Type
+	repeated ReportExportType report_export_types = 13;
+	string browser_uuid = 14;
+	string form_uuid = 15;
+	string workflow_uuid = 16;
+}
+
+// Form
+message Form {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string help = 5;
+	int32 access_level = 6;
+	string file_name = 7;
+	bool is_active = 8;
+}
+
+// Smart Browser
+message Browser {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	string help = 6;
+	int32 access_level = 8;
+	repeated string context_column_names = 9;
+	bool is_updateable = 10;
+	bool is_deleteable = 11;
+	bool is_selected_by_default = 12;
+	bool is_collapsible_by_default = 13;
+	bool is_executed_query_by_default = 14;
+	bool is_show_total = 15;
+	string view_uuid = 16;
+	// External Reference
+	Window window = 17;
+	Process process = 18;
+	repeated Field fields = 19;
+	bool is_active = 20;
+	string table_name = 21;
+}
+
+// Zoom Window
+message ZoomWindow {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	bool is_sales_transaction = 5;
+	bool is_active = 6;
+}
+
+// Foreign Reference
+message Reference {
+	string table_name = 1;
+	string key_column_name = 2;
+	string display_column_name = 3;
+	repeated string context_column_names = 4;
+	// External Info
+	repeated ZoomWindow zoom_windows = 5;
+	int32 id = 6;
+	string uuid = 7;
+}
+
+// Report Type for Export
+message ReportExportType {
+	string name = 1;
+	string description = 2;
+	string type = 3;
+}
+
+message ListFieldsRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// with table
+	string table_uuid = 4;
+	int32 table_id = 5;
+	string table_name = 6;
+}
+
+message ListFieldsResponse {
+	int64 record_count = 1;
+	repeated Field fields = 2;
+	string next_page_token = 3;
+}

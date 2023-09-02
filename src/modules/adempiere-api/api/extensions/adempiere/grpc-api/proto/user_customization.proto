@@ -1,0 +1,147 @@
+/************************************************************************************
+ * Copyright (C) 2018-present E.R.P. Consultores y Asociados, C.A.                  *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.user_customization";
+option java_outer_classname = "ADempiereUserCustomization";
+
+import "proto/base_data_type.proto";
+
+package user_customization;
+
+// The User Customization service definition.
+service UserCustomization {
+	rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
+	rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {}
+	rpc ListCustomizationsLevel(ListCustomizationsLevelRequest) returns (ListCustomizationsLevelResponse) {}
+	// User Customization
+	rpc SaveWindowCustomization(SaveWindowCustomizationRequest) returns (data.Empty) {}
+	rpc SaveBrowseCustomization(SaveBrowseCustomizationRequest) returns (data.Empty) {}
+	rpc SaveProcessCustomization(SaveProcessCustomizationRequest) returns (data.Empty) {}
+}
+
+// User
+message User {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListUsersRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+}
+
+message ListUsersResponse {
+	int64 record_count = 1;
+	repeated User records = 2;
+	string next_page_token = 3;
+}
+
+// Role
+message Role {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListRolesRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+}
+
+message ListRolesResponse {
+	int64 record_count = 1;
+	repeated Role records = 2;
+	string next_page_token = 3;
+}
+
+// Level Customization
+message LevelCustomization {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListCustomizationsLevelRequest {
+	int32 page_size = 2;
+	string page_token = 3;
+	// filters
+	string search_value = 4;
+}
+
+message ListCustomizationsLevelResponse {
+	int64 record_count = 1;
+	repeated LevelCustomization records = 2;
+	string next_page_token = 3;
+}
+
+enum LevelType {
+	USER = 0;
+	ROLE = 1;
+	CLIENT = 2;
+}
+
+message FieldAttributes {
+	int32 id = 1;
+	string uuid = 2;
+	string column_name = 3;
+	string color = 4;
+	int32 display_size = 5;
+	string display_component_type = 6;
+	string component_template_code = 7;
+	// panel sequence
+	int32 sequence_panel = 8;
+	string is_default_displayed_as_panel = 9;
+	// table sequence
+	int32 sequence_table = 10;
+	string is_default_displayed_as_table = 11;
+}
+
+message SaveWindowCustomizationRequest {
+	string tab_uuid = 2;
+	LevelType level_type = 3;
+	int32 level_id = 4;
+	string level_uuid = 5;
+	repeated FieldAttributes field_attributes = 6;
+}
+
+message SaveBrowseCustomizationRequest {
+	string browse_uuid = 2;
+	LevelType level_type = 3;
+	int32 level_id = 4;
+	string level_uuid = 5;
+	repeated FieldAttributes field_attributes = 6;
+}
+
+message SaveProcessCustomizationRequest {
+	string process_uuid = 2;
+	LevelType level_type = 3;
+	int32 level_id = 4;
+	string level_uuid = 5;
+	repeated FieldAttributes field_attributes = 6;
+}

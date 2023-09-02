@@ -1,0 +1,193 @@
+/************************************************************************************
+ * Copyright (C) 2012-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.form.express_receipt";
+option java_outer_classname = "ADempiereExpressReceipt";
+
+import "proto/base_data_type.proto";
+
+package express_receipt;
+
+service ExpressReceipt {
+	rpc ListBusinessPartners(ListBusinessPartnersRequest) returns (ListBusinessPartnersResponse) {}
+	rpc ListPurchaseOrders(ListPurchaseOrdersRequest) returns (ListPurchaseOrdersResponse) {}
+	rpc ListProducts(ListProductsRequest) returns (ListProductsResponse) {}
+	// Receipt
+	rpc CreateReceipt(CreateReceiptRequest) returns (Receipt) {}
+	rpc DeleteReceipt(DeleteReceiptRequest) returns (data.Empty) {}
+	rpc ProcessReceipt(ProcessReceiptRequest) returns (Receipt) {}
+	//	Receipt Line
+	rpc CreateReceiptLine(CreateReceiptLineRequest) returns (ReceiptLine) {}
+	rpc DeleteReceiptLine(DeleteReceiptLineRequest) returns (data.Empty) {}
+	rpc UpdateReceiptLine(UpdateReceiptLineRequest) returns (ReceiptLine) {}
+	rpc ListReceiptLines(ListReceiptLinesRequest) returns (ListReceiptLinesResponse) {}
+}
+
+
+// Business Partner
+message BusinessPartner {
+	string uuid = 1;
+	int32 id = 2;
+	string value = 3;
+	string tax_id = 4;
+	string name = 5;
+	string description = 6;
+}
+
+message ListBusinessPartnersRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+}
+
+message ListBusinessPartnersResponse {
+	int64 record_count = 1;
+	repeated BusinessPartner records = 2;
+	string next_page_token = 3;
+}
+
+
+// Orders
+message ListPurchaseOrdersRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	int32 business_partner_id = 4;
+	string business_partner_uuid = 5;
+}
+
+message PurchaseOrder {
+	int32 id = 1;
+	string uuid = 2;
+	string document_no = 3;
+	int64 date_ordered = 4;
+}
+
+message ListPurchaseOrdersResponse {
+	int64 record_count = 1;
+	repeated PurchaseOrder records = 2;
+	string next_page_token = 3;
+}
+
+
+// Product
+message ListProductsRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	int32 order_id = 4;
+	string order_uuid = 5;
+	string upc = 6;
+	string sku = 7;
+	string value = 8;
+	string name = 9;
+}
+
+message Product {
+	string uuid = 1;
+	int32 id = 2;
+	string upc = 3;
+	string sku = 4;
+	string value = 5;
+	string name = 6;
+	string description = 7;
+}
+
+message ListProductsResponse {
+	int64 record_count = 1;
+	repeated Product records = 2;
+	string next_page_token = 3;
+}
+
+
+// Receipt
+message CreateReceiptRequest {
+	int32 order_id = 1;
+	string order_uuid = 2;
+	bool is_create_lines_from_order = 3;
+}
+
+message Receipt {
+	int32 id = 1;
+	string uuid = 2;
+	string document_no = 3;
+	int64 date_ordered = 4;
+	int64 movement_date = 5;
+	int32 order_id = 6;
+	string order_uuid = 7;
+	bool is_completed = 8;
+}
+
+message DeleteReceiptRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+message ProcessReceiptRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+}
+
+
+// Receipt Line
+message CreateReceiptLineRequest {
+	int32 receipt_id = 1;
+	string receipt_uuid = 2;
+	string description = 3;
+	int32 product_id = 4;
+	string product_uuid = 5;
+	data.Decimal quantity = 6;
+	bool is_quantity_from_order_line = 7;
+}
+
+message ReceiptLine {
+	int32 id = 1;
+	string uuid = 2;
+	int32 order_line_id = 3;
+	string order_line_uuid = 4;
+	Product product = 5;
+	string description = 6;
+	data.Decimal quantity = 7;
+	int32 line = 8;
+}
+
+message ListReceiptLinesRequest {
+	int32 page_size = 1;
+	string page_token = 2;
+	string search_value = 3;
+	int32 receipt_id = 4;
+	string receipt_uuid = 5;
+}
+
+message ListReceiptLinesResponse {
+	int64 record_count = 1;
+	repeated ReceiptLine records = 2;
+	string next_page_token = 3;
+}
+
+message DeleteReceiptLineRequest {
+	int32 id = 1;
+	string uuid = 2;
+}
+
+message UpdateReceiptLineRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+	data.Decimal quantity = 4;
+}

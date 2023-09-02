@@ -1,0 +1,348 @@
+/************************************************************************************
+ * Copyright (C) 2012-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.wf";
+option java_outer_classname = "ADempiereWorkflow";
+
+import "proto/base_data_type.proto";
+
+package workflow;
+
+//	Workflow management service
+service Workflow {
+	// Get Workflow
+	rpc GetWorkflow(WorkflowDefinitionRequest) returns (WorkflowDefinition) {}
+	//	List Workflow
+	rpc ListWorkflows(ListWorkflowsRequest) returns (ListWorkflowsResponse) {}
+	//	List Document Actions
+	rpc ListDocumentActions(ListDocumentActionsRequest) returns (ListDocumentActionsResponse) {}
+	//	List Document Statuses
+	rpc ListDocumentStatuses(ListDocumentStatusesRequest) returns (ListDocumentStatusesResponse) {}
+	//	Workflow Activities
+	rpc ListWorkflowActivities(ListWorkflowActivitiesRequest) returns (ListWorkflowActivitiesResponse) {}
+	rpc Process(ProcessRequest) returns (data.Empty) {}
+	rpc Forward(ForwardRequest) returns (data.Empty) {}
+	//	Run a Document Action
+	rpc RunDocumentAction(RunDocumentActionRequest) returns (data.ProcessLog) {}
+}
+
+// Object request
+message WorkflowDefinitionRequest {
+	int32 id = 2;
+	string uuid = 3;
+}
+
+// Workflow Definition Request
+message ListWorkflowsRequest {
+	string table_name = 2;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+//	Workflow Definition List
+message ListWorkflowsResponse {
+	int64 record_count = 1;
+	repeated WorkflowDefinition workflows = 2;
+	string next_page_token = 3;
+}
+
+enum DurationUnit {
+	DAY = 0;
+	HOUR = 1;
+	MINUTE = 2;
+	MONTH = 3;
+	SECOND = 4;
+	YEAR = 5;
+}
+
+enum PublishStatus {
+	RELEASED = 0;
+	TEST = 1;
+	UNDER_REVISION = 2;
+	VOID = 3;
+}
+
+// Workflow Definition
+message WorkflowDefinition {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	string help = 6;
+	string table_name = 7;
+	int32 responsible_id = 8;
+	string responsible_uuid = 9;
+	string responsible_name = 10;
+	int32 priority = 11;
+	int64 valid_from = 12;
+	bool is_default = 13;
+	bool is_valid = 14;
+	PublishStatus publish_status = 15;
+	DurationUnit duration_unit = 16;
+	WorkflowNode start_node = 17;
+	repeated WorkflowNode workflow_nodes = 18;
+}
+
+enum Action {
+	USER_CHOICE = 0;
+	DOCUMENT_ACTION = 1;
+	SUB_WORKFLOW = 2;
+	EMAIL = 3;
+	APPS_PROCESS = 4;
+	SMART_VIEW = 5;
+	APPS_REPORT = 6;
+	SMART_BROWSE = 7;
+	APPS_TASK = 8;
+	SET_VARIABLE = 9;
+	USER_WINDOW = 10;
+	USER_FORM = 11;
+	WAIT_SLEEP = 12;
+}
+
+// Workflow Node
+message WorkflowNode {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+	string help = 6;
+	int32 responsible_id = 7;
+	string responsible_uuid = 8;
+	string responsible_name = 9;
+	string document_action_value = 10;
+	string document_action_name = 11;
+	int32 priority = 12;
+	Action action = 13;
+	repeated WorkflowTransition transitions = 14;
+}
+
+//	Workflow Transition
+message WorkflowTransition {
+	int32 id = 1;
+	string uuid = 2;
+	string description = 3;
+	bool is_std_user_workflow = 4;
+	int32 sequence = 5;
+	int32 node_next_id = 6;
+	string node_next_uuid = 7;
+	string node_next_name = 8;
+	repeated WorkflowCondition workflow_conditions = 9;
+}
+
+enum ConditionType {
+	AND = 0;
+	OR = 1;
+}
+
+enum Operation {
+	EQUAL = 0;
+	NOT_EQUAL = 1;
+	LIKE = 2;
+	GREATER = 4;
+	GREATER_EQUAL = 5;
+	LESS = 6;
+	LESS_EQUAL = 7;
+	BETWEEN = 8;
+	SQL = 9;
+}
+
+//	Condition for transition
+message WorkflowCondition {
+	int32 id = 1;
+	string uuid = 2;
+	int32 sequence = 3;
+	string column_name = 4;
+	string value = 5;
+	ConditionType condition_type = 6;
+	Operation operation = 7;
+}
+
+// Valid Document Actions Request
+message ListDocumentActionsRequest {
+	string table_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	string document_status = 5;
+	string document_action = 6;
+	int32 page_size = 7;
+	string page_token = 8;
+}
+
+//	Document Actions List
+message ListDocumentActionsResponse {
+	int64 record_count = 1;
+	repeated data.DocumentAction document_actions = 2;
+	data.DocumentAction default_document_action = 3;
+	string next_page_token = 4;
+}
+
+// Valid Document Status Request
+message ListDocumentStatusesRequest {
+	string table_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	string document_status = 5;
+	int32 page_size = 6;
+	string page_token = 7;
+}
+
+//	Document Actions List
+message ListDocumentStatusesResponse {
+	int64 record_count = 1;
+	repeated data.DocumentStatus document_statuses = 2;
+	string next_page_token = 3;
+}
+
+
+// Workflow Activities Request
+message ListWorkflowActivitiesRequest {
+	string user_uuid = 2;
+	int32 page_size = 4;
+	string page_token = 5;
+}
+
+//	Workflow Activities Response
+message ListWorkflowActivitiesResponse {
+	int64 record_count = 1;
+	repeated WorkflowActivity activities = 2;
+	string next_page_token = 3;
+}
+
+// Zoom Window
+message ZoomWindow {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	bool is_sales_transaction = 5;
+	bool is_active = 6;
+}
+
+//	Workflow Activity
+message WorkflowActivity {
+	int32 id = 1;
+	string uuid = 2;
+	string table_name = 3;
+	int32 record_id = 4;
+	string record_uuid = 5;
+	string user_uuid = 6;
+	string user_name = 7;
+	int32 responsible_id = 8;
+	string responsible_uuid = 9;
+	string responsible_name = 10;
+	string text_message = 11;
+	bool processed = 12;
+	int32 priority = 13;
+	int64 created = 14;
+	int64 last_alert = 15;
+	WorkflowProcess workflow_process = 16;
+	WorkflowDefinition workflow = 17;
+	WorkflowNode node = 18;
+	repeated ZoomWindow zoom_windows = 19;
+}
+
+enum WorkflowState {
+	RUNNING = 0;
+	COMPLETED = 1;
+	ABORTED = 2;
+	TERMINATED = 3;
+	SUSPENDED = 4;
+	NOT_STARTED = 5;
+}
+
+enum Priority {
+	URGENT = 0;
+	HIGH = 1;
+	MEDIUM = 2;
+	LOW = 3;
+	MINOR = 4;
+}
+
+// Workflow Process
+message WorkflowProcess {
+	string process_uuid = 1;
+	string workflow_uuid = 2;
+	string workflow_name = 3;
+	int32 id = 4;
+	string uuid = 5;
+	string table_name = 6;
+	string user_uuid = 7;
+	string user_name = 8;
+	int32 responsible_id = 9;
+	string responsible_uuid = 10;
+	string responsible_name = 11;
+	string text_message = 12;
+	bool processed = 13;
+	WorkflowState workflow_state = 14;
+	Priority priority = 15;
+	repeated WorkflowEvent workflow_events = 16;
+	int64 log_date = 17;
+}
+
+enum EventType {
+	PROCESS_CREATED = 0;
+	PROCESS_COMPLETED = 1;
+	STATE_CHANGED = 2;
+}
+
+// Workflow Event Audit
+message WorkflowEvent {
+	string node_uuid = 1;
+	string node_name = 2;
+	int32 id = 3;
+	string uuid = 4;
+	string table_name = 5;
+	string user_uuid = 6;
+	string user_name = 7;
+	int32 responsible_id = 8;
+	string responsible_uuid = 9;
+	string responsible_name = 10;
+	string text_message = 11;
+	int64 time_elapsed = 12;
+	string attribute_name = 13;
+	string old_value = 14;
+	string new_value = 15;
+	WorkflowState workflow_state = 16;
+	EventType event_type = 17;
+	int64 log_date = 18;
+}
+
+// Run Document Action Request
+message RunDocumentActionRequest {
+	string table_name = 2;
+	string uuid = 3;
+	int32 id = 4;
+	string document_action = 5;
+}
+
+message ProcessRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string message = 4;
+	bool is_approved = 5;
+}
+
+message ForwardRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string message = 4;
+	int32 user_id = 5;
+	string user_uuid = 6;
+}

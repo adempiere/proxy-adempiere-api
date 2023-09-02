@@ -1,0 +1,270 @@
+/************************************************************************************
+ * Copyright (C) 2018-2022 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.issue_management";
+option java_outer_classname = "ADempiereIssueManagement";
+
+import "proto/base_data_type.proto";
+
+package issue_management;
+
+// The Issue Management service definition.
+service IssueManagement {
+	// Request Type
+	rpc ListRequestTypes(ListRequestTypesRequest) returns (ListRequestTypesResponse) {}
+	// Sales Representative
+	rpc ListSalesRepresentatives(ListSalesRepresentativesRequest) returns (ListSalesRepresentativesResponse) {}
+	// Priority
+	rpc ListPriorities(ListPrioritiesRequest) returns (ListPrioritiesResponse) {}
+	// Status
+	rpc ListStatuses(ListStatusesRequest) returns (ListStatusesResponse) {}
+	// Issue
+	rpc ExistsIssues(ExistsIssuesRequest) returns (ExistsIssuesResponse) {}
+	rpc ListIssues(ListIssuesRequest) returns (ListIssuesReponse) {}
+	rpc CreateIssue(CreateIssueRequest) returns (Issue) {}
+	rpc UpdateIssue(UpdateIssueRequest) returns (Issue) {}
+	rpc DeleteIssue(DeleteIssueRequest) returns (data.Empty) {}
+	// Issue Comments
+	rpc ListIssueComments(ListIssueCommentsRequest) returns (ListIssueCommentsReponse) {}
+	rpc CreateIssueComment(CreateIssueCommentRequest) returns (IssueComment) {}
+	rpc UpdateIssueComment(UpdateIssueCommentRequest) returns (IssueComment) {}
+	rpc DeleteIssueComment(DeleteIssueCommentRequest) returns (data.Empty) {}
+}
+
+// Request Type Definition
+message RequestType {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	int32 due_date_tolerance = 5;
+	Status default_status = 6;
+}
+
+message ListRequestTypesRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+}
+
+message ListRequestTypesResponse {
+	int64 record_count = 1;
+	repeated RequestType records = 2;
+	string next_page_token = 3;
+}
+
+// User (or Sales Representative) Definition
+message User {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+	string avatar = 5;
+}
+
+message ListSalesRepresentativesRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+}
+
+message ListSalesRepresentativesResponse {
+	int64 record_count = 1;
+	repeated User records = 2;
+	string next_page_token = 3;
+}
+
+// Priority
+message Priority {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+message ListPrioritiesRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+}
+
+message ListPrioritiesResponse {
+	int64 record_count = 1;
+	repeated Priority records = 2;
+	string next_page_token = 3;
+}
+
+// Status
+message Status {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string description = 4;
+}
+
+message ListStatusesRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+	int32 request_type_id = 4;
+	string request_type_uuid = 5;
+}
+
+message ListStatusesResponse {
+	int64 record_count = 1;
+	repeated Status records = 2;
+	string next_page_token = 3;
+}
+
+message DueType {
+	int32 id = 1;
+	string uuid = 2;
+	string value = 3;
+	string name = 4;
+	string description = 5;
+}
+
+// Issue Definition
+message Issue {
+	int32 id = 1;
+	string uuid = 2;
+	string document_no = 3;
+	string subject = 4;
+	string summary = 5;
+	int64 created = 6;
+	int64 last_updated = 7;
+	RequestType request_type = 8;
+	User user = 9;
+	User sales_representative = 10;
+	Status status = 11;
+	Priority priority = 12;
+	int64 date_next_action = 13;
+	DueType due_type = 14;
+}
+
+message ExistsIssuesRequest {
+	string table_name = 2;
+	int32 record_id = 3;
+	string record_uuid = 4;
+}
+
+message ExistsIssuesResponse {
+	int32 record_count = 1;
+}
+
+message ListIssuesRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+	string table_name = 4;
+	int32 record_id = 5;
+	string record_uuid = 6;
+}
+
+message ListIssuesReponse {
+	int64 record_count = 1;
+	repeated Issue records = 2;
+	string next_page_token = 3;
+}
+
+message CreateIssueRequest {
+	string table_name = 2;
+	int32 record_id = 3;
+	string record_uuid = 4;
+	string subject = 5;
+	string summary = 6;
+	int32 request_type_id = 7;
+	string request_type_uuid = 8;
+	int32 sales_representative_id = 9;
+	string sales_representative_uuid = 10;
+	int32 status_id = 11;
+	string status_uuid = 12;
+	string priority_value = 13;
+	int64 date_next_action = 14;
+}
+
+message UpdateIssueRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string subject = 5;
+	string summary = 6;
+	int32 request_type_id = 7;
+	string request_type_uuid = 8;
+	int32 sales_representative_id = 9;
+	string sales_representative_uuid = 10;
+	int32 status_id = 11;
+	string status_uuid = 12;
+	string priority_value = 13;
+	int64 date_next_action = 14;
+}
+
+message DeleteIssueRequest {
+	int32 id = 2;
+	string uuid = 3;
+}
+
+enum IssueCommentType {
+	COMMENT = 0;
+	LOG = 1;
+}
+
+// Issue Comment Definition
+message IssueComment {
+	int32 id = 1;
+	string uuid = 2;
+	string result = 3;
+	int64 created = 4;
+	User user = 5;
+	IssueCommentType issue_comment_type = 6;
+	// log fields
+	string label = 7;
+	data.Value new_value = 8;
+	string displayed_value = 9;
+}
+
+message ListIssueCommentsRequest {
+	string search_value = 1;
+	int32 page_size = 2;
+	string page_token = 3;
+	int32 issue_id = 4;
+	string issue_uuid = 5;
+}
+
+message ListIssueCommentsReponse {
+	int64 record_count = 1;
+	repeated IssueComment records = 2;
+	string next_page_token = 3;
+}
+
+message CreateIssueCommentRequest {
+	int32 issue_id = 2;
+	string issue_uuid = 3;
+	string result = 4;
+}
+
+message UpdateIssueCommentRequest {
+	int32 id = 2;
+	string uuid = 3;
+	string result = 4;
+}
+
+message DeleteIssueCommentRequest {
+	int32 id = 2;
+	string uuid = 3;
+}

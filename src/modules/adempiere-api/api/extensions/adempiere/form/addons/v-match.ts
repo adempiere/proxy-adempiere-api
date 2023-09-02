@@ -18,9 +18,9 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 
 import {
   getMatchesTypeFromGRPC
-} from '@adempiere/grpc-api/src/utils/matchPoReceiptInvocice';
-import { getDecimalFromGRPC } from '@adempiere/grpc-api/src/utils/baseDataTypeFromGRPC.js';
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+} from '../.././grpc-api/utils/matchPoReceiptInvocice';
+import { getDecimalFromGRPC } from '../.././grpc-api/utils/baseDataTypeFromGRPC.js';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 
 function getProductFromGRPC (productToConvert) {
   if (!productToConvert) {
@@ -64,7 +64,7 @@ function getListMatcheFromGRPC (matchedFrom) {
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/matchPoReceiptInvoice');
+  const ServiceApi = require('../.././grpc-api/services/matchPoReceiptInvoice');
   const service = new ServiceApi(config)
 
   api.get('/', (req, res) => {

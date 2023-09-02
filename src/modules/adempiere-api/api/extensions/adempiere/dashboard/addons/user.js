@@ -16,14 +16,14 @@
 import { Router } from 'express';
 import {
   getFavoriteFromGRPC
-} from '@adempiere/grpc-api/src/utils/dashboardingFromGRPC';
+} from '../.././grpc-api/utils/dashboardingFromGRPC';
 import {
   getRecentItemFromGRPC
-} from '@adempiere/grpc-api/src/utils/logsFromGRPC';
+} from '../.././grpc-api/utils/logsFromGRPC';
 
 module.exports = ({ config }) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/dashboarding')
+  const ServiceApi = require('../.././grpc-api/services/dashboarding')
   const service = new ServiceApi(config)
 
   /**
@@ -80,7 +80,7 @@ module.exports = ({ config }) => {
    */
   api.get('/recent-items', (req, res) => {
     if (req.query) {
-      const ServiceApi = require('@adempiere/grpc-api/src/services/logs')
+      const ServiceApi = require('../.././grpc-api/services/logs')
       const service = new ServiceApi(config)
 
       service.listRecentItems({

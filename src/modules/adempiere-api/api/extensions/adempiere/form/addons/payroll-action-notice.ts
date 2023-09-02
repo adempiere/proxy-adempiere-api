@@ -19,12 +19,12 @@ import { ExtensionAPIFunctionParameter } from '@storefront-api/lib/module';
 import { convertEntitiesListFromGRPC } from '../../util/convertData';
 import {
   convertEntityFromGRPC
-} from '@adempiere/grpc-api/lib/convertBaseDataType';
-import { getLookupItemFromGRPC } from '@adempiere/grpc-api/src/utils/userInterfaceFromGRPC';
+} from '../.././grpc-api/lib/convertBaseDataType';
+import { getLookupItemFromGRPC } from '../.././grpc-api/utils/userInterfaceFromGRPC';
 
 module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
   const api = Router();
-  const ServiceApi = require('@adempiere/grpc-api/src/services/payrollActionNotice')
+  const ServiceApi = require('../.././grpc-api/services/payrollActionNotice')
   const service = new ServiceApi(config);
 
   api.get('/list-payroll-process', (req, res) => {

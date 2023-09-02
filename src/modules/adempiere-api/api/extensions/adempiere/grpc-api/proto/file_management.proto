@@ -1,0 +1,161 @@
+/************************************************************************************
+ * Copyright (C) 2018-2023 E.R.P. Consultores y Asociados, C.A.                     *
+ * Contributor(s): Edwin Betancourt EdwinBetanc0urt@outlook.com                     *
+ * This program is free software: you can redistribute it and/or modify             *
+ * it under the terms of the GNU General Public License as published by             *
+ * the Free Software Foundation, either version 2 of the License, or                *
+ * (at your option) any later version.                                              *
+ * This program is distributed in the hope that it will be useful,                  *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                   *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the                     *
+ * GNU General Public License for more details.                                     *
+ * You should have received a copy of the GNU General Public License                *
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.            *
+ ************************************************************************************/
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "org.spin.backend.grpc.file_management";
+option java_outer_classname = "ADempiereFileManagement";
+
+import "proto/base_data_type.proto";
+
+package file_management;
+
+// The File Management service definition.
+service FileManagement {
+	//	Resource/File
+	rpc LoadResource(stream LoadResourceRequest) returns (ResourceReference) {}
+	rpc GetResource(GetResourceRequest) returns (stream Resource) {}
+	//	Attachment
+	rpc SetAttachmentDescription(SetAttachmentDescriptionRequest) returns (Attachment) {}
+	rpc ExistsAttachment(ExistsAttachmentRequest) returns (ExistsAttachmentResponse) {}
+	rpc GetAttachment(GetAttachmentRequest) returns (Attachment) {}
+	//	Resource Reference
+	rpc SetResourceReference(SetResourceReferenceRequest) returns (ResourceReference) {}
+	rpc SetResourceReferenceDescription(SetResourceReferenceDescriptionRequest) returns (ResourceReference) {}
+	rpc GetResourceReference(GetResourceReferenceRequest) returns (ResourceReference) {}
+	rpc DeleteResourceReference(DeleteResourceReferenceRequest) returns (data.Empty) {}
+}
+
+// Resource Chunk
+message Resource {
+	bytes data = 1;
+}
+
+// Attachment
+message Attachment {
+	int32 id = 1;
+	string uuid = 2;
+	string title = 3;
+	string text_message = 4;
+	repeated ResourceReference resource_references = 5;
+}
+
+enum ResourceType {
+	ATTACHMENT = 0; // Default
+	IMAGE = 1;
+	ARCHIVE = 2;
+}
+
+//	Resource reference
+message ResourceReference {
+	int32 id = 1;
+	string uuid = 2;
+	string name = 3;
+	string file_name = 4;
+	data.Decimal file_size = 5;
+	string description = 6;
+	string text_message = 7;
+	string content_type = 8;
+	int64 created = 9;
+	int64 updated = 10;
+	ResourceType resource_type = 11;
+	int32 resource_id = 12; // attachment, image, archive
+}
+
+// Request for upload resource
+message LoadResourceRequest {
+	bytes data = 1;
+	int32 resource_id = 2;
+	string resource_uuid = 3;
+	data.Decimal file_size = 4;
+}
+
+enum Operation {
+	RESIZE = 0;
+	CROP = 1;
+	FIX = 2;
+	IDENTIFY = 3;
+}
+// Request for download resource
+message GetResourceRequest {
+	int32 resource_id = 1;
+	string resource_uuid = 2;
+	string resource_name = 3;
+	int64 width = 4;
+	int64 height = 5;
+	//	Operation
+	Operation operation = 6;
+}
+
+// Request for download resource reference
+message GetResourceReferenceRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string resource_name = 3;
+	int32 image_id = 4;
+	string image_uuid = 5;
+	int32 archive_id = 6;
+	string archive_uuid = 7;
+}
+
+// Request attachment from table and record uuid
+message GetAttachmentRequest {
+	string table_name = 1;
+	int32 record_id = 2;
+	string record_uuid = 3;
+}
+
+message SetAttachmentDescriptionRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string text_message = 3;
+}
+
+message SetResourceReferenceRequest {
+	ResourceType resource_type = 1;
+	int32 resource_id = 2; // attachment, image, archive
+	string table_name = 3;
+	int32 record_id = 4;
+	string record_uuid = 5;
+	string file_name = 6;
+	int32 file_size = 7;
+	string description = 8;
+	string text_message = 9;
+}
+
+message SetResourceReferenceDescriptionRequest {
+	int32 id = 1;
+	string uuid = 2;
+	string file_name = 3;
+	string description = 4;
+	string text_message = 5;
+}
+
+message DeleteResourceReferenceRequest {
+	int32 resource_id = 1;
+	string resource_uuid = 2;
+	string resource_name = 3;
+}
+
+message ExistsAttachmentRequest {
+	string table_name = 1;
+	int32 record_id = 2;
+	string record_uuid = 3;
+}
+
+message ExistsAttachmentResponse {
+	int32 record_count = 1;
+}
