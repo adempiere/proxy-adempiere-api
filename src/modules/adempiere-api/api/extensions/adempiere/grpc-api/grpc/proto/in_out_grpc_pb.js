@@ -21,33 +21,32 @@ var proto_in_out_pb = require('../proto/in_out_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_in_out_ListInOutInfoRequest(arg) {
+function serialize_in_out_ListInOutInfoRequest (arg) {
   if (!(arg instanceof proto_in_out_pb.ListInOutInfoRequest)) {
     throw new Error('Expected argument of type in_out.ListInOutInfoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_in_out_ListInOutInfoRequest(buffer_arg) {
+function deserialize_in_out_ListInOutInfoRequest (buffer_arg) {
   return proto_in_out_pb.ListInOutInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The in-out service definition.
 var InOutService = exports.InOutService = {
   // List In-Out Info Request
-listInOutInfo: {
+  listInOutInfo: {
     path: '/in_out.InOut/ListInOutInfo',
     requestStream: false,
     responseStream: false,
@@ -56,8 +55,8 @@ listInOutInfo: {
     requestSerialize: serialize_in_out_ListInOutInfoRequest,
     requestDeserialize: deserialize_in_out_ListInOutInfoRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
-  },
+    responseDeserialize: deserialize_data_ListEntitiesResponse
+  }
 };
 
 exports.InOutClient = grpc.makeGenericClientConstructor(InOutService);

@@ -21,33 +21,32 @@ var proto_order_pb = require('../proto/order_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_order_ListOrderInfoRequest(arg) {
+function serialize_order_ListOrderInfoRequest (arg) {
   if (!(arg instanceof proto_order_pb.ListOrderInfoRequest)) {
     throw new Error('Expected argument of type order.ListOrderInfoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_order_ListOrderInfoRequest(buffer_arg) {
+function deserialize_order_ListOrderInfoRequest (buffer_arg) {
   return proto_order_pb.ListOrderInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The order service definition.
 var OrderService = exports.OrderService = {
   // List Order Info Request
-listOrderInfo: {
+  listOrderInfo: {
     path: '/order.Order/ListOrderInfo',
     requestStream: false,
     responseStream: false,
@@ -56,8 +55,8 @@ listOrderInfo: {
     requestSerialize: serialize_order_ListOrderInfoRequest,
     requestDeserialize: deserialize_order_ListOrderInfoRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
-  },
+    responseDeserialize: deserialize_data_ListEntitiesResponse
+  }
 };
 
 exports.OrderClient = grpc.makeGenericClientConstructor(OrderService);

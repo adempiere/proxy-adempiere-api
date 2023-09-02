@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js')
 
 class RecordManagement {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class RecordManagement {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class RecordManagement {
   }
 
   // Init connection
-  initRecordManagementService() {
+  initRecordManagementService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/record_management_grpc_pb.js');
     this.recordManagement = new services.RecordManagementClient(
@@ -54,11 +53,11 @@ class RecordManagement {
   }
 
   // Get Record Management Service
-  getRecordManagement() {
+  getRecordManagement () {
     return this.recordManagement;
   }
 
-  toggleIsActiveRecords({
+  toggleIsActiveRecords ({
     token,
     //  DSL
     tableName,
@@ -95,7 +94,7 @@ class RecordManagement {
         recordsUuidsList = JSON.parse(recordsUuidsList);
       }
       recordsUuidsList.forEach(uuidItem => {
-        request.addRecordsUuids(uuidItem );
+        request.addRecordsUuids(uuidItem);
       });
     }
 
@@ -109,7 +108,6 @@ class RecordManagement {
       callback
     );
   }
-
 }
 
 module.exports = RecordManagement;

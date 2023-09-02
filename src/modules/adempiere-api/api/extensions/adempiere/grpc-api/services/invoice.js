@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js');
 
 class Invoice {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Invoice {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Invoice {
   }
 
   // Init connection
-  initInvoiceService() {
+  initInvoiceService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/invoice_grpc_pb');
     this.invoice = new services.InvoiceClient(
@@ -54,11 +53,11 @@ class Invoice {
   }
 
   // Get Invoice Service
-  getInvoiceService() {
+  getInvoiceService () {
     return this.invoice;
   }
 
-  listInvoiceInfo({
+  listInvoiceInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class Invoice {
       callback
     );
   }
-
 }
 
 module.exports = Invoice;

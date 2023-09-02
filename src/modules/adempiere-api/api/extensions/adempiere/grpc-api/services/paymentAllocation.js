@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class PaymentAllocation {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class PaymentAllocation {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class PaymentAllocation {
   }
 
   // Init connection
-  initPaymentAllocationService() {
+  initPaymentAllocationService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/payment_allocation_grpc_pb.js');
     this.paymentAllocation = new services.PaymentAllocationClient(
@@ -54,10 +53,9 @@ class PaymentAllocation {
   }
 
   // Get Payment Allocation Service
-  getPaymentAllocationService() {
+  getPaymentAllocationService () {
     return this.paymentAllocation;
   }
-
 
   /**
    * Get List Business Partners
@@ -66,7 +64,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBusinessPartners({
+  listBusinessPartners ({
     token,
     // DSL
     searchValue,
@@ -94,7 +92,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Organizations
    * @param {string} token
@@ -102,7 +99,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listOrganizations({
+  listOrganizations ({
     token,
     // DSL
     searchValue,
@@ -130,7 +127,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Currencies
    * @param {string} token
@@ -138,7 +134,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCurrencies({
+  listCurrencies ({
     token,
     // DSL
     searchValue,
@@ -166,7 +162,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Transaction Types
    * @param {string} token
@@ -174,7 +169,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listTransactionTypes({
+  listTransactionTypes ({
     token,
     // DSL
     searchValue,
@@ -202,7 +197,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Payments
    * @param {string} token
@@ -210,7 +204,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPayments({
+  listPayments ({
     token,
     // DSL
     searchValue,
@@ -267,7 +261,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Invoices
    * @param {string} token
@@ -275,7 +268,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listInvoices({
+  listInvoices ({
     token,
     // DSL
     searchValue,
@@ -331,7 +324,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Charges
    * @param {string} token
@@ -339,7 +331,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCharges({
+  listCharges ({
     token,
     // DSL
     searchValue,
@@ -367,7 +359,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Get List Transaction Organizations
    * @param {string} token
@@ -375,7 +366,7 @@ class PaymentAllocation {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listTransactionOrganizations({
+  listTransactionOrganizations ({
     token,
     // DSL
     searchValue,
@@ -403,7 +394,6 @@ class PaymentAllocation {
     );
   }
 
-
   /**
    * Process Payment Allocation
    * @param {string} token
@@ -419,7 +409,7 @@ class PaymentAllocation {
    * @param {Array} paymentSelectionsList
    * @param {Array} invoiceSelectionList
    */
-  process({
+  process ({
     token,
     // DSL
     businessPartnerId,
@@ -456,7 +446,7 @@ class PaymentAllocation {
     request.setTransactionOrganizationId(
       getValidInteger(transactionOrganizationId)
     );
-    
+
     const { getTimestamp } = require('.././utils/valueUtils.js');
     if (!isEmptyValue(date)) {
       request.setDate(
@@ -520,7 +510,6 @@ class PaymentAllocation {
       callback
     );
   }
-
 }
 
 module.exports = PaymentAllocation;

@@ -19,7 +19,7 @@ export let modules: StorefrontApiModule[] = [
   // DefaultImgModule(),
   // SampleApiModule,
   // TemplateModule,
-  ADempiereApi,
+  ADempiereApi
   // ADempiereStore
 ]
 

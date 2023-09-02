@@ -21,7 +21,7 @@
  * @param {string} keyName, used in array pairs, default value is 'key'
  * @param {string} valueName, used in array pairs, default value is 'value'
  */
-function getValuesMapFromGRPC({ mapToConvert, returnType = 'map', keyName = 'key', valueName = 'value' }) {
+function getValuesMapFromGRPC ({ mapToConvert, returnType = 'map', keyName = 'key', valueName = 'value' }) {
   let returnValues;
   const { getValueFromGRPC } = require('./baseDataTypeFromGRPC.js');
   const { isEmptyValue } = require('./valueUtils.js');

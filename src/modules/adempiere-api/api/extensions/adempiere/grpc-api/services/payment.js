@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js')
 
 class Payment {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Payment {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Payment {
   }
 
   // Init connection
-  initPaymentService() {
+  initPaymentService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/payment_grpc_pb.js');
     this.payment = new services.PaymentClient(
@@ -54,11 +53,11 @@ class Payment {
   }
 
   // Get Payment Service
-  getPaymentService() {
+  getPaymentService () {
     return this.payment;
   }
 
-  listPaymentInfo({
+  listPaymentInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class Payment {
       callback
     );
   }
-
 }
 
 module.exports = Payment;

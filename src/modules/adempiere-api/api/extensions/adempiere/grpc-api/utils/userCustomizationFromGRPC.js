@@ -24,7 +24,7 @@ const stubFile = require('.././grpc/proto/user_customization_pb.js');
     ROLE = 1;
     CLIENT = 2;
  */
-function getLevelType({ key, value }) {
+function getLevelType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js');
   const { LevelType } = stubFile;
 
@@ -35,7 +35,7 @@ function getLevelType({ key, value }) {
   });
 }
 
-function getUserFromGRPC(userToConvert) {
+function getUserFromGRPC (userToConvert) {
   if (!userToConvert) {
     return undefined;
   }
@@ -48,7 +48,7 @@ function getUserFromGRPC(userToConvert) {
   };
 }
 
-function getRoleFromGRPC(roleToConvert) {
+function getRoleFromGRPC (roleToConvert) {
   if (!roleToConvert) {
     return undefined;
   }
@@ -61,13 +61,13 @@ function getRoleFromGRPC(roleToConvert) {
   };
 }
 
-function getCustomizationLevelFromGRPC(customizationLevel) {
+function getCustomizationLevelFromGRPC (customizationLevel) {
   if (!customizationLevel) {
     return undefined;
   }
   return {
     id: customizationLevel.getId(),
-    uuid: levelCustomizationToConvert.getUuid(),
+    uuid: customizationLevel.getUuid(),
     value: customizationLevel.getValue(),
     name: customizationLevel.getName(),
     description: customizationLevel.getDescription()

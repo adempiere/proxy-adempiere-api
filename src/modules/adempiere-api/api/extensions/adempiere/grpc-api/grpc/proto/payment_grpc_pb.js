@@ -21,33 +21,32 @@ var proto_payment_pb = require('../proto/payment_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payment_ListPaymentInfoRequest(arg) {
+function serialize_payment_ListPaymentInfoRequest (arg) {
   if (!(arg instanceof proto_payment_pb.ListPaymentInfoRequest)) {
     throw new Error('Expected argument of type payment.ListPaymentInfoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payment_ListPaymentInfoRequest(buffer_arg) {
+function deserialize_payment_ListPaymentInfoRequest (buffer_arg) {
   return proto_payment_pb.ListPaymentInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The payment service definition.
 var PaymentService = exports.PaymentService = {
   // List Payment Info Request
-listPaymentInfo: {
+  listPaymentInfo: {
     path: '/payment.Payment/ListPaymentInfo',
     requestStream: false,
     responseStream: false,
@@ -56,8 +55,8 @@ listPaymentInfo: {
     requestSerialize: serialize_payment_ListPaymentInfoRequest,
     requestDeserialize: deserialize_payment_ListPaymentInfoRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
-  },
+    responseDeserialize: deserialize_data_ListEntitiesResponse
+  }
 };
 
 exports.PaymentClient = grpc.makeGenericClientConstructor(PaymentService);

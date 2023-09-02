@@ -28,7 +28,7 @@ export default ({ config, db, service }) => {
         firstName: req.body.customer.firstname,
         lastName: req.body.customer.lastname,
         password: req.body.password
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -101,7 +101,7 @@ export default ({ config, db, service }) => {
       service.login({
         user: req.body.username,
         password: req.body.password
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -147,7 +147,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.resetPassword({
         email: req.body.email
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -174,7 +174,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.getCustomer({
         token: req.query.token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -248,7 +248,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.listOrders({
         token: req.query.token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -840,7 +840,7 @@ export default ({ config, db, service }) => {
             address4: street[3]
           }
         })
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -909,7 +909,7 @@ export default ({ config, db, service }) => {
         token: req.query.token,
         currentPassword: req.body.currentPassword,
         newPassword: req.body.newPassword
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

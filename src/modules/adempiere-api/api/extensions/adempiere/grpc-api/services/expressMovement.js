@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class ExpressMovement {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class ExpressMovement {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class ExpressMovement {
   }
 
   // Init connection
-  initExpressMovementService() {
+  initExpressMovementService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/express_movement_grpc_pb.js');
     this.expressMovement = new services.ExpressMovementClient(
@@ -54,10 +53,9 @@ class ExpressMovement {
   }
 
   // Get Express Movement Service
-  getExpressMovementService() {
+  getExpressMovementService () {
     return this.expressMovement;
   }
-
 
   /**
    * Get List Warehouses
@@ -66,7 +64,7 @@ class ExpressMovement {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listWarehouses({
+  listWarehouses ({
     token,
     // DSL
     searchValue,
@@ -94,8 +92,6 @@ class ExpressMovement {
     );
   }
 
-
-
   /**
    * Get Product
    * @param {string} token
@@ -105,10 +101,10 @@ class ExpressMovement {
    * @param {string} value
    * @param {string} name
    */
-  listProducts({
+  listProducts ({
     token,
     // DSL
-    searchValue ,
+    searchValue,
     upc,
     sku,
     value,
@@ -141,14 +137,13 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Create Movement
    * @param {string} token
    * @param {number} orderId
    * @param {string} orderUuid
    */
-  createMovement({
+  createMovement ({
     token
   }, callback) {
     const { CreateMovementRequest } = this.stubFile;
@@ -165,14 +160,13 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Delete Movement
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteMovement({
+  deleteMovement ({
     token,
     // DSL
     id,
@@ -197,7 +191,6 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Process Movement
    * @param {string} token
@@ -205,7 +198,7 @@ class ExpressMovement {
    * @param {string} uuid
    * @param {string} description
    */
-  processMovement({
+  processMovement ({
     token,
     // DSL
     id,
@@ -232,7 +225,6 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Create Movement Line
    * @param {string} token
@@ -243,7 +235,7 @@ class ExpressMovement {
    * @param {string} productUuid
    * @param {number} quantity
    */
-  createMovementLine({
+  createMovementLine ({
     token,
     // DSL
     movementId,
@@ -294,7 +286,6 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * List Movement Lines
    * @param {string} token
@@ -304,7 +295,7 @@ class ExpressMovement {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listMovementLines({
+  listMovementLines ({
     token,
     // DSL
     movementId,
@@ -339,14 +330,13 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Delete Movement Line
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteMovementLine({
+  deleteMovementLine ({
     token,
     // DSL
     id,
@@ -371,7 +361,6 @@ class ExpressMovement {
     );
   }
 
-
   /**
    * Update Movement Line
    * @param {string} token
@@ -380,7 +369,7 @@ class ExpressMovement {
    * @param {string} description
    * @param {number} quantity
    */
-  updateMovementLine({
+  updateMovementLine ({
     token,
     // DSL
     id,
@@ -412,8 +401,6 @@ class ExpressMovement {
       callback
     );
   }
-
-
 }
 
 module.exports = ExpressMovement;

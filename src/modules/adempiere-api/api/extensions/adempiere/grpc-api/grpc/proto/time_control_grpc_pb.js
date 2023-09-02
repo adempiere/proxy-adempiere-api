@@ -21,99 +21,98 @@ var proto_time_control_pb = require('../proto/time_control_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 
-function serialize_data_Empty(arg) {
+function serialize_data_Empty (arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {
     throw new Error('Expected argument of type data.Empty');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_Empty(buffer_arg) {
+function deserialize_data_Empty (buffer_arg) {
   return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_ConfirmResourceAssignmentRequest(arg) {
+function serialize_time_control_ConfirmResourceAssignmentRequest (arg) {
   if (!(arg instanceof proto_time_control_pb.ConfirmResourceAssignmentRequest)) {
     throw new Error('Expected argument of type time_control.ConfirmResourceAssignmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_ConfirmResourceAssignmentRequest(buffer_arg) {
+function deserialize_time_control_ConfirmResourceAssignmentRequest (buffer_arg) {
   return proto_time_control_pb.ConfirmResourceAssignmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_CreateResourceAssignmentRequest(arg) {
+function serialize_time_control_CreateResourceAssignmentRequest (arg) {
   if (!(arg instanceof proto_time_control_pb.CreateResourceAssignmentRequest)) {
     throw new Error('Expected argument of type time_control.CreateResourceAssignmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_CreateResourceAssignmentRequest(buffer_arg) {
+function deserialize_time_control_CreateResourceAssignmentRequest (buffer_arg) {
   return proto_time_control_pb.CreateResourceAssignmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_DeleteResourceAssignmentRequest(arg) {
+function serialize_time_control_DeleteResourceAssignmentRequest (arg) {
   if (!(arg instanceof proto_time_control_pb.DeleteResourceAssignmentRequest)) {
     throw new Error('Expected argument of type time_control.DeleteResourceAssignmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_DeleteResourceAssignmentRequest(buffer_arg) {
+function deserialize_time_control_DeleteResourceAssignmentRequest (buffer_arg) {
   return proto_time_control_pb.DeleteResourceAssignmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_ListResourcesAssignmentRequest(arg) {
+function serialize_time_control_ListResourcesAssignmentRequest (arg) {
   if (!(arg instanceof proto_time_control_pb.ListResourcesAssignmentRequest)) {
     throw new Error('Expected argument of type time_control.ListResourcesAssignmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_ListResourcesAssignmentRequest(buffer_arg) {
+function deserialize_time_control_ListResourcesAssignmentRequest (buffer_arg) {
   return proto_time_control_pb.ListResourcesAssignmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_ListResourcesAssignmentResponse(arg) {
+function serialize_time_control_ListResourcesAssignmentResponse (arg) {
   if (!(arg instanceof proto_time_control_pb.ListResourcesAssignmentResponse)) {
     throw new Error('Expected argument of type time_control.ListResourcesAssignmentResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_ListResourcesAssignmentResponse(buffer_arg) {
+function deserialize_time_control_ListResourcesAssignmentResponse (buffer_arg) {
   return proto_time_control_pb.ListResourcesAssignmentResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_ResourceAssignment(arg) {
+function serialize_time_control_ResourceAssignment (arg) {
   if (!(arg instanceof proto_time_control_pb.ResourceAssignment)) {
     throw new Error('Expected argument of type time_control.ResourceAssignment');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_ResourceAssignment(buffer_arg) {
+function deserialize_time_control_ResourceAssignment (buffer_arg) {
   return proto_time_control_pb.ResourceAssignment.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_control_UpdateResourceAssignmentRequest(arg) {
+function serialize_time_control_UpdateResourceAssignmentRequest (arg) {
   if (!(arg instanceof proto_time_control_pb.UpdateResourceAssignmentRequest)) {
     throw new Error('Expected argument of type time_control.UpdateResourceAssignmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_control_UpdateResourceAssignmentRequest(buffer_arg) {
+function deserialize_time_control_UpdateResourceAssignmentRequest (buffer_arg) {
   return proto_time_control_pb.UpdateResourceAssignmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The Time Control service definition.
 var TimeControlService = exports.TimeControlService = {
   // Create Resource Assignment
-createResourceAssignment: {
+  createResourceAssignment: {
     path: '/time_control.TimeControl/CreateResourceAssignment',
     requestStream: false,
     responseStream: false,
@@ -122,10 +121,10 @@ createResourceAssignment: {
     requestSerialize: serialize_time_control_CreateResourceAssignmentRequest,
     requestDeserialize: deserialize_time_control_CreateResourceAssignmentRequest,
     responseSerialize: serialize_time_control_ResourceAssignment,
-    responseDeserialize: deserialize_time_control_ResourceAssignment,
+    responseDeserialize: deserialize_time_control_ResourceAssignment
   },
   // List Resource Assignment
-listResourcesAssignment: {
+  listResourcesAssignment: {
     path: '/time_control.TimeControl/ListResourcesAssignment',
     requestStream: false,
     responseStream: false,
@@ -134,10 +133,10 @@ listResourcesAssignment: {
     requestSerialize: serialize_time_control_ListResourcesAssignmentRequest,
     requestDeserialize: deserialize_time_control_ListResourcesAssignmentRequest,
     responseSerialize: serialize_time_control_ListResourcesAssignmentResponse,
-    responseDeserialize: deserialize_time_control_ListResourcesAssignmentResponse,
+    responseDeserialize: deserialize_time_control_ListResourcesAssignmentResponse
   },
   // Update Resource Assignment
-updateResourceAssignment: {
+  updateResourceAssignment: {
     path: '/time_control.TimeControl/UpdateResourceAssignment',
     requestStream: false,
     responseStream: false,
@@ -146,10 +145,10 @@ updateResourceAssignment: {
     requestSerialize: serialize_time_control_UpdateResourceAssignmentRequest,
     requestDeserialize: deserialize_time_control_UpdateResourceAssignmentRequest,
     responseSerialize: serialize_time_control_ResourceAssignment,
-    responseDeserialize: deserialize_time_control_ResourceAssignment,
+    responseDeserialize: deserialize_time_control_ResourceAssignment
   },
   // Delete Resource Assignment
-deleteResourceAssignment: {
+  deleteResourceAssignment: {
     path: '/time_control.TimeControl/DeleteResourceAssignment',
     requestStream: false,
     responseStream: false,
@@ -158,10 +157,10 @@ deleteResourceAssignment: {
     requestSerialize: serialize_time_control_DeleteResourceAssignmentRequest,
     requestDeserialize: deserialize_time_control_DeleteResourceAssignmentRequest,
     responseSerialize: serialize_data_Empty,
-    responseDeserialize: deserialize_data_Empty,
+    responseDeserialize: deserialize_data_Empty
   },
   // Confirm Resource Assignment
-confirmResourceAssignment: {
+  confirmResourceAssignment: {
     path: '/time_control.TimeControl/ConfirmResourceAssignment',
     requestStream: false,
     responseStream: false,
@@ -170,8 +169,8 @@ confirmResourceAssignment: {
     requestSerialize: serialize_time_control_ConfirmResourceAssignmentRequest,
     requestDeserialize: deserialize_time_control_ConfirmResourceAssignmentRequest,
     responseSerialize: serialize_time_control_ResourceAssignment,
-    responseDeserialize: deserialize_time_control_ResourceAssignment,
-  },
+    responseDeserialize: deserialize_time_control_ResourceAssignment
+  }
 };
 
 exports.TimeControlClient = grpc.makeGenericClientConstructor(TimeControlService);

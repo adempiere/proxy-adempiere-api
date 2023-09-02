@@ -24,7 +24,7 @@ const { getValidInteger } = require('./valueUtils.js');
  * @param {mixed} value
  * @returns KeyValue Object
  */
-function getFieldAttributesToGRPC({
+function getFieldAttributesToGRPC ({
   id, uuid,
   columnName, color,
   sequencePanel, isDefaultDisplayedAsPanel,

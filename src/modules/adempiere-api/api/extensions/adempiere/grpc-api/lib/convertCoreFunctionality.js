@@ -15,7 +15,7 @@
  ************************************************************************************/
 
 const convertCoreFunctionality = {
-  convertCountryFromGRPC(countryToConvert) {
+  convertCountryFromGRPC (countryToConvert) {
     if (!countryToConvert) {
       return undefined;
     }
@@ -51,7 +51,7 @@ const convertCoreFunctionality = {
     };
   },
 
-  convertOrganizationFromGRPC(organization) {
+  convertOrganizationFromGRPC (organization) {
     if (organization) {
       return {
         id: organization.getId(),
@@ -70,7 +70,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertWarehouseFromGRPC(warehouseToConvert) {
+  convertWarehouseFromGRPC (warehouseToConvert) {
     if (warehouseToConvert) {
       return {
         id: warehouseToConvert.getId(),
@@ -82,7 +82,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertUnitOfMeasureFromGRPC(unitOfMeasureToConvert) {
+  convertUnitOfMeasureFromGRPC (unitOfMeasureToConvert) {
     if (unitOfMeasureToConvert) {
       return {
         uuid: unitOfMeasureToConvert.getUuid(),
@@ -98,7 +98,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertChargeFromGRPC(chargeToConvert) {
+  convertChargeFromGRPC (chargeToConvert) {
     if (chargeToConvert) {
       return {
         uuid: chargeToConvert.getUuid(),
@@ -110,7 +110,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertPaymentMethodFromGRPC(paymentMethod) {
+  convertPaymentMethodFromGRPC (paymentMethod) {
     if (paymentMethod) {
       return {
         uuid: paymentMethod.getUuid(),
@@ -124,7 +124,7 @@ const convertCoreFunctionality = {
   },
 
   // Business Partner
-  convertBusinessPartnerFromGRPC(businessPartnerToConvert) {
+  convertBusinessPartnerFromGRPC (businessPartnerToConvert) {
     if (businessPartnerToConvert) {
       return {
         uuid: businessPartnerToConvert.getUuid(),
@@ -141,7 +141,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertDocumentTypeFromGRPC(documentTypeToConvert) {
+  convertDocumentTypeFromGRPC (documentTypeToConvert) {
     if (documentTypeToConvert) {
       return {
         uuid: documentTypeToConvert.getUuid(),
@@ -154,7 +154,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertSalesRepresentativeFromGRPC(salesRepresentativeToConvert) {
+  convertSalesRepresentativeFromGRPC (salesRepresentativeToConvert) {
     if (salesRepresentativeToConvert) {
       return {
         uuid: salesRepresentativeToConvert.getUuid(),
@@ -166,10 +166,10 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertProductFromGRPC(productToConvert) {
+  convertProductFromGRPC (productToConvert) {
     if (productToConvert) {
       const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
-    
+
       return {
         uuid: productToConvert.getUuid(),
         id: productToConvert.getId(),
@@ -215,11 +215,11 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertTaxRateFromGRPC(taxRate) {
+  convertTaxRateFromGRPC (taxRate) {
     //  Tax rate
     if (taxRate) {
       const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
-    
+
       return {
         name: taxRate.getName(),
         description: taxRate.getDescription(),
@@ -232,7 +232,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertProductPriceFromGRPC(productPrice) {
+  convertProductPriceFromGRPC (productPrice) {
     if (productPrice) {
       const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
       const {
@@ -290,7 +290,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertLanguageFromGRPC(language) {
+  convertLanguageFromGRPC (language) {
     if (language) {
       return {
         language: language.getLanguage(),
@@ -307,7 +307,7 @@ const convertCoreFunctionality = {
     return undefined;
   },
 
-  convertPriceListFromGRPC(priceListToConvert) {
+  convertPriceListFromGRPC (priceListToConvert) {
     if (!priceListToConvert) {
       return undefined;
     }
@@ -331,7 +331,7 @@ const convertCoreFunctionality = {
     };
   },
 
-  convertBankAccountFromGRPC(bankAccount) {
+  convertBankAccountFromGRPC (bankAccount) {
     if (!bankAccount) {
       return undefined;
     }
@@ -369,7 +369,7 @@ const convertCoreFunctionality = {
     };
   },
 
-  convertConversionRateFromGRPC(conversionRate) {
+  convertConversionRateFromGRPC (conversionRate) {
     if (conversionRate) {
       const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
       const {

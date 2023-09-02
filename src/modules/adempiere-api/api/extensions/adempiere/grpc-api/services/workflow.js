@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidId } = require('.././utils/valueUtils.js');
 
 class Workflow {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Workflow {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,19 +43,19 @@ class Workflow {
   }
 
   // Init connection
-  initWorkflowService() {
+  initWorkflowService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/workflow_grpc_pb.js');
     this.workflow = new services.WorkflowClient(this.businessHost, grpc.credentials.createInsecure());
   }
 
   // Get Workflow Service
-  getWorkflowService() {
+  getWorkflowService () {
     return this.workflow;
   }
 
   // Get Workflow
-  getWorkflow({
+  getWorkflow ({
     token,
     id,
     uuid
@@ -81,7 +80,7 @@ class Workflow {
   }
 
   // List workflow
-  listWorkflows({
+  listWorkflows ({
     token,
     tableName,
     pageSize,
@@ -106,7 +105,7 @@ class Workflow {
   }
 
   // List workflow
-  listDocumentActions({
+  listDocumentActions ({
     token,
     tableName,
     id,
@@ -141,7 +140,7 @@ class Workflow {
   }
 
   // List Document Statuses
-  listDocumentStatuses({
+  listDocumentStatuses ({
     token,
     tableName,
     id,
@@ -174,7 +173,7 @@ class Workflow {
   }
 
   // List workflow Activities
-  listWorkflowActivities({
+  listWorkflowActivities ({
     token,
     userUuid,
     pageSize,
@@ -199,7 +198,7 @@ class Workflow {
   }
 
   // Run Document Action
-  runDocumentAction({
+  runDocumentAction ({
     token,
     id,
     uuid,
@@ -234,7 +233,7 @@ class Workflow {
    * @param {string} message
    * @param {boolean} isApproved
    */
-  process({
+  process ({
     token,
     id,
     uuid,
@@ -269,7 +268,7 @@ class Workflow {
    * @param {string} message
    * @param {boolean} isApproved
    */
-  forward({
+  forward ({
     token,
     id,
     uuid,

@@ -149,7 +149,7 @@ export default ({ config, db, service }) =>
               configurableOptions
             }
           })
-        }, function (err, response) {
+        }, (err, response) => {
           if (response) {
             let shippingAddress = {}
             let billingAddress = {}

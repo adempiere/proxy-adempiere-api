@@ -24,7 +24,7 @@ module.exports = ({ config, db }) => {
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -82,7 +82,7 @@ module.exports = ({ config, db }) => {
         uuid: req.body.uuid,
         tableName: req.body.table_name,
         recordAccesses: recordAccesses
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

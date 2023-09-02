@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidId } = require('.././utils/valueUtils.js');
 
 class CoreFunctionality {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class CoreFunctionality {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class CoreFunctionality {
   }
 
   // Init connection
-  initCoreFunctionalityService() {
+  initCoreFunctionalityService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/core_functionality_grpc_pb');
     this.coreFunctionality = new services.CoreFunctionalityClient(
@@ -54,12 +53,12 @@ class CoreFunctionality {
   }
 
   // Get CoreFunctionality Service
-  getCoreFunctionalityService() {
+  getCoreFunctionalityService () {
     return this.coreFunctionality;
   }
 
   // Get Country
-  getCountry({
+  getCountry ({
     token,
     uuid,
     id
@@ -84,7 +83,7 @@ class CoreFunctionality {
   }
 
   // List Languages
-  listLanguages({
+  listLanguages ({
     token,
     pageSize,
     pageToken
@@ -107,7 +106,7 @@ class CoreFunctionality {
   }
 
   // List Organizations
-  listOrganizations({
+  listOrganizations ({
     token,
     roleUuid,
     roleId,
@@ -136,7 +135,7 @@ class CoreFunctionality {
   }
 
   // List Warehouses
-  listWarehouses({
+  listWarehouses ({
     token,
     organizationUuid,
     organizationId,
@@ -165,7 +164,7 @@ class CoreFunctionality {
   }
 
   // Get Conversion Rate
-  getConversionRate({
+  getConversionRate ({
     token,
     conversionTypeUuid,
     currencyFromUuid,
@@ -194,7 +193,7 @@ class CoreFunctionality {
   }
 
   //  List Product Conversion UOM
-  listProductConversion({
+  listProductConversion ({
     token,
     productId,
     productUuid,
@@ -224,7 +223,7 @@ class CoreFunctionality {
   }
 
   // Get Business Partner
-  getBusinessPartner({
+  getBusinessPartner ({
     token,
     searchValue,
     value,
@@ -277,7 +276,7 @@ class CoreFunctionality {
   }
 
   // Create Business Partner
-  createBusinessPartner({
+  createBusinessPartner ({
     token,
     value,
     taxId,
@@ -340,7 +339,7 @@ class CoreFunctionality {
   }
 
   //  List Business Partner
-  listBusinessPartners({
+  listBusinessPartners ({
     token,
     searchValue,
     value,
@@ -394,7 +393,6 @@ class CoreFunctionality {
       callback
     );
   }
-
 }
 
 module.exports = CoreFunctionality;

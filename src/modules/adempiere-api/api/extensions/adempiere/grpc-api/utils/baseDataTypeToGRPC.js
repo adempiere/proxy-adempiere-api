@@ -21,7 +21,7 @@ const stubFile = require('.././grpc/proto/base_data_type_pb.js');
  * @param {string} value
  * @return {Value.STRING}
  */
-function getValueStringToGRPC(value) {
+function getValueStringToGRPC (value) {
   const { Value } = stubFile;
   const { ValueType } = Value;
   const valueInstance = new Value();
@@ -40,7 +40,7 @@ function getValueStringToGRPC(value) {
  * @param {boolean|string} value
  * @return {Value.BOOLEAN}
  */
-function getValueBooleanToGRPC(value) {
+function getValueBooleanToGRPC (value) {
   const { Value } = require('.././grpc/proto/base_data_type_pb.js');
   const { ValueType } = Value;
   const valueInstance = new Value();
@@ -62,7 +62,7 @@ function getValueBooleanToGRPC(value) {
  * @param {date|string|number} value
  * @return {Value.DATE}
  */
-function getValueDateToGRPC(value) {
+function getValueDateToGRPC (value) {
   const { Value } = require('.././grpc/proto/base_data_type_pb.js');
   const { ValueType } = Value;
   const valueInstance = new Value();
@@ -81,7 +81,7 @@ function getValueDateToGRPC(value) {
  * @param {number} value
  * @return {Value.INTEGER}
  */
-function getValueIntegerToGRPC(value) {
+function getValueIntegerToGRPC (value) {
   const { Value } = stubFile;
   const { ValueType } = Value;
   const valueInstance = new Value();
@@ -99,7 +99,7 @@ function getValueIntegerToGRPC(value) {
  * @param {number} value
  * @return {Value.DECIMAL}
  */
-function getValueDecimalToGRPC(value) {
+function getValueDecimalToGRPC (value) {
   const { Value } = require('.././grpc/proto/base_data_type_pb.js');
   const { ValueType } = Value;
   const valueInstance = new Value();
@@ -117,7 +117,7 @@ function getValueDecimalToGRPC(value) {
  * @param {number} numberValue
  * @return {Decimal}
  */
-function getDecimalToGRPC(numberValue) {
+function getDecimalToGRPC (numberValue) {
   const { Decimal } = stubFile;
   const decimalInstance = new Decimal();
 
@@ -136,10 +136,10 @@ function getDecimalToGRPC(numberValue) {
 
 /**
  * Get scale to decimal
- * @param {number} numberValue 
+ * @param {number} numberValue
  * @returns {number}
  */
-function getScaleFromDecimal(numberValue) {
+function getScaleFromDecimal (numberValue) {
   const index = numberValue
     .toString()
     .indexOf('.');
@@ -156,7 +156,7 @@ function getScaleFromDecimal(numberValue) {
  * @param {mixed} value
  * @returns {Value}
  */
-function getValueToGRPCWithoutValueType({ value }) {
+function getValueToGRPCWithoutValueType ({ value }) {
   let convertedValue;
   // evaluate type of value
   const { getTypeOfValue } = require('./valueUtils.js');
@@ -218,7 +218,7 @@ function getValueToGRPCWithoutValueType({ value }) {
  * @param {string} valueType
  * @returns {Value}
  */
-function getValueToGRPCWithValueType({ value, valueType }) {
+function getValueToGRPCWithValueType ({ value, valueType }) {
   const { Value } = require('.././grpc/proto/base_data_type_pb.js');
   const { ValueType } = Value;
   let convertedValue;
@@ -265,7 +265,7 @@ function getValueToGRPCWithValueType({ value, valueType }) {
  * @param {string} valueType
  * @returns {Value}
  */
-function getValueToGRPC({ value, valueType }) {
+function getValueToGRPC ({ value, valueType }) {
   const { isEmptyValue } = require('./valueUtils.js');
   if (!isEmptyValue(valueType)) {
     return getValueToGRPCWithValueType({
@@ -286,7 +286,7 @@ function getValueToGRPC({ value, valueType }) {
  * @param {mixed} value
  * @returns KeyValue Object
  */
-function getKeyValueToGRPC({ columnName, value, valueType }) {
+function getKeyValueToGRPC ({ columnName, value, valueType }) {
   const { KeyValue } = stubFile;
   const keyValue = new KeyValue();
   keyValue.setKey(columnName);
@@ -308,7 +308,7 @@ function getKeyValueToGRPC({ columnName, value, valueType }) {
  * @param {array}  selectionValues [{ columName: String, value: Mixed }]
  * @param {KeyValue} KeyValue Object
  */
-function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValues = [] }) {
+function getKeyValueSelectionToGRPC ({ selectionId, selectionUuid, selectionValues = [] }) {
   const { KeyValueSelection } = stubFile;
   const selectionInstance = new KeyValueSelection();
 
@@ -357,7 +357,7 @@ function getKeyValueSelectionToGRPC({ selectionId, selectionUuid, selectionValue
  * @param {string} operator
  * @returns Object
  */
-function getConditionToGRPC({ columnName, value, valueTo, values = [], operator = 'VOID', valueType }) {
+function getConditionToGRPC ({ columnName, value, valueTo, values = [], operator = 'VOID', valueType }) {
   const { Condition, Operator } = stubFile;
   const conditionInstance = new Condition();
   conditionInstance.setColumnName(columnName);
@@ -409,9 +409,9 @@ function getConditionToGRPC({ columnName, value, valueTo, values = [], operator 
  * @param {string} columnName
  * @param {string} orderType 'ASCENDING' or 'DESCENDING'
  */
-function getOrderByPropertyToGRPC({ columnName, orderType }) {
+function getOrderByPropertyToGRPC ({ columnName, orderType }) {
   const { OrderByProperty, OrderType } = stubFile;
-  const orderByInstance = new OrderByProperty;
+  const orderByInstance = new OrderByProperty();
 
   orderByInstance.setColumnName(columnName);
   // set order type, default is 0
@@ -436,7 +436,7 @@ function getOrderByPropertyToGRPC({ columnName, orderType }) {
  * @param {number} limit
  * @return {object} Criteria instance
  */
-function getCriteriaToGRPC({
+function getCriteriaToGRPC ({
   tableName,
   query,
   whereClause,

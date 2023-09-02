@@ -16,7 +16,7 @@
 
 const stubFile = require('.././grpc/proto/business_pb.js');
 
-function getLookupItemFromGRPC(lookupItemToConvert) {
+function getLookupItemFromGRPC (lookupItemToConvert) {
   if (!lookupItemToConvert) {
     return undefined;
   }
@@ -33,7 +33,7 @@ function getLookupItemFromGRPC(lookupItemToConvert) {
   };
 }
 
-function getMailTemplateFromGRPC(mailTemplateToConvert) {
+function getMailTemplateFromGRPC (mailTemplateToConvert) {
   if (!mailTemplateToConvert) {
     return undefined;
   }

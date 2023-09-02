@@ -14,9 +14,9 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>. m           *
  ************************************************************************************/
 
- const convertBusinessData = {
+const convertBusinessData = {
 
-  convertCalloutFromGRPC(callout) {
+  convertCalloutFromGRPC (callout) {
     if (!callout) {
       return undefined;
     }
@@ -30,7 +30,7 @@
     };
   },
 
-  convertPrivateAccessFromGRPC(privateAccess) {
+  convertPrivateAccessFromGRPC (privateAccess) {
     if (privateAccess) {
       return {
         table_name: privateAccess.getTableName(),
@@ -42,7 +42,7 @@
     return undefined;
   },
 
-  convertPreferenceFromGRPC(preference) {
+  convertPreferenceFromGRPC (preference) {
     if (preference) {
       return {
         container_uuid: preference.getContainerUuid(),
@@ -57,7 +57,7 @@
     return undefined;
   },
 
-  convertChatEntryFromGRPC(charEntry) {
+  convertChatEntryFromGRPC (charEntry) {
     if (charEntry) {
       const {
         getChatEntry_ChatEntryType,
@@ -91,19 +91,19 @@
     return undefined;
   },
 
-  convertCreateChatEntryFromGRPC(createChatEntry) {
+  convertCreateChatEntryFromGRPC (createChatEntry) {
     if (createChatEntry) {
       return {
         table_name: createChatEntry.getTableName(),
         id: createChatEntry.getId(),
         uuid: createChatEntry.getUuid(),
-        comment: createChatEntry.getComment(),
+        comment: createChatEntry.getComment()
       };
     }
     return undefined;
   },
 
-  convertWorkflowProcessFomGRPC(workflowProcess) {
+  convertWorkflowProcessFomGRPC (workflowProcess) {
     if (workflowProcess) {
       const {
         getWorkflowProcess_WorkflowState,
@@ -140,7 +140,7 @@
     return undefined;
   },
 
-  convertWorkflowEventFromGRPC(workflowEvent) {
+  convertWorkflowEventFromGRPC (workflowEvent) {
     if (workflowEvent) {
       const {
         getWorkflowProcess_WorkflowState,
@@ -177,7 +177,7 @@
     return undefined;
   },
 
-  convertWorkflowActivityFromGRPC(workflowActivity) {
+  convertWorkflowActivityFromGRPC (workflowActivity) {
     if (workflowActivity) {
       return {
         uuid: workflowActivity.getUuid(),
@@ -201,7 +201,7 @@
     return undefined;
   },
 
-  convertWorkflowDefinitionFromGRPC(workflow) {
+  convertWorkflowDefinitionFromGRPC (workflow) {
     if (workflow) {
       const {
         getWorkflowDefinition_PublishStatus,
@@ -238,7 +238,7 @@
     return undefined;
   },
 
-  convertWorkflowNodeFromGRPC(node) {
+  convertWorkflowNodeFromGRPC (node) {
     if (node) {
       const { getWorkflowNode_Action } = require('./convertEnums.js');
 
@@ -267,7 +267,7 @@
     return undefined;
   },
 
-  convertWorkflowTransitionFromGRPC(workflowTransitionToConvert) {
+  convertWorkflowTransitionFromGRPC (workflowTransitionToConvert) {
     if (workflowTransitionToConvert) {
       return {
         node_next_uuid: workflowTransitionToConvert.getNodeNextUuid(),
@@ -282,7 +282,7 @@
     return undefined;
   },
 
-  convertWorkflowConditionFromGRPC(workflowConditionToConvert) {
+  convertWorkflowConditionFromGRPC (workflowConditionToConvert) {
     if (workflowConditionToConvert) {
       const {
         getWorkflowCondition_ConditionType,
@@ -306,7 +306,7 @@
     return undefined;
   },
 
-  convertDocumentAction(documentActionToConvert) {
+  convertDocumentAction (documentActionToConvert) {
     if (documentActionToConvert) {
       return {
         value: documentActionToConvert.getValue(),
@@ -317,7 +317,7 @@
     return undefined;
   },
 
-  convertDocumentStatus(documentStatusToConvert) {
+  convertDocumentStatus (documentStatusToConvert) {
     if (documentStatusToConvert) {
       return {
         value: documentStatusToConvert.getValue(),
@@ -328,7 +328,7 @@
     return undefined;
   },
 
-  convertRecordAccessFromGRPC(recordAccess) {
+  convertRecordAccessFromGRPC (recordAccess) {
     if (recordAccess) {
       return {
         table_name: recordAccess.getTableName(),
@@ -345,7 +345,7 @@
     return undefined;
   },
 
-  convertRecordAccessRoleFromGRPC(recordAccessRole) {
+  convertRecordAccessRoleFromGRPC (recordAccessRole) {
     if (recordAccessRole) {
       return {
         role_id: recordAccessRole.getRoleId(),

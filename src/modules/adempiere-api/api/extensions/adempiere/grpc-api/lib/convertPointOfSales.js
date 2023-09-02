@@ -17,7 +17,7 @@
 const convertUtils = {
 
   // Customer
-  convertCustomerFromGRPC(customer) {
+  convertCustomerFromGRPC (customer) {
     if (customer) {
       const { getValuesMapFromGRPC } = require('.././utils/valueUtilsFromGRPC.js');
       return {
@@ -34,10 +34,10 @@ const convertUtils = {
           .map(address => {
             return convertUtils.convertCustomerAddressFromGRPC(address)
           }
-        ),
+          ),
         additional_attributes: getValuesMapFromGRPC({
-            mapToConvert: customer.getAdditionalAttributesMap(),
-            returnType: 'object'
+          mapToConvert: customer.getAdditionalAttributesMap(),
+          returnType: 'object'
         })
       };
     }
@@ -45,7 +45,7 @@ const convertUtils = {
   },
 
   // Customer Bank Account
-  convertCustomerBankAccountFromGRPC(customerBankAccount) {
+  convertCustomerBankAccountFromGRPC (customerBankAccount) {
     if (customerBankAccount) {
       return {
         customer_uuid: customerBankAccount.getCustomerUuid(),
@@ -73,18 +73,18 @@ const convertUtils = {
     return undefined;
   },
 
-  convertCustomerAddressFromGRPC(address) {
+  convertCustomerAddressFromGRPC (address) {
     if (address) {
       let region
       let city
-      if(address.getRegion()) {
+      if (address.getRegion()) {
         region = {
           id: address.getRegion().getId(),
           uuid: address.getRegion().getUuid(),
           name: address.getRegion().getName()
         }
       }
-      if(address.getCity()) {
+      if (address.getCity()) {
         city = {
           id: address.getCity().getId(),
           uuid: address.getCity().getUuid(),
@@ -114,8 +114,8 @@ const convertUtils = {
         first_name: address.getFirstName(),
         last_name: address.getLastName(),
         additional_attributes: getValuesMapFromGRPC({
-            mapToConvert: address.getAdditionalAttributesMap(),
-            returnType: 'object'
+          mapToConvert: address.getAdditionalAttributesMap(),
+          returnType: 'object'
         })
       }
     }
@@ -123,8 +123,8 @@ const convertUtils = {
   },
 
   // Convert available warehouse from gRPC to JSON
-  convertAvailableWarehouse(availableWarehouse) {
-    if(availableWarehouse) {
+  convertAvailableWarehouse (availableWarehouse) {
+    if (availableWarehouse) {
       return {
         id: availableWarehouse.getId(),
         uuid: availableWarehouse.getUuid(),
@@ -136,8 +136,8 @@ const convertUtils = {
     return undefined;
   },
 
-  convertAvailableSeller(availableSeller) {
-    if(availableSeller) {
+  convertAvailableSeller (availableSeller) {
+    if (availableSeller) {
       return {
         id: availableSeller.getId(),
         uuid: availableSeller.getUuid(),
@@ -151,11 +151,11 @@ const convertUtils = {
   },
 
   // Convert cash summary movements from gRPC to JSON
-  convertCashSummaryMovements(movement) {
+  convertCashSummaryMovements (movement) {
     const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
     const { getCurrencyFromGRPC } = require('.././utils/coreFunctionalityFromGRPC');
 
-    if(movement) {
+    if (movement) {
       return {
         payment_method_uuid: movement.getPaymentMethodUuid(),
         payment_method_name: movement.getPaymentMethodName(),
@@ -173,7 +173,7 @@ const convertUtils = {
   },
 
   // Convert cash summary movements from gRPC to JSON
-  convertCashMovements(movement) {
+  convertCashMovements (movement) {
     if (!movement) {
       return undefined;
     }
@@ -225,10 +225,10 @@ const convertUtils = {
   },
 
   //  Cash Closing
-  convertCashClosing(cashClosing) {
+  convertCashClosing (cashClosing) {
     const { convertDocumentStatusFromGRPC } = require('./convertBaseDataType.js');
     const { convertDocumentTypeFromGRPC } = require('./convertCoreFunctionality.js');
-    if(cashClosing) {
+    if (cashClosing) {
       return {
         id: cashClosing.getId(),
         uuid: cashClosing.getUuid(),
@@ -246,8 +246,8 @@ const convertUtils = {
   },
 
   // Convert available price list from gRPC to JSON
-  convertAvailablePriceList(availablePriceList) {
-    if(availablePriceList) {
+  convertAvailablePriceList (availablePriceList) {
+    if (availablePriceList) {
       return {
         id: availablePriceList.getId(),
         uuid: availablePriceList.getUuid(),
@@ -260,8 +260,8 @@ const convertUtils = {
   },
 
   // Convert available document type from gRPC to JSON
-  convertAvailableDocumentType(availableDocumentType) {
-    if(availableDocumentType) {
+  convertAvailableDocumentType (availableDocumentType) {
+    if (availableDocumentType) {
       return {
         id: availableDocumentType.getId(),
         uuid: availableDocumentType.getUuid(),
@@ -273,7 +273,7 @@ const convertUtils = {
     return undefined;
   },
 
-  convertShipmentFromGRPC(shipment) {
+  convertShipmentFromGRPC (shipment) {
     if (shipment) {
       const {
         convertDocumentStatusFromGRPC
@@ -289,7 +289,7 @@ const convertUtils = {
         id: shipment.getId(),
         document_no: shipment.getDocumentNo(),
         document_type: convertDocumentTypeFromGRPC(
-          shipment.getDocumentType(),
+          shipment.getDocumentType()
         ),
         sales_representative: convertSalesRepresentativeFromGRPC(
           shipment.getSalesRepresentative()
@@ -306,7 +306,7 @@ const convertUtils = {
     return undefined;
   },
 
-  convertAvailableRefundGRPC(availableRefund) {
+  convertAvailableRefundGRPC (availableRefund) {
     if (availableRefund) {
       const { getDecimalFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
 
@@ -328,7 +328,7 @@ const convertUtils = {
     return undefined;
   },
 
-  convertKeyFromGRPC(key) {
+  convertKeyFromGRPC (key) {
     if (key) {
       const {
         getDecimalFromGRPC,
@@ -357,7 +357,7 @@ const convertUtils = {
     return undefined;
   },
 
-  convertKeyLayoutFromGRPC(keyLayout) {
+  convertKeyLayoutFromGRPC (keyLayout) {
     if (keyLayout) {
       return {
         uuid: keyLayout.getUuid(),

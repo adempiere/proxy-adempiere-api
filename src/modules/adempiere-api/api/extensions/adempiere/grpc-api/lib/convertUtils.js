@@ -21,7 +21,7 @@ const convertEnums = require('./ConvertEnums.js');
 const convertUtils = {
   ...convertBaseDataType,
   ...convertCoreFunctionality,
-  ...convertEnums,
+  ...convertEnums
 };
 
 module.exports = convertUtils;

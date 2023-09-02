@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js');
 
 class BusinessPartner {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class BusinessPartner {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class BusinessPartner {
   }
 
   // Init connection
-  initBusinessPartnerService() {
+  initBusinessPartnerService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/business_partner_grpc_pb');
     this.businessPartner = new services.BusinessPartnerClient(
@@ -54,11 +53,11 @@ class BusinessPartner {
   }
 
   // Get Business Partner Service
-  getBusinessPartnerService() {
+  getBusinessPartnerService () {
     return this.businessPartner;
   }
 
-  listBusinessPartnerInfo({
+  listBusinessPartnerInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class BusinessPartner {
       callback
     );
   }
-
 }
 
 module.exports = BusinessPartner;

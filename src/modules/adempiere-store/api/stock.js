@@ -55,7 +55,7 @@ export default ({ config, db, service }) => {
       service.getStock({
         sku: req.query.sku,
         storeCode: req.query.storeCode
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -108,7 +108,7 @@ export default ({ config, db, service }) => {
       service.listStock({
         sku: req.query.sku,
         storeCode: req.query.storeCode
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           const stockResult = []
           response.getStocksList().forEach(stock => {

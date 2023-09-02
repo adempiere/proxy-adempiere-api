@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class ImportFileLoader {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class ImportFileLoader {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class ImportFileLoader {
   }
 
   // Init connection
-  initImportFileLoaderService() {
+  initImportFileLoaderService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/import_file_loader_grpc_pb');
     this.importFileLoader = new services.ImportFileLoaderClient(
@@ -54,10 +53,9 @@ class ImportFileLoader {
   }
 
   // Get Express Receipt Service
-  getImportFileLoaderService() {
+  getImportFileLoaderService () {
     return this.importFileLoader;
   }
-
 
   /**
    * Get List Charsets
@@ -66,7 +64,7 @@ class ImportFileLoader {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCharsets({
+  listCharsets ({
     token,
     // DSL
     searchValue,
@@ -94,7 +92,6 @@ class ImportFileLoader {
     );
   }
 
-
   /**
    * Get List Import Tables
    * @param {string} token
@@ -102,7 +99,7 @@ class ImportFileLoader {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listImportTables({
+  listImportTables ({
     token,
     // DSL
     searchValue,
@@ -130,8 +127,7 @@ class ImportFileLoader {
     );
   }
 
-
-  listImportFormats({
+  listImportFormats ({
     token,
     // DSL
     searchValue,
@@ -166,7 +162,7 @@ class ImportFileLoader {
     );
   }
 
-  listClientImportFormats({
+  listClientImportFormats ({
     token,
     // DSL
     tableId,
@@ -201,7 +197,7 @@ class ImportFileLoader {
     );
   }
 
-  getImportFromat({
+  getImportFromat ({
     token,
     // DSL
     id
@@ -224,8 +220,7 @@ class ImportFileLoader {
     );
   }
 
-
-  saveRecords({
+  saveRecords ({
     token,
     // DSL
     importFormatId,
@@ -272,7 +267,7 @@ class ImportFileLoader {
             value: parsedParameter.value,
             valueType: parsedParameter.valueType
           });
-  
+
           request.addParameters(convertedParameter);
         });
       }
@@ -289,7 +284,7 @@ class ImportFileLoader {
     );
   }
 
-  listFilePreview({
+  listFilePreview ({
     token,
     // DSL
     searchValue,
@@ -328,8 +323,7 @@ class ImportFileLoader {
     );
   }
 
-
-  listImportProcesses({
+  listImportProcesses ({
     token,
     // DSL
     searchValue,
@@ -363,7 +357,6 @@ class ImportFileLoader {
       callback
     );
   }
-
 }
 
 module.exports = ImportFileLoader;

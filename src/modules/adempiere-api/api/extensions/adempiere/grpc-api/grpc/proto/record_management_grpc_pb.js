@@ -19,28 +19,27 @@
 var grpc = require('@grpc/grpc-js');
 var proto_record_management_pb = require('../proto/record_management_pb.js');
 
-function serialize_record_management_ToggleIsActiveRecordsRequest(arg) {
+function serialize_record_management_ToggleIsActiveRecordsRequest (arg) {
   if (!(arg instanceof proto_record_management_pb.ToggleIsActiveRecordsRequest)) {
     throw new Error('Expected argument of type record_management.ToggleIsActiveRecordsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_record_management_ToggleIsActiveRecordsRequest(buffer_arg) {
+function deserialize_record_management_ToggleIsActiveRecordsRequest (buffer_arg) {
   return proto_record_management_pb.ToggleIsActiveRecordsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_record_management_ToggleIsActiveRecordsResponse(arg) {
+function serialize_record_management_ToggleIsActiveRecordsResponse (arg) {
   if (!(arg instanceof proto_record_management_pb.ToggleIsActiveRecordsResponse)) {
     throw new Error('Expected argument of type record_management.ToggleIsActiveRecordsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_record_management_ToggleIsActiveRecordsResponse(buffer_arg) {
+function deserialize_record_management_ToggleIsActiveRecordsResponse (buffer_arg) {
   return proto_record_management_pb.ToggleIsActiveRecordsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 var RecordManagementService = exports.RecordManagementService = {
   toggleIsActiveRecords: {
@@ -52,8 +51,8 @@ var RecordManagementService = exports.RecordManagementService = {
     requestSerialize: serialize_record_management_ToggleIsActiveRecordsRequest,
     requestDeserialize: deserialize_record_management_ToggleIsActiveRecordsRequest,
     responseSerialize: serialize_record_management_ToggleIsActiveRecordsResponse,
-    responseDeserialize: deserialize_record_management_ToggleIsActiveRecordsResponse,
-  },
+    responseDeserialize: deserialize_record_management_ToggleIsActiveRecordsResponse
+  }
 };
 
 exports.RecordManagementClient = grpc.makeGenericClientConstructor(RecordManagementService);

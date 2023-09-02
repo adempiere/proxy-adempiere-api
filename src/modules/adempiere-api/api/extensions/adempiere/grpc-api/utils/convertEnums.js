@@ -22,7 +22,7 @@
  * @param {number} value
  * @returns {number|string|object}
  */
-function getValueOrKey({ list, key, value }) {
+function getValueOrKey ({ list, key, value }) {
   // return all values
   return getValueOrKeyEnum({
     list,
@@ -38,7 +38,7 @@ function getValueOrKey({ list, key, value }) {
  * @param {number} value
  * @returns {number|string|object}
  */
-function getValueOrKeyEnum({ list, key, value }) {
+function getValueOrKeyEnum ({ list, key, value }) {
   const { isEmptyValue } = require('./valueUtils.js');
   if (isEmptyValue(list)) {
     return undefined;

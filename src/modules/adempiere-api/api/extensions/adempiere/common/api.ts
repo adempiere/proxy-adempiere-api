@@ -45,7 +45,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         tableName: req.query.table_name,
         id: req.query.id,
         uuid: req.query.uuid
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -118,7 +118,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         //  Page Data
         pageSize: req.query.page_size,
         pageToken: req.query.page_token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -204,7 +204,7 @@ module.exports = ({ config }: ExtensionAPIFunctionParameter) => {
         token: req.headers.authorization,
         tableName: req.body.table_name,
         attributes: req.body.attributes
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidId, getValidInteger, getTypeOfValue } = require('.././utils/valueUtils.js');
 
 class BusinessData {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class BusinessData {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class BusinessData {
   }
 
   // Init connection
-  initBusinessDataService() {
+  initBusinessDataService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/business_grpc_pb');
     this.businessData = new services.BusinessDataClient(
@@ -54,15 +53,14 @@ class BusinessData {
   }
 
   // Get Business Data Service
-  getBusinessDataService() {
+  getBusinessDataService () {
     return this.businessData;
   }
-
 
   /**
    * Run a business process
    */
-  runProcess({
+  runProcess ({
     token,
     id,
     uuid,
@@ -111,7 +109,7 @@ class BusinessData {
       if (getTypeOfValue(parametersList) === 'String') {
         parametersList = JSON.parse(parametersList);
       }
-  
+
       const { getKeyValueToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
       parametersList.forEach(parameter => {
         let parsedParameter = parameter;
@@ -154,7 +152,6 @@ class BusinessData {
       callback
     );
   }
-
 }
 
 module.exports = BusinessData;

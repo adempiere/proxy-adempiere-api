@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger, getTimestamp } = require('.././utils/valueUtils.js');
 
 class Logs {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Logs {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Logs {
   }
 
   // Init connection
-  initLogsService() {
+  initLogsService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/logs_grpc_pb');
     this.logs = new services.LogsClient(
@@ -54,12 +53,12 @@ class Logs {
   }
 
   // Get Logs Service
-  getLogsService() {
+  getLogsService () {
     return this.logs;
   }
 
   // List logs
-  listLogs({
+  listLogs ({
     token,
     tableName,
     pageSize,
@@ -84,7 +83,7 @@ class Logs {
   }
 
   // List process logs
-  listProcessLogs({
+  listProcessLogs ({
     token,
     tableName,
     uuid,
@@ -119,7 +118,7 @@ class Logs {
   }
 
   // List record logs
-  listEntityLogs({
+  listEntityLogs ({
     token,
     tableName,
     uuid,
@@ -150,7 +149,7 @@ class Logs {
   }
 
   //  List entity chats
-  listEntityChats({
+  listEntityChats ({
     token,
     tableName,
     uuid,
@@ -188,7 +187,7 @@ class Logs {
    * @param {string} language
    * @param {string} token
    */
-  existsChatEntries({
+  existsChatEntries ({
     token,
     // DSL
     tableName,
@@ -216,7 +215,7 @@ class Logs {
   }
 
   // List chats entries
-  listChatEntries({
+  listChatEntries ({
     token,
     id,
     uuid,
@@ -245,7 +244,7 @@ class Logs {
   }
 
   // List workflow logs
-  listWorkflowLogs({
+  listWorkflowLogs ({
     token,
     tableName,
     uuid,
@@ -276,7 +275,7 @@ class Logs {
   }
 
   // List recent items
-  listRecentItems({
+  listRecentItems ({
     token,
     userUuid,
     roleUuid,
@@ -305,7 +304,7 @@ class Logs {
   }
 
   // List recent items
-  listUserActivites({
+  listUserActivites ({
     token,
     date,
     searchValue,
@@ -335,7 +334,6 @@ class Logs {
       callback
     );
   }
-
 }
 
 module.exports = Logs;

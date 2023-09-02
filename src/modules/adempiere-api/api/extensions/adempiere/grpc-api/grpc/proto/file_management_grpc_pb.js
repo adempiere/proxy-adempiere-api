@@ -20,165 +20,164 @@ var grpc = require('@grpc/grpc-js');
 var proto_file_management_pb = require('../proto/file_management_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 
-function serialize_data_Empty(arg) {
+function serialize_data_Empty (arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {
     throw new Error('Expected argument of type data.Empty');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_Empty(buffer_arg) {
+function deserialize_data_Empty (buffer_arg) {
   return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_Attachment(arg) {
+function serialize_file_management_Attachment (arg) {
   if (!(arg instanceof proto_file_management_pb.Attachment)) {
     throw new Error('Expected argument of type file_management.Attachment');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_Attachment(buffer_arg) {
+function deserialize_file_management_Attachment (buffer_arg) {
   return proto_file_management_pb.Attachment.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_DeleteResourceReferenceRequest(arg) {
+function serialize_file_management_DeleteResourceReferenceRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.DeleteResourceReferenceRequest)) {
     throw new Error('Expected argument of type file_management.DeleteResourceReferenceRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_DeleteResourceReferenceRequest(buffer_arg) {
+function deserialize_file_management_DeleteResourceReferenceRequest (buffer_arg) {
   return proto_file_management_pb.DeleteResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_ExistsAttachmentRequest(arg) {
+function serialize_file_management_ExistsAttachmentRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.ExistsAttachmentRequest)) {
     throw new Error('Expected argument of type file_management.ExistsAttachmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_ExistsAttachmentRequest(buffer_arg) {
+function deserialize_file_management_ExistsAttachmentRequest (buffer_arg) {
   return proto_file_management_pb.ExistsAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_ExistsAttachmentResponse(arg) {
+function serialize_file_management_ExistsAttachmentResponse (arg) {
   if (!(arg instanceof proto_file_management_pb.ExistsAttachmentResponse)) {
     throw new Error('Expected argument of type file_management.ExistsAttachmentResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_ExistsAttachmentResponse(buffer_arg) {
+function deserialize_file_management_ExistsAttachmentResponse (buffer_arg) {
   return proto_file_management_pb.ExistsAttachmentResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_GetAttachmentRequest(arg) {
+function serialize_file_management_GetAttachmentRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.GetAttachmentRequest)) {
     throw new Error('Expected argument of type file_management.GetAttachmentRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_GetAttachmentRequest(buffer_arg) {
+function deserialize_file_management_GetAttachmentRequest (buffer_arg) {
   return proto_file_management_pb.GetAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_GetResourceReferenceRequest(arg) {
+function serialize_file_management_GetResourceReferenceRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.GetResourceReferenceRequest)) {
     throw new Error('Expected argument of type file_management.GetResourceReferenceRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_GetResourceReferenceRequest(buffer_arg) {
+function deserialize_file_management_GetResourceReferenceRequest (buffer_arg) {
   return proto_file_management_pb.GetResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_GetResourceRequest(arg) {
+function serialize_file_management_GetResourceRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.GetResourceRequest)) {
     throw new Error('Expected argument of type file_management.GetResourceRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_GetResourceRequest(buffer_arg) {
+function deserialize_file_management_GetResourceRequest (buffer_arg) {
   return proto_file_management_pb.GetResourceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_LoadResourceRequest(arg) {
+function serialize_file_management_LoadResourceRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.LoadResourceRequest)) {
     throw new Error('Expected argument of type file_management.LoadResourceRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_LoadResourceRequest(buffer_arg) {
+function deserialize_file_management_LoadResourceRequest (buffer_arg) {
   return proto_file_management_pb.LoadResourceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_Resource(arg) {
+function serialize_file_management_Resource (arg) {
   if (!(arg instanceof proto_file_management_pb.Resource)) {
     throw new Error('Expected argument of type file_management.Resource');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_Resource(buffer_arg) {
+function deserialize_file_management_Resource (buffer_arg) {
   return proto_file_management_pb.Resource.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_ResourceReference(arg) {
+function serialize_file_management_ResourceReference (arg) {
   if (!(arg instanceof proto_file_management_pb.ResourceReference)) {
     throw new Error('Expected argument of type file_management.ResourceReference');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_ResourceReference(buffer_arg) {
+function deserialize_file_management_ResourceReference (buffer_arg) {
   return proto_file_management_pb.ResourceReference.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_SetAttachmentDescriptionRequest(arg) {
+function serialize_file_management_SetAttachmentDescriptionRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.SetAttachmentDescriptionRequest)) {
     throw new Error('Expected argument of type file_management.SetAttachmentDescriptionRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_SetAttachmentDescriptionRequest(buffer_arg) {
+function deserialize_file_management_SetAttachmentDescriptionRequest (buffer_arg) {
   return proto_file_management_pb.SetAttachmentDescriptionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_SetResourceReferenceDescriptionRequest(arg) {
+function serialize_file_management_SetResourceReferenceDescriptionRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.SetResourceReferenceDescriptionRequest)) {
     throw new Error('Expected argument of type file_management.SetResourceReferenceDescriptionRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_SetResourceReferenceDescriptionRequest(buffer_arg) {
+function deserialize_file_management_SetResourceReferenceDescriptionRequest (buffer_arg) {
   return proto_file_management_pb.SetResourceReferenceDescriptionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_file_management_SetResourceReferenceRequest(arg) {
+function serialize_file_management_SetResourceReferenceRequest (arg) {
   if (!(arg instanceof proto_file_management_pb.SetResourceReferenceRequest)) {
     throw new Error('Expected argument of type file_management.SetResourceReferenceRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_file_management_SetResourceReferenceRequest(buffer_arg) {
+function deserialize_file_management_SetResourceReferenceRequest (buffer_arg) {
   return proto_file_management_pb.SetResourceReferenceRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The File Management service definition.
 var FileManagementService = exports.FileManagementService = {
   // 	Resource/File
-loadResource: {
+  loadResource: {
     path: '/file_management.FileManagement/LoadResource',
     requestStream: true,
     responseStream: false,
@@ -187,7 +186,7 @@ loadResource: {
     requestSerialize: serialize_file_management_LoadResourceRequest,
     requestDeserialize: deserialize_file_management_LoadResourceRequest,
     responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference
   },
   getResource: {
     path: '/file_management.FileManagement/GetResource',
@@ -198,10 +197,10 @@ loadResource: {
     requestSerialize: serialize_file_management_GetResourceRequest,
     requestDeserialize: deserialize_file_management_GetResourceRequest,
     responseSerialize: serialize_file_management_Resource,
-    responseDeserialize: deserialize_file_management_Resource,
+    responseDeserialize: deserialize_file_management_Resource
   },
   // 	Attachment
-setAttachmentDescription: {
+  setAttachmentDescription: {
     path: '/file_management.FileManagement/SetAttachmentDescription',
     requestStream: false,
     responseStream: false,
@@ -210,7 +209,7 @@ setAttachmentDescription: {
     requestSerialize: serialize_file_management_SetAttachmentDescriptionRequest,
     requestDeserialize: deserialize_file_management_SetAttachmentDescriptionRequest,
     responseSerialize: serialize_file_management_Attachment,
-    responseDeserialize: deserialize_file_management_Attachment,
+    responseDeserialize: deserialize_file_management_Attachment
   },
   existsAttachment: {
     path: '/file_management.FileManagement/ExistsAttachment',
@@ -221,7 +220,7 @@ setAttachmentDescription: {
     requestSerialize: serialize_file_management_ExistsAttachmentRequest,
     requestDeserialize: deserialize_file_management_ExistsAttachmentRequest,
     responseSerialize: serialize_file_management_ExistsAttachmentResponse,
-    responseDeserialize: deserialize_file_management_ExistsAttachmentResponse,
+    responseDeserialize: deserialize_file_management_ExistsAttachmentResponse
   },
   getAttachment: {
     path: '/file_management.FileManagement/GetAttachment',
@@ -232,10 +231,10 @@ setAttachmentDescription: {
     requestSerialize: serialize_file_management_GetAttachmentRequest,
     requestDeserialize: deserialize_file_management_GetAttachmentRequest,
     responseSerialize: serialize_file_management_Attachment,
-    responseDeserialize: deserialize_file_management_Attachment,
+    responseDeserialize: deserialize_file_management_Attachment
   },
   // 	Resource Reference
-setResourceReference: {
+  setResourceReference: {
     path: '/file_management.FileManagement/SetResourceReference',
     requestStream: false,
     responseStream: false,
@@ -244,7 +243,7 @@ setResourceReference: {
     requestSerialize: serialize_file_management_SetResourceReferenceRequest,
     requestDeserialize: deserialize_file_management_SetResourceReferenceRequest,
     responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference
   },
   setResourceReferenceDescription: {
     path: '/file_management.FileManagement/SetResourceReferenceDescription',
@@ -255,7 +254,7 @@ setResourceReference: {
     requestSerialize: serialize_file_management_SetResourceReferenceDescriptionRequest,
     requestDeserialize: deserialize_file_management_SetResourceReferenceDescriptionRequest,
     responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference
   },
   getResourceReference: {
     path: '/file_management.FileManagement/GetResourceReference',
@@ -266,7 +265,7 @@ setResourceReference: {
     requestSerialize: serialize_file_management_GetResourceReferenceRequest,
     requestDeserialize: deserialize_file_management_GetResourceReferenceRequest,
     responseSerialize: serialize_file_management_ResourceReference,
-    responseDeserialize: deserialize_file_management_ResourceReference,
+    responseDeserialize: deserialize_file_management_ResourceReference
   },
   deleteResourceReference: {
     path: '/file_management.FileManagement/DeleteResourceReference',
@@ -277,8 +276,8 @@ setResourceReference: {
     requestSerialize: serialize_file_management_DeleteResourceReferenceRequest,
     requestDeserialize: deserialize_file_management_DeleteResourceReferenceRequest,
     responseSerialize: serialize_data_Empty,
-    responseDeserialize: deserialize_data_Empty,
-  },
+    responseDeserialize: deserialize_data_Empty
+  }
 };
 
 exports.FileManagementClient = grpc.makeGenericClientConstructor(FileManagementService);

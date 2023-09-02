@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getTimestamp, getValidInteger } = require('.././utils/valueUtils.js');
 
 class BankStatementMatch {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class BankStatementMatch {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class BankStatementMatch {
   }
 
   // Init connection
-  initBankStatementMatchService() {
+  initBankStatementMatchService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/bank_statement_match_grpc_pb.js');
     this.bankStatementMatch = new services.BankStatementMatchClient(
@@ -54,10 +53,9 @@ class BankStatementMatch {
   }
 
   // Get Bank Statement Match Service
-  getBankStatementMatchService() {
+  getBankStatementMatchService () {
     return this.bankStatementMatch;
   }
-
 
   /**
    * Get Bank Statement
@@ -65,7 +63,7 @@ class BankStatementMatch {
    * @param {number} id
    * @param {string} uuid
    */
-  getBankStatement({
+  getBankStatement ({
     token,
     // DSL
     id,
@@ -90,8 +88,7 @@ class BankStatementMatch {
     );
   }
 
-
-  listBankStatements({
+  listBankStatements ({
     token,
     bankAccountId,
     searchValue,
@@ -124,7 +121,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Bank Accounts
    * @param {string} token
@@ -132,7 +128,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBankAccounts({
+  listBankAccounts ({
     token,
     // DSL
     searchValue,
@@ -160,7 +156,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Business Partners
    * @param {string} token
@@ -168,7 +163,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBusinessPartners({
+  listBusinessPartners ({
     token,
     // DSL
     searchValue,
@@ -196,7 +191,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Search Modes
    * @param {string} token
@@ -204,7 +198,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listSearchModes({
+  listSearchModes ({
     token,
     // DSL
     searchValue,
@@ -232,7 +226,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Imported Bank Movements
    * @param {string} token
@@ -247,7 +240,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listImportedBankMovements({
+  listImportedBankMovements ({
     token,
     // DSL
     searchValue,
@@ -309,7 +302,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Payments
    * @param {string} token
@@ -325,7 +317,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPayments({
+  listPayments ({
     token,
     // DSL
     searchValue,
@@ -392,7 +384,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Matching Movements
    * @param {string} token
@@ -400,7 +391,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listMatchingMovements({
+  listMatchingMovements ({
     token,
     // DSL
     searchValue,
@@ -466,7 +457,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Get List Result Movements
    * @param {string} token
@@ -480,7 +470,7 @@ class BankStatementMatch {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listResultMovements({
+  listResultMovements ({
     token,
     // DSL
     searchValue,
@@ -536,8 +526,7 @@ class BankStatementMatch {
     );
   }
 
-
-  matchPayments({
+  matchPayments ({
     token,
     keyMatchesList
   }, callback) {
@@ -571,8 +560,7 @@ class BankStatementMatch {
     );
   }
 
-
-  unmatchPayments({
+  unmatchPayments ({
     token,
     importedMovementsIdsList
   }, callback) {
@@ -600,7 +588,6 @@ class BankStatementMatch {
     );
   }
 
-
   /**
    * Process Bank Statement
    * @param {string} token
@@ -611,7 +598,7 @@ class BankStatementMatch {
    * @param {Date} transactionDateFrom
    * @param {Date} transactionDateTo
    */
-  processMovements({
+  processMovements ({
     token,
     // DSL
     bankAccountId,
@@ -627,7 +614,7 @@ class BankStatementMatch {
     request.setBankAccountId(
       getValidInteger(bankAccountId)
     );
-    
+
     request.setBankStatementId(
       getValidInteger(bankStatementId)
     );
@@ -657,7 +644,6 @@ class BankStatementMatch {
       callback
     );
   }
-
 }
 
 module.exports = BankStatementMatch;

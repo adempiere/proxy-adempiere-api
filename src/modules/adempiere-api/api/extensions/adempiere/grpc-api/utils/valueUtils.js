@@ -19,7 +19,7 @@
  * @param {mixed} value
  * @returns {string} Undefined, Boolean, String, Function...
  */
-function getTypeOfValue(value) {
+function getTypeOfValue (value) {
   // '[object typeValue]'
   const typeValue = Object.prototype
     .toString
@@ -34,7 +34,7 @@ function getTypeOfValue(value) {
  * @param  {boolean|array|object|number|string|date|map|set|function} value
  * @returns {boolean}
  */
-function isEmptyValue(value) {
+function isEmptyValue (value) {
   const typeValue = getTypeOfValue(value);
   let isEmpty = true;
 
@@ -96,7 +96,7 @@ function isEmptyValue(value) {
  * @param {number}
  * @deprecated Use {@link #getValidInteger(id)} instead
  */
-function getValidId(id) {
+function getValidId (id) {
   return getValidInteger(id)
 }
 
@@ -105,7 +105,7 @@ function getValidId(id) {
  * @param {string|numner} id
  * @param {number}
  */
-function getValidInteger(id) {
+function getValidInteger (id) {
   if (!isEmptyValue(id) && !Number.isNaN(id)) {
     return Number.parseInt(id, 10);
   }
@@ -118,7 +118,7 @@ function getValidInteger(id) {
  * @param {String|Number|Date} dateValue
  * @returns {Number} number of milliseconds
  */
-function getTimestamp(dateValue) {
+function getTimestamp (dateValue) {
   let value = 0;
   if (isEmptyValue(dateValue)) {
     return value;
@@ -127,14 +127,13 @@ function getTimestamp(dateValue) {
   const typeOfValue = getTypeOfValue(dateValue);
   if (typeOfValue === 'Date') {
     return dateValue.getTime();
-  }
-  else if (typeOfValue === 'String') {
+  } else if (typeOfValue === 'String') {
     if (!isNaN(dateValue)) {
       value = Number(dateValue);
     } else {
       value = Date.parse(dateValue);
     }
-  } else if (typeOfValue == 'Number') {
+  } else if (typeOfValue === 'Number') {
     value = dateValue;
   }
   if (isNaN(value)) {
@@ -151,7 +150,7 @@ function getTimestamp(dateValue) {
  * @param {string} stringValue
  * @returns {string}
  */
-function removeQuotationMark(stringValue) {
+function removeQuotationMark (stringValue) {
   if (isEmptyValue(stringValue)) {
     return stringValue
   }
@@ -159,11 +158,7 @@ function removeQuotationMark(stringValue) {
     return stringValue
   }
 
-  const withoutQuotationMark = String(stringValue)
-    .trim()
-    // (') (text) (') or (") (text) (")
-    .replace(/(^\'|^\")(\w+)(\1)/g, '$2')
-
+  const withoutQuotationMark = String(stringValue).trim().replace(/(^\'|^\")(\w+)(\1)/g, '$2')
   return withoutQuotationMark
 }
 
@@ -172,7 +167,7 @@ function removeQuotationMark(stringValue) {
  * @param {mixed} valueToParsed
  * @returns {boolean}
  */
-function convertStringToBoolean(valueToParsed) {
+function convertStringToBoolean (valueToParsed) {
   let valReturn = valueToParsed
 
   // remove single/double quotation mark 'N' -> N, "Y" -> Y

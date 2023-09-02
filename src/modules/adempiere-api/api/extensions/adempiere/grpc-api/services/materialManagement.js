@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidId } = require('.././utils/valueUtils.js')
 
 class MaterialManagement {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class MaterialManagement {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class MaterialManagement {
   }
 
   // Init connection
-  initMaterialManagementService() {
+  initMaterialManagementService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/material_management_grpc_pb');
     this.materialManagement = new services.MaterialManagementClient(
@@ -54,11 +53,11 @@ class MaterialManagement {
   }
 
   // Get Material Management Service
-  getMaterialManagementService() {
+  getMaterialManagementService () {
     return this.materialManagement;
   }
 
-  listProductStorage({
+  listProductStorage ({
     token,
     // DSL
     tableName,
@@ -101,7 +100,7 @@ class MaterialManagement {
    * @param {string} productAttributeSetUuid
    * @param {function} callback
    */
-  getProductAttributeSet({
+  getProductAttributeSet ({
     token,
     id,
     uuid,
@@ -135,7 +134,6 @@ class MaterialManagement {
     );
   }
 
-
   /**
    * Get Product Attribute Set Instance
    * @param {number} id
@@ -146,7 +144,7 @@ class MaterialManagement {
    * @param {string} productAttributeSetUuid
    * @param {function} callback
    */
-  getProductAttributeSetInstance({
+  getProductAttributeSetInstance ({
     token,
     id,
     uuid,
@@ -184,7 +182,7 @@ class MaterialManagement {
    * @param {string} productAttributeSetUuid
    * @param {function} callback
    */
-  listProductAttributeSetInstances({
+  listProductAttributeSetInstances ({
     token,
     // DSL
     productId,
@@ -242,7 +240,7 @@ class MaterialManagement {
    * @param {array} attributes
    * @param {function} callback
    */
-  saveProductAttributeSetInstance({
+  saveProductAttributeSetInstance ({
     token,
     // DSL
     id,
@@ -301,7 +299,7 @@ class MaterialManagement {
    * @param {string} pageToken
    * @param {function} callback
    */
-  listAvailableWarehouses({
+  listAvailableWarehouses ({
     token,
     // DSL
     warehouseId,
@@ -344,7 +342,7 @@ class MaterialManagement {
    * @param {string} pageToken
    * @param {function} callback
    */
-  listLocators({
+  listLocators ({
     token,
     // DSL
     warehouseId,
@@ -416,7 +414,6 @@ class MaterialManagement {
       callback
     );
   }
-
 }
 
 module.exports = MaterialManagement;

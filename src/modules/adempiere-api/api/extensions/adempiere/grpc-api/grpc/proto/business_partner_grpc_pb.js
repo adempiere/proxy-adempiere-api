@@ -21,33 +21,32 @@ var proto_business_partner_pb = require('../proto/business_partner_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_business_partner_ListBusinessPartnerInfoRequest(arg) {
+function serialize_business_partner_ListBusinessPartnerInfoRequest (arg) {
   if (!(arg instanceof proto_business_partner_pb.ListBusinessPartnerInfoRequest)) {
     throw new Error('Expected argument of type business_partner.ListBusinessPartnerInfoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_business_partner_ListBusinessPartnerInfoRequest(buffer_arg) {
+function deserialize_business_partner_ListBusinessPartnerInfoRequest (buffer_arg) {
   return proto_business_partner_pb.ListBusinessPartnerInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The business partner service definition.
 var BusinessPartnerService = exports.BusinessPartnerService = {
   // List Business Partner Info Request
-listBusinessPartnerInfo: {
+  listBusinessPartnerInfo: {
     path: '/business_partner.BusinessPartner/ListBusinessPartnerInfo',
     requestStream: false,
     responseStream: false,
@@ -56,8 +55,8 @@ listBusinessPartnerInfo: {
     requestSerialize: serialize_business_partner_ListBusinessPartnerInfoRequest,
     requestDeserialize: deserialize_business_partner_ListBusinessPartnerInfoRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
-  },
+    responseDeserialize: deserialize_data_ListEntitiesResponse
+  }
 };
 
 exports.BusinessPartnerClient = grpc.makeGenericClientConstructor(BusinessPartnerService);

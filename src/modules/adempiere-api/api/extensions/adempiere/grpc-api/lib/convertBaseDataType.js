@@ -14,14 +14,14 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
- const convertBaseDataType = {
+const convertBaseDataType = {
 
   /**
    * Convert criteria to json structure
    * @param {Criteria} criteriaToConvert
    * TODO: Add convert condition from gRPC and order by column from gRPC
    */
-  convertCriteriaFromGRPC(criteriaToConvert) {
+  convertCriteriaFromGRPC (criteriaToConvert) {
     if (criteriaToConvert) {
       const { getValueFromGRPC } = require('.././utils/baseDataTypeFromGRPC.js');
 
@@ -52,7 +52,7 @@
     return undefined;
   },
 
-  convertOrderByPropertyFromGRPC(orderByPropertyToConvert) {
+  convertOrderByPropertyFromGRPC (orderByPropertyToConvert) {
     if (orderByPropertyToConvert) {
       const { getOrderType } = require('./convertEnums.js');
 
@@ -67,7 +67,7 @@
     return undefined;
   },
 
-  convertDocumentStatusFromGRPC(documentStatusToConvert) {
+  convertDocumentStatusFromGRPC (documentStatusToConvert) {
     if (documentStatusToConvert) {
       return {
         value: documentStatusToConvert.getValue(),
@@ -78,7 +78,7 @@
     return undefined;
   },
 
-  convertDocumentActionFromGRPC(documentActionToConvert) {
+  convertDocumentActionFromGRPC (documentActionToConvert) {
     if (documentActionToConvert) {
       return {
         value: documentActionToConvert.getValue(),
@@ -121,9 +121,9 @@
     return values;
   },
 
-  convertTranslationFromGRPC(translation) {
+  convertTranslationFromGRPC (translation) {
     if (translation) {
-    const { getValuesMapFromGRPC } = require('.././utils/valueUtilsFromGRPC.js');
+      const { getValuesMapFromGRPC } = require('.././utils/valueUtilsFromGRPC.js');
 
       return {
         language: translation.getLanguage(),
@@ -137,7 +137,7 @@
     return undefined;
   },
 
-  convertPrintFromatFromGRPC(printFromatToConvert) {
+  convertPrintFromatFromGRPC (printFromatToConvert) {
     if (printFromatToConvert) {
       return {
         print_format_uuid: printFromatToConvert.getUuid(),
@@ -151,7 +151,7 @@
     return undefined;
   },
 
-  convertReportViewFromGRPC(reportView) {
+  convertReportViewFromGRPC (reportView) {
     if (reportView) {
       return {
         report_view_uuid: reportView.getUuid(),
@@ -163,7 +163,7 @@
     return undefined;
   },
 
-  convertDrillTableFromGRPC(drillTable) {
+  convertDrillTableFromGRPC (drillTable) {
     if (drillTable) {
       return {
         table_name: drillTable.getTableName(),

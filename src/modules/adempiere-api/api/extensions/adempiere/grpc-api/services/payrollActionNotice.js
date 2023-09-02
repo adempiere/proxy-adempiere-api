@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getTypeOfValue, getValidId } = require('.././utils/valueUtils.js');
 
 class PayrollActionNotice {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class PayrollActionNotice {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class PayrollActionNotice {
   }
 
   // Init connection
-  initPayrollActionNoticeService() {
+  initPayrollActionNoticeService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/payroll_action_notice_grpc_pb');
     this.payrollActionNotice = new services.PayrollActionNoticeClient(
@@ -54,11 +53,11 @@ class PayrollActionNotice {
   }
 
   // Get Payroll Action Notice Service
-  getPayrollActionNoticeService() {
+  getPayrollActionNoticeService () {
     return this.payrollActionNotice;
   }
 
-  listPayrollProcess({
+  listPayrollProcess ({
     token,
     //  DSL
     searchValue,
@@ -106,7 +105,7 @@ class PayrollActionNotice {
     );
   }
 
-  listEmployeeValid({
+  listEmployeeValid ({
     token,
     //  DSL
     searchValue,
@@ -154,7 +153,7 @@ class PayrollActionNotice {
     );
   }
 
-  listPayrollConcepts({
+  listPayrollConcepts ({
     token,
     //  DSL
     searchValue,
@@ -168,7 +167,7 @@ class PayrollActionNotice {
 
     request.setSearchValue(searchValue);
 
-    if (!isEmptyValue(contextAttributes)) {4
+    if (!isEmptyValue(contextAttributes)) {
       const { getKeyValueToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
 
       if (getTypeOfValue(contextAttributes) === 'String') {
@@ -202,7 +201,7 @@ class PayrollActionNotice {
     );
   }
 
-  getPayrollConceptDefinition({
+  getPayrollConceptDefinition ({
     token,
     // DSL
     id,
@@ -225,7 +224,7 @@ class PayrollActionNotice {
     );
   }
 
-  listPayrollMovements({
+  listPayrollMovements ({
     token,
     //  DSL
     filters = [],
@@ -282,7 +281,7 @@ class PayrollActionNotice {
     );
   }
 
-  savePayrollMovement({
+  savePayrollMovement ({
     token,
     //  DSL
     id,
@@ -292,7 +291,7 @@ class PayrollActionNotice {
   }, callback) {
     const { SavePayrollMovementRequest } = this.stubFile;
     const request = new SavePayrollMovementRequest();
-      const { getKeyValueToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
+    const { getKeyValueToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
 
     request.setId(
       getValidId(id)
@@ -346,7 +345,7 @@ class PayrollActionNotice {
     );
   }
 
-  deletePayrollMovements({
+  deletePayrollMovements ({
     token,
     //  DSL
     contextAttributes,

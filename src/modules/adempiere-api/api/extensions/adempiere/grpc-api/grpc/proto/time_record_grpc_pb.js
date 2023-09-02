@@ -22,94 +22,93 @@ var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_core_functionality_pb = require('../proto/core_functionality_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_time_record_CreateTimeRecordRequest(arg) {
+function serialize_time_record_CreateTimeRecordRequest (arg) {
   if (!(arg instanceof proto_time_record_pb.CreateTimeRecordRequest)) {
     throw new Error('Expected argument of type time_record.CreateTimeRecordRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_CreateTimeRecordRequest(buffer_arg) {
+function deserialize_time_record_CreateTimeRecordRequest (buffer_arg) {
   return proto_time_record_pb.CreateTimeRecordRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListIssuesRequest(arg) {
+function serialize_time_record_ListIssuesRequest (arg) {
   if (!(arg instanceof proto_time_record_pb.ListIssuesRequest)) {
     throw new Error('Expected argument of type time_record.ListIssuesRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListIssuesRequest(buffer_arg) {
+function deserialize_time_record_ListIssuesRequest (buffer_arg) {
   return proto_time_record_pb.ListIssuesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListIssuesResponse(arg) {
+function serialize_time_record_ListIssuesResponse (arg) {
   if (!(arg instanceof proto_time_record_pb.ListIssuesResponse)) {
     throw new Error('Expected argument of type time_record.ListIssuesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListIssuesResponse(buffer_arg) {
+function deserialize_time_record_ListIssuesResponse (buffer_arg) {
   return proto_time_record_pb.ListIssuesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListProjectsRequest(arg) {
+function serialize_time_record_ListProjectsRequest (arg) {
   if (!(arg instanceof proto_time_record_pb.ListProjectsRequest)) {
     throw new Error('Expected argument of type time_record.ListProjectsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListProjectsRequest(buffer_arg) {
+function deserialize_time_record_ListProjectsRequest (buffer_arg) {
   return proto_time_record_pb.ListProjectsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListProjectsResponse(arg) {
+function serialize_time_record_ListProjectsResponse (arg) {
   if (!(arg instanceof proto_time_record_pb.ListProjectsResponse)) {
     throw new Error('Expected argument of type time_record.ListProjectsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListProjectsResponse(buffer_arg) {
+function deserialize_time_record_ListProjectsResponse (buffer_arg) {
   return proto_time_record_pb.ListProjectsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListTimeRecordRequest(arg) {
+function serialize_time_record_ListTimeRecordRequest (arg) {
   if (!(arg instanceof proto_time_record_pb.ListTimeRecordRequest)) {
     throw new Error('Expected argument of type time_record.ListTimeRecordRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListTimeRecordRequest(buffer_arg) {
+function deserialize_time_record_ListTimeRecordRequest (buffer_arg) {
   return proto_time_record_pb.ListTimeRecordRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ListTimeRecordResponse(arg) {
+function serialize_time_record_ListTimeRecordResponse (arg) {
   if (!(arg instanceof proto_time_record_pb.ListTimeRecordResponse)) {
     throw new Error('Expected argument of type time_record.ListTimeRecordResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ListTimeRecordResponse(buffer_arg) {
+function deserialize_time_record_ListTimeRecordResponse (buffer_arg) {
   return proto_time_record_pb.ListTimeRecordResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_time_record_ResourceAssignment(arg) {
+function serialize_time_record_ResourceAssignment (arg) {
   if (!(arg instanceof proto_time_record_pb.ResourceAssignment)) {
     throw new Error('Expected argument of type time_record.ResourceAssignment');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_time_record_ResourceAssignment(buffer_arg) {
+function deserialize_time_record_ResourceAssignment (buffer_arg) {
   return proto_time_record_pb.ResourceAssignment.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The Time Record service definition
 var TimeRecordService = exports.TimeRecordService = {
@@ -122,7 +121,7 @@ var TimeRecordService = exports.TimeRecordService = {
     requestSerialize: serialize_time_record_ListIssuesRequest,
     requestDeserialize: deserialize_time_record_ListIssuesRequest,
     responseSerialize: serialize_time_record_ListIssuesResponse,
-    responseDeserialize: deserialize_time_record_ListIssuesResponse,
+    responseDeserialize: deserialize_time_record_ListIssuesResponse
   },
   listProjects: {
     path: '/time_record.TimeRecord/ListProjects',
@@ -133,10 +132,10 @@ var TimeRecordService = exports.TimeRecordService = {
     requestSerialize: serialize_time_record_ListProjectsRequest,
     requestDeserialize: deserialize_time_record_ListProjectsRequest,
     responseSerialize: serialize_time_record_ListProjectsResponse,
-    responseDeserialize: deserialize_time_record_ListProjectsResponse,
+    responseDeserialize: deserialize_time_record_ListProjectsResponse
   },
   // Resource Assigment
-createTimeRecord: {
+  createTimeRecord: {
     path: '/time_record.TimeRecord/CreateTimeRecord',
     requestStream: false,
     responseStream: false,
@@ -145,7 +144,7 @@ createTimeRecord: {
     requestSerialize: serialize_time_record_CreateTimeRecordRequest,
     requestDeserialize: deserialize_time_record_CreateTimeRecordRequest,
     responseSerialize: serialize_time_record_ResourceAssignment,
-    responseDeserialize: deserialize_time_record_ResourceAssignment,
+    responseDeserialize: deserialize_time_record_ResourceAssignment
   },
   listTimeRecord: {
     path: '/time_record.TimeRecord/ListTimeRecord',
@@ -156,8 +155,8 @@ createTimeRecord: {
     requestSerialize: serialize_time_record_ListTimeRecordRequest,
     requestDeserialize: deserialize_time_record_ListTimeRecordRequest,
     responseSerialize: serialize_time_record_ListTimeRecordResponse,
-    responseDeserialize: deserialize_time_record_ListTimeRecordResponse,
-  },
+    responseDeserialize: deserialize_time_record_ListTimeRecordResponse
+  }
 };
 
 exports.TimeRecordClient = grpc.makeGenericClientConstructor(TimeRecordService);

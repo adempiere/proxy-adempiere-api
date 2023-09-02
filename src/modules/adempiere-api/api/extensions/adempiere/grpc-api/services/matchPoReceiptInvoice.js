@@ -17,9 +17,7 @@
 const { getMetadata } = require('.././utils/metadata.js');
 const { getValidId, getTimestamp, convertStringToBoolean, getTypeOfValue } = require('.././utils/valueUtils.js');
 
-class MatchPORReceiptInvoice 
-{
-
+class MatchPORReceiptInvoice {
   /**
    * File on generated stub
    */
@@ -31,7 +29,7 @@ class MatchPORReceiptInvoice
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -45,7 +43,7 @@ class MatchPORReceiptInvoice
   }
 
   // Init connection
-  initMatchPORReceiptInvoiceService() {
+  initMatchPORReceiptInvoiceService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/match_po_receipt_invoice_grpc_pb');
     this.match_po_receipt_invoice = new services.MatchPORReceiptInvoiceClient(
@@ -55,7 +53,7 @@ class MatchPORReceiptInvoice
   }
 
   // Get MatchPORReceiptInvoice Service
-  getMatchPORReceiptInvoiceService() {
+  getMatchPORReceiptInvoiceService () {
     return this.match_po_receipt_invoice;
   }
 
@@ -66,7 +64,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  listMatchesTypes({
+  listMatchesTypes ({
     token,
     pageSize,
     pageToken,
@@ -96,7 +94,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  ListMatchesTypesFor({
+  ListMatchesTypesFor ({
     token,
     pageSize,
     pageToken,
@@ -128,7 +126,7 @@ class MatchPORReceiptInvoice
   * @param {string} token
   * @param {string} searchValue
   */
-  ListSearchModes({
+  ListSearchModes ({
     token,
     pageSize,
     pageToken,
@@ -157,7 +155,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  ListVendors({
+  ListVendors ({
     token,
     pageSize,
     pageToken,
@@ -186,7 +184,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  ListProducts({
+  ListProducts ({
     token,
     pageSize,
     pageToken,
@@ -215,7 +213,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  ListMatchedFrom({
+  ListMatchedFrom ({
     token,
     pageSize,
     pageToken,
@@ -258,7 +256,7 @@ class MatchPORReceiptInvoice
    * @param {string} token
    * @param {string} searchValue
    */
-  ListMatchedTo({
+  ListMatchedTo ({
     token,
     pageSize,
     pageToken,
@@ -305,7 +303,7 @@ class MatchPORReceiptInvoice
   /**
    * Process
    */
-  Process({
+  Process ({
     token,
     matchMode,
     matchFromType,
@@ -321,12 +319,11 @@ class MatchPORReceiptInvoice
     request.setMatchToType(matchToType);
     request.setMatchFromSelectedId(matchFromSelectedId);
 
-
     const { getDecimalToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
     request.setQuantity(
       getDecimalToGRPC(quantity)
     );
-        
+
     if (getTypeOfValue(matchedToSelectionsList) === 'String') {
       matchedToSelectionsList = JSON.parse(matchedToSelectionsList);
     }
@@ -348,7 +345,7 @@ class MatchPORReceiptInvoice
       );
       request.addMatchedToSelections(matchedInstance);
     });
-    
+
     const metadata = getMetadata({
       token
     });
@@ -359,7 +356,6 @@ class MatchPORReceiptInvoice
       callback
     );
   }
-
 }
 
 module.exports = MatchPORReceiptInvoice;

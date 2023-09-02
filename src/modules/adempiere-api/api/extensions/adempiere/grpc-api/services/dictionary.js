@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class Dictionary {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Dictionary {
   * @param {string} version
   * @param {string} language
   */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.dictionaryHost = adempiereConfig.dictionaryHost
@@ -44,7 +43,7 @@ class Dictionary {
   }
 
   // Init connection
-  initDictionaryService() {
+  initDictionaryService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/dictionary_grpc_pb');
     this.dictionary = new services.DictionaryClient(
@@ -54,11 +53,11 @@ class Dictionary {
   }
 
   // Get Dictionary Service
-  getDictionaryService() {
+  getDictionaryService () {
     return this.dictionary;
   }
 
-  getDictionaryRequest({
+  getDictionaryRequest ({
     id,
     uuid
   }) {
@@ -72,10 +71,10 @@ class Dictionary {
   }
 
   // Get Window
-  getWindow({
+  getWindow ({
     token,
     id,
-    uuid,
+    uuid
   }, callback) {
     const request = this.getDictionaryRequest({
       id,
@@ -94,10 +93,10 @@ class Dictionary {
   }
 
   // Get Process
-  getProcess({
+  getProcess ({
     token,
     id,
-    uuid,
+    uuid
   }, callback) {
     const request = this.getDictionaryRequest({
       id,
@@ -116,10 +115,10 @@ class Dictionary {
   }
 
   // Get Browser
-  getBrowser({
+  getBrowser ({
     token,
     id,
-    uuid,
+    uuid
   }, callback) {
     const request = this.getDictionaryRequest({
       id,
@@ -138,10 +137,10 @@ class Dictionary {
   }
 
   // Get Form
-  getForm({
+  getForm ({
     token,
     id,
-    uuid,
+    uuid
   }, callback) {
     const request = this.getDictionaryRequest({
       id,
@@ -160,7 +159,7 @@ class Dictionary {
   }
 
   // Get Validation Rule
-  getValidationRule({
+  getValidationRule ({
     token,
     id,
     uuid
@@ -182,7 +181,7 @@ class Dictionary {
   }
 
   // Get Field
-  getField({
+  getField ({
     token,
     uuid,
     columnUuid,
@@ -217,7 +216,7 @@ class Dictionary {
   }
 
   // Get Reference
-  getReference({
+  getReference ({
     token,
     uuid,
     columnName
@@ -240,7 +239,7 @@ class Dictionary {
   }
 
   // List Identifiers Fields
-  listIdentifiersFields({
+  listIdentifiersFields ({
     token,
     tableUuid,
     tableId,
@@ -269,7 +268,7 @@ class Dictionary {
   }
 
   //  List Table Search Fields
-  listTableSearchFields({
+  listTableSearchFields ({
     token,
     tableUuid,
     tableId,
@@ -295,14 +294,13 @@ class Dictionary {
     );
   }
 
-
   /**
    * List Search Info Fields
    * @param {String} tableUuid
    * @param {Number} tableId
    * @param {String} tableName
    */
-  listSearchInfoFields({
+  listSearchInfoFields ({
     token,
     tableUuid,
     tableId,
@@ -327,7 +325,6 @@ class Dictionary {
       callback
     );
   }
-
 }
 
 module.exports = Dictionary;

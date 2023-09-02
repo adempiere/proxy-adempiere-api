@@ -22,7 +22,7 @@ const convertEnums = {
    * @param {number} value
    * @returns {number|string|object}
    */
-  getValueOrKey({ list, key, value }) {
+  getValueOrKey ({ list, key, value }) {
     if (key !== undefined) {
       return list[key];
     } else if (value !== undefined) {
@@ -44,7 +44,7 @@ const convertEnums = {
       STRING = 4;
       DATE = 5;
    */
-  getValue_ValueType({ key, value }) {
+  getValue_ValueType ({ key, value }) {
     const { Value } = require('.././grpc-api/grpc/proto/base_data_type_pb.js');
     const { ValueType } = Value;
 
@@ -62,7 +62,7 @@ const convertEnums = {
       ASCENDING = 0;
       DESCENDING = 1;
   */
-  getOrderType({ key, value }) {
+  getOrderType ({ key, value }) {
     const { OrderType } = require('.././grpc-api/grpc/proto/base_data_type_pb.js');
 
     return convertEnums.getValueOrKey({
@@ -81,7 +81,7 @@ const convertEnums = {
       UPDATE = 1;
       DELETE = 2;
    */
-  getRollbackEntityRequest_EventType({ key, value }) {
+  getRollbackEntityRequest_EventType ({ key, value }) {
     const { RollbackEntityRequest } = require('.././grpc-api/grpc/proto/business_pb.js');
     const { EventType } = RollbackEntityRequest;
 
@@ -100,7 +100,7 @@ const convertEnums = {
         PARTER = 1;
         INTERNAL = 2;
    */
-  getChatEntry_ConfidentialType({ key, value }) {
+  getChatEntry_ConfidentialType ({ key, value }) {
     const { ChatEntry } = require('.././grpc-api/grpc/proto/business_pb.js');
     const { ConfidentialType } = ChatEntry;
 
@@ -120,7 +120,7 @@ const convertEnums = {
         SUSPICIUS = 2;
         TO_BE_REVIEWED = 3;
    */
-  getChatEntry_ModeratorStatus({ key, value }) {
+  getChatEntry_ModeratorStatus ({ key, value }) {
     const { ChatEntry } = require('.././grpc-api/grpc/proto/business_pb.js');
     const { ModeratorStatus } = ChatEntry;
 
@@ -139,7 +139,7 @@ const convertEnums = {
         FORUM_THREADED = 1;
         WIKI = 2;
    */
-  getChatEntry_ChatEntryType({ key, value }) {
+  getChatEntry_ChatEntryType ({ key, value }) {
     const { ChatEntry } = require('.././grpc-api/grpc/proto/business_pb.js');
     const { ChatEntryType } = ChatEntry;
 

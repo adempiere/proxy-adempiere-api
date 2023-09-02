@@ -16,7 +16,7 @@
 
 const stubFile = require('.././grpc/proto/core_functionality_pb.js');
 
-function getCurrencyFromGRPC(currency) {
+function getCurrencyFromGRPC (currency) {
   if (!currency) {
     return undefined;
   }
@@ -36,7 +36,7 @@ function getCurrencyFromGRPC(currency) {
     CHECKING = 0;
     SAVINGS = 1;
  */
-function getBankAccount_BankAccountType({ key, value }) {
+function getBankAccount_BankAccountType ({ key, value }) {
   const { getValueOrKey } = require('./convertEnums.js')
   const { BankAccount } = stubFile;
   const { BankAccountType } = BankAccount;
@@ -48,7 +48,7 @@ function getBankAccount_BankAccountType({ key, value }) {
   });
 }
 
-function getBankAccountFromGRPC(bankAccount) {
+function getBankAccountFromGRPC (bankAccount) {
   if (!bankAccount) {
     return undefined;
   }

@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class UserCustomization {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class UserCustomization {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class UserCustomization {
   }
 
   // Init connection
-  initUserCustomizationService() {
+  initUserCustomizationService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/user_customization_grpc_pb');
     this.userCustomization = new services.UserCustomizationClient(
@@ -53,10 +52,9 @@ class UserCustomization {
   }
 
   // Get User Customization Service
-  getUserCustomizationService() {
+  getUserCustomizationService () {
     return this.userCustomization;
   }
-
 
   /**
    * List Users
@@ -64,7 +62,7 @@ class UserCustomization {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listUsers({
+  listUsers ({
     token,
     searchValue,
     pageSize,
@@ -91,14 +89,13 @@ class UserCustomization {
     );
   }
 
-
   /**
    * List Roles
    * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listRoles({
+  listRoles ({
     token,
     searchValue,
     pageSize,
@@ -125,14 +122,13 @@ class UserCustomization {
     );
   }
 
-
   /**
    * List Customizations Level
    * @param {string} searchValue
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCustomizationsLevel({
+  listCustomizationsLevel ({
     token,
     searchValue,
     pageSize,
@@ -159,7 +155,6 @@ class UserCustomization {
     );
   }
 
-
   /**
    * Save Window Customization
    * @param {string} tabUuid
@@ -172,7 +167,7 @@ class UserCustomization {
    *    displaySize, displayComponentType, componenTemplateCode
    *  }]
    */
-  saveWindowCustomization({
+  saveWindowCustomization ({
     token,
     tabUuid,
     levelType,
@@ -223,7 +218,6 @@ class UserCustomization {
     );
   }
 
-
   /**
    * Save Browse Customization
    * @param {string} browseUuid
@@ -236,7 +230,7 @@ class UserCustomization {
    *    displaySize, displayComponentType, componenTemplateCode
    *  }]
    */
-  saveBrowseCustomization({
+  saveBrowseCustomization ({
     token,
     browseUuid,
     levelType,
@@ -287,7 +281,6 @@ class UserCustomization {
     );
   }
 
-
   /**
    * Save Process Customization
    * @param {string} processUuid
@@ -300,7 +293,7 @@ class UserCustomization {
    *    displaySize, displayComponentType, componenTemplateCode
    *  }]
    */
-  saveProcessCustomization({
+  saveProcessCustomization ({
     token,
     processUuid,
     levelType,
@@ -350,7 +343,6 @@ class UserCustomization {
       callback
     );
   }
-
 }
 
 module.exports = UserCustomization;

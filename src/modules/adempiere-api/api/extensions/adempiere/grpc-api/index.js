@@ -16,16 +16,15 @@
 
 const { getMetadata } = require('./utils/metadata.js');
 
- class Api {
-
+class Api {
   /**
    * Constructor, No authentication required
    * @param {string} host
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
-    if(config) {
+  constructor (config) {
+    if (config) {
       const adempiereConfig = config.adempiereApi.api
       this.businessHost = adempiereConfig.businessHost
       this.version = adempiereConfig.version
@@ -39,7 +38,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // Init connection
-  initUIService() {
+  initUIService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('./grpc/proto/business_grpc_pb');
     this.ui = new services.UserInterfaceClient(
@@ -49,7 +48,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // Init connection
-  initBusinessService() {
+  initBusinessService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('./grpc/proto/business_grpc_pb');
     this.business = new services.BusinessDataClient(
@@ -59,18 +58,18 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Get UI Service
-  getUIService() {
+  getUIService () {
     return this.ui
   }
 
   //  Get Business Service
-  getBusinessService() {
+  getBusinessService () {
     return this.business
   }
 
   //  Business CRUD
   //  Get a Entity
-  getEntity({
+  getEntity ({
     token,
     id,
     uuid,
@@ -94,7 +93,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Create a Entity
-  createEntity({
+  createEntity ({
     token,
     tableName,
     attributes
@@ -102,7 +101,7 @@ const { getMetadata } = require('./utils/metadata.js');
     const { CreateEntityRequest } = require('./grpc/proto/business_pb.js')
     const request = new CreateEntityRequest();
 
-    request.setTableName(tableName);
+    request.setTableName(tableName)
     if (attributes) {
       const { getKeyValueToGRPC } = require('./utils/baseDataTypeToGRPC.js');
       attributes.forEach(attribute => {
@@ -127,7 +126,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Create a Entity
-  updateEntity({
+  updateEntity ({
     token,
     tableName,
     id,
@@ -163,41 +162,8 @@ const { getMetadata } = require('./utils/metadata.js');
     );
   }
 
-  //  Create a Entity
-  createEntity({
-    token,
-    tableName,
-    attributes
-  }, callback) {
-    const { CreateEntityRequest } = require('./grpc/proto/business_pb.js')
-    const request = new CreateEntityRequest();
-
-    request.setTableName(tableName)
-    if (attributes) {
-      const { getKeyValueToGRPC } = require('./utils/baseDataTypeToGRPC.js');
-      attributes.forEach(attribute => {
-        request.addAttributes(
-          getKeyValueToGRPC({
-            columnName: attribute.key,
-            value: attribute.value
-          })
-        );
-      })
-    }
-
-    const metadata = getMetadata({
-      token
-    });
-
-    this.getBusinessService().createEntity(
-      request,
-      metadata,
-      callback
-    );
-  }
-
   //  Delete a Entity
-  deleteEntity({
+  deleteEntity ({
     token,
     id,
     uuid,
@@ -228,7 +194,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  List Entities
-  listEntities({
+  listEntities ({
     token,
     tableName,
     //  DSL
@@ -277,11 +243,10 @@ const { getMetadata } = require('./utils/metadata.js');
     );
   }
 
-
   //  User Interface
 
   //  Create Chat Entry
-  createChatEntry({
+  createChatEntry ({
     token,
     tableName,
     id,
@@ -307,7 +272,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Unlock Private Access
-  unlockPrivateAccess({
+  unlockPrivateAccess ({
     token,
     tableName,
     id,
@@ -331,7 +296,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Lock Private Access
-  lockPrivateAccess({
+  lockPrivateAccess ({
     token,
     tableName,
     id,
@@ -355,7 +320,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Get Private Access
-  getPrivateAccess({
+  getPrivateAccess ({
     token,
     tableName,
     id,
@@ -379,7 +344,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Get Record Access for current role
-  getRecordAccess({
+  getRecordAccess ({
     token,
     tableName,
     id,
@@ -403,7 +368,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // Set Record Access for current role
-  setRecordAccess({
+  setRecordAccess ({
     token,
     tableName,
     id,
@@ -416,14 +381,14 @@ const { getMetadata } = require('./utils/metadata.js');
     request.setId(id)
     request.setUuid(uuid)
     //  Set access for role
-    if(recordAccesses) {
+    if (recordAccesses) {
       recordAccesses.forEach(record => {
         const recordAccessRole = new RecordAccessRole()
         recordAccessRole.setRoleId(record.roleId)
-        if(record.roleUuid) {
+        if (record.roleUuid) {
           recordAccessRole.setRoleUuid(record.roleUuid)
         }
-        if(record.roleName) {
+        if (record.roleName) {
           recordAccessRole.setRoleName(record.roleName)
         }
         recordAccessRole.setIsActive(record.isActive)
@@ -446,7 +411,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // Set preference value for a attribute
-  setPreference({
+  setPreference ({
     token,
     containerUuid,
     columnName,
@@ -458,7 +423,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }, callback) {
     const { SetPreferenceRequest } = require('./grpc/proto/business_pb.js')
     const request = new SetPreferenceRequest()
-    if(containerUuid) {
+    if (containerUuid) {
       request.setContainerUuid(containerUuid)
     }
     request.setColumnName(columnName)
@@ -480,7 +445,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // Delete preference based on criteria for it
-  deletePreference({
+  deletePreference ({
     token,
     containerUuid,
     columnName,
@@ -492,7 +457,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }, callback) {
     const { DeletePreferenceRequest } = require('./grpc/proto/business_pb.js')
     const request = new DeletePreferenceRequest()
-    if(containerUuid) {
+    if (containerUuid) {
       request.setContainerUuid(containerUuid)
     }
     request.setColumnName(columnName)
@@ -513,7 +478,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Get Context Information Value
-  getContextInfoValue({
+  getContextInfoValue ({
     token,
     query,
     uuid,
@@ -537,7 +502,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  List references of record
-  listReferences({
+  listReferences ({
     token,
     tableName,
     windowUuid,
@@ -567,7 +532,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  List Browser Items
-  listBrowserItems({
+  listBrowserItems ({
     token,
     uuid,
     tableName,
@@ -629,9 +594,9 @@ const { getMetadata } = require('./utils/metadata.js');
    * @param {string} token session uuid
    * @param {number} id identifier of smart browser
    * @param {string} id universally unique identifier of smart browser
-   * @param {object} 
+   * @param {object}
    */
-  updateBrowserEntity({
+  updateBrowserEntity ({
     token,
     id,
     uuid,
@@ -649,7 +614,7 @@ const { getMetadata } = require('./utils/metadata.js');
     if (!this.isEmptyValue(attributes)) {
       const { getKeyValueToGRPC } = require('./utils/baseDataTypeToGRPC.js');
       const { getTypeOfValue } = require('./utils/valueUtils.js');
-  
+
       if (getTypeOfValue(attributes) === 'String') {
         attributes = JSON.parse(attributes);
       }
@@ -659,7 +624,7 @@ const { getMetadata } = require('./utils/metadata.js');
         if (getTypeOfValue(attribute) === 'String') {
           parsedAttribute = JSON.parse(attribute);
         }
-  
+
         const attributeConverted = getKeyValueToGRPC({
           columnName: parsedAttribute.key,
           value: parsedAttribute.value
@@ -681,7 +646,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  List Lookup Items
-  listLookupItems({
+  listLookupItems ({
     token,
     processParameterUuid,
     fieldUuid,
@@ -742,7 +707,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Get Lookup
-  getLookupItem({
+  getLookupItem ({
     token,
     processParameterUuid,
     fieldUuid,
@@ -801,7 +766,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  List translations
-  listTranslations({
+  listTranslations ({
     token,
     tableName,
     uuid,
@@ -829,7 +794,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   //  Rollback a value from entity
-  rollbackEntity({
+  rollbackEntity ({
     token,
     tableName,
     id,
@@ -855,7 +820,7 @@ const { getMetadata } = require('./utils/metadata.js');
   }
 
   // List General Info
-  listGeneralInfo({
+  listGeneralInfo ({
     token,
     //  DSL
     filters = [],
@@ -928,7 +893,7 @@ const { getMetadata } = require('./utils/metadata.js');
     );
   }
 
-  isEmptyValue(value) {
+  isEmptyValue (value) {
     const { isEmptyValue } = require('./src/utils/valueUtils.js');
 
     return isEmptyValue(value);

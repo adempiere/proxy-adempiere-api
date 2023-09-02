@@ -21,7 +21,7 @@ const stubFile = require('.././grpc/proto/base_data_type_pb.js');
  * @param {Value.INTEGER} integerValueToConvert
  * @return {number}
  */
-function getIntegerValueFromGRPC(integerValueToConvert) {
+function getIntegerValueFromGRPC (integerValueToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (isEmptyValue(integerValueToConvert)) {
@@ -35,7 +35,7 @@ function getIntegerValueFromGRPC(integerValueToConvert) {
  * @param {DECIMAL.decimal_value} decimalToConvert
  * @return {number}
  */
-function getDecimalFromGRPC(decimalToConvert) {
+function getDecimalFromGRPC (decimalToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (isEmptyValue(decimalToConvert)) {
@@ -56,7 +56,7 @@ function getDecimalFromGRPC(decimalToConvert) {
  * @param {Value.DECIMAL} decimalValueToConvert
  * @return {number}
  */
-function getDecimalValueFromGRPC(decimalValueToConvert) {
+function getDecimalValueFromGRPC (decimalValueToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
   const decimalObject = decimalValueToConvert.getDecimalValue();
 
@@ -73,7 +73,7 @@ function getDecimalValueFromGRPC(decimalValueToConvert) {
  * @param {Value.BOOLEAN} booleanValueToConvert
  * @return
  */
-function getBooleanValueFromGRPC(booleanValueToConvert) {
+function getBooleanValueFromGRPC (booleanValueToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (isEmptyValue(booleanValueToConvert)) {
@@ -88,7 +88,7 @@ function getBooleanValueFromGRPC(booleanValueToConvert) {
  * @param uppercase
  * @return {string}
  */
-function getStringValueFromGRPC(stringValueToConvert, uppercase = false) {
+function getStringValueFromGRPC (stringValueToConvert, uppercase = false) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (isEmptyValue(stringValueToConvert)) {
@@ -108,7 +108,7 @@ function getStringValueFromGRPC(stringValueToConvert, uppercase = false) {
  * @param {Value.DATE} dateValueToConvert value to convert
  * @return {date}
  */
-function getDateValueFromGRPC(dateValueToConvert) {
+function getDateValueFromGRPC (dateValueToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (!isEmptyValue(dateValueToConvert) && dateValueToConvert.getLongValue() > 0) {
@@ -117,7 +117,7 @@ function getDateValueFromGRPC(dateValueToConvert) {
   return undefined;
 }
 
-function getValueFromGRPC(valueToConvert) {
+function getValueFromGRPC (valueToConvert) {
   const { isEmptyValue } = require('./valueUtils.js');
 
   if (isEmptyValue(valueToConvert)) {
@@ -178,7 +178,7 @@ function getValueFromGRPC(valueToConvert) {
     IN = 13;
     NOT_IN = 14;
  */
-function getOperator({ key, value }) {
+function getOperator ({ key, value }) {
   const { getValueOrKey } = require('./convertEnums.js')
   const { Operator } = require('.././grpc/proto/base_data_type_pb.js');
 
@@ -192,7 +192,7 @@ function getOperator({ key, value }) {
 /**
  * Get Business Partner Convert From gRPC
  */
-function getBusinessPartnerFromGRPC(businessPartnerToConvert) {
+function getBusinessPartnerFromGRPC (businessPartnerToConvert) {
   if (!businessPartnerToConvert) {
     return undefined;
   }
@@ -209,7 +209,7 @@ function getBusinessPartnerFromGRPC(businessPartnerToConvert) {
   };
 }
 
-function getReportOutputFromGRPC(reportOutputToConvert) {
+function getReportOutputFromGRPC (reportOutputToConvert) {
   if (!reportOutputToConvert) {
     return undefined;
   }
@@ -234,7 +234,7 @@ function getReportOutputFromGRPC(reportOutputToConvert) {
   };
 }
 
-function getProcessInfoLogFromGRPC(processInfoLog) {
+function getProcessInfoLogFromGRPC (processInfoLog) {
   if (!processInfoLog) {
     return undefined;
   }
@@ -244,7 +244,7 @@ function getProcessInfoLogFromGRPC(processInfoLog) {
   };
 }
 
-function getProcesInstanceParameterFromGRPC(processInstanceParameter) {
+function getProcesInstanceParameterFromGRPC (processInstanceParameter) {
   if (!processInstanceParameter) {
     return undefined;
   }
@@ -262,7 +262,7 @@ function getProcesInstanceParameterFromGRPC(processInstanceParameter) {
   };
 }
 
-function getProcessLogFromGRPC(processLog) {
+function getProcessLogFromGRPC (processLog) {
   if (!processLog) {
     return undefined;
   }
@@ -296,7 +296,7 @@ function getProcessLogFromGRPC(processLog) {
   };
 }
 
-function getRecordReferenceInfoFromGRPC(referenceInfo) {
+function getRecordReferenceInfoFromGRPC (referenceInfo) {
   if (!referenceInfo) {
     return undefined;
   }
@@ -315,7 +315,7 @@ function getRecordReferenceInfoFromGRPC(referenceInfo) {
   };
 }
 
-function getResourceType({ key, value }) {
+function getResourceType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { ResourceType } = require('.././grpc/proto/file_management_pb');
 
@@ -326,7 +326,7 @@ function getResourceType({ key, value }) {
   });
 }
 
-function getResourceReferenceFromGRPC(resourceReferenceToConvert) {
+function getResourceReferenceFromGRPC (resourceReferenceToConvert) {
   if (!resourceReferenceToConvert) {
     return undefined;
   }

@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidId } = require('.././utils/valueUtils.js');
 
 class TimeRecord {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class TimeRecord {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class TimeRecord {
   }
 
   // Init connection
-  initTimeRecordService() {
+  initTimeRecordService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/time_record_grpc_pb');
     this.timeRecord = new services.TimeRecordClient(
@@ -53,7 +52,7 @@ class TimeRecord {
   }
 
   // Get Time Record Service
-  getTimeRecordService() {
+  getTimeRecordService () {
     return this.timeRecord;
   }
 
@@ -63,7 +62,7 @@ class TimeRecord {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listIssues({
+  listIssues ({
     token,
     // DSL
     searhValue,
@@ -93,14 +92,13 @@ class TimeRecord {
     );
   }
 
-
   /**
    * List Projects
    * @param {string} searhValue
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listProjects({
+  listProjects ({
     token,
     // DSL
     searhValue,
@@ -130,11 +128,10 @@ class TimeRecord {
     );
   }
 
-
   /**
    * Create Time Record
    */
-  createTimeRecord({
+  createTimeRecord ({
     token,
     // DSL
     requestId,
@@ -187,7 +184,7 @@ class TimeRecord {
     );
   }
 
-  listTimeRecord({
+  listTimeRecord ({
     token,
     // DSL
     searhValue,
@@ -237,7 +234,6 @@ class TimeRecord {
       callback
     );
   }
-
 }
 
 module.exports = TimeRecord;

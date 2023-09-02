@@ -14,7 +14,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-function getDashboardFromGRPC(dashboard) {
+function getDashboardFromGRPC (dashboard) {
   if (!dashboard) {
     return undefined;
   }
@@ -37,7 +37,7 @@ function getDashboardFromGRPC(dashboard) {
   };
 }
 
-function getChartSerieFromGRPC(serie) {
+function getChartSerieFromGRPC (serie) {
   if (!serie) {
     return undefined;
   }
@@ -52,13 +52,13 @@ function getChartSerieFromGRPC(serie) {
         name: dataSet.getName(),
         value: getDecimalFromGRPC(
           dataSet.getValue()
-        ),
+        )
       }
     })
   };
 }
 
-function getColorSchemaFromGRPC(colorSchemaToConvert) {
+function getColorSchemaFromGRPC (colorSchemaToConvert) {
   if (!colorSchemaToConvert) {
     return undefined;
   }
@@ -74,7 +74,7 @@ function getColorSchemaFromGRPC(colorSchemaToConvert) {
   };
 }
 
-function getMetricsFromGRPC(metricsToConvert) {
+function getMetricsFromGRPC (metricsToConvert) {
   if (!metricsToConvert) {
     return undefined;
   }
@@ -101,7 +101,7 @@ function getMetricsFromGRPC(metricsToConvert) {
   };
 }
 
-function getPendingDocumentFromGRPC(pendingDocumentToConvert) {
+function getPendingDocumentFromGRPC (pendingDocumentToConvert) {
   if (!pendingDocumentToConvert) {
     return undefined;
   }
@@ -122,7 +122,7 @@ function getPendingDocumentFromGRPC(pendingDocumentToConvert) {
   };
 }
 
-function getFavoriteFromGRPC(favorite) {
+function getFavoriteFromGRPC (favorite) {
   if (!favorite) {
     return undefined;
   }
@@ -135,7 +135,6 @@ function getFavoriteFromGRPC(favorite) {
   };
 }
 
-
 /**
  * Get all moderation type or get key value type from value
  * @param {number} value
@@ -147,7 +146,7 @@ function getFavoriteFromGRPC(favorite) {
       FORM = 4;
       WORKFLOW = 5;
  */
-function getAction({ key, value }) {
+function getAction ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js');
   const { Action } = require('.././grpc/proto/dashboarding_pb.js');
 
@@ -158,7 +157,7 @@ function getAction({ key, value }) {
   });
 }
 
-function getNotificationFromGRPC(notificationToConvert) {
+function getNotificationFromGRPC (notificationToConvert) {
   if (!notificationToConvert) {
     return undefined;
   }
@@ -175,7 +174,7 @@ function getNotificationFromGRPC(notificationToConvert) {
   };
 }
 
-function getWindowDashboardParameterFromGRPC(windowChartParameterToConvert) {
+function getWindowDashboardParameterFromGRPC (windowChartParameterToConvert) {
   if (!windowChartParameterToConvert) {
     return undefined;
   }
@@ -208,7 +207,7 @@ function getWindowDashboardParameterFromGRPC(windowChartParameterToConvert) {
   }
 }
 
-function getWindowDashboardFromGRPC(windowChartToConvert) {
+function getWindowDashboardFromGRPC (windowChartToConvert) {
   if (!windowChartToConvert) {
     return undefined;
   }
@@ -232,7 +231,7 @@ function getWindowDashboardFromGRPC(windowChartToConvert) {
   };
 }
 
-function getWindowMetricsFromGRPC(windowMetricsToConvert) {
+function getWindowMetricsFromGRPC (windowMetricsToConvert) {
   if (!windowMetricsToConvert) {
     return undefined;
   }

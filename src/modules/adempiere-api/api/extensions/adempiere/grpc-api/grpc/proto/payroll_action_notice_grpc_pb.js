@@ -21,132 +21,131 @@ var proto_payroll_action_notice_pb = require('../proto/payroll_action_notice_pb.
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_data_Empty(arg) {
+function serialize_data_Empty (arg) {
   if (!(arg instanceof proto_base_data_type_pb.Empty)) {
     throw new Error('Expected argument of type data.Empty');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_Empty(buffer_arg) {
+function deserialize_data_Empty (buffer_arg) {
   return proto_base_data_type_pb.Empty.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_Entity(arg) {
+function serialize_data_Entity (arg) {
   if (!(arg instanceof proto_base_data_type_pb.Entity)) {
     throw new Error('Expected argument of type data.Entity');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_Entity(buffer_arg) {
+function deserialize_data_Entity (buffer_arg) {
   return proto_base_data_type_pb.Entity.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_data_ListLookupItemsResponse(arg) {
+function serialize_data_ListLookupItemsResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListLookupItemsResponse)) {
     throw new Error('Expected argument of type data.ListLookupItemsResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListLookupItemsResponse(buffer_arg) {
+function deserialize_data_ListLookupItemsResponse (buffer_arg) {
   return proto_business_pb.ListLookupItemsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_DeletePayrollMovementsRequest(arg) {
+function serialize_payroll_action_notice_DeletePayrollMovementsRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.DeletePayrollMovementsRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.DeletePayrollMovementsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_DeletePayrollMovementsRequest(buffer_arg) {
+function deserialize_payroll_action_notice_DeletePayrollMovementsRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.DeletePayrollMovementsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_GetPayrollConceptDefinitionRequest(arg) {
+function serialize_payroll_action_notice_GetPayrollConceptDefinitionRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.GetPayrollConceptDefinitionRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.GetPayrollConceptDefinitionRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_GetPayrollConceptDefinitionRequest(buffer_arg) {
+function deserialize_payroll_action_notice_GetPayrollConceptDefinitionRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.GetPayrollConceptDefinitionRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_ListEmployeeValidRequest(arg) {
+function serialize_payroll_action_notice_ListEmployeeValidRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.ListEmployeeValidRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.ListEmployeeValidRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_ListEmployeeValidRequest(buffer_arg) {
+function deserialize_payroll_action_notice_ListEmployeeValidRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.ListEmployeeValidRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_ListPayrollConceptsRequest(arg) {
+function serialize_payroll_action_notice_ListPayrollConceptsRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.ListPayrollConceptsRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.ListPayrollConceptsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_ListPayrollConceptsRequest(buffer_arg) {
+function deserialize_payroll_action_notice_ListPayrollConceptsRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.ListPayrollConceptsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_ListPayrollMovementsRequest(arg) {
+function serialize_payroll_action_notice_ListPayrollMovementsRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.ListPayrollMovementsRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.ListPayrollMovementsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_ListPayrollMovementsRequest(buffer_arg) {
+function deserialize_payroll_action_notice_ListPayrollMovementsRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.ListPayrollMovementsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_ListPayrollProcessRequest(arg) {
+function serialize_payroll_action_notice_ListPayrollProcessRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.ListPayrollProcessRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.ListPayrollProcessRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_ListPayrollProcessRequest(buffer_arg) {
+function deserialize_payroll_action_notice_ListPayrollProcessRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.ListPayrollProcessRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_payroll_action_notice_SavePayrollMovementRequest(arg) {
+function serialize_payroll_action_notice_SavePayrollMovementRequest (arg) {
   if (!(arg instanceof proto_payroll_action_notice_pb.SavePayrollMovementRequest)) {
     throw new Error('Expected argument of type payroll_action_notice.SavePayrollMovementRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_payroll_action_notice_SavePayrollMovementRequest(buffer_arg) {
+function deserialize_payroll_action_notice_SavePayrollMovementRequest (buffer_arg) {
   return proto_payroll_action_notice_pb.SavePayrollMovementRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The payroll-action-notice service definition.
 var PayrollActionNoticeService = exports.PayrollActionNoticeService = {
   // List Payroll Process
-listPayrollProcess: {
+  listPayrollProcess: {
     path: '/payroll_action_notice.PayrollActionNotice/ListPayrollProcess',
     requestStream: false,
     responseStream: false,
@@ -155,10 +154,10 @@ listPayrollProcess: {
     requestSerialize: serialize_payroll_action_notice_ListPayrollProcessRequest,
     requestDeserialize: deserialize_payroll_action_notice_ListPayrollProcessRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
-    responseDeserialize: deserialize_data_ListLookupItemsResponse,
+    responseDeserialize: deserialize_data_ListLookupItemsResponse
   },
   // List Employee Valid
-listEmployeeValid: {
+  listEmployeeValid: {
     path: '/payroll_action_notice.PayrollActionNotice/ListEmployeeValid',
     requestStream: false,
     responseStream: false,
@@ -167,10 +166,10 @@ listEmployeeValid: {
     requestSerialize: serialize_payroll_action_notice_ListEmployeeValidRequest,
     requestDeserialize: deserialize_payroll_action_notice_ListEmployeeValidRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
-    responseDeserialize: deserialize_data_ListLookupItemsResponse,
+    responseDeserialize: deserialize_data_ListLookupItemsResponse
   },
   // List Payroll Concepts
-listPayrollConcepts: {
+  listPayrollConcepts: {
     path: '/payroll_action_notice.PayrollActionNotice/ListPayrollConcepts',
     requestStream: false,
     responseStream: false,
@@ -179,10 +178,10 @@ listPayrollConcepts: {
     requestSerialize: serialize_payroll_action_notice_ListPayrollConceptsRequest,
     requestDeserialize: deserialize_payroll_action_notice_ListPayrollConceptsRequest,
     responseSerialize: serialize_data_ListLookupItemsResponse,
-    responseDeserialize: deserialize_data_ListLookupItemsResponse,
+    responseDeserialize: deserialize_data_ListLookupItemsResponse
   },
   // Get Payroll Concept Definition
-getPayrollConceptDefinition: {
+  getPayrollConceptDefinition: {
     path: '/payroll_action_notice.PayrollActionNotice/GetPayrollConceptDefinition',
     requestStream: false,
     responseStream: false,
@@ -191,10 +190,10 @@ getPayrollConceptDefinition: {
     requestSerialize: serialize_payroll_action_notice_GetPayrollConceptDefinitionRequest,
     requestDeserialize: deserialize_payroll_action_notice_GetPayrollConceptDefinitionRequest,
     responseSerialize: serialize_data_Entity,
-    responseDeserialize: deserialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity
   },
   // List Payroll Movements
-listPayrollMovements: {
+  listPayrollMovements: {
     path: '/payroll_action_notice.PayrollActionNotice/ListPayrollMovements',
     requestStream: false,
     responseStream: false,
@@ -203,10 +202,10 @@ listPayrollMovements: {
     requestSerialize: serialize_payroll_action_notice_ListPayrollMovementsRequest,
     requestDeserialize: deserialize_payroll_action_notice_ListPayrollMovementsRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
+    responseDeserialize: deserialize_data_ListEntitiesResponse
   },
   // Save Payroll Movement
-savePayrollMovement: {
+  savePayrollMovement: {
     path: '/payroll_action_notice.PayrollActionNotice/SavePayrollMovement',
     requestStream: false,
     responseStream: false,
@@ -215,10 +214,10 @@ savePayrollMovement: {
     requestSerialize: serialize_payroll_action_notice_SavePayrollMovementRequest,
     requestDeserialize: deserialize_payroll_action_notice_SavePayrollMovementRequest,
     responseSerialize: serialize_data_Entity,
-    responseDeserialize: deserialize_data_Entity,
+    responseDeserialize: deserialize_data_Entity
   },
   // Delete Payroll Movements
-deletePayrollMovements: {
+  deletePayrollMovements: {
     path: '/payroll_action_notice.PayrollActionNotice/DeletePayrollMovements',
     requestStream: false,
     responseStream: false,
@@ -227,8 +226,8 @@ deletePayrollMovements: {
     requestSerialize: serialize_payroll_action_notice_DeletePayrollMovementsRequest,
     requestDeserialize: deserialize_payroll_action_notice_DeletePayrollMovementsRequest,
     responseSerialize: serialize_data_Empty,
-    responseDeserialize: deserialize_data_Empty,
-  },
+    responseDeserialize: deserialize_data_Empty
+  }
 };
 
 exports.PayrollActionNoticeClient = grpc.makeGenericClientConstructor(PayrollActionNoticeService);

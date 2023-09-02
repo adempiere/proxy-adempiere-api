@@ -24,7 +24,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.createCart({
         token: req.query.token
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           let carId = response.getUuid()
           if (req.query.token) {
@@ -96,7 +96,7 @@ export default ({ config, db, service }) => {
         quantity: req.body.cartItem.qty,
         configurableOptions
         //  TODO: support to attribute
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -198,7 +198,7 @@ export default ({ config, db, service }) => {
         cartId: req.query.cartId,
         sku: req.body.cartItem.sku,
         productId: req.body.cartItem.item_id
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -233,7 +233,7 @@ export default ({ config, db, service }) => {
       service.getCart({
         token: req.query.token,
         cartId: req.query.cartId
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -298,7 +298,7 @@ export default ({ config, db, service }) => {
       service.getCartTotals({
         token: req.query.token,
         cartId: req.query.cartId
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -403,7 +403,7 @@ export default ({ config, db, service }) => {
         address2: req.body.address.street[1],
         address3: req.body.address.street[2],
         address4: req.body.address.street[3]
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -445,7 +445,7 @@ export default ({ config, db, service }) => {
       service.getPaymentMethods({
         token: req.query.token,
         cartId: req.query.cartId
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -536,7 +536,7 @@ export default ({ config, db, service }) => {
         billingAddress,
         carrierCode,
         methodCode
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

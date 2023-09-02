@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class UserInterface {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class UserInterface {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class UserInterface {
   }
 
   // Init connection
-  initUserInterfaceService() {
+  initUserInterfaceService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/business_grpc_pb');
     this.userInterface = new services.UserInterfaceClient(
@@ -54,13 +53,12 @@ class UserInterface {
   }
 
   // Get UserInterface Service
-  getUserInterfaceService() {
+  getUserInterfaceService () {
     return this.userInterface;
   }
 
-
   // Get Default Value
-  getDefaultValue({
+  getDefaultValue ({
     token,
     processParameterUuid,
     fieldUuid,
@@ -120,7 +118,6 @@ class UserInterface {
     );
   }
 
-
   /**
    * Get a Tab Entity
    * @param {string} token session uuid
@@ -128,7 +125,7 @@ class UserInterface {
    * @param {number} id record id
    * @param {string} uuid record uuid
    */
-  getTabEntity({
+  getTabEntity ({
     token,
     tabUuid,
     id,
@@ -161,7 +158,7 @@ class UserInterface {
    * @param {number} id record id
    * @param {string} uuid record uuid
    */
-  listTabEntities({
+  listTabEntities ({
     token,
     windowUuid,
     tabUuid,
@@ -248,7 +245,7 @@ class UserInterface {
   }
 
   // Create a Tab Entity
-  createTabEntity({
+  createTabEntity ({
     token,
     tabUuid,
     attributes
@@ -293,7 +290,7 @@ class UserInterface {
   }
 
   // Update a Tab Entity
-  updateTabEntity({
+  updateTabEntity ({
     token,
     tabUuid,
     id,
@@ -341,7 +338,7 @@ class UserInterface {
     );
   }
 
-  existsReferences({
+  existsReferences ({
     token,
     tabId,
     tabUuid,
@@ -373,7 +370,7 @@ class UserInterface {
   }
 
   // Tab Sequences (Is Sort Tab)
-  listTabSequences({
+  listTabSequences ({
     token,
     tabUuid,
     contextAttributes,
@@ -423,7 +420,7 @@ class UserInterface {
   }
 
   // Tab Sequences (Is Sort Tab)
-  saveTabSequences({
+  saveTabSequences ({
     token,
     tabUuid,
     contextAttributes,
@@ -485,7 +482,7 @@ class UserInterface {
   }
 
   // Run a callout to server
-  runCallout({
+  runCallout ({
     token,
     tableName,
     windowUuid,
@@ -566,7 +563,7 @@ class UserInterface {
     );
   }
 
-  listTreeNodes({
+  listTreeNodes ({
     token,
     tabId,
     tableName,
@@ -626,9 +623,8 @@ class UserInterface {
     );
   }
 
-
   // Get Report Output
-  getReportOutput({
+  getReportOutput ({
     token,
     processId,
     processUuid,
@@ -652,7 +648,7 @@ class UserInterface {
     const { GetReportOutputRequest } = this.stubFile;
     const request = new GetReportOutputRequest();
     const { getCriteriaToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
-    
+
     request.setProcessId(
       getValidInteger(processId)
     );
@@ -698,7 +694,7 @@ class UserInterface {
   }
 
   // List Drill Tables
-  listDrillTables({
+  listDrillTables ({
     token,
     tableName,
     pageSize,
@@ -723,36 +719,7 @@ class UserInterface {
   }
 
   // List Print Formats
-  listPrintFormats({
-    token,
-    tableName,
-    reportViewUuid,
-    processUuid,
-    pageSize,
-    pageToken
-  }, callback) {
-    const { ListPrintFormatsRequest } = this.stubFile;
-    const request = new ListPrintFormatsRequest();
-
-    request.setTableName(tableName);
-    request.setReportViewUuid(reportViewUuid);
-    request.setProcessUuid(processUuid);
-    request.setPageSize(pageSize);
-    request.setPageToken(pageToken);
-
-    const metadata = getMetadata({
-      token
-    });
-
-    this.getUserInterfaceService().listPrintFormats(
-      request,
-      metadata,
-      callback
-    );
-  }
-
-  // List Print Formats
-  listPrintFormats({
+  listPrintFormats ({
     token,
     tableName,
     reportViewUuid,
@@ -781,7 +748,7 @@ class UserInterface {
   }
 
   // List Report Views
-  listReportViews({
+  listReportViews ({
     token,
     tableName,
     processUuid,
@@ -814,7 +781,7 @@ class UserInterface {
    * @param {number} pageSize records per page
    * @param {string} pageToken
    */
-  listMailTemplates({
+  listMailTemplates ({
     token,
     searchValue,
     pageSize,
@@ -837,7 +804,6 @@ class UserInterface {
       callback
     );
   }
-
 }
 
 module.exports = UserInterface;

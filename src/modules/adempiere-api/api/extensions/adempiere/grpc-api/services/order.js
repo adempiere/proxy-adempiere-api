@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js');
 
 class Order {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Order {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Order {
   }
 
   // Init connection
-  initOrderService() {
+  initOrderService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/order_grpc_pb.js');
     this.order = new services.OrderClient(
@@ -54,11 +53,11 @@ class Order {
   }
 
   // Get Order Service
-  getOrderService() {
+  getOrderService () {
     return this.order;
   }
 
-  listOrderInfo({
+  listOrderInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class Order {
       callback
     );
   }
-
 }
 
 module.exports = Order;

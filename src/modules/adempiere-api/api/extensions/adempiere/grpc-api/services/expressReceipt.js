@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class ExpressReceipt {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class ExpressReceipt {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class ExpressReceipt {
   }
 
   // Init connection
-  initExpressReceiptService() {
+  initExpressReceiptService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/express_receipt_grpc_pb.js');
     this.expressReceipt = new services.ExpressReceiptClient(
@@ -54,10 +53,9 @@ class ExpressReceipt {
   }
 
   // Get Express Receipt Service
-  getExpressReceiptService() {
+  getExpressReceiptService () {
     return this.expressReceipt;
   }
-
 
   /**
    * Get List Business Partners
@@ -66,7 +64,7 @@ class ExpressReceipt {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBusinessPartners({
+  listBusinessPartners ({
     token,
     // DSL
     searchValue,
@@ -94,7 +92,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Get List Purchase Orders
    * @param {string} token
@@ -102,7 +99,7 @@ class ExpressReceipt {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPurchaseOrders({
+  listPurchaseOrders ({
     token,
     // DSL
     searchValue = '',
@@ -136,7 +133,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Get Product
    * @param {string} token
@@ -148,12 +144,12 @@ class ExpressReceipt {
    * @param {string} value
    * @param {string} name
    */
-  listProducts({
+  listProducts ({
     token,
     // DSL
     orderId,
     orderUuid,
-    searchValue ,
+    searchValue,
     upc,
     sku,
     value,
@@ -190,14 +186,13 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Create Receipt
    * @param {string} token
    * @param {number} orderId
    * @param {string} orderUuid
    */
-  createReceipt({
+  createReceipt ({
     token,
     // DSL
     orderId,
@@ -224,14 +219,13 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Delete Receipt
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteReceipt({
+  deleteReceipt ({
     token,
     // DSL
     id,
@@ -256,7 +250,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Process Receipt
    * @param {string} token
@@ -264,7 +257,7 @@ class ExpressReceipt {
    * @param {string} uuid
    * @param {string} description
    */
-  processReceipt({
+  processReceipt ({
     token,
     // DSL
     id,
@@ -291,7 +284,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Create Receipt Line
    * @param {string} token
@@ -302,7 +294,7 @@ class ExpressReceipt {
    * @param {string} productUuid
    * @param {number} quantity
    */
-  createReceiptLine({
+  createReceiptLine ({
     token,
     // DSL
     receiptId,
@@ -343,7 +335,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * List Receipt Lines
    * @param {string} token
@@ -353,7 +344,7 @@ class ExpressReceipt {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listReceiptLines({
+  listReceiptLines ({
     token,
     // DSL
     receiptId,
@@ -388,14 +379,13 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Delete Receipt Line
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteReceiptLine({
+  deleteReceiptLine ({
     token,
     // DSL
     id,
@@ -420,7 +410,6 @@ class ExpressReceipt {
     );
   }
 
-
   /**
    * Update Receipt Line
    * @param {string} token
@@ -429,7 +418,7 @@ class ExpressReceipt {
    * @param {string} description
    * @param {number} quantity
    */
-  updateReceiptLine({
+  updateReceiptLine ({
     token,
     // DSL
     id,
@@ -461,8 +450,6 @@ class ExpressReceipt {
       callback
     );
   }
-
-
 }
 
 module.exports = ExpressReceipt;

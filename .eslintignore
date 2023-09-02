@@ -1,3 +1,4 @@
 dist/
 node_modules
-src/modules/adempiere-api/extensions/adempiere/grpc-api/grpc/
+src/modules/adempiere-api/api/extensions/adempiere/grpc-api/grpc/proto
+src/modules/adempiere-api/api/extensions/adempiere/grpc-api/utils/valueUtils.js

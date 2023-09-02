@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js');
 
 class InOut {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class InOut {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class InOut {
   }
 
   // Init connection
-  initInOutService() {
+  initInOutService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/in_out_grpc_pb');
     this.inOut = new services.InOutClient(
@@ -54,11 +53,11 @@ class InOut {
   }
 
   // Get In-Out Service
-  getInOutService() {
+  getInOutService () {
     return this.inOut;
   }
 
-  listInOutInfo({
+  listInOutInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class InOut {
       callback
     );
   }
-
 }
 
 module.exports = InOut;

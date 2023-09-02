@@ -15,7 +15,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.listProducts({
         skus: req.query.skus.split(',')
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,
@@ -66,7 +66,7 @@ export default ({ config, db, service }) => {
     if (req.body) {
       service.listRenderProducts({
         skus: req.query.skus.split(',')
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

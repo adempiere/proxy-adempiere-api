@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class Dashboarding {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Dashboarding {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Dashboarding {
   }
 
   // Init connection
-  initDashboardingService() {
+  initDashboardingService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/dashboarding_grpc_pb');
     this.dashboarding = new services.DashboardingClient(
@@ -54,12 +53,12 @@ class Dashboarding {
   }
 
   // Get Dashboarding Service
-  getDashboardingService() {
+  getDashboardingService () {
     return this.dashboarding;
   }
 
   // List Document Statuses
-  listDashboards({
+  listDashboards ({
     token,
     roleUuid,
     roleId,
@@ -87,7 +86,7 @@ class Dashboarding {
   }
 
   //  List Document Statuses
-  listFavorites({
+  listFavorites ({
     token,
     userUuid,
     userId,
@@ -115,7 +114,7 @@ class Dashboarding {
   }
 
   //  List Document Statuses
-  listPendingDocuments({
+  listPendingDocuments ({
     token,
     userUuid,
     userId,
@@ -147,7 +146,7 @@ class Dashboarding {
   }
 
   //  Get Metrics Data
-  getMetrics({
+  getMetrics ({
     token,
     uuid,
     id
@@ -175,7 +174,7 @@ class Dashboarding {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listNotifications({
+  listNotifications ({
     token,
     searchValue,
     pageSize,
@@ -199,7 +198,6 @@ class Dashboarding {
     );
   }
 
-
   /**
    * Get Exists Window Dashboards
    * @param {string} token Json Web Token
@@ -208,7 +206,7 @@ class Dashboarding {
    * @param {number} tabId tab identifier
    * @param {string} token window uuid
    */
-  existsWindowDashboards({
+  existsWindowDashboards ({
     token,
     windowId,
     windowUuid,
@@ -246,7 +244,7 @@ class Dashboarding {
    * @param {number} tabId tab identifier
    * @param {string} token window uuid
    */
-  listWindowDashboards({
+  listWindowDashboards ({
     token,
     windowId,
     windowUuid,
@@ -294,7 +292,7 @@ class Dashboarding {
    * @param {Array} contextAttributes context attributes to set
    * @param {Array} filters parameters as filters
    */
-  getWindowMetrics({
+  getWindowMetrics ({
     token,
     uuid,
     id,
@@ -390,7 +388,6 @@ class Dashboarding {
       callback
     );
   }
-
 }
 
 module.exports = Dashboarding;

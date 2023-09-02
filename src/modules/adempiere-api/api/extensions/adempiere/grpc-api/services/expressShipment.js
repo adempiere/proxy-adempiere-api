@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class ExpressShipment {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class ExpressShipment {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class ExpressShipment {
   }
 
   // Init connection
-  initExpressShipmentService() {
+  initExpressShipmentService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/express_shipment_grpc_pb.js');
     this.expressShipment = new services.ExpressShipmentClient(
@@ -54,10 +53,9 @@ class ExpressShipment {
   }
 
   // Get Express Shipment Service
-  getExpressShipmentService() {
+  getExpressShipmentService () {
     return this.expressShipment;
   }
-
 
   /**
    * Get List Business Partners
@@ -66,7 +64,7 @@ class ExpressShipment {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBusinessPartners({
+  listBusinessPartners ({
     token,
     // DSL
     searchValue,
@@ -94,7 +92,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Get List Sales Orders
    * @param {string} token
@@ -102,7 +99,7 @@ class ExpressShipment {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listSalesOrders({
+  listSalesOrders ({
     token,
     // DSL
     searchValue = '',
@@ -136,7 +133,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Get Product
    * @param {string} token
@@ -148,12 +144,12 @@ class ExpressShipment {
    * @param {string} value
    * @param {string} name
    */
-  listProducts({
+  listProducts ({
     token,
     // DSL
     orderId,
     orderUuid,
-    searchValue ,
+    searchValue,
     upc,
     sku,
     value,
@@ -190,14 +186,13 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Create Shipment
    * @param {string} token
    * @param {number} orderId
    * @param {string} orderUuid
    */
-  createShipment({
+  createShipment ({
     token,
     // DSL
     orderId,
@@ -224,14 +219,13 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Delete Shipment
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteShipment({
+  deleteShipment ({
     token,
     // DSL
     id,
@@ -256,7 +250,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Process Shipment
    * @param {string} token
@@ -264,7 +257,7 @@ class ExpressShipment {
    * @param {string} uuid
    * @param {string} description
    */
-  processShipment({
+  processShipment ({
     token,
     // DSL
     id,
@@ -291,7 +284,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Create Shipment Line
    * @param {string} token
@@ -302,7 +294,7 @@ class ExpressShipment {
    * @param {string} productUuid
    * @param {number} quantity
    */
-  createShipmentLine({
+  createShipmentLine ({
     token,
     // DSL
     shipmentId,
@@ -343,7 +335,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * List Shipment Lines
    * @param {string} token
@@ -353,7 +344,7 @@ class ExpressShipment {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listShipmentLines({
+  listShipmentLines ({
     token,
     // DSL
     shipmentId,
@@ -388,14 +379,13 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Delete Shipment Line
    * @param {string} token
    * @param {number} id
    * @param {string} uuid
    */
-  deleteShipmentLine({
+  deleteShipmentLine ({
     token,
     // DSL
     id,
@@ -420,7 +410,6 @@ class ExpressShipment {
     );
   }
 
-
   /**
    * Update Shipment Line
    * @param {string} token
@@ -429,7 +418,7 @@ class ExpressShipment {
    * @param {string} description
    * @param {number} quantity
    */
-  updateShipmentLine({
+  updateShipmentLine ({
     token,
     // DSL
     id,
@@ -461,8 +450,6 @@ class ExpressShipment {
       callback
     );
   }
-
-
 }
 
 module.exports = ExpressShipment;

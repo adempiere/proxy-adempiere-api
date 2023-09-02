@@ -19,7 +19,6 @@ const { getValidInteger } = require('.././utils/valueUtils.js');
 const { getDecimalToGRPC } = require('.././utils/baseDataTypeToGRPC');
 
 class PointOfSales {
-
   /**
    * File on generated stub
    */
@@ -31,7 +30,7 @@ class PointOfSales {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -45,7 +44,7 @@ class PointOfSales {
   }
 
   // Init connection
-  initPointOfSalesService() {
+  initPointOfSalesService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/point_of_sales_grpc_pb');
     this.pointOfSales = new services.StoreClient(
@@ -55,12 +54,12 @@ class PointOfSales {
   }
 
   // Get PointOfSales Service
-  getPointOfSalesService() {
+  getPointOfSalesService () {
     return this.pointOfSales;
   }
 
   //  List Point of Sales
-  listPointOfSales({
+  listPointOfSales ({
     token,
     userUuid,
     //  Page Data
@@ -86,7 +85,7 @@ class PointOfSales {
   }
 
   //  Get Point of Sales
-  getPointOfSales({
+  getPointOfSales ({
     token,
     posUuid
   }, callback) {
@@ -106,7 +105,7 @@ class PointOfSales {
   }
 
   //  Get Product Price
-  getProductPrice({
+  getProductPrice ({
     token,
     searchValue,
     upc,
@@ -142,7 +141,7 @@ class PointOfSales {
   }
 
   //  List Product Price
-  listProductPrice({
+  listProductPrice ({
     token,
     searchValue,
     posUuid,
@@ -198,7 +197,7 @@ class PointOfSales {
   }
 
   //  Create Sales Order
-  createOrder({
+  createOrder ({
     token,
     posUuid,
     customerUuid,
@@ -215,10 +214,10 @@ class PointOfSales {
     request.setCustomerUuid(customerUuid)
     request.setDocumentTypeUuid(documentTypeUuid)
     request.setSalesRepresentativeUuid(salesRepresentativeUuid)
-    if(warehouseUuid) {
+    if (warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
-    if(priceListUuid) {
+    if (priceListUuid) {
       request.setPriceListUuid(priceListUuid)
     }
 
@@ -234,7 +233,7 @@ class PointOfSales {
   }
 
   //  Release Sales Order
-  releaseOrder({
+  releaseOrder ({
     token,
     posUuid,
     orderUuid,
@@ -257,7 +256,7 @@ class PointOfSales {
   }
 
   //  Hold Sales Order
-  holdOrder({
+  holdOrder ({
     token,
     posUuid,
     orderUuid,
@@ -281,7 +280,7 @@ class PointOfSales {
   }
 
   //  Delete Sales Order
-  deleteOrder({
+  deleteOrder ({
     token,
     posUuid,
     orderUuid
@@ -304,7 +303,7 @@ class PointOfSales {
   }
 
   //  Create Sales Order Line
-  createOrderLine({
+  createOrderLine ({
     token,
     posUuid,
     orderUuid,
@@ -337,7 +336,7 @@ class PointOfSales {
     if (discountRate) {
       request.setDiscountRate(getDecimalToGRPC(discountRate))
     }
-    if(warehouseUuid) {
+    if (warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
 
@@ -353,7 +352,7 @@ class PointOfSales {
   }
 
   //  Delete Sales Order Line
-  deleteOrderLine({
+  deleteOrderLine ({
     token,
     posUuid,
     orderLineUuid
@@ -376,7 +375,7 @@ class PointOfSales {
   }
 
   //  Update Sales Order
-  updateOrder({
+  updateOrder ({
     token,
     orderUuid,
     posUuid,
@@ -412,10 +411,10 @@ class PointOfSales {
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
 
-    if(warehouseUuid) {
+    if (warehouseUuid) {
       request.setWarehouseUuid(warehouseUuid)
     }
-    if(priceListUuid) {
+    if (priceListUuid) {
       request.setPriceListUuid(priceListUuid)
     }
 
@@ -431,7 +430,7 @@ class PointOfSales {
   }
 
   //  Update Sales Order Line
-  updateOrderLine({
+  updateOrderLine ({
     token,
     posUuid,
     orderLineUuid,
@@ -445,7 +444,7 @@ class PointOfSales {
   }, callback) {
     const { UpdateOrderLineRequest } = this.stubFile;
     const request = new UpdateOrderLineRequest();
-    
+
     request.setPosUuid(posUuid);
     request.setOrderLineUuid(orderLineUuid)
     request.setDescription(description)
@@ -477,7 +476,7 @@ class PointOfSales {
   }
 
   //  Get Sales Order
-  getOrder({
+  getOrder ({
     token,
     posUuid,
     orderUuid
@@ -500,7 +499,7 @@ class PointOfSales {
   }
 
   //  List Orders
-  listOrders({
+  listOrders ({
     token,
     posUuid,
     documentNo,
@@ -592,7 +591,7 @@ class PointOfSales {
   }
 
   //  List Sales Order Lines
-  listOrderLines({
+  listOrderLines ({
     token,
     posUuid,
     orderUuid,
@@ -619,7 +618,7 @@ class PointOfSales {
   }
 
   //  Create Shipment
-  createShipment({
+  createShipment ({
     token,
     posUuid,
     orderUuid,
@@ -645,8 +644,8 @@ class PointOfSales {
     );
   }
 
-    //  Create Shipment Line
-  createShipmentLine({
+  //  Create Shipment Line
+  createShipmentLine ({
     token,
     posUuid,
     shipmentUuid,
@@ -680,7 +679,7 @@ class PointOfSales {
   }
 
   //  Delete Shipment Line
-  deleteShipmentLine({
+  deleteShipmentLine ({
     token,
     posUuid,
     shipmentLineUuid
@@ -703,7 +702,7 @@ class PointOfSales {
   }
 
   //  List Shipment Lines
-  listShipmentLines({
+  listShipmentLines ({
     token,
     posUuid,
     shipmentUuid,
@@ -730,7 +729,7 @@ class PointOfSales {
   }
 
   //  Process Shipment
-  processShipment({
+  processShipment ({
     token,
     posUuid,
     shipmentUuid,
@@ -757,7 +756,7 @@ class PointOfSales {
   }
 
   //  Reverse Sales transaction
-  reverseSales({
+  reverseSales ({
     token,
     posUuid,
     orderUuid,
@@ -782,7 +781,7 @@ class PointOfSales {
 
   //  Payments
   //  Create Payment
-  createPayment({
+  createPayment ({
     token,
     posUuid,
     orderUuid,
@@ -807,13 +806,13 @@ class PointOfSales {
     const request = new CreatePaymentRequest();
 
     request.setPosUuid(posUuid)
-    if(orderUuid) {
+    if (orderUuid) {
       request.setOrderUuid(orderUuid)
     }
-    if(chargeUuid) {
+    if (chargeUuid) {
       request.setChargeUuid(chargeUuid)
     }
-    if(collectingAgentUuid) {
+    if (collectingAgentUuid) {
       request.setCollectingAgentUuid(collectingAgentUuid)
     }
     if (bankUuid) {
@@ -831,10 +830,10 @@ class PointOfSales {
     if (tenderTypeCode) {
       request.setTenderTypeCode(tenderTypeCode)
     }
-    if(paymentMethodUuid) {
+    if (paymentMethodUuid) {
       request.setPaymentMethodUuid(paymentMethodUuid)
     }
-    if(customerBankAccountUuid) {
+    if (customerBankAccountUuid) {
       request.setCustomerBankAccountUuid(customerBankAccountUuid)
     }
     if (currencyUuid) {
@@ -871,7 +870,7 @@ class PointOfSales {
   }
 
   //  Create Payment Refund Reference
-  createPaymentReference({
+  createPaymentReference ({
     token,
     posUuid,
     orderUuid,
@@ -895,10 +894,10 @@ class PointOfSales {
 
     request.setPosUuid(posUuid)
     request.setOrderUuid(orderUuid)
-    if(salesRepresentativeUuid) {
+    if (salesRepresentativeUuid) {
       request.setSalesRepresentativeUuid(salesRepresentativeUuid)
     }
-    if(customerBankAccountUuid) {
+    if (customerBankAccountUuid) {
       request.setCustomerBankAccountUuid(customerBankAccountUuid)
     }
     request.setCustomerUuid(customerUuid)
@@ -908,10 +907,10 @@ class PointOfSales {
     if (tenderTypeCode) {
       request.setTenderTypeCode(tenderTypeCode)
     }
-    if(paymentMethodUuid) {
+    if (paymentMethodUuid) {
       request.setPaymentMethodUuid(paymentMethodUuid)
     }
-    if(conversionTypeUuid) {
+    if (conversionTypeUuid) {
       request.setConversionTypeUuid(conversionTypeUuid)
     }
     if (currencyUuid) {
@@ -953,7 +952,7 @@ class PointOfSales {
   }
 
   //  Update Payment
-  updatePayment({
+  updatePayment ({
     token,
     posUuid,
     paymentUuid,
@@ -985,7 +984,7 @@ class PointOfSales {
     if (tenderTypeCode) {
       request.setTenderTypeCode(tenderTypeCode)
     }
-    if(paymentMethodUuid) {
+    if (paymentMethodUuid) {
       request.setPaymentMethodUuid(paymentMethodUuid)
     }
     if (amount) {
@@ -1005,7 +1004,7 @@ class PointOfSales {
     request.setInvoiceReferenceId(
       getValidInteger(invoiceReferenceId)
     );
-  
+
     const metadata = getMetadata({
       token
     });
@@ -1018,7 +1017,7 @@ class PointOfSales {
   }
 
   //  List Cash summary movements
-  listCashSummaryMovements({
+  listCashSummaryMovements ({
     token,
     posUuid,
     pageSize,
@@ -1044,7 +1043,7 @@ class PointOfSales {
   }
 
   //  List Cash movements
-  listCashMovements({
+  listCashMovements ({
     token,
     posUuid,
     customerUuid,
@@ -1078,7 +1077,7 @@ class PointOfSales {
   }
 
   //  Cash Closing
-  processCashClosing({
+  processCashClosing ({
     token,
     posUuid,
     uuid,
@@ -1106,7 +1105,7 @@ class PointOfSales {
   }
 
   //  Cash Opening service
-  processCashOpening({
+  processCashOpening ({
     token,
     posUuid,
     collectingAgentUuid,
@@ -1119,14 +1118,14 @@ class PointOfSales {
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
     request.setDescription(description)
-      //  Set payment data
+    //  Set payment data
     payments.forEach(payment => {
       const paymentRequest = new CreatePaymentRequest()
       if (payment.uuid) {
         paymentRequest.setUuid(payment.uuid)
       }
       paymentRequest.setId(payment.id)
-      if(payment.chargeUuid) {
+      if (payment.chargeUuid) {
         paymentRequest.setChargeUuid(payment.chargeUuid)
       }
       if (payment.bankUuid) {
@@ -1182,8 +1181,8 @@ class PointOfSales {
     );
   }
 
-    //  Cash Withdrawal service
-  processCashWithdrawal({
+  //  Cash Withdrawal service
+  processCashWithdrawal ({
     token,
     posUuid,
     collectingAgentUuid,
@@ -1196,14 +1195,14 @@ class PointOfSales {
     request.setPosUuid(posUuid)
     request.setCollectingAgentUuid(collectingAgentUuid)
     request.setDescription(description)
-      //  Set payment data
+    //  Set payment data
     payments.forEach(payment => {
       const paymentRequest = new CreatePaymentRequest()
       if (payment.uuid) {
         paymentRequest.setUuid(payment.uuid)
       }
       paymentRequest.setId(payment.id)
-      if(payment.chargeUuid) {
+      if (payment.chargeUuid) {
         paymentRequest.setChargeUuid(payment.chargeUuid)
       }
       if (payment.bankUuid) {
@@ -1260,7 +1259,7 @@ class PointOfSales {
   }
 
   //  allocate Seller
-  allocateSeller({
+  allocateSeller ({
     token,
     posUuid,
     salesRepresentativeUuid
@@ -1282,7 +1281,7 @@ class PointOfSales {
   }
 
   //  deallocate Seller
-  deallocateSeller({
+  deallocateSeller ({
     token,
     posUuid,
     salesRepresentativeUuid
@@ -1304,7 +1303,7 @@ class PointOfSales {
   }
 
   //  Delete Payment
-  deletePayment({
+  deletePayment ({
     token,
     posUuid,
     paymentUuid
@@ -1327,7 +1326,7 @@ class PointOfSales {
   }
 
   //  Delete Refund Reference
-  deletePaymentReference({
+  deletePaymentReference ({
     token,
     posUuid,
     uuid,
@@ -1352,7 +1351,7 @@ class PointOfSales {
   }
 
   //  List Payments
-  listPayments({
+  listPayments ({
     token,
     posUuid,
     orderUuid,
@@ -1406,7 +1405,7 @@ class PointOfSales {
   }
 
   //  Create Payment
-  processOrder({
+  processOrder ({
     token,
     posUuid,
     orderUuid,
@@ -1483,7 +1482,7 @@ class PointOfSales {
   }
 
   //  Get Sales Order
-  getKeyLayout({
+  getKeyLayout ({
     token,
     posUuid,
     keyLayoutUuid
@@ -1506,7 +1505,7 @@ class PointOfSales {
   }
 
   //  Validate User PIN
-  validatePIN({
+  validatePIN ({
     token,
     posId,
     posUuid,
@@ -1546,7 +1545,7 @@ class PointOfSales {
   }
 
   //  List Available Warehouses
-  listAvailableWarehouses({
+  listAvailableWarehouses ({
     token,
     posUuid,
     pageSize,
@@ -1572,7 +1571,7 @@ class PointOfSales {
   }
 
   //  List Available Tender Types
-  listAvailablePaymentMethods({
+  listAvailablePaymentMethods ({
     token,
     posUuid,
     pageSize,
@@ -1598,7 +1597,7 @@ class PointOfSales {
   }
 
   //  List Available Price List
-  listAvailablePriceList({
+  listAvailablePriceList ({
     token,
     posUuid,
     pageSize,
@@ -1624,7 +1623,7 @@ class PointOfSales {
   }
 
   //  List Available Price List
-  listAvailableCurrencies({
+  listAvailableCurrencies ({
     token,
     posUuid,
     pageSize,
@@ -1650,7 +1649,7 @@ class PointOfSales {
   }
 
   //  List Available Document Types
-  listAvailableDocumentTypes({
+  listAvailableDocumentTypes ({
     token,
     posUuid,
     pageSize,
@@ -1676,7 +1675,7 @@ class PointOfSales {
   }
 
   //  Create Customer from POS
-  createCustomer({
+  createCustomer ({
     token,
     value,
     taxId,
@@ -1713,7 +1712,7 @@ class PointOfSales {
         );
       });
     }
-    if(addresses) {
+    if (addresses) {
       addresses.forEach(address => {
         const addressRequest = new AddressRequest()
         addressRequest.setFirstName(address.firstName)
@@ -1761,7 +1760,7 @@ class PointOfSales {
   }
 
   //  Update Customer from POS
-  updateCustomer({
+  updateCustomer ({
     token,
     posUuid,
     uuid,
@@ -1788,7 +1787,7 @@ class PointOfSales {
     request.setName(name)
     request.setLastName(lastName)
     request.setDescription(description)
-    if(additionalAttributes) {
+    if (additionalAttributes) {
       additionalAttributes.forEach(attribute => {
         request.addAdditionalAttributes(
           getKeyValueToGRPC({
@@ -1798,7 +1797,7 @@ class PointOfSales {
         );
       });
     }
-    if(addresses) {
+    if (addresses) {
       addresses.forEach(address => {
         const addressRequest = new AddressRequest()
         addressRequest.setFirstName(address.firstName)
@@ -1820,7 +1819,7 @@ class PointOfSales {
         addressRequest.setIsDefaultBilling(address.isDefaultBilling)
         addressRequest.setIsDefaultShipping(address.isDefaultShipping)
         addressRequest.setUuid(address.uuid)
-        if(address.additionalAttributes) {
+        if (address.additionalAttributes) {
           address.additionalAttributes.forEach(attribute => {
             addressRequest.addAdditionalAttributes(
               getKeyValueToGRPC({
@@ -1846,7 +1845,7 @@ class PointOfSales {
   }
 
   //  Get Customer
-  getCustomer({
+  getCustomer ({
     token,
     posUuid,
     searchValue,
@@ -1880,31 +1879,8 @@ class PointOfSales {
     );
   }
 
-  //  Get Customer Bank Account
-  getCustomerBankAccount({
-    token,
-    posUuid,
-    customerBankAccountUuid
-  }, callback) {
-    const { GetCustomerBankAccountRequest } = this.stubFile;
-    const request = new GetCustomerBankAccountRequest()
-
-    request.setPosUuid(posUuid);
-    request.setCustomerBankAccountUuid(customerBankAccountUuid)
-
-    const metadata = getMetadata({
-      token
-    });
-
-    this.getPointOfSalesService().getCustomerBankAccount(
-      request,
-      metadata,
-      callback
-    );
-  }
-
   //  Create Customer Bank Account
-  createCustomerBankAccount({
+  createCustomerBankAccount ({
     token,
     customerUuid,
     posUuid,
@@ -1962,7 +1938,7 @@ class PointOfSales {
   }
 
   //  Update Customer Bank Account
-  updateCustomerBankAccount({
+  updateCustomerBankAccount ({
     token,
     customerBankAccountUuid,
     posUuid,
@@ -2019,8 +1995,8 @@ class PointOfSales {
     );
   }
 
-  //  Get Customer Bank Accoount
-  getCustomerBankAccount({
+  //  Get Customer Bank Account
+  getCustomerBankAccount ({
     token,
     posUuid,
     customerBankAccountUuid
@@ -2043,7 +2019,7 @@ class PointOfSales {
   }
 
   //  Delete Customer Bank Accoount
-  deleteCustomerBankAccount({
+  deleteCustomerBankAccount ({
     token,
     posUuid,
     customerBankAccountUuid
@@ -2072,7 +2048,7 @@ class PointOfSales {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBanks({
+  listBanks ({
     token,
     // DSL
     posUuid,
@@ -2110,7 +2086,7 @@ class PointOfSales {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listBankAccounts({
+  listBankAccounts ({
     token,
     // DSL
     posUuid,
@@ -2145,7 +2121,7 @@ class PointOfSales {
   }
 
   //  List Customer Bank Accounts
-  listCustomerBankAccounts({
+  listCustomerBankAccounts ({
     token,
     posUuid,
     customerUuid,
@@ -2172,7 +2148,7 @@ class PointOfSales {
   }
 
   //  List Customer Refund References
-  listPaymentReferences({
+  listPaymentReferences ({
     token,
     posUuid,
     orderUuid,
@@ -2200,7 +2176,7 @@ class PointOfSales {
   }
 
   //  Get Available Refund
-  getAvailableRefund({
+  getAvailableRefund ({
     token,
     posUuid,
     date
@@ -2224,7 +2200,7 @@ class PointOfSales {
   }
 
   //  List Available Sellers
-  listAvailableSellers({
+  listAvailableSellers ({
     token,
     posUuid,
     isOnlyAllocated,
@@ -2236,7 +2212,7 @@ class PointOfSales {
     if (posUuid) {
       request.setPosUuid(posUuid)
     }
-    if(isOnlyAllocated) {
+    if (isOnlyAllocated) {
       request.setIsOnlyAllocated(isOnlyAllocated)
     }
     request.setPageSize(pageSize)
@@ -2254,7 +2230,7 @@ class PointOfSales {
   }
 
   //  Print Ticket
-  printTicket({
+  printTicket ({
     token,
     posId,
     orderId,
@@ -2295,7 +2271,7 @@ class PointOfSales {
   }
 
   //  Print Ticket Preview
-  printPreview({
+  printPreview ({
     token,
     posUuid,
     orderUuid,
@@ -2320,7 +2296,7 @@ class PointOfSales {
   }
 
   //  Print Ticket shipment Preview
-  printShipmentPreview({
+  printShipmentPreview ({
     token,
     posUuid,
     shipmentUuid,
@@ -2345,7 +2321,7 @@ class PointOfSales {
   }
 
   //  Print Ticket
-  listStocks({
+  listStocks ({
     token,
     posUuid,
     sku,
@@ -2374,7 +2350,7 @@ class PointOfSales {
   }
 
   // List Available Warehouses
-  listAvailableCash({
+  listAvailableCash ({
     token,
     posUuid,
     pageSize,
@@ -2398,7 +2374,6 @@ class PointOfSales {
     );
   }
 
-
   /**
    * Save Command Shortcut
    * @param {string} token
@@ -2406,7 +2381,7 @@ class PointOfSales {
    * @param {string} command
    * @param {string} shortcut
    */
-  saveCommandShortcut({
+  saveCommandShortcut ({
     token,
     posUuid,
     command,
@@ -2438,7 +2413,7 @@ class PointOfSales {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCommandShortcuts({
+  listCommandShortcuts ({
     token,
     posUuid,
     searchValue,
@@ -2473,7 +2448,7 @@ class PointOfSales {
    * @param {number} id
    * @param {string} uuid
    */
-  deleteCommandShortcut({
+  deleteCommandShortcut ({
     token,
     posUuid,
     id,
@@ -2506,7 +2481,7 @@ class PointOfSales {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listCampaigns({
+  listCampaigns ({
     token,
     // DSL
     posUuid,
@@ -2542,7 +2517,7 @@ class PointOfSales {
    * @param {number} posId
    * @param {number} sourceOrderId
    */
-  copyOrder({
+  copyOrder ({
     token,
     // DSL
     posId,
@@ -2578,7 +2553,7 @@ class PointOfSales {
    * @param {number} posId
    * @param {number} sourceOrderId
    */
-  getOpenRMA({
+  getOpenRMA ({
     token,
     // DSL
     posId,
@@ -2613,7 +2588,7 @@ class PointOfSales {
    * @param {number} salesRepresentativeId
    * @param {boolean} isCreateLinesFromOrder
    */
-  createRMA({
+  createRMA ({
     token,
     // DSL
     posId,
@@ -2652,7 +2627,7 @@ class PointOfSales {
    * @param {number} posId
    * @param {number} id
    */
-  deleteRMA({
+  deleteRMA ({
     token,
     // DSL
     posId,
@@ -2687,7 +2662,7 @@ class PointOfSales {
    * @param {string} description
    * @param {string} documentAction
    */
-  processRMA({
+  processRMA ({
     token,
     // DSL
     posId,
@@ -2726,7 +2701,7 @@ class PointOfSales {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listRMALines({
+  listRMALines ({
     token,
     // DSL
     posId,
@@ -2768,7 +2743,7 @@ class PointOfSales {
    * @param {string} description
    * @param {number} quantity
    */
-  createRMALine({
+  createRMALine ({
     token,
     // DSL
     posId,
@@ -2813,7 +2788,7 @@ class PointOfSales {
    * @param {string} description
    * @param {number} quantity
    */
-  updateRMALine({
+  updateRMALine ({
     token,
     // DSL
     posId,
@@ -2852,7 +2827,7 @@ class PointOfSales {
    * @param {number} posId
    * @param {number} id
    */
-  deleteRMALine({
+  deleteRMALine ({
     token,
     // DSL
     posId,
@@ -2878,7 +2853,6 @@ class PointOfSales {
       callback
     );
   }
-
 }
 
 module.exports = PointOfSales;

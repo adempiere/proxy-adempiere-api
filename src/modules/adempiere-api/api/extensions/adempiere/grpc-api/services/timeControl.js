@@ -18,14 +18,13 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue, getValidInteger } = require('.././utils/valueUtils.js');
 
 class TimeControl {
-
   /**
    * Constructor, No authentication required
    * @param {string} host
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -39,7 +38,7 @@ class TimeControl {
   }
 
   // Init connection
-  initTimeControlService() {
+  initTimeControlService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/time_control_grpc_pb');
     this.timeControl = new services.TimeControlClient(
@@ -49,11 +48,11 @@ class TimeControl {
   }
 
   // Get Time Control Service
-  getTimeControlService() {
+  getTimeControlService () {
     return this.timeControl;
   }
 
-  createResourceAssignment({
+  createResourceAssignment ({
     token,
     // DSL
     resourceTypeId,
@@ -84,7 +83,7 @@ class TimeControl {
     );
   }
 
-  listResourcesAssignment({
+  listResourcesAssignment ({
     token,
     // DSL
     resourceTypeId,
@@ -131,7 +130,7 @@ class TimeControl {
     );
   }
 
-  updateResourceAssignment({
+  updateResourceAssignment ({
     token,
     // DSL
     id,
@@ -162,11 +161,11 @@ class TimeControl {
     );
   }
 
-  deleteResourceAssignment({
+  deleteResourceAssignment ({
     token,
     // DSL
     id,
-    uuid,
+    uuid
   }, callback) {
     const {
       DeleteResourceAssignmentRequest
@@ -189,7 +188,7 @@ class TimeControl {
     );
   }
 
-  confirmResourceAssignment({
+  confirmResourceAssignment ({
     token,
     // DSL
     id,
@@ -215,7 +214,6 @@ class TimeControl {
       callback
     );
   }
-
 }
 
 module.exports = TimeControl;

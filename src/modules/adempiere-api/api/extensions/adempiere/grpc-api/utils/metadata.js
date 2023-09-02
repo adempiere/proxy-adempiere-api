@@ -20,7 +20,7 @@ const grpc = require('@grpc/grpc-js');
  * Create Metadata to request interceptors
  * @param {String} token
  */
-function getMetadata({
+function getMetadata ({
   token
 }) {
   const metadata = new grpc.Metadata();

@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { isEmptyValue } = require('.././utils/valueUtils.js');
 
 class Product {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Product {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class Product {
   }
 
   // Init connection
-  initProductService() {
+  initProductService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/product_grpc_pb');
     this.product = new services.ProductClient(
@@ -54,11 +53,11 @@ class Product {
   }
 
   // Get Product Service
-  getProductService() {
+  getProductService () {
     return this.product;
   }
 
-  listProductInfo({
+  listProductInfo ({
     token,
     //  DSL
     filters = [],
@@ -129,7 +128,6 @@ class Product {
       callback
     );
   }
-
 }
 
 module.exports = Product;

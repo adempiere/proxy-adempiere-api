@@ -14,8 +14,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
-
-function getBankAccountFromGRPC(bankAccountToConvert) {
+function getBankAccountFromGRPC (bankAccountToConvert) {
   if (!bankAccountToConvert) {
     return undefined
   }
@@ -28,11 +27,11 @@ function getBankAccountFromGRPC(bankAccountToConvert) {
     bank_name: bankAccountToConvert.getBankName(),
     current_balance: getDecimalFromGRPC(
       bankAccountToConvert.getCurrentBalance()
-    ),
+    )
   };
 }
 
-function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
+function getPaymentSelectionFromGRPC (paymentSelectionToConvert) {
   if (!paymentSelectionToConvert) {
     return undefined
   }
@@ -55,7 +54,7 @@ function getPaymentSelectionFromGRPC(paymentSelectionToConvert) {
   }
 }
 
-function getPaymentFromGRPC(paymentToConvert) {
+function getPaymentFromGRPC (paymentToConvert) {
   if (!paymentToConvert) {
     return undefined
   }
@@ -86,7 +85,7 @@ function getPaymentFromGRPC(paymentToConvert) {
   }
 }
 
-function getProcessFromGRPC(processToConvert) {
+function getProcessFromGRPC (processToConvert) {
   if (!processToConvert) {
     return undefined
   }
@@ -98,7 +97,7 @@ function getProcessFromGRPC(processToConvert) {
   }
 }
 
-function getExportFromGRPC(exportToConvert) {
+function getExportFromGRPC (exportToConvert) {
   if (!exportToConvert) {
     return undefined
   }
@@ -110,7 +109,7 @@ function getExportFromGRPC(exportToConvert) {
   }
 }
 
-function getPrintFromGRPC(printToConvert) {
+function getPrintFromGRPC (printToConvert) {
   if (!printToConvert) {
     return undefined
   }
@@ -122,7 +121,7 @@ function getPrintFromGRPC(printToConvert) {
   }
 }
 
-function getPrintRemittanceFromGRPC(printRemittanceToConvert) {
+function getPrintRemittanceFromGRPC (printRemittanceToConvert) {
   if (!printRemittanceToConvert) {
     return undefined
   }

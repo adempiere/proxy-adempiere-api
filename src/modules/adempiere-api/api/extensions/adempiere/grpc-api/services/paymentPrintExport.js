@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class PaymentPrintExport {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class PaymentPrintExport {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class PaymentPrintExport {
   }
 
   // Init connection
-  initPaymentPrintExportService() {
+  initPaymentPrintExportService () {
     const grpc = require('@grpc/grpc-js');
     const { PaymentPrintExportClient } = require('.././grpc/proto/payment_print_export_grpc_pb');
     this.paymentPrintExport = new PaymentPrintExportClient(
@@ -54,7 +53,7 @@ class PaymentPrintExport {
   }
 
   // Get Payment Print/Export Service
-  getPaymentPrintExport() {
+  getPaymentPrintExport () {
     return this.paymentPrintExport;
   }
 
@@ -64,7 +63,7 @@ class PaymentPrintExport {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPaymentSelections({
+  listPaymentSelections ({
     token,
     searchValue,
     pageSize,
@@ -93,7 +92,7 @@ class PaymentPrintExport {
    * @param {number} id
    * @param {string} uuid
    */
-  getPaymentSelection({
+  getPaymentSelection ({
     token,
     id,
     uuid
@@ -124,7 +123,7 @@ class PaymentPrintExport {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPaymentRules({
+  listPaymentRules ({
     token,
     searchValue,
     paymentSelectionId,
@@ -161,7 +160,7 @@ class PaymentPrintExport {
    * @param {number} pageSize
    * @param {string} pageToken
    */
-  listPayments({
+  listPayments ({
     token,
     searchValue,
     paymentSelectionId,
@@ -199,7 +198,7 @@ class PaymentPrintExport {
    * @param {number} bankAccountId
    * @param {number} paymentRuleId
    */
-  getDocumentNo({
+  getDocumentNo ({
     token,
     bankAccountId,
     paymentRuleId
@@ -231,7 +230,7 @@ class PaymentPrintExport {
    * @param {number} documentNo
    * @param {number} bankAccountId
    */
-  process({
+  process ({
     token,
     paymentSelectionId,
     paymentRuleId,
@@ -270,7 +269,7 @@ class PaymentPrintExport {
    * @param {number} documentNo
    * @param {number} bankAccountId
    */
-  export({
+  export ({
     token,
     paymentSelectionId,
     paymentRuleId,
@@ -306,7 +305,7 @@ class PaymentPrintExport {
    * @param {number} paymentRuleId
    * @param {number} documentNo
    */
-  print({
+  print ({
     token,
     paymentSelectionId,
     paymentRuleId,
@@ -343,7 +342,7 @@ class PaymentPrintExport {
    * @param {number} bankAccountId
    * @param {number} documentNo
    */
-  confirmPrint({
+  confirmPrint ({
     token,
     paymentSelectionId,
     paymentRuleId,
@@ -384,10 +383,11 @@ class PaymentPrintExport {
    * @param {number} paymentRuleId
    * @param {number} documentNo
    */
-  printRemittance({
+  printRemittance ({
     token,
     paymentSelectionId,
     paymentRuleId,
+    bankAccountId,
     documentNo
   }, callback) {
     const { PrintRemittanceRequest } = this.stubFile;
@@ -417,7 +417,6 @@ class PaymentPrintExport {
       callback
     );
   }
-
 }
 
 module.exports = PaymentPrintExport;

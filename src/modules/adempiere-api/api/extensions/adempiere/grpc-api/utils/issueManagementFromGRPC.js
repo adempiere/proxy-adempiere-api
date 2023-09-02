@@ -16,7 +16,7 @@
 
 const stubFile = require('.././grpc/proto/issue_management_pb.js');
 
-function getUserFromGRPC(userToConvert) {
+function getUserFromGRPC (userToConvert) {
   if (!userToConvert) {
     return undefined;
   }
@@ -29,7 +29,7 @@ function getUserFromGRPC(userToConvert) {
   };
 }
 
-function getRequestTypeFromGRPC(requestTypeToConvert) {
+function getRequestTypeFromGRPC (requestTypeToConvert) {
   if (!requestTypeToConvert) {
     return undefined;
   }
@@ -45,7 +45,7 @@ function getRequestTypeFromGRPC(requestTypeToConvert) {
   };
 }
 
-function getPriorityFromGRPC(priorityToConvert) {
+function getPriorityFromGRPC (priorityToConvert) {
   if (!priorityToConvert) {
     return undefined;
   }
@@ -58,7 +58,7 @@ function getPriorityFromGRPC(priorityToConvert) {
   };
 }
 
-function getStatusFromGRPC(statusToConvert) {
+function getStatusFromGRPC (statusToConvert) {
   if (!statusToConvert) {
     return undefined;
   }
@@ -70,7 +70,7 @@ function getStatusFromGRPC(statusToConvert) {
   };
 }
 
-function getDueTypeFromGRPC(dueTypeToConvert) {
+function getDueTypeFromGRPC (dueTypeToConvert) {
   if (!dueTypeToConvert) {
     return undefined;
   }
@@ -83,7 +83,7 @@ function getDueTypeFromGRPC(dueTypeToConvert) {
   };
 }
 
-function getIssueFromGRPC(issueToConvert) {
+function getIssueFromGRPC (issueToConvert) {
   if (!issueToConvert) {
     return undefined;
   }
@@ -124,7 +124,7 @@ function getIssueFromGRPC(issueToConvert) {
     COMMENT = 0;
     LOG = 1;
  */
-function getIssueCommentType({ key, value }) {
+function getIssueCommentType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js');
   const { IssueCommentType } = stubFile;
 
@@ -135,7 +135,7 @@ function getIssueCommentType({ key, value }) {
   });
 }
 
-function getIssueCommentFromGRPC(issueCommentToConvert) {
+function getIssueCommentFromGRPC (issueCommentToConvert) {
   if (!issueCommentToConvert) {
     return undefined;
   }

@@ -20,7 +20,6 @@ const {
 } = require('.././utils/valueUtils.js');
 
 class GeneralLedger {
-
   /**
    * File on generated stub
    */
@@ -32,7 +31,7 @@ class GeneralLedger {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -46,7 +45,7 @@ class GeneralLedger {
   }
 
   // Init connection
-  initGeneralLedgerService() {
+  initGeneralLedgerService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/general_ledger_grpc_pb');
     this.generalLedger = new services.GeneralLedgerClient(
@@ -56,11 +55,11 @@ class GeneralLedger {
   }
 
   // Get General Ledger Service
-  getGeneralLedgerService() {
+  getGeneralLedgerService () {
     return this.generalLedger;
   }
 
-  listAccountingCombinations({
+  listAccountingCombinations ({
     token,
     // DSL
     contextAttributes = [],
@@ -121,7 +120,7 @@ class GeneralLedger {
     );
   }
 
-  getAccountingCombination({
+  getAccountingCombination ({
     token,
     // DSL
     id,
@@ -148,7 +147,7 @@ class GeneralLedger {
     );
   }
 
-  saveAccountingCombination({
+  saveAccountingCombination ({
     token,
     // DSL
     contextAttributes = [],
@@ -216,7 +215,7 @@ class GeneralLedger {
     );
   }
 
-  srartRePost({
+  srartRePost ({
     token,
     tableName,
     recordId,
@@ -244,7 +243,7 @@ class GeneralLedger {
     );
   }
 
-  listAccountingSchemas({
+  listAccountingSchemas ({
     token,
     // DSL
     searchValue,
@@ -274,7 +273,7 @@ class GeneralLedger {
     );
   }
 
-  listPostingTypes({
+  listPostingTypes ({
     token,
     // DSL
     searchValue,
@@ -304,7 +303,7 @@ class GeneralLedger {
     );
   }
 
-  listAccountingDocuments({
+  listAccountingDocuments ({
     token,
     // DSL
     searchValue,
@@ -334,7 +333,7 @@ class GeneralLedger {
     );
   }
 
-  listOrganizations({
+  listOrganizations ({
     token,
     // DSL
     searchValue,
@@ -364,7 +363,7 @@ class GeneralLedger {
     );
   }
 
-  listAccountingFacts({
+  listAccountingFacts ({
     token,
     // DSL
     accountingSchemaId,
@@ -408,7 +407,7 @@ class GeneralLedger {
       getValidInteger(organizationId)
     );
 
-  	// accoutiing dimensions filters
+    // accoutiing dimensions filters
     if (!isEmptyValue(filters)) {
       const { getCriteriaToGRPC } = require('.././utils/baseDataTypeToGRPC.js');
 
@@ -434,7 +433,6 @@ class GeneralLedger {
       callback
     );
   }
-
 }
 
 module.exports = GeneralLedger;

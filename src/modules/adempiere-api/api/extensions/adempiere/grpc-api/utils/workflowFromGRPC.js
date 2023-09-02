@@ -25,7 +25,7 @@
       SUSPENDED: 4,
       NOT_STARTED: 5,
   */
-function getWorkflowState({ key, value }) {
+function getWorkflowState ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { WorkflowState } = require('.././grpc/proto/workflow_pb.js');
 
@@ -46,7 +46,7 @@ function getWorkflowState({ key, value }) {
       LOW: 3,
       MINOR: 4,
   */
-function getPriority({ key, value }) {
+function getPriority ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { Priority } = require('.././grpc/proto/workflow_pb.js');
 
@@ -65,7 +65,7 @@ function getPriority({ key, value }) {
       PROCESS_COMPLETED = 1;
       STATE_CHANGED = 2;
   */
-function getEventType({ key, value }) {
+function getEventType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { EventType } = require('.././grpc/proto/workflow_pb');
 
@@ -94,7 +94,7 @@ function getEventType({ key, value }) {
     USER_FORM = 11;
     WAIT_SLEEP = 12;
   */
-function getAction({ value, key }) {
+function getAction ({ value, key }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { Action } = require('.././grpc/proto/workflow_pb');
 
@@ -112,7 +112,7 @@ function getAction({ value, key }) {
     AND = 0;
     OR = 1;
   */
-function getConditionType({ key, value }) {
+function getConditionType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { ConditionType } = require('.././grpc/proto/workflow_pb');
 
@@ -137,7 +137,7 @@ function getConditionType({ key, value }) {
     BETWEEN = 8;
     SQL = 9;
   */
-function getOperation({ value, key }) {
+function getOperation ({ value, key }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { Operation } = require('.././grpc/proto/workflow_pb');
 
@@ -148,7 +148,6 @@ function getOperation({ value, key }) {
   });
 }
 
-
 /**
  * Get all workflow definition publush status or get key value type from value
  * @param {number} value
@@ -158,7 +157,7 @@ function getOperation({ value, key }) {
       UNDER_REVISION = 2;
       VOID = 3;
   */
-function getPublishStatus({ key, value }) {
+function getPublishStatus ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { PublishStatus } = require('.././grpc/proto/workflow_pb');
 
@@ -180,7 +179,7 @@ function getPublishStatus({ key, value }) {
       SECOND = 4;
       YEAR = 5;
   */
-function getDurationUnit({ key, value }) {
+function getDurationUnit ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js')
   const { DurationUnit } = require('.././grpc/proto/workflow_pb.js');
 
@@ -191,7 +190,7 @@ function getDurationUnit({ key, value }) {
   });
 }
 
-function getWorkflowProcessFomGRPC(workflowProcess) {
+function getWorkflowProcessFomGRPC (workflowProcess) {
   if (!workflowProcess) {
     return undefined
   }
@@ -225,7 +224,7 @@ function getWorkflowProcessFomGRPC(workflowProcess) {
   };
 }
 
-function getWorkflowEventFromGRPC(workflowEvent) {
+function getWorkflowEventFromGRPC (workflowEvent) {
   if (!workflowEvent) {
     return undefined;
   }
@@ -258,7 +257,7 @@ function getWorkflowEventFromGRPC(workflowEvent) {
   };
 }
 
-function getZoomWindowFromGRPC(zoomWindow) {
+function getZoomWindowFromGRPC (zoomWindow) {
   if (!zoomWindow) {
     return undefined;
   }
@@ -271,7 +270,7 @@ function getZoomWindowFromGRPC(zoomWindow) {
   };
 }
 
-function getWorkflowActivityFromGRPC(workflowActivity) {
+function getWorkflowActivityFromGRPC (workflowActivity) {
   if (!workflowActivity) {
     return undefined;
   }
@@ -306,7 +305,7 @@ function getWorkflowActivityFromGRPC(workflowActivity) {
   };
 }
 
-function getWorkflowDefinitionFromGRPC(workflow) {
+function getWorkflowDefinitionFromGRPC (workflow) {
   if (!workflow) {
     return undefined;
   }
@@ -341,7 +340,7 @@ function getWorkflowDefinitionFromGRPC(workflow) {
   };
 }
 
-function getWorkflowNodeFromGRPC(node) {
+function getWorkflowNodeFromGRPC (node) {
   if (!node) {
     return undefined;
   }
@@ -371,7 +370,7 @@ function getWorkflowNodeFromGRPC(node) {
   };
 }
 
-function getWorkflowTransitionFromGRPC(workflowTransitionToConvert) {
+function getWorkflowTransitionFromGRPC (workflowTransitionToConvert) {
   if (!workflowTransitionToConvert) {
     return undefined;
   }
@@ -390,7 +389,7 @@ function getWorkflowTransitionFromGRPC(workflowTransitionToConvert) {
   };
 }
 
-function getWorkflowConditionFromGRPC(workflowConditionToConvert) {
+function getWorkflowConditionFromGRPC (workflowConditionToConvert) {
   if (!workflowConditionToConvert) {
     return undefined;
   }
@@ -410,7 +409,7 @@ function getWorkflowConditionFromGRPC(workflowConditionToConvert) {
   };
 }
 
-function getDocumentActionFromGRPC(documentActionToConvert) {
+function getDocumentActionFromGRPC (documentActionToConvert) {
   if (!documentActionToConvert) {
     return undefined;
   }
@@ -421,7 +420,7 @@ function getDocumentActionFromGRPC(documentActionToConvert) {
   };
 }
 
-function getDocumentStatusFromGRPC(documentStatusToConvert) {
+function getDocumentStatusFromGRPC (documentStatusToConvert) {
   if (documentStatusToConvert) {
     return {
       value: documentStatusToConvert.getValue(),

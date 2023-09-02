@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger } = require('.././utils/valueUtils.js');
 
 class FileManagement {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class FileManagement {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class FileManagement {
   }
 
   // Init connection
-  initFileManagementService() {
+  initFileManagementService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/file_management_grpc_pb');
     this.fileManagement = new services.FileManagementClient(
@@ -54,7 +53,7 @@ class FileManagement {
   }
 
   // Get File Management Service
-  getFileManagementService() {
+  getFileManagementService () {
     return this.fileManagement;
   }
 
@@ -65,7 +64,7 @@ class FileManagement {
    * @param {string} recordUuid
    * @param {string} token
    */
-  setAttachmentDescription({
+  setAttachmentDescription ({
     token,
     // DSL
     id,
@@ -100,7 +99,7 @@ class FileManagement {
    * @param {string} recordUuid
    * @param {string} token
    */
-  existsAttachment({
+  existsAttachment ({
     token,
     // DSL
     tableName,
@@ -129,10 +128,10 @@ class FileManagement {
 
   /**
    * Get Attachment Information
-   * @param {*} param0 
-   * @param {*} callback 
+   * @param {*} param0
+   * @param {*} callback
    */
-  getAttachment({
+  getAttachment ({
     token,
     // DSL
     tableName,
@@ -165,7 +164,7 @@ class FileManagement {
    * @param {string} resourceUuid
    * @param {string} token
    */
-  getResource({
+  getResource ({
     resourceId,
     resourceUuid,
     resourceName,
@@ -211,7 +210,7 @@ class FileManagement {
    * @param {Blob} file
    * @param {string} token
    */
-  loadResource({
+  loadResource ({
     fileName,
     resourceUuid,
     token
@@ -228,16 +227,16 @@ class FileManagement {
 
   /**
    * Merge two arrays and return merged array
-   * 
+   *
    */
-  mergeByteArray(currentArray, arrayToMerge) {
+  mergeByteArray (currentArray, arrayToMerge) {
     const mergedArray = new currentArray.constructor(currentArray.length + arrayToMerge.length)
     mergedArray.set(currentArray)
     mergedArray.set(arrayToMerge, currentArray.length)
     return mergedArray
   }
 
-  setResourceReference({
+  setResourceReference ({
     token,
     // parent reference
     resourceType,
@@ -284,7 +283,7 @@ class FileManagement {
     );
   }
 
-  setResourceReferenceDescription({
+  setResourceReferenceDescription ({
     token,
     id,
     uuid,
@@ -325,7 +324,7 @@ class FileManagement {
    * @param {string} productAttributeSetUuid
    * @param {function} callback
    */
-   getResourceReference({
+  getResourceReference ({
     token,
     id,
     uuid,
@@ -373,7 +372,7 @@ class FileManagement {
    * @param {string} token
    * @param {function} callback
    */
-  deleteResourceReference({
+  deleteResourceReference ({
     token,
     resourceId,
     resourceUuid,

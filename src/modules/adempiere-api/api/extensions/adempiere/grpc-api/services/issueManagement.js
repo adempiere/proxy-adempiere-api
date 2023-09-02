@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidInteger, getTimestamp } = require('.././utils/valueUtils.js');
 
 class IssueManagement {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class IssueManagement {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.businessHost = adempiereConfig.businessHost;
@@ -44,7 +43,7 @@ class IssueManagement {
   }
 
   // Init connection
-  initIssueManagementService() {
+  initIssueManagementService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/issue_management_grpc_pb');
     this.issue_management = new services.IssueManagementClient(
@@ -54,7 +53,7 @@ class IssueManagement {
   }
 
   // Get IssueManagement Service
-  getIssueManagementService() {
+  getIssueManagementService () {
     return this.issue_management;
   }
 
@@ -65,7 +64,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listRequestTypes({
+  listRequestTypes ({
     token,
     searchValue,
     pageSize,
@@ -91,7 +90,6 @@ class IssueManagement {
     );
   }
 
-
   /**
    * List Request Types
    * @param {string} searchValue
@@ -99,7 +97,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listSalesRepresentatives({
+  listSalesRepresentatives ({
     token,
     searchValue,
     pageSize,
@@ -125,7 +123,6 @@ class IssueManagement {
     );
   }
 
-
   /**
    * List Priorities
    * @param {string} searchValue
@@ -133,7 +130,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listPriorities({
+  listPriorities ({
     token,
     searchValue,
     pageSize,
@@ -159,7 +156,6 @@ class IssueManagement {
     );
   }
 
-
   /**
    * List Statuses
    * @param {number} requestTypeId
@@ -169,7 +165,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listStatuses({
+  listStatuses ({
     token,
     requestTypeId,
     requestTypeUuid,
@@ -202,7 +198,6 @@ class IssueManagement {
     );
   }
 
-
   /**
    * Exists Chat Entries
    * @param {string} tableName
@@ -210,7 +205,7 @@ class IssueManagement {
    * @param {string} recordUuid
    * @param {string} token
    */
-  existsIssues({
+  existsIssues ({
     token,
     // DSL
     tableName,
@@ -247,7 +242,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listIssues({
+  listIssues ({
     token,
     tableName,
     recordId,
@@ -294,7 +289,7 @@ class IssueManagement {
    * @param {date} dateNextAction
    * @param {string} token
    */
-  createIssue({
+  createIssue ({
     token,
     tableName,
     recordId,
@@ -360,7 +355,7 @@ class IssueManagement {
    * @param {date} dateNextAction
    * @param {string} token
    */
-  updateIssue({
+  updateIssue ({
     token,
     id,
     uuid,
@@ -382,7 +377,7 @@ class IssueManagement {
     request.setId(
       getValidInteger(id)
     );
-    
+
     request.setSubject(subject);
     request.setSummary(summary);
     request.setRequestTypeId(
@@ -393,8 +388,8 @@ class IssueManagement {
       getValidInteger(salesRepresentativeId)
     );
     request.setSalesRepresentativeUuid(salesRepresentativeUuid);
-      request.setStatusId(
-        getValidInteger(statusId)
+    request.setStatusId(
+      getValidInteger(statusId)
     );
     request.setStatusUuid(statusUuid);
     request.setPriorityValue(priorityValue);
@@ -419,7 +414,7 @@ class IssueManagement {
    * @param {string} uuid
    * @param {string} token
    */
-  deleteIssue({
+  deleteIssue ({
     token,
     id,
     uuid
@@ -443,7 +438,6 @@ class IssueManagement {
     );
   }
 
-
   /**
    * List Issue Comments
    * @param {number} issueId
@@ -453,7 +447,7 @@ class IssueManagement {
    * @param {string} pageToken
    * @param {string} token
    */
-  listIssueComments({
+  listIssueComments ({
     token,
     issueId,
     issueUuid,
@@ -492,7 +486,7 @@ class IssueManagement {
    * @param {string} issueUuid
    * @param {string} result
    */
-  createIssueComment({
+  createIssueComment ({
     token,
     issueId,
     issueUuid,
@@ -526,7 +520,7 @@ class IssueManagement {
    * @param {string} result
    * @param {string} token
    */
-  updateIssueComment({
+  updateIssueComment ({
     token,
     id,
     uuid,
@@ -559,7 +553,7 @@ class IssueManagement {
    * @param {string} uuid
    * @param {string} token
    */
-  deleteIssueComment({
+  deleteIssueComment ({
     token,
     id,
     uuid
@@ -582,7 +576,6 @@ class IssueManagement {
       callback
     );
   }
-
 }
 
 module.exports = IssueManagement;

@@ -14,8 +14,8 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.             *
  ************************************************************************************/
 
- const convertCoreFunctionality = {
-  convertCountryFromGRPC(countryToConvert) {
+const convertCoreFunctionality = {
+  convertCountryFromGRPC (countryToConvert) {
     if (!countryToConvert) {
       return undefined;
     }
@@ -51,7 +51,7 @@
     };
   },
 
-  convertOrganizationFromGRPC(organization) {
+  convertOrganizationFromGRPC (organization) {
     if (organization) {
       return {
         id: organization.getId(),
@@ -70,7 +70,7 @@
     return undefined;
   },
 
-  convertWarehouseFromGRPC(warehouseToConvert) {
+  convertWarehouseFromGRPC (warehouseToConvert) {
     if (warehouseToConvert) {
       return {
         id: warehouseToConvert.getId(),
@@ -82,7 +82,7 @@
     return undefined;
   },
 
-  convertUnitOfMeasureFromGRPC(unitOfMeasureToConvert) {
+  convertUnitOfMeasureFromGRPC (unitOfMeasureToConvert) {
     if (unitOfMeasureToConvert) {
       return {
         uuid: unitOfMeasureToConvert.getUuid(),
@@ -98,7 +98,7 @@
     return undefined;
   },
 
-  convertProductConversionFromGRPC(productConversionToConvert) {
+  convertProductConversionFromGRPC (productConversionToConvert) {
     if (productConversionToConvert) {
       const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC.js');
       return {
@@ -115,13 +115,13 @@
         ),
         product_uom: convertCoreFunctionality.convertUnitOfMeasureFromGRPC(
           productConversionToConvert.getProductUom()
-        ),
+        )
       };
     }
     return undefined;
   },
 
-  convertChargeFromGRPC(chargeToConvert) {
+  convertChargeFromGRPC (chargeToConvert) {
     if (chargeToConvert) {
       return {
         uuid: chargeToConvert.getUuid(),
@@ -134,7 +134,7 @@
   },
 
   // Business Partner
-  convertBusinessPartnerFromGRPC(businessPartnerToConvert) {
+  convertBusinessPartnerFromGRPC (businessPartnerToConvert) {
     if (businessPartnerToConvert) {
       return {
         uuid: businessPartnerToConvert.getUuid(),
@@ -151,7 +151,7 @@
     return undefined;
   },
 
-  convertDocumentTypeFromGRPC(documentTypeToConvert) {
+  convertDocumentTypeFromGRPC (documentTypeToConvert) {
     if (documentTypeToConvert) {
       return {
         uuid: documentTypeToConvert.getUuid(),
@@ -164,7 +164,7 @@
     return undefined;
   },
 
-  convertSalesRepresentativeFromGRPC(salesRepresentativeToConvert) {
+  convertSalesRepresentativeFromGRPC (salesRepresentativeToConvert) {
     if (salesRepresentativeToConvert) {
       return {
         uuid: salesRepresentativeToConvert.getUuid(),
@@ -176,7 +176,7 @@
     return undefined;
   },
 
-  convertProductFromGRPC(productToConvert) {
+  convertProductFromGRPC (productToConvert) {
     if (productToConvert) {
       const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC.js');
 
@@ -225,7 +225,7 @@
     return undefined;
   },
 
-  convertTaxRateFromGRPC(taxRate) {
+  convertTaxRateFromGRPC (taxRate) {
     //  Tax rate
     if (taxRate) {
       const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC.js');
@@ -242,7 +242,7 @@
     return undefined;
   },
 
-  convertProductPriceFromGRPC(productPrice) {
+  convertProductPriceFromGRPC (productPrice) {
     if (productPrice) {
       const { getDecimalFromGRPC } = require('./baseDataTypeFromGRPC.js');
       const {
@@ -300,7 +300,7 @@
     return undefined;
   },
 
-  convertLanguageFromGRPC(language) {
+  convertLanguageFromGRPC (language) {
     if (language) {
       return {
         language: language.getLanguage(),
@@ -317,7 +317,7 @@
     return undefined;
   },
 
-  convertPriceListFromGRPC(priceListToConvert) {
+  convertPriceListFromGRPC (priceListToConvert) {
     if (!priceListToConvert) {
       return undefined;
     }
@@ -340,7 +340,7 @@
     };
   },
 
-  convertConversionRateFromGRPC(conversionRate) {
+  convertConversionRateFromGRPC (conversionRate) {
     if (!conversionRate) {
       return undefined;
     }

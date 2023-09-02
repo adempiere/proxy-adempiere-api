@@ -22,7 +22,7 @@ const { isEmptyValue } = require('./valueUtils.js');
  * @param {number} value
  * @return
  */
-function getIntegerValueToGRPC(value) {
+function getIntegerValueToGRPC (value) {
   const {
     ValueType, ContextValue
   } = stubFile;
@@ -42,7 +42,7 @@ function getIntegerValueToGRPC(value) {
  * @param {string} value
  * @return
  */
-function getStringValueToGRPC(value) {
+function getStringValueToGRPC (value) {
   const {
     ValueType, ContextValue
   } = stubFile;
@@ -60,7 +60,7 @@ function getStringValueToGRPC(value) {
  * @param {boolean} value
  * @return
  */
-function getBooleanValueToGRPC(value) {
+function getBooleanValueToGRPC (value) {
   const {
     ValueType, ContextValue
   } = stubFile;
@@ -83,7 +83,7 @@ function getBooleanValueToGRPC(value) {
  * @param {date} value
  * @return
  */
-function getDateValueToGRPC(value) {
+function getDateValueToGRPC (value) {
   const {
     ValueType, ContextValue
   } = stubFile;
@@ -102,7 +102,7 @@ function getDateValueToGRPC(value) {
  * @param {number} value
  * @return
  */
-function getDoubleValueToGRPC(value) {
+function getDoubleValueToGRPC (value) {
   const {
     ValueType, ContextValue
   } = stubFile;
@@ -121,7 +121,7 @@ function getDoubleValueToGRPC(value) {
  * @param {mixed} value
  * @returns {Value}
  */
-function getContextValueToGRPCWithoutValueType({ value }) {
+function getContextValueToGRPCWithoutValueType ({ value }) {
   let convertedValue;
   // evaluate type of value
   const { getTypeOfValue } = require('./valueUtils.js');
@@ -170,7 +170,7 @@ function getContextValueToGRPCWithoutValueType({ value }) {
  * @param {mixed} value
  * @param {string} valueType
  */
-function getContextValueToGRPCWithValueType({ value, valueType }) {
+function getContextValueToGRPCWithValueType ({ value, valueType }) {
   const { ValueType } = stubFile;
   let convertedValue;
 
@@ -215,7 +215,7 @@ function getContextValueToGRPCWithValueType({ value, valueType }) {
  * @param {string} valueType
  * @returns {Value}
  */
-function getContextValueToGRPC({ value, valueType }) {
+function getContextValueToGRPC ({ value, valueType }) {
   if (!isEmptyValue(valueType)) {
     return getContextValueToGRPCWithValueType({
       value,

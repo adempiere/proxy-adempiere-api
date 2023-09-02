@@ -14,7 +14,7 @@
  * along with this program. If not, see <https://www.gnu.org/licenses/>.                        *
  ***********************************************************************************************/
 
-function getMatchesTypeFromGRPC(matchesTypes) {
+function getMatchesTypeFromGRPC (matchesTypes) {
   if (!matchesTypes) {
     return undefined;
   }
@@ -30,7 +30,6 @@ function getMatchesTypeFromGRPC(matchesTypes) {
     })
   };
 }
-
 
 module.exports = {
   getMatchesTypeFromGRPC

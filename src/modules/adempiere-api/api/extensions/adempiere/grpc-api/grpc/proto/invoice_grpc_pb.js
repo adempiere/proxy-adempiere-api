@@ -21,33 +21,32 @@ var proto_invoice_pb = require('../proto/invoice_pb.js');
 var proto_base_data_type_pb = require('../proto/base_data_type_pb.js');
 var proto_business_pb = require('../proto/business_pb.js');
 
-function serialize_data_ListEntitiesResponse(arg) {
+function serialize_data_ListEntitiesResponse (arg) {
   if (!(arg instanceof proto_business_pb.ListEntitiesResponse)) {
     throw new Error('Expected argument of type data.ListEntitiesResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_data_ListEntitiesResponse(buffer_arg) {
+function deserialize_data_ListEntitiesResponse (buffer_arg) {
   return proto_business_pb.ListEntitiesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_invoice_ListInvoiceInfoRequest(arg) {
+function serialize_invoice_ListInvoiceInfoRequest (arg) {
   if (!(arg instanceof proto_invoice_pb.ListInvoiceInfoRequest)) {
     throw new Error('Expected argument of type invoice.ListInvoiceInfoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_invoice_ListInvoiceInfoRequest(buffer_arg) {
+function deserialize_invoice_ListInvoiceInfoRequest (buffer_arg) {
   return proto_invoice_pb.ListInvoiceInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
-
 
 // The invoice service definition.
 var InvoiceService = exports.InvoiceService = {
   // List Invoice Info Request
-listInvoiceInfo: {
+  listInvoiceInfo: {
     path: '/invoice.Invoice/ListInvoiceInfo',
     requestStream: false,
     responseStream: false,
@@ -56,8 +55,8 @@ listInvoiceInfo: {
     requestSerialize: serialize_invoice_ListInvoiceInfoRequest,
     requestDeserialize: deserialize_invoice_ListInvoiceInfoRequest,
     responseSerialize: serialize_data_ListEntitiesResponse,
-    responseDeserialize: deserialize_data_ListEntitiesResponse,
-  },
+    responseDeserialize: deserialize_data_ListEntitiesResponse
+  }
 };
 
 exports.InvoiceClient = grpc.makeGenericClientConstructor(InvoiceService);

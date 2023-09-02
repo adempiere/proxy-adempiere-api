@@ -26,7 +26,7 @@ module.exports = ({ config, db }) => {
         id: req.body.id,
         uuid: req.body.uuid,
         comment: req.body.comment
-      }, function (err, response) {
+      }, (err, response) => {
         if (response) {
           res.json({
             code: 200,

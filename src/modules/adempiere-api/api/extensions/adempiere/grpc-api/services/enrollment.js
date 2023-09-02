@@ -17,7 +17,6 @@
 const { getMetadata } = require('.././utils/metadata.js');
 
 class Enrollment {
-
   /**
    * File on generated stub
    */
@@ -29,7 +28,7 @@ class Enrollment {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.enrollmentHost = adempiereConfig.accessHost;
@@ -43,7 +42,7 @@ class Enrollment {
   }
 
   // Init connection
-  initEnrollmentService() {
+  initEnrollmentService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/enrollment_grpc_pb');
     this.enrollment = new services.RegisterClient(
@@ -53,12 +52,12 @@ class Enrollment {
   }
 
   // Get Enrollment Service
-  getEnrollmentService() {
+  getEnrollmentService () {
     return this.enrollment;
   }
 
   // Enroll User
-  enrollUser({
+  enrollUser ({
     userName,
     name,
     email,
@@ -77,7 +76,7 @@ class Enrollment {
     request.setPassword(password);
 
     const metadata = getMetadata({
-      token
+      token: this.token
     });
 
     this.getEnrollmentService().enrollUser(
@@ -88,7 +87,7 @@ class Enrollment {
   }
 
   // Reset Password
-  resetPassword({
+  resetPassword ({
     userName,
     email,
     clientVersion
@@ -101,7 +100,7 @@ class Enrollment {
     request.setClientVersion(clientVersion);
 
     const metadata = getMetadata({
-      token
+      token: this.token
     });
 
     this.getEnrollmentService().resetPassword(
@@ -112,7 +111,7 @@ class Enrollment {
   }
 
   // Reset Password from Token
-  resetPasswordFromToken({
+  resetPasswordFromToken ({
     token,
     password,
     clientVersion
@@ -136,7 +135,7 @@ class Enrollment {
   }
 
   // Activate User
-  activateUser({
+  activateUser ({
     token,
     clientVersion
   }, callback) {
@@ -156,7 +155,6 @@ class Enrollment {
       callback
     );
   }
-
 }
 
 module.exports = Enrollment;

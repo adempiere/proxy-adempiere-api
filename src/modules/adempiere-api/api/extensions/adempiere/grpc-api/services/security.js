@@ -18,7 +18,6 @@ const { getMetadata } = require('.././utils/metadata.js');
 const { getValidId } = require('.././utils/valueUtils.js');
 
 class Security {
-
   /**
    * File on generated stub
    */
@@ -30,7 +29,7 @@ class Security {
    * @param {string} version
    * @param {string} language
    */
-  constructor(config) {
+  constructor (config) {
     if (config) {
       const adempiereConfig = config.adempiereApi.api;
       this.accessHost = adempiereConfig.accessHost;
@@ -44,7 +43,7 @@ class Security {
   }
 
   // Init connection
-  initSecurityService() {
+  initSecurityService () {
     const grpc = require('@grpc/grpc-js');
     const services = require('.././grpc/proto/security_grpc_pb');
     this.security = new services.SecurityClient(
@@ -54,12 +53,12 @@ class Security {
   }
 
   // Get Security Service
-  getSecurityService() {
+  getSecurityService () {
     return this.security;
   }
 
   // Login with a user
-  login({
+  login ({
     user,
     password,
     token, // token as password
@@ -87,7 +86,7 @@ class Security {
   }
 
   // Get User Information
-  getUserInfo({
+  getUserInfo ({
     token
   }, callback) {
     const { UserInfoRequest } = this.stubFile;
@@ -105,7 +104,7 @@ class Security {
   }
 
   // Get User Information
-  getUserRoles({
+  getUserRoles ({
     token,
     pageSize,
     pageToken
@@ -128,7 +127,7 @@ class Security {
   }
 
   // Get User Menu
-  getMenu({
+  getMenu ({
     token
   }, callback) {
     const { MenuRequest } = this.stubFile;
@@ -146,8 +145,8 @@ class Security {
   }
 
   // Get User Session
-  getSessionInfo({
-    token,
+  getSessionInfo ({
+    token
   }, callback) {
     const { SessionInfoRequest } = this.stubFile;
     const request = new SessionInfoRequest();
@@ -164,7 +163,7 @@ class Security {
   }
 
   // Change role
-  changeRole({
+  changeRole ({
     token,
     roleUuid,
     organizationUuid,
@@ -190,9 +189,8 @@ class Security {
     );
   }
 
-
   // Set session attribute
-  setSessionAttribute({
+  setSessionAttribute ({
     token,
     language,
     warehouseId,
@@ -222,8 +220,8 @@ class Security {
    * Logout with current session
    * @param {String} token
    */
-  logout({
-    token,
+  logout ({
+    token
   }, callback) {
     const { LogoutRequest } = this.stubFile;
     const request = new LogoutRequest();
@@ -242,7 +240,8 @@ class Security {
   /**
    * List Services OpenID
    */
-  listServices({
+  listServices ({
+    token
   }, callback) {
     const { ListServicesRequest } = this.stubFile;
     const request = new ListServicesRequest();
@@ -262,7 +261,7 @@ class Security {
    * Login with OpenID
    * @param {String} token
    */
-  runLoginOpenID({
+  runLoginOpenID ({
     codeParameter,
     stateParameter,
     language,
@@ -286,7 +285,6 @@ class Security {
       callback
     );
   }
-
 }
 
 module.exports = Security;

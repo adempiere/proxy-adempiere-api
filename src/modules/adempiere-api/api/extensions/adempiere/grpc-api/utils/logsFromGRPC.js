@@ -16,7 +16,7 @@
 
 const stubFile = require('.././grpc/proto/logs_pb.js');
 
-function getRecentItemFromGRPC(recentItem) {
+function getRecentItemFromGRPC (recentItem) {
   if (!recentItem) {
     return undefined;
   }
@@ -46,7 +46,7 @@ function getRecentItemFromGRPC(recentItem) {
       PARTER: 1,
       INTERNAL: 2,
   */
-function getEntityChat_ConfidentialType({ key, value }) {
+function getEntityChat_ConfidentialType ({ key, value }) {
   const { getValueOrKey } = require('./convertEnums.js')
   const { EntityChat } = stubFile;
   const { ConfidentialType } = EntityChat;
@@ -66,7 +66,7 @@ function getEntityChat_ConfidentialType({ key, value }) {
       BEFORE_PUBLISHING: 1,
       AFTER_PUBLISHING: 2,
   */
-function getEntityChat_ModerationType({ key, value }) {
+function getEntityChat_ModerationType ({ key, value }) {
   const { getValueOrKey } = require('./convertEnums.js')
   const { EntityChat } = stubFile;
   const { ModerationType } = EntityChat;
@@ -78,7 +78,7 @@ function getEntityChat_ModerationType({ key, value }) {
   });
 }
 
-function getEntityChatsFromGRPC(entityChat) {
+function getEntityChatsFromGRPC (entityChat) {
   if (!entityChat) {
     return undefined;
   }
@@ -114,7 +114,7 @@ function getEntityChatsFromGRPC(entityChat) {
     UPDATE = 1;
     DELETE = 2;
 */
-function getEntityEventType({ key, value }) {
+function getEntityEventType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js');
   const { EntityEventType } = stubFile;
 
@@ -125,7 +125,7 @@ function getEntityEventType({ key, value }) {
   });
 }
 
-function getChangeLogFromGRPC(changeLogToConvert) {
+function getChangeLogFromGRPC (changeLogToConvert) {
   if (!changeLogToConvert) {
     return undefined;
   }
@@ -140,7 +140,7 @@ function getChangeLogFromGRPC(changeLogToConvert) {
   };
 }
 
-function getEntityLogFromGRPC(entityLog) {
+function getEntityLogFromGRPC (entityLog) {
   if (!entityLog) {
     return undefined;
   }
@@ -175,7 +175,7 @@ function getEntityLogFromGRPC(entityLog) {
   };
 }
 
-function getUserActivityType({ key, value }) {
+function getUserActivityType ({ key, value }) {
   const { getValueOrKeyEnum } = require('./convertEnums.js');
   const { UserActivityType } = stubFile;
 
@@ -186,7 +186,7 @@ function getUserActivityType({ key, value }) {
   });
 }
 
-function getUserActivityFromGRPC(userActivityToConvert) {
+function getUserActivityFromGRPC (userActivityToConvert) {
   if (!userActivityToConvert) {
     return undefined;
   }
