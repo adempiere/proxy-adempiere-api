@@ -253,17 +253,17 @@
   "modules": {
     "defaultCatalog": {
       "registeredExtensions": [
-        "example-processor",
-        "example-custom-filter",
-        "elastic-stock"
+        // "example-processor",
+        // "example-custom-filter",
+        // "elastic-stock"
       ]
     },
     "defaultVsf": {
       "registeredExtensions": [
-        "mailchimp-subscribe",
-        "example-magento-api",
-        "cms-data",
-        "mail-service"
+        // "mailchimp-subscribe",
+        // "example-magento-api",
+        // "cms-data",
+        // "mail-service"
       ]
     },
     "adempiereApi": {

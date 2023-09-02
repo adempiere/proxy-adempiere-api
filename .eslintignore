@@ -1,2 +1,3 @@
 dist/
 node_modules
+src/modules/adempiere-api/extensions/adempiere/grpc-api/grpc/
